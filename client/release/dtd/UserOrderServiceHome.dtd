@@ -1,0 +1,71 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the UserOrderServiceHomeImpl -->
+<!-- @author William Wei, Troy Wehrle-->
+<!-- @version 2.0-->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserOrderServiceHome (UserOrderServiceHomeImpl*)>
+<!ATTLIST GlobalUserOrderServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserOrderServiceHomeImpl (UserOrderServiceHomeImplProperties, UserOrderServiceHomeImplCommands?)>
+<!ATTLIST UserOrderServiceHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserOrderServiceHomeImplProperties (rateMonitorSessions?, rateMonitorStartTime?, rateMonitorInterval?, rateMonitorWindow?)>
+<!ATTLIST UserOrderServiceHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT rateMonitorSessions (#PCDATA)>
+<!ATTLIST rateMonitorSessions
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Identifies the sessions to set rate monitor constraints for and the order that the constraints must follow. If a constraint is not desired for a particular session, set it to zero. Delimit individual sessions with a comma."
+>
+<!ELEMENT rateMonitorStartTime (#PCDATA)>
+<!ATTLIST rateMonitorStartTime
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Time of day when rateMonitor goes into effect. Specify start time as h:mm, or 0 to mean always in effect. Delimit individual sessions with a comma."
+>
+<!ELEMENT rateMonitorInterval (#PCDATA)>
+<!ATTLIST rateMonitorInterval
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the time duration call window constraints for sessions. The order of constraints for session must follow the same order as the sessions are defined. Delimit individual constraints with a comma."
+>
+<!ELEMENT rateMonitorWindow (#PCDATA)>
+<!ATTLIST rateMonitorWindow
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the frequency count call window constraints for sessions. The order of constraints for session must follow the same order as the sessions are defined. Delimit individual constraints with a comma."
+>
+<!ELEMENT UserOrderServiceHomeImplCommands (orderRateMonitor)>
+<!ATTLIST UserOrderServiceHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT orderRateMonitor (command, pattern?)>
+<!ATTLIST orderRateMonitor
+	type %typeConstraints; #FIXED "ManagedCommand"
+  	description CDATA #FIXED "Display Order RateMoniotr"
+>
+<!ELEMENT command (#PCDATA)>
+<!ATTLIST command
+	type %typeConstraints; #FIXED "ManagedCommand"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "ALL"
+>
+<!ELEMENT pattern (#PCDATA)>
+<!ATTLIST pattern
+	type %typeConstraints; #FIXED "ManagedCommand"
+	parameterType CDATA #FIXED "string"
+        description CDATA #FIXED "ALL"
+>

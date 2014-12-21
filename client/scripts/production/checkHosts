@@ -1,0 +1,85 @@
+# Code shared among ksh scripts
+# Setup:
+# - Define DATEFORMAT as the format for a date command.
+#      Example: DATEFORMAT="+%Y-%m-%d %T"
+# - Include this script in your script's environment
+#      . checkHosts  (the "." is important!)
+#
+# Invocation:
+# - ALLHOST=list of hosts to check
+#      Example: ALLHOST="cas0001 cas0002 cas0003 cas0004 cas0005" and so on
+# - checkHosts <number of seconds for timeout>
+# Return:
+# - ALIVEHOST: subset of ALLHOST, boxes that respond to ping and ssh
+# - DEADHOST: subset of ALLHOST, boxes that don't respond to ping or ssh
+# - ERR_$host: reason (string) that $host isn't in ALIVEHOST
+#
+# Side effects:
+# - Puts status messages to standard output
+
+
+# -------------------- Constants --------------------
+
+CKH_PINGFILE=/tmp/checkHosts.$$.ping
+CKH_ALIVESTEM=/tmp/checkHosts.$$.alive
+CKH_DEADSTEM=/tmp/checkHosts.$$.dead
+
+# -------------------- Subroutines --------------------
+
+ckh_verifySsh()
+{
+    CKH_host=$1
+    ssh ${USER_CLIENT:+$USER_CLIENT@}$CKH_host ls -ld . >/dev/null 2>&1 &
+    CKH_pid=$!
+    (sleep $CKH_SECONDS; if [ -d /proc/$CKH_pid ] ; then kill $CKH_pid ; date "$DATEFORMAT ssh does not respond on $CKH_host" ; else touch $CKH_ALIVESTEM.$CKH_host ; fi) &
+}
+
+# Check that we can perform operations on the hosts listed in $ALLHOST
+# @param 1 Number of seconds to wait before declaring a host unreachable
+# @return Sets shell variables ALIVEHOST and DEADHOST.
+#      ALIVEHOST: subset of ALLHOST, boxes that respond to ping and ssh
+#      DEADHOST: subset of ALLHOST, boxes that don't respond to ping or ssh
+checkHosts()
+{
+    CKH_SECONDS=$1
+
+    \rm -f $CKH_ALIVESTEM.* >/dev/null 2>&1
+    CKH_EXISTHOST=""
+    DEADHOST=""
+    for i in $ALLHOST ; do
+        PingStart=`date "$DATEFORMAT"`
+        if ping $i $CKH_SECONDS >$CKH_PINGFILE 2>&1 ; then
+            CKH_EXISTHOST="$CKH_EXISTHOST $i"
+            ckh_verifySsh $i
+        else
+            DEADHOST="$DEADHOST $i"
+            touch $CKH_DEADSTEM.$i
+            CKH_pingErr=`cat $CKH_PINGFILE | tr "\n" " "`
+            if fgrep -s "unknown host" $CKH_PINGFILE ; then
+                # Put error message into our logfile
+                cat $CKH_PINGFILE
+                eval "ERR_$i="'"'$CKH_pingErr'"'
+            else
+                CKH_EXISTHOST="$CKH_EXISTHOST $i"
+                PingEnd=`date +%T`
+                echo "$PingStart - $PingEnd No response from $i"
+                eval "ERR_$i="'"ping: '$CKH_pingErr'"'
+            fi
+            export ERR_$i
+        fi
+    done
+    wait
+    ALIVEHOST=`ls $CKH_ALIVESTEM.* | sed -e s:$CKH_ALIVESTEM.::g | tr "\n" " "`
+    for i in $CKH_EXISTHOST ; do
+        if [ ! -f $CKH_ALIVESTEM.$i ] ; then
+            if [ ! -f $CKH_DEADSTEM.$i ] ; then
+                touch $CKH_DEADSTEM.$i
+                eval "ERR_$i='ssh: no response'"
+                export ERR_$i
+                DEADHOST="$DEADHOST $i"
+            fi
+        fi
+    done
+    \rm -f $CKH_PINGFILE $CKH_ALIVESTEM.* $CKH_DEADSTEM.*
+    unset CKH_EXISTHOST
+}

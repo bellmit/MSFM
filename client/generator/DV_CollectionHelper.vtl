@@ -1,0 +1,372 @@
+#macro ( makeYStructComparator $KEY_PREFIX $CLASS_STRUCT_PREFIX $PRODUCT_STRUCT_PREFIX )
+    public static final Ascending${KEY_PREFIX}ProductStructByProductKeyComparator ${KEY_PREFIX}ProductStructByProductKeyComparator = new Ascending${KEY_PREFIX}ProductStructByProductKeyComparator();
+    public static class Ascending${KEY_PREFIX}ProductStructByProductKeyComparator implements Comparator
+    {
+        public int compare(Object objectA, Object objectB)
+        {
+            return ((${KEY_PREFIX}ProductStruct) objectA).${PRODUCT_STRUCT_PREFIX}productKeys.productKey - ((${KEY_PREFIX}ProductStruct) objectB).${PRODUCT_STRUCT_PREFIX}productKeys.productKey;
+        }
+    }
+
+    public static final Ascending${KEY_PREFIX}ProductStructByClassAndProductKeyComparator ${KEY_PREFIX}ProductStructByClassAndProductKeyComparator = new Ascending${KEY_PREFIX}ProductStructByClassAndProductKeyComparator();
+    public static class Ascending${KEY_PREFIX}ProductStructByClassAndProductKeyComparator implements Comparator
+    {
+        public int compare(Object objectA, Object objectB)
+        {
+            int c = ((${KEY_PREFIX}ClassStruct) objectA).${CLASS_STRUCT_PREFIX}classKey - ((${KEY_PREFIX}ClassStruct) objectB).${CLASS_STRUCT_PREFIX}classKey;
+            if (c != 0)
+            {
+                return c;
+            }
+            return ((${KEY_PREFIX}ProductStruct) objectA).${PRODUCT_STRUCT_PREFIX}productKeys.productKey - ((${KEY_PREFIX}ProductStruct) objectB).${PRODUCT_STRUCT_PREFIX}productKeys.productKey;
+        }
+    }
+#end
+#macro ( makeZStructComparator $KEY_PREFIX $CLASS_STRUCT_PREFIX $PRODUCT_STRUCT_PREFIX )
+    public static final Ascending${KEY_PREFIX}ClassStructByClassKeyComparator ${KEY_PREFIX}ClassStructByClassKeyComparator = new Ascending${KEY_PREFIX}ClassStructByClassKeyComparator();
+    public static class Ascending${KEY_PREFIX}ClassStructByClassKeyComparator implements Comparator
+    {
+        public int compare(Object objectA, Object objectB)
+        {
+            return ((${KEY_PREFIX}ClassStruct) objectA).${CLASS_STRUCT_PREFIX}classKey - ((${KEY_PREFIX}ClassStruct) objectB).${CLASS_STRUCT_PREFIX}classKey;
+        }
+    }
+#end
+#macro ( makeXStructComparator $KEY_TYPE )
+    public static final Ascending${KEY_TYPE}ByProductKeyComparator ${KEY_TYPE}ByProductKeyComparator = new Ascending${KEY_TYPE}ByProductKeyComparator();
+    public static class Ascending${KEY_TYPE}ByProductKeyComparator implements Comparator
+    {
+        public int compare(Object objectA, Object objectB)
+        {
+            return ((${KEY_TYPE}) objectA).productKeys.productKey - ((${KEY_TYPE}) objectB).productKeys.productKey;
+        }
+    }
+#end
+#macro ( arraySort $KEY_TYPE $COMPARATOR )
+    public static ${KEY_TYPE}[] sort(${KEY_TYPE}[] array)
+    {
+        Arrays.sort(array, ${COMPARATOR});
+
+        return array;
+    }
+#end
+#macro ( binarySearchImpl $KEY_TYPE $COMPARE_TYPE $KEY_SUFFIX $ARRAY )
+    {
+	    int high = ${ARRAY}length - 1;
+        if (high < 0)
+        {
+            return -1;
+        }
+
+	    int low  = 0;
+	    int mid;
+	    ${COMPARE_TYPE} midVal;
+
+	    while (low <= high)
+        {
+	        mid    = (low + high) >> 1;
+	        midVal = array[mid]${KEY_SUFFIX};
+
+	        if (midVal < key)
+            {
+		        low = mid + 1;
+            }
+	        else if (midVal > key)
+            {
+		        high = mid - 1;
+            }
+	        else
+            {
+		        return mid; // key found
+            }
+	    }
+
+	    return -(low + 1);  // key not found.
+    }
+#end
+#macro ( binarySearch $KEY_TYPE $COMPARE_TYPE $KEY_SUFFIX )
+    public static int binarySearch(${KEY_TYPE}[] array, ${COMPARE_TYPE} key)
+#binarySearchImpl( ${KEY_TYPE} ${COMPARE_TYPE} ${KEY_SUFFIX} "array." )
+
+    public static int binarySearch(${KEY_TYPE}[] array, ${COMPARE_TYPE} key, int length)
+#binarySearchImpl( ${KEY_TYPE} ${COMPARE_TYPE} ${KEY_SUFFIX} "" )
+#end
+#macro ( arrayclone $KEY_TYPE )
+    public static ${KEY_TYPE}[] arrayclone(${KEY_TYPE} from)
+    {
+        ${KEY_TYPE}[] to = new ${KEY_TYPE}[1];
+
+        to[0] = from;
+
+        return to;
+    }
+
+    public static ${KEY_TYPE}[] arrayclone(${KEY_TYPE}[] from)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        return (${KEY_TYPE}[]) from.clone();
+    }
+
+    public static ${KEY_TYPE}[] arrayclone(${KEY_TYPE}[] from, int toSize)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[] to = new ${KEY_TYPE}[toSize];
+        System.arraycopy(from, 0, to, 0, from.length);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[] arrayclone(${KEY_TYPE}[] from, int fromOffset, int fromSize, int toSize)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[] to = new ${KEY_TYPE}[toSize];
+        System.arraycopy(from, fromOffset, to, 0, fromSize);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[] arraycloneCombine(${KEY_TYPE}[] from, int startOffset, int endOffset, int toSize)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[] to = new ${KEY_TYPE}[toSize];
+        int firstPortion = from.length - startOffset;
+        System.arraycopy(from, startOffset, to, 0,            firstPortion);
+        System.arraycopy(from, 0,           to, firstPortion, endOffset);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[] arraycloneExpandGap(${KEY_TYPE}[] from, int fromOffset, int fromSize, int toSize, int gapOffset, int gapLength)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[] to = new ${KEY_TYPE}[toSize];
+        int gap = gapOffset + gapLength;
+        System.arraycopy(from, fromOffset, to, 0,   gapOffset);
+        System.arraycopy(from, gapOffset,  to, gap, fromSize - gapOffset);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[][] arrayclone(${KEY_TYPE}[][] from)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        return (${KEY_TYPE}[][]) from.clone();
+    }
+
+    public static ${KEY_TYPE}[][] arraycloneDimensions(${KEY_TYPE}[][] from)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[][] to = new ${KEY_TYPE}[from.length][];
+        System.arraycopy(from, 0, to, 0, from.length);
+        for (int i = 0; i < from.length; i++)
+        {
+            to[i] = arrayclone(from[i]);
+        }
+        return to;
+    }
+
+    public static ${KEY_TYPE}[][] arrayclone(${KEY_TYPE}[][] from, int toSize)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[][] to = new ${KEY_TYPE}[toSize][];
+        System.arraycopy(from, 0, to, 0, from.length);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[][] arrayclone(${KEY_TYPE}[][] from, int fromOffset, int fromSize, int toSize)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[][] to = new ${KEY_TYPE}[toSize][];
+        System.arraycopy(from, fromOffset, to, 0, fromSize);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[][] arraycloneCombine(${KEY_TYPE}[][] from, int startOffset, int endOffset, int toSize)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[][] to = new ${KEY_TYPE}[toSize][];
+        int firstPortion = from.length - startOffset;
+        System.arraycopy(from, startOffset, to, 0,            firstPortion);
+        System.arraycopy(from, 0,           to, firstPortion, endOffset);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[][] arraycloneExpandGap(${KEY_TYPE}[][] from, int fromOffset, int fromSize, int toSize, int gapOffset, int gapLength)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[][] to = new ${KEY_TYPE}[toSize][];
+        int gap = gapOffset + gapLength;
+        System.arraycopy(from, fromOffset, to, 0,   gapOffset);
+        System.arraycopy(from, gapOffset,  to, gap, fromSize - gapOffset);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[] arraycloneShrinkGap(${KEY_TYPE}[] from, int gapOffset, int gapLength)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[] to = new ${KEY_TYPE}[from.length - gapLength];
+        System.arraycopy(from, 0,                     to, 0,         gapOffset);
+        System.arraycopy(from, gapOffset + gapLength, to, gapOffset, to.length - gapOffset);
+        return to;
+    }
+
+    public static ${KEY_TYPE}[][] arraycloneShrinkGap(${KEY_TYPE}[][] from, int gapOffset, int gapLength)
+    {
+        if (from == null)
+        {
+            return null;
+        }
+
+        ${KEY_TYPE}[][] to = new ${KEY_TYPE}[from.length - gapLength][];
+        System.arraycopy(from, 0,                     to, 0,         gapOffset);
+        System.arraycopy(from, gapOffset + gapLength, to, gapOffset, to.length - gapOffset);
+        return to;
+    }
+#end
+package com.cboe.client.util;
+
+/**
+ * CollectionHelper.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED BY VELOCITY TEMPLATE ENGINE FROM /vobs/dte/client/generator/DV_CollectionHelper.java
+ *
+ */
+
+import java.util.*;
+
+import com.cboe.idl.cmiMarketData.*;
+import com.cboe.idl.cmiProduct.*;
+import com.cboe.idl.cmiSession.*;
+
+public final class CollectionHelper
+{
+    public static final BookDepthStruct[]              EMPTY_BookDepthStruct_ARRAY              = new BookDepthStruct[0];
+    public static final CurrentMarketStruct[]          EMPTY_CurrentMarketStruct_ARRAY          = new CurrentMarketStruct[0];
+    public static final CurrentMarketStructV4[]        EMPTY_CurrentMarketStructV4_ARRAY        = new CurrentMarketStructV4[0];
+
+    public static final ExpectedOpeningPriceStruct[]   EMPTY_ExpectedOpeningPriceStruct_ARRAY   = new ExpectedOpeningPriceStruct[0];
+    public static final NBBOStruct[]                   EMPTY_NBBOStruct_ARRAY                   = new NBBOStruct[0];
+    
+    public static final RecapStruct[]                  EMPTY_RecapStruct_ARRAY                  = new RecapStruct[0];
+    public static final RecapStructV4[]                EMPTY_RecapStructV4_ARRAY                = new RecapStructV4[0];
+
+    public static final TickerStruct[]                 EMPTY_TickerStruct_ARRAY                 = new TickerStruct[0];
+    public static final TickerStructV4[]               EMPTY_TickerStructV4_ARRAY               = new TickerStructV4[0];
+
+    public static final SessionProductStruct[]         EMPTY_SessionProductStruct_ARRAY         = new SessionProductStruct[0];
+    public static final SessionClassStruct[]           EMPTY_SessionClassStruct_ARRAY           = new SessionClassStruct[0];
+    public static final ProductStruct[]                EMPTY_ProductStruct_ARRAY                = new ProductStruct[0];
+    public static final ClassStruct[]                  EMPTY_ClassStruct_ARRAY                  = new ClassStruct[0];
+
+    public static final Object[]                       EMPTY_Object_ARRAY                       = new Object[0];
+    public static final String[]                       EMPTY_String_ARRAY                       = new String[0];
+    public static final Integer[]                      EMPTY_Integer_ARRAY                      = new Integer[0];
+    public static final Long[]                         EMPTY_Long_ARRAY                         = new Long[0];
+    public static final Short[]                        EMPTY_Short_ARRAY                        = new Short[0];
+    public static final Byte[]                         EMPTY_Byte_ARRAY                         = new Byte[0];
+    public static final Character[]                    EMPTY_Character_ARRAY                    = new Character[0];
+    public static final char[]                         EMPTY_char_ARRAY                         = new char[0];
+    public static final int[]                          EMPTY_int_ARRAY                          = new int[0];
+    public static final long[]                         EMPTY_long_ARRAY                         = new long[0];
+
+    //public static final Set                          EMPTY_SET                                = Collections.EMPTY_SET;
+    //public static final Map                          EMPTY_MAP                                = Collections.EMPTY_MAP;
+    //public static final List                         EMPTY_LIST                               = Collections.EMPTY_LIST;
+
+    public static int normalizeBinarySearchPosition(int position)
+    {
+        return position >= 0 ? position : -(position + 1);
+    }
+
+#foreach ( $type in [ "BookDepthStruct", "CurrentMarketStruct", "CurrentMarketStructV4", "RecapStruct", "RecapStructV4", "TickerStruct", "TickerStructV4", "ExpectedOpeningPriceStruct", "NBBOStruct" ])
+
+#makeXStructComparator( ${type} )
+#binarySearch( ${type} "int" ".productKeys.productKey" )
+#arraySort( ${type} "${type}ByProductKeyComparator" )
+#arrayclone( ${type} )
+#end
+
+#foreach ( $type in [ "SessionProductStruct" ] )
+#makeYStructComparator( "Session" "classStruct." "productStruct." )
+#binarySearch(           ${type} "int" ".productStruct.productKeys.productKey" )
+#arraySort(              ${type} "${type}ByProductKeyComparator"  )
+#arrayclone( ${type} )
+#end
+
+#foreach ( $type in [ "SessionClassStruct" ] )
+#makeZStructComparator( "Session" "classStruct." "productStruct." )
+#binarySearch(           ${type} "int" ".classStruct.classKey"    )
+#arraySort(              ${type} "${type}ByClassKeyComparator"    )
+#arrayclone( ${type} )
+#end
+
+#foreach ( $type in [ "ProductStruct" ] )
+#makeYStructComparator( "" "" "" )
+#binarySearch(           ${type} "int" ".productKeys.productKey"  )
+#arraySort(              ${type} "${type}ByProductKeyComparator"  )
+#arrayclone( ${type} )
+#end
+
+#foreach ( $type in [ "ClassStruct" ] )
+#makeZStructComparator( "" "" "" )
+#arraySort(              ${type} "${type}ByClassKeyComparator"    )
+#binarySearch(           ${type} "int" ".classKey"                )
+#arrayclone( ${type} )
+#end
+
+#foreach ( $type in [ "int", "long" ])
+
+#binarySearch( ${type} ${type} "" )
+#arrayclone( ${type} )
+#end
+#foreach ( $type in [ "Object", "String", "Comparable", "Integer", "Long", "Short", "short", "Byte", "byte", "Character", "char" ])
+
+#arrayclone( ${type} )
+#end
+}

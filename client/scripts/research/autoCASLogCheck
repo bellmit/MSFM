@@ -1,0 +1,228 @@
+#!/bin/ksh
+
+WATCHED_EXCEPTION="com.cboe.exceptions.SystemException"
+#WATCHED_EXCEPTION="${WATCHED_EXCEPTION}|java.lang.NullPointerException"
+#WATCHED_EXCEPTION="${WATCHED_EXCEPTION}|java.lang.ClassCastException"
+WATCHED_EXCEPTION="${WATCHED_EXCEPTION}|java.[^ ]*Exception"
+WATCHED_EXCEPTION="${WATCHED_EXCEPTION}|acceptCallbackRemoval"
+#INGORED_EXCEPTION=""
+INGORED_EXCEPTION="org.omg.CORBA.TRANSIENT"
+
+out_file=/tmp/$$.casOut
+mail_file=/tmp/$$.casMail
+script_file=/tmp/$$.casScript
+
+function clearMailFile
+{
+	\rm -rf $mail_file
+}
+
+function executeCommand 
+{
+	echo $1 "| nawk '" \
+"BEGIN { prev_line = \"\"; cur_line = \"\"; count = 0; } " \
+"/.*/ { " \
+"	 cur_line = \$0; " \
+"	if (prev_line == cur_line) " \
+"	{ " \
+"		count++; " \
+"	} "\
+"	else if (count != 0) " \
+"	{ " \
+"		print \"====== Repeat count: \", ++count; " \
+"		count = 0; " \
+"		print \$0; " \
+"	} " \
+"	else " \
+"	{ " \
+"		print \$0; " \
+"	} " \
+"	prev_line = \$0; " \
+"}' " > $script_file
+
+	. $script_file >$out_file 2>/dev/null
+
+	if [ -s $out_file  ]
+	then
+		echo "\n\n" $2 "-------------------------------\n" >> $mail_file
+		cat $out_file >> $mail_file
+	fi
+}
+
+function checkCASLogAndDebug
+{
+        echo "\nCheck CAS log and debug for exceptions:\n$WATCHED_EXCEPTION\n"
+	for i in `ls $1/*/v2run_dir_log/cas.debug $1/*/v2run_dir_log/cas.debug.Z \
+		$1/*/v2run_dir_log/mdcas.debug $1/*/v2run_dir_log/mdcas.debug.Z \
+		2> /dev/null`
+	do
+		echo "File: $i"
+		executeCommand "gzegrep -e \"$WATCHED_EXCEPTION\" $i" "$i"
+		#executeCommand "gzegrep -e \"${WATCHED_EXCEPTION}\" $i | egrep -v \"${INGORED_EXCEPTION}\"" "$i"
+	done
+}
+
+
+function checkCASGCLog
+{
+
+        echo "\nCheck CAS startsh GC time"
+	for i in `ls $1/*/v2run_dir_log/startsh*.log $1/*/v2run_dir_log/startsh*.log.Z \
+		2> /dev/null`
+	do
+		echo "File: $i"
+		executeCommand "gzegrep 'Total time for which application threads were stopped'  $i | sort -r | head -1" "$i"
+	done
+}
+
+function checkDirectory
+{
+	checkCASLogAndDebug $1
+	checkCASGCLog $1
+}
+
+function endProcessing
+{
+	if [ -s $mail_file ]
+	then
+		if [ ! -z $1 ]
+		then
+			file_size=`ls -l $mail_file | nawk '{print $5}'`
+			
+			if [ $file_size -lt 10000000 ]
+			then
+				mailx -s "Perf LogCheck 4 `basename $LOG_SRCH_DIR`: $2" $1  < $mail_file
+			else
+				new_file_name=${mail_file}.`basename $LOG_SRCH_DIR`
+				mv $mail_file ${new_file_name}
+				gzip ${new_file_name}
+				mailx -s "Perf LogCheck for `basename $LOG_SRCH_DIR` on `hostname`: $2" $1  <<eom
+Exceptions file is too large to be sent via email. It's file size is $file_size.
+The file is: ${new_file_name}. The file has been compressed.
+eom
+			fi
+		else
+			cat $mail_file
+		fi
+	else
+		echo "No exceptions of interest found." |  mailx -s "Perf LogCheck for `basename $LOG_SRCH_DIR` `hostname`: $2" $1
+	fi
+}
+
+function usage
+{
+	echo "\n"
+	echo "Purpose: "
+	echo "Searches log files for exceptions and displays exceptions that are not in the filter list."
+	echo "Please verify that the filters in this scrpt are valid prior to using this script."
+	echo ""
+    echo "Usage:\n`basename $0` [-h]  {-dLogSearchDirectory} [-mMailingList] [-lLogSearchDirectoy]";
+	echo "-d     Directory to search for logs. This script must have write priv. in the directory."
+	echo "-l     Directory to search for logs. This script need not have write priv. in the directory."
+	echo "-m     If specified - The mailing list to which the error messages should be mailed."
+	echo "-h     Display help."
+   	echo "\n\n"
+    exit 1;
+}
+
+# ------------------------------------------------------------------------------------
+# Get all arguments.
+# ------------------------------------------------------------------------------------
+function getOptions
+{
+    set -- $(getopt d:m:hl: "$@" 2>/dev/null)
+
+
+    if [ $? -ne 0 ]; then
+        usage;
+    fi
+
+    for o
+    do  case "$o" in
+        -d) shift; LOG_SRCH_DIR=$1; shift;
+            echo "Log directory: " $LOG_SRCH_DIR >&2;;
+        -m) shift; MAIL_LIST=$1; shift;
+            echo "Mailing list: " $MAIL_LIST >&2;;
+	-l) shift; PROCESS_ONE_DIR=1; LOG_SRCH_DIR=$1; shift;
+            echo "Log directory: " $LOG_SRCH_DIR >&2;;
+	-h) usage;;
+        --) shift; break;;
+        esac
+    done
+
+	if [ -z "$LOG_SRCH_DIR" ]
+	then
+		echo "Log search directory not specified." >&2;
+		usage;
+	fi
+
+}
+
+function processLogsInDirectory
+{
+	dirs=$1
+
+	clearMailFile
+				
+	echo "processLogsInDirectory: $dirs\n"
+	
+	checkDirectory $dirs
+	
+	dirUpper=`basename ${dirs%/*}`
+        dirLower=`basename $dirs`
+
+	endProcessing "$MAIL_LIST" "$dirUpper\\$dirLower"
+	#endProcessing "$MAIL_LIST" "`basename $dirs`"
+
+	\rm -rf $out_file $mail_file $script_file
+}
+
+function processDirectory
+{
+	echo "processDirectory: $LOG_SRCH_DIR\n"
+	#
+	# find directories newer than the last run
+	#
+	last_run_file=$LOG_SRCH_DIR/autoCASLogCheck.txt
+	work_dir=$LOG_SRCH_DIR
+	
+	if [ ! -w $last_run_file ]
+	then
+		touch $last_run_file
+	
+		if [ $? -ne 0 ]
+		then
+			echo "Don't have write permissions on $last_run_file or the path doesn't exist";
+			exit 1
+		fi
+
+		dirs_modified=`find $work_dir -type d -print`
+	else
+		dirs_modified=`find $work_dir -type d -newer $last_run_file -print`
+	fi
+	
+	touch $last_run_file
+
+	for dirs in $dirs_modified
+	do
+		# check if the dir is of the format </v2run_dir_log>/	
+		
+		if [ `ls $dirs/*/v2run_dir_log 2>/dev/null | wc -l ` -ne 0 ]
+		then
+			processLogsInDirectory $dirs
+		fi
+	done
+	
+	\rm -rf $out_file $mail_file $script_file
+}
+
+getOptions "$@"
+
+if [ ! -z "$PROCESS_ONE_DIR" ]
+then
+	processLogsInDirectory $LOG_SRCH_DIR
+else
+	processDirectory
+fi
+
+

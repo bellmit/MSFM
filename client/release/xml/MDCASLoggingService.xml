@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Keith A. Korecky (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLoggingService SYSTEM "${RUN_DIR}/properties/dtd/logging.dtd">
+<GlobalLoggingService name="CASLoggingService1">
+    <!-- ************************* Primary CAS logging client ************************* -->
+	<LoggingServiceClient name="MDCAS01FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas01v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas01/log/mdcas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas01/log/mdcas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas01/log/mdcas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas01/log/mdcas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="MDCAS02FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas02v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas02/log/mdcas.2.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas02/log/mdcas2.2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas02/log/mdcas.2.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas02/log/mdcas2.2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="MDCAS03FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas03v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas03/log/mdcas.3.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas03/log/mdcas2.3.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas03/log/mdcas.3.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas03/log/mdcas2.3.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="MDCAS04FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas04v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas04/log/mdcas.4.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas04/log/mdcas2.4.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas04/log/mdcas.4.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas04/log/mdcas2.4.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="MDCAS05FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas05v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas05/log/mdcas.5.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas05/log/mdcas2.5.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas05/log/mdcas.5.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas05/log/mdcas2.5.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="MDCAS06FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas06v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas06/log/mdcas.6.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas06/log/mdcas2.6.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas06/log/mdcas.6.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas06/log/mdcas2.6.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="MDCAS07FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="mdcas07v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas07/log/mdcas.7.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas07/log/mdcas2.7.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2mdcas07/log/mdcas.7.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2mdcas07/log/mdcas2.7.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+        <!-- ************************* Standard Message Catalog ************************* -->
+	<StandardMessageCatalog name="StandardMessageCatalog1">
+		<StandardMessageCatalogProperties>
+			<StandardLogMessageProperty>Non-standard message.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Failure occurred while trying to read a file.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Log message generated in response to a management event.</StandardLogMessageProperty>
+		</StandardMessageCatalogProperties>
+	</StandardMessageCatalog>
+</GlobalLoggingService>

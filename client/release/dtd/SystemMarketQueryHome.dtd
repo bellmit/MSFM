@@ -1,0 +1,29 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the SystemMarketQueryHomeImpl -->
+<!-- @author William Wei, Troy Wehrle-->
+<!-- @version 2.0-->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalSystemMarketQueryHome (SystemMarketQueryHomeImpl*)>
+<!ATTLIST GlobalSystemMarketQueryHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT SystemMarketQueryHomeImpl (SystemMarketQueryHomeImplProperties?)>
+<!ATTLIST SystemMarketQueryHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT SystemMarketQueryHomeImplProperties (marketDataCallbackTimeout?)>
+<!ATTLIST SystemMarketQueryHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT marketDataCallbackTimeout (#PCDATA)>
+<!ATTLIST marketDataCallbackTimeout
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the timeout value of market data callback objects."
+>

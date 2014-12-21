@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserAccessHome SYSTEM "../dtd/UserAccessHome.dtd">
+<GlobalUserAccessHome>
+	<UserAccessHomeImpl name="DefaultService">
+		<UserAccessHomeImplProperties>
+			<session_mode>${CLIENT_SESSION_MODE}</session_mode>
+			<heartbeat_timeout>20000</heartbeat_timeout>
+			<CMI_version>2.0</CMI_version>
+		</UserAccessHomeImplProperties>
+	</UserAccessHomeImpl>
+</GlobalUserAccessHome>

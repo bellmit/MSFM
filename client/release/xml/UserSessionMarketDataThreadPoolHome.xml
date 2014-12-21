@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserSessionMarketDataThreadPoolHome SYSTEM "../dtd/UserSessionMarketDataThreadPoolHome.dtd">
+<GlobalUserSessionMarketDataThreadPoolHome>
+	<UserSessionMarketDataThreadPoolHomeImpl name="DefaultService">
+		<UserSessionMarketDataThreadPoolHomeImplProperties>
+			<UserSessionMarketDataThreadPoolSize>4</UserSessionMarketDataThreadPoolSize>
+			<UserSessionMarketDataOverlayThreadPoolSize>4</UserSessionMarketDataOverlayThreadPoolSize>
+			<UserRoleOverride>C</UserRoleOverride>
+			<ThreadPoolSizeOverride>4</ThreadPoolSizeOverride>
+			<OverlayThreadPoolSizeOverride>4</OverlayThreadPoolSizeOverride>
+		</UserSessionMarketDataThreadPoolHomeImplProperties>
+	</UserSessionMarketDataThreadPoolHomeImpl>
+</GlobalUserSessionMarketDataThreadPoolHome>

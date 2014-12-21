@@ -1,0 +1,15 @@
+# ATGTEST4
+
+environment = atgtest4
+
+cas    = atgcas4,   01, atgqafe41 atgqafe42 
+fixcas = atgfix4,   01, atgqafe41 atgqafe42
+fixcas = atgfix4,   02, atgqafe41 atgqafe42
+fixcas = atgttfix4, 01, atgqafe41 atgqafe42
+fixcas = atgttfix4, 02, atgqafe41 atgqafe42 
+cfix   = atgmd4,    01, atgqafe41 atgqafe42
+mdcas  = atgmd4,    01, atgqafe41 atgqafe42
+mdcas  = atgmd4s,   01, atgqafe41 atgqafe42
+mdx    = atgmd4x,   01, atgqafe41 atgqafe42
+sacas  = saatg4,    01, atgqagc4 atgqagc4
+tipsMdxAdapter = atgqagc4, 01

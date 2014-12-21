@@ -1,0 +1,111 @@
+<!--
+	The DTD for the BOHome definition.
+	Note, it is assumed the element and attlist definitions for persistentBrokerName and
+    logServiceComponent are in the dtd that included this dtd. They are not defined here.
+-->
+
+<!ELEMENT BOHome (BOHomeProperties, BOHomeCommands?) >
+<!ATTLIST BOHome
+	type CDATA #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+>
+<!ELEMENT BOHomeProperties (homeImpl, managedResourceName?, interceptorName?, interceptorImpl?, persistentBrokerName?, logServiceComponent?, alias*, poaName?, objectId?, enableInstrumentation?, privateInstrumentation?, roundTripTimeoutValue?)>
+<!ATTLIST BOHomeProperties
+	type CDATA #FIXED "ManagedProperties"
+>
+<!ELEMENT homeImpl (#PCDATA)>
+<!ATTLIST homeImpl
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'home implementation'
+>
+<!ELEMENT managedResourceName (#PCDATA)>
+<!ATTLIST managedResourceName
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'managed resource name this home is representing. Necessary for property value resolution.'
+>
+<!ELEMENT interceptorName (#PCDATA)>
+<!ATTLIST interceptorName
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'interceptor name'
+>
+<!ELEMENT interceptorImpl (#PCDATA)>
+<!ATTLIST interceptorImpl
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'interceptor implementation'
+>
+<!ELEMENT alias (#PCDATA)>
+<!ATTLIST alias
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'Alternate names under which a single instance of the home will be registered'
+>
+<!ELEMENT poaName (#PCDATA)>
+<!ATTLIST poaName
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'All exported services can be bound to this specified POA. Requires the POA to be defined in the OrbService.'
+>
+<!ELEMENT objectId (#PCDATA)>
+<!ATTLIST objectId
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'Object ID for a persistent IOR. The POA selected must have persistentIor=true.'
+>
+<!ELEMENT enableInstrumentation EMPTY>
+<!ATTLIST enableInstrumentation
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT privateInstrumentation EMPTY>
+<!ATTLIST privateInstrumentation
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT roundTripTimeoutValue (#PCDATA)>
+<!ATTLIST roundTripTimeoutValue
+	type CDATA #FIXED "ManagedProperty"
+	mode CDATA #FIXED "readWrite"
+	propertyType CDATA #FIXED "string"
+	description CDATA #FIXED 'RTT value'
+>
+<!ELEMENT BOHomeCommands (startupCommand, shutdownCommand, initializeCommand, statusCommand) >
+<!ATTLIST BOHomeCommands
+	type CDATA #FIXED "ManagedCommands"
+>
+<!ELEMENT startupCommand EMPTY >
+<!ATTLIST startupCommand
+	type CDATA #FIXED "ManagedCommand"
+	description CDATA #FIXED 'The command to start the BOHome.'
+>
+<!ELEMENT shutdownCommand EMPTY >
+<!ATTLIST shutdownCommand
+	type CDATA #FIXED "ManagedCommand"
+	description CDATA #FIXED 'The command to shutdown the BOHome.'
+>
+<!ELEMENT initializeCommand EMPTY >
+<!ATTLIST initializeCommand
+	type CDATA #FIXED "ManagedCommand"
+	description CDATA #FIXED 'The command to invoke the initialization of the BOHome.'
+>
+<!ELEMENT statusCommand EMPTY >
+<!ATTLIST statusCommand
+	type CDATA #FIXED 'ManagedCommand'
+	description CDATA #FIXED 'The command to query the status of the BOHome.'
+>

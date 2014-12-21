@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalCASShutdownHome SYSTEM "../dtd/CASShutdownHome.dtd">
+<GlobalCASShutdownHome>
+	<CASShutdownHomeImpl name="CAS">
+		<CASShutdownHomeImplProperties>
+			<ShutdownDelay>5</ShutdownDelay>
+			<Title>CAS Increment 5</Title>
+			<EnableShutdownButton>0</EnableShutdownButton>
+		</CASShutdownHomeImplProperties>
+	</CASShutdownHomeImpl>
+	<CASShutdownHomeImpl name="ACAS">
+		<CASShutdownHomeImplProperties>
+			<ShutdownDelay>5</ShutdownDelay>
+			<Title>ACAS Increment 5</Title>
+			<EnableShutdownButton>0</EnableShutdownButton>
+		</CASShutdownHomeImplProperties>
+	</CASShutdownHomeImpl>
+</GlobalCASShutdownHome>

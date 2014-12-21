@@ -1,0 +1,64 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the SubscriptionManagerHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalSubscriptionManagerHome (SubscriptionManagerHomeImpl*)>
+<!ATTLIST GlobalSubscriptionManagerHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT SubscriptionManagerHomeImpl (SubscriptionManagerHomeImplProperties)>
+<!ATTLIST SubscriptionManagerHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT SubscriptionManagerHomeImplProperties (Users?, Exchanges?, Firms?, SessionNames?, ProductTypes?, Classes?)>
+<!ATTLIST SubscriptionManagerHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT Users (#PCDATA)>
+<!ATTLIST Users
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Users to preload"
+>
+<!ELEMENT Exchanges (#PCDATA)>
+<!ATTLIST Exchanges
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Exchanges to preload"
+>
+<!ELEMENT Firms (#PCDATA)>
+<!ATTLIST Firms
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Firms to preload"
+>
+<!ELEMENT SessionNames (#PCDATA)>
+<!ATTLIST SessionNames
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "SessionNames to preload"
+>
+<!ELEMENT ProductTypes (#PCDATA)>
+<!ATTLIST ProductTypes
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "ProductTypes to preload"
+>
+<!ELEMENT Classes (#PCDATA)>
+<!ATTLIST Classes
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Classes to preload"
+>

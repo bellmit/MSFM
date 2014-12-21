@@ -1,0 +1,15 @@
+# ATGTEST3
+
+environment = atgtest3
+
+cas    = atgcas3,   01, atgqafe31 atgqafe32
+fixcas = atgfix3,   01, atgqafe31 atgqafe32
+fixcas = atgfix3,   02, atgqafe31 atgqafe32
+fixcas = atgttfix3, 01, atgqafe31 atgqafe32
+fixcas = atgttfix3, 02, atgqafe31 atgqafe32
+cfix   = atgmd3,    01, atgqafe31 atgqafe32
+mdcas  = atgmd3,    01, atgqafe31 atgqafe32
+mdcas  = atgmd3s,   01, atgqafe31 atgqafe32
+mdx    = atgmd3x,   01, atgqafe31 atgqafe32
+sacas  = saatg3,    01, atgqagc3 atgqagc3
+tipsMdxAdapter = atgqagc3, 01

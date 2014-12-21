@@ -1,0 +1,37 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the CfixSessionManagerHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCfixSessionManagerHome (CfixSessionManagerHomeImpl*)>
+<!ATTLIST GlobalCfixSessionManagerHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixSessionManagerHomeImpl (CfixSessionManagerHomeImplProperties)>
+<!ATTLIST CfixSessionManagerHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT CfixSessionManagerHomeImplProperties (alias?, useLazyInitialization?)>
+<!ATTLIST CfixSessionManagerHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT alias (#PCDATA)>
+<!ATTLIST alias
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "aliasing"
+>
+<!ELEMENT useLazyInitialization (#PCDATA)>
+<!ATTLIST useLazyInitialization
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>

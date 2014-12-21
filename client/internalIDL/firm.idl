@@ -1,0 +1,25 @@
+#ifndef FIRM_IDL
+#define FIRM_IDL
+
+#include "cmiUtil.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+
+module firm
+{
+    struct FirmStruct {
+        long firmKey;    // database id in SBT - assigned on insert
+        long membershipKey;    // database id in membership - for cross reference
+        cmiUser::ExchangeFirmStruct firmNumber;
+        string firmAcronym;    // assigned acronym
+        string fullName;
+        boolean isClearingFirm;
+        boolean isActive;
+        cmiUtil::DateTimeStruct lastModifiedTime;    // should membership time be used or our time?
+        long versionNumber;        // if we care
+   };
+
+   typedef sequence<FirmStruct> FirmStructSequence;
+};
+#endif
+

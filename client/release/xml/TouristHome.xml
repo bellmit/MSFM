@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalTouristHome SYSTEM "../dtd/TouristHome.dtd">
+<GlobalTouristHome>
+	<TouristHomeImpl name="DefaultService">
+		<TouristHomeImplProperties>
+			<TouristPortNumber>&lt;prefixTouristPort&gt;</TouristPortNumber>
+		</TouristHomeImplProperties>
+	</TouristHomeImpl>
+</GlobalTouristHome>

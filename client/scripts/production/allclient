@@ -1,0 +1,122 @@
+#!/bin/ksh
+
+# -------------------- Configuration --------------------
+
+STARTDIR=$( pwd )
+SCRIPTDIR=$( dirname $0 )
+cd $SCRIPTDIR
+SCRIPTDIR=$( pwd )
+cd $STARTDIR
+
+. $SCRIPTDIR/setenv-scripts
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+TMPHEADER=/tmp/$PROG.$$
+TMPPWLIST=/tmp/$PROG.pwlist.$$
+PWLIST=$SBTBASE_INFRAGC/cas/WatchedProcesses.static.IGC
+HOSTNAME=$( hostname )
+DATEFORMAT="+%Y-%m-%d %T"
+
+# If user variables are defined, use them and add @ to separate them
+# from the host name that will follow
+INFRAGC_USER_HOST=${USER_INFRAGC:+$USER_INFRAGC@}$HOST_INFRAGC
+CLIENT_USER=${USER_CLIENT:+$USER_CLIENT@}
+
+# Exit codes (from errno.h)
+EINTR=4     # interrupted system call
+EINVAL=22   # invalid argument
+
+# -------------------- Subroutines --------------------
+
+usage()
+{
+    echo "Usage: $PROG [-t cas,fix,sacas,mdcas,cfix,mdx] [-r hosts] [-p|-c] command args"
+    echo "   -t takes one or more engine types separated by , character"
+    echo "   -r takes one or more host names separated by , character"
+    echo "   Do not use -t and -r together"
+    echo "   -p read in .profile before executing command"
+    echo "   -c command includes local command, default is: ssh $CLIENT_USER{}"
+    echo "   {} is replaced by name of remote host"
+    echo "   Do not use -p and -c together"
+    echo "Example: $PROG cksum .kshrc"
+    echo "Example: $PROG -t fix -c scp new.setenv {}:infra/.setenv"
+}
+
+cleanup()
+{
+    rm $TMPHEADER.*
+    rm -f $TMPPWLIST
+}
+
+cleanupAndExit()
+{
+    cleanup
+    exit $EINTR
+}
+
+# -------------------- Main program --------------------
+
+. $SCRIPTDIR/hostsUtils
+
+trap cleanupAndExit 1 2 3
+
+PATTERN='cas,fixcas,sacas,mdcas,cfix,mdx'
+LOCAL_COMMAND="ssh {}"
+
+while [[ "$1" = -* ]] ; do
+    case $1 in
+    -h)
+        usage
+        exit
+        ;;
+    -t)
+        shift
+        PATTERN=$1
+        ;;
+    -r)
+        shift
+        ALLHOST=$( echo $1 | sed 's/,/ /g' )
+        ;;
+    -p)
+        if [ -z "$LOCAL_COMMAND" ] ; then
+            echo "Do not specify both -p and -c on command line"
+            exit $EINVAL
+        fi
+        READ_PROFILE='. ~/.profile 2>/dev/null; cd;'
+        ;;
+    -c)
+        if [ -n "$READ_PROFILE" ] ; then
+            echo "Do not specify both -p and -c on command line"
+            exit $EINVAL
+        fi
+        LOCAL_COMMAND=
+        ;;
+    *)
+        echo "Unknown switch \"$1\""
+        exit $EINVAL
+        ;;
+    esac
+    shift
+done
+
+if [ -z "$ALLHOST" ] ; then
+    getHosts -q "$PATTERN"
+fi
+checkHosts 3
+
+for host in $ALIVEHOST ; do
+    COMMAND=$( echo $LOCAL_COMMAND $READ_PROFILE $* | sed s/{}/$CLIENT_USER$host/g )
+    $COMMAND >$TMPHEADER.$host 2>&1 &
+done
+wait
+
+for i in $TMPHEADER.* ; do
+    host=${i#$TMPHEADER.}
+    echo .... $host ....
+    cat $i
+done
+
+unalias rm
+cleanup

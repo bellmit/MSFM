@@ -1,0 +1,293 @@
+#!/bin/ksh
+# As part of the software load process, after files are deposited
+# onto the client box this script is run to create log directory
+# (a symbolic link).
+#
+# Usage: <clientDir>/bin/loadClient -commit [ <infraLoadDir> ] # normal use
+# Usage: <clientDir>/bin/loadClient [ <infraLoadDir> ]         # testing
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+NOW=$( date +%Y%m%d-%H%M%S )
+HOSTNAME=$( hostname )
+OVERRIDE_EDITOR=editor.$$.pl    # pathname is added below
+
+# Exit codes (from errno.h)
+EACCES=13  # permission denied
+EINVAL=22  # invalid argument
+
+# -------------------- Subroutines --------------------
+
+# Set variables to name directories
+# LOAD_DIR - pathname of Client load
+# INFRA_DIR - pathname of Infra load
+# SCRIPT_DIR - pathname of this script's directory
+getDirs()
+{
+    # Get LOAD_DIR, directory of new Client load
+    SCRIPT_DIR=$( dirname $0 )
+    # Make sure that SCRIPT_DIR is a full pathname
+    cd $SCRIPT_DIR
+    SCRIPT_DIR=$( pwd )
+
+    LOAD_DIR=$( dirname $SCRIPT_DIR )
+
+    if [ ! -w $LOAD_DIR ] ; then
+        echo "$PROG: need write permission for $LOAD_DIR"
+        if [ -z "$DEBUG" ] ; then
+            exit $EACCES
+        fi
+    fi
+
+    # Verify INFRA_DIR, directory of corresponding Infra load
+    if [ -n "$INFRA_DIR" ] && [ ! -w $INFRA_DIR ] ; then
+        echo "$PROG: need write permission for $INFRA_DIR"
+        if [ -z "$DEBUG" ] ; then
+            exit $EACCES
+        fi
+    fi
+
+    # The infra user gets these at login time, but often we are
+    # some other user so we have to do this explicitly.
+    load_home=$( dirname $LOAD_DIR )
+    INFRA_HOME=${load_home%/*}/infra
+
+    # If we are not the infra user, this setContext can destroy
+    # INFRA_HOME; so save it and restore it.
+    typeset calculated_INFRA_HOME=$INFRA_HOME
+    . $INFRA_HOME/config/bin/setContext
+    export INFRA_HOME=$calculated_INFRA_HOME
+}
+
+
+# Make sure we have the environment variables we need
+checkEnvVariables()
+{
+    fail=NO
+    if [ -z $SBT_LOG_PARTITION ] ; then
+        echo "$PROG: missing environment variable SBT_LOG_PARTITION"
+        fail=YES
+    fi
+    if [ -z $CLIENT_TYPE ] ; then
+        echo "$PROG: missing environment variable CLIENT_TYPE"
+        fail=YES
+    fi
+    if [ -z $SBT_ENVIRONMENT ] ; then
+        echo "$PROG: missing environment variable SBT_ENVIRONMENT"
+        fail=YES
+    fi
+    if [ $fail = "YES" ] ; then
+        exit $EINVAL
+    fi
+}
+
+
+# Create script $OVERRIDE_EDITOR that we'll use to act on
+# XML override specifications.
+makeOverrideEditor()
+{
+    # Usage: $OVERRIDE_EDITOR $CLENTNAME$HOSTNAME <input >output
+    # Recognize and act on 3 command lines (engine looks like cas01v2cas3001)
+    # <!-- OVERRIDE engine REPLACE newtext -->
+    # <!-- OVERRIDE engine INSERT newtext -->
+    # <!-- OVERRIDE engine DELETE -->
+    cat >$OVERRIDE_EDITOR <<'_EDITOR_'
+#!/usr/bin/perl -w
+$ENGINE = $ARGV[0];
+while (<STDIN>)
+{
+    chomp;
+    if ( /<!-- OVERRIDE $ENGINE\s+INSERT /o )
+    {
+        s/<!-- OVERRIDE $ENGINE\s+INSERT\s+//o;
+        s/ +-->//;
+        print "$_\n";  # Output this text right now
+    }
+    elsif ( /<!-- OVERRIDE $ENGINE\s+DELETE\s+-->/o )
+    {
+        $Delete = 1;  # Delete the next (non-override) line
+    }
+    elsif ( /<!-- OVERRIDE $ENGINE\s+REPLACE /o )
+    {
+        s/<!-- OVERRIDE $ENGINE\s+REPLACE\s+//o;
+        s/ +-->//;
+        $Replacement = $_;  # Replace the next (non-override) line
+    }
+    elsif ( /<!-- OVERRIDE / )
+    {
+        # For some other engine, ignore this line
+    }
+    else
+    {
+        if (defined $Replacement)
+        {
+            print "$Replacement\n";
+            undef $Replacement;
+        }
+        elsif (defined $Delete)
+        {
+            # Delete input line (do not output)
+            undef $Delete;
+        }
+        else
+        {
+            print "$_\n";  # Just echo input
+        }
+    }
+}
+_EDITOR_
+    chmod 777 $OVERRIDE_EDITOR
+}
+
+# Clean up when we're done with script $OVERRIDE_EDITOR
+removeOverrideEditor()
+{
+    rm -f $OVERRIDE_EDITOR
+}
+
+# Apply XML overrides (if any) for this engine.
+applyXmlOverrides()
+{
+    typeset XML_DIR=$LOAD_DIR/properties/xml
+    typeset ENGINE=$CLIENTNAME$HOSTNAME
+    $GUARD makeOverrideEditor
+
+    typeset files=$( grep -l "OVERRIDE $ENGINE " $XML_DIR/*.xml )
+    for i in $files ; do
+        if [ -n "$COMMIT" ] ; then
+            $OVERRIDE_EDITOR $ENGINE <$i >$i.new
+            mv -f $i.new $i
+        else
+            # No -commit, just say what we would have done
+            $GUARD $OVERRIDE_EDITOR $ENGINE $i
+        fi
+    done
+
+    removeOverrideEditor
+}
+
+# Create symbolic link for log directory
+linkClientLogDir()
+{
+    case $CLIENT_TYPE in
+    cas|sacas|ipdcas)
+        LOGDIR=cas/log
+        ;;
+    fixcas)
+        LOGDIR=cas/fix$ENGNUM
+        ;;
+    mdcas)
+        LOGDIR=cas/mdcas$ENGNUM
+        ;;
+    cfix)
+        LOGDIR=cas/cfix$ENGNUM
+        ;;
+    mdx)
+        LOGDIR=cas/mdx01
+        ;;
+    tipsmdxadapter)
+        LOGDIR=tipsmdx/log
+        ;;
+    *)
+        echo $PROG:' unknown CLIENT_TYPE "'$CLIENT_TYPE'"'
+        exit $EINVAL
+        ;;
+    esac
+
+    if [ -e $LOAD_DIR/log ] ; then
+        # Rename log to get it out of the way
+        $GUARD mv $LOAD_DIR/log $LOAD_DIR/log.$NOW
+    fi
+    $GUARD ln -s $SBT_LOG_PARTITION/$LOGDIR $LOAD_DIR/log
+}
+
+# Create symbolic link for tmp directory
+linkClientTmpDir()
+{
+    if [ -e $LOAD_DIR/tmp ] ; then
+        # Rename tmp to get it out of the way
+        $GUARD mv $LOAD_DIR/tmp $LOAD_DIR/tmp.$NOW
+    fi
+    if [ ! -d $LOAD_DIR/log/tmp ] ; then
+        # Create the tmp dir if it doesn't already exist
+        $GUARD mkdir -m771 $LOAD_DIR/log/tmp
+    fi
+    $GUARD ln -s log/tmp $LOAD_DIR/tmp
+}
+
+# Create symbolic link for log in the Infra directory if specified
+linkInfraLogDir()
+{
+    if [ -z $INFRA_DIR ] ; then
+        return
+    fi
+
+    linkInfraLog $COMMIT $INFRA_DIR
+}
+
+linkLoggedScripts()
+{
+    cd $LOAD_DIR/bin
+    scriptLogger=$INFRA_HOME/run_dir/bin/scriptLogger 
+
+    FILELIST=$( ls *Worker 2>/dev/null )
+
+    for i in $FILELIST ; do
+        publicName=${i%Worker}  # remove Worker suffix
+        if [ -L $publicName ] ; then
+            # Link already exists, remove it (old link may be incorrect)
+            $GUARD rm $publicName
+        fi
+        $GUARD ln -s $scriptLogger $publicName
+    done
+}
+
+# -------------------- Main program --------------------
+
+if [[ "$0" = *sh ]] ; then
+    echo "Do not invoke with \".\" command"
+    return $EINVAL
+fi
+if [[ $( id ) = uid=0* ]] ; then
+    echo "Do not invoke as root user"
+    return $EINVAL
+fi
+
+if [ "$1" == "-commit" ] ; then
+    COMMIT=$1
+    shift
+    GUARD=
+else
+    COMMIT=
+    # When debugging, don't execute destructive commands
+    DEBUG=1
+    GUARD="echo GUARD:"
+fi
+INFRA_DIR=$1
+
+unalias rm
+
+getDirs
+checkEnvVariables
+
+OVERRIDE_EDITOR=$LOAD_DIR/tmp/$OVERRIDE_EDITOR
+
+# Create and use $LOAD_DIR/bin/setContext
+$LOAD_DIR/bin/calcSetContext-load $COMMIT
+err=$?
+if [ "$err" != "0" ] ; then
+    echo "$PROG: FAILED TO COMPLETE. CORRECT ERRORS AND RE-RUN"
+    exit $err
+fi
+$GUARD . $LOAD_DIR/bin/setContext
+# Partial list (and examples) of values we now have
+# CLIENT_DIR  (v2cas01)
+# CLIENTNAME  (cas01v2)
+# ENGNUM      (01)
+
+linkClientLogDir
+linkClientTmpDir
+linkInfraLogDir
+linkLoggedScripts
+applyXmlOverrides

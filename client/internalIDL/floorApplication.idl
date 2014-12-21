@@ -1,0 +1,300 @@
+#ifndef floorApplication_IDL
+#define floorApplication_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 1.0
+//
+// Copyright © 1999-2007 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmi.idl"
+#include "cmiV4.idl"
+#include "cmiProduct.idl"
+#include "cmiMarketData.idl"
+#include "quote.idl"
+#include "marketData.idl"
+#include "consumers.idl"
+#include "exceptions.idl"
+#include "Util.idl"
+#include "textMessage.idl"
+#include "internalCallback.idl"
+#include "omt.idl"
+#include "par.idl"
+#include "activity.idl"
+
+
+#pragma javaPackage "com.cboe.idl"
+
+module floorApplication
+{
+    interface ManualReportingService
+    {
+        void acceptManualQuote(in quote::ManualQuoteStruct manualQuote)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException,
+		exceptions::TransactionFailedException,
+		exceptions::NotAcceptedException
+            );
+   
+        void cancelManualQuote(in quote::ManualQuoteStruct manualQuote)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException,
+		exceptions::TransactionFailedException,
+		exceptions::NotAcceptedException
+            );
+
+	void acceptManualPriceReport(in marketData::ManualPriceReportEntryStruct manualPrice)
+	    raises(
+	    	exceptions::SystemException,
+		exceptions::CommunicationException,
+		exceptions::DataValidationException,
+		exceptions::AuthorizationException,
+		exceptions::NotAcceptedException
+	    );
+	 
+	textMessage::MessageResultStruct sendMessage( in textMessage::DestinationStructSequence recipients, 
+		in textMessage::MessageTransportStruct message )
+	    raises( 
+	    	exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException
+	    );
+		
+	cmiMarketData::ProductClassVolumeStruct getProductClassVolume(in string sessionName, in cmiProduct::ClassKey theKey)
+	    raises(
+	    	exceptions::SystemException,
+		exceptions::NotFoundException,
+		exceptions::DataValidationException,              
+		exceptions::CommunicationException,
+		exceptions::AuthorizationException
+	    );
+	    
+	cmiMarketData::ClassRecapStructV5 getRecapForProduct(in cmiSession::TradingSessionName sessionName, 
+		in cmiProduct::ProductKey theKey)
+	    raises(
+                exceptions::SystemException,
+		exceptions::CommunicationException,
+		exceptions::DataValidationException,
+		exceptions::AuthorizationException,
+		exceptions::NotFoundException
+	    );
+    };
+    
+    interface LastSaleService
+	{
+    	void subscribeLastSaleByClass(
+			in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in consumers::TickerConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException
+            );
+            
+	    void unsubscribeLastSaleByClass(
+			in cmiSession::TradingSessionName sessionName,
+	        in cmiProduct::ClassKey classKey,
+	        in consumers::TickerConsumer clientListener)
+	        raises(
+	            exceptions::SystemException,
+	            exceptions::CommunicationException,
+	            exceptions::DataValidationException,
+	            exceptions::NotFoundException,
+	            exceptions::AuthorizationException
+	        );
+	};
+    
+    interface NBBOService
+    {
+        void subscribeNBBO(in cmiProduct::ClassKey classKey,
+                in cmiCallbackV4::CMINBBOConsumer clientListener,
+                in cmiUtil::QueueAction actionOnQueue)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException
+            );
+
+        void unsubscribeNBBO(in cmiProduct::ClassKey classKey,
+                in cmiCallbackV4::CMINBBOConsumer clientListener)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException
+            );
+    };
+    
+    interface ProductQueryV2  : cmi::ProductQuery {
+    	cmiProduct::ProductStructSequence getProductsForReportingClassSymbol(
+        	in cmiProduct::Symbol reportingClassSymbol,
+        	in cmiProduct::ProductType type)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException, 
+                exceptions::AuthorizationException, 
+                exceptions::DataValidationException
+            );
+    };
+    
+    interface MarketQueryV5 : cmiV4:: MarketQuery   {
+         void subscribeCurrentMarketByProduct(    
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in internalCallback::CurrentMarketManualQuoteConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeCurrentMarketByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in internalCallback::CurrentMarketManualQuoteConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void subscribeTickerByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeTickerByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void subscribeRecapByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeRecapByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+        
+         void subscribeNBBOByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMINBBOConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeNBBOByProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                 );
+    };
+    
+    
+        
+    interface FloorSessionManager
+    {
+        Object getService(in string serviceName)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+        omt::OrderManagementService getOrderManagementService()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+        par::ParOrderManagementService getParOrderManagementService()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+       activity::ActivityService getActivityService()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+    };
+
+    interface UserAccessFloor
+    {
+        FloorSessionManager getSessionManager(in cmi::UserSessionManager sessionManager)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+    };
+};
+
+#endif

@@ -1,0 +1,33 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the SystemAdminServerHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalSystemAdminServerHome (SystemAdminServerHomeImpl*)>
+<!ATTLIST GlobalSystemAdminServerHome
+        type %typeConstraints; #FIXED "ManagedResource"
+        objectName CDATA #IMPLIED
+>
+<!ELEMENT SystemAdminServerHomeImpl (sessionManagementService*)>
+<!ATTLIST SystemAdminServerHomeImpl
+        type %typeConstraints; #FIXED "ManagedResource"
+        name ID #REQUIRED
+        objectName CDATA #IMPLIED
+        container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT sessionManagementService (sessionManagementServiceProperties?)>
+<!ATTLIST sessionManagementService
+        type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT sessionManagementServiceProperties (channelName?)>
+<!ATTLIST sessionManagementServiceProperties
+        type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT channelName (#PCDATA)>
+<!ATTLIST channelName
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "integer"
+        description CDATA #FIXED "channel name"
+>

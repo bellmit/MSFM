@@ -1,0 +1,526 @@
+#!/bin/ksh
+
+# -------------------- Configuration --------------------
+
+JDK=jdk1.6.0_18
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+HARDWARE=$( uname -p )
+HOSTNAME=$( hostname )
+
+# -------------------- Subroutines --------------------
+
+usage()
+{
+    echo "Usage: $PROG  [-v] { prod | test }  client_type  [ num_engines ]"
+    echo "   -v for verbose output (list successful tests)"
+    exit 1
+}
+
+success()
+{
+    TEST_NUM=$TEST_NUM+1
+    SUCCESS="$SUCCESS\n$TEST_NUM. $TEST_NAME"
+}
+
+failure()
+{
+    TEST_NUM=$TEST_NUM+1
+    FAILURE="$FAILURE\n$TEST_NUM. $TEST_NAME"
+}
+
+manual()
+{
+    MANUAL="$MANUAL\nCheck manually: $1"
+}
+
+# Check that group $GROUP can write into the named directory
+# @param 1 directory
+groupCanWriteDirectory()
+{
+    typeset DIR=$1
+    if [ -d $DIR ] ; then
+        typeset LINE=$( ls -ld $DIR )
+        typeset FILE_MODE=$( echo $LINE | awk '{ print $1 }' )
+        typeset FILE_GROUP=$( echo $LINE | awk '{ print $4 }' )
+        if [[ $FILE_MODE = d??????rwx ]] ; then
+            # Everyone can write into this directory
+            success
+        elif [[ $FILE_MODE = d???rwx??? ]] ; then
+            # Group can write; ok if it's the right group
+            [ "$FILE_GROUP" == "$GROUP" ] && success || failure
+        else
+            failure  # group can't write
+        fi
+    else
+        failure  # no such directory
+    fi
+}
+
+# Check that a user can write into a directory
+# @param 1 user
+# @param 2 group
+# @param 3 directory
+userCanWriteDirectory()
+{
+    typeset USER=$1
+    typeset GROUP=$2
+    typeset DIR=$3
+    if [ -d $DIR ] ; then
+        typeset LINE=$( ls -ld $DIR )
+        typeset FILE_MODE=$( echo $LINE | awk '{ print $1 }' )
+        typeset FILE_USER=$( echo $LINE | awk '{ print $3 }' )
+        typeset FILE_GROUP=$( echo $LINE | awk '{ print $4 }' )
+        if [[ $FILE_MODE = d??????rwx ]] ; then
+            # Everyone can write into this directory
+            success
+        elif [[ $FILE_MODE = drwx?????? ]] && [ "$FILE_USER" == "$USER" ] ; then
+            # This user can write into this directory
+            success
+        elif [[ $FILE_MODE = d???rwx??? ]] ; then
+            [ "$FILE_GROUP" == "$GROUP" ] && success || failure
+        else
+            failure  # user can't write
+        fi
+    else
+        failure  # no such directory
+    fi
+}
+
+# Check that a binary executable can run on this hardware platform
+# @param 1 filename
+binaryForThisArchitecture()
+{
+    typeset FILE=$1
+    typeset ARCH=$( file $FILE | sed 's/.*executable //;s/ .*//' )
+    case $HARDWARE in
+    sparc)
+        [ $ARCH = SPARC ] && success || failure
+        ;;
+    i386)
+        [ $ARCH = 80386 ] && success || failure
+        ;;
+    *)
+        TEST_NAME="$TEST_NAME - unknown architecture $HARDWARE"
+        failure
+        ;;
+    esac
+}
+
+report()
+{
+    if [ -n "$VERBOSE" ] ; then
+        echo "Tests passed:\n$SUCCESS"
+        echo
+        echo "Tests failed:\n$FAILURE"
+    elif [ -n "$FAILURE" ] ; then
+        echo "Tests failed:\n$FAILURE"
+    fi
+    echo "$MANUAL"
+}
+
+# -------------------- Main program --------------------
+
+####################
+# Read command-line arguments
+####################
+
+case "$1" in
+-v)
+    VERBOSE=1
+    shift
+    ;;
+-h)
+    usage   # print and exit
+    ;;
+esac
+
+typeset -l ENV_TYPE=$1  # force to lower case
+case $ENV_TYPE in
+prod)
+    INFRA_USER=infrap
+    CAS_USER=qaadmin
+    GROUP=prodsbt
+    QAADMIN=qaadmin
+    QAADMIN_GROUP=qa
+    CONTROLM=controlm
+    ;;
+test)
+    INFRA_USER=infra
+    CAS_USER=cas
+    GROUP=testsbt
+    QAADMIN=infra
+    QAADMIN_GROUP=$GROUP
+    CONTROLM=cntrlmad
+    ;;
+*)
+    usage
+    ;;
+esac
+
+typeset -l CLIENT_TYPE=$2  # force to lower case
+case $CLIENT_TYPE in
+cas|sacas|mdx)
+    [ -z "$3" ] || usage
+    ;;
+fix|fixcas)
+    CLIENT_TYPE=fixcas
+    [ -n "$3" ] || usage
+    typeset -i ENGINES=$3
+    ;;
+mdcas|cfix)
+    [ -n "$3" ] || usage
+    typeset -i ENGINES=$3
+    ;;
+tipsmdxadapter|mdxtipsadapter)
+    CLIENT_TYPE=tipsmdxadapter
+    [ -n "$3" ] || usage
+    typeset -i ENGINES=$3
+    ;;
+*)
+    usage
+    ;;
+esac
+
+####################
+# Calculate home directory
+####################
+case $CLIENT_TYPE in
+tipsmdxadapter)
+    INFRA_HOME=/sbt/$ENV_TYPE/mdx
+    ;;
+*)
+    INFRA_HOME=/sbt/$ENV_TYPE/infra
+    ;;
+esac
+
+####################
+# Check setups from DOSS group
+####################
+
+typeset -i TEST_NUM=0
+
+TEST_NAME="Existence of /sbt"
+[ -d /sbt ] && success || failure
+
+TEST_NAME="Existence of /sbt/log"
+[ -d /sbt/log ] && success || failure
+
+case $CLIENT_TYPE in
+tipsmdxadapter)
+    INFRA_LOG=/sbt/log/$ENV_TYPE/infra/tipsmdx
+    ;;
+*)
+    INFRA_LOG=/sbt/log/$ENV_TYPE/infra/log
+    ;;
+esac
+TEST_NAME="Existence of $INFRA_LOG"
+[ -d $INFRA_LOG ] && success || failure
+
+TEST_NAME="Group $GROUP can write into $INFRA_LOG"
+groupCanWriteDirectory $INFRA_LOG
+
+CAS_LOG_PREFIX="/sbt/log/$ENV_TYPE/cas"
+TEST_NAME="User $QAADMIN can write into $CAS_LOG_PREFIX"
+case $CLIENT_TYPE in
+cas|sacas|fixcas|mdcas|cfix|mdx)
+    userCanWriteDirectory $QAADMIN $QAADMIN_GROUP $CAS_LOG_PREFIX
+    ;;
+tipsmdxadapter)
+    TEST_NAME="User $QAADMIN can write into /sbt/log/$ENV_TYPE/tipsmdx"
+    userCanWriteDirectory $QAADMIN $QAADMIN_GROUP /sbt/log/$ENV_TYPE/tipsmdx
+    ;;
+*)
+    TEST_NAME="$TEST_NAME - unknown CLIENT_TYPE:$CLIENT_TYPE"
+    failure
+    ;;
+esac
+
+case $CLIENT_TYPE in
+cas|sacas)
+    TEST_NAME="Group $GROUP can write into $CAS_LOG_PREFIX/log"
+    groupCanWriteDirectory $CAS_LOG_PREFIX/log
+    ;;
+fixcas)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Group $GROUP can write into $CAS_LOG_PREFIX/fix$e"
+        groupCanWriteDirectory $CAS_LOG_PREFIX/fix$e
+        typeset -i ENGINE=$ENGINE+1
+    done
+    ;;
+mdcas)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Group $GROUP can write into $CAS_LOG_PREFIX/mdcas$e"
+        groupCanWriteDirectory $CAS_LOG_PREFIX/mdcas$e
+        typeset -i ENGINE=$ENGINE+1
+    done
+    ;;
+cfix)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Group $GROUP can write into $CAS_LOG_PREFIX/cfix$e"
+        groupCanWriteDirectory $CAS_LOG_PREFIX/cfix$e
+        typeset -i ENGINE=$ENGINE+1
+    done
+    ;;
+mdx)
+    TEST_NAME="Group $GROUP can write into $CAS_LOG_PREFIX/mdx01"
+    groupCanWriteDirectory $CAS_LOG_PREFIX/mdx01
+    ;;
+tipsmdxadapter)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Group $GROUP can write into /sbt/log/$ENV_TYPE/tipsmdx/log$e"
+        groupCanWriteDirectory /sbt/log/$ENV_TYPE/tipsmdx/log$e
+        typeset -i ENGINE=$ENGINE+1
+    done
+    ;;
+*)
+    TEST_NAME="$TEST_NAME - unknown CLIENT_TYPE:$CLIENT_TYPE"
+    failure
+    ;;
+esac
+
+TEST_NAME="Existence of /controlm"
+[ -d /controlm ] && success || failure
+
+TEST_NAME="Existence of user $CONTROLM"
+if grep ^${CONTROLM}: /etc/passwd >/dev/null ; then
+    success
+else
+    failure
+fi
+
+TEST_NAME="Existence of user $INFRA_USER"
+if grep ^${INFRA_USER}: /etc/passwd >/dev/null ; then
+    success
+else
+    failure
+fi
+
+TEST_NAME="User $QAADMIN can write into /sbt/security"
+userCanWriteDirectory $QAADMIN $QAADMIN_GROUP /sbt/security
+
+TEST_NAME="Existence of $INFRA_HOME"
+[ -d $INFRA_HOME ] && success || failure
+
+TEST_NAME="Correct HOME"
+[ "$HOME" = "$INFRA_HOME" ] && success || failure
+
+TEST_NAME="User $QAADMIN can write into $INFRA_HOME"
+userCanWriteDirectory $QAADMIN $QAADMIN_GROUP $INFRA_HOME
+
+TEST_NAME="Group $GROUP can write into $INFRA_HOME"
+groupCanWriteDirectory $INFRA_HOME
+
+TEST_NAME="User $CAS_USER can write into /sbt/$ENV_TYPE/cas"
+case $CLIENT_TYPE in
+cas|sacas|mdcas|cfix|mdx)
+    userCanWriteDirectory $CAS_USER $GROUP /sbt/$ENV_TYPE/cas
+    ;;
+fixcas|tipsmdxadapter)
+    ;;
+*)
+    TEST_NAME="$TEST_NAME - unknown CLIENT_TYPE:$CLIENT_TYPE"
+    failure
+    ;;
+esac
+
+TEST_NAME="Existence of $JDK"
+[ -d /usr/local/$JDK ] && success || failure
+
+TEST_NAME="Existence of /opt/cboeutil"
+[ -d /opt/cboeutil ] && success || failure
+
+TEST_NAME="$HARDWARE executables in /opt/cboeutil/bin"
+binaryForThisArchitecture /opt/cboeutil/bin/pargs
+
+TEST_NAME="User $INFRA_USER has priocntl privileges"
+if [ "$LOGNAME" = "$INFRA_USER" ] ; then
+    if ppriv $$ | grep proc_priocntl >/dev/null ; then
+        success
+    else
+        failure
+    fi
+else
+    TEST_NAME="$TEST_NAME - not running as $INFRA_USER"
+    failure
+fi
+
+####################
+# Check setups from InfoSec group
+####################
+TEST_NAME="SSH MaxStartups count"
+if [ -f /etc/ssh/sshd_config ] ; then
+    MAX_STARTUPS=$( grep MaxStartups /etc/ssh/sshd_config )
+    if [[ "$MAX_STARTUPS" != Max* ]] ; then
+        typeset -i MAX_STARTUPS=10  # default value when not specified
+    else
+        typeset -i MAX_STARTUPS=$( echo "$MAX_STARTUPS" | awk '{print $2}')
+    fi
+    if [ "$ENV_TYPE" = "prod" ] && [[ "$CLIENT_TYPE" = @(fixcas|cfix) ]] \
+    && [ $MAX_STARTUPS -lt 100 ]
+    then
+        failure
+    else
+        success
+    fi
+else
+    manual "$TEST_NAME"
+fi
+
+####################
+# Check setups from QA group
+####################
+
+TEST_NUM=100
+
+TEST_NAME="Existence of $INFRA_HOME/config"
+[ -d $INFRA_HOME/config ] && success || failure
+
+TEST_NAME="Existence of $INFRA_HOME/.setenv"
+[ -f $INFRA_HOME/.setenv ] && success || failure
+
+TEST_NAME="Existence of $INFRA_HOME/config/bin/setContext"
+[ -f $INFRA_HOME/config/bin/setContext ] && success || failure
+
+TEST_NAME="Correct value in ENGINE_LIST"
+if [ $CLIENT_TYPE = fixcas ] ; then
+    typeset e=1
+    EXPECTED_LIST=""
+    while [ $e -le $ENGINES ] ; do
+        if [ $e -lt 10 ] ; then
+            NEW_ENGINE="0$e"
+        else
+            NEW_ENGINE="$e"
+        fi
+        EXPECTED_LIST="$EXPECTED_LIST $NEW_ENGINE"
+        e=$(( $e + 1 ))
+    done
+    EXPECTED_LIST=${EXPECTED_LIST# } # remove leading space
+    ENGINE_LIST=$( grep export.ENGINE_LIST $INFRA_HOME/config/bin/setContext | sed 's/.*="//;s/".*//' )
+    [ "$EXPECTED_LIST" = "$ENGINE_LIST" ] && success || failure
+fi
+
+TEST_NAME="Existence of security certificate"
+case $CLIENT_TYPE in
+cas)
+    [ -f /sbt/security/cas01v2$HOSTNAME.p12 ] && success || failure
+    ;;
+sacas)
+    [ -f /sbt/security/sacas01v2$HOSTNAME.p12 ] && success || failure
+    ;;
+fixcas)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Existence of security certificate $e"
+        [ -f /sbt/security/fixcas${e}v2$HOSTNAME.p12 ] && success || failure
+        ENGINE=$ENGINE+1
+    done
+    ;;
+mdcas)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Existence of security certificate $e"
+        [ -f /sbt/security/mdcas${e}v2$HOSTNAME.p12 ] && success || failure
+        ENGINE=$ENGINE+1
+    done
+    ;;
+cfix)
+    typeset -i ENGINE=1
+    while [ $ENGINE -le $ENGINES ] ; do
+        e="$ENGINE"
+        [[ $ENGINE -lt 10 ]] && e="0$e"
+        TEST_NAME="Existence of security certificate $e"
+        [ -f /sbt/security/cfix${e}v2$HOSTNAME.p12 ] && success || failure
+        ENGINE=$ENGINE+1
+    done
+    ;;
+mdx)
+    [ -f /sbt/security/mdx01$HOSTNAME.p12 ] && success || failure
+    ;;
+tipsmdxadapter)
+    ;;
+*)
+    ;;
+esac
+
+####################
+# Check setups from Client group
+####################
+
+TEST=200
+
+TEST_NAME="Existence of run_dir/log/cronArchive.log"
+[ -w $INFRA_HOME/run_dir/log/cronArchive.log ] && success || failure
+
+TEST_NAME="Obsolete file $INFRA_HOME/config/bin/setContext.engine.template"
+[ -f $INFRA_HOME/config/bin/setContext.engine.template ] && failure || success
+
+TEST_NAME="Setup of cronCASArchive job"
+CRONJOB=$( crontab -l )
+[[ "$CRONJOB" = *$INFRA_HOME/run_dir/bin/cronCASArchive* ]] \
+   && success || failure
+
+TEST_NAME="Obsolete backup directories in $INFRA_LOG"
+DIRS=$( ls -1F $INFRA_LOG/*day | grep '/$' | tr '\n' ' ' | sed 's:/::g' )
+for dir in $dirs ; do
+    if [ "$dir" != "$HOSTNAME ] ; then
+        BAD_DIRS="$BAD_DIRS $dir"
+    fi
+done
+[ -z "$BAD_DIRS" ] && success || failure
+unset BAD_DIRS
+unset DIRS
+unset dir
+
+TEST_NAME="Obsolete backup directories in $CAS_LOG_PREFIX"
+DIRS=$( ls -1F $CAS_LOG_PREFIX/*/*day | grep '/$' | tr '\n' ' ' | sed 's:/::g' )
+for dir in $dirs ; do
+    if [ "$dir" != "$HOSTNAME ] ; then
+        BAD_DIRS="$BAD_DIRS $dir"
+    fi
+done
+[ -z "$BAD_DIRS" ] && success || failure
+unset BAD_DIRS
+unset DIRS
+unset dir
+
+####################
+# Things this script doesn't check
+####################
+
+manual "Verify contents of $INFRA_HOME/.setenv"
+
+manual "Verify in $INFRA_HOME/config/bin/setContext: CLIENT_TYPE, SBT_ENVIRONMENT, SBT_LOG_PARTITION"
+
+manual "Verify ACL"
+
+if [ "$CLIENT_TYPE" != "fixcas" ] ; then
+    manual "Verify CronArchive.log in $INFRA_HOME/"'v2*/log'
+fi
+
+manual "Verify JAVA_HOME in $INFRA_HOME/.setenv"
+
+manual "Verify password-free access from InfraGC"
+
+manual "Refer to CAS Wiki page NewClientBox, section 'Items for Further Test'"
+
+#-------------------------------------------------
+report

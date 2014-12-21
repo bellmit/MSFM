@@ -1,0 +1,60 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the UserSessionMarketDataThreadPoolHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserSessionMarketDataThreadPoolHome (UserSessionMarketDataThreadPoolHomeImpl*)>
+<!ATTLIST GlobalUserSessionMarketDataThreadPoolHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserSessionMarketDataThreadPoolHomeImpl (UserSessionMarketDataThreadPoolHomeImplProperties)>
+<!ATTLIST UserSessionMarketDataThreadPoolHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserSessionMarketDataThreadPoolHomeImplProperties (UserSessionMarketDataThreadPoolSize?, UserSessionMarketDataOverlayThreadPoolSize? , UserRoleOverride?, ThreadPoolSizeOverride?, OverlayThreadPoolSizeOverride? )>
+<!ATTLIST UserSessionMarketDataThreadPoolHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT UserSessionMarketDataThreadPoolSize (#PCDATA)>
+<!ATTLIST UserSessionMarketDataThreadPoolSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "user session thread pool size"
+>
+<!ELEMENT UserSessionMarketDataOverlayThreadPoolSize (#PCDATA)>
+<!ATTLIST UserSessionMarketDataOverlayThreadPoolSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "Each user session share a thread pool to deliver overlay market data, this attribute defins the size of that thread pool"
+>
+<!ELEMENT UserRoleOverride (#PCDATA)>
+<!ATTLIST UserRoleOverride
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "user role override"
+>
+<!ELEMENT ThreadPoolSizeOverride (#PCDATA)>
+<!ATTLIST ThreadPoolSizeOverride
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "thread pool size override"
+>
+<!ELEMENT OverlayThreadPoolSizeOverride (#PCDATA)>
+<!ATTLIST OverlayThreadPoolSizeOverride
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "overlay thread pool size override"
+>
+
+
+

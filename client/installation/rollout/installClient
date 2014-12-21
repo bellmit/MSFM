@@ -1,0 +1,798 @@
+#!/usr/bin/perl -w
+# Start and manage installation on multiple Client hosts.
+
+# -------------------- Configuration --------------------
+
+$CHECKHOSTS_TIME = 3;
+
+# Identifiers to help build the name of the Infra GC host, when the
+# number generally isn't the same as the environment number (for
+# example, test7 -> devenv2); beyond these lists we can just
+# append the environment number (atgtest5 -> atgqagc5).
+
+@INFRA_GC_TEST = ( "-", # no test0 environment
+    "devenv1", "devenv1", "devenv1", "devenv1", "devenv2",
+    "devenv2", "devenv2", "devenv2", "devenv3", "devenv3",
+    "devenv3", "devenv3", "devenv4", "devenv4", "devenv1",
+    "devenv2", "devenv17", "devenv18", "dev1922svr", "dev1922svr",
+    "dev1922svr", "dev1922svr", "devenv4", "devenv4"
+);
+@INFRA_GC_PERF = ("-", "sbtgc2a", "perfgc2a", "perf3gc2a", "perf4gc2a");
+
+# Name of the infra user on the FE is inconsistent in API envirnoments
+
+@FE_USER_API = ("-", "apitest1", "infra");
+
+# -------------------- Constants --------------------
+
+chomp($PROG = `basename $0`);
+chomp($NOW = `date +%y%m%d-%H%M%S`);
+
+$PWFILE = "pwlist.txt";
+
+$FALSE = 0;
+$ALERT = "*ALERT*";   # indicate critical error message
+
+# Flags on input config file, also switches for per-box install job
+$FLAG_DOCLIENT = "c";
+$FLAG_DOINFRA = "i";
+$FLAG_DOJDK = "j";
+$FLAG_DOINITREFS = "r";
+
+# Switches for per-box install job, not part of input config file
+$FLAG_ROLLBACK = "U";
+
+# Indices to access result of splitProcessName
+$IX_ENGINE = 0;
+$IX_HOST = 1;
+
+# Exit codes: values from /usr/include/sys/errno.h
+$EINTR = 4;
+$EINVAL = 22;
+
+# -------------------- Subroutines --------------------
+
+# @param 1 Exit error code
+sub cleanupAndExit
+{
+    my $code = shift @_;
+    # Currently no cleanup to do
+    exit $code;
+}
+
+# Signal handler: clean up and exit
+# @param 1 Signal number
+sub signalExit
+{
+    my $signal = shift @_;
+    print "Exiting with signal $signal\n";
+    &cleanupAndExit($EINTR);
+}
+
+sub usage
+{
+    print "Usage: $PROG  [ -rollback ]  config_file\n";
+    &cleanupAndExit($EINVAL);
+}
+
+# Set $CONFIG_FILE, $DO_ROLLBACK.
+sub readCommandLine
+{
+    &usage if $#ARGV < 0;
+
+    if ($ARGV[0] eq "-rollback")
+    {
+        shift @ARGV;
+        &usage if $#ARGV != 0;
+        $DO_ROLLBACK = $FLAG_ROLLBACK;
+    }
+    else
+    {
+        $DO_ROLLBACK = $FALSE;
+    }
+
+    # Input is a full pathname.
+    $CONFIG_FILE = $ARGV[0];
+}
+
+# Split process name into engine and host
+# @param 1 process name (such as cas01v2cas3007)
+# @return list (engine, host)
+sub splitProcessName
+{
+    my $proc = shift @_;
+    my ($host, $engine);
+
+    if ( $proc =~ /^mdx/ )
+    {
+        # MDX process name does not contain 'v2'. Example: mdx01atgmd1x
+        $proc =~ /^(mdx\d+)(\S+)$/ && ($engine = $1, $host = $2);
+    }
+    else
+    {
+        $proc =~ /^(.+?)v2(.+)$/ && ($engine = $1, $host = $2);
+    }
+    return ($engine, $host);
+}
+
+# Subroutine for sorting stored input lines by host and engine.
+# Sample line: 42: cas01v2cas3007 i c j
+sub byHostAndEngine
+{
+    my (@aparts, @bparts);
+    $a =~ /^\d+:\s+(\S+)/ && (@aparts = &splitProcessName($1));
+    $b =~ /^\d+:\s+(\S+)/ && (@bparts = &splitProcessName($1));
+
+    $aparts[$IX_HOST] cmp $bparts[$IX_HOST]
+       or
+    $aparts[$IX_ENGINE] cmp $bparts[$IX_ENGINE];
+}
+
+# Calculate $INFRA_GC, $INFRA_GC_USER, $FE_USER, $CLIENT_USER
+sub calcEnvironment
+{
+    if (!defined $SBT_ENVIRONMENT)
+    {
+        print "$PROG: sbt_environment= not specified!\n";
+        &cleanupAndExit($EINVAL);
+    }
+
+    if ($SBT_ENVIRONMENT =~ /^test(\d+)/)
+    {
+        my $env = 0 + $1;
+        if ($env > $#INFRA_GC_TEST)
+        {
+            print "$PROG: No server scripted for $SBT_ENVIRONMENT!\n";
+            &cleanupAndExit($EINVAL);
+        }
+        $INFRA_GC = $INFRA_GC_TEST[$env];
+        $INFRA_GC_USER = "infra$env";
+        $INFRA_GC_USER .= "a" if ($env == 15 || $env == 16);
+        $CLIENT_USER = "infra";
+        $FE_USER = "infra";
+    }
+    elsif ($SBT_ENVIRONMENT =~ /^atgtest(\d+)/)
+    {
+        my $env = 0 + $1;
+        $INFRA_GC = "atgqagc$env";
+        $INFRA_GC_USER = "infra$env";
+        $CLIENT_USER = "infra";
+        $FE_USER = "infra$env";
+    }
+    elsif ($SBT_ENVIRONMENT =~ /^apitest(\d+)/)
+    {
+        my $env = 0 + $1;
+        $INFRA_GC = "apisvr$env";
+        $INFRA_GC_USER = "infra$env";
+        $CLIENT_USER = "infra";
+        if ($env > $#FE_USER_API)
+        {
+            print "$PROG: Undefined FE user for $SBT_ENVIRONMENT\n";
+            &cleanupAndExit($EINVAL);
+        }
+        $FE_USER = $FE_USER_API[$env];
+    }
+    elsif ($SBT_ENVIRONMENT eq "apicert")
+    {
+        $INFRA_GC = "certapi";
+        $INFRA_GC_USER = "infrap";
+        $CLIENT_USER = "infrap";
+        $FE_USER = "infrap";
+    }
+    elsif ($SBT_ENVIRONMENT =~ /^perf(\d+)/)
+    {
+        my $env = 0 + $1;
+        $INFRA_GC = $INFRA_GC_PERF[$env];
+        $INFRA_GC_USER = "infrap";
+        $CLIENT_USER = "infrap";
+        $FE_USER = "infrap";
+    }
+    elsif ($SBT_ENVIRONMENT eq "dr")
+    {
+        $INFRA_GC = "drgc01a";
+        $INFRA_GC_USER = "infrap";
+        $CLIENT_USER = "infrap";
+        $FE_USER = "infrap";
+    }
+    elsif ($SBT_ENVIRONMENT eq "prod")
+    {
+        $INFRA_GC = "prdgc2b";
+        $INFRA_GC_USER = "infrap";
+        $CLIENT_USER = "infrap";
+        $FE_USER = "infrap";
+    }
+    elsif ($SBT_ENVIRONMENT eq "C2prod")
+    {
+        $INFRA_GC = "prdgc102a";
+        $INFRA_GC_USER = "infrap";
+        $CLIENT_USER = "infrap";
+        $FE_USER = "infrap";
+    }
+    else
+    {
+        print "$ALERT Invalid SBT_ENVIRONMENT: $SBT_ENVIRONMENT\n";
+        &cleanupAndExit($EINVAL);
+    }
+}
+
+# Set $SBT_ENVIRONMENT, $INFRA_VERSION, $CLIENT_VERSION, $JDK_VERSION,
+#     @Processes, @DoClient, @DoInfra, @DoInitrefs, @DoJdk
+sub parseInstallationConfigFile
+{
+    my $canDoClient = $FALSE;
+    my $canDoInfra = $FALSE;
+    my $canDoJdk = $FALSE;
+
+    open CONFIG, "<$CONFIG_FILE";
+    while (<CONFIG>)
+    {
+        chomp;
+        next if /^#|^\s*$/;     # Skip comments and empty lines
+
+        if (/^sbt_environment\s*=/i)
+        {
+            /=\s*(\S+)/ && ($SBT_ENVIRONMENT = $1);
+        }
+        elsif (/^infra\s*=/i)
+        {
+            /=\s*(\S+)/ && ($INFRA_VERSION = $1);
+            $canDoInfra = $FLAG_DOINFRA;
+        }
+        elsif (/^client\s*=/i)
+        {
+            /=\s*(\S+)/ && ($CLIENT_VERSION = $1);
+            $canDoClient = $FLAG_DOCLIENT;
+        }
+        elsif (/^jdk\s*=/i)
+        {
+            /=\s*(\S+)/ && ($JDK_VERSION = $1);
+            $canDoJdk = $FLAG_DOJDK;
+        }
+        elsif (/=/)
+        {
+            # unknown parameter
+            print "$PROG: Unknown configuration line\nline $.: $_\n";
+            &cleanupAndExit($EINVAL);
+        }
+        else
+        {
+            push @processLines, $. . ": " . $_;  # lineNumber: inputLine
+        }
+    } # each input line
+    close CONFIG;
+
+    &calcEnvironment;
+
+    # Order process specifications by host and then by engine name; this
+    # makes it easier to detect multiple engines on one host in later
+    # processing.
+    @processLines = sort byHostAndEngine @processLines;
+
+    # Now parse the process specification lines.
+    my $line;
+    foreach $line (@processLines)
+    {
+        # processname and maybe single-letter flags
+        my ($process, $flags);
+        $line =~ /^\d+:\s+(\S+)\s*(.*)\s*$/ && ($process = $1, $flags = $2);
+        $flags = "" unless defined $flags;
+        $flags =~ s/ //g;
+
+        my $doClient = $FALSE;
+        my $doInfra = $FALSE;
+        my $doInitrefs = $FALSE;
+        my $doJdk = $FALSE;
+        my $flag;
+        foreach $flag (split //, $flags)
+        {
+            if ($flag eq $FLAG_DOCLIENT)
+            {
+                if (! $canDoClient)
+                {
+                    print "$PROG: Client requested, but not defined\n"
+                        . "line $line\n";
+                    &cleanupAndExit($EINVAL);
+                }
+                $doClient = $flag;
+            }
+            elsif ($flag eq $FLAG_DOINFRA)
+            {
+                if (! $canDoInfra)
+                {
+                    print "$PROG: Infra requested, but not defined\n"
+                        . "line $line\n";
+                    &cleanupAndExit($EINVAL);
+                }
+                # Specifying infra is not allowed for mdcas/cfix/mdx.
+                # It is installed by the infrastructure group.
+                if ($process =~ /^mdcas|^cfix|^mdx/)
+                {
+                    print "$PROG: Infra cannot be requested for $process\n"
+                        . "line $line\n";
+                    &cleanupAndExit($EINVAL);
+                }
+                $doInfra = $flag;
+            }
+            elsif ($flag eq $FLAG_DOINITREFS)
+            {
+                # Specifying initrefs is not allowed for mdcas/cfix/mdx.
+                # The files are installed in run_dir by the infrastructure
+                # group.
+                if ($process =~ /^mdcas|^cfix|^mdx/)
+                {
+                    print "$PROG: Initrefs cannot be requested for $process\n"
+                        . "line $line\n";
+                    &cleanupAndExit($EINVAL);
+                }
+                $doInitrefs = $flag;
+            }
+            elsif ($flag eq $FLAG_DOJDK)
+            {
+                if (! $canDoJdk)
+                {
+                    print "$PROG: JDK requested, but not defined\n"
+                        . "line $line\n";
+                    &cleanupAndExit($EINVAL);
+                }
+                $doJdk = $flag;
+            }
+            else
+            {
+                print "$PROG: Unknown flag '$flag'\nline $line\n";
+                &cleanupAndExit($EINVAL);
+            }
+        } # each $flag
+
+        if (!$doClient && !$doInfra && !$doInitrefs && !$doJdk)
+        {
+            # if no flags, do everything we can
+            $doClient = $canDoClient;
+            $doInfra = $canDoInfra;
+            $doJdk = $canDoJdk;
+            $doInitrefs = $FLAG_DOINITREFS;
+        }
+        push @Processes, $process;
+        push @DoClient, $doClient;
+        push @DoInfra, $doInfra;
+        push @DoInitrefs, $doInitrefs;
+        push @DoJdk, $doJdk;
+    } # each $line
+} # parseInstallationConfigFile
+
+# Get list of processes from the ProcessWatcher
+sub getPwList
+{
+    system "ssh $INFRA_GC_USER\@$INFRA_GC "
+         . "'. ~/.profile >/dev/null 2>&1; pwadmin -request showCurrentList'"
+         . " >$PWFILE";
+}
+
+# Cache initrefs.ior from each FE into initrefs.$fename.ior
+sub getIorFiles
+{
+    my %feHost;
+    my $host;
+
+    open PW, "<$PWFILE";
+    while (<PW>)
+    {
+        next unless /^FECache/;
+        # line starts with: processName orbName host port
+        $host = (split)[2];
+        $feHost{$host} = "";
+    }
+    close PW;
+
+    foreach $host (sort keys %feHost)
+    {
+        my $userHost = "$FE_USER\@$host";
+        print "Getting $userHost initrefs.ior...\n";
+        system "scp -B $userHost:run_dir/ior/initrefs.ior"
+               .  " initrefs.$host.ior";
+    }
+
+    print "Getting $INFRA_GC_USER\@$INFRA_GC initrefs.ior...\n";
+    system "scp -B $INFRA_GC_USER\@$INFRA_GC:run_dir/ior/initrefs.ior"
+           . " initrefs.$INFRA_GC.ior";
+}
+
+# Determine which hosts are accessible. Create @AliveHost, @DeadHost
+# and %ErrHost.
+sub checkHosts
+{
+    # Create a list of hosts from the list of processes. Since some hosts
+    # may have multiple processes, collect host names as keys of a hash
+    # (this effectively removes duplications).
+    my %hostHash;
+    foreach $proc (@Processes)
+    {
+        my @pair = &splitProcessName($proc);
+        my $host = $pair[$IX_HOST];
+        $hostHash{$host} = "";
+    }
+    my $allHosts = join ' ', (sort keys %hostHash);
+
+    my $chkscript = "checkHostsWrapper";
+    my $chklog = $chkscript . ".log";
+    open CHECK, ">$chkscript";
+    print CHECK <<CHECKSCRIPT;
+#!/bin/ksh
+DATEFORMAT="+%Y-%m-%d %T"
+. checkHosts
+USER_CLIENT=$CLIENT_USER
+ALLHOST="$allHosts"
+checkHosts $CHECKHOSTS_TIME
+echo ALIVEHOST=\$ALIVEHOST
+echo DEADHOST=\$DEADHOST
+set | grep ^ERR_
+CHECKSCRIPT
+    close CHECK;
+    chmod 0777, $chkscript;
+    system "$chkscript >$chklog";
+
+    open CHECK, "<$chklog";
+    while (<CHECK>)
+    {
+        chomp;
+        /ALIVEHOST=(.*)$/ && (@AliveHost = split " ", $1);
+        /DEADHOST=(.*)$/ && (@DeadHost = split " ", $1);
+        /ERR_([^=]+)=(.*)$/ && ($ErrHost{$1} = $2);
+    }
+    close CHECK;
+} # checkHosts
+
+# Walk the @Processes and @Do... lists to install Client software
+sub installHosts
+{
+    # create .tar files for installation
+    my $tarFile = "installData.tar";
+    mkdir "installData", 0777;
+    system "cp *.ior installData" if (! $DO_ROLLBACK);
+    system "cp installCAS installMDCAS installFIXCAS installData";
+    system "cd installData; tar cvf ../$tarFile .; gzip -f ../$tarFile; rm *";
+    rmdir "installData";
+
+    # install each engine
+    my $i = 0;
+    my @pids;
+    my @mdcasEngines;
+    my @fixcasEngines;
+    for ($i=0; $i <= $#Processes; $i++) 
+    {
+        my $doClient = $DoClient[$i];
+        my $doInfra = $DoInfra[$i];
+        my $doInitrefs = $DoInitrefs[$i];
+        my $doJdk = $DoJdk[$i];
+        my $proc = $Processes[$i];
+        my $proclog = "$proc-$NOW";
+        my @pair = &splitProcessName($proc);
+        my $engine = $pair[$IX_ENGINE];
+        my $host = $pair[$IX_HOST];
+        my $userHost = "$CLIENT_USER\@$host";
+
+        # If this host isn't alive, skip it.
+        next unless grep(/^$host$/, @AliveHost);
+
+        my $remoteDir = "/tmp/install-" .
+            ($doClient ? $CLIENT_VERSION : ($doInfra ? $INFRA_VERSION : $NOW));
+
+        my $installFlags = "";
+        $installFlags .= " -$doClient $CLIENT_VERSION" if $doClient;
+        $installFlags .= " -$doInfra $INFRA_VERSION" if $doInfra;
+        $installFlags .= " -$doJdk $JDK_VERSION" if $doJdk;
+        $installFlags .= " -$doInitrefs" if $doInitrefs;
+        $installFlags .= " -$DO_ROLLBACK" if $DO_ROLLBACK;
+
+        my $installCommand;
+        if ($engine =~ /^cas/)
+        {
+            # Deliver installation files to a work directory
+            system "ssh $userHost mkdir -p -m777 $remoteDir";
+            system "cat $tarFile.gz"
+                 . " | ssh $userHost \"cat - >$remoteDir/$tarFile.gz"
+                 . "; cd $remoteDir; gunzip $tarFile.gz; tar xf $tarFile"
+                 . "; 'rm' $tarFile\"";
+            $installCommand = "installCAS -t cas";
+        }
+        elsif ($engine =~ /^fixcas/)
+        {
+            # Store the information we care about for an fixcas.
+            my %fixcasEngine = (
+                "engine" => $engine,
+                "client" => $doClient,
+                "infra" => $doInfra,
+                "jdk" => $doJdk,
+                "ior" => $doInitrefs,
+            );
+            # Save this engine and look at the next process to see if 
+            # the hosts are the same.
+            push @fixcasEngines, { %fixcasEngine }; 
+            my $nextHost = &getHostByIndex($i + 1) if ($i + 1 <= $#Processes);
+            my $hostsEqual = &compareHosts($host, $nextHost) if $nextHost;
+
+            # If the hosts aren't equal, build the install flags for the
+            # engines so we can create one install command for these engines.
+            if ( !$hostsEqual ) 
+            {
+                $installFlags = &buildFIXCASInstallFlags(\@fixcasEngines);
+
+                # Deliver installation files to a work directory
+                system "ssh $userHost mkdir -p -m777 $remoteDir";
+                system "cat $tarFile.gz"
+                     . " | ssh $userHost \"cat - >$remoteDir/$tarFile.gz"
+                     . "; cd $remoteDir; gunzip $tarFile.gz; tar xf $tarFile"
+                     . "; 'rm' $tarFile\"";
+                $installCommand = "installFIXCAS";
+
+                # Clear array for next usage
+                @fixcasEngines = ();
+            }
+        }
+        elsif ($engine =~ /^sacas/)
+        {
+            # Deliver installation files to a work directory
+            system "ssh $userHost mkdir -p -m777 $remoteDir";
+            system "cat $tarFile.gz"
+                 . " | ssh $userHost \"cat - >$remoteDir/$tarFile.gz"
+                 . "; cd $remoteDir; gunzip $tarFile.gz; tar xf $tarFile"
+                 . "; 'rm' $tarFile\"";
+            $installCommand = "installCAS -t sacas";
+        }
+        elsif ($engine =~ /^mdcas|^cfix|^mdx/)
+        {
+            # Store the information we care about. This will filter out
+            # the infra and initrefs flags that we don't care about
+            # for mdcas/cfix/mdx.
+            my %mdcasEngine = (
+                "engine" => $engine,
+                "client" => $doClient,
+                "jdk" => $doJdk,
+            );
+            # Save this engine and look at the next process to see if 
+            # the hosts are the same.
+            push @mdcasEngines, { %mdcasEngine }; 
+            my $nextHost = &getHostByIndex($i + 1) if ($i + 1 <= $#Processes);
+            my $hostsEqual = &compareHosts($host, $nextHost) if $nextHost;
+
+            # If the hosts aren't equal, build the install flags for the
+            # engines so we can create one install command for these engines.
+            if ( !$hostsEqual ) 
+            {
+                $installFlags = &buildMDCASInstallFlags(\@mdcasEngines);
+
+                # Deliver installation files to a work directory
+                system "ssh $userHost mkdir -p -m777 $remoteDir";
+                system "cat $tarFile.gz"
+                     . " | ssh $userHost \"cat - >$remoteDir/$tarFile.gz"
+                     . "; cd $remoteDir; gunzip $tarFile.gz; tar xf $tarFile"
+                     . "; 'rm' $tarFile\"";
+                if ($host =~ /md.*x/ )
+                {
+                    $installCommand = "installMDCAS -t mdx";
+                }
+                elsif ($host =~ /md/)
+                {
+                    $installCommand = "installMDCAS -t mdcas";
+                }
+                else
+                {
+                    $installCommand = "installMDCAS -t cfix";
+                }
+
+                # Clear array for next usage
+                @mdcasEngines = ();
+            }
+        }
+
+        if (defined $installCommand)
+        {
+            # Copy appropriate config files to $host
+
+            my $configs =`ls $host.setContext* 2>/dev/null`;
+            my @configs = split /\s+/, $configs;
+            if ($#configs >= 0 && ! $DO_ROLLBACK)
+            {
+                system "scp $host.setContext* $userHost:$remoteDir";
+            }
+
+            # Run the install script
+
+            my $install = "ksh $remoteDir/$installCommand $installFlags";
+            CLIENTFORK: {
+                my $pid = fork;   # create a child process
+                if ($pid)
+                {
+                    # parent process, continue execution
+                    push @pids, $pid;
+                }
+                elsif (defined $pid)
+                {
+                    # child process, start the install
+                    system "ssh $userHost \""
+                             . ". ~/.profile >/dev/null 2>&1;"
+                             . "$install; rm -f $remoteDir/*; rmdir $remoteDir"
+                             . "\" >install_$proclog.NOTDONE 2>&1"
+                         . "; mv install_$proclog.NOTDONE install_$proclog.DONE"
+                         . "; fgrep '$ALERT' install_$proclog.DONE /dev/null";
+                    exit;
+                }
+                elsif ($! =~ /No more process/)
+                {
+                    # EAGAIN, a fork error that's supposedly recoverable
+                    sleep 5;
+                    redo CLIENTFORK;
+                }
+                else
+                {
+                    print "$PROG: $ALERT Can't fork for $engine: $!\n";
+                }
+            } # CASFORK
+        }
+    }
+    foreach $pid (@pids)
+    {
+        waitpid $pid,0;
+    }
+} # installHosts
+
+# Build the list of install flags for a mdcas.
+sub buildMDCASInstallFlags 
+{
+    my $eng = shift @_;
+    my @engines = @$eng;
+    my $installFlags = "";
+    my $installEngines = "";
+    my $bounceEngines = "";
+    my $clientAdded = 0;
+    my $jdkAdded = 0;
+    my $numEngines = scalar (@engines);
+
+    $installFlags .= " -$DO_ROLLBACK" if $DO_ROLLBACK;
+
+    for (my $i=0; $i < $numEngines; $i++) 
+    {
+        # Only add the client flag once
+        if ($engines[$i]{'client'} eq $FLAG_DOCLIENT && !$clientAdded)
+        {
+            $installFlags .= " -$FLAG_DOCLIENT $CLIENT_VERSION";
+            $clientAdded = 1;
+        }
+
+        # Only add the jdk flag once
+        if ($engines[$i]{'jdk'} eq $FLAG_DOJDK && !$jdkAdded)
+        {
+            $installFlags .= " -$FLAG_DOJDK $JDK_VERSION";
+            $jdkAdded = 1;
+        }
+
+        # Add the engine to the appropriate list
+        if ($engines[$i]{'client'} eq $FLAG_DOCLIENT)
+        {
+            $installEngines .= " $engines[$i]{'engine'}";
+        }
+        else 
+        {
+            $bounceEngines .= "$engines[$i]{'engine'},";
+        }
+    }
+ 
+    $installFlags .= " -b $bounceEngines" if $bounceEngines;
+
+    return $installFlags . $installEngines
+}
+
+# Build the list of install flags for a fixcas.
+sub buildFIXCASInstallFlags 
+{
+    my $eng = shift @_;
+    my @engines = @$eng;
+    my $installFlags = "";
+    my $installEngines = "";
+    my $bounceEngines = "";
+    my $clientAdded = 0;
+    my $jdkAdded = 0;
+    my $infraAdded = 0;
+    my $iorAdded = 0;
+    my $numEngines = scalar (@engines);
+
+    $installFlags .= " -$DO_ROLLBACK" if $DO_ROLLBACK;
+
+    for (my $i=0; $i < $numEngines; $i++) 
+    {
+        # Only add the client flag once
+        if ($engines[$i]{'client'} eq $FLAG_DOCLIENT && !$clientAdded)
+        {
+            $installFlags .= " -$FLAG_DOCLIENT $CLIENT_VERSION";
+            $clientAdded = 1;
+        }
+
+        # Only add the jdk flag once
+        if ($engines[$i]{'jdk'} eq $FLAG_DOJDK && !$jdkAdded)
+        {
+            $installFlags .= " -$FLAG_DOJDK $JDK_VERSION";
+            $jdkAdded = 1;
+        }
+
+        # Only add the infra flag once
+        if ($engines[$i]{'infra'} eq $FLAG_DOINFRA && !$infraAdded)
+        {
+            $installFlags .= " -$FLAG_DOINFRA $INFRA_VERSION";
+            $infraAdded = 1;
+        }
+
+        # Only add the ior flag once
+        if ($engines[$i]{'ior'} eq $FLAG_DOINITREFS && !$iorAdded)
+        {
+            $installFlags .= " -$FLAG_DOINITREFS";
+            $iorAdded = 1;
+        }
+
+        # Add the engine to the appropriate list
+        if ($engines[$i]{'client'} eq $FLAG_DOCLIENT)
+        {
+            $installEngines .= " $engines[$i]{'engine'}";
+        }
+        else 
+        {
+            $bounceEngines .= "$engines[$i]{'engine'},";
+        }
+    }
+ 
+    $installFlags .= " -b $bounceEngines" if $bounceEngines;
+
+    return $installFlags . $installEngines
+}
+
+# Compare whether the passed in hosts are equal
+sub compareHosts
+{
+    my ($host1, $host2) = @_;
+    return 1 if ($host1 eq $host2);
+}
+
+# Get the next host using the passed index from the list of processes. 
+sub getHostByIndex
+{
+    my $index = shift @_;
+    my $proc = $Processes[$index];
+    my @pair = &splitProcessName($proc);
+    my $host = $pair[$IX_HOST];
+    return $host;
+}
+
+# Report errors
+sub reportErrors
+{
+    foreach my $host (@DeadHost)
+    {
+        print "$ALERT Skipping host $host: $ErrHost{$host}\n";
+    }
+}
+# -------------------- Main program --------------------
+
+$SIG{HUP} = 'signalExit';
+$SIG{INT} = 'signalExit';
+$SIG{QUIT} = 'signalExit';
+$SIG{CHLD} = sub { wait };  # handle notice that a forked process is done
+
+if (! defined $ENV{RUN_DIR})
+{
+    print "$PROG: RUN_DIR is not defined\n";
+    &cleanupAndExit($EINVAL);
+}
+
+&readCommandLine;
+&parseInstallationConfigFile;
+
+if (! $DO_ROLLBACK)
+{
+    &getPwList;
+    &getIorFiles;
+}
+
+&checkHosts;
+&installHosts;
+
+&reportErrors;
+
+&cleanupAndExit(0);

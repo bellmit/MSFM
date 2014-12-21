@@ -1,0 +1,13 @@
+# DEVENV1 (TEST2)
+
+environment = test2
+
+cas    = dev2cas,   01, dev2fe  dev2fe
+cas    = dev2cas2,  01, dev2fe  dev2fe
+fixcas = dev2fix,   01, dev2fe  dev2fe 
+cfix   = dev2mdc,   01, dev2fe  dev2fe
+mdcas  = dev2mdc,   01, dev2fe  dev2fe
+mdcas  = dev2mds,   01, dev2fe  dev2fe
+mdx    = dev2mdx,   01, dev2fe  dev2fe
+sacas  = dev2sa,    01, devenv1 devenv1
+fixcas = dev2ttfix, 01, dev2fe  dev2fe

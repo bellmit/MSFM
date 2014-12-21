@@ -1,0 +1,28 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the UserServiceHomeImpl -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserServiceHome (UserServiceHomeImpl*)>
+<!ATTLIST GlobalUserServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserServiceHomeImpl (UserServiceHomeImplProperties)>
+<!ATTLIST UserServiceHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserServiceHomeImplProperties (quoteRiskEventChannelProperty?)>
+<!ATTLIST UserServiceHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT quoteRiskEventChannelProperty (#PCDATA)>
+<!ATTLIST quoteRiskEventChannelProperty
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED " QuoteRiskManagementProfileEvent "
+>

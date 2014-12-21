@@ -1,0 +1,101 @@
+<!ELEMENT GlobalOrbService (OrbServicePOAImpl*)>
+<!ATTLIST GlobalOrbService
+	type CDATA #FIXED 'ManagedResource'
+>
+
+<!ELEMENT OrbServicePOAImpl (OrbServicePOAImplProperties, POA*)>
+<!ATTLIST OrbServicePOAImpl
+	type CDATA #FIXED 'ManagedResource'
+	name CDATA #REQUIRED
+>
+
+<!ELEMENT OrbServicePOAImplProperties (poaList?, poolSize?)>
+<!ATTLIST OrbServicePOAImplProperties
+	type CDATA #FIXED 'ManagedProperties'
+>
+
+<!ELEMENT poaList (#PCDATA)>
+<!ATTLIST poaList
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'string'
+	description CDATA #FIXED 'A comma separated list of poa names.'
+>
+
+<!--
+This parameter is managed by a different managed resource
+<!ELEMENT initRefURL (#PCDATA)>
+<!ATTLIST initRefURL type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'string'
+	description CDATA #FIXED 'Help determine the values of resolve initial references.'
+>
+-->
+
+<!ELEMENT poolSize (#PCDATA)>
+<!ATTLIST poolSize
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'integer'
+	description CDATA #FIXED 'The number of threads to allocate to the poa thread pool.'
+>
+
+<!ELEMENT POA (POAProperties)>
+<!ATTLIST POA
+	type CDATA #FIXED 'ManagedResource'
+	name CDATA #REQUIRED 
+	description CDATA #FIXED 'The name should be a value in the poaList property'
+>
+
+<!ELEMENT POAProperties (persistentIor?, bindOrderType?, poolSize?, initialState? , parentPoa?, orderedDelivery?)>
+<!ATTLIST POAProperties
+	type CDATA #FIXED 'ManagedProperties'
+>
+
+<!ELEMENT initialState (#PCDATA)>
+<!ATTLIST initialState 
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'enum'
+	propertyValue CDATA #FIXED 'value'
+	value ( holding | active | discarding ) #REQUIRED
+	description CDATA #FIXED 'The initial state of the configured poa.'
+>
+
+<!ELEMENT bindOrderType EMPTY>
+<!ATTLIST bindOrderType 
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'enum'
+	propertyValue CDATA #FIXED 'value'
+	value ( TOFT | LOFT | SWUL | NONE ) #REQUIRED
+	description CDATA #FIXED 'Bind Order Policy'
+>
+
+<!ELEMENT parentPoa (#PCDATA)>
+<!ATTLIST parentPoa
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'string'
+	description CDATA #FIXED 'The POA that is to be the parent of this configured poa.'
+>
+
+<!ELEMENT orderedDelivery (#PCDATA)>
+<!ATTLIST orderedDelivery
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'enum'
+	propertyValue CDATA #FIXED 'value'
+	value ( true | false ) #REQUIRED
+	description CDATA #FIXED 'Should messages on this poa be delivered in an ordered fashion.'
+>
+
+<!ELEMENT persistentIor (#PCDATA)>
+<!ATTLIST persistentIor
+	type CDATA #FIXED 'ManagedProperty'
+	mode CDATA #FIXED 'readWrite'
+	propertyType CDATA #FIXED 'enum'
+	propertyValue CDATA #FIXED 'value'
+	value ( true | false ) #REQUIRED
+	description CDATA #FIXED 'Should objects bound to this poa be required to supply the ObjectId.'
+>

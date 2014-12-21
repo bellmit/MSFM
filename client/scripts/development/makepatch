@@ -1,0 +1,69 @@
+#!/bin/ksh
+# Suggested use:
+# 1. Change the INSTALL variable as needed
+# 2. mkdir -m 777 ~infra/$INSTALL/patch
+# 3. chmod g+w ~infra/$INSTALL/classes
+# 4. copy this script into the patch directory, and make the script executable
+# 5. copy modified Java files into the patch directory
+# 6. in the patch directory, run this script
+
+# -------------------- Configuration --------------------
+
+INSTALL=v2cas01
+
+# -------------------- Constants --------------------
+
+PROG=`basename $0`
+TMP=/tmp/$PROG.$$.sh
+
+# -------------------- Main program --------------------
+
+#####
+# Find a classpath
+#####
+file=`grep -l 'java.*classpath' $INFRA_HOME/$INSTALL/log/startsh*.log | tail -1`
+if [ -z $file ]
+then
+    echo "Can't find classpath from $INSTALL/log/startsh\*.log"
+    exit 1
+fi
+
+#####
+# Set CLASSPATH (based on what we find in a startsh*.log file
+#####
+CPATH=`grep 'java.*classpath' $file | sed -e 's/.*classpath //' | sed -e 's/ .*//' | sed -e 's,:classes/,:$INFRA/,g' | sed -e 's,:\.\./v2[^/]*/classes,:$CAS,g'`
+
+echo 'CAS=$INFRA_HOME/$INSTALL/classes'  >$TMP
+echo 'INFRA=$RUN_DIR/classes'            >>$TMP 
+echo 'export CLASSPATH='$CPATH           >>$TMP
+. $TMP
+\rm $TMP
+
+#####
+# Compile all the java files in this directory
+#####
+
+rm -rf com
+umask 0
+
+Error=0
+for i in *.java
+do
+    if ! javac -d . $i
+    then
+        Error=1
+    fi
+done
+
+#####
+# If no errors, build and install ClientPatch.jar
+#####
+
+if [ $Error == 1 ]
+then
+    echo "Errors, will not replace ClientPatch.jar"
+    exit 1
+fi
+
+rm $CAS/ClientPatch.jar
+jar cvf $CAS/ClientPatch.jar com

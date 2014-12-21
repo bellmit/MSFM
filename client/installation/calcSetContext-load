@@ -1,0 +1,164 @@
+#!/bin/ksh
+# Create <load_dir>/bin/setContext containing per-engine values
+
+# -------------------- Subroutines --------------------
+
+# Get LOAD_DIR, directory where client is installed, and
+# SCRIPT_DIR, directory where this script resides.
+# When done, current directory is SCRIPT_DIR.
+getDirs()
+{
+    SCRIPT_DIR=$( dirname $0 )
+    # Make sure that SCRIPT_DIR is a full pathname
+    cd $SCRIPT_DIR
+    SCRIPT_DIR=$( pwd )
+
+    LOAD_DIR=$( dirname $SCRIPT_DIR )
+}
+
+# CLIENT_TYPE should be set in config/bin/setContext, but
+# on a box shared by mdcas and cfix that doesn't always work.
+getClientType()
+{
+    dir_=$( echo $LOAD_DIR | tr '[A-Z]' '[a-z]' )
+    if [[ $dir_ = *_mdcas[0-9][0-9] ]] ; then
+        CLIENT_TYPE=mdcas
+    elif [[ $dir_ = *_cfix[0-9][0-9] ]] ; then
+        CLIENT_TYPE=cfix
+    # else it's a non-shared box and CLIENT_TYPE is correct
+    fi
+}
+
+getClientNum()
+{
+    load_dir_=$( echo $LOAD_DIR | tr '[a-z]' '[A-Z]' )
+    if [[ $load_dir_ = *_[0-9][0-9] ]] ; then
+        # FIX load such as CBOEDIR_CRIT_4.3_02
+        CLIENT_NUM=${load_dir_##*_}  # get number after the final _ character
+    elif [[ $load_dir_ = *MDCAS[0-9][0-9] ]] ; then
+        # MDCAS load such as CBOEDIR_CRIT_4.3_MDCAS01
+        CLIENT_NUM=${load_dir_##*MDCAS}  # get number at the end
+    elif [[ $load_dir_ = *CFIX[0-9][0-9] ]] ; then
+        # CFIX load such as CBOEDIR_CRIT_4.3_CFIX01
+        CLIENT_NUM=${load_dir_##*CFIX}  # get number at the end
+    else
+        # If no number at the end, this is the only engine
+        CLIENT_NUM="01"
+    fi    
+}
+
+appendToOutfile()
+{
+    if [ -z "$OUTFILE" ] ; then
+        echo "$*"
+    else
+        echo "$*" >> $OUTFILE
+    fi
+}
+
+# -------------------- Main program --------------------
+
+if [ "$1" != "-commit" ] ; then
+    DEBUG=1
+    GUARD="echo GUARD:"
+else
+    GUARD=
+fi
+
+unalias rm
+
+getDirs
+getClientType
+getClientNum
+PARMS=$( $SCRIPT_DIR/calcEngineParms $SBT_ENVIRONMENT $CLIENT_TYPE $CLIENT_NUM )
+err=$?
+if [ "$err" != "0" ] ; then
+    exit $err
+fi
+
+# Ignore first value--remove up to first , character
+PARMS=${PARMS#*,}
+
+# Second value is PORTNUM
+PORTNUM=${PARMS%%,*}  # ignore after first , character
+PARMS=${PARMS#*,}
+
+CLIENT_DIR=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENTNAME=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_SESSION_MODE=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_HTTP_PORT=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_ORBSERVER_PORT=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_WEBSERVER_PORT=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_JMXREMOTE_PORT=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_HEAP_SIZE=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CLIENT_NEWGEN_SIZE=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+CASFILENAME=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+ARCHIVE_HOST=${PARMS%%,*}
+PARMS=${PARMS#*,}
+
+ARCHIVE_DIR_BASE=${PARMS%%,*}
+
+OUTFILE_NAME=$LOAD_DIR/bin/setContext
+if [ -n "$DEBUG" ] ; then
+    OUTFILE=
+    echo "# $OUTFILE_NAME"
+else
+    OUTFILE=$OUTFILE_NAME
+    if [ -e $OUTFILE ] ; then
+        $GUARD rm -f $OUTFILE
+    fi
+fi
+
+appendToOutfile "export CLIENTNAME=$CLIENTNAME"
+
+if [ "$CLIENT_TYPE" != mdx ] ; then
+    appendToOutfile "export PORTNUM=$PORTNUM"
+    appendToOutfile "export CLIENT_DIR=$CLIENT_DIR"
+    appendToOutfile "export CLIENT_SESSION_MODE=$CLIENT_SESSION_MODE"
+    appendToOutfile "export COMMANDHTTPPORT=$CLIENT_HTTP_PORT"
+    appendToOutfile "export CLIENT_HEAP_SIZE=$CLIENT_HEAP_SIZE"
+    appendToOutfile "export CLIENT_NEWGEN_SIZE=$CLIENT_NEWGEN_SIZE"
+    appendToOutfile "export CASFILENAME=$CASFILENAME"
+    appendToOutfile "export ENGNUM=$CLIENT_NUM"
+fi # not mdx
+
+if [ "$CLIENT_ORBSERVER_PORT" != "0" ] ; then
+    appendToOutfile "export ORBSERVERPORT=$CLIENT_ORBSERVER_PORT"
+fi
+if [ "$CLIENT_WEBSERVER_PORT" != "0" ] ; then
+    appendToOutfile "export WEBSERVERPORT=$CLIENT_WEBSERVER_PORT"
+fi
+if [ "$CLIENT_JMXREMOTE_PORT" != "0" ] ; then
+    appendToOutfile "export JMXREMOTEPORT=$CLIENT_JMXREMOTE_PORT"
+fi
+
+appendToOutfile '# These variables are needed for the InfraEOD process.'
+appendToOutfile 'export ARCHIVE_HOST='$ARCHIVE_HOST
+appendToOutfile 'export ARCHIVE_DIR_BASE='$ARCHIVE_DIR_BASE
+# Yes, we set ARCHIVE_DIR_BASE twice: the second assignment says
+# if ARCHIVE_DIR_BASE is empty, set it to ${RUN_DIR}/log
+appendToOutfile 'export ARCHIVE_DIR_BASE=${ARCHIVE_DIR_BASE:-${RUN_DIR}/log}'
+appendToOutfile 'export LOCAL_ARCHIVE_DIR_BASE="${RUN_DIR}/log"'
+appendToOutfile 'export CRON_ARCHIVE_LOG=${RUN_DIR}/log/cronArchive'
+
+$GUARD chmod 444 $OUTFILE_NAME

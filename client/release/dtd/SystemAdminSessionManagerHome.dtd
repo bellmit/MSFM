@@ -1,0 +1,29 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the SystemAdminSessionManagerHomeImpl -->
+<!-- @author Dave Hoag -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalSystemAdminSessionManagerHome (SystemAdminSessionManager*)>
+<!ATTLIST GlobalSystemAdminSessionManagerHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT SystemAdminSessionManager (SystemAdminSessionManagerProperties)>
+<!ATTLIST SystemAdminSessionManager
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT SystemAdminSessionManagerProperties (alias?)>
+<!ATTLIST SystemAdminSessionManagerProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT alias (#PCDATA)>
+<!ATTLIST alias
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "aliasing"
+>

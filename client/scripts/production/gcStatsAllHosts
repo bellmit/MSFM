@@ -1,0 +1,175 @@
+#!/bin/ksh
+# Collect Garbage Collection statistics from Client engines
+# set -x
+# Idiom used here: 2>&1 after a command ensures that error output from
+# that command is inserted into log file right then, rather than early
+# or late due to peculiarities of merging output streams.
+
+if [ -z $RUN_DIR ] ; then
+    STARTDIR=`pwd`
+    cd
+    . ~/.profile >/dev/null 2>&1
+    cd $STARTDIR
+fi
+
+SCRIPTDIR=$( dirname $0 )
+
+# -------------------- Configuration --------------------
+. $SCRIPTDIR/setenv-scripts
+. $SCRIPTDIR/hostsUtils
+
+DEEPFRZ_USER=infra
+SCRIPT_DIR=bin
+DELIVERED_SCRIPTS=GCscriptsForCAS.tar
+
+CONTROL_SCRIPT=gcStatsAllEngines
+
+RESULT_DIR=/sbt/prod/cas/bigtmp
+RESULT_FILE=ClientGCstats.tar
+REMOTE_RESULT_DIR=/infra/work
+CLIENT_USER=infrap
+CLIENTS="cas,fixcas,mdcas,sacas,cfix"
+TIMEOUT_SECONDS=3
+
+if [ -n "$DEBUG" ] ; then
+    HOST_DEEPFRZ=deepfrzd
+    SCRIPT_DIR=/sbt/server/fix/magee
+    REMOTE_RESULT_DIR=/sbt/server/fix/magee/gcStats
+    DEEPFRZ_USER=tradeeng
+fi
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+TODAY=$( date +%Y%m%d )
+HOSTNAME=$( hostname )
+PER_HOST_SCRIPT=gcStatsOneHost
+WORK_DIR=$RESULT_DIR/$PROG.$TODAY.$$
+LOG_DIR=$WORK_DIR/.logs  # name starts with . so it will not match * pattern
+PRE_RESULT_FILE=GCstats-next.tar
+DATEFORMAT="+%Y-%m-%d %T"
+
+if [ -n "$DEBUG" ] ; then
+    VERBOSE="VERBOSE=1"
+fi
+
+# Error codes from errno.h
+#ENOENT=2    # No such file or directory
+EINTR=4     # interrupted system call
+#EINVAL=22   # invalid argument
+
+# -------------------- Subroutines --------------------
+
+# Create the script that we will run for each host.
+# For each host we will start a background task running this.
+createPerHostScript()
+{
+    cat - > $PER_HOST_SCRIPT <<_PER_HOST_
+#!/bin/ksh
+
+ph_HOST=\$1
+ph_RESULT_FILE=GCstats.\$ph_HOST.tar
+ph_DATEFORMAT="+%Y-%m-%d %T"
+unalias rm
+
+# Deliver scripts to \$ph_HOST
+date "\$ph_DATEFORMAT Delivering scripts to \$ph_HOST"
+scp -q $CONTROL_SCRIPT $DELIVERED_SCRIPTS $CLIENT_USER@\$ph_HOST:/tmp 2>&1
+
+# Create \$RUN_DIR/tmp/\$ph_RESULT_FILE on box \$ph_HOST
+date "\$ph_DATEFORMAT Running $CONTROL_SCRIPT on \$ph_HOST"
+ssh $CLIENT_USER@\$ph_HOST 'cd /tmp; '"$VERBOSE ksh $CONTROL_SCRIPT" 2>&1
+
+# Retrieve result file, and extract results
+case \$ph_HOST in
+fix2[12])
+    # Old FIXCAS disk structure discontinued after 2008.
+    ph_RUN_DIR=infra/run_dir
+    ;;
+*)
+    # Standard disk structure, also for FIXCAS starting in 2009.
+    ph_RUN_DIR=run_dir
+    ;;
+esac
+date "\$ph_DATEFORMAT Retrieving results from \$ph_HOST"
+scp -q $CLIENT_USER@\$ph_HOST:\$ph_RUN_DIR/tmp/\$ph_RESULT_FILE . 2>&1
+if [ -e \$ph_RESULT_FILE ] ; then
+    tar xvf \$ph_RESULT_FILE 2>&1
+    rm \$ph_RESULT_FILE 2>&1
+fi
+
+# Done with the scripts we delivered, clean them up
+date "\$ph_DATEFORMAT Removing delivered scripts from \$ph_HOST"
+ssh $CLIENT_USER@\$ph_HOST "cd /tmp; rm $CONTROL_SCRIPT $DELIVERED_SCRIPTS" 2>&1
+date "\$ph_DATEFORMAT Done"
+_PER_HOST_
+}
+
+cleanup()
+{
+    if [ -n "$DEBUG" ] ; then
+        echo " keeping $WORK_DIR for debugging purposes "
+    else
+        cd
+        rm -rf $WORK_DIR 2>&1
+    fi
+}
+
+cleanupAndExit()
+{
+    cleanup
+    exit $EINTR
+}
+
+# -------------------- Main program --------------------
+
+trap cleanupAndExit 1 2 3
+unalias rm
+
+cd $SCRIPTDIR
+SELF_DIR=$( pwd )
+
+mkdir -p -m777 $WORK_DIR
+cd $WORK_DIR
+
+getHosts $CLIENTS
+checkHosts $TIMEOUT_SECONDS
+
+# Get the scripts which will perform data collection
+date "$DATEFORMAT Getting data collection scripts"
+scp -q $DEEPFRZ_USER@$HOST_DEEPFRZ:$SCRIPT_DIR/$DELIVERED_SCRIPTS . 2>&1
+cp -p $SELF_DIR/$CONTROL_SCRIPT . 2>&1
+
+# Create script to run for each host
+createPerHostScript
+
+# Run script on each host
+date "$DATEFORMAT Starting per-host processes"
+mkdir -p $LOG_DIR 2>&1
+for host in $ALIVEHOST ; do
+    ksh $PER_HOST_SCRIPT $host >$LOG_DIR/$host.log 2>&1 &
+done
+wait
+
+# Remove scripts from work directory, leaving only result files
+rm $DELIVERED_SCRIPTS $CONTROL_SCRIPT $PER_HOST_SCRIPT 2>&1
+
+# All results are in. Create one big .tar file under a temporary name,
+# then rename it when the file is complete.
+date "$DATEFORMAT Creating summary file"
+tar cf $RESULT_DIR/$PRE_RESULT_FILE * 2>&1
+mv $RESULT_DIR/$PRE_RESULT_FILE $RESULT_DIR/$RESULT_FILE 2>&1
+
+# Copy result file 
+date "$DATEFORMAT Copying summary file to $HOST_DEEPFRZ"
+scp -q $RESULT_DIR/$RESULT_FILE $DEEPFRZ_USER@$HOST_DEEPFRZ:$REMOTE_RESULT_DIR/$PRE_RESULT_FILE 2>&1
+ssh $DEEPFRZ_USER@$HOST_DEEPFRZ mv $REMOTE_RESULT_DIR/$PRE_RESULT_FILE $REMOTE_RESULT_DIR/$RESULT_FILE 2>&1
+
+for host in $ALIVEHOST ; do
+    echo ".... $host ...."
+    cat $LOG_DIR/$host.log
+done
+echo ".... end of hosts ...."
+
+cleanup
+date "$DATEFORMAT $PROG done"

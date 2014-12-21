@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!DOCTYPE GlobalFoundationFramework SYSTEM "../dtd/CASApplication.dtd">
+<GlobalFoundationFramework>
+	<FoundationFramework name="SystemAdminServer">
+		<CoreService name="ACAS">
+			<CoreServiceProperties>
+				<orbServiceImpl value="com.cboe.infrastructureServices.orbService.OrbServicePOAImpl"/>
+				<orbServiceName>CAS</orbServiceName>
+				<commandCallbackServiceImpl value="com.cboe.infrastructureServices.systemsManagementService.CommandCallbackService"/>
+				<eventServiceImpl value="com.cboe.infrastructureServices.eventService.EventServiceTraderImpl"/>
+				<eventServiceName>CAS</eventServiceName>
+				<traderServiceImpl value="com.cboe.infrastructureServices.traderService.TraderServiceImpl"/>
+				<traderServiceName>ACAS</traderServiceName>
+				<loggingServiceImpl value="com.cboe.infrastructureServices.loggingService.LogServiceSMAImpl"/>
+				<loggingServiceName>SMA</loggingServiceName>
+				<adminServiceImpl value="com.cboe.infrastructureServices.systemsManagementService.AdminServiceAsyncImpl"/>
+				<adminServiceName>Dynamic</adminServiceName>
+				<securityServiceImpl value="com.cboe.infrastructureServices.securityService.SecurityServiceImpl"/>
+				<securityServiceName>ClientService</securityServiceName>
+				<uuidServiceImpl value="com.cboe.infrastructureServices.uuidService.IdServiceSimpleImpl"/>
+				<uuidServiceName/>
+				<persistenceServiceImpl value="com.cboe.infrastructureServices.persistenceService.PersistenceServiceNullImpl"/>
+				<persistenceServiceName/>
+				<timeServiceImpl value="com.cboe.infrastructureServices.timeService.TimeServiceImpl"/>
+				<timeServiceName/>
+				<instrumentationServiceImpl value="com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceImpl"/>
+				<instrumentationServiceName>CASService</instrumentationServiceName>
+				<sessionManagementServiceImpl value="com.cboe.infrastructureServices.sessionManagementService.SessionManagementServiceImpl"/>
+				<sessionManagementServiceName>CASService</sessionManagementServiceName>
+				<calendarServiceImpl value="com.cboe.infrastructureServices.calendarService.CalendarAdminServiceImpl"/>
+				<calendarServiceName/>
+			</CoreServiceProperties>
+		</CoreService>
+		<BOContainer name="LocalContainer">
+			<BOContainerProperties>
+				<containerImpl implClassName="com.cboe.infrastructureServices.foundationFramework.BOContainer"/>
+			</BOContainerProperties>
+			<BOHome name="AdministratorHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.administrator.AdministratorHomeImpl</homeImpl>
+					<interceptorName>AdministratorInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.administrator.AdministratorInterceptor</interceptorImpl>
+                    			<poaName>CASAdministrator</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ClassStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.ClassStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>ClassStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CommandCallbackHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.infrastructureServices.systemsManagementService.CommandCallbackHomeImpl</homeImpl>
+					<managedResourceName>SystemPropertyDefined</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ComponentConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.ComponentCallbackConsumerHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CurrentMarketConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.CurrentMarketConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CurrentMarketConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.CurrentMarketConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>CurrentMarketConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CurrentMarketV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.CurrentMarketV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>CurrentMarketV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CurrentMarketV3ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.CurrentMarketV3ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>CurrentMarketV3ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="BookDepthConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.BookDepthConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>BookDepthConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="BookDepthV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.BookDepthV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>BookDepthV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CurrentMarketCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.CurrentMarketCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="BookDepthCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.BookDepthCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="AdminProductStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.AdminProductStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>AdminProductStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="AdminProductStatusCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.AdminProductStatusCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="EventChannelHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.EventChannelHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteNotificationCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.QuoteNotificationCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ExpectedOpeningPriceConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.ExpectedOpeningPriceConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>ExpectedOpeningPriceConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ExpectedOpeningPriceV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.ExpectedOpeningPriceV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>ExpectedOpeningPriceV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="FirmServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.firm.FirmServiceHomeImpl</homeImpl>
+					<interceptorName>FirmServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.firm.FirmServiceInterceptor</interceptorImpl>
+                                        <poaName>CASFirm</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="FirmMaintenanceServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.firm.FirmMaintenanceServiceHomeImpl</homeImpl>
+					<interceptorName>FirmMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.firm.FirmMaintenanceServiceInterceptor</interceptorImpl>
+					<poaName>CASFirm</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionMaintenanceServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.tradingSession.TradingSessionMaintenanceServiceHomeImpl</homeImpl>
+					<interceptorName>TradingSessionMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.tradingSession.TradingSessionMaintenanceServiceInterceptor</interceptorImpl>
+					<poaName>CASTradingSession</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ForcedLogoutConsumer">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.ForcedLogoutCallbackConsumerHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="HeartBeatHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.heartBeat.HeartBeatHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="IORMakerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.shared.IORMakerPOAHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemMarketQueryHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.marketData.SystemMarketQueryHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>MarketQueryInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.marketData.SystemMarketQueryInterceptor</interceptorImpl>
+					<poaName>CASMarketQuery</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="MarketMakerQuoteServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.marketMakerQuoteService.MarketMakerQuoteServiceHomeImpl</homeImpl>
+					<interceptorName>MarketMakerQuoteServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.marketMakerQuoteService.MarketMakerQuoteServiceInterceptor</interceptorImpl>
+                    			<poaName>CASQuote</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderBookService">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.orderBookService.OrderBookServiceHomeImpl</homeImpl>
+					<interceptorName>OrderBookServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.orderBookService.OrderBookServiceInterceptor</interceptorImpl>
+					<poaName>CASOrder</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="PropertyEventServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.propertyService.PropertyEventServiceHomeImpl</homeImpl>
+					<interceptorName>PropertyEventServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.propertyService.PropertyEventServiceInterceptor</interceptorImpl>
+					<poaName>CASProperty</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderHandlingServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.orderHandlingService.OrderHandlingServiceHomeImpl</homeImpl>
+					<interceptorName>OrderHandlingServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.orderHandlingService.OrderHandlingServiceInterceptor</interceptorImpl>
+					<poaName>CASOrder</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderMaintenanceServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.orderMaintenanceService.OrderMaintenanceServiceHomeImpl</homeImpl>
+					<interceptorName>OrderMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.orderMaintenanceService.OrderMaintenanceServiceInterceptor</interceptorImpl>
+					<poaName>CASOrder</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.user.UserServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>UserServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.user.UserServiceInterceptor</interceptorImpl>
+					<poaName>CASUser</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserOrderEntryHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.orderEntry.UserOrderEntryHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>OrderEntryInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.orderEntry.UserOrderEntryInterceptor</interceptorImpl>
+                    			<poaName>CASOrderEntry</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserOrderQueryHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.order.UserOrderQueryHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>OrderQueryInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.order.UserOrderQueryInterceptor</interceptorImpl>
+					<poaName>CASOrderQuery</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserTradingParameterServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.user.UserTradingParameterServiceHomeImpl</homeImpl>
+					<interceptorName>UserTradingParameterServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.user.UserTradingParameterServiceInterceptor</interceptorImpl>
+					<poaName>CASTradingParameters</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="BookDepthConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.BookDepthConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteNotificationConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.QuoteNotificationConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderStatusConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.OrderStatusConsumerHomeCallbackImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteNotificationConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.QuoteNotificationConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>QuoteNotificationConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.OrderStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>OrderStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderStatusV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.OrderStatusV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>OrderStatusV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderStatusCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.OrderStatusCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+            <BOHome name="OrderRoutingConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.OrderRoutingConsumerHomeEventImpl</homeImpl>
+					<enableInstrumentation booleanValue="true"/>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderRoutingConsumerProxyHome">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.application.supplier.proxy.OrderRoutingConsumerProxyHomeImpl</homeImpl>
+                    <managedResourceName>OrderRoutingConsumerProxyHome</managedResourceName>
+                    <enableInstrumentation booleanValue="true"/>
+                </BOHomeProperties>
+            </BOHome>
+			<BOHome name="OrderManagementServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.orderManagement.OrderManagementServiceHomeImpl</homeImpl>
+					<interceptorName>OrderManagementServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.orderManagement.OrderManagementServiceInterceptor</interceptorImpl>
+					<poaName>CASOMT</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductConfigurationServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.product.ProductConfigurationServiceHomeImpl</homeImpl>
+					<interceptorName>ProductConfigurationServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.product.ProductConfigurationServiceInterceptor</interceptorImpl>
+					<poaName>CASProduct</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductDefinitionHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.productDefinition.ProductDefinitionHomeImpl</homeImpl>
+					<interceptorName>ProductDefinitionInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.productDefinition.ProductDefinitionInterceptor</interceptorImpl>
+					<poaName>CASProductDefinition</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductMaintenanceEventServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.product.ProductMaintenanceEventServiceHomeImpl</homeImpl>
+					<interceptorName>ProductMaintenanceEventServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.product.ProductMaintenanceEventServiceInterceptor</interceptorImpl>
+					<poaName>CASProduct</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductQueryServiceHome">
+                                <BOHomeProperties>
+                                        <homeImpl>com.cboe.proxy.internalBusinessServices.AdminClientProductQueryServiceHomeProxyImpl</homeImpl>
+				<poaName>CASProduct</poaName>
+                                </BOHomeProperties>
+                        </BOHome>
+			<BOHome name="ExchangeServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.exchangeService.ExchangeServiceHomeImpl</homeImpl>
+					<interceptorName>ExchangeServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.exchangeService.ExchangeServiceInterceptor</interceptorImpl>
+                    			<poaName>CASExchange</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="AuditLogHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.domain.audit.AuditLogHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductQueryManagerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.product.ProductQueryManagerHomeImpl</homeImpl>
+					<interceptorName>ProductQueryInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.product.ProductQueryManagerInterceptor</interceptorImpl>
+                    			<poaName>CASProductQuery</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductStateServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.product.ProductStateServiceHomeImpl</homeImpl>
+					<interceptorName>ProductStateServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.product.ProductStateServiceInterceptor</interceptorImpl>
+                    			<poaName>CASProduct</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductStatusConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.ProductStatusConsumerHomeEventImpl</homeImpl>
+					<interceptorName>ProductStatusConsumerInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.consumers.eventChannel.ProductStatusConsumerInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.ProductStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>ProductStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductStatusCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.ProductStatusCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteStatusConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.QuoteStatusConsumerHomeCallbackImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.QuoteStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>QuoteStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteStatusV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.QuoteStatusV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>QuoteStatusV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteStatusCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.QuoteStatusCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RFQConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.RFQConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RFQConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.RFQConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>RFQConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RFQV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.RFQV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>RFQV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RateMonitorHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.domain.rateMonitor.RateMonitorHomeImpl</homeImpl>
+					<managedResourceName>RateMonitorHomeImpl</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RecapConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.RecapConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RecapConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.RecapConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>RecapConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RecapV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.RecapV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>RecapV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RecapCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.RecapCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SessionAdminConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.SessionAdminConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>SessionAdminConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SessionManagementAdminServiceHome">
+				<BOHomeProperties>
+					<!--homeImpl>com.cboe.sessionManagementService.SessionManagementAdminServiceNullHomeImpl</homeImpl-->
+					<homeImpl>com.cboe.sessionManagementService.SessionManagementAdminServiceProxyHomeImpl</homeImpl>
+					<poaName>CASSessionAdmin</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="StrategyStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.StrategyStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>StrategyStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="AppServerStatusManagerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.status.AppServerStatusManagerHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SubscriptionServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.subscription.SubscriptionServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SubscriptionCollectionServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.subscription.SubscriptionCollectionServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemAdminServerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.cas.SystemAdminServerHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemAdminSessionManagerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.session.SystemAdminSessionManagerHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>SystemAdminSessionManagerInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.session.SystemAdminSessionManagerInterceptor</interceptorImpl>
+					<alias>SessionManagerCleanupHome,RemoteSessionManagerHome,UserSessionQueryHome</alias>
+					<poaName>CASSessionManager</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemAdminUserAccessHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.cas.SystemAdminUserAccessHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>UserAccessInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.cas.SystemAdminUserAccessInterceptor</interceptorImpl>
+                    			<poaName>CASUserAccess</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemControlConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.SystemControlConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TextMessageConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.TextMessageConsumerHomeEventImpl</homeImpl>
+					<interceptorName>TextMessageConsumerInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.consumers.eventChannel.TextMessageConsumerInterceptor</interceptorImpl>
+                    		</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TickerConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.TickerConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TickerConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.TickerConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>TickerConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TickerV2ConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.TickerV2ConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>TickerV2ConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TickerCollectorProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.TickerCollectorProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingPropertyServiceExtHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.tradingPropertyService.TradingPropertyServiceHomeImpl</homeImpl>
+					<interceptorName>TradingPropertyServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.tradingPropertyService.TradingPropertyServiceInterceptor</interceptorImpl>
+                    			<poaName>CASTradingSession</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionEventStateServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.tradingSession.TradingSessionEventStateServiceHomeImpl</homeImpl>
+					<interceptorName>TradingSessionEventStateServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.tradingSession.TradingSessionEventStateServiceInterceptor</interceptorImpl>
+					<poaName>CASTradingSession</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SysAdminIntermarketControlServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.sysAdminIntermarketControlService.SysAdminIntermarketControlServiceHomeImpl</homeImpl>
+					<interceptorName>SysAdminIntermarketControlServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.sysAdminIntermarketControlService.SysAdminIntermarketControlServiceInterceptor</interceptorImpl>
+					<poaName>CASIntermarketControl</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="IntermarketControlServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.externalIntegrationServices.IntermarketControlServiceHomeProxyImpl</homeImpl>
+                                        <enableInstrumentation booleanValue="true"/>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="IntermarketAdminMessageConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.IntermarketAdminMessageConsumerHomeEventImpl</homeImpl>
+                                        <enableInstrumentation booleanValue="true"/>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemAdminITSAdminConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.SystemAdminITSAdminConsumerProxyHomeImpl</homeImpl>
+                                        <enableInstrumentation booleanValue="true"/>
+				</BOHomeProperties>
+			</BOHome>
+            <BOHome name="AlertEventServiceHome">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.internalApplication.alert.AlertEventServiceHomeImpl</homeImpl>
+                    <interceptorName>AlertEventServiceInterceptor</interceptorName>
+                    <interceptorImpl>com.cboe.internalApplication.alert.AlertEventServiceInterceptor</interceptorImpl>
+                    <poaName>CASAlert</poaName>
+                </BOHomeProperties>
+            </BOHome>
+			<BOHome name="TradingSessionEventStateConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalConsumers.eventChannel.TradingSessionEventStateConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+            <BOHome name="AlertConsumerHome">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.consumers.eventChannel.AlertConsumerHomeEventImpl</homeImpl>
+                </BOHomeProperties>
+            </BOHome>
+			<BOHome name="TradingSessionEventStateConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.TradingSessionEventStateConsumerProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+            <BOHome name="AlertConsumerProxyHome">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.AlertEventConsumerProxyHomeImpl</homeImpl>
+                </BOHomeProperties>
+            </BOHome>
+			<BOHome name="ProductConfigurationStatusConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.server.internalEvents.ProductConfigurationStatusConsumerHomeImpl</homeImpl>
+					<managedResourceName>ProductConfigurationStatusConsumerHomeImpl</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.tradingSession.TradingSessionServiceHomeImpl</homeImpl>
+					<interceptorName>TradingSessionServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.tradingSession.TradingSessionServiceInterceptor</interceptorImpl>
+					<poaName>CASTradingSession</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradeMaintenanceServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.tradeService.TradeMaintenanceServiceHomeImpl</homeImpl>
+					<interceptorName>TradeMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.tradeService.TradeMaintenanceServiceInterceptor</interceptorImpl>
+					<poaName>CASTradingSession</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.tradingSession.TradingSessionHomeImpl</homeImpl>
+					<interceptorName>TradingSessionInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.tradingSession.TradingSessionInterceptor</interceptorImpl>
+					<poaName>CASTradingSession</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.TradingSessionConsumerHomeEventImpl</homeImpl>
+					<interceptorName>TradingSessionConsumerInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.consumers.eventChannel.TradingSessionConsumerInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionStatusConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.proxy.TradingSessionStatusConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>TradingSessionStatusConsumerProxyHome</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserHistoryHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.userServices.UserHistoryHomeImpl</homeImpl>
+					<interceptorName>UserHistoryInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.userServices.UserHistoryInterceptor</interceptorImpl>
+					<poaName>CASUser</poaName>
+				</BOHomeProperties>
+			</BOHome>
+                        <BOHome name="StatusMonitorHome">
+                                <BOHomeProperties>
+                                        <homeImpl>com.cboe.application.status.StatusMonitorHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+                                </BOHomeProperties>
+                        </BOHome>       
+			<BOHome name="UserEnablementHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.userServices.UserEnablementHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserLoadManagerHome">
+                                <BOHomeProperties>
+                                        <homeImpl>com.cboe.domain.userLoadManager.UserLoadManagerHomeImpl</homeImpl>
+                                        <managedResourceName>UserLoadManager</managedResourceName>
+                                </BOHomeProperties>
+                        </BOHome>
+			<BOHome name="UserMaintenanceServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.user.UserMaintenanceServiceHomeImpl</homeImpl>
+					<interceptorName>UserMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.user.UserMaintenanceServiceInterceptor</interceptorImpl>
+					<poaName>CASUser</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserMaintenanceEventServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.user.UserMaintenanceEventServiceHomeImpl</homeImpl>
+					<interceptorName>UserMaintenanceEventServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.user.UserMaintenanceEventServiceInterceptor</interceptorImpl>
+					<poaName>CASUser</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CacheUpdateConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.CacheUpdateConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="PropertyConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.PropertyConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="PropertyEventConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.PropertyEventConsumerProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserMaintenanceEventConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.UserMaintenanceEventConsumerProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupElementEventConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.GroupElementEventConsumerProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupCancelEventConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.GroupCancelEventConsumerProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserSessionConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.ForcedLogoutCallbackConsumerHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserTimeoutWarningConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.UserTimeoutWarningConsumerHomeInProcessImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASCurrentMarketPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASCurrentMarketConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASNBBOPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASNBBOConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASRecapPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASRecapConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASTickerPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASTickerConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASBookDepthPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASBookDepthConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASBookDepthUpdatePublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASBookDepthUpdateConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASExpectedOpeningPricePublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASExpectedOpeningPriceConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASSessionManagerPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.RemoteCASSessionManagerConsumerHomePublisherImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASCallbackRemovalConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.RemoteCASCallbackRemovalConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="RemoteCASRecoveryConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.RemoteCASRecoveryConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserTradingParametersHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.userServices.UserTradingParametersHomeImpl</homeImpl>
+					<interceptorName>UserTradingParametersInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.userServices.UserTradingParametersInterceptor</interceptorImpl>
+					<poaName>CASTradingParameters</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserPreferenceQueryHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.userServices.UserPreferenceQueryHomeImpl</homeImpl>
+					<interceptorName>UserPreferenceQueryInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.userServices.UserPreferenceQueryInterceptor</interceptorImpl>
+					<poaName>CASPreferences</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserQuoteHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.quote.UserQuoteHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<interceptorName>QuoteInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.quote.UserQuoteInterceptor</interceptorImpl>
+					<poaName>CASQuote</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserMarketDataServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.marketData.common.UserMarketDataServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserQuoteServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.quote.common.UserQuoteServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserOrderServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.order.common.UserOrderServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserTradingSessionServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.tradingSession.common.UserTradingSessionServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CASAdminConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.CASAdminConsumerHomeEventImpl</homeImpl>
+					<!--
+ 					<homeImpl>com.cboe.consumers.eventChannel.CASAdminConsumerHomeInProcessImpl</homeImpl>
+-->
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CASAdminPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.publishers.eventChannel.CASAdminConsumerHomePublisherImpl</homeImpl>
+					<!--
+					<homeImpl>com.cboe.publishers.eventChannel.CASAdminConsumerHomePublisherNullImpl</homeImpl>
+-->
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TextMessagingServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.textMessaging.TextMessagingServiceHomeImpl</homeImpl>
+					<interceptorName>TextMessagingServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.textMessaging.TextMessagingServiceInterceptor</interceptorImpl>
+					<poaName>CASTextMessaging</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="MarketDataRequestPublisherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.marketData.MarketDataRequestPublisherHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.groupService.GroupServiceHomeImpl</homeImpl>
+					<interceptorName>GroupServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.application.groupService.GroupServiceInterceptor</interceptorImpl>
+					<poaName>CASGroupService</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupElementEventServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.groupService.GroupElementEventServiceHomeImpl</homeImpl>
+					<interceptorName>GroupElementEventServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.groupService.GroupElementEventServiceInterceptor</interceptorImpl>
+					<poaName>CASGroupService</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupCancelEventServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.groupService.GroupCancelEventServiceHomeImpl</homeImpl>
+					<interceptorName>GroupCancelEventServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.groupService.GroupCancelEventServiceInterceptor</interceptorImpl>
+					<poaName>CASGroupService</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingClassStatusQueryServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.tradingClassStatus.TradingClassStatusQueryServiceHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+					<poaName>CASTradingClassStatus</poaName>
+				</BOHomeProperties>
+			</BOHome>
+		</BOContainer>
+		<BOContainer name="RemoteContainer">
+			<BOContainerProperties>
+				<containerImpl implClassName="com.cboe.infrastructureServices.foundationFramework.BOContainer"/>
+			</BOContainerProperties>
+			<BOHome name="GlobalThreadPoolHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.domain.supplier.GlobalThreadPoolHomeImpl</homeImpl>
+					<managedResourceName>GlobalThreadPool</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="InstrumentedGlobalThreadPoolHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.domain.instrumentedChannel.supplier.GlobalThreadPoolHomeImpl</homeImpl>
+					<managedResourceName>InstrumentedGlobalThreadPool</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserSessionThreadPoolHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.UserSessionThreadPoolHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserSessionMarketDataThreadPoolHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.supplier.UserSessionMarketDataThreadPoolHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="FirmServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.FirmServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="AlertServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.AlertServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="MarketMakerQuoteServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServicesClient.MarketMakerQuoteServiceClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderBookServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServicesClient.OrderBookServiceClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="PropertyServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.AdminClientPropertyServiceHomeProxyFacadeImpl</homeImpl>
+                    <alias>PropertyServiceHome</alias>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CalendarUpdateConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.CalendarUpdateConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="CalendarAdminServiceHomeAdmin">
+			    <BOHomeProperties>
+			        <homeImpl>com.cboe.proxy.infrastructureServices.CalendarAdminServiceHomeProxyImpl</homeImpl>
+			    </BOHomeProperties>
+            </BOHome>
+			<BOHome name="CalendarUpdateConsumerProxyHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.internalSupplier.internalProxy.CalendarUpdateConsumerProxyHomeImpl</homeImpl>
+					<managedResourceName>CalendarUpdateConsumerProxyHome</managedResourceName>
+                </BOHomeProperties>
+            </BOHome>
+			<BOHome name="CalendarAdminEventServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.calendar.CalendarAdminEventServiceHomeImpl</homeImpl>
+					<interceptorName>CalendarAdminEventServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalApplication.calendar.CalendarAdminEventServiceInterceptor</interceptorImpl>
+                    			<poaName>CASCalendarAdmin</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ClientProductConfigurationServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.AdminClientProductConfigurationServiceHomeCachedProxyImpl</homeImpl>
+					<managedResourceName>ProductConfigurationStatusConsumerHomeImpl</managedResourceName>
+					<interceptorName>ClientProductConfigurationServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalBusinessServices.productConfigurationService.ClientProductConfigurationServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderHandlingServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.OrderHandlingServiceAdminClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderMaintenanceServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.OrderMaintenanceServiceAdminClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductMaintenanceServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.ProductMaintenanceServiceHomeProxyImpl</homeImpl>
+					<interceptorName>ProductMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalBusinessServices.productService.ProductMaintenanceServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductQueryServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.ClientProductQueryServiceHomeProxyImpl</homeImpl>
+					<interceptorName>ProductQueryServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.businessServices.productService.ProductQueryServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ExchangeServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.ExchangeServiceHomeProxyImpl</homeImpl>
+					<interceptorName>ExchangeServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.businessServices.exchangeService.ExchangeServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="FirmMaintenanceServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.FirmMaintenanceServiceHomeProxyImpl</homeImpl>
+					<interceptorName>FirmMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalBusinessServices.firmService.FirmMaintenanceServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductStateServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.ProductStateServiceAdminClientRoutingProxyHomeImpl</homeImpl>
+					<interceptorName>ProductStateServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalBusinessServices.productStateService.ProductStateServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingPropertyServiceExtAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.TradingPropertyServiceHomeProxyImpl</homeImpl>
+					<interceptorName>TradingPropertyServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalBusinessServices.tradingPropertyService.TradingPropertyServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionMaintenanceServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.TradingSessionMaintenanceServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.TradingSessionServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionServiceHomeBusinessDay">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.AdminClientTradingSessionServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradeMaintenanceServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.TradeMaintenanceServiceAdminClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserMaintenanceServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.UserMaintenanceServiceHomeProxyImpl</homeImpl>
+					<interceptorName>UserMaintenanceServiceInterceptor</interceptorName>
+					<interceptorImpl>com.cboe.internalBusinessServices.userService.UserMaintenanceServiceInterceptor</interceptorImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TextMessagingServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.TextMessagingServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserTradingParameterServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.UserTradingParameterServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="MarketDataServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServicesClient.MarketDataServiceClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserActivityServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServicesClient.UserActivityServiceClientRoutingProxyHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.internalBusinessServices.GroupServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="UserServiceAdminHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.UserServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="QuoteStatusSubscriptionServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.QuoteStatusSubscriptionServiceHAHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="OrderStatusSubscriptionServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.businessServices.OrderStatusSubscriptionServiceHAHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SecurityAdminServiceHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.internalApplication.securityAdminService.SecurityAdminServiceHomeImpl</homeImpl>
+					<poaName>CASSecurityAdmin</poaName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SecurityAdminServiceHomeAdmin">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.proxy.infrastructureServices.SecurityAdminServiceHomeProxyImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+		</BOContainer>
+		<BOContainer name="MiscContainer">
+			<BOContainerProperties>
+				<containerImpl implClassName="com.cboe.infrastructureServices.foundationFramework.BOContainer"/>
+				<persistentBrokerName brokerName="transient"/>
+			</BOContainerProperties>
+			<BOHome name="IORResolverFactoryInitializer">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.server.util.IORResolverFactoryInitializer</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductQueryServiceAdapterHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.product.adapter.ProductQueryServiceAdapterHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="TradingSessionServiceAdapterHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.tradingSession.adapter.TradingSessionServiceAdapterHomeImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="SystemHealthQueryDispatcherHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.application.systemHealth.SystemHealthQueryDispatcherHomeImpl</homeImpl>
+					<managedResourceName>DefaultService</managedResourceName>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="GroupElementConsumerHome">
+				<BOHomeProperties>
+					<homeImpl>com.cboe.consumers.eventChannel.GroupElementConsumerHomeEventImpl</homeImpl>
+				</BOHomeProperties>
+			</BOHome>
+			<BOHome name="ProductRoutingServiceHome">
+				<BOHomeProperties>
+				       <homeImpl>com.cboe.routing.ProductRoutingServiceClientHomeImpl</homeImpl>
+				       <managedResourceName>DefaultService</managedResourceName>
+                                </BOHomeProperties>
+                        </BOHome>
+			<BOHome name="ProductQueryStartupServiceHome">
+				<BOHomeProperties>
+				       <homeImpl>com.cboe.proxy.internalBusinessServices.AdminClientProductQueryStartupServiceHomeProxyImpl</homeImpl>
+				       <interceptorName>ProductQueryServiceInterceptor</interceptorName>
+				       <interceptorImpl>com.cboe.businessServices.productService.ProductQueryServiceInterceptor</interceptorImpl>
+                                </BOHomeProperties>
+                        </BOHome>
+		</BOContainer>
+		<FoundationFrameworkProperties>
+			<logServiceComponent value="&lt;prefixACASLogComponentName&gt;"/>
+			<listOfHomes>SecurityAdminServiceHomeAdmin,
+SystemAdminUserAccessHome,
+IORResolverFactoryInitializer,
+UserServiceHome,
+UserServiceAdminHome,
+TradingSessionServiceHomeBusinessDay,
+TradingSessionServiceHomeAdmin,
+ProductQueryServiceHome,
+ProductQueryServiceAdminHome,
+ProductQueryStartupServiceHome,
+UserLoadManagerHome,
+ProductRoutingServiceHome,
+OrderHandlingServiceHomeAdmin,
+OrderMaintenanceServiceHomeAdmin,
+OrderBookServiceHomeAdmin,
+MarketMakerQuoteServiceHomeAdmin,
+ProductMaintenanceServiceAdminHome,
+ExchangeServiceAdminHome,
+FirmMaintenanceServiceAdminHome,
+UserMaintenanceServiceAdminHome,
+TextMessagingServiceAdminHome,
+UserTradingParameterServiceAdminHome,
+ProductStateServiceAdminHome,
+AlertServiceHome,
+TradeMaintenanceServiceAdminHome,
+TradingSessionMaintenanceServiceHomeAdmin,
+TradingPropertyServiceExtAdminHome,
+ClientProductConfigurationServiceHome,
+FirmServiceHomeAdmin,
+SessionManagementAdminServiceHome,
+SecurityAdminServiceHome,
+MarketDataServiceHome,
+UserTradingParametersHome,
+UserOrderServiceHome,
+UserQuoteServiceHome,
+UserMarketDataServiceHome,
+UserTradingSessionServiceHome,
+UserOrderQueryHome,
+UserOrderEntryHome,
+UserPreferenceQueryHome,
+ProductDefinitionHome,
+UserQuoteHome,
+FirmServiceHome,
+UserMaintenanceServiceHome,
+UserMaintenanceEventServiceHome,
+QuoteNotificationConsumerHome,
+CacheUpdateConsumerHome,
+UserMaintenanceEventConsumerProxyHome,
+QuoteNotificationConsumerProxyHome,
+UserTradingParameterServiceHome,
+UserActivityServiceHome,
+OrderStatusSubscriptionServiceHome,
+QuoteStatusSubscriptionServiceHome,
+TradingPropertyServiceExtHome,
+ProductConfigurationServiceHome,
+TradingSessionMaintenanceServiceHome,
+TradingSessionEventStateServiceHome,
+CASAdminConsumerHome,
+AlertEventServiceHome,
+PropertyEventServiceHome,
+PropertyServiceAdminHome,
+CASAdminPublisherHome,
+SystemAdminSessionManagerHome,
+TradingSessionHome,
+IntermarketAdminMessageConsumerHome,
+AdministratorHome,
+UserHistoryHome,
+TradingSessionServiceHome,
+ProductQueryManagerHome,
+OrderHandlingServiceHome,
+OrderMaintenanceServiceHome,
+OrderBookService,
+MarketMakerQuoteServiceHome,
+ProductStateServiceHome,
+ProductMaintenanceEventServiceHome,
+ExchangeServiceHome,
+FirmMaintenanceServiceHome,
+TradeMaintenanceServiceHome,
+TextMessagingServiceHome,
+MarketDataRequestPublisherHome,
+ProductStatusConsumerHome,
+OrderStatusConsumerHome,
+QuoteStatusConsumerHome,
+CurrentMarketConsumerHome,
+BookDepthConsumerHome,
+TradingSessionConsumerHome,
+TradingSessionEventStateConsumerHome,
+TextMessageConsumerHome,
+AlertConsumerHome,
+ForcedLogoutConsumer,
+RFQConsumerHome,
+RecapConsumerHome,
+SystemControlConsumerHome,
+TickerConsumerHome,
+PropertyConsumerHome,
+UserTimeoutWarningConsumerHome,
+RemoteCASCurrentMarketPublisherHome,
+RemoteCASNBBOPublisherHome,
+RemoteCASRecapPublisherHome,
+RemoteCASTickerPublisherHome,
+RemoteCASBookDepthPublisherHome,
+RemoteCASBookDepthUpdatePublisherHome,
+RemoteCASExpectedOpeningPricePublisherHome,
+RemoteCASSessionManagerPublisherHome,
+RemoteCASCallbackRemovalConsumerHome,
+RemoteCASRecoveryConsumerHome,
+SystemMarketQueryHome,
+HeartBeatHome,
+IORMakerHome,
+GlobalThreadPoolHome,
+InstrumentedGlobalThreadPoolHome,
+UserSessionThreadPoolHome,
+UserSessionMarketDataThreadPoolHome,
+ClassStatusConsumerProxyHome,
+CurrentMarketConsumerProxyHome,
+CurrentMarketV2ConsumerProxyHome,
+CurrentMarketV3ConsumerProxyHome,
+CurrentMarketCollectorProxyHome,
+QuoteNotificationCollectorProxyHome,
+BookDepthConsumerProxyHome,
+BookDepthV2ConsumerProxyHome,
+BookDepthCollectorProxyHome,
+RFQConsumerProxyHome,
+RFQV2ConsumerProxyHome,
+SessionAdminConsumerProxyHome,
+StrategyStatusConsumerProxyHome,
+TickerConsumerProxyHome,
+TickerV2ConsumerProxyHome,
+TickerCollectorProxyHome,
+TradingSessionStatusConsumerProxyHome,
+TradingSessionEventStateConsumerProxyHome,
+AlertConsumerProxyHome,
+PropertyEventConsumerProxyHome,
+ExpectedOpeningPriceConsumerProxyHome,
+ExpectedOpeningPriceV2ConsumerProxyHome,
+OrderStatusConsumerProxyHome,
+OrderStatusV2ConsumerProxyHome,
+OrderStatusCollectorProxyHome,
+ProductStatusConsumerProxyHome,
+ProductStatusCollectorProxyHome,
+AdminProductStatusConsumerProxyHome,
+AdminProductStatusCollectorProxyHome,
+QuoteStatusConsumerProxyHome,
+QuoteStatusV2ConsumerProxyHome,
+QuoteStatusCollectorProxyHome,
+RecapConsumerProxyHome,
+RecapV2ConsumerProxyHome,
+RecapCollectorProxyHome,
+AuditLogHome,
+CommandCallbackHome,
+EventChannelHome,
+ComponentConsumerHome,
+RateMonitorHome,
+UserSessionConsumerHome,
+ProductConfigurationStatusConsumerHome,
+SystemAdminServerHome,
+StatusMonitorHome,
+UserEnablementHome,
+CalendarAdminServiceHomeAdmin,
+CalendarUpdateConsumerHome,
+CalendarUpdateConsumerProxyHome,
+CalendarAdminEventServiceHome,
+ProductQueryServiceAdapterHome,
+TradingSessionServiceAdapterHome,
+SystemHealthQueryDispatcherHome,
+SubscriptionServiceHome,
+SubscriptionCollectionServiceHome,
+SysAdminIntermarketControlServiceHome,
+IntermarketControlServiceAdminHome,
+SystemAdminITSAdminConsumerProxyHome,
+AppServerStatusManagerHome,
+OrderManagementServiceHome,
+OrderRoutingConsumerHome,
+GroupServiceHome,
+GroupServiceAdminHome,
+GroupElementConsumerHome,
+GroupElementEventConsumerProxyHome,
+GroupElementEventServiceHome,
+GroupCancelEventConsumerProxyHome,
+GroupCancelEventServiceHome
+		</listOfHomes>
+			<autoStart booleanValue="true"/>
+			<autoInit booleanValue="true"/>
+			<isMaster>true</isMaster>
+			<instrumentationEnabled booleanValue="false"/>
+			<persistentBrokerName brokerName="transient"/>
+		</FoundationFrameworkProperties>
+		<Application>
+			<ApplicationProperties>
+				<remoteRouteName>&lt;prefixRemoteRouteName&gt;</remoteRouteName>
+				<cacheRemoteRouteName>&lt;prefixCacheRemoteRouteName&gt;</cacheRemoteRouteName>
+				<globalRouteName>&lt;prefixGlobalRouteName&gt;</globalRouteName>
+				<routeName>&lt;prefixSACASusername&gt;</routeName>
+				<CASPairName>&lt;prefixCASPairName&gt;</CASPairName>
+				<currentStatus>Unknown</currentStatus>
+				<configured booleanValue="false"/>
+			</ApplicationProperties>
+		</Application>
+	</FoundationFramework>
+</GlobalFoundationFramework>

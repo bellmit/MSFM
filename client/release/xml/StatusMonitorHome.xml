@@ -1,0 +1,5 @@
+<!DOCTYPE GlobalStatusMonitorHome SYSTEM "../dtd/StatusMonitorHome.dtd">
+<GlobalStatusMonitorHome>
+	<StatusMonitorHomeImpl name="DefaultService">
+	</StatusMonitorHomeImpl>
+</GlobalStatusMonitorHome>

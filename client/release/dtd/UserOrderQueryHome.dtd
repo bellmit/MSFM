@@ -1,0 +1,30 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the UserOrderQueryHomeImpl -->
+<!-- @author  -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserOrderQueryHome (UserOrderQueryHome*)>
+<!ATTLIST GlobalUserOrderQueryHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserOrderQueryHome (UserOrderQueryHomeProperties?)>
+<!ATTLIST UserOrderQueryHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserOrderQueryHomeProperties (useOrderHandlingService)>
+<!ATTLIST UserOrderQueryHomeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT useOrderHandlingService (#PCDATA)>
+<!ATTLIST useOrderHandlingService
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>

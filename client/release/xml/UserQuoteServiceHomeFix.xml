@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserQuoteServiceHome SYSTEM "../dtd/UserQuoteServiceHome.dtd">
+<GlobalUserQuoteServiceHome>
+	<UserQuoteServiceHomeImpl name="DefaultService">
+		<UserQuoteServiceHomeImplProperties>
+			<quoteDeleteReportDispatch booleanValue="true"/>
+			<rateMonitorSessions>CFE_MAIN,W_MAIN,ONE_MAIN,W_STOCK,C2_MAIN,COF_MAIN</rateMonitorSessions>
+			<rateMonitorStartTime>8:15,8:25,8:15,7:45,9:15,8:25</rateMonitorStartTime>
+			<rateMonitorInterval>5000,1000,5000,1000,1000,1000</rateMonitorInterval>
+			<rateMonitorWindow>250,133,250,133,200,133</rateMonitorWindow>
+			<quoteRateMonitorInterval>5000,3000,5000,3000,3000,3000</quoteRateMonitorInterval>
+			<quoteRateMonitorWindow>1000,4000,1000,4000,4000,4000</quoteRateMonitorWindow>
+			<rateMonitorQuoteSequenceSize>12,400,12,400,400,400</rateMonitorQuoteSequenceSize>
+		</UserQuoteServiceHomeImplProperties>
+	</UserQuoteServiceHomeImpl>
+</GlobalUserQuoteServiceHome>

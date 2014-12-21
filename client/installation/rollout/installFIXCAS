@@ -1,0 +1,948 @@
+#!/usr/bin/ksh
+###
+### Installs for FIXCAS
+###
+# set -x
+# --------------- Constants ---------------------
+
+PROG=$( basename $0 )
+WORKDIR=$( dirname $0 )
+DATEFMT='+%Y-%m-%d %H:%M:%S'
+DATEEXT='+%Y%m%di.%H%M%S'
+ALERT="*ALERT*"
+LOGFILE=$WORKDIR/$PROG.log
+HOSTNAME=$( hostname )
+
+INFRA_HOME=${HOME%/infra}/infra # valid for fixcas in all environments
+
+SETENV_FILE=$INFRA_HOME/.setenv
+PROFILE_FILE=$HOME/.profile
+KSHRC_FILE=$HOME/.kshrc
+CONFIG_BIN_DIR=$INFRA_HOME/config/bin
+CONFIG_IOR_DIR=$INFRA_HOME/config/ior
+SET_CONTEXT_FILE=$CONFIG_BIN_DIR/setContext
+NOW=$( date "+%Y%m%d_%H%M%S" )
+
+# Taken from /usr/include/sys/errno.h
+ENOENT=2   # No such file or directory
+EACCES=13  # Permission denied
+EINVAL=22  # Invalid argument
+
+# --------------- Subroutines -------------------
+usage() 
+{
+    echo "Usage: $PROG [ -c client version ] [ -i INFRA version ] [ -j JDK version ] [ -U ] [ -r ] [ -b engine1,engine2,... ] [ engine1 engine2 ... ]"
+    echo "    where -U specifies a rollback/undo rather than an installation"
+    echo "    where -b (bounce) engine is a comma separated list of engines to bounce"
+    echo "    where engine is a space separated list of engines to install"
+    echo "    An example engine format is: fixcas01 fixcas02" 
+}
+
+# @param 1 variable to set
+# @param 2 file to scan
+# @param 3 variable to look for in input
+getExport()
+{
+    eval $1="'"$( sed <$2 /'^export '$3=/!d | cut -d= -f2 )"'"
+}
+
+# Replace an export statement
+# @param 1 File to modify
+# @param 2 Variable to set
+# @param 3 New value for variable
+replaceExport()
+{
+    typeset FILE=$1; shift
+    typeset VAR=$1; shift
+    typeset NEW_VALUE=$1; shift
+
+    typeset TEMPFILE=/tmp/replace.$$.tmp
+    if ! egrep -s "^export $VAR=$NEW_VALUE" $FILE ; then
+        # File does not contain current definition, change old definition
+        sed <$FILE >$TEMPFILE s:'^export '$VAR'=.*:export '$VAR=$NEW_VALUE: 
+        mv $TEMPFILE $FILE >> $LOGFILE 2>&1
+    fi
+    if ! egrep -s "^export $VAR=" $FILE ; then
+        # File did not contain any definition so the above substitution
+        # did nothing. Add a new line at the end of the file.
+        echo "export $VAR=$NEW_VALUE" >>$FILE
+    fi
+}
+
+# Remove an export statement
+# @param 1 File to modify
+# @param 2 Variable to remove
+removeExport()
+{
+    typeset FILE=$1; shift
+    typeset VAR=$1; shift
+
+    typeset TEMPFILE=/tmp/remove.$$.tmp
+
+    sed <$FILE >$TEMPFILE '/^export $VAR=/d'
+    mv $TEMPFILE $FILE  
+}
+
+readCommandline()
+{
+    ROLLOUT=1
+    while getopts hUc:i:j:rb: name ; do
+        case $name in 
+        h) usage
+           exit 0
+           ;;
+        U)
+           ROLLOUT=""   # no rollout, it's a rollback
+                        # note that if rollback is specified 
+                        # INFRA_VERSION, CAS_VERSION need to be parsed
+                        # into source and target 
+           ;;
+        c) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing client version after -c switch\n"
+               usage
+               exit $EINVAL
+           fi
+           CAS_VERSION=$OPTARG
+           ;;
+        i) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing INFRA version after -i switch"
+               usage
+               exit $EINVAL
+           fi
+           INFRA_VERSION=$OPTARG
+           ;;
+        j) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing JDK version after -j switch"
+               usage
+               exit $EINVAL
+           fi
+           JDK_VERSION=$OPTARG
+           ;;
+        r) DO_INITREFS=1
+           ;;
+        b) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing bounce engines after -b switch"
+               usage
+               exit $EINVAL
+           fi
+           BOUNCE_ENGINES=$( echo $OPTARG | sed -e s/,/' '/g )
+           ;;
+        ?) print -u2 "$ALERT $PROG: Unknown switch"
+           usage
+           exit $EINVAL
+           ;;
+        esac 
+    done
+
+    shift $(($OPTIND - 1))
+    INSTALL_ENGINES="$*"
+
+    if [[ -n "$CAS_VERSION" && -z "$INSTALL_ENGINES" ]] ; then
+        print -u2 "$ALERT $PROG: List of engines must be specified with -c switch"
+        usage
+        exit $EINVAL
+    fi
+    if [[ -z "$BOUNCE_ENGINES" && -z "$INSTALL_ENGINES" ]] ; then
+        print -u2 "$ALERT $PROG: Missing list of engines"
+        usage
+        exit $EINVAL
+    fi
+
+}
+
+# setup, initialize any functions needed
+setupFuncs()
+{
+    # write awk script to count comma separated parameters
+    COUNT_CSP_AWK=/tmp/CountCommaSeparatedVars.awk
+    rm -f $COUNT_CSP_AWK
+    cat >> $COUNT_CSP_AWK << AWK_EOF
+{ wc = split ( \$0,words,"," ) ; print wc }
+AWK_EOF
+}
+
+# cleanup anything left by setupFuncs
+cleanupFuncs()
+{
+    rm -f $COUNT_CSP_AWK
+}
+
+# do any needed preparation for rollback processing
+setupRollback()
+{
+    setupFuncs
+
+    # if specified, INFRA_VERSION, CAS_VERSION need to be parsed
+    # into "current" (new) and "target" (old) versions
+    FAILED=""
+    if [ -n "$INFRA_VERSION" ] ; then
+        # determine OLD_INFRA_VERSION
+        typeset INFRA_COUNT=$(echo $INFRA_VERSION | awk -f $COUNT_CSP_AWK)
+        if [[ "$INFRA_COUNT" != "2" ]] ; then
+            print -u2 "$ALERT: $PROG: ROLLBACK and INFRA requested: needs 2 INFRA VERSIONS"
+            FAILED=$EINVAL
+        else
+            OLD_INFRA_VERSION=${INFRA_VERSION##*,}
+            INFRA_VERSION=${INFRA_VERSION%%,*}
+            date "$DATEFMT - using OLD_INFRA: $OLD_INFRA_VERSION, INFRA: $INFRA_VERSION in rollback" | tee -a $LOGFILE
+        fi
+    fi
+    if [ -n "$CAS_VERSION" ] ; then
+        # determine OLD_CAS_VERSION
+        typeset CAS_COUNT=$(echo $CAS_VERSION | awk -f $COUNT_CSP_AWK)
+        if [[ "$CAS_COUNT" != "2" ]] ; then
+            print -u2 "$ALERT: $PROG: ROLLBACK and CAS requested: needs 2 CAS VERSIONS"
+            FAILED=$EINVAL
+        else
+            OLD_CAS_VERSION=${CAS_VERSION##*,}
+            CAS_VERSION=${CAS_VERSION%%,*}
+            date "$DATEFMT - using OLD_CLIENT: $OLD_CAS_VERSION, INFRA: $CAS_VERSION in rollback" | tee -a $LOGFILE
+        fi
+    fi
+    if [ -n "$FAILED" ] ; then
+        cleanupFuncs
+        exit $FAILED
+    fi
+    unset FAILED
+}
+
+# Verify the existence of the files we need to work with
+verifyFiles()
+{
+    FAILED=""
+    for i in $PROFILE_FILE $KSHRC_FILE $SETENV_FILE $SET_CONTEXT_FILE ; do
+        if [ ! -f $i ] ; then
+            print -u2 "$ALERT: $PROG: Missing file $i"
+            FAILED=$ENOENT
+        fi
+    done
+    # for FIX use the existence of the _upgrade directory to 
+    # determine if the installation tarfile has been delivered 
+    # (this does not verify the existence of each engine)
+    cd $INFRA_HOME >> $LOGFILE 2>&1
+    UPGRADE_DIR=${INFRA_HOME}/${CAS_VERSION}_upgrade
+    if [ -n "$CAS_VERSION" ] ; then 
+        if [ ! -d $UPGRADE_DIR ] ; then
+            print -u2 "$ALERT: $PROG: Missing directory $UPGRADE_DIR"
+            FAILED=$ENOENT
+        elif [ ! -r $UPGRADE_DIR ] ; then
+            print -u2 "$ALERT: $PROG: Can't read directory $UPGRADE_DIR"
+            FAILED=$EACCES
+        fi
+        # now to check each engine directory
+        # just to be really paranoid
+        for ENGINE in $ALL_ENGINES
+        do
+            NUM=$( echo $ENGINE | sed -e s/fixcas// )
+            ENGINE_DIR=${CAS_VERSION}_${NUM}
+            if [ ! -d $ENGINE_DIR ] ; then
+                print -u2 "$ALERT: $PROG: Missing directory $ENGINE_DIR"
+                FAILED=$ENOENT
+            elif [ ! -r $ENGINE_DIR ] ; then
+                print -u2 "$ALERT: $PROG: Can't read directory $ENGINE_DIR"
+                FAILED=$EACCES
+            fi
+            i=$SET_CONTEXT_FILE.v2$ENGINE
+            if [ ! -f $i ] ; then
+                print -u2 "$ALERT: $PROG: Missing file $i"
+                FAILED=$ENOENT
+            fi
+        done
+    fi
+    if [ -n "$INFRA_VERSION" ] ; then
+        if [ ! -d $INFRA_VERSION ] ; then
+            print -u2 "$ALERT: $PROG: Missing directory $INFRA_VERSION"
+            FAILED=$ENOENT
+        elif [ ! -r $INFRA_VERSION ] ; then
+            print -u2 "$ALERT: $PROG: Can't read directory $INFRA_VERSION"
+            FAILED=$EACCES
+        fi
+    fi
+    # now to test for roll back dirs
+    if [ -z "$ROLLOUT" ] ; then 
+        #---------------------------------------------------------------------------#
+        DOWNGRADE_DIR=${INFRA_HOME}/${OLD_CAS_VERSION}_upgrade
+        if [ -n "$OLD_CAS_VERSION" ] ; then 
+            if [ ! -d $DOWNGRADE_DIR ] ; then
+                print -u2 "$ALERT: $PROG: Missing directory $DOWNGRADE_DIR"
+                FAILED=$ENOENT
+            elif [ ! -r $DOWNGRADE_DIR ] ; then
+                print -u2 "$ALERT: $PROG: Can't read directory $DOWNGRADE_DIR"
+                FAILED=$EACCES
+            fi
+            # now to check each engine directory
+            # just to be really paranoid
+            for ENGINE in $ALL_ENGINES
+            do
+                NUM=$( echo $ENGINE | sed -e s/fixcas// )
+                ENGINE_DIR=${OLD_CAS_VERSION}_${NUM}
+                if [ ! -d $ENGINE_DIR ] ; then
+                    print -u2 "$ALERT: $PROG: Missing directory $ENGINE_DIR"
+                    FAILED=$ENOENT
+                elif [ ! -r $ENGINE_DIR ] ; then
+                    print -u2 "$ALERT: $PROG: Can't read directory $ENGINE_DIR"
+                    FAILED=$EACCES
+                fi
+            done
+        fi
+        if [ -n "$OLD_INFRA_VERSION" ] ; then
+            if [ ! -d $OLD_INFRA_VERSION ] ; then
+                print -u2 "$ALERT: $PROG: Missing directory $OLD_INFRA_VERSION"
+                FAILED=$ENOENT
+            elif [ ! -r $OLD_INFRA_VERSION ] ; then
+                print -u2 "$ALERT: $PROG: Can't read directory $OLD_INFRA_VERSION"
+                FAILED=$EACCES
+            fi
+        fi
+        #---------------------------------------------------------------------------#
+    fi
+    if [ -n "$FAILED" ] ; then
+        cleanupFuncs
+        exit $FAILED
+    fi
+    unset FAILED
+}
+
+# Determine the name of the rollback directories to create (during rollout) or
+# use (during rollback). Sets ROLLBACK_CFG, ROLLBACK_FIX 
+setRollbackDir()
+{
+    if [ -n "$CAS_VERSION" ] ; then
+        # Save files into $CAS_VERSION, restore from $CAS_VERSION
+        typeset ROLLBACK_PARENT=$INFRA_HOME/${CAS_VERSION}_upgrade/rollback
+    else
+        # Rollout includes no $CAS_VERSION, save/restore files from
+        # pre-existing v2release directory
+        typeset ROLLBACK_PARENT=$INFRA_HOME/v2release/rollback
+    fi
+    ROLLBACK_CFG=$ROLLBACK_PARENT/cfg
+    # create or find ROLLBACK_CFG
+    if [ ! -d $ROLLBACK_CFG ] ; then 
+        mkdir -p $ROLLBACK_CFG >> $LOGFILE 2>&1
+    fi
+    date "$DATEFMT - using $ROLLBACK_CFG for CFG configuration workspace" | tee -a $LOGFILE
+    ROLLBACK_FIX=$ROLLBACK_PARENT/fix
+    # create or find ROLLBACK_FIX
+    if [ ! -d $ROLLBACK_FIX ] ; then 
+        mkdir -p $ROLLBACK_FIX >> $LOGFILE 2>&1
+    fi
+    date "$DATEFMT - using $ROLLBACK_FIX for FIX configuration workspace" | tee -a $LOGFILE
+}
+
+# Stop the cas
+stopProcesses()
+{
+    ### ---------------paranoia in effect---------------------------- ### 
+    ### If any of:
+    ###     Infra Upgrade, Jdk Upgrade, initrefs Upgrade 
+    ###     is requested, take advantage of FIX's 'all' command
+    ### else
+    ###     go with the list of engines passed via the command line
+    ### ---------------paranoia in effect---------------------------- ### 
+
+    STOPLIST=""
+    if [ -n "$INFRA_VERSION" ] || [ -n "$JDK_VERSION" ] || [ -n "$DO_INITREFS" ] ; then 
+        STOPLIST="all"
+    fi
+    
+    if [ -z "$STOPLIST" ] ; then 
+        for ENGINE in $ALL_ENGINES
+        do
+            NUM=$( echo $ENGINE | sed -e s/fixcas// )
+            if [ -z ${STOPLIST} ] ; then 
+                STOPLIST=${NUM}
+            else
+                STOPLIST="${STOPLIST} ${NUM}"
+            fi
+        done
+    fi
+    date "$DATEFMT - STOPPING CLIENT FOR FIXENGINE(S) ${STOPLIST}" | tee -a $LOGFILE
+    stopFixCas2 ${STOPLIST} >> $LOGFILE 2>&1
+
+    # take nap, then make sure (but only check command line list)
+    sleep 15
+    for ENGINE in $ALL_ENGINES
+    do
+        if [[ -f $SET_CONTEXT_FILE ]] ; then
+            getExport SBT_PREFIX $SET_CONTEXT_FILE SBT_PREFIX
+            # Kill $ENG process on the box
+            pstats -s | grep "${SBT_PREFIX}$ENGINE" | awk '{print $1}' > $WORKDIR/pids 
+            if [ -s $WORKDIR/pids ] ; then
+                sed -e "s/^/kill -9 /g" $WORKDIR/pids > $WORKDIR/killem
+                date "$DATEFMT - KILLING CLIENT FOR ENGINE $ENGINE" | tee -a $LOGFILE
+                ksh $WORKDIR/killem 
+            fi
+        fi
+    done
+}
+
+# Copy any setContext* files in this installation
+# to the appropriate location
+doSetContext()
+{
+    CFG_UPDATE=""
+    # First save copies of existing files
+    date "$DATEFMT - ARCHIVING setContext FILES to $ROLLBACK_CFG" >> $LOGFILE
+    # treat "root" setContext as a special case
+    if [ -e $WORKDIR/$HOSTNAME.setContext ] ; then
+        CFG_UPDATE="YES"
+        if [ -e $ROLLBACK_CFG/setContext ] ; then
+            date "$DATEFMT - ARCHIVE setContext already exists in $ROLLBACK_CFG" >> $LOGFILE
+        else
+            cp -p $CONFIG_BIN_DIR/setContext $ROLLBACK_CFG >> $LOGFILE
+        fi
+    fi
+    CFG_LIST=""
+    for ENGINE in $INSTALL_ENGINES
+    do
+        if [ -e $WORKDIR/$HOSTNAME.setContext.v2${ENGINE} ] ; then
+            CFG_LIST="${CFG_LIST} ${ENGINE}"
+            if [ -e $ROLLBACK_CFG/setContext.v2${ENGINE} ] ; then
+                date "$DATEFMT - ARCHIVE setContext.v2${ENGINE} already exists in $ROLLBACK_CFG" >> $LOGFILE
+            else
+                cp -p $CONFIG_BIN_DIR/setContext.v2${ENGINE} $ROLLBACK_CFG >> $LOGFILE
+            fi
+        fi
+    done
+    # Second replace the existing files, if any
+    if [ -n "$CFG_UPDATE" ] || [ -n "$CFG_LIST" ] ; then
+        date "$DATEFMT - UPDATING setContext FILES" >> $LOGFILE
+        chmod 666 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+        if [ -n "$CFG_UPDATE" ] ; then
+            date "$DATEFMT - UPDATING FILE setContext" >> $LOGFILE
+            cp $WORKDIR/$HOSTNAME.setContext $CONFIG_BIN_DIR/setContext >> $LOGFILE
+        fi
+        if [ -n "$CFG_LIST" ] ; then
+            for ENGINE in $CFG_LIST 
+            do
+                date "$DATEFMT - UPDATING FILE setContext.v2${ENGINE}" >> $LOGFILE
+                cp $WORKDIR/$HOSTNAME.setContext.v2${ENGINE} $CONFIG_BIN_DIR/setContext.v2${ENGINE} >> $LOGFILE
+            done
+        fi
+        chmod 444 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+    fi
+}
+
+# Copy setContext* files from rollback directory to config/bin directory
+# WARNING: If setContext* changed association with FEs, Infra configuration
+# also needs to be rolled back.
+undoSetContext()
+{
+    chmod 666 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+    ROLLBACK_LIST="$ROLLBACK_CFG/setContext"
+    for engine in $INSTALL_ENGINES ; do
+        ROLLBACK_LIST="${ROLLBACK_LIST} ${ROLLBACK_CFG}/setContext.v2${engine}"
+    done
+    for i in $ROLLBACK_LIST ; do
+        if [ -e $i ] ; then
+            typeset file=$( basename $i )
+            date "$DATEFMT - RESTORING $file from ${ROLLBACK_CFG}" >> $LOGFILE
+            cp -p $i $CONFIG_BIN_DIR >> $LOGFILE 2>&1
+        fi
+    done
+    chmod 444 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+}
+
+# Set up environment variables
+readProfile()
+{
+    cd $HOME
+    . $PROFILE_FILE >/dev/null 2>&1
+}
+
+# Install the CAS by backing up and linking new version
+doCAS() {
+    cd $INFRA_HOME
+    LINKLIST=""
+    LINKVERSION=""
+    if [ -n "$INFRA_VERSION" ] ; then
+        LINKVERSION="-i $INFRA_VERSION"
+    fi
+    for ENGINE in $INSTALL_ENGINES
+    do
+        NUM=$( echo $ENGINE | sed -e s/fixcas// )
+        if [ -z ${LINKLIST} ] ; then 
+            LINKLIST=${NUM}
+        else
+            LINKLIST="${LINKLIST} ${NUM}"
+        fi
+    done
+    date "$DATEFMT - UPDATING CLIENT TO ${CAS_VERSION} FOR FIXENGINE(S) ${LINKLIST}" >> $LOGFILE
+    runLinkFix ${LINKVERSION} ${LINKLIST} >> $LOGFILE 2>&1
+    for i in $LINKLIST  
+    do
+        if [ ! -e v2fixcas$i/log/cronArchive.log ] ; then
+            touch v2fixcas$i/log/cronArchive.log >> $LOGFILE 2>&1
+        fi
+    done
+}
+
+# Roll back the Client by removing new link(s) and renaming old link(s)
+undoCAS() {
+    date "$DATEFMT - ROLLING BACK CLIENT VERSION" >> $LOGFILE
+    cd $INFRA_HOME
+    LINKLIST=""
+    for ENGINE in $INSTALL_ENGINES
+    do
+        NUM=$( echo $ENGINE | sed -e s/fixcas// )
+        if [ -z ${LINKLIST} ] ; then 
+            LINKLIST=${NUM}
+        else
+            LINKLIST="${LINKLIST} ${NUM}"
+        fi
+    done
+    date "$DATEFMT - ROLLING BACK CLIENT VERSION FOR FIXENGINE(S) ${LINKLIST}" >> $LOGFILE
+    # 1. Roll back the engine links
+    for ENG_NUM in $LINKLIST
+    do 
+        if [[ -L o.v2fixcas${ENG_NUM} ]] ; then
+            rm -f o.v2fixcas${ENG_NUM}  >> $LOGFILE 2>&1
+        fi
+        if [[ -L v2fixcas${ENG_NUM} ]] ; then
+            rm -f v2fixcas${ENG_NUM}  >> $LOGFILE 2>&1
+        fi
+        ln -s ${OLD_CAS_VERSION}_${NUM} v2fixcas${ENG_NUM} >> $LOGFILE 2>&1
+        # Starting with SBT_8.3.6, roll back setContext.v2fixcas## files as well
+        # runLinkFix stored backup copies of setContext.v2fixcas## in $ROLLBACK_FIX 
+        if [[ -e $ROLLBACK_FIX/setContext.v2fixcas${ENG_NUM} ]] ; then
+            date "$DATEFMT - RESTORING $ROLLBACK_FIX/setContext.v2fixcas${ENG_NUM}" | tee -a $LOGFILE
+            chmod 666  config/bin/setContext.v2fixcas${ENG_NUM} >> $LOGFILE 2>&1
+            cp -p $ROLLBACK_FIX/setContext.v2fixcas${ENG_NUM} config/bin/setContext.v2fixcas${ENG_NUM} >> $LOGFILE 2>&1
+            chmod 444  config/bin/setContext.v2fixcas${ENG_NUM} >> $LOGFILE 2>&1
+        else 
+            date "$DATEFMT - $ALERT NO PREVIOUS (setContext.v2fixcas${ENG_NUM}) VERSION TO RESTORE from $ROLLBACK_FIX" | tee -a $LOGFILE
+        fi
+    done
+    # 2. roll back the upgrade (version) link
+    # - note, not attempting to un-run any "upgrade scripts"
+    # - that may have been involved
+    if [[ -L o.v2release ]] ; then 
+        rm -f o.v2release >> $LOGFILE 2>&1
+    fi
+    ln -s ${INFRA_HOME}/${CAS_VERSION}_upgrade o.v2release >> $LOGFILE 2>&1
+    if [[ -L v2release ]] ; then 
+        rm -f v2release >> $LOGFILE 2>&1
+    fi
+    ln -s ${INFRA_HOME}/${OLD_CAS_VERSION}_upgrade v2release >> $LOGFILE 2>&1
+}
+
+# Install INFRA by backing up and linking new version
+doInfra() {
+    # Put marker in log
+    date "$DATEFMT - UPDATING INFRA TO ${INFRA_VERSION}" >> $LOGFILE
+    cd $INFRA_HOME
+
+    # note that beginning with SBT_8.3.6 client, the fixclient runLinkFix
+    # script is responsible for linking run_dir, this function will 
+    # do any preparation for that, but that's all
+
+    # test if there's work to do 
+    if [ run_dir -ef $INFRA_VERSION ] ; then 
+        date "$DATEFMT - $ALERT CURRENT INFRA ALREADY AT VERSION [ $INFRA_VERSION ]" | tee -a $LOGFILE
+        return 
+    fi
+
+    # correct usually erroneous SBT_BASE: get (desired) before value
+    OLD_RBIN_SETCONTEXT=$INFRA_HOME/run_dir/bin/setContext
+    getExport OLD_SBT_BASE $OLD_RBIN_SETCONTEXT SBT_BASE
+
+    # correct usually erroneous SBT_BASE: get value to be corrected
+    NEW_RBIN_SETCONTEXT=$INFRA_HOME/$INFRA_VERSION/bin/setContext
+    getExport NEW_SBT_BASE $NEW_RBIN_SETCONTEXT SBT_BASE
+
+    TMP_RBIN_SC_SEDSCR=/tmp/rbinSedScript.$$
+    echo "s#export SBT_BASE=${NEW_SBT_BASE}#export SBT_BASE=${OLD_SBT_BASE}#" > $TMP_RBIN_SC_SEDSCR
+
+    TMP_RBIN_SETCONTEXT=/tmp/rbinSetContext.$$
+    sed -f $TMP_RBIN_SC_SEDSCR $NEW_RBIN_SETCONTEXT > $TMP_RBIN_SETCONTEXT
+
+    cp $TMP_RBIN_SETCONTEXT $NEW_RBIN_SETCONTEXT >> $LOGFILE 2>&1
+    rm $TMP_RBIN_SETCONTEXT $TMP_RBIN_SC_SEDSCR >> $LOGFILE 2>&1
+
+    if [ ! -e $INFRA_VERSION/log/cronArchive.log ] ; then
+        touch $INFRA_VERSION/log/cronArchive.log >> $LOGFILE 2>&1
+    fi
+}
+
+# Roll back the Infra by removing new link and renaming old link
+undoInfra()
+{
+    date "$DATEFMT - ROLLING BACK INFRA VERSION" >> $LOGFILE
+    cd $INFRA_HOME
+    if [ -L o.run_dir ] ; then
+        rm -f o.run_dir run_dir >> $LOGFILE 2>&1
+    fi
+    if [ -L run_dir ] ; then
+        rm -f run_dir run_dir >> $LOGFILE 2>&1
+    fi
+    ln -s ${OLD_INFRA_VERSION} run_dir >> $LOGFILE 2>&1
+}
+
+
+# Verify JDK version exists
+# Set new JDK version in .setenv
+doJdk() {
+    # save current JAVA_HOME value in the rollback directory
+    getExport JAVA_HOME $SETENV_FILE JAVA_HOME
+    echo $JAVA_HOME >$ROLLBACK_CFG/jdk.txt
+
+    # Put marker in log
+    date "$DATEFMT - UPDATING JDK TO $JDK_VERSION" >> $LOGFILE
+    NEW_JAVA_HOME=/usr/local/$JDK_VERSION
+
+    if [ -d $NEW_JAVA_HOME ] ; then
+        replaceExport $SETENV_FILE JAVA_HOME $NEW_JAVA_HOME
+        export PATH=$NEW_JAVA_HOME/bin:$PATH    # new JAVA_HOME for startCAS
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT MISSING $NEW_JAVA_HOME! Install $NEW_JAVA_HOME and update JAVA_HOME in $SETENV_FILE file" | tee -a $LOGFILE
+    fi
+}
+
+# Restore old JDK version in .setenv
+undoJdk()
+{
+    date "$DATEFMT - ROLLING BACK JDK VERSION" >> $LOGFILE
+    NEW_JAVA_HOME=$( head -1 $ROLLBACK_CFG/jdk.txt )
+    replaceExport $SETENV_FILE JAVA_HOME $NEW_JAVA_HOME
+}
+
+# Install the new IOR files
+doInitrefs()
+{
+    typeset OLD_IOR=$( ls -l $CONFIG_IOR_DIR/initrefs.ior | sed 's@.*> @@' )
+    date "$DATEFMT - ARCHIVING $OLD_IOR" >> $LOGFILE
+    cp -p $CONFIG_IOR_DIR/$OLD_IOR $ROLLBACK_CFG >> $LOGFILE 2>&1
+
+    # Put marker in log
+    date "$DATEFMT - UPDATING INITREFS" >> $LOGFILE
+    getExport FE $SET_CONTEXT_FILE.v2$ENGINE FRONTEND1_HOSTNAME
+    IOR_FILE=initrefs.$FE.ior
+    if [ ! -f $WORKDIR/$IOR_FILE ] ; then
+        date "$DATEFMT - $ALERT IOR FILE $IOR_FILE NOT FOUND" | tee -a $LOGFILE
+    else 
+        cd $INFRA_HOME
+        cp $WORKDIR/$IOR_FILE config/ior/ >> $LOGFILE 2>&1
+        rm -f config/ior/initrefs.ior >> $LOGFILE 2>&1
+        ln -s $IOR_FILE config/ior/initrefs.ior >> $LOGFILE 2>&1
+    fi
+}
+
+# Restore rolled-back initrefs file to config/ior
+undoInitrefs()
+{
+    typeset OLD_IOR=$( ls $ROLLBACK_CFG/*.ior | head -1 | sed 's:.*/::' )
+    cp -p $ROLLBACK_CFG/$OLD_IOR $CONFIG_IOR_DIR >> $LOGFILE 2>&1
+    rm -f $CONFIG_IOR_DIR/initrefs.ior >> $LOGFILE 2>&1
+    ln -s $OLD_IOR $CONFIG_IOR_DIR/initrefs.ior >> $LOGFILE 2>&1
+}
+
+# Run configureCAS.ksh to distribute configuration values
+updateConfig()
+{
+    # Put marker in log
+    if [ ! -e $UPGRADE_DIR/configureCAS.run ] ; then 
+        date "$DATEFMT - UPDATING CONFIG" >> $LOGFILE
+        cd $INFRA_HOME/config >> $LOGFILE 2>&1
+        ksh configureCAS.ksh >> $LOGFILE 2>&1
+    else
+        date "$DATEFMT - CONFIG CURRENT" >> $LOGFILE
+    fi
+}
+
+# Start the CAS
+startCAS() 
+{
+    ## runLinkFix creates a file (v2release/restart) when ALL configured 
+    ## engines on the host need to be restarted  (when it has 
+    ## 1.re-linked Infra run_dir AND 
+    ## 2.removed the override run_dir specs from the 
+    ## setContxt.v2fixcas?? files
+    STARTLIST=""
+    if [ ! -e $UPGRADE_DIR/restart ] ; then
+        for ENGINE in $ALL_ENGINES
+        do
+            # get the list of engine nums
+            NUM=$( echo $ENGINE | sed -e s/fixcas// )
+            if [ -z ${STARTLIST} ] ; then 
+                STARTLIST=${NUM}
+            else
+                STARTLIST="${STARTLIST} ${NUM}"
+            fi
+        done
+    else
+        ## restart file exists - build STARTLIST from 
+        ## all engines configured on host
+        getExport RAW_ENGINE_LIST $SET_CONTEXT_FILE ENGINE_LIST
+        ## remove any quoting
+        UNQUOTE_SED_SCRIPT=/tmp/unquote_sed_script.$$
+        echo "s/[\'\"]//g" >$UNQUOTE_SED_SCRIPT
+        STARTLIST=$(echo $RAW_ENGINE_LIST | sed -f $UNQUOTE_SED_SCRIPT)
+        \rm -f $UNQUOTE_SED_SCRIPT
+    fi
+    # Put marker in log, and mark progress for any real-time watcher
+    date "$DATEFMT - STARTING CLIENT FOR FIXENGINE(S) ${STARTLIST}" | tee -a $LOGFILE
+    startFixCas2 Primary ${STARTLIST} >> $LOGFILE 2>&1
+
+    ### list processes just to get the results back
+    pstats -s >> $LOGFILE
+    RETRY_WAIT=15
+    UNTESTED_ENGINES=${STARTLIST}
+    let ENGINE_COUNT=$(( $(echo $STARTLIST | wc -w) ))
+    while [[ -z $UNTESTED_ENGINES ]]
+    do
+        for ENGINE in $UNTESTED_ENGINES
+        do
+            let THIS_ENGINE_UP=$(grep -c "Re-I" ${RUN_DIR}/../v2fixcas${ENGINE}/log/cas.debug)
+            if [[ $THIS_ENGINE_up -ne 0 ]]
+            then
+                date "$DATEFMT - fix engine $THIS_ENGINE - UP" #mark progress
+                date "$DATEFMT - fix engine $THIS_ENGINE - UP" >> $LOGFILE
+                UNTESTED_ENGINES=$(echo $UNTESTED_ENGINES | sed -e "s/$THIS_ENGINE//g" -e "s/  / /g")
+                if [[ -z $UNTESTED_ENGINES ]]
+                then
+                    date "$DATEFMT - FIX REBUILD SUCCESSFUL" #mark progress
+                    date "$DATEFMT - FIX REBUILD SUCCESSFUL" >> $LOGFILE
+                fi
+                break
+            else
+                let ENGINE_COUNT=$(( $ENGINE_COUNT - 1 ))
+                if [[ $ENGINE_COUNT -gt 0 ]] 
+                then
+                    date "$DATEFMT - fix engine $THIS_ENGINE - not up yet - will retry" #mark progress
+                    date "$DATEFMT - fix engine $THIS_ENGINE - not up yet - will retry" >> $LOGFILE
+                    date "$DATEFMT - remaining retries : $ENGINE_COUNT" #mark progress
+                    date "$DATEFMT - remaining retries : $ENGINE_COUNT" >> $LOGFILE
+                    date "$DATEFMT - Waiting $RETRY_WAIT seconds" #mark progress
+                    date "$DATEFMT - Waiting $RETRY_WAIT seconds" >> $LOGFILE
+                    sleep $RETRY_WAIT
+                else
+                    date "$DATEFMT - FIX REBUILD FAILED" #mark progress
+                    date "$DATEFMT - FIX REBUILD FAILED" >> $LOGFILE
+                    UNTESTED_ENGINES=""
+                fi
+            fi
+        done
+    done
+}
+
+# Sets any conditions which subsequent parts of the unDo (rollback) may need to test
+preUndo() 
+{
+    # we may have been passed a "sparse" ENGINE_LIST & 
+    # we may be asked to rollback the global run_dir
+    # Before rolling back any engine, setContext, run_dir, we
+    # collect a "dense" list of all engines on host and which 
+    # version(s) of CAS & INFRA each engine is using prior to rollback
+    # This will allow postUndo to make adjustments
+
+    PREUNDO_INFRA_RUNDIR_VER=$(ls -l $INFRA_HOME/run_dir | awk '{print $NF}')
+
+    getExport TMP_ENGINE_LIST $SET_CONTEXT_FILE ENGINE_LIST
+    MY_ERL_SED_SCR=/tmp/$$.my_erl_sed_script
+    echo "s/[\'\"]//g" >$MY_ERL_SED_SCR
+    HOST_ENGINE_LIST=$(echo $TMP_ENGINE_LIST | sed -f $MY_ERL_SED_SCR)
+    rm -f $MY_ERL_SED_SCR >> $LOGFILE 2>&1
+    date "$DATEFMT - All configured engines: $HOST_ENGINE_LIST" | tee -a $LOGFILE
+    for thisEngine in $HOST_ENGINE_LIST ; do
+        if [ -L $INFRA_HOME/v2fixcas${thisEngine} ] ; then 
+            thisEngLink=$(ls -l $INFRA_HOME/v2fixcas${thisEngine} | awk '{print $NF}')
+            thisEngVer=${thisEngLink%%_??}
+            PREUNDO_CAS_VER[$thisEngine]=$thisEngVer
+            getExport MY_ENG_RUN_DIR ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR
+            if [ -z $MY_ENG_RUN_DIR ] ; then
+                PREUNDO_INFRA_VER[$thisEngine]="NONE"
+            else
+                thisEngInfraVer=${MY_ENG_RUN_DIR##/*/}
+                PREUNDO_INFRA_VER[$thisEngine]=$thisEngInfraVer
+            fi
+        fi
+    done
+}
+
+# performs any post undo processing that may need to be done
+postUndo() 
+{
+    # collect the same information we collected in preUndo
+    POSTUNDO_INFRA_RUNDIR_VER=$(ls -l $INFRA_HOME/run_dir | awk '{print $NF}')
+
+    for thisEngine in $HOST_ENGINE_LIST ; do
+        if [ -L $INFRA_HOME/v2fixcas${thisEngine} ] ; then 
+            thisEngLink=$(ls -l $INFRA_HOME/v2fixcas${thisEngine} | awk '{print $NF}')
+            thisEngVer=${thisEngLink%%_??}
+            POSTUNDO_CAS_VER[$thisEngine]=$thisEngVer
+            getExport MY_ENG_RUN_DIR ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR
+            if [ -z $MY_ENG_RUN_DIR ] ; then
+                POSTUNDO_INFRA_VER[$thisEngine]="NONE"
+            else
+                thisEngInfraVer=${MY_ENG_RUN_DIR##/*/}
+                POSTUNDO_INFRA_VER[$thisEngine]=$thisEngInfraVer
+            fi
+        fi
+    done
+    
+    # now that we've collected before and after data from resetting 
+    # any links, it's time to decide what to do with it 
+
+    for thisEngine in $HOST_ENGINE_LIST ; do
+
+        # if engine at target ver & infra at target ver 
+        # & local_run_dir not set, nothing to do 
+
+        if [[ "${POSTUNDO_CAS_VER[$thisEngine]}" == "${OLD_CAS_VERSION}" ]] ; then 
+            if [ -z $INFRA_VERSION ] ; then 
+                # CAS ROLLBACK Only
+                if [[ "${POSTUNDO_INFRA_VER[$thisEngine]}" == "NONE" ]] ; then
+                    date "$DATEFMT - Engine $thisEngine Rolled back to: $OLD_CAS_VERSION using Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                else
+                    # CAS ROLLBACK ONLY, but ENGINE RUN_DIR is set -- remove ENGINE RUN_DIR
+                    chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                    removeExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR >> $LOGFILE 2>&1 
+                    chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                    date "$DATEFMT - Engine $thisEngine Rolled back to: $OLD_CAS_VERSION using Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                fi
+            else
+                # CAS ROLLBACK and INFRA ROLLBACK
+                if [[ "${POSTUNDO_INFRA_VER[$thisEngine]}" == "NONE" ]] ; then
+                    date "$DATEFMT - Engine $thisEngine Rolled back to: $OLD_CAS_VERSION using Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                else
+                    # CAS ROLLBACK + INFRA ROLLBACK, but ENGINE RUN_DIR is set -- remove ENGINE RUN_DIR
+                    chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                    removeExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR >> $LOGFILE 2>&1 
+                    chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                    date "$DATEFMT - Engine $thisEngine Rolled back to: $OLD_CAS_VERSION using Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                fi
+            fi
+        else 
+            # we were presented with a sparse list and are testing an engine we were not asked to roll back
+            # we need to ensure that this engine is running the Infra Version it was running before
+            if [ -z $INFRA_VERSION ] ; then 
+                # CAS ROLLBACK Only
+                if [[ "${POSTUNDO_INFRA_VER[$thisEngine]}" == "NONE" ]] ; then
+                    date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                else
+                    date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: ${POSTUNDO_INFRA_VER[$thisEngine]}" | tee -a $LOGFILE
+                fi
+            else 
+                # INFRA was rolled back, but not this engine
+                # this engine may need a local run_dir set to what it was previously running
+                if [[ "${POSTUNDO_INFRA_VER[$thisEngine]}" == "NONE" ]] ; then
+                    if [[ "${PREUNDO_INFRA_VER[$thisEngine]}" == "NONE" ]] ; then
+                        # set engine run dir to $PREUNDO_INFRA_RUNDIR_VER
+                        chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine}  >> $LOGFILE 2>&1 
+                        replaceExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR $INFRA_HOME/$PREUNDO_INFRA_RUNDIR_VER >> $LOGFILE 2>&1 
+                        chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine}  >> $LOGFILE 2>&1 
+                        date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: $PREUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                    else
+                        # if the pre-rollback infra this engine was running is the same 
+                        # as what is now the global run_dir, the local override should be removed
+                        if [[ "${PREUNDO_INFRA_VER[$thisEngine]}" == "$POSTUNDO_INFRA_RUNDIR_VER" ]] ; then
+                            chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                            removeExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR >> $LOGFILE 2>&1 
+                            chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                            date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                        else
+                            # nothing changed - but log it
+                            date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: ${POSTUNDO_INFRA_VER[$thisEngine]}" | tee -a $LOGFILE
+                        fi
+                    fi
+                else
+                    # this engine (post setContext rollback) specifically asks for a local run_dir to be set
+                    if [[ "${PREUNDO_INFRA_VER[$thisEngine]}" == "${POSTUNDO_INFRA_VER[$thisEngine]}" ]] ; then
+                        # this engine previously asked for a specific local run_dir
+                        # a straight restore has not changed that (it is still asking for the same version).
+                        # If it is asking for what is now the global run_dir, the local run_dir should be removed.
+                        if [[ "${PREUNDO_INFRA_VER[$thisEngine]}" == "$POSTUNDO_INFRA_RUNDIR_VER" ]] ; then
+                            chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                            removeExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR >> $LOGFILE 2>&1 
+                            chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} >> $LOGFILE 2>&1 
+                            date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: $POSTUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                        else
+                            # nothing changed - but report it
+                            date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: ${POSTUNDO_INFRA_VER[$thisEngine]}" | tee -a $LOGFILE
+                        fi
+                    else
+                        # this engine (post setContext rollback) specifically asks for a local run_dir to be set
+                        # This is a change.  Previously, it either asked for a different version or NONE
+                        # If it previously asked for NONE, it should be set to the previous global run_dir
+                        # If it previously asked for a specific version, that version should be restored
+                        if [[ "${PREUNDO_INFRA_VER[$thisEngine]}" == "NONE" ]] ; then
+                            # set engine run dir to $PREUNDO_INFRA_RUNDIR_VER
+                            chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine}  >> $LOGFILE 2>&1 
+                            replaceExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR $INFRA_HOME/$PREUNDO_INFRA_RUNDIR_VER >> $LOGFILE 2>&1 
+                            chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine}  >> $LOGFILE 2>&1 
+                            date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: $PREUNDO_INFRA_RUNDIR_VER" | tee -a $LOGFILE
+                        else
+                            chmod 666 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine}  >> $LOGFILE 2>&1 
+                            replaceExport ${SET_CONTEXT_FILE}.v2fixcas${thisEngine} RUN_DIR $INFRA_HOME/${PREUNDO_INFRA_VER[$thisEngine]} >> $LOGFILE 2>&1 
+                            chmod 444 ${SET_CONTEXT_FILE}.v2fixcas${thisEngine}  >> $LOGFILE 2>&1 
+                            date "$DATEFMT - Engine $thisEngine not specified: running: ${POSTUNDO_CAS_VER[$thisEngine]} Infra: ${PREUNDO_INFRA_VER[$thisEngine]}" | tee -a $LOGFILE
+                        fi
+                    fi
+                fi
+            fi
+        fi
+    done
+}
+
+# ------------------------ Main ----------------------------
+
+unalias rm
+
+readCommandline $*
+
+ALL_ENGINES="$BOUNCE_ENGINES $INSTALL_ENGINES"
+
+if [ -z $ROLLOUT ] ; then
+    setupRollback
+fi
+
+verifyFiles
+setRollbackDir
+stopProcesses
+readProfile
+
+# on rollout,  assure that SETCONTEXT is done, then INFRA, then CAS
+# on rollback, assure that CAS is done, then INFRA, then SETCONTEXT
+if [ -n "$ROLLOUT" ] ; then
+    doSetContext
+    if [ -n "$INFRA_VERSION" ] ; then
+        doInfra
+    fi
+    if [ -n "$CAS_VERSION" ] ; then
+       doCAS
+    fi
+else
+    preUndo
+    if [ -n "$CAS_VERSION" ] ; then
+       undoCAS
+    fi
+    if [ -n "$INFRA_VERSION" ] ; then
+        undoInfra
+    fi
+    undoSetContext
+    postUndo
+fi
+
+if [ -n "$JDK_VERSION" ] ; then
+    if [ -n "$ROLLOUT" ] ; then
+        doJdk
+    else
+        undoJdk
+    fi
+fi
+
+if [ -n "$DO_INITREFS" ] ; then
+    if [ -n "$ROLLOUT" ] ; then
+        doInitrefs
+    else
+        undoInitrefs
+    fi
+fi
+
+updateConfig
+startCAS
+cleanupFuncs
+
+echo "----------------------- Session Log ------------------------" 
+cat $LOGFILE

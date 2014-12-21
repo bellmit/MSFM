@@ -1,0 +1,127 @@
+#!/bin/ksh
+# As part of the software load process, after files are deposited
+# onto the client box this script is run to create the infra log directory
+# and infra tmp directory (symbolic links).
+#
+# Usage: <clientDir>/bin/linkInfraLog -commit <infraLoadDir> # normal use
+# Usage: <clientDir>/bin/linkInfraLog <infraLoadDir>         # testing
+
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+NOW=$( date +%Y%m%d-%H%M%S )
+
+# Exit codes (from errno.h)
+EACCES=13  # permission denied
+EINVAL=22  # invalid argument
+
+# -------------------- Subroutines --------------------
+
+# Read configuration if necessary.
+readConfig()
+{
+    if [ -n "$CLIENT_TYPE" ] && [ -n "$SBT_LOG_PARTITION" ] ; then
+        # We have what we want, no need to ready anything
+        return
+    fi
+
+    INFRA_HOME=$( dirname $INFRA_DIR )
+    if [ -r $INFRA_HOME/config/bin/setContext ] ; then
+        . $INFRA_HOME/config/bin/setContext
+    fi
+}
+
+# Create symbolic link for log in the Infra directory
+linkInfraLogDir()
+{
+    case $CLIENT_TYPE in
+    cas|fixcas|sacas|mdcas|mdx|cfix)
+        LOGDIR=infra/log
+        ;;
+    tipsmdxadapter)
+        LOGDIR=infra/tipsmdx
+        ;;
+    *)
+        echo $PROG:' unknown CLIENT_TYPE "'$CLIENT_TYPE'"'
+        exit $EINVAL
+        ;;
+    esac
+
+    # Create $INFRA_DIR/log
+
+    if [ -e $INFRA_DIR/log ] ; then
+        # Rename log directory/file/whatever to get it out of the way
+        $GUARD mv $INFRA_DIR/log $INFRA_DIR/log.$NOW
+    fi
+    if [ ! -e $INFRA_DIR/log ] ; then
+        # Create log/ as symbolic link
+        $GUARD ln -s $SBT_LOG_PARTITION/$LOGDIR $INFRA_DIR/log
+    fi
+}
+
+# Create symbolic link for tmp in the Infra directory
+linkInfraTmpDir()
+{
+    # Create symbolic link
+
+    if [ -e $INFRA_DIR/tmp ] ; then
+        # Rename tmp directory/file/whatever to get it out of the way
+        $GUARD mv $INFRA_DIR/tmp $INFRA_DIR/tmp.$NOW
+    fi
+    if [ ! -e $INFRA_DIR/tmp ] ; then
+        # Create tmp/ as symbolic link
+        $GUARD ln -s log/tmp $INFRA_DIR/tmp
+    fi
+
+    # Make sure that the target of the symbolic link exists
+
+    if [ -e $INFRA_DIR/log/tmp ] && [ ! -d $INFRA_DIR/log/tmp ] ; then
+        # log/tmp exists, but it is not a directory. Get it out of the way.
+        $GUARD mv $INFRA_DIR/log/tmp $INFRA_DIR/log/tmp.$NOW
+    fi
+    if [ ! -e $INFRA_DIR/log/tmp ] ; then
+        $GUARD mkdir -m775 $INFRA_DIR/log/tmp
+    fi
+}
+
+# -------------------- Main program --------------------
+
+if [[ $( id ) = uid=0* ]] ; then
+    echo "Do not invoke as root user"
+    return $EINVAL
+fi
+
+if [ "$1" == "-commit" ] ; then
+    shift
+    GUARD=
+else
+    # When debugging, don't execute destructive commands
+    GUARD="echo GUARD:"
+fi
+
+INFRA_DIR=$1
+if [ -z "$INFRA_DIR" ] ; then
+    print -u2 "$PROG: Missing parameter <infraLoadDir>"
+    exit $EINVAL
+fi
+
+readConfig
+
+if [ -z "$CLIENT_TYPE" ] ; then
+   print -u2 "$PROG: Missing CLIENT_TYPE"
+   exit $EINVAL
+fi
+if [ -z "$SBT_LOG_PARTITION" ] ; then
+   print -u2 "$PROG: Missing SBT_LOG_PARTITION"
+   exit $EINVAL
+fi
+
+# Verify INFRA_DIR, directory of corresponding Infra load
+if [ ! -w $INFRA_DIR ] ; then
+   echo "$PROG: need write permission for $INFRA_DIR"
+   exit $EACCES
+fi
+
+linkInfraLogDir
+linkInfraTmpDir

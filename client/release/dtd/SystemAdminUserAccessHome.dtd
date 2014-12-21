@@ -1,0 +1,36 @@
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the WebServerHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalSystemAdminUserAccessHome (SystemAdminUserAccessHomeImpl*)>
+<!ATTLIST GlobalSystemAdminUserAccessHome
+        type %typeConstraints; #FIXED "ManagedResource"
+        objectName CDATA #IMPLIED
+>
+<!ELEMENT SystemAdminUserAccessHomeImpl (SystemAdminUserAccessHomeImplProperties)>
+<!ATTLIST SystemAdminUserAccessHomeImpl
+        type %typeConstraints; #FIXED "ManagedResource"
+        name ID #REQUIRED
+        objectName CDATA #IMPLIED
+        container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT SystemAdminUserAccessHomeImplProperties (session_mode,CMI_version?)>
+<!ATTLIST SystemAdminUserAccessHomeImplProperties
+        type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT session_mode (#PCDATA)>
+<!ATTLIST session_mode
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+        description CDATA #FIXED "LoginSessionMode"
+>
+<!ELEMENT CMI_version (#PCDATA)>
+<!ATTLIST CMI_version
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "supported earlist CMI version"
+>

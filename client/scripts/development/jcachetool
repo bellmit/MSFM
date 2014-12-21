@@ -1,0 +1,43 @@
+#!/bin/ksh
+# Copy this script into $INSTALL_DIR/tmp  (example: v2cas01/tmp)
+# Run as: ksh jcachetool <cacheName> (example: ksh jcachetool pcsCache)
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+TMP=/tmp/$PROG.$$.sh
+SCRIPT_DIR=$( dirname $0 )
+if [ $SCRIPT_DIR = "." ] ; then
+    SCRIPT_DIR=$( pwd )
+fi
+INSTALL_DIR=$( dirname $SCRIPT_DIR )
+
+# -------------------- Main program --------------------
+
+if [ -z $1 ] ; then
+    echo "Usage: $0 cacheName"
+    exit 1
+fi
+
+#####
+# Find a classpath
+#####
+file=`grep -l 'java.*classpath' $INSTALL_DIR/log/startsh*.log | tail -1`
+if [ -z $file ]
+then
+    echo "Can't find classpath from $INSTALL_DIR/log/startsh\*.log"
+    exit 1
+fi
+
+#####
+# Set CLASSPATH (based on what we find in a startsh*.log file
+#####
+CPATH=`grep 'java.*classpath' $file | sed -e 's/.*classpath //' | sed -e 's/ .*//' | sed -e 's,:classes/,:$INFRA/,g' | sed -e 's,:\.\./v2[^/]*/classes,:$CAS,g'`
+
+echo 'CAS=$INSTALL_DIR/classes'  >$TMP
+echo 'INFRA=$RUN_DIR/classes'            >>$TMP 
+echo 'export CLASSPATH='$CPATH           >>$TMP
+. $TMP
+\rm $TMP
+
+java com.cboe.application.jcache.JCacheTool print $INSTALL_DIR/tmp $1

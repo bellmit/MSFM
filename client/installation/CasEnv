@@ -1,0 +1,319 @@
+#!/bin/ksh
+# Load Client software or config to specified destination
+
+# DEBUG=1  # only when testing
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+TMPDIR=/tmp/$PROG.$( date +%Y%m%d.%H%M%S ).$LOGNAME.$$
+TMPFILE=$TMPDIR/tmpfile
+TARFILE=$PROG.$( date +%Y%m%d.%H%M%S ).tar
+HOSTNAME=$( hostname )
+TMP_NETRC=$HOME/.netrc.$HOSTNAME.$$
+DEFAULT_GROUP=$( id | sed 's/.* .*(//;s/)//' )
+DEFAULT_USER=infra
+STARTDIR=$( pwd )
+
+BASE_XML_DIR=/vobs/dte/server/runtime
+
+# Exit codes (from errno.h)
+EINTR=4    # interrupted system call
+EINVAL=22  # invalid argument
+
+# -------------------- Subroutines --------------------
+
+usage() {
+    cat <<_USAGE_ >&2
+usage: $PROG [-h] [-p] [-f] [-r hostname [-u user]] -S] [-n] [-s] [-c]] [-g group] [-l] destinationDirectory 
+purpose: to install client components
+switches:
+   -h = print this message and exit
+   -p = partial install (jars and shared libraries)
+   -f = try to overwrite old files
+   -S = Use SSH instead of rexec 
+	NOTE: this requires authorized key setup on the target 
+	machine for password-less operation 
+	ELSE you will be prompted for a password for EACH remote function 
+   -r hostname = do an installation to the remote machine 'hostname'
+       You may list multiple hosts separated by commas (no spaces)
+   -s = use scp and ssh (otherwise use rexec)
+   -u user = login to use for remote installs. Default is $DEFAULT_USER
+       (A prompt will be given to enter the password)
+   -n = do not prompt for a password.For this option, the file ~/.netrc
+	must be set up for the target host with the correct user and
+	password
+   -c = run loadClient after the installation. -r switch must be used. Cannot be used with -l switch.
+   -g group = the name of the group that will own the directories
+       default is $DEFAULT_GROUP
+       NOTE: the group owner must be manually validated. No error is seen if
+       the switch to the specified group fails
+   -l = create local config directory on Client box
+arguments:
+   destinationDirectory = directory into which installs should be done.
+      e.g., for Version 3.7 it should be CBOEDIR_3.7
+      e.g., for "config" installation it should be config 
+_USAGE_
+
+    exit $EINVAL
+}
+
+setDefaults() {
+    user=$DEFAULT_USER
+    GROUP=$DEFAULT_GROUP
+    XARGS="/usr/bin/xargs -t -i"
+    noPrompt=""
+    REMOTE=
+    PPROMPT="/opt/cboeutil/bin/PasswdPrompt"
+    REXEC="/opt/cboeutil/bin/rexec"
+    SECURE=
+    FORCE=
+    CONFIGNEEDED=
+    USING_SSH=
+    RUN_LOAD_CLIENT=
+}
+
+if [[ -n $USING_SSH ]]; then
+        echo "\\nUsing SSH -l $user\\n" >&2
+        export REXEC="ssh -l $user"
+fi
+
+Copy()
+{
+    if file $1 | egrep -s 'executable|ELF|commands' ; then
+        mode_="551"
+    else
+        mode_="440"
+    fi
+
+    cp -p $FORCE $1 $2
+    chmod $mode_ $2/$( basename $1 )
+}
+
+# @param 1 file to change
+# @param 2 old string to modify
+# @param 3 new string to use as replacement
+editFile()
+{
+    sed <$1 "s#$2#$3#g" >$TMPFILE
+    mv $TMPFILE $1
+}
+
+# Some XML must be changed from its state in the VOB
+editXml()
+{
+    File=$TMPDIR/$load_dir/properties/xml/SecurityServiceFacade.xml
+    chmod +w $File
+    editFile $File SUBSTITUTE_USERID_HERE '${CLIENTNAME}${HOSTNAME}'
+    editFile $File SUBSTITUTE_PASSWORD_HERE '${CLIENTNAME}AxQzd4${HOSTNAME}xp5'
+    editFile $File SUBSTITUTE_FILENAME_HERE '${CLIENTNAME}${HOSTNAME}'
+    chmod 440 $File
+}
+
+makeConfig()
+{
+    mkdir -m 775 -p $TMPDIR/$load_dir/bin
+    mkdir -m 775 -p $TMPDIR/$load_dir/ior
+    mkdir -m 755 -p $TMPDIR/$load_dir/properties
+    mkdir -m 775 -p $TMPDIR/$load_dir/properties/xml
+    Copy RepositoryServiceLocal.xml $TMPDIR/$load_dir/properties/xml
+    Copy setContext $TMPDIR/$load_dir/bin
+    Copy setContext.engine.template $TMPDIR/$load_dir/bin
+    Copy configureCAS.ksh $TMPDIR/$load_dir
+}
+
+makeSoftware()
+{
+    # Create directories
+
+    mkdir -m 751 -p $TMPDIR/$load_dir
+    for i in $( cat casRDirs2.txt ) ; do
+        mkdir -m 751 -p $TMPDIR/$load_dir/$i
+    done
+    for i in $( cat casWDirs2.txt ) ; do
+        mkdir -m 771 -p $TMPDIR/$load_dir/$i
+    done
+
+    # Copy in .jar files
+
+    for i in $( cat casJars2.txt ) ; do
+        Copy $i $TMPDIR/$load_dir/classes
+    done
+
+    # Copy in script files
+
+    if [ -z $PARTIAL ] ; then
+        for i in $( cat casScripts2.txt ) ; do
+            Copy $i $TMPDIR/$load_dir/bin
+        done
+    fi
+
+    # Copy in XML and DTD files
+
+    for i in $( cat XMLFiles.@(cas|sacas|mdcas|cfix).*.base | sort -u \
+                | sed s,'${BASE_XML_DIR}',${BASE_XML_DIR}, )
+    do
+        Copy $i $TMPDIR/$load_dir/properties/xml
+    done
+
+    for i in $( cat DTDFiles.@(cas|sacas|mdcas|cfix).*.base | sort -u \
+                | sed s,'${BASE_XML_DIR}',${BASE_XML_DIR}, )
+    do
+        Copy $i $TMPDIR/$load_dir/properties/dtd
+    done
+
+    editXml
+}
+
+cleanupAndExit()
+{
+    if [[ -n "$TMP_NETRC" && -f "$TMP_NETRC" ]] ; then
+        mv $TMP_NETRC ~/.netrc
+    fi
+    exit $EINTR
+}
+
+# -------------------- Main Program --------------------
+
+if [ "$DEBUG" == 1 ] ; then
+    cd /vobs/dte/client/installation
+# else we are already in that directory, executing this script
+fi
+
+trap cleanupAndExit 1 2 3
+
+# Parse command line
+
+setDefaults
+while getopts hflnr:su:g:pcS name; do
+    case $name in
+        h) usage;;
+        p) PARTIAL="true";;
+        f) FORCE="-f";;
+        r)  if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+                print -u2 "\nMissing argument to -r switch\n"
+                usage
+            fi
+            remotehost="$OPTARG"
+            REMOTE="true";;
+	S) USING_SSH=1;;
+        s)  SECURE="YES";;
+	n) noPrompt="TRUE";;
+        u)  if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+                print -u2 "\nMissing argument to -u switch\n"
+                usage
+            fi
+            user="$OPTARG";;
+        g)  if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+                print -u2 "\nMissing argument to -g switch\n"
+                usage
+            fi
+            GROUP=$OPTARG;;
+        l) shift $(($OPTIND - 1))
+           export directory="$*"
+           CONFIGNEEDED="YES"
+           ;;
+        c) RUN_LOAD_CLIENT="YES"
+           ;;
+    esac
+done
+if [[ -n "$RUN_LOAD_CLIENT" && -z "$REMOTE" ]] ; then
+    print -u2 "\n-r switch must be specified if using -c switch.\n"
+    usage
+fi
+if [[ -n $RUN_LOAD_CLIENT && -n $CONFIGNEEDED ]] ; then
+    print -u2 "\n-l switch cannot be specified if using -c switch.\n"
+    usage
+fi
+if [ -z $CONFIGNEEDED ] ; then
+	shift $(($OPTIND - 1))
+	export directory="$*"
+fi
+if [ -z $directory ] ; then
+	print -u2 "\nMissing destination directory\n"
+	usage
+fi
+
+load_dir=$( basename $directory )
+dir_parent=$( dirname $directory )
+if [[ -z $REMOTE && "$DEBUG" -eq 1 && $dir_parent = "." ]] ; then
+    # Testing, asking to install on local host
+    dir_parent=$STARTDIR
+fi
+
+if [[ ! -z $remotehost  &&  -z "$SECURE"  && -z $noPrompt ]]; then
+    # Using rexec on remote host, get password now
+    password=$( $PPROMPT "Password ($user): " )
+fi
+
+# Create distribution
+
+if [ "$CONFIGNEEDED" == "YES" ] ; then
+    makeConfig
+else
+    makeSoftware
+fi
+
+# Load distribution
+
+cd $TMPDIR
+tar cf /tmp/$TARFILE .
+mv /tmp/$TARFILE .
+
+if [ -z "$FORCE" ] ; then
+    REMOVE_OLD=""
+else
+    REMOVE_OLD="/bin/rm -rf $load_dir;"
+fi
+if [ -z $REMOTE ] ; then
+    # Install on this host
+    echo "cd $dir_parent; $REMOVE_OLD tar xpf $TMPDIR/$TARFILE" | ksh -c "/usr/bin/newgrp $GROUP"
+else
+    # Install on a remote host
+    gzip $TMPDIR/$TARFILE
+    hostlist=$( echo $remotehost |tr "," " " )
+    for host in $hostlist ; do
+        if [[ -z "$SECURE" && -z $noPrompt ]] ; then
+            mv ~/.netrc $TMP_NETRC
+            echo "machine $host login $user password $password" >~/.netrc
+            chmod 600 ~/.netrc
+
+            cat $TMPDIR/$TARFILE.gz | $REXEC $host "cat - >/tmp/$TARFILE.gz"
+            echo "cd $dir_parent; $REMOVE_OLD gzcat /tmp/$TARFILE.gz | tar xpf - 2>&1 | grep -v 'tar: can.t set time on .: Not owner'; rm /tmp/$TARFILE.gz" | $REXEC $host "/usr/bin/newgrp $GROUP"
+        else
+            scp $TMPDIR/$TARFILE.gz $user@$host:/tmp/$TARFILE.gz
+            echo "cd $dir_parent; $REMOVE_OLD gzcat /tmp/$TARFILE.gz | tar xpf - 2>&1 | grep -v 'tar: can.t set time on .: Not owner'; rm /tmp/$TARFILE.gz" | ssh $user@$host "/usr/bin/newgrp $GROUP"
+        fi
+        if [ -n "$RUN_LOAD_CLIENT" ] ; then
+            if [ -z "$SECURE" ] ; then
+                $REXEC $host $directory/bin/loadClient -commit
+            else
+                ssh $user@$host $directory/bin/loadClient -commit
+            fi
+        fi
+        if [[ -z "$SECURE" && -z $noPrompt ]] ; then
+            mv $TMP_NETRC ~/.netrc
+        fi
+        echo "Copied to $host"
+    done
+fi # REMOTE
+
+cd $STARTDIR
+\rm -rf $TMPDIR
+
+if [[ $CONFIGNEEDED == "YES" ]]; then
+    if [[ -z $REMOTE ]]; then
+        echo " "
+        echo "********  Done. ftp $directory as config on CAS box and execute config/configureCAS.ksh *****"
+        echo " "
+    else
+        echo " "
+        echo "********  Done. Login to $remotehost as $user and execute config/configureCAS.ksh.  *****"
+        echo " "
+    fi
+else
+    echo " "
+    echo "********  Done. Run this script again, if this is a brand new CAS box which requires local config dir.  *****"
+    echo "      e.g. $PROG -r $remotehost -u $user -g $GROUP -l $dir_parent/config"
+    echo " "
+fi

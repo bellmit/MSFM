@@ -1,0 +1,216 @@
+#!/bin/ksh
+# Make sure a Client host is set up correctly
+
+# -------------------- Constants --------------------
+
+HOSTNAME=$( hostname )
+USER=$( whoami )
+PROG=$( basename $0 )
+INFRA_HOME=${HOME%/infra}/infra
+SECURITY_DIR=$INFRA_HOME/../../security
+
+if [[ $HOME = */test* ]] ; then
+    ENV_TYPE=test
+else
+    ENV_TYPE=prod
+fi
+SBT_LOG_PARTITION=/sbt/log/$ENV_TYPE
+
+SPACES="[ 	][ 	]*"   # (space|tab)+
+
+# Error codes from /usr/include/sys/errno.h
+ENOENT=2    # No such file or directory
+EACCES=13   # Permission denied
+EINVAL=22   # Invalid argument
+
+# -------------------- Subroutines --------------------
+
+usage()
+{
+    echo "Usage: $PROG [-j jdk] [-e engine,engine,...]"
+    echo "Example: $PROG -j jdk1.6.0_02 -e fixcas01,fixcas02,fixcas03"
+}
+
+# Read command line, set JDK and ENGINES
+readCommandLine()
+{
+    while getopts j:e: opt ; do
+        case $opt in
+        j)
+            if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+                echo "Missing jdk argument after -j switch"
+                ERROR=$EINVAL
+            fi
+            JDK=$OPTARG
+            ;;
+        e)
+            if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+                echo "Missing engines argument after -e switch"
+                ERROR=$EINVAL
+            fi
+            ENGINES=$( echo $OPTARG | tr ',' ' ' )
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+        *)
+            echo "Invalid switch $opt"
+            usage
+            ERROR=$EINVAL
+            ;;
+        esac
+    done
+}
+
+# See whether directory is present (with specified mode)
+# @param 1 Directory name
+needDirectory()
+{
+    if [ ! -d $1 ] ; then
+        echo "Missing directory $1"
+        ERROR=$ENOENT
+    fi
+}
+
+# Get the permissions of a file, put into variable MODE.
+# @param 1 Name of file
+getMode()
+{
+    if [ -e $1 ] ; then
+        MODE=$( ls -ld $1 | awk '{print $1}' )
+    else
+        MODE="----------"
+    fi
+}
+
+needFile()
+{
+    if [ ! -f $1 ] ; then
+        echo "Missing file $d"
+        ERROR=$ENOENT
+    fi
+}
+
+# Get exported variable from a file. Set variable in this script
+# with the same name.
+# @param 1 name of variable
+# @param 2 name of file
+getExport()
+{
+    eval $1="'"$( sed <$2 /'^export '$1=/!d | cut -d= -f2 | cut -d' ' -f1 )"'"
+}
+
+# -------------------- Main program --------------------
+
+ERROR=0
+
+readCommandLine $*
+
+#####
+# Check security directory
+#####
+
+needDirectory $SECURITY_DIR
+if [ -n "$ENGINES" ] ; then
+    for e in $ENGINES ; do
+        needFile $SECURITY_DIR/${e}v2$HOST.p12
+    done
+else
+    needFile $SECURITY_DIR/*.p12
+fi
+
+#####
+# Check JDK
+#####
+
+needDirectory /usr/local
+getExport JAVA_HOME $HOME/.setenv
+jh=$( basename $JAVA_HOME )
+if [ -n "$JDK" ] ; then
+    needDirectory /usr/local/$JDK
+    if [ "$JDK" != "$jh" ] ; then
+        echo "JAVA_HOME refers to '$jh', doesn't match -j $JDK"
+        ERROR=$EINVAL
+    fi
+elif [ -z "$JAVA_HOME" ] ; then
+    echo "JAVA_HOME not set"
+    ERROR=$EINVAL
+else
+    needDirectory /usr/local/$jh
+fi
+
+#####
+# Basic check for .ssh
+#####
+
+needDirectory ~/.ssh
+needFile ~/.ssh/authorized_keys?(2)
+if ! grep ' infra' ~/.ssh/authorized_keys?(2) >/dev/null 2>&1 ; then
+    echo "InfraGC has no access to this host"
+    ERROR=$EINVAL
+fi
+
+#####
+# Directory /opt/cboeutil contains a bunch of programs we need
+#####
+
+needDirectory /opt/cboeutil
+
+#####
+# Check /sbt/log
+#####
+
+needDirectory /sbt
+if [ ! -d /sbt/log ] && [ ! -L /sbt/log ] ; then
+    echo "Missing directory /sbt/log"
+    ERROR=$ENOENT
+fi
+needDirectory $SBT_LOG_PARTITION
+needDirectory $SBT_LOG_PARTITION/infra
+needDirectory $SBT_LOG_PARTITION/infra/log
+getMode       $SBT_LOG_PARTITION/infra/log
+if [[ $MODE != drwxrwxr?x ]] ; then
+    echo "Wrong permissions $MODE $SBT_LOG_PARTITION/infra/log"
+    ERROR=$EACCES
+fi
+needDirectory $SBT_LOG_PARTITION/cas
+if [ -n "$ENGINES" ] ; then
+    if [ "$ENGINES" = @(cas|sacas)* ] ; then
+        needDirectory $SBT_LOG_PARTITION/cas/log
+        getMode       $SBT_LOG_PARTITION/cas/log
+        if [[ $MODE != drwxrwxr?x ]] ; then
+            echo "Wrong permissions $MODE $SBT_LOG_PARTITION/cas/log"
+            ERROR=$EACCES
+        fi
+    else
+        # fixcas, mdcas or cfix
+        for e in $ENGINES ; do
+            if [ $e = fixcas* ] ; then
+                ee=fix${e#fixcas}
+            else
+                ee=$e
+            fi
+            needDirectory $SBT_LOG_PARTITION/cas/$ee
+            getMode       $SBT_LOG_PARTITION/cas/$ee
+            if [[ $MODE != drwxrwxr?x ]] ; then
+                echo "Wrong permissions $MODE $SBT_LOG_PARTITION/cas/$ee"
+                ERROR=$EACCES
+            fi
+        done
+    fi
+fi
+
+#####
+# Check crontab
+#####
+
+# Correct content varies by host type and environment. Just check to see
+# whether crontab has anything at all.
+
+if ! crontab -l >/dev/null 2>&1 ; then
+    echo "Nothing set up in crontab"
+    ERROR=$ENOENT
+fi
+
+exit $ERROR

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Processes SYSTEM "${INFRA_RUN_DIR}/properties/dtd/processes.dtd">
+<Processes name="ScreenBasedTrading">
+	<!-- BEGIN   (${CLIENTNAME}${HOSTNAME}) CAS definitions -->
+	<!-- CAS definitions -->
+	<!--  -->
+	<Process name="${CLIENTNAME}${HOSTNAME}">
+		<ProcessProperties>
+			<ServantID>NO_POA</ServantID>
+			<Orbname>${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}</Orbname>
+			<Portnum>${PORTNUM}</Portnum>
+			<Status>Stopped</Status>
+			<ProcessID>X</ProcessID>
+			<SMSType smsValue="Source"/>
+			<SMSRelationName>v20Frontend{remoteHosts}</SMSRelationName>
+			<remoteHost>${FRONTEND1_HOSTNAME}</remoteHost>
+			<remoteHost>${FRONTEND2_HOSTNAME}</remoteHost>
+			<JavaClassName>com.cboe.infrastructureServices.foundationFramework.FoundationFramework</JavaClassName>
+			<JavaOptionalProperty>-classpath .:../${CLIENT_DIR}/classes/ClientPatch.jar:$INFRA_CLASSPATH:
+classes/javautil.jar:
+../${CLIENT_DIR}/classes/CommonFacilities.jar:
+classes/infrastructure.jar:
+classes/fscontext.jar:
+classes/jndi.jar:
+classes/providerutil.jar:
+classes/ldap.jar:
+../${CLIENT_DIR}/classes/SessionManagementService.jar:
+../${CLIENT_DIR}/classes/MsgCodec.jar:
+classes/OracleDriver.zip:
+classes/816classes12.zip:
+classes/junit.jar:
+classes/Infraclasses.zip:
+classes/infraIDL.zip:
+../${CLIENT_DIR}/classes/client_interfaces.jar:
+../${CLIENT_DIR}/classes/client_impls.jar:
+../${CLIENT_DIR}/classes/client_internal_idl_java.jar:
+../${CLIENT_DIR}/classes/client_internal_idl.jar:
+../${CLIENT_DIR}/classes/domain_interfaces.jar:
+../${CLIENT_DIR}/classes/domain_xml.jar:
+../${CLIENT_DIR}/classes/domain_impls.jar:
+../${CLIENT_DIR}/classes/event_interfaces.jar:
+../${CLIENT_DIR}/classes/event_impls.jar:
+../${CLIENT_DIR}/classes/server_interfaces.jar:
+../${CLIENT_DIR}/classes/server_impls.jar:
+../${CLIENT_DIR}/classes/server_common.jar:
+../${CLIENT_DIR}/classes/server_proxies.jar:
+../${CLIENT_DIR}/classes/eis_interfaces.jar:
+classes/infratests.jar:
+../${CLIENT_DIR}/classes/jaxb-api.jar:
+../${CLIENT_DIR}/classes/jaxb-impl.jar:
+../${CLIENT_DIR}/classes/jaxb-libs.jar:
+../${CLIENT_DIR}/classes/jaxb-xjc.jar:
+../${CLIENT_DIR}/classes/xsdlib.jar:
+../${CLIENT_DIR}/classes/namespace.jar:
+../${CLIENT_DIR}/classes/jax-qname.jar:
+../${CLIENT_DIR}/classes/relaxngDatatype.jar:
+../${CLIENT_DIR}/classes/commons-logging.jar:
+../${CLIENT_DIR}/classes/jcache_impls.jar:
+../${CLIENT_DIR}/classes/jcache-1.0-dev-3.jar:
+../${CLIENT_DIR}/classes/ehcache-1.2.4.jar:
+classes/PerformanceDriverTool.jar:
+../${CLIENT_DIR}/classes/client_idl.jar:
+../${CLIENT_DIR}/classes/cmi_idl.jar:
+../${CLIENT_DIR}/classes/server_idl.jar:
+../${CLIENT_DIR}/classes/domain_idl.jar:
+../${CLIENT_DIR}/classes/event_idl.jar:
+../${CLIENT_DIR}/classes/client_interceptors.jar:
+../${CLIENT_DIR}/classes/server_interceptors.jar:
+../${CLIENT_DIR}/classes/jython.jar:
+../${CLIENT_DIR}/classes/appia.jar:
+../${CLIENT_DIR}/classes/FIX.jar:
+../${CLIENT_DIR}/classes/fixclient.jar:
+../${CLIENT_DIR}/classes/xml-apis.jar:
+../${CLIENT_DIR}/classes/jdom.jar:
+../${CLIENT_DIR}/classes/xercesImpl.jar:
+classes/grizzly-nio-framework.jar</JavaOptionalProperty>
+			<JavaOptionalProperty>-Xmx${CLIENT_HEAP_SIZE}</JavaOptionalProperty>
+			<JavaOptionalProperty>-Xms${CLIENT_HEAP_SIZE}</JavaOptionalProperty>
+            <JavaOptionalProperty>-d64 -XX:+UseCompressedOops</JavaOptionalProperty>
+			<JavaOptionalProperty>-ea</JavaOptionalProperty>
+			<JavaOptionalProperty>-server</JavaOptionalProperty>
+			<JavaOptionalProperty>-showversion</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCApplicationStoppedTime</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCApplicationConcurrentTime</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCTimeStamps</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCDateStamps</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:PrintFLSStatistics=1</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintCompilation</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintHeapAtGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:PermSize=60m</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCDetails</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+CMSParallelRemarkEnabled</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+UseConcMarkSweepGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+UseParNewGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:MaxTenuringThreshold=1</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:CMSInitiatingOccupancyFraction=60</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:NewSize=${CLIENT_NEWGEN_SIZE}</JavaOptionalProperty>
+			<!--JavaOptionalProperty>-XX:PermSize=60m</JavaOptionalProperty-->
+			<JavaOptionalProperty>-XX:MaxNewSize=${CLIENT_NEWGEN_SIZE}</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:SurvivorRatio=2</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:ParallelGCThreads=16</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:-UseAdaptiveSizePolicy</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintTenuringDistribution</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:CMSWaitDuration=120000</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:-UseBiasedLocking</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:-OmitStackTraceInFastThrow</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:CompileThreshold=100</JavaOptionalProperty>
+
+			<JavaOptionalProperty>-verbose:gc -verbose:gc</JavaOptionalProperty>
+			<SystemOptionalProperty>LoggingDir=${CLIENT_DIR}</SystemOptionalProperty>
+			<SystemOptionalProperty>CacheOff</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCluster=FIXCAS</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.ChannelName=${SBT_PREFIX}InstrumentationChannel</SystemOptionalProperty>
+			<!-- NOTE: FifoThreaderType=EqualPriority for TimerHill cas0105 -->
+			<SystemOptionalProperty>LocalLog.SysAlarm</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IRLocal=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ir.eventpackage='org/omg;com/cboe/idl;com/cboe;com/cboe/EventService;com/cboe/infrastructureServices/interfaces'</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.OrbName=${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}IIOP</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.PortNum=${ORBSERVERPORT}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.TcpNoDelay=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.UseSocketChannel=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.BindingSequence=Local:Event:Iiop:Tiop</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.UseConnectionPools=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.GrepForConnectionPoolPolicy=${CLIENT_BASE_PORT}251'|'
+${CLIENT_BASE_PORT}252'|'
+${CLIENT_BASE_PORT}201'|'
+${CLIENT_BASE_PORT}202'|'
+${CLIENT_BASE_PORT}203'|'
+${CLIENT_BASE_PORT}204'|'
+${CLIENT_BASE_PORT}205'|'
+${CLIENT_BASE_PORT}206'|'
+${CLIENT_BASE_PORT}207'|'
+${CLIENT_BASE_PORT}208'|'
+${CLIENT_BASE_PORT}209'|'
+${CLIENT_BASE_PORT}210'|'
+${CLIENT_BASE_PORT}211'|'
+${CLIENT_BASE_PORT}212'|'
+${CLIENT_BASE_PORT}213'|'
+${CLIENT_BASE_PORT}214'|'
+${CLIENT_BASE_PORT}216'|'
+${CLIENT_BASE_PORT}217'|'
+${CLIENT_BASE_PORT}218'|'
+${CLIENT_BASE_PORT}219'|'
+${CLIENT_BASE_PORT}220'|'
+${CLIENT_BASE_PORT}221'|'
+${CLIENT_BASE_PORT}222'|'
+${CLIENT_BASE_PORT}223'|'
+${CLIENT_BASE_PORT}224'|'
+${CLIENT_BASE_PORT}225'|'
+${CLIENT_BASE_PORT}226'|'
+${CLIENT_BASE_PORT}227'|'
+${CLIENT_BASE_PORT}228'|'
+${CLIENT_BASE_PORT}229'|'
+${CLIENT_BASE_PORT}230</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}251.ClientConnPoolSize=${CLIENT_IIOP_THREAD_POOL}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}252.ClientConnPoolSize=20</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}201.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}202.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}203.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}204.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}205.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}206.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}207.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}208.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}209.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}210.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}211.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}212.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}213.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}214.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}215.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}216.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}217.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}218.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}219.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}220.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}221.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}222.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}223.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}224.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}225.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}226.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}227.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}228.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}229.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}230.ClientConnPoolSize=${CLIENT_BC_CONN_POOL_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.LocationService.Timeout=330000</SystemOptionalProperty>
+			<SystemOptionalProperty>LocalLog.SysNotify</SystemOptionalProperty>
+			<SystemOptionalProperty>${CLIENT_DEBUG_INFRA}</SystemOptionalProperty>
+			<SystemOptionalProperty>${CLIENT_DEBUG_APP}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.FlowControl=none</SystemOptionalProperty>
+			<SystemOptionalProperty>CHECK_REP_IDL=false</SystemOptionalProperty>
+			<SystemOptionalProperty>configVerbose=false</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.ExtentMapServerNameV6=${SBT_PREFIX}ExtentMapAdminServerV6</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.SmartSockets.GMDDir=log/gmd</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.SmartSockets.CacheGroup=${SBT_PREFIX}StoreAndForwardCache</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.SmartSockets.OptionsFile=../config/properties/cboe.ssconfig.cm</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.AdminPrefix=${SBT_PREFIX}</SystemOptionalProperty>
+			<SystemOptionalProperty>java.util.logging.config.file=properties/JavaLogging.properties</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.StartDefaultFileMonitors=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.NCI.DontOutputPublic=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.MI.DontOutputPublic=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.MI.OutputPrivate=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.QI.OutputPrivate=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.TPI.OutputPrivate=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.OutputUserData=true</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.FileOutput.DontOutputPublic=false</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.InstrumentorMonitor.SampleInterval=30000</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.NoTrackFilters</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.RetryCount=10000</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.ListenTimeout=100</SystemOptionalProperty>
+			<SystemOptionalProperty>prefix=${SBT_PREFIX}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCASPairName=${CLIENTNAME}${HOSTNAME}NoPair</SystemOptionalProperty>
+			<SystemOptionalProperty>ProcessWatcher.maxLifeLineRetry=75</SystemOptionalProperty>
+			<SystemOptionalProperty>LogoutQueue.Timeout=30000</SystemOptionalProperty>
+			<SystemOptionalProperty>ProcessWatcher.NameList=${PW_NAMES}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixWebServerPort=${WEBSERVERPORT}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCommandHttpPort=${COMMANDHTTPPORT}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixRemoteRouteName=${SBT_PREFIX}${FRONTEND_IDENTIFIER}v20Frontend</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCacheRemoteRouteName=${SBT_PREFIX}${FRONTEND_IDENTIFIER}FECache</SystemOptionalProperty>
+			<SystemOptionalProperty>Jms.Properties=./properties/Jms.properties</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCASLogComponentName=${CASFILENAME}v2</SystemOptionalProperty>
+			<SystemOptionalProperty>sun.rmi.dgc.client.gcInterval=0x7FFFFFFFFFFFFFFE</SystemOptionalProperty>
+			<SystemOptionalProperty>sun.rmi.dgc.server.gcInterval=0x7FFFFFFFFFFFFFFE</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixStrikePriceIniFile=../config/properties/symbol.table</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixFixServerName=${FIXSERVERPREFIX}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixFixIniFile=../config/properties/${ENGINE}.ini</SystemOptionalProperty>
+			<SystemOptionalProperty>ttFixCasIniFile=../config/properties/tt${ENGINE}.ini</SystemOptionalProperty>
+			<SystemOptionalProperty>fixMsgRateFilesDir=../${CLIENT_DIR}/log</SystemOptionalProperty>
+			<SystemOptionalProperty>msgCollectorName=${ENGINE}</SystemOptionalProperty>
+			<SystemOptionalProperty>postToEngineMapFile=../config/properties/${ENGINE}.post</SystemOptionalProperty>
+			<SystemOptionalProperty>LocalFilterOnlySessions=Underlying,W_MAIN,W_AM1,ONE_MAIN,CFE_MAIN,C2_MAIN</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.SKIP_ALL_ACL_VALIDATION</SystemOptionalProperty>
+			<SystemOptionalProperty>TTRemoteFilterOnlySessions=COF_MAIN</SystemOptionalProperty>
+			<SystemOptionalProperty>RemoteFilterOnlySessions=W_STOCK,Stock_MD</SystemOptionalProperty>
+			<SystemOptionalProperty>IOrderCacheCleanupSessions=W_STOCK</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixAdminServer=${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}</SystemOptionalProperty>
+			<SystemOptionalProperty>engineMode=$ENGINE_MODE</SystemOptionalProperty>
+			<SystemOptionalProperty>postThresholdTime=500</SystemOptionalProperty>
+			<SystemOptionalProperty>Publish_TT=true</SystemOptionalProperty>
+			<SystemOptionalProperty>TTE=local</SystemOptionalProperty>
+			<SystemOptionalProperty>Order_TTE=true</SystemOptionalProperty>
+			<SystemOptionalProperty>Quote_TTE=false</SystemOptionalProperty>
+			<SystemOptionalProperty>startHourOfDay=7</SystemOptionalProperty>
+			<SystemOptionalProperty>startMinOfHour=0</SystemOptionalProperty>
+			<SystemOptionalProperty>queueMonitorFrequency=30000</SystemOptionalProperty>
+			<SystemOptionalProperty>spreadRetryInterval=50</SystemOptionalProperty>
+			<SystemOptionalProperty>configuredSecurityExchange=${REPORT_ENVIRONMENT}</SystemOptionalProperty>
+			<SystemOptionalProperty>RoutingFixMarketDataSessions=W_MAIN,COF_MAIN,Underlying,C2_MAIN</SystemOptionalProperty>
+			<SystemOptionalProperty>middlewareNumber=100</SystemOptionalProperty>
+			<SystemOptionalProperty>loginRetryInterval=5000</SystemOptionalProperty>
+			<SystemOptionalProperty>com.javtech.stripTrailingZeroAfterDecimalPoint=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ExtentMap.NodeName=${CLIENTNAME}${HOSTNAME}CAS1</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.ChannelAdminServerName=${SBT_PREFIX}ChannelAdminServer</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.ExtentMapServerName=${SBT_PREFIX}ExtentMapAdminServer</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.TrackFiltersECName=${SBT_PREFIX}FilterNotification</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Authenticator.ServiceType=${SBT_PREFIX}SecurityServerAuthenticator</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Authorizor.ServiceType=${SBT_PREFIX}SecurityServerAuthorize</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Logout.ServiceType=${SBT_PREFIX}SecurityServerLogout</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Admin.ServiceType=${SBT_PREFIX}SecurityAdminService</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.NoNonRepSig</SystemOptionalProperty>
+			<SystemOptionalProperty>com.sun.management.jmxremote.port=${JMXREMOTEPORT}</SystemOptionalProperty>
+			<SystemOptionalProperty>com.sun.management.jmxremote.authenticate=false</SystemOptionalProperty>
+			<SystemOptionalProperty>com.sun.management.jmxremote.ssl=false</SystemOptionalProperty>
+			<SystemOptionalProperty>SMA.ImplClass=SMAResourceStandalone</SystemOptionalProperty>
+			<SystemOptionalProperty>SMA.NoORBProcessExposer</SystemOptionalProperty>
+			<SystemOptionalProperty>SMA.AdaptorServerIORFile=ior/SysManAgent${SBT_PREFIX}${HOSTNAME}.ior</SystemOptionalProperty>
+			<SystemOptionalProperty>java.security.policy=../config/properties/policy.txt</SystemOptionalProperty>
+			<SystemOptionalProperty>appia.class.loader=none</SystemOptionalProperty>
+			<SystemOptionalProperty>generateNewMsg=true</SystemOptionalProperty>
+			<SystemOptionalProperty>disableNewAck=true</SystemOptionalProperty>
+                        <SystemOptionalProperty>expressOrderSessions=W_MAIN,C2_MAIN</SystemOptionalProperty>
+                        <SystemOptionalProperty>finishedOrderMinLifeTime=30000</SystemOptionalProperty>
+                        <SystemOptionalProperty>checkFinishedMap=true</SystemOptionalProperty>
+                        <SystemOptionalProperty>checkNewQueue=true</SystemOptionalProperty>
+                        <SystemOptionalProperty>useNoWorkingOrder=true</SystemOptionalProperty>
+			<SystemOptionalProperty>Adaptor.SMAServerIORFile=ior/${SBT_PREFIX}${HOSTNAME}SMA.ior</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.InitRefURL=file:../config/ior/initrefs.ior</SystemOptionalProperty>
+			<SystemOptionalProperty>IsCasRemote=${CAS_REMOTE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ValidGroupType=ProcessGroup</SystemOptionalProperty>
+			<SystemOptionalProperty>OrderStatusBlockSizeRemote=${ORDER_STATUS_BLOCKSIZE_REMOTE}</SystemOptionalProperty>
+			<SystemOptionalProperty>OrderStatusBlockSizeLocal=${ORDER_STATUS_BLOCKSIZE_LOCAL}</SystemOptionalProperty>
+			<SystemOptionalProperty>org.omg.CORBA.ORBClass=org.omg.CORBA.ORBImplWrapper</SystemOptionalProperty>
+			<SystemOptionalProperty>org.omg.CORBA.ORBSingletonClass=org.omg.CORBA.ORBImplWrapper</SystemOptionalProperty>
+                        <SystemOptionalProperty>maxConcurrentQuotesPerClass=${CONCURRENT_QUOTES_PER_CLASS}</SystemOptionalProperty>
+                        <SystemOptionalProperty>maxFixConcurrentQuotesPerClass=${CONCURRENT_FIX_QUOTES_PER_CLASS}</SystemOptionalProperty>
+                        <SystemOptionalProperty>maxFixConcurrentOrders=${CONCURRENT_FIX_ORDERS}</SystemOptionalProperty>
+                        <SystemOptionalProperty>maxFixConcurrentOrdersPerUser=${CONCURRENT_FIX_ORDERS_PER_USER}</SystemOptionalProperty>
+			<SystemOptionalProperty>fixUserThreadSize=${FIX_USER_THREAD_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>fixOutboundUserThreadSize=${FIX_OUTBOUND_USER_THREAD_SIZE}</SystemOptionalProperty>
+			<SystemOptionalProperty>userIdPattern=${USER_ID_PATTERN}</SystemOptionalProperty>
+			<SystemOptionalProperty>NewChannelEventCacheClass=${EVENT_CACHE_CLASS}</SystemOptionalProperty>
+                        <SystemOptionalProperty>OSIsessions=${OSI_SESSIONS}</SystemOptionalProperty>
+			<SystemOptionalProperty>rateMonitorCacheSessionName=${RATE_MONITOR_CACHE_SESSION_NAME}</SystemOptionalProperty>
+			<SystemOptionalProperty>orderByIdQueryRouteFilter=${SESSION_NAME}</SystemOptionalProperty>			
+                        <SystemOptionalProperty>LogFile=${INFRA_HOME}/${CLIENT_DIR}/log/cas.log</SystemOptionalProperty>
+                        <SystemOptionalProperty>DebugFile=${INFRA_HOME}/${CLIENT_DIR}/log/cas.debug</SystemOptionalProperty>
+			<SystemOptionalProperty>MarketData=CurrentMarket</SystemOptionalProperty>
+			<SystemOptionalProperty>sendSecurityDefUDF=false</SystemOptionalProperty>
+			<SystemOptionalProperty>QUOTES_NO_IEC=${QUOTES_NO_IEC}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.ServerSelectorThreads=5</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.ClientSelectorThreads=16</SystemOptionalProperty>
+			<SystemOptionalProperty>ProcessWatcher.ChannelName=${SBT_PREFIX}ProcessWatcher</SystemOptionalProperty>
+			<SystemOptionalProperty>TurnOffTCS=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.UseManagedConnPools=false</SystemOptionalProperty>
+			<SystemOptionalProperty>AllowDynamicConnectionPoolGrowth=false</SystemOptionalProperty>
+			<SystemOptionalProperty>AllowDynamicThreadPoolGrowth=false</SystemOptionalProperty>
+			<SystemOptionalProperty>UseUserLoadManagerStartTimes=false</SystemOptionalProperty>
+			<ApplicationArgument>ClientApplicationServer</ApplicationArgument>
+			<ApplicationArgument>com.cboe.infrastructureServices.systemsManagementService.ConfigurationServiceSysManImpl</ApplicationArgument>
+			<stdoutFile>cas.stdout.out</stdoutFile>
+			<stderrFile>cas.stderr.out</stderrFile>
+		</ProcessProperties>
+		<ProcessCommands>
+			<Startup/>
+			<ShutdownOrb/>
+			<Shutdown/>
+			<refreshPOAs/>
+		</ProcessCommands>
+		<ProcessRelations>
+                        <ProcessComponent>LogDispatcher.xml</ProcessComponent>
+			<ProcessComponent>FixCAS.xml</ProcessComponent>
+			<ProcessComponent>AuditLog.xml</ProcessComponent>
+			<ProcessComponent>SecurityServiceFacade.xml</ProcessComponent>
+			<ProcessComponent>SessionManagementService.xml</ProcessComponent>
+			<ProcessComponent>EventServiceFacade.xml</ProcessComponent>
+			<ProcessComponent>CommandCallback.xml</ProcessComponent>
+			<ProcessComponent>BaseConsumerProxy.xml</ProcessComponent>
+			<ProcessComponent>ClientApplicationServer.xml</ProcessComponent>
+			<ProcessComponent>EventChannelHome.xml</ProcessComponent>
+			<ProcessComponent>GlobalThreadPool.xml</ProcessComponent>
+			<ProcessComponent>InstrumentedGlobalThreadPool.xml</ProcessComponent>
+			<ProcessComponent>HeartBeatHome.xml</ProcessComponent>
+			<ProcessComponent>UserAccessHome.xml</ProcessComponent>
+			<ProcessComponent>OrderQueryHome.xml</ProcessComponent>
+			<ProcessComponent>OrderHandlingServiceHome.xml</ProcessComponent>
+			<ProcessComponent>LightOrderHandlingServiceHome.xml</ProcessComponent>
+			<ProcessComponent>ProductConfigurationStatusConsumer.xml</ProcessComponent>
+			<ProcessComponent>SessionManagerHome.xml</ProcessComponent>
+			<ProcessComponent>StatusMonitorHome.xml</ProcessComponent>
+			<ProcessComponent>SubscriptionManagerHome.xml</ProcessComponent>
+			<ProcessComponent>SystemMarketQueryHome.xml</ProcessComponent>
+			<ProcessComponent>MarketBufferConsumerHome.xml</ProcessComponent>
+			<ProcessComponent>MarketDataServiceClientRoutingProxyHome.xml</ProcessComponent>
+			<ProcessComponent>IntermarketQueryHome.xml</ProcessComponent>
+			<ProcessComponent>UserOrderServiceHome.xml</ProcessComponent>
+			<ProcessComponent>UserQuoteServiceHomeFix.xml</ProcessComponent>
+			<ProcessComponent>UserMarketDataServiceHome.xml</ProcessComponent>
+			<ProcessComponent>UserSessionMarketDataThreadPoolHome.xml</ProcessComponent>
+			<ProcessComponent>FixSystemHealthQueryDispatcherHome.xml</ProcessComponent>
+			<ProcessComponent>UserSessionThreadPoolHome.xml</ProcessComponent>
+			<ProcessComponent>UserServiceHome.xml</ProcessComponent>
+			<ProcessComponent>WebServerHome.xml</ProcessComponent>
+			<ProcessComponent>CASOrbServiceBase.xml</ProcessComponent>
+			<ProcessComponent>CASAdminService.xml</ProcessComponent>
+			<ProcessComponent>RemoteMarketQueryHome.xml</ProcessComponent>
+			<ProcessComponent>StrikePriceHelperHome.xml</ProcessComponent>
+			<ProcessComponent>AppServerStatusManagerHome.xml</ProcessComponent>
+			<ProcessComponent>ProductConfigurationServiceHome.xml</ProcessComponent>
+			<ProcessComponent>ProductQueryServiceAdapterHome.xml</ProcessComponent>
+			<ProcessComponent>v2AppiaAdapterHome.xml</ProcessComponent>
+			<ProcessComponent>TCSProcessWatcherManagerHome.xml</ProcessComponent>
+			<ProcessComponent>UserLoadManager.xml</ProcessComponent>
+			<ProcessComponent>processes.fixcas.xml</ProcessComponent>			
+		</ProcessRelations>
+	</Process>
+	<!-- END   (${CLIENTNAME}${HOSTNAME}) CAS definitions -->
+</Processes>

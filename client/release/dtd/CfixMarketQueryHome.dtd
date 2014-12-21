@@ -1,0 +1,43 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the CfixMarketDataQueryProxyHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCfixMarketDataQueryProxyHome (CfixMarketDataQueryProxyHomeImpl*)>
+<!ATTLIST GlobalCfixMarketDataQueryProxyHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixMarketDataQueryProxyHomeImpl (CfixMarketDataQueryProxyHomeImplProperties?)>
+<!ATTLIST CfixMarketDataQueryProxyHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT CfixMarketDataQueryProxyHomeImplProperties (rateMonitorSessions?, rateMonitorInterval?, rateMonitorWindow?)>
+<!ATTLIST CfixMarketDataQueryProxyHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT rateMonitorSessions (#PCDATA)>
+<!ATTLIST rateMonitorSessions
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Identifies the sessions to set book depth rate monitor constraints for and the order that the constraints must follow. If a constraint is not desired for a particular session, set it to zero. Delimit individual sessions with a comma."
+>
+<!ELEMENT rateMonitorInterval (#PCDATA)>
+<!ATTLIST rateMonitorInterval
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the time duration call window book depth constraints for sessions. The order of constraints for session must follow the same order as the sessions are defined. Delimit individual constraints with a comma."
+>
+<!ELEMENT rateMonitorWindow (#PCDATA)>
+<!ATTLIST rateMonitorWindow
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the frequency count call window book depth constraints for sessions. The order of constraints for session must follow the same order as the sessions are defined. Delimit individual constraints with a comma."
+>

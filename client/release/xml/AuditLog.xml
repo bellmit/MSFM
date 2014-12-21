@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalAuditLogHome SYSTEM "../dtd/AuditLog.dtd">
+<GlobalAuditLogHome>
+	<AuditLogHomeImpl name="DefaultService">
+		<AuditLogHomeImplProperties>
+			<enableAudit booleanValue="${CLIENT_DEBUG_AUDIT}"/>
+		</AuditLogHomeImplProperties>
+	</AuditLogHomeImpl>
+</GlobalAuditLogHome>

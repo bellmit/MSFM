@@ -1,0 +1,50 @@
+# PERF2
+
+environment = perf2
+
+cas    = perfcas1,    01, perffe2  perffe3
+cas    = perfcas2,    01, perffe2  perffe3
+cas    = perfcas4,    01, perffe2  perffe3
+cas    = perfcas5,    01, perffe2  perffe3
+cas    = perfcas9,    01, perffe2  perffe3
+cas    = perfcas10,   01, perffe2  perffe3
+mdcas  = perfmd20,    01, perffe2  perffe3
+cfix   = perfmdcas01, 01, perffe2  perffe3
+mdcas  = perfmdcas01, 01, perffe2  perffe3
+mdx    = perfmdx10,   01, perffe2  perffe3
+mdx    = perfmdx1a,   01, perffe2  perffe3
+sacas  = sbtcas1,     01, perfgc1a perfgc1a
+cas    = sbtcas5,     01, perffe2  perffe3
+sacas  = sbtcas6,     01, perfgc1a perfgc1a
+fixcas = sbtfix1b,    01, perffe2  perffe3
+fixcas = sbtfix1b,    02, perffe2  perffe3
+fixcas = sbtfix1b,    03, perffe2  perffe3
+fixcas = sbtfix1b,    04, perffe2  perffe3
+fixcas = sbtfix1b,    05, perffe2  perffe3
+fixcas = sbtfix1b,    06, perffe2  perffe3
+fixcas = sbtfix1b,    07, perffe2  perffe3
+fixcas = sbtfix3a,    01, perffe2  perffe3
+fixcas = sbtfix3a,    02, perffe2  perffe3
+fixcas = sbtfix3a,    03, perffe2  perffe3
+fixcas = sbtfix3a,    04, perffe2  perffe3
+fixcas = sbtfix3a,    05, perffe2  perffe3
+fixcas = sbtfix3a,    06, perffe2  perffe3
+fixcas = sbtfix3a,    07, perffe2  perffe3
+tipsMdxAdapter = perfmdgca, 01
+
+# fixcas boxes destined for production, being tested in perf2
+
+fixcas = xfix1a,      01, perffe2  perffe3
+fixcas = xfix1a,      02, perffe2  perffe3
+fixcas = xfix1a,      03, perffe2  perffe3
+fixcas = xfix1a,      04, perffe2  perffe3
+fixcas = xfix1a,      05, perffe2  perffe3
+fixcas = xfix1a,      06, perffe2  perffe3
+fixcas = xfix1a,      07, perffe2  perffe3
+fixcas = xfix1b,      01, perffe2  perffe3
+fixcas = xfix1b,      02, perffe2  perffe3
+fixcas = xfix1b,      03, perffe2  perffe3
+fixcas = xfix1b,      04, perffe2  perffe3
+fixcas = xfix1b,      05, perffe2  perffe3
+fixcas = xfix1b,      06, perffe2  perffe3
+fixcas = xfix1b,      07, perffe2  perffe3

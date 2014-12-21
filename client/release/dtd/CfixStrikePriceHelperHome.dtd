@@ -1,0 +1,28 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the CasCoppeliaAdapterHomeImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCfixStrikePriceHelperHome (CfixStrikePriceHelperHomeImpl*)>
+<!ATTLIST GlobalCfixStrikePriceHelperHome 
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixStrikePriceHelperHomeImpl (CfixStrikePriceHelperHomeImplProperties)>
+<!ATTLIST CfixStrikePriceHelperHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixStrikePriceHelperHomeImplProperties (strikePriceInputFileName)>
+<!ATTLIST CfixStrikePriceHelperHomeImplProperties 
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT strikePriceInputFileName (#PCDATA)>
+<!ATTLIST strikePriceInputFileName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The ini file for the Coppelia server."
+>

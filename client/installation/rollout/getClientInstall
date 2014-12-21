@@ -1,0 +1,61 @@
+#!/bin/ksh
+# Fetch client Installation directory from development network to InfraGC.
+# Run as the infra user on the InfraGC.
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+
+SETUP_HOST=ccserv1
+SETUP_USER=cas
+
+# Error codes from/usr/include/sys/errno.h
+ENOENT=2    # No such file or directory
+EACCES=13   # Permission denied
+EINVAL=22   # Invalid argument
+
+# -------------------- Subroutines --------------------
+
+usage()
+{
+    print "Usage: $PROG sbt_environment version"
+    exit $EINVAL
+}
+
+readCommandLine()
+{
+    # Must have exactly 2 arguments
+    if [ -z "$2" ] || [ -n "$3" ] ; then
+        usage
+    fi
+
+    SBT_ENVIRONMENT=$1
+    CLIENT_VERSION=$2
+}
+
+# -------------------- Main program --------------------
+
+readCommandLine $*
+if [ -z "$RUN_DIR" ] ; then
+    print "$PROG: RUN_DIR is not defined"
+    exit $ENOENT
+fi
+if [ ! -w $RUN_DIR/tmp ] ; then
+    print "$PROG: Cannot write into $RUN_DIR/tmp"
+    exit $EACCES
+fi
+
+unalias rm
+
+SETUP_DIR=Install.$CLIENT_VERSION.$SBT_ENVIRONMENT
+WORKDIR=Install.$CLIENT_VERSION
+WORKPATH=$RUN_DIR/tmp/$WORKDIR
+
+if [ -d $WORKPATH ] ; then
+    chmod u+w $WORKPATH/*
+else
+    mkdir -p $WORKPATH
+fi
+cd $WORKPATH
+
+scp ${SETUP_USER}@${SETUP_HOST}:${SETUP_DIR}/* .

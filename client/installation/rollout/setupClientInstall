@@ -1,0 +1,105 @@
+#!/bin/ksh
+# Set up client Installation directory.
+# Run on ccserv2 (in the development network).
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+
+SETUP_BASE_DIR=/home/cas
+CLIENT_BASE=/vobs/dte/client
+SCRIPTS_DIR=$CLIENT_BASE/installation/rollout
+
+EINVAL=22
+
+# -------------------- Subroutines --------------------
+
+usage()
+{
+    print "Usage: $PROG sbt_environment version"
+    exit $EINVAL
+}
+
+readCommandLine()
+{
+    if [ -z "$2" ] || [ -n "$3" ] ; then
+        usage
+    fi
+
+    SBT_ENVIRONMENT=$1
+    CLIENT_VERSION=$2
+}
+
+# -------------------- Main program --------------------
+
+readCommandLine $*
+
+unalias rm
+
+SETUP_DIR=Install.$CLIENT_VERSION.$SBT_ENVIRONMENT
+SETUP_PATH=$SETUP_BASE_DIR/$SETUP_DIR
+
+mkdir -p -m777 $SETUP_PATH
+cd $SETUP_PATH
+
+Error=0
+for file in \
+    $SCRIPTS_DIR/installClient \
+    $SCRIPTS_DIR/installCAS \
+    $SCRIPTS_DIR/installFIXCAS \
+    $SCRIPTS_DIR/installMDCAS \
+    $SCRIPTS_DIR/calcEngineParms \
+    $CLIENT_BASE/scripts/production/checkHosts \
+    $CLIENT_BASE/installation/updateRemoteFlag \
+    $CLIENT_BASE/installation/remoteCASes.list
+do
+    cp $file .
+    rc=$?
+    if [ $rc -ne 0 ] ; then
+        Error=$rc
+    fi
+done
+if [ $Error -ne 0 ] ; then
+    echo "$PROG: Quitting"
+    exit $Error
+fi
+
+cat - >vars.include <<-VARS
+	export SBT_ENVIRONMENT=$SBT_ENVIRONMENT
+	export CLIENT_VERSION=$CLIENT_VERSION
+VARS
+
+cat - >sample.install <<-INSTALL
+	# Sample rollout config file for $CLIENT_VERSION in $SBT_ENVIRONMENT
+
+	sbt_environment = $SBT_ENVIRONMENT
+	client = $CLIENT_VERSION
+	infra = # fill in infra version or comment out this line
+	jdk = # fill in jdk version or comment out this line
+
+	# Processes to install. Each line has processname, then flags. If you
+	# do not specify any flags from icrj, all flags are assumed. Flags are
+	# i - install new Infra
+	# c - install new Client
+	# r - install new initrefs.ior
+	# j - use new jdk
+	###
+	# n - do not start engine after installation
+
+	cas01v2cas0014
+	fixcas03v2fix1a
+	sacas01v2sacas2
+	mdcas01v2mdcas98
+	cfix05v2prdcfix1
+INSTALL
+
+# Make sure that anyone at all can remove all these files in the future
+chmod a+w *
+
+cat - <<-DONE
+	----------------------------------------
+	Finished creating $SETUP_PATH.
+	Next step is to manually create installation config files
+	(see sample.install) and setContext files in this directory.
+	----------------------------------------
+DONE

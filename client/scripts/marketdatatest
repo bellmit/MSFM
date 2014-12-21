@@ -1,0 +1,107 @@
+#!/bin/ksh
+# Run a test of subscribing for market data. Script can take command line arguments.
+# Either command line arguments or a property file must be specified to run the test.
+# If propery file as well as command line arguments are specified , command line arguments takes the precidence.
+
+
+export CLASS_PATH=
+export PROPERTY_FILE=
+export DEFAULT_RUN=
+export CREATE_PROPERTY_FILE=
+export APPLICATION=com.cboe.application.test.MarketDataTest
+export ORB_PORT=19001
+export IIOP_PORT=19006
+
+function showUsage {
+        echo " "
+        echo " Usage 1: $0 -f propertyfile "
+        echo " Usage 2: $0 -c "
+        echo " Usage 3: $0 -d "
+        echo "  -f propertyfile = specify the property file for this run.           e.g.$0 -f /tmp/marketdatatest.properties "
+        echo "  -c              = creat a sample property file in /tmp directory.   e.g.$0 -c "
+        echo "  -d              = run market data test with default values.         e.g $0 -d "
+}
+
+function setClassPath {
+        if [ -z $RUN_DIR ] ; then
+            cd
+            . ./.profile >/dev/null 2>&1
+        fi
+        cd $RUN_DIR
+
+        # Get classpath out of file processes.$CLIENT_TYPE.xml
+
+        CLASS_PATH=
+        typeset line=
+        typeset done=
+        typeset started=
+        cat ../v2run_dir/properties/xml/processes.${CLIENT_TYPE}.xml | while read line ; do
+            if [ -z "$done" ] ; then
+                if [[ "$line" = *classpath* ]] ; then
+                    started=yes
+                    CLASS_PATH=$line
+                elif [ -n "$started" ] ; then
+                    CLASS_PATH="$CLASS_PATH$line"
+                    if [[ "$line" = */JavaOptionalProperty* ]] ; then
+                        done=yes
+                    fi
+                fi
+            fi # -z done
+        done
+
+        # Remove end and start tags, replace variable with directory name
+        CLASS_PATH=$( echo "$CLASS_PATH" | sed 's#</JavaOptionalProperty>##;s#^.*<JavaOptionalProperty.*>##;s/\${CLIENT_DIR}/v2run_dir/g' )
+}
+
+
+if [ $# -ge 1 ] ; then
+    while getopts "cdhgf:o:i:" opt; do
+        case $opt in
+            f)  test -f `pwd`/$OPTARG && OPTARG=`pwd`/$OPTARG
+ 		if ! [ -f $OPTARG  ]; then
+                    echo  Property file $OPTARG  not found 
+                    exit -1
+                 fi
+		PROPERTY_FILE="-DTest.properties=$OPTARG"
+                ;;
+            c)  CREATE_PROPERTY_FILE='-DTest.CreatePropertyFile=true'
+                ;;
+            o)  ORB_PORT=$OPTARG
+                ;;
+            i)  IIOP_PORT=$OPTARG
+                ;;
+            h)  showUsage
+                exit -1
+                ;;
+            d)  DEFAULT_RUN='-DTest.DefaultRun=true'
+                ;;
+            [?]) echo "Unrecognized parameter::$1"
+                exit -1
+                ;;
+        esac
+    done
+else
+    showUsage
+    exit -1
+fi
+
+
+setClassPath
+if [ -z $CLASS_PATH ] ; then
+    echo "Error finding the classpth"
+    exit -1
+fi
+
+MEM=" -server -Xmx1000M -Xms600M -XX:NewSize=400m -XX:MaxNewSize=400m -XX:SurvivorRatio=12 -XX:MaxTenuringThreshold=4  -verbose:gc "
+
+ORB=" -Dorg.omg.CORBA.ORBClass=org.omg.CORBA.ORBImplWrapper  -Dorg.omg.CORBA.ORBSingletonClass=org.omg.CORBA.ORBImplWrapper  -DORB.BindingSequence=Iiop:Local -DORB.PortNum=$ORB_PORT -DORB.IIOPTransport.PortNum=$IIOP_PORT -DORB.OrbName=marketdataclient  -DORB.LocationService.Timeout=330000      "
+
+
+echo java $MEM $ORB  $CLASS_PATH $PROPERTY_FILE $CREATE_PROPERTY_FILE $DEFAULT_RUN  $APPLICATION 
+
+java $MEM $ORB  $CLASS_PATH  $PROPERTY_FILE $CREATE_PROPERTY_FILE $DEFAULT_RUN  $APPLICATION   
+
+result=$?
+exit $result
+
+

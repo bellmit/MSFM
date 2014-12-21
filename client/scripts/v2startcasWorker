@@ -1,0 +1,8 @@
+#!/bin/ksh
+# v2startcas - script to start cas01
+
+THIS_CLIENT=cas
+
+. $( dirname $0 )/ClientFunctions
+clearQuickstart
+startClient

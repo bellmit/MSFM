@@ -1,0 +1,104 @@
+
+<project name="ant for sbt.client" default="all">
+
+    <description>
+    This is the top level ant build file for the SBT client vob
+    </description>
+
+    <!-- ant.file is the current file -->
+    <echo>Building ${ant.file}</echo>
+
+
+    <!-- top level sbt build -->
+    <import file="/vobs/dte/sbtcommon/build/sbtcommon-build.xml"/>
+
+    <!-- **************************************************************
+            Init dirs based on OS.
+    ******************************************************************* -->
+    <target name="-client.Init" depends="-Init" description="set environment variables">
+
+        <condition property="sbt.client.project.dir" value="../../client">
+            <isset property="this.is.windows"/>
+        </condition>
+
+        <condition property="sbt.client.project.dir" value="${dte.root}/client">
+            <isset property="this.is.unix"/>
+        </condition>
+
+    <!-- **************************************************************
+            path name locations
+    ******************************************************************* -->
+
+        <!-- CLIENT VOB SPECIFIC SOURCE LOCATIONS -->
+
+        <property name="sbt.client.classes.dir"        location="${sbt.client.project.dir}/classes"/>
+        <property name="sbt.client.java.dir"           location="${sbt.client.project.dir}/Java"/>
+        <property name="sbt.client.build.dir"          location="${sbt.client.project.dir}/build"/>
+        <property name="sbt.client.release.dir"        location="${sbt.client.project.dir}/release"/>
+        <property name="sbt.client.properties.dir"     location="${sbt.client.project.dir}/properties"/>
+        <property name="sbt.client.xml.dir"            location="${sbt.client.properties.dir}/xml"/>
+        <property name="sbt.client.dtd.dir"            location="${sbt.client.properties.dir}/dtd"/>
+        <property name="sbt.client.idl.dir"            location="${sbt.client.project.dir}/idl"/>
+        <property name="sbt.client.idl.classes"        location="${sbt.client.idl.dir}/trc_output/classes"/>
+
+        <property name="build.info.dir"         location="${sbt.client.classes.dir}/com/cboe/sbt/framework"/>
+
+
+        <!-- REDUNDANT -->
+	<!-- property name="client.common.jarname"              value="client_common.jar"/>
+        <property name="client.extensions.jarname"          value="client_extensions.jar"/>
+        <property name="client.extensions-impls.jarname"    value="client_extensions_impls.jar"/>
+        <property name="client.impls.jarname"               value="client_impls.jar"/>
+        <property name="client.interceptors.jarname"        value="client_interceptors.jar"/>
+        <property name="client.interfaces.jarname"          value="client_interfaces.jar"/>
+        <property name="client.proxies.jarname"             value="client_proxies.jar"/>
+        <property name="client.status.jarname"              value="client_status.jar"/>
+        <property name="client.idl.jarname"                 value="client_idl.jar"/ -->
+
+
+        <!-- CLIENT VOB SPECIFIC JAR LOCATIONS -->
+	<property name="client.common.rel.jar"              location="${sbt.client.release.dir}/client_common.jar"/>
+        <property name="client.common.class.jar"            location="${sbt.client.classes.dir}/client_common.jar"/>
+        <property name="client.extensions.rel.jar"          location="${sbt.client.release.dir}/client_extensions.jar"/>
+        <property name="client.extensions.class.jar"        location="${sbt.client.classes.dir}/client_extensions.jar"/>
+        <property name="client.extensions-impls.rel.jar"    location="${sbt.client.release.dir}/client_extensions_impls.jar"/>
+        <property name="client.extensions-impls.class.jar"  location="${sbt.client.classes.dir}/client_extensions_impls.jar"/>
+        <property name="client.impls.rel.jar"               location="${sbt.client.release.dir}/client_impls.jar"/>
+        <property name="client.impls.class.jar"             location="${sbt.client.classes.dir}/client_impls.jar"/>
+        <property name="client.interceptors.rel.jar"        location="${sbt.client.release.dir}/client_interceptors.jar"/>
+        <property name="client.interceptors.class.jar"      location="${sbt.client.classes.dir}/client_interceptors.jar"/>
+        <property name="client.interfaces.rel.jar"          location="${sbt.client.release.dir}/client_interfaces.jar"/>
+        <property name="client.interfaces.class.jar"        location="${sbt.client.classes.dir}/client_interfaces.jar"/>
+        <property name="client.proxies.rel.jar"             location="${sbt.client.release.dir}/client_proxies.jar"/>
+        <property name="client.proxies.class.jar"           location="${sbt.client.classes.dir}/client_proxies.jar"/>
+        <property name="client.status.rel.jar"              location="${sbt.client.release.dir}/client_status.jar"/>
+        <property name="client.status.class.jar"            location="${sbt.client.classes.dir}/client_status.jar"/>
+        <property name="client.idl.rel.jar"                 location="${sbt.client.release.dir}/client_idl.jar"/>
+        <property name="client.idl.class.jar"               location="${sbt.client.classes.dir}/client_idl.jar"/>
+
+        <property name="build.info.file"        value="CatResource.txt"/>
+        <property name="configspec.class"       value="com.cboe.client.framework.CatResource"/>
+
+        <property name="compile.debug"          value="true"/>
+        <property name="compile.verbose"        value="true"/>
+
+    </target>
+
+
+    <!-- **************************************************************
+            Compile and Build Core Jars
+    ******************************************************************* -->
+    <target name="Compile-Full"
+        description="Build production (optimized, non-debug) version of the code"
+            depends="-Init,Clean,-CompileCode,-CopyBuild">
+    </target>
+
+    <target name="Compile-Incremental"
+        description="Build production (optimized, non-debug) version of the code WITHOUT CLEANING"
+            depends="-Init,-CompileCode,-CopyBuild">
+    </target>
+
+
+</project>
+
+

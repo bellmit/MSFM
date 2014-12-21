@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserOrderQueryHome SYSTEM "../dtd/OrderQueryHome.dtd">
+<GlobalUserOrderQueryHome>
+	<UserOrderQueryHomeImpl name="DefaultService">
+		<UserOrderQueryHomeImplProperties>
+			<useOrderQueryService booleanValue="true"/>
+			<filterAuctionEventsByUser booleanValue="false"/>
+			<auctionCallbackTimeout>2000</auctionCallbackTimeout>
+		</UserOrderQueryHomeImplProperties>
+	</UserOrderQueryHomeImpl>
+</GlobalUserOrderQueryHome>

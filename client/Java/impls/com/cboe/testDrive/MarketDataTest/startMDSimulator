@@ -1,0 +1,54 @@
+#!/bin/ksh
+#
+# startMDSimulator start the simulation of currentMarket, underlying recap and ticker
+# author: Jing Chen
+#
+
+PREFIX=$SBT_PREFIX
+NODE_NAME=prdbc20V2HybridTradeServer
+
+function showUsage {
+	echo " "
+	echo "Usage: $0 [-p PortNumber] [-t CM||UR||UT] -h"
+	echo "    -p : Mandatory.  Specify port number <number>"
+	echo "    -t : Mandatory.  Specify market data type"
+	echo "          CM: CurrentMarket"
+        echo "          UR: Underlying recap"
+	echo "          UT: Underlying ticker"
+	echo "    -h : help."
+}
+
+if [ $# -eq 0 ]; then
+	showUsage;
+	exit -1
+fi
+
+while getopts :p:t:h c
+do
+	case $c in
+	p) PORT=$OPTARG
+		;;
+        t) case $OPTARG in
+		"CM") PUBLISH_TYPE="-CM"
+		      ;;
+		"UR") PUBLISH_TYPE="-UR"
+		      ;;
+		"UT") PUBLISH_TYPE="-UT"
+		      ;;
+		*)    echo "Unrecognized publish type::$OPTARG"
+		      exit -1
+		      ;;	
+	    esac
+	    ;;
+	h) showUsage
+	   exit -1
+	   ;;
+	?) echo "Unrecognized parameter::$1"
+	   exit -1
+	   ;;
+	esac
+done
+
+CMD_ARG="-DPropertyPrefix=${SBT_PREFIX}" 
+CMD_ARG="${CMD_ARG} -DORB.OrbName=${SBT_PREFIX}MDSimulator -DORB.PortNum=$PORT -DORB.InitRefURL=file:///sbt/prod/infra/run_dir/ior/initrefs.ior -DEventService.SmartSockets.OptionsFile=$RUN_DIR/tmp/cboe.ssconfig.cm -DEventService.Admin.AdminPrefix=${SBT_PREFIX} -DEventService.Admin.ChannelAdminServerName=${SBT_PREFIX}ChannelAdminServer -DEventService.Admin.ExtentMapServerNameV6=${SBT_PREFIX}ExtentMapAdminServerV6 -DEventService.Admin.SecChannelAdminServerName=${SBT_PREFIX}ChannelAdminServerSecondary -DEventService.Admin.SecExtentMapServerName=${SBT_PREFIX}ExtentMapAdminServerSecondary -DExtentMap.NodeName=prdbc20V2HybridTradeServer -DInstrumentationService.ChannelName=${SBT_PREFIX}InstrumentationChannel -DEventService.StoreAndForwardCache.CacheGroup=${SBT_PREFIX}StoreAndForwardCache -DEventService.TrackFiltersECName=${SBT_PREFIX}FilterNotification -DCHECK_REP_IDL=false -Xnoclassgc"
+java ${CMD_ARG} -Xnoclassgc com.cboe.testDrive.MarketDataTest.MarketDataSimulator MarketDataSimulator.properties ${PUBLISH_TYPE}

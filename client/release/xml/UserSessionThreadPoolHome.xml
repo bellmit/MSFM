@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserSessionThreadPoolHome SYSTEM "../dtd/UserSessionThreadPoolHome.dtd">
+<GlobalUserSessionThreadPoolHome>
+	<UserSessionThreadPoolHomeImpl name="DefaultService">
+		<UserSessionThreadPoolHomeImplProperties>
+			<UserSessionThreadPoolSize>5</UserSessionThreadPoolSize>
+			<UserRoleOverride>C</UserRoleOverride>
+			<ThreadPoolSizeOverride>1</ThreadPoolSizeOverride>
+		</UserSessionThreadPoolHomeImplProperties>
+	</UserSessionThreadPoolHomeImpl>
+</GlobalUserSessionThreadPoolHome>

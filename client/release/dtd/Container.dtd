@@ -1,0 +1,26 @@
+<!-- Import the reusable elments 
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+Already done by the ff.dtd
+-->
+
+<!ELEMENT BOContainer (BOContainerProperties, BOHome*)> 
+<!ATTLIST BOContainer  type	 %typeConstraints;  #FIXED 'ManagedResource'
+	name		CDATA	 #REQUIRED
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT BOContainerProperties  (containerImpl, persistentBrokerName?, logServiceComponent?,  routeName? )>
+<!ATTLIST BOContainerProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT containerImpl EMPTY>
+<!ATTLIST containerImpl  type  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;  #FIXED 'readWrite'
+	propertyType   %propertyTypes; #FIXED 'enum'
+	implClassName	 ( com.cboe.infrastructureServices.foundationFramework.BOContainer )  #REQUIRED
+	propertyValue CDATA	 #FIXED 'implClassName' > 
+
+<!ELEMENT routeName ( #PCDATA )>
+<!ATTLIST routeName  type	  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string' 
+	description CDATA #FIXED 'Not sure about the purpose of this property.' >

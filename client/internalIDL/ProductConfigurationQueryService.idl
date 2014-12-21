@@ -1,0 +1,67 @@
+#ifndef ProductConfigurationQueryService_idl
+#define ProductConfigurationQueryService_idl
+
+#include "product.idl"
+#include "exceptions.idl"
+
+module internalBusinessServices {
+
+    interface ProductConfigurationQueryService {
+    product::GroupStructSequence getSuperGroupsForGroup( in product::GroupKey group  )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException);
+
+    product::GroupStructSequence getSubGroupsForGroup( in product::GroupKey group  )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException);
+
+    product::GroupStructSequence getGroupsByType( in product::GroupType type )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException );
+
+   product::GroupKeySequence getGroupKeysForProductClass( in cmiProduct::ClassKey classKey )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException );
+
+    product::GroupStructSequence getGroupsForProductClass( in cmiProduct::ClassKey classKey )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException );
+
+    cmiProduct::ClassKeySequence getProductClassesForGroup( in string groupName )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException );
+
+    cmiProduct::ClassKeySequence getProductClassesForGroupByKey( in product::GroupKey groupKey )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException );
+
+    product::GroupTypeStructSequence getGroupTypes()
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException );
+
+    product::GroupKey getGroupKey( in string groupName )
+            raises( exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException );
+    };
+};
+#endif
+

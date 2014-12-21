@@ -1,0 +1,29 @@
+#!/bin/ksh
+
+# -------------------- Constants --------------------
+
+ENGINE=${1:-v2run_dir}
+TAB='	'
+PROG=`basename $0`
+
+# -------------------- Main program --------------------
+
+if [ "$1" = "-h" ] ; then
+    echo "Usage: $PROG [ directory ]"
+    echo "   directory is under \$INFRA_HOME (defaults to v2run_dir)"
+    exit 1
+fi
+
+if [ -z $RUN_DIR ] ; then
+    HERE=`pwd`
+    cd
+    . ./.profile 2>/dev/null
+    cd $HERE
+fi
+
+cd $INFRA_HOME/$ENGINE/log
+INPUT=`ls -1rt startsh* | tail -1`
+grep -i '<.*usersessionthreadpool' <$INPUT | grep -v Parser | \
+  cut -d'<' -f5  | \
+  perl -ne '/[^,]*,[^,]*,([^@]*)@/ && (print "$1\n");' | \
+  sort -u | tr / "$TAB"

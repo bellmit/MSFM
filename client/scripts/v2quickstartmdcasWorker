@@ -1,0 +1,15 @@
+#!/bin/ksh
+# v2quickstartmdcas - script to quickstart mdcas${1}
+# usage : v2quickstartmdcas 01
+
+if [[ "$1" != [0-9][0-9] ]] ; then
+    print -u2 "Usage: $( basename $0 ) <engineNumber>"
+    exit 1
+fi
+
+ENGINE=mdcas${1}
+THIS_CLIENT=mdcas
+
+. ClientFunctions
+setQuickstart
+startClient

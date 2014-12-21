@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLoggingService SYSTEM "${RUN_DIR}/properties/dtd/logging.dtd">
+<GlobalLoggingService name="ACASLoggingService1">
+    <!-- ************************* Version 2 SACAS logging client ************************* -->
+	<LoggingServiceClient name="ACASFile2Client">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="SecurityLogger">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>SystemAdminAgent2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties>
+					<maxMessageBytesProperty>4096</maxMessageBytesProperty>
+					<persistenceFilePathProperty>../v2sacas01/log/ACASQueuePrimary.ser</persistenceFilePathProperty>
+				</QueueProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="nonRepudiation"/>
+					</FilterProperties>
+				</Filter>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="audit"/>
+					</FilterProperties>
+				</Filter>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>SystemAdminAgent2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="audit"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="nonRepudiation"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<LoggingComponent name="ACASFile2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>SystemAdminAgent2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>SystemAdminDebug2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>SystemAdminDebug2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>SystemAdminDebug2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="SystemAdminAgent2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2sacas01/log/acas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2sacas01/log/acas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="SystemAdminDebug2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2sacas01/log/acas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2sacas01/log/acas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository2">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties>
+					<maxMessageBytesProperty>4096</maxMessageBytesProperty>
+					<persistenceFilePathProperty>../v2sacas01/log/ACASNonRepudiationPrimary.ser</persistenceFilePathProperty>
+				</QueueProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="nonRepudiation"/>
+					</FilterProperties>
+				</Filter>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* Standard Message Catalog ************************* -->
+	<StandardMessageCatalog name="StandardMessageCatalog1">
+		<StandardMessageCatalogProperties>
+			<StandardLogMessageProperty>Non-standard message.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Failure occurred while trying to read a file.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Log message generated in response to a management event.</StandardLogMessageProperty>
+		</StandardMessageCatalogProperties>
+	</StandardMessageCatalog>
+</GlobalLoggingService>

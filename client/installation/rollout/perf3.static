@@ -1,0 +1,54 @@
+# PERF3
+
+environment = perf3
+
+cas    = perf3cas4,    01, perf3fe1  perf3fe2
+cas    = perf3cas5,    01, perf3fe1  perf3fe2
+cas    = perf3cas6,    01, perf3fe1  perf3fe2
+cas    = perf3cas7,    01, perf3fe1  perf3fe2
+cas    = perf3cas8,    01, perf3fe1  perf3fe2
+cas    = perf3cas9,    01, perf3fe1  perf3fe2
+cas    = perf3cas10,   01, perf3fe1  perf3fe2
+cas    = perf3cas11,   01, perf3fe1  perf3fe2
+cas    = perf3cas12,   01, perf3fe1  perf3fe2
+cas    = perf3cas13,   01, perf3fe1  perf3fe2
+cas    = perf3cas14,   01, perf3fe1  perf3fe2
+mdcas  = perf3mds,     01, perf3fe1  perf3fe2
+cfix   = perf3cfix,    01, perf3fe1  perf3fe2
+mdx    = perf3mdx1,    01, nofe1 nofe2
+mdx    = perf3mdx2,    01, nofe1 nofe2
+sacas  = perf3sa1,     01, perf3gc1a perf3gc1b
+sacas  = perf3sa2,     01, perf3gc1a perf3gc1b
+fixcas = perf3fix1,    01, perf3fe1  perf3fe2
+fixcas = perf3fix1,    02, perf3fe1  perf3fe2
+fixcas = perf3fix1,    03, perf3fe1  perf3fe2
+fixcas = perf3fix1,    04, perf3fe1  perf3fe2
+fixcas = perf3fix1,    05, perf3fe1  perf3fe2
+fixcas = perf3fix1,    06, perf3fe1  perf3fe2
+fixcas = perf3fix1,    07, perf3fe1  perf3fe2
+fixcas = perf3fix1,    08, perf3fe1  perf3fe2
+fixcas = perf3fix1,    09, perf3fe1  perf3fe2
+fixcas = perf3fix1,    10, perf3fe1  perf3fe2
+fixcas = perf3fix1,    11, perf3fe1  perf3fe2
+fixcas = perf3fix1,    12, perf3fe1  perf3fe2
+fixcas = perf3fix1,    13, perf3fe1  perf3fe2
+fixcas = perf3fix1,    14, perf3fe1  perf3fe2
+fixcas = perf3fix1,    15, perf3fe1  perf3fe2
+fixcas = perf3fix2,    01, perf3fe1  perf3fe2
+fixcas = perf3fix2,    02, perf3fe1  perf3fe2
+fixcas = perf3fix2,    03, perf3fe1  perf3fe2
+fixcas = perf3fix2,    04, perf3fe1  perf3fe2
+fixcas = perf3fix2,    05, perf3fe1  perf3fe2
+fixcas = perf3fix2,    06, perf3fe1  perf3fe2
+fixcas = perf3fix2,    07, perf3fe1  perf3fe2
+fixcas = perf3fix2,    08, perf3fe1  perf3fe2
+fixcas = perf3fix2,    09, perf3fe1  perf3fe2
+fixcas = perf3fix2,    10, perf3fe1  perf3fe2
+fixcas = perf3fix2,    11, perf3fe1  perf3fe2
+fixcas = perf3fix2,    12, perf3fe1  perf3fe2
+fixcas = perf3fix2,    13, perf3fe1  perf3fe2
+fixcas = perf3fix2,    14, perf3fe1  perf3fe2
+fixcas = perf3fix2,    15, perf3fe1  perf3fe2
+
+tipsMdxAdapter = perf3mdgca, 01
+tipsMdxAdapter = perf3mdgcb, 01

@@ -1,0 +1,296 @@
+#ifndef PAR_IDL
+#define PAR_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 3.2
+//
+// Copyright © 1999-2007 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmi.idl"
+#include "Util.idl"
+#include "order.idl"
+#include "quote.idl"
+#include "cmiOrder.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+#include "ohsConsumers.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module par
+{
+    interface ParOrderManagementService
+    {
+        void changeRegisteredUserPassword(in string userId, in string oldPassword, in string newPassword)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+            );
+
+        void subscribeParOrdersForManualHandling(in ohsConsumers::OrderRoutingConsumer parCallback,
+                                              in boolean gmdCallback)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        void unSubscribeParOrdersForManualHandling()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        void publishAllParMessagesForDestination()
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::AuthorizationException
+	     );
+        void acceptManualCancelReport(
+            in order::OrderRoutingParameterStruct orderRouting,
+            in order::ManualCancelReportStructSequence cancelReports,
+            in cmiProduct::ProductKey productKey,
+            in long transactionSequenceNumber)
+            
+            raises(
+            exceptions::SystemException,
+            exceptions::CommunicationException,
+            exceptions::DataValidationException,
+            exceptions::NotFoundException,
+            exceptions::AuthorizationException,
+            exceptions::NotAcceptedException,
+            exceptions::TransactionFailedException
+         );
+
+        void acceptManualFillReportV2(
+			in short activityType,
+			in order::OrderRoutingParameterStruct orderRouting,
+	 		in order::ManualFillStructV2Sequence fillReports,
+	 		in long transactionSequenceNumber)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptPrintRequest(
+			in order::OrderRoutingParameterStruct orderRouting,
+			in cmiOrder::OrderIdStruct orderID,
+			in cmiSession::TradingSessionName sessionName,
+			in long productKey,
+			in long long requestTime,
+			in cmiUtil::LongSequence legPrintVolume,
+			in long printQuantity,
+			in short printRequestType)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptManualOrderReturn(
+			in order::ManualMarketBrokerDataStruct marketData,
+			in order::OrderRoutingParameterStruct orderRouting,
+			in cmiOrder::OrderIdStruct orderID,
+			in cmiSession::TradingSessionName sessionName,
+			in cmiProduct::ProductKey productKey,
+			in order::OrderHandlingInstructionStruct orderHandling,
+			in cmiUtil::LongSequence legMaxExcutionVolume,
+			in long long requestTime,
+			in short activityType)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptVolumeChange(
+			in order::OrderRoutingParameterStruct orderRouting,
+			in cmiOrder::OrderIdStruct orderID,
+			in cmiSession::TradingSessionName sessionName,
+			in cmiProduct::ProductKey productKey,
+			in long changeVolume,
+			in long long requestTime)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptPrintCancel(
+			in order::OrderRoutingParameterStruct orderRoutingStruct,
+			in order::ManualCancelRequestStruct cancelRequest,
+			in cmiProduct::ProductKey productKey)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptPrintCancelReplace(
+			in order::OrderRoutingParameterStruct orderRoutingStruct,
+			in order::ManualCancelRequestStruct cancelRequest,
+			in cmiOrder::OrderIdStruct orderID,
+			in cmiProduct::ProductKey productKey)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptManualFillTimeout(
+			in order::OrderRoutingParameterStruct orderRoutingStruct,
+			in order::ManualFillStructSequence fillReport,
+			in short activityType,
+			in long transactionSequenceNumber)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+        void acceptManualOrderReturnTimeout(
+			in order::ManualMarketBrokerDataStruct marketData,
+			in order::OrderRoutingParameterStruct orderRouting,
+			in cmiOrder::OrderIdStruct orderID,
+			in cmiSession::TradingSessionName sessionName,
+			in cmiProduct::ProductKey productKey,
+			in long long requestTime,
+			in order::OrderHandlingInstructionStruct orderHandling,
+			in long quantity,
+			in cmiUtil::LongSequence legQuantities,
+			in short activityType)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::NotFoundException,
+	     	exceptions::AuthorizationException,
+	       	exceptions::NotAcceptedException,
+	      	exceptions::TransactionFailedException
+		);
+
+
+  	void registerUser(in string userId, in string password)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::AuthorizationException,
+		exceptions::AuthenticationException,
+	       	exceptions::NotFoundException
+		);
+
+    
+	void unRegisterUser(in string userId)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	    	exceptions::DataValidationException,
+	     	exceptions::AuthorizationException,
+		exceptions::AuthenticationException,
+	       	exceptions::NotFoundException
+		);
+
+	void setParUserPreferences(in string userId, in cmiUser::PreferenceStructSequence preferences)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+	void removeParUserPreference(in string userId, in cmiUser::PreferenceStructSequence preferences)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+        cmiUser::PreferenceStructSequence getAllParUserPreferences(in string userId)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+	cmiUser::PreferenceStructSequence getParUserPreferences(in string userId, in string prefix)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+	void removeParUserPreferencesByPrefix(in string userId, in string prefix)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+	cmiUser::PreferenceStructSequence getAllParSystemPreferences(in string userId)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+	cmiUser::PreferenceStructSequence getParSystemPreferencesByPrefix(in string userId, in string prefix)
+            raises(
+	    	exceptions::SystemException,
+	    	exceptions::CommunicationException,
+	     	exceptions::AuthorizationException,
+	    	exceptions::DataValidationException
+		);
+
+    };
+   
+};
+
+#endif
+

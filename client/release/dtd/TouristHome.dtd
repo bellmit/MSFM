@@ -1,0 +1,42 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the CasCoppeliaAdapterHomeImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalTouristHome (TouristHomeImpl*)>
+<!ATTLIST GlobalTouristHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT TouristHomeImpl (TouristHomeImplProperties, TouristHomeImplCommands?)>
+<!ATTLIST TouristHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT TouristHomeImplProperties (TouristPortNumber?)>
+<!ATTLIST TouristHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT TouristPortNumber (#PCDATA)>
+<!ATTLIST TouristPortNumber type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Tourist Port number for the Engine."
+>
+<!ELEMENT TouristHomeImplCommands (executeTourist)>
+<!ATTLIST TouristHomeImplCommands
+         type        %typeConstraints;   #FIXED      'ManagedCommands'
+>
+<!ELEMENT executeTourist (touristString) >
+<!ATTLIST executeTourist
+    type        %typeConstraints;   #FIXED      'ManagedCommand'
+	description CDATA               #FIXED      'Execute Tourist'
+>
+<!ELEMENT touristString ANY >
+<!ATTLIST touristString
+         type            %typeConstraints;   #FIXED  'ManagedParameter'
+		 parameterType   %propertyTypes;     #FIXED 'string'
+		 description     CDATA               #FIXED 'Tourist String'
+>

@@ -1,0 +1,245 @@
+
+<project name="ant for client.Java.test" default="all">
+
+    <description>
+    This ant build file compiles and run the tests under /vobs/dte/client/Java/test
+    </description>
+
+    <!-- ant.file is the current file -->
+    <echo>Building ${ant.file}</echo>
+
+    <!-- top level client build -->
+    <import file="/vobs/dte/client/build/client-build.xml"/>
+
+    <!-- **************************************************************
+            Init dirs based on OS.
+    ******************************************************************* -->
+    <target name="-client.test.Init" depends="-client.Init" description="set environment variables">
+
+        <condition property="sbt.client.test.project.dir" value="../../client">
+            <isset property="this.is.windows"/>
+        </condition>
+
+        <condition property="sbt.client.test.project.dir" value="${sbt.client.java.dir}/test">
+            <isset property="this.is.unix"/>
+        </condition>
+
+	
+    <!-- **************************************************************
+            path name locations
+    ******************************************************************* -->
+
+        <!-- CLIENT TEST SPECIFIC SOURCE LOCATIONS -->
+
+        <property name="sbt.client.test.classes.dir"    location="${sbt.client.classes.dir}/test"/>
+        <property name="coverage.classes.dir"           location="${sbt.client.classes.dir}/coverage-classes"/>
+        <property name="sbt.client.test.reports.dir"    location="${sbt.client.test.project.dir}/reports"/>
+        <property name="sbt.client.test.project.report" location="${sbt.client.test.reports.dir}/junit-noframes.html"/>
+
+        <!-- CLIENT TEST SPECIFIC JAR LOCATIONS -->
+        <property name="sbt.client.test.rel.jar"              location="${sbt.client.release.dir}/client_test.jar"/>
+        <property name="sbt.client.test.class.jar"            location="${sbt.client.test.classes.dir}/client_test.jar"/>
+
+        <!-- **************************************************************
+            Classpaths
+        ******************************************************************* -->
+ 
+        <path id="sbt.client.test.classpath"> <!-- (classpath for test jar compilation) -->
+                <path refid="tpt.build.test.classpath"/>
+                <path refid="sbt.third.party.classpath"/>
+                <path refid="third.party.classpath"/>
+                <pathelement location="/vobs/dte/client/release/client_impls.jar"/>
+                <pathelement location="/vobs/dte/client/release/client_internal_idl.jar"/>
+                <pathelement location="/vobs/dte/client/release/client_interfaces.jar"/>
+                <pathelement location="/vobs/dte/jcache/release/jcache_impls.jar"/>
+                <pathelement location="/vobs/dte/sysAdminClient/release/sysAdminClient_impls.jar"/>
+                <pathelement location="/vobs/dte/sysAdminClient/release/sysAdminClient_interceptors.jar"/>
+                <pathelement location="/vobs/dte/sysAdminClient/release/sysAdminClient_interfaces.jar"/>
+                <pathelement location="/vobs/dte/sysAdminClient/release/sysAdminClient_proxies.jar"/>
+                <pathelement location="/vobs/dte/CommonFacilities/release/CommonFacilities.jar"/>
+                <pathelement location="/vobs/dte/cmi/release/jars/cmi_idl.jar"/>
+                <pathelement location="/vobs/dte/domain/release/domain_idl.jar"/>
+                <pathelement location="/vobs/dte/domain/release/domain_impls.jar"/>
+                <pathelement location="/vobs/dte/domain/release/domain_interfaces.jar"/>
+                <pathelement location="/vobs/dte/domain/release/domain_persist.jar"/>
+                <pathelement location="/vobs/dte/domain/event/release/event_idl.jar"/>
+                <pathelement location="/vobs/dte/domain/event/release/event_interfaces.jar"/>
+                <pathelement location="/vobs/dte/FoundationFramework/release/jars/FoundationFramework.jar"/>
+                <pathelement location="/vobs/dte/infrastructure/release/ffimpl.jar"/>
+                <pathelement location="/vobs/dte/infrastructure/release/ffpersist.jar"/>
+                <pathelement location="/vobs/dte/MessagingSystem/release/jars/MessagingSystem.jar"/>
+                <pathelement location="/vobs/tpt/tpt_tools/junit/run_dir/junit.jar"/>
+                <pathelement location="/vobs/dte/objectwave/release/objectwave.jar"/>
+                <pathelement location="/vobs/dte/idlbase/omg/release/jars/OMGBaseClasses.jar"/>
+                <pathelement location="/vobs/dte/idlbase/omg/release/jars/OMGServiceClasses.jar"/>
+                <pathelement location="/vobs/dte/Rollout/release/jars/Rollout.jar"/>
+                <pathelement location="/vobs/dte/SecurityService/release/jars/SecurityServiceIDL.jar"/>
+                <pathelement location="/vobs/dte/tools/java/classes/concurrency.jar"/>
+                <pathelement location="/vobs/dte/common/release/jars/common.jar"/>
+                <pathelement location="/vobs/cboe/printing/release/hapsIDL.jar"/>
+                <pathelement location="/vobs/dte/InfraVerity/release/jars/InfraVerityIDLClasses.jar"/>
+                <pathelement location="/vobs/dte/SecurityService/release/jars/SecurityService.jar"/>
+                <pathelement location="/vobs/dte/LoggingService/release/jars/LoggingServiceIDLClasses.jar"/>
+                <pathelement location="/vobs/dte/LoggingService/release/jars/LoggingService.jar"/>
+                <pathelement location="/vobs/dte/InfraVerity/release/jars/InfraVerity.jar"/>
+                <pathelement location="/vobs/dte/IDL/cfn/stock/release/classes/cfnStockIDL.jar"/>
+                <pathelement location="/vobs/dte/CommonLibraries/MsgCodec/release/MsgCodec.jar"/>
+                <pathelement location="/vobs/dte/server/release/server_interfaces.jar"/>
+                <pathelement location="/vobs/dte/server/release/server_idl.jar"/>
+                <pathelement location="/vobs/dte/server/release/server_proxies.jar"/>
+                <pathelement location="/vobs/tpt/tpt_tools/mockito/run_dir/mockito-all.jar"/>
+        </path>
+
+
+         <path id="coverage.classpath">
+             <pathelement location="${sbt.client.classes.dir}/test"/>
+             <pathelement location="${sbt.client.classes.dir}/impls"/>
+             <pathelement location="${sbt.client.classes.dir}/interfaces"/>
+         </path>
+
+         <path id="emma.srcpath"> <!-- only needed for the detailed HTML report  -->
+             <pathelement location="${sbt.client.java.dir}/test"/>
+             <pathelement location="${sbt.client.java.dir}/impls"/>
+             <pathelement location="${sbt.client.java.dir}/interfaces"/>
+         </path>
+
+         <path id="emma.classpath"> <!-- (where to find the coe coverage (EMMA) jars -->
+             <pathelement location="/vobs/tpt/tpt_tools/emma/run_dir/lib/emma.jar"/>
+             <pathelement location="/vobs/tpt/tpt_tools/emma/run_dir/lib/emma_ant.jar"/>
+         </path>
+
+         <!-- include the emma.classpath in the Ant references (so the <emma> tags are recognized) -->
+         <taskdef resource="emma_ant.properties" classpathref="emma.classpath" />
+
+        <path id="sbt.client.run.test.classpath"> <!-- (classpath for JUnit test execution) -->
+            <pathelement location="/vobs/tpt/tpt_tools/junit/run_dir/junit.jar"/>
+            <pathelement location="/vobs/tpt/tpt_tools/ant/run_dir/lib/ant-junit.jar"/>
+             <pathelement location="/vobs/tpt/tpt_tools/emma/run_dir/lib/emma.jar"/>
+             <pathelement location="/vobs/tpt/tpt_tools/emma/run_dir/lib/emma_ant.jar"/>
+                <pathelement location="/vobs/dte/client/release/client_impls.jar"/>
+                <pathelement location="/vobs/dte/client/release/client_internal_idl.jar"/>
+                <pathelement location="/vobs/dte/client/release/client_interfaces.jar"/>
+                <path refid="sbt.client.test.classpath"/>
+                <path refid="sbt.third.party.classpath"/>
+            <pathelement location="${sbt.client.test.rel.jar}"/>
+        </path>
+
+    </target>
+
+
+    <!-- **************************************************************
+            Clean
+    ******************************************************************* -->
+    <target name="Clean"
+    description="Cleans compiled code and Jar files."
+            depends="-client.test.Init">
+
+        <delete quiet="true">
+            <fileset dir="${sbt.client.test.classes.dir}">
+                <filename name="**/*"/>
+            </fileset>
+            <fileset dir="${sbt.client.test.reports.dir}">
+                <filename name="**/*"/>
+            </fileset>
+            <fileset dir="${sbt.client.test.project.dir}">
+                <filename name="TESTS-TestSuites.xml"/>
+            </fileset>
+            <fileset dir="${coverage.classes.dir}">
+                <filename name="**/*"/>
+            </fileset>
+        </delete>
+
+        <ccuncheckout viewpath="${sbt.client.test.rel.jar}"
+                failonerr="false"
+                keepcopy="false"/>
+    </target>
+
+
+    <!-- **************************************************************
+            Compile, Build and Run Core and TEST Jars
+    ******************************************************************* -->
+    <target name="UnitTest"
+        description="Compiles and Runs Unit Tests"
+            depends="-client.test.Init,Clean,-CompileCode,-CopyBuild">
+
+         <junit-batch-emma-macro  classesdir="${sbt.client.test.classes.dir}" srcdir="emma.srcpath" classpathref="sbt.client.run.test.classpath" resultsdir="${sbt.client.test.reports.dir}" coverage="${coverage.classes.dir}" coveragepathref="coverage.classpath" />
+
+            <junit-report-macro  projectdir="${sbt.client.test.project.dir}" reportsdir="${sbt.client.test.reports.dir}" />
+    </target>
+
+
+    <!-- **************************************************************
+            Compile, Build and Run Core and TEST Jars
+		This target only runs the tests, and reports
+		It is called by make
+    ******************************************************************* -->
+    <target name="UnitTest-Incremental"
+        description="Runs Unit Tests"
+            depends="-client.test.Init">
+
+         <junit-batch-emma-macro  classesdir="${sbt.client.test.classes.dir}" srcdir="emma.srcpath" classpathref="sbt.client.run.test.classpath" resultsdir="${sbt.client.test.reports.dir}" coverage="${coverage.classes.dir}" coveragepathref="coverage.classpath" />
+
+            <junit-report-macro  projectdir="${sbt.client.test.project.dir}" reportsdir="${sbt.client.test.reports.dir}" />
+    </target>
+
+
+     <!-- **************************************************************
+             Compile, Build and Run Core and TEST Jars
+               This target only runs the tests
+     ******************************************************************* -->
+     <target name="UnitTest-Only"
+         description="Runs Unit Tests"
+             depends="-client.test.Init">
+            <junit-batch-macro  classesdir="${sbt.client.test.classes.dir}" classpathref="sbt.client.run.test.classpath" resultsdir="${sbt.client.test.reports.dir}" />
+            <junit-report-macro  projectdir="${sbt.client.test.project.dir}" reportsdir="${sbt.client.test.reports.dir}" />
+
+    </target>
+
+    <!-- **************************************************************
+            Compile and Build
+            (private target: no description and has a "-" prefix)
+    ******************************************************************* -->
+    <target name="-CompileCode" depends="-client.test.Init">
+            <catBuildInfo-macro rootDir="${dte.root}" outputDir="${build.info.dir}"
+                outputFilename="${build.info.file}"/>
+
+            <compile-macro  source="${sbt.client.test.project.dir}" classpathref="sbt.client.test.classpath" classesdir="${sbt.client.test.classes.dir}" />
+
+            <tstamp prefix="build">
+                <format property="time" pattern="yyyy-MM-dd HH:mm:ss" />
+            </tstamp>
+
+            <jar jarfile="${sbt.client.test.class.jar}">
+               <fileset dir="${sbt.client.test.classes.dir}" includes="**/*.class,**/*.txt,**/*.csv"/>
+               <manifest>
+                   <attribute name="Build-User" value="${user.name}"/>
+                   <attribute name="OS-Platform" value="${os.name}"/>
+                   <attribute name="Ant-Version" value="${ant.version}"/>
+                   <attribute name="Created-At" value="${build.time}"/>
+                   <attribute name="Created-By" value="JDK ${java.version}"/>
+                   <attribute name="Main-Class" value="${configspec.class}"/>
+               </manifest>
+           </jar>
+    </target>
+
+    <!-- **************************************************************
+            Copy Build Jar
+            (private target: no description and has a "-" prefix)
+    ******************************************************************* -->
+    <target name="-CopyBuild"
+        description="Copy view-private Jars to version controlled release directory"
+            depends="-CompileCode">
+            <buildcopy-macro  classesjar="${sbt.client.test.class.jar}" releasejar="${sbt.client.test.rel.jar}" releasedir="${sbt.client.release.dir}" />
+    </target>
+
+    <!-- **************************************************************
+            Checkin Release Jar
+    ******************************************************************* -->
+    <target name="Install"
+        description="Checkin production version of the code"
+            depends="-client.test.Init">
+            <install-macro  releasejar="${sbt.client.test.rel.jar}" />
+    </target>
+
+</project>
+

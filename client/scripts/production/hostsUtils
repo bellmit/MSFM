@@ -1,0 +1,153 @@
+# Code shared among ksh scripts
+#####
+# For function getHosts
+#
+# Setup:
+# - Define DATEFORMAT as for checkHosts
+# - Define HOSTNAME as the name of the current host
+# - Include setenv-scripts in your script's environment
+#      . setenv-scripts  (the "." is important!)
+# - Include this script in your script's environment
+#      . hostsUtils  (the "." is important!)
+#
+# Invocation:
+# - getHosts [-q] <list of host types>
+#      Example: getHosts "cas,fixcas,mdcas"
+#
+# Return:
+# - ALLHOST: list of all hosts found
+#
+# Side effects:
+# - Puts status messages to standard output
+#####
+# For function checkHosts
+#
+# Setup:
+# - Define DATEFORMAT as the format for a date command.
+#      Example: DATEFORMAT="+%Y-%m-%d %T"
+# - Include this script in your script's environment
+#      . hostsUtils  (the "." is important!)
+#
+# Invocation:
+# - ALLHOST=list of hosts to check
+#      Example: ALLHOST="cas0001 cas0002 cas0003 cas0004 cas0005" and so on
+# - checkHosts <number of seconds for timeout>
+#
+# Return:
+# - ALIVEHOST: subset of ALLHOST, boxes that respond to ping and ssh
+# - DEADHOST: subset of ALLHOST, boxes that don't respond to ping or ssh
+# - ERR_$host: reason (string) that $host isn't in ALIVEHOST
+#
+# Side effects:
+# - Puts status messages to standard output
+
+# -------------------- Constants --------------------
+
+CKH_PINGFILE=/tmp/checkHosts.$$.ping
+CKH_ALIVESTEM=/tmp/checkHosts.$$.alive
+CKH_DEADSTEM=/tmp/checkHosts.$$.dead
+CKH_CLIENTSFILE=/tmp/clientHosts.$$.txt
+CKH_STATICLIST=WatchedProcesses.static.IGC
+
+# -------------------- Subroutines --------------------
+
+# Get a list of hosts from ProcessWatcher or static list
+# @param 1 (optional) -q to not print status messages
+# @param 2 (or 1) list of types for grep, such as "cas,fix,mdcas"
+getHosts()
+{
+    typeset Quiet=0
+    if [ "$1" = "-q" ] ; then
+        Quiet=1
+        shift
+    fi
+    typeset HostList="$1"
+    typeset HostTypes="^"$( echo "$HostList" | sed 's/,/|^/'g ) # ^cas|^fixcas|^mdcas
+
+    # Get list from ProcessWatcher
+    if [ "$Quiet" = "0" ] ; then
+        date "$DATEFORMAT Getting list of Client hosts"
+    fi
+    if [ "$HOSTNAME" == "$HOST_INFRAGC" ] ; then
+        pwadmin -request showCurrentList > $CKH_CLIENTSFILE
+    else
+        ssh $HOST_INFRAGC -n '. ~/.profile >/dev/null 2>&1; pwadmin -request showCurrentList' > $CKH_CLIENTSFILE
+    fi
+    ALLHOST=$( cat $CKH_CLIENTSFILE | awk '$1 ~ /'$HostTypes'/ {print $3}' | sort -u )
+
+    if [ -z "$ALLHOST" ] ; then
+        # No list from ProcessWatcher (maybe it is not running now).
+        # Read Client static list instead.
+        if [ "$Quiet" = "0" ] ; then
+            date "$DATEFORMAT Getting list from Client static list"
+        fi
+        typeset StaticList=$SBTBASE_INFRAGC/cas/$CKH_STATICLIST
+        if [ "$HOSTNAME" = "$HOST_INFRAGC" ] ; then
+            ALLHOST=$( awk <$StaticList -F, '$2 ~ /'"$HostTypes"'/ {print $1}' \
+                     | sort -u )
+        else
+            scp -q ${CASUSER_INFRAGC}@$HOST_INFRAGC:$StaticList $CKH_CLIENTSFILE
+            ALLHOST=$( awk <$CKH_CLIENTSFILE -F, '$2 ~ /'"$HostTypes"'/ {print $1}' \
+                     | sort -u )
+        fi
+    fi
+    \rm -f $CKH_CLIENTSFILE
+}
+
+
+ckh_verifySsh()
+{
+    typeset Host=$1
+    ssh ${USER_CLIENT:+$USER_CLIENT@}$Host ls -ld . >/dev/null 2>&1 &
+    typeset Pid=$!
+    (sleep $Seconds; if [ -d /proc/$Pid ] ; then kill $Pid ; date "$DATEFORMAT ssh does not respond on $Host" ; else touch $CKH_ALIVESTEM.$Host ; fi) &
+}
+
+# Check that we can perform operations on the hosts listed in $ALLHOST
+# @param 1 Number of seconds to wait before declaring a host unreachable
+# @return Sets shell variables ALIVEHOST and DEADHOST.
+#      ALIVEHOST: subset of ALLHOST, boxes that respond to ping and ssh
+#      DEADHOST: subset of ALLHOST, boxes that don't respond to ping or ssh
+checkHosts()
+{
+    typeset Seconds=$1
+
+    \rm -f $CKH_ALIVESTEM.* >/dev/null 2>&1
+    typeset ExistHost=""
+    DEADHOST=""
+    for i in $ALLHOST ; do
+        typeset PingStart=`date "$DATEFORMAT"`
+        if ping $i $Seconds >$CKH_PINGFILE 2>&1 ; then
+            ExistHost="$ExistHost $i"
+            ckh_verifySsh $i
+        else
+            DEADHOST="$DEADHOST $i"
+            touch $CKH_DEADSTEM.$i
+            typeset PingErr=`cat $CKH_PINGFILE | tr "\n" " "`
+            if fgrep -s "unknown host" $CKH_PINGFILE ; then
+                # Put error message into our logfile
+                cat $CKH_PINGFILE
+                eval "ERR_$i="'"'$PingErr'"'
+            else
+                ExistHost="$ExistHost $i"
+                typeset PingEnd=`date +%T`
+                echo "$PingStart - $PingEnd No response from $i"
+                eval "ERR_$i="'"ping: '$PingErr'"'
+            fi
+            export ERR_$i
+        fi
+    done
+    wait
+    ALIVEHOST=`ls $CKH_ALIVESTEM.* | sed -e s:$CKH_ALIVESTEM.::g | tr "\n" " "`
+    for i in $ExistHost ; do
+        if [ ! -f $CKH_ALIVESTEM.$i ] ; then
+            if [ ! -f $CKH_DEADSTEM.$i ] ; then
+                touch $CKH_DEADSTEM.$i
+                eval "ERR_$i='ssh: no response'"
+                export ERR_$i
+                DEADHOST="$DEADHOST $i"
+            fi
+        fi
+    done
+    \rm -f $CKH_PINGFILE $CKH_ALIVESTEM.* $CKH_DEADSTEM.*
+}

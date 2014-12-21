@@ -1,0 +1,47 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalMarketBufferConsumerHome (MarketBufferConsumerHomeImpl*)>
+<!ATTLIST GlobalMarketBufferConsumerHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT MarketBufferConsumerHomeImpl (MarketBufferConsumerHomeImplProperties, MarketBufferConsumerHomeImplCommands?)>
+<!ATTLIST MarketBufferConsumerHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT MarketBufferConsumerHomeImplProperties (numChannels)>
+<!ATTLIST MarketBufferConsumerHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT numChannels (#PCDATA)>
+<!ATTLIST numChannels
+    type %typeConstraints; #FIXED "ManagedProperty"
+    mode %modeConstraints; #FIXED "readWrite"
+    propertyType %propertyTypes; #FIXED "string"
+    description CDATA #FIXED "count of MarketBuffer channels"
+>
+<!-- -->
+<!ELEMENT MarketBufferConsumerHomeImplCommands (marketBuffer)>
+<!ATTLIST MarketBufferConsumerHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT marketBuffer (command, arg*)>
+<!ATTLIST marketBuffer
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Manipulate behavior of MarketBuffer reader"
+>
+<!ELEMENT command (#PCDATA)>
+<!ATTLIST command
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "OFF | ON | LOG | SUBSCRIPTIONS"
+>
+<!ELEMENT arg (#PCDATA)>
+<!ATTLIST arg
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "string"
+>

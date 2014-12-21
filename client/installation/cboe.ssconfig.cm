@@ -1,0 +1,14 @@
+ss.server_names=FE1, FE2
+ss.cache_request_timeout=2
+ss.max_read_queue_length=8000
+ss.max_read_queue_size=1000000
+ss.min_read_queue_percentage=0.5
+ss.server_delivery_timeout=60.0
+
+ss.client_keep_alive_reply_timeout=0.0
+ss.client_read_timeout=0.0
+ss.client_write_timeout=0.0
+
+ss.server_keep_alive_timeout=0.0
+ss.server_read_timeout=600.0
+ss.server_write_timeout=0.0

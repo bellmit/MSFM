@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Processes SYSTEM "${INFRA_RUN_DIR}/properties/dtd/processes.dtd">
+<Processes name="ScreenBasedTrading">
+	<!-- BEGIN   (${CLIENTNAME}${HOSTNAME}) SACAS definitions -->
+	<!-- ACAS definitions -->
+	<!--  -->
+	<Process name="${CLIENTNAME}${HOSTNAME}">
+		<ProcessProperties>
+			<ServantID>NO_POA</ServantID>
+			<Orbname>${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}</Orbname>
+			<Portnum>${PORTNUM}</Portnum>
+			<InitRefURL>SPECIFIED_IN_START_SCRIPT</InitRefURL>
+			<Status>Unknown</Status>
+			<ProcessID>X</ProcessID>
+			<SMSType smsValue="Source"/>
+			<SMSRelationName>v20Frontend{remoteHosts}</SMSRelationName>			
+			<remoteHost>${FRONTEND1_HOSTNAME}</remoteHost>
+			<remoteHost>${FRONTEND2_HOSTNAME}</remoteHost>			
+			<JavaClassName>com.cboe.infrastructureServices.foundationFramework.FoundationFramework</JavaClassName>
+			<JavaOptionalProperty>-classpath .:../${CLIENT_DIR}/classes/ClientPatch.jar:$INFRA_CLASSPATH:
+classes/javautil.jar:
+../${CLIENT_DIR}/classes/eis_interfaces.jar:
+../${CLIENT_DIR}/classes/CommonFacilities.jar:
+classes/infrastructure.jar:
+classes/fscontext.jar:
+classes/jndi.jar:
+classes/providerutil.jar:
+classes/ldap.jar:
+../${CLIENT_DIR}/classes/SessionManagementService.jar:
+../${CLIENT_DIR}/classes/MsgCodec.jar:
+classes/OracleDriver.zip:
+classes/816classes12.zip:
+classes/junit.jar:
+classes/Infraclasses.zip:
+classes/infraIDL.zip:
+../${CLIENT_DIR}/classes/client_interfaces.jar:
+../${CLIENT_DIR}/classes/client_impls.jar:
+../${CLIENT_DIR}/classes/domain_interfaces.jar:
+../${CLIENT_DIR}/classes/domain_xml.jar:
+../${CLIENT_DIR}/classes/domain_impls.jar:
+../${CLIENT_DIR}/classes/event_interfaces.jar:
+../${CLIENT_DIR}/classes/event_impls.jar:
+../${CLIENT_DIR}/classes/server_interfaces.jar:
+../${CLIENT_DIR}/classes/server_impls.jar:
+../${CLIENT_DIR}/classes/server_common.jar:
+../${CLIENT_DIR}/classes/server_proxies.jar:
+classes/infratests.jar:
+../${CLIENT_DIR}/classes/jaxb-api.jar:
+../${CLIENT_DIR}/classes/jaxb-impl.jar:
+../${CLIENT_DIR}/classes/jaxb-libs.jar:
+../${CLIENT_DIR}/classes/jaxb-xjc.jar:
+../${CLIENT_DIR}/classes/xsdlib.jar:
+../${CLIENT_DIR}/classes/namespace.jar:
+../${CLIENT_DIR}/classes/jax-qname.jar:
+../${CLIENT_DIR}/classes/relaxngDatatype.jar:
+../${CLIENT_DIR}/classes/commons-logging.jar:
+../${CLIENT_DIR}/classes/jcache_impls.jar:
+../${CLIENT_DIR}/classes/jcache-1.0-dev-3.jar:
+../${CLIENT_DIR}/classes/ehcache-1.2.4.jar:
+classes/PerformanceDriverTool.jar:
+../${CLIENT_DIR}/classes/server_idl.jar:
+../${CLIENT_DIR}/classes/client_internal_idl.jar:
+../${CLIENT_DIR}/classes/client_idl.jar:
+../${CLIENT_DIR}/classes/cmi_idl.jar:
+../${CLIENT_DIR}/classes/domain_idl.jar:
+../${CLIENT_DIR}/classes/event_idl.jar:
+../${CLIENT_DIR}/classes/sysAdminClient_idl.jar:
+../${CLIENT_DIR}/classes/sysAdminClient_idl_java.jar:
+../${CLIENT_DIR}/classes/sysAdminClient_impls.jar:
+../${CLIENT_DIR}/classes/sysAdminClient_interfaces.jar:
+../${CLIENT_DIR}/classes/sysAdminClient_proxies.jar:
+../${CLIENT_DIR}/classes/client_interceptors.jar:
+../${CLIENT_DIR}/classes/server_interceptors.jar:
+../${CLIENT_DIR}/classes/sysAdminClient_interceptors.jar:
+classes/grizzly-nio-framework.jar</JavaOptionalProperty>
+			<JavaOptionalProperty>-Xmx${CLIENT_HEAP_SIZE}</JavaOptionalProperty>
+			<JavaOptionalProperty>-Xms${CLIENT_HEAP_SIZE}</JavaOptionalProperty>
+			<JavaOptionalProperty>-server</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCApplicationStoppedTime</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCApplicationConcurrentTime</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCTimeStamps</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintCompilation</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintHeapAtGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintGCDetails</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:CMSInitiatingOccupancyFraction=40</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:CMSWaitDuration=120000</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+UseConcMarkSweepGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+UseParNewGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:MaxTenuringThreshold=0</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+DisableExplicitGC</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:NewSize=${CLIENT_NEWGEN_SIZE}</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:MaxNewSize=${CLIENT_NEWGEN_SIZE}</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:-UseAdaptiveSizePolicy</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:+PrintTenuringDistribution</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:PermSize=60m</JavaOptionalProperty>
+			<JavaOptionalProperty>-Xss128k</JavaOptionalProperty>
+			<JavaOptionalProperty>-XX:-UseBiasedLocking</JavaOptionalProperty>
+			<JavaOptionalProperty>-verbose:gc -verbose:gc</JavaOptionalProperty>
+			<SystemOptionalProperty>LoggingDir=${CLIENT_DIR}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCluster=SACAS</SystemOptionalProperty>
+			<SystemOptionalProperty>InstrumentationService.ChannelName=${SBT_PREFIX}InstrumentationChannel</SystemOptionalProperty>			
+			<SystemOptionalProperty>ORB.IRLocal=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ir.eventpackage='org/omg;com/cboe/idl;com/cboe;com/cboe/EventService;com/cboe/infrastructureServices/interfaces'</SystemOptionalProperty>
+			<SystemOptionalProperty>LocalFilterOnlySessions=Underlying,W_MAIN,W_AM1,ONE_MAIN,CFE_MAIN,C2_MAIN</SystemOptionalProperty>
+			<SystemOptionalProperty>RemoteFilterOnlySessions=</SystemOptionalProperty>
+			<SystemOptionalProperty>LocalLog.SysAlarm</SystemOptionalProperty>
+			<SystemOptionalProperty>LocalLog.SysNotify</SystemOptionalProperty>
+			<SystemOptionalProperty>${CLIENT_DEBUG_INFRA}</SystemOptionalProperty>
+			<SystemOptionalProperty>${CLIENT_DEBUG_APP}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.FlowControl=none</SystemOptionalProperty>
+			<SystemOptionalProperty>CHECK_REP_IDL=false</SystemOptionalProperty>
+			<SystemOptionalProperty>configVerbose=true</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.RetryCount=10000</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.ListenTimeout=100</SystemOptionalProperty>			
+			<SystemOptionalProperty>EventService.Admin.ExtentMapServerNameV6=${SBT_PREFIX}ExtentMapAdminServerV6</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.SmartSockets.GMDDir=log/gmd</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.SmartSockets.CacheGroup=${SBT_PREFIX}StoreAndForwardCache</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.SmartSockets.OptionsFile=../config/properties/cboe.ssconfig.cm</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.AdminPrefix=${SBT_PREFIX}</SystemOptionalProperty>
+			<SystemOptionalProperty>java.util.logging.config.file=properties/JavaLogging.properties</SystemOptionalProperty>
+			<SystemOptionalProperty>prefix=${SBT_PREFIX}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCASPairName=${CLIENTNAME}${HOSTNAME}${CLIENTNAME}${HOSTNAME}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixSACASusername=SACAS${CLIENTNAME}${HOSTNAME}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCommandHttpPort=${COMMANDHTTPPORT}</SystemOptionalProperty>
+			<SystemOptionalProperty>ProcessWatcher.maxLifeLineRetry=75</SystemOptionalProperty>
+			<SystemOptionalProperty>ProcessWatcher.NameList=${PW_NAMES}</SystemOptionalProperty>
+			<SystemOptionalProperty>LogoutQueue.Timeout=30000</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixRemoteRouteName=${SBT_PREFIX}${FRONTEND_IDENTIFIER}v20Frontend</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixCacheRemoteRouteName=${SBT_PREFIX}${FRONTEND_IDENTIFIER}v20Frontend</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixGlobalRouteName=${SBT_PREFIX}${GLOBAL_IDENTIFIER}</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixACASLogComponentName=${CASFILENAME}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.TcpNoDelay=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.UseSocketChannel=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.BindingSequence=Local:Event:Iiop:Tiop</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.UseConnectionPools=true</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.GrepForConnectionPoolPolicy=${CLIENT_BASE_PORT}251</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.${CLIENT_BASE_PORT}251.ClientConnPoolSize=${CLIENT_IIOP_THREAD_POOL}</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.LocationService.Timeout=330000</SystemOptionalProperty>
+			<SystemOptionalProperty>prefixAdminServer=${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}</SystemOptionalProperty>
+			<SystemOptionalProperty>ExtentMap.NodeName=${CLIENTNAME}${HOSTNAME}CAS1</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.ChannelAdminServerName=${SBT_PREFIX}ChannelAdminServer</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.Admin.ExtentMapServerName=${SBT_PREFIX}ExtentMapAdminServer</SystemOptionalProperty>
+			<SystemOptionalProperty>EventService.TrackFiltersECName=${SBT_PREFIX}FilterNotification</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Authenticator.ServiceType=${SBT_PREFIX}SecurityServerAuthenticator</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Authorizor.ServiceType=${SBT_PREFIX}SecurityServerAuthorize</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Logout.ServiceType=${SBT_PREFIX}SecurityServerLogout</SystemOptionalProperty>
+			<SystemOptionalProperty>Security.Admin.ServiceType=${SBT_PREFIX}SecurityAdminService</SystemOptionalProperty>
+			<SystemOptionalProperty>Jms.Properties=./properties/Jms.properties</SystemOptionalProperty>
+			<SystemOptionalProperty>Calendar.Admin.ServiceType=${SBT_PREFIX}CalendarAdminServer</SystemOptionalProperty>
+			<SystemOptionalProperty>SMA.ImplClass=SMAResourceStandalone</SystemOptionalProperty>
+			<SystemOptionalProperty>SMA.NoORBProcessExposer</SystemOptionalProperty>
+			<SystemOptionalProperty>SMA.AdaptorServerIORFile=ior/SysManAgent${SBT_PREFIX}${HOSTNAME}.ior</SystemOptionalProperty>
+			<SystemOptionalProperty>Adaptor.SMAServerIORFile=ior/${SBT_PREFIX}${HOSTNAME}SMA.ior</SystemOptionalProperty>			
+			<SystemOptionalProperty>ORB.InitRefURL=file:../config/ior/initrefs.ior</SystemOptionalProperty>
+			<SystemOptionalProperty>org.omg.CORBA.ORBClass=org.omg.CORBA.ORBImplWrapper</SystemOptionalProperty>
+			<SystemOptionalProperty>org.omg.CORBA.ORBSingletonClass=org.omg.CORBA.ORBImplWrapper</SystemOptionalProperty>
+			<SystemOptionalProperty>IsCasRemote=${CAS_REMOTE}</SystemOptionalProperty>
+			<SystemOptionalProperty>ValidGroupType=ProcessGroup</SystemOptionalProperty>
+			<SystemOptionalProperty>OHSRoutingProxyThreadPoolSize=100</SystemOptionalProperty>
+			<SystemOptionalProperty>TMSRoutingProxyThreadPoolSize=100</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.ServerSelectorThreads=5</SystemOptionalProperty>
+                        <SystemOptionalProperty>ORB.IIOPTransport.ClientSelectorThreads=16</SystemOptionalProperty>
+			<SystemOptionalProperty>ORB.IIOPTransport.UseManagedConnPools=false</SystemOptionalProperty>
+                        <SystemOptionalProperty>AllowDynamicConnectionPoolGrowth=false</SystemOptionalProperty>
+                        <SystemOptionalProperty>AllowDynamicThreadPoolGrowth=false</SystemOptionalProperty>
+                        <SystemOptionalProperty>UseUserLoadManagerStartTimes=false</SystemOptionalProperty>
+			<ApplicationArgument>SystemAdminServer</ApplicationArgument>
+			<ApplicationArgument>com.cboe.infrastructureServices.systemsManagementService.ConfigurationServiceSysManImpl</ApplicationArgument>
+		</ProcessProperties>
+		<ProcessCommands>
+			<Startup/>
+			<ShutdownOrb/>
+			<Shutdown/>
+			<refreshPOAs/>
+		</ProcessCommands>
+		<ProcessRelations>
+			<ProcessComponent>LogFacade.xml</ProcessComponent>
+			<ProcessComponent>ACAS.xml</ProcessComponent>
+			<ProcessComponent>ACASLoggingService.xml:GlobalLoggingService_ACASLoggingService1.LoggingServiceClient_ACASFile2Client.StandardMessageCatalog_StandardMessageCatalog1</ProcessComponent>
+			<ProcessComponent>BaseConsumerProxy.xml</ProcessComponent>
+			<ProcessComponent>SecurityServiceFacade.xml</ProcessComponent>
+			<ProcessComponent>SessionManagementService.xml</ProcessComponent>
+			<ProcessComponent>EventServiceFacade.xml</ProcessComponent>
+			<ProcessComponent>CommandCallback.xml</ProcessComponent>
+			<ProcessComponent>SubscriptionManagerHome.xml</ProcessComponent>
+			<ProcessComponent>SystemAdminSM.xml</ProcessComponent>
+			<ProcessComponent>SystemAdminServer.xml</ProcessComponent>
+			<ProcessComponent>EventChannelHome.xml</ProcessComponent>
+			<ProcessComponent>GlobalThreadPool.xml</ProcessComponent>
+			<ProcessComponent>InstrumentedGlobalThreadPool.xml</ProcessComponent>
+			<ProcessComponent>HeartBeatHome.xml</ProcessComponent>
+			<ProcessComponent>SystemAdminUserAccessHome.xml</ProcessComponent>
+			<ProcessComponent>OrderQueryHome.xml</ProcessComponent>
+			<ProcessComponent>OrderHandlingServiceHome.xml</ProcessComponent>
+			<ProcessComponent>ProductConfigurationStatusConsumer.xml</ProcessComponent>
+			<ProcessComponent>UserServiceHome.xml</ProcessComponent>
+			<ProcessComponent>SystemMarketQueryHome.xml</ProcessComponent>
+			<ProcessComponent>UserOrderServiceHome.xml</ProcessComponent>
+			<ProcessComponent>UserQuoteServiceHome.xml</ProcessComponent>
+			<ProcessComponent>UserMarketDataServiceHome.xml</ProcessComponent>
+			<ProcessComponent>UserSessionThreadPoolHome.xml</ProcessComponent>
+			<ProcessComponent>UserSessionMarketDataThreadPoolHome.xml</ProcessComponent>
+			<ProcessComponent>SystemAdminSystemHealthQueryDispatcherHome.xml</ProcessComponent>
+			<ProcessComponent>AuditLog.xml</ProcessComponent>
+			<ProcessComponent>ACASOrbService.xml</ProcessComponent>
+			<ProcessComponent>CASAdminService.xml</ProcessComponent>
+			<ProcessComponent>StatusMonitorHome.xml</ProcessComponent>
+			<ProcessComponent>AppServerStatusManagerHome.xml</ProcessComponent>
+			<ProcessComponent>ProductConfigurationServiceHome.xml</ProcessComponent>
+			<ProcessComponent>ProductQueryServiceAdapterHome.xml</ProcessComponent>
+			<ProcessComponent>UserLoadManager.xml</ProcessComponent>
+			<ProcessComponent>processes.sacas.xml</ProcessComponent>			
+		</ProcessRelations>
+	</Process>
+	<!-- END   (${CLIENTNAME}${HOSTNAME}) Agent/SACAS definitions -->
+</Processes>

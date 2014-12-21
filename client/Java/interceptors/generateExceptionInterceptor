@@ -1,0 +1,56 @@
+#!/bin/ksh
+
+# This script 'wraps' the /vobs/dte/infrastructure/release/generateInterceptors script in
+# order to force the use of the JAVA_HOME & CLASSPATH defined in the Makefile.
+# Some people's .kshrc file resets the JAVA_HOME, PATH or CLASSPATH, any of which will cause
+# the 'java' invocation in the infra release to use whatever version.
+#
+
+if [[ $MAKEFILE_JAVA_HOME != "" ]]; then
+    JAVA_HOME=${MAKEFILE_JAVA_HOME}
+    JAVA=${JAVA_HOME}/bin/java
+else
+    JAVA=`which java`
+    echo "Warning - using local environment's java version: $JAVA"
+fi
+
+if [[ $MAKEFILE_CLASSPATH != "" ]]; then
+    CLASSPATH=$MAKEFILE_CLASSPATH
+fi
+export CLASSPATH
+
+if [[ $# -ne 2 ]]; then
+	echo "Usage: $0 <package qualified interceptor name> <package qualified interface name>"
+	echo "NOTE: make sure your interface is compiled"
+	exit 1
+fi
+
+
+if [[ $# -ne 2 ]]; then
+	echo "Usage: generateExceptionInterceptor <package qualified interceptor name> <package qualified interface name>"
+	echo "NOTE: make sure your interface is compiled"
+	exit 1
+fi
+
+
+echo "Generating interceptor for $1"
+$JAVA -Xmx128M -Dheader=t com.objectwave.tools.GenerateTemplateInto $1 $2 ExceptionExtendBOInterceptor > /dev/null
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+
+$JAVA -Xmx128M -DuseRealClassName com.objectwave.tools.GenerateTemplateInto $1 $2 ExceptionInterceptorConstructor > /dev/null
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+
+$JAVA -Xmx128M -DuseRealClassName com.objectwave.tools.GenerateTemplateInto $1 $2 startInstrumentation > /dev/null
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+
+$JAVA -Xmx128M com.objectwave.tools.GenerateTemplateInto $1 $2 ExceptionInterceptor > /dev/null
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+

@@ -1,0 +1,130 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the ProductQueryServiceAdapterHomeImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalProductQueryServiceAdapterHome (ProductQueryServiceAdapterHome*)>
+<!ATTLIST GlobalProductQueryServiceAdapterHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT ProductQueryServiceAdapterHome (ProductQueryServiceAdapterHomeProperties, ProductQueryServiceAdapterHomeCommands?)>
+<!ATTLIST ProductQueryServiceAdapterHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT ProductQueryServiceAdapterHomeProperties (cacheType,cacheDirectory,productCacheName,productClassCacheName,maxClassesToPreload)>
+<!ATTLIST ProductQueryServiceAdapterHomeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT cacheType (#PCDATA)>
+<!ATTLIST cacheType
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The type of cache(ehcache,hashmap)"
+>
+<!ELEMENT cacheDirectory (#PCDATA)>
+<!ATTLIST cacheDirectory
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "directory for persistent cache"
+>
+<!ELEMENT productCacheName (#PCDATA)>
+<!ATTLIST productCacheName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Name of the product cache"
+>
+<!ELEMENT productClassCacheName (#PCDATA)>
+<!ATTLIST productClassCacheName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Name of the product class cache"
+>
+<!ELEMENT maxClassesToPreload (#PCDATA)>
+<!ATTLIST maxClassesToPreload
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Maximum number of recently used classes to be loaded at cold start"
+>
+<!-- -->
+<!ELEMENT ProductQueryServiceAdapterHomeCommands (productClassCache, productCache, productTypeCache, strategyCache, sessionStrategyCache)>
+<!ATTLIST ProductQueryServiceAdapterHomeCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT productClassCache (command)>
+<!ATTLIST productClassCache
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Fetch information from the productClass cache"
+>
+<!ELEMENT productCache (command, productKey?)>
+<!ATTLIST productCache
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Fetch information from the product cache"
+>
+<!ELEMENT productTypeCache (productTypeKey)>
+<!ATTLIST productTypeCache
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Fetch productTypes from the productType cache"
+>
+<!ELEMENT strategyCache (command, productKey?)>
+<!ATTLIST strategyCache
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Fetch information from the strategy cache"
+>
+<!ELEMENT command (#PCDATA)>
+<!ATTLIST command
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "KEYS | COUNT | DETAIL | key"
+>
+<!ELEMENT productKey (#PCDATA)>
+<!ATTLIST productKey
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "number"
+>
+<!ELEMENT classKey (#PCDATA)>
+<!ATTLIST classKey
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "number"
+>
+<!ELEMENT productTypeKey (#PCDATA)>
+<!ATTLIST productTypeKey
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "ALL | number"
+>
+<!-- -->
+<!ELEMENT sessionStrategyCache (commandList, sessionName?, Leg?, Leg?, Leg?, Leg?)>
+<!ATTLIST sessionStrategyCache
+      type %typeConstraints; #FIXED "ManagedCommand"
+      description CDATA #FIXED "Fetch information from the session Strategy cache"
+> 
+<!ELEMENT commandList (#PCDATA)>
+<!ATTLIST commandList
+      type CDATA #FIXED "ManagedParameter"
+      parameterType CDATA #FIXED "string"
+      description CDATA #FIXED "count | key | reload | stats"
+> 
+<!ELEMENT sessionName (#PCDATA)>
+<!ATTLIST sessionName
+      type CDATA #FIXED "ManagedParameter"
+      parameterType CDATA #FIXED "string"
+      description CDATA #FIXED "string"
+> 
+<!ELEMENT Leg (#PCDATA)>
+<!ATTLIST Leg
+      type CDATA #FIXED "ManagedParameter"
+      parameterType CDATA #FIXED "string"
+      description CDATA #FIXED "string"
+> 

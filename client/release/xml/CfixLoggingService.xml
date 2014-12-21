@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Keith A. Korecky (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLoggingService SYSTEM "${RUN_DIR}/properties/dtd/logging.dtd">
+<GlobalLoggingService name="CASLoggingService1">
+    <!-- ************************* Primary CAS logging client ************************* -->
+	<LoggingServiceClient name="Cfix01FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix01v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix01/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix01/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix01/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix01/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix02FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix02v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix02/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix02/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix02/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix02/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix03FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix03v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix03/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix03/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix03/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix03/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix04FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix04v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix04/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix04/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix04/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix04/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix05FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix05v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix05/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix05/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix05/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix05/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix06FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix06v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix06/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix06/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix06/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix06/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix07FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix07v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix07/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix07/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix07/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix07/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+	<LoggingServiceClient name="Cfix08FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="cfix08v2File">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgent01v2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebug01v2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgent01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix08/log/cfix.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix08/log/cfix2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebug01v2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<absoluteFilePathProperty>../v2cfix08/log/cfix.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cfix08/log/cfix2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+        <!-- ************************* Standard Message Catalog ************************* -->
+	<StandardMessageCatalog name="StandardMessageCatalog1">
+		<StandardMessageCatalogProperties>
+			<StandardLogMessageProperty>Non-standard message.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Failure occurred while trying to read a file.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Log message generated in response to a management event.</StandardLogMessageProperty>
+		</StandardMessageCatalogProperties>
+	</StandardMessageCatalog>
+</GlobalLoggingService>

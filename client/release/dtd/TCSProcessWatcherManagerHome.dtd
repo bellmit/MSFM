@@ -1,0 +1,45 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the CasCoppeliaAdapterHomeImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalTCSProcessWatcherManagerHome (TCSProcessWatcherManagerHomeImpl*)>
+<!ATTLIST GlobalTCSProcessWatcherManagerHome 
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT TCSProcessWatcherManagerHomeImpl (TCSProcessWatcherManagerHomeImplProperties, TCSProcessWatcherManagerHomeImplCommands?)>
+<!ATTLIST TCSProcessWatcherManagerHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+>
+
+<!ELEMENT TCSProcessWatcherManagerHomeImplProperties (eventChannelName)>
+<!ATTLIST TCSProcessWatcherManagerHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT eventChannelName (#PCDATA)>
+<!ATTLIST eventChannelName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+>
+
+<!ELEMENT TCSProcessWatcherManagerHomeImplCommands (turnOffTCSNotifications)>
+<!ATTLIST TCSProcessWatcherManagerHomeImplCommands 
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+
+<!ELEMENT turnOffTCSNotifications (command)>
+<!ATTLIST turnOffTCSNotifications
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Turn OFF/ON TCS notifications"
+>
+<!ELEMENT command (#PCDATA)>
+<!ATTLIST command
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "true | false"
+>

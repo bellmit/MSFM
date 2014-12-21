@@ -1,0 +1,58 @@
+### copy jars to tmp "classes" dir...
+mkdir classes
+cp -p /vobs/dte/client/release/client_idl.jar ./classes
+cp -p /vobs/dte/client/release/client_impls.jar ./classes
+cp -p /vobs/dte/client/release/client_interfaces.jar ./classes
+cp -p /vobs/dte/client/release/client_translator.jar ./classes
+cp -p /vobs/dte/domain/release/domain_idl.jar ./classes
+cp -p /vobs/dte/domain/release/domain_interfaces.jar ./classes
+cp -p /vobs/dte/domain/release/domain_impls.jar ./classes
+cp -p /vobs/dte/domain/event/release/event_interfaces.jar ./classes
+cp -p /vobs/dte/domain/event/release/event_impls.jar ./classes
+cp -p /vobs/dte/server/release/server_idl.jar ./classes
+cp -p /vobs/dte/server/release/server_interfaces.jar ./classes
+
+### copy CBOEHRTime to tmp "lib" dir...
+mkdir lib
+cp -p /vobs/dte/tools/release/Solaris/libCBOEHRTime.so ./lib
+
+
+### tmp variables
+RUN_SCRIPT=runTest
+MAIN_CLASS=com.cboe.testDrive.TestParameter
+VM_ARGS="-Xmx1024m -server -XX:+CMSParallelRemarkEnabled -showversion -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+PrintGCTimeStamps -XX:NewSize=25m -XX:+PrintCompilation -XX:+PrintHeapAtGC -XX:+PrintGCDetails -XX:+PrintTenuringDistribution -DORB.IIOPTransport.PortNum=8616 -DORB.BindingSequence=Local:Event:Iiop -DORB.FlowControl=none"
+
+
+### write the RUN_SCRIPT...
+echo "LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:lib" > $RUN_SCRIPT
+echo >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/client_idl.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/client_impls.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/client_interfaces.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/client_translator.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/domain_idl.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/domain_impls.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/domain_interfaces.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/event_interfaces.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/event_impls.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/server_idl.jar" >> $RUN_SCRIPT
+echo "CLASSPATH=\$CLASSPATH:classes/server_interfaces.jar" >> $RUN_SCRIPT
+echo >> $RUN_SCRIPT
+echo "HOSTNAME=\`hostname\`" >> $RUN_SCRIPT
+echo "#########PORT 8101 8103" >> $RUN_SCRIPT
+echo "echo ''" >> $RUN_SCRIPT
+echo "java $VM_ARGS $MAIN_CLASS \$1 \$2" >> $RUN_SCRIPT
+echo >> $RUN_SCRIPT
+
+chmod +x $RUN_SCRIPT
+
+### tar everything up
+TAR_FILE=perfClient.tar
+tar -cf $TAR_FILE classes lib $RUN_SCRIPT
+gzip $TAR_FILE
+
+### remove the temp dirs and files
+\rm -rf classes
+\rm -rf lib
+\rm $RUN_SCRIPT
+

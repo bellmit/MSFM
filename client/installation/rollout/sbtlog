@@ -1,0 +1,308 @@
+#!/bin/ksh
+# Usage: sbtlog          # testing only
+# Usage: sbtlog -commit  # normal usage
+
+
+# -------------------- Configuration --------------------
+
+BASE=/sbt/log
+if [ -z $HOSTNAME ] ; then
+    HOSTNAME=$( hostname )
+fi
+
+# -------------------- Constants --------------------
+
+USER=qaadmin
+UMASK_START=$( umask )
+PROG=$( basename $0 )
+TMPFILE=/tmp/tempfile.$$
+YES=1
+NO=0
+
+# -------------------- Subroutines --------------------
+
+usage()
+{
+    echo "Usage: $PROG [ -h | -c clientType | -commit ]"
+    echo "  clientType is cas | fixcas | sacas | mdcas | cfix | mdx | tipsmdxadapter"
+    echo "  commit is necessary for the changes to actually occur. Otherwise, debug mode is on and no changes are made."
+}
+
+readCommandLine()
+{
+    DEBUG=1
+    while [ $# -gt 0 ] ; do
+        case $1 in
+        -c)
+            shift
+            if [ -z $1 ] ; then
+                print -u2 "$PROG: Missing clientType after -c switch"
+                usage
+                exit 1
+            else 
+                case $1 in
+                cas|fixcas|sacas|mdcas|cfix|mdx|tipsmdxadapter)
+                    ;;
+                *)
+                    print -u2 "$PROG: Unknown clientType $1"
+                    usage
+                    exit 1
+                    ;;
+                esac
+            fi
+            STATED_CLIENT_TYPE=$1
+            ;;
+        -h)
+            usage
+            exit 0
+            ;;
+        -commit)
+            DEBUG=
+            ;;
+        *)
+            print -u2 "$PROG: Unknown switch $1"
+            usage
+            exit 1
+            ;;
+        esac
+        shift # get past this parameter
+    done
+}
+
+# Set debug mode based on command line parameters
+setDebugMode()
+{
+    if [ -n "$DEBUG" ] ; then
+        GUARD="echo GUARD:"
+        BASE=/tmp/sbt/log
+    else
+        GUARD=
+    fi
+}
+
+# Set CLIENT_TYPE and SBT_LOG_PARTITION
+calcClientId()
+{
+    $(dirname $0)/clientid > $TMPFILE
+    . $TMPFILE
+    rm $TMPFILE
+}
+
+calcInfraUser()
+{
+    case $( basename $SBT_LOG_PARTITION ) in
+    test)
+        INFRA_USER=infra
+        ;;
+    prod)
+        INFRA_USER=infrap
+        ;;
+    esac
+}
+
+# Determine $INFRA_HOME from evidence
+calcInfraHome()
+{
+    # $INFRA_HOME should contain v2run_dir
+
+    INFRA_HOME=$( eval echo ~$INFRA_USER )
+    if [ ! -e $INFRA_HOME/v2run_dir ] && [ -e $INFRA_HOME/infra ] ; then
+        INFRA_HOME=$INFRA_HOME/infra
+    fi
+}
+
+# Determine group of INFRA_USER id
+calcInfraUserGroup() 
+{
+    if [ -e $INFRA_HOME/v2run_dir ] ; then
+        USER_GROUP=$( ls -ld $INFRA_HOME/v2run_dir | awk '{print $4}' )
+    else
+        print -u2 "$PROG: Cannot read group from v2run_dir"
+        exit 1
+    fi
+}
+
+# Create $BASE directory. On some boxes a simple "mkdir $BASE" will end
+# up using the wrong disk parition.
+createBaseDir()
+{
+    if [ ! -e $BASE ] ; then
+        umask 022
+        same_disk_=$NO
+        if [ -d /sbt ] ; then
+            # Are home directory and /sbt are on the same disk?
+            home_disk_=$( df -k $INFRA_HOME | grep -v Filesystem | awk '{print $1}' )
+            sbt_disk_=$( df -k /sbt | grep -v Filesystem | awk '{print $1}' )
+            if [ "$home_disk_" == "$sbt_disk_" ] ; then
+                same_disk_=$YES
+            fi
+        fi
+
+        if [ "$same_disk_" == "$NO" ] ; then
+            # Create /sbt/log as a symbolic link
+            logdir_=$( eval echo ~$INFRA_USER )
+            logdir_=${logdir_%/infra}/log
+
+            $GUARD mkdir -p $logdir_
+            $GUARD chown $USER:$USER_GROUP $logdir_
+            $GUARD mkdir -p -m755 $( dirname $BASE )
+            $GUARD ln -s $logdir_ $BASE
+        else
+            # On most boxes, /sbt is on same disk as $INFRA_HOME
+            $GUARD mkdir -p -m755 $BASE
+        fi
+        umask $UMASK_START
+    fi
+}
+
+createFixcasLogDirs()
+{
+    for num in 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 ; do
+        $GUARD mkdir -p -m775 $SBT_LOG_PARTITION/cas/fix$num
+        $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas
+        $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas/fix$num
+    done
+}
+
+createMdcasCfixLogDirs()
+{
+    if [ -e $INFRA_HOME/v2mdcas[0-9][0-9] ] ; then
+        for engine in $INFRA_HOME/v2mdcas[0-9][0-9] ; do
+            num=${engine##*v2mdcas}
+            $GUARD mkdir -p -m775 $SBT_LOG_PARTITION/cas/mdcas$num
+            $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas
+            $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas/mdcas$num
+        done
+    fi
+    createCfixLogDirs
+}
+
+createCfixLogDirs()
+{
+    if [ -e $INFRA_HOME/v2cfix[0-9][0-9] ] ; then
+        for engine in $INFRA_HOME/v2cfix[0-9][0-9] ; do
+            num=${engine##*v2cfix}
+            $GUARD mkdir -p -m775 $SBT_LOG_PARTITION/cas/cfix$num
+            $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas
+            $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas/cfix$num
+        done
+    fi
+}
+
+# -------------------- Main program --------------------
+
+unalias rm
+
+readCommandLine $*
+setDebugMode
+calcClientId
+if [ -n "$STATED_CLIENT_TYPE" ] ; then
+    CLIENT_TYPE=$STATED_CLIENT_TYPE
+fi
+if [ -z "$CLIENT_TYPE" ] ; then
+    print -u2 "$PROG: Cannot set CLIENT_TYPE"
+    usage
+    exit 1
+fi
+if [ -z "$SBT_LOG_PARTITION" ] ; then
+    print -u2 "$PROG: Cannot set SBT_LOG_PARTITION"
+fi
+calcInfraUser
+calcInfraHome
+calcInfraUserGroup
+
+#####
+# Create the top-level directories if they don't already exist
+#####
+
+createBaseDir
+
+$GUARD mkdir -p -m755 $BASE/test $BASE/assr $BASE/prod
+$GUARD chown $USER:$USER_GROUP $BASE/test $BASE/assr $BASE/prod
+
+#####
+# Remove detritus
+#####
+
+for item in $BASE/* ; do
+    case $( basename $item ) in
+    assr|test|prod)
+        ;;
+    lost+found)
+        ;;
+    *)
+        echo Removing $item
+        $GUARD rm -rf $item
+        ;;
+    esac
+done
+
+DIRS=$( find $BASE -name lost+found -prune \
+                -o -type d -name 'SBT*' \
+                -o -type d -name 'CBOE*' \
+                -o -type d -name '*INFRA*' )
+for dir in $DIRS ; do
+    # Don't delete the lost+found directory
+    if [ $( basename $dir ) != "lost+found" ] ; then
+        echo Removing $dir
+        $GUARD rm -rf $dir
+    fi
+done
+
+#####
+# Create application log directories
+#####
+
+umask 022
+$GUARD chmod u+w $SBT_LOG_PARTITION
+case $CLIENT_TYPE in
+cas|sacas)
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/infra/log
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/cas/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas/log
+    ;;
+fixcas)
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/infra/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra/log
+    createFixcasLogDirs
+    ;;
+mdcas)
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/infra/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra/log
+    createMdcasCfixLogDirs
+    ;;
+cfix)
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/infra/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra/log
+    createCfixLogDirs
+    ;;
+mdx)
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/infra/log
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/cas/mdx01
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/cas/mdx01
+    ;;
+tipsmdxadapter)
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/infra/tipsmdx
+    $GUARD mkdir -m775 -p $SBT_LOG_PARTITION/tipsmdx/log
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/infra/tipsmdx
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/tipsmdx
+    $GUARD chown $USER:$USER_GROUP $SBT_LOG_PARTITION/tipsmdx/log
+    ;;
+*)
+    # Should never get here since clientType is validated on the command line.
+    echo "$PROG: Unknown CLIENT_TYPE ( $CLIENT_TYPE )" 
+    usage
+    exit 1
+    ;;
+esac
+umask $UMASK_START

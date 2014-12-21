@@ -1,0 +1,12 @@
+# devenv19
+ 
+environment = test19
+ 
+cas    = dev19cas,   01, dev19fe    dev19fe
+fixcas = dev19fix,   01, dev19fe    dev19fe
+cfix   = dev19mdcas, 01, dev19fe    dev19fe
+mdcas  = dev19mdcas, 01, dev19fe    dev19fe
+mdcas  = dev19mds,   01, dev19fe    dev19fe
+mdx    = dev19mdx,   01, dev19fe    dev19fe
+sacas  = dev19sa,    01, dev1922svr dev1922svr
+fixcas = dev19ttfix, 01, dev19fe    dev19fe

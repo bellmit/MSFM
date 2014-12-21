@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLightOrderHandlingServiceHome SYSTEM "../dtd/OrderHandlingServiceHome.dtd">
+<GlobalLightOrderHandlingServiceHome>
+	<LightOrderHandlingServiceHomeImpl name="DefaultService">
+		<FullTrade>
+			<FullTradeProperties>
+				<ReportingClass>AOL</ReportingClass>
+			</FullTradeProperties>
+		</FullTrade>
+		<HalfTrade>
+			<HalfTradeProperties>
+				<ReportingClass>IBM</ReportingClass>
+			</HalfTradeProperties>
+		</HalfTrade>
+		<ZeroTrade>
+			<ZeroTradeProperties>
+				<ReportingClass>GM</ReportingClass>
+			</ZeroTradeProperties>
+		</ZeroTrade>
+	</LightOrderHandlingServiceHomeImpl>
+</GlobalLightOrderHandlingServiceHome>

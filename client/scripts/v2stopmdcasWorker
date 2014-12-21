@@ -1,0 +1,14 @@
+#!/bin/ksh
+# v2stopmdcas - script to stop mdcas${1}
+# usage : v2stopmdcas 01
+
+if [[ "$1" != [0-9][0-9] ]] ; then
+    print -u2 "Usage: $( basename $0 ) <engineNumber>"
+    exit 1
+fi
+
+ENGINE=mdcas${1}
+THIS_CLIENT=mdcas
+
+. $( dirname $0 )/ClientFunctions
+stopClient

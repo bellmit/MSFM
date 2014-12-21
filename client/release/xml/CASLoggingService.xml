@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Keith A. Korecky (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLoggingService SYSTEM "${RUN_DIR}/properties/dtd/logging.dtd">
+<GlobalLoggingService name="CASLoggingService1">
+    <!-- ************************* Primary CAS logging client ************************* -->
+	<LoggingServiceClient name="CASFileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="CASFilev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>ClientApplicationRepository</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2cas01/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cas01/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2cas01/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2cas01/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+        <!-- ************************* Standard Message Catalog ************************* -->
+	<StandardMessageCatalog name="StandardMessageCatalog1">
+		<StandardMessageCatalogProperties>
+			<StandardLogMessageProperty>Non-standard message.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Failure occurred while trying to read a file.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Log message generated in response to a management event.</StandardLogMessageProperty>
+		</StandardMessageCatalogProperties>
+	</StandardMessageCatalog>
+</GlobalLoggingService>

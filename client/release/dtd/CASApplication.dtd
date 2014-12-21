@@ -1,0 +1,70 @@
+<!-- Global property definitions -->
+
+<!-- define the entities required by the foundationFramework -->
+
+<!ENTITY % applicationDefinedProperties '(remoteRouteName?,cacheRemoteRouteName?,globalRouteName?,routeName?,CASPairName?,displayName?,ipAddress?,enabled?,currentStatus?,configured?)'>
+
+<!-- include the foundationFramework -->
+<!ENTITY % FF_include SYSTEM "./FoundationFramework.dtd" >
+%FF_include;
+
+<!ELEMENT remoteRouteName (#PCDATA)>
+<!ATTLIST remoteRouteName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readOnly'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	description   		CDATA          	   #FIXED 'the name this server will use to find remote services'
+>
+<!ELEMENT cacheRemoteRouteName (#PCDATA)>
+<!ATTLIST cacheRemoteRouteName type  %typeConstraints;  #FIXED 'ManagedProperty'
+        mode                    %modeConstraints;  #FIXED 'readOnly'
+        propertyType            %propertyTypes;    #FIXED 'string'
+        description             CDATA              #FIXED 'the name this server will use to find remote services'
+>
+<!ELEMENT globalRouteName (#PCDATA)>
+<!ATTLIST globalRouteName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readOnly'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	description   		CDATA          	   #FIXED 'the name this server will use to find Global services'
+>
+<!ELEMENT CASPairName (#PCDATA)>
+<!ATTLIST CASPairName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readOnly'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	description   		CDATA          	   #FIXED 'the name that defines this CAS as a member of a CAS pair'
+>
+<!ELEMENT displayName (#PCDATA)>
+<!ATTLIST displayName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readWrite'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	description   		CDATA          	   #FIXED 'a text description for this CAS, since the CAS process name is generic e.g., CAS0001 == Schwab, CAS0002 == Merrill'
+>
+<!ELEMENT ipAddress (#PCDATA)>
+<!ATTLIST ipAddress type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readWrite'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	description   		CDATA          	   #FIXED 'the IP address of the box where this cas runs'
+>
+<!ELEMENT enabled (#PCDATA)>
+<!ATTLIST enabled type		%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readWrite'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	booleanValue		(true | false)     #REQUIRED
+	propertyValue		CDATA              #FIXED "booleanValue"
+	description   		CDATA          	   #FIXED 'true/false to provide some sort of pre-configure capability'
+>
+<!ELEMENT currentStatus (#PCDATA)>
+<!ATTLIST currentStatus type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  	%modeConstraints;  #FIXED 'readWrite'
+	propertyType  		%propertyTypes;    #FIXED 'string'
+	description   		CDATA          	   #FIXED 'a text description of the current running status of the CAS'
+>
+<!ELEMENT configured (#PCDATA)>
+<!ATTLIST configured type               %typeConstraints;  #FIXED 'ManagedProperty'
+        mode                    %modeConstraints;  #FIXED 'readWrite'
+        propertyType            %propertyTypes;    #FIXED 'enum'
+        booleanValue            (true | false)     #REQUIRED
+        propertyValue           CDATA              #FIXED "booleanValue"
+        description             CDATA              #FIXED 'true/false to indicated overrides have been applied'
+>
+
+

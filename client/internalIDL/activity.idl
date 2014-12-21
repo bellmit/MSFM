@@ -1,0 +1,59 @@
+#ifndef ACTIVITY_IDL
+#define ACTIVITY_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 3.2
+//
+// Copyright © 1999-2007 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "Util.idl"
+#include "exceptions.idl"
+#include "terminalActivity.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module activity
+{
+    interface ActivityService
+    {
+        terminalActivity::HistoryResultStruct queryActivityHistory(
+                          in terminalActivity::HistoryRequestStruct historyRequestStruct,
+			  in string queryID,
+                          in cmiUtil::DateStruct date,
+	                  in long relativeDay,
+                          in long long startTime,
+	                  in cmiUtil::QueryDirection direction)
+       		raises(
+            	exceptions::SystemException,
+            	exceptions::CommunicationException,
+            	exceptions::AuthorizationException,
+            	exceptions::DataValidationException
+            );
+        
+        terminalActivity::HistoryResultStruct queryActivityTradeHistory(
+                          in terminalActivity::HistoryRequestStruct historyRequestStruct,
+			  in string queryID,
+                          in cmiUtil::DateStruct date,
+	                  in long relativeDay,
+                          in long long startTime,
+	                  in cmiUtil::QueryDirection direction)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException
+            );
+            
+    };
+};
+
+#endif
+

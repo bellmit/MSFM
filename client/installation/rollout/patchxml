@@ -1,0 +1,162 @@
+#!/bin/ksh
+# Patch XML on multiple clients in production
+
+# -------------------- Configuration --------------------
+
+#DEBUG=1
+GROUP=prodsbt
+# If we need to change GROUP, we probably also need to change INFRA_HOME
+# in the makeClientScript function.
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+NOW=$( date "+%Y%m%d-%H%M%S" )
+TMPDIR=/tmp/$PROG.$NOW.tmp
+LOCAL_TMPTAR=/tmp/$PROG.$NOW.tar
+REMOTE_TMPTAR=$PROG.$NOW.tar
+CLIENT_SCRIPT=${PROG}-client
+
+# From /usr/include/sys/errno.h
+EINTR=4      # Interrupted system call
+EACCES=13    # Permission denied
+EINVAL=22    # Invalid argument
+
+# -------------------- Subroutines --------------------
+
+cleanupAndExit()
+{
+    cd
+    rm -rf $LOCAL_TMPTAR.gz $TMPDIR
+    exit $EINTR
+}
+
+makeClientScript()
+{
+    cat >$TMPDIR/$CLIENT_SCRIPT <<'_SCRIPT_END_'
+#!/bin/ksh
+# Patch XML in installed Client directories in production
+
+# ---------- Constants ----------
+
+INFRA_HOME=$( echo ~infrap )
+INFRA_HOME=${INFRA_HOME%/infra}/infra
+
+HOSTNAME=$( hostname )
+NOW=$( date "+%Y%m%d-%H%M%S" )
+
+TARFILE=xml.$NOW.tar
+
+# ---------- Main program ----------
+
+# Get directory that this script is loaded into
+TMPDIR=$( dirname $0 )
+cd $TMPDIR
+TMPDIR=$( pwd )
+
+# Get command-line parameters
+IN_ENGINE_LIST=$1
+IN_XML_TAR=$2
+
+# Get list of engines on this box
+ENGINES=$( grep $HOSTNAME'$' $TMPDIR/$IN_ENGINE_LIST | sed s/v2$HOSTNAME//g )
+
+# For each engine, back up the xml directory and install new XML files
+cd $INFRA_HOME
+for engine in $ENGINES ; do
+    engine=v2$engine
+    echo "  .. $engine .."
+    if [ -e $INFRA_HOME/$engine ] ; then
+        cd $INFRA_HOME/$engine/properties
+        tar cf $TARFILE xml
+        ls -l $TARFILE
+        gzip $TARFILE
+        cd xml
+        chmod 640 *
+        tar xvpf $TMPDIR/$IN_XML_TAR
+        chmod 440 *
+    fi
+done
+_SCRIPT_END_
+    chmod 777 $TMPDIR/$CLIENT_SCRIPT
+}
+
+# -------------------- Main program --------------------
+
+unalias rm
+trap cleanupAndExit 1 2 3
+
+if [ -n "$DEBUG" ] ; then
+    GUARD="echo GUARD:"
+else
+    GUARD=
+fi
+
+#####
+# Check command line
+#####
+
+if [[ $0 = *sh ]] ; then
+    echo 'Run script directly, not with the "." command'
+    exit $EINVAL
+fi
+
+if [ -z "$2" ] || [ -n "$3" ] ; then
+    echo "Usage: $PROG enginelist xmlTarfile"
+    echo "   File enginelist lists engines, one per line. Examples:"
+    echo "      cas01v2cas0014"
+    echo "      fixcas07v2fix1a"
+    echo "      mdcas01v2mdcas04"
+    echo "      cfix03v2prdcfix2"
+    echo "      sacas01v2sacas1"
+    echo "Example: $PROG imp330.engines.txt casxml.tar"
+    exit $EINVAL
+fi
+
+EngineFile=$1
+if [ ! -r $EngineFile ] ; then
+    echo "Can't read file $EngineFile"
+    exit $EACCES
+fi
+
+TarFile=$2
+if [ ! -r $TarFile ] ; then
+    echo "Can't read file $TarFile"
+    exit $EACCES
+fi
+
+#####
+# Make .tar.gz file to transmit to each Client
+#####
+
+mkdir -m777 $TMPDIR
+cp $EngineFile $TarFile $TMPDIR
+makeClientScript
+
+cd $TMPDIR
+chmod 777 $CLIENT_SCRIPT
+chmod 666 $TarFile $EngineFile
+tar cf $LOCAL_TMPTAR $CLIENT_SCRIPT $TarFile $EngineFile
+gzip $LOCAL_TMPTAR
+chmod 666 $LOCAL_TMPTAR.gz
+
+#####
+# Transmit .tar.gz file to each Client, unpack it, run its contents
+#####
+
+HOSTS=$( sed <$EngineFile 's/.*v2//' | sort -u )
+
+for host in $HOSTS ; do
+    echo ".... $host ...."
+    $GUARD ssh $host mkdir -m777 $TMPDIR
+    $GUARD scp -q $LOCAL_TMPTAR.gz $host:$TMPDIR
+    if [ -z "$DEBUG" ] ; then
+        echo "cd $TMPDIR; gzcat $REMOTE_TMPTAR.gz | tar xpf - ; ./$CLIENT_SCRIPT $EngineFile $TarFile; cd; /bin/rm $TMPDIR/*; rmdir $TMPDIR" | ssh $host "/usr/bin/newgrp $GROUP"
+    else
+        echo "cd $TMPDIR; gzcat $REMOTE_TMPTAR.gz | tar xpf - ; ./$CLIENT_SCRIPT $EngineFile $TarFile; cd; /bin/rm $TMPDIR/*; rmdir $TMPDIR"
+        echo ' | ssh '$host' "'/usr/bin/newgrp $GROUP'"'
+    fi
+done # host
+
+cd
+rm -rf $LOCAL_TMPTAR.gz $TMPDIR

@@ -1,0 +1,10 @@
+# DEVENV2 (TEST7)
+
+environment = test7
+
+cas    = dev7cas, 01, dev7fe  dev7fe
+fixcas = dev7fix, 01, dev7fe  dev7fe 
+cfix   = dev7mdc, 01, dev7fe  dev7fe
+mdcas  = dev7mdc, 01, dev7fe  dev7fe
+mdx    = dev7mdx, 01, nofe1   nofe2
+sacas  = dev7sa,  01, devenv2 devenv2

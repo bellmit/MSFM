@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalSystemMarketQueryHome SYSTEM "../dtd/SystemMarketQueryHome.dtd">
+<GlobalSystemMarketQueryHome>
+	<SystemMarketQueryHomeImpl name="DefaultService">
+		<SystemMarketQueryHomeImplProperties>
+			<!-- OVERRIDE cas01v2apicas1  REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<!-- OVERRIDE cas01v2apicas2  REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<!-- OVERRIDE cas01v2apicas3  REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<!-- OVERRIDE cas01v2democas1 REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<!-- OVERRIDE cas01v2tstcas1  REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<!-- OVERRIDE cas01v2tstcas2  REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<marketDataCallbackTimeout>5000</marketDataCallbackTimeout>
+		</SystemMarketQueryHomeImplProperties>
+	</SystemMarketQueryHomeImpl>
+</GlobalSystemMarketQueryHome>

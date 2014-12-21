@@ -1,0 +1,44 @@
+#!/bin/ksh
+
+# This script 'wraps' the /vobs/dte/infrastructure/release/generateInterceptors script in
+# order to force the use of the JAVA_HOME & CLASSPATH defined in the Makefile.
+# Some people's .kshrc file resets the JAVA_HOME, PATH or CLASSPATH, any of which will cause
+# the 'java' invocation in the infra release to use whatever version.
+#
+
+if [[ $MAKEFILE_JAVA_HOME != "" ]]; then
+    JAVA_HOME=${MAKEFILE_JAVA_HOME}
+    JAVA=${JAVA_HOME}/bin/java
+else
+    JAVA=`which java`
+    echo "Warning - using local environment's java version: $JAVA"
+fi
+
+if [[ $MAKEFILE_CLASSPATH != "" ]]; then
+    CLASSPATH=$MAKEFILE_CLASSPATH
+fi
+export CLASSPATH
+
+
+
+echo "Generating interceptor for $1"
+$JAVA -Dheader=t com.objectwave.tools.GenerateTemplateInto $1 $2 CasExtendBOInterceptor > /dev/null
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+$JAVA -DuseRealClassName com.objectwave.tools.GenerateTemplateInto $1 $2 CasInterceptorConstructor > /dev/null
+
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+$JAVA -DuseRealClassName com.objectwave.tools.GenerateTemplateInto $1 $2 startInstrumentationV2 > /dev/null
+
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+$JAVA com.objectwave.tools.GenerateTemplateInto $1 $2 CasInterceptor > /dev/null
+if [ $? -ne 0 ]; then
+    exit 1;
+fi
+
+

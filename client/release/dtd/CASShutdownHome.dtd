@@ -1,0 +1,44 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the CASShutdownHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCASShutdownHome (CASShutdownHomeImpl*)>
+<!ATTLIST GlobalCASShutdownHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CASShutdownHomeImpl (CASShutdownHomeImplProperties)>
+<!ATTLIST CASShutdownHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT CASShutdownHomeImplProperties (ShutdownDelay?, Title?,EnableShutdownButton?)>
+<!ATTLIST CASShutdownHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT ShutdownDelay (#PCDATA)>
+<!ATTLIST ShutdownDelay
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "time window"
+>
+<!ELEMENT Title (#PCDATA)>
+<!ATTLIST Title
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED ""
+>
+<!-- added to enable the CAS shutdown window -->
+<!ELEMENT EnableShutdownButton (#PCDATA)>
+<!ATTLIST EnableShutdownButton
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED ""
+>

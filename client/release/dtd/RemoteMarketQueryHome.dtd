@@ -1,0 +1,43 @@
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the RemoteMarketQueryHomeImpl -->
+<!-- @author  -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalRemoteMarketQueryHome (RemoteMarketQueryHomeImpl*)>
+<!ATTLIST GlobalRemoteMarketQueryHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT RemoteMarketQueryHomeImpl (RemoteMarketQueryHomeImplProperties?)>
+<!ATTLIST RemoteMarketQueryHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT RemoteMarketQueryHomeImplProperties (marketDataCallbackTimeout, resubscribeInterval, maxResubscribeAttempts)>
+<!ATTLIST RemoteMarketQueryHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT marketDataCallbackTimeout (#PCDATA)>
+<!ATTLIST marketDataCallbackTimeout
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the timeout value of market data callback objects."
+>
+<!ELEMENT resubscribeInterval (#PCDATA)>
+<!ATTLIST resubscribeInterval
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the interval between resubscription attempts."
+>
+<!ELEMENT maxResubscribeAttempts (#PCDATA)>
+<!ATTLIST maxResubscribeAttempts
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the maximum number of resubscription attempts allowed."
+>

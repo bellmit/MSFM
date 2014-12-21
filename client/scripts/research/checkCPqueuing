@@ -1,0 +1,73 @@
+#!/usr/bin/perl -w
+# Check instrumentation for ConsumerProxy queues that have backlog
+
+# -------------------- Constants --------------------
+
+$RUN_DIR = $ENV{"RUN_DIR"};
+
+$YES = 1;
+$NO = 0;
+
+# -------------------- Subroutines --------------------
+
+sub usage
+{
+    my $PROG = `basename $0`;
+    chomp $PROG;
+    die "Usage: $PROG [-s starttime] [-e endtime] [-i inputfile]\n"
+      . "   default inputfile $RUN_DIR/log/*QI.log\n"
+      . "EXAMPLE: $PROG -s 08:15 -e 08:59\n";
+}
+
+sub getCommandLine
+{
+    $StartTime="00:00";
+    $EndTime="23:59";
+    $InputFile=`ls -1 $RUN_DIR/log/*QI.log |head -1`;
+
+    for (my $a = 0; $a <= $#ARGV; ++$a)
+    {
+        if ($ARGV[$a] eq "-s") 
+        {
+            $StartTime = $ARGV[++$a];
+        }
+        elsif ($ARGV[$a] eq "-e")
+        {
+            $EndTime = $ARGV[++$a];
+        }
+        elsif ($ARGV[$a] eq "-i")
+        {
+            $InputFile = $ARGV[++$a];
+        }
+        else
+        {
+            &usage;
+        }
+    }
+}
+
+# -------------------- Main program --------------------
+
+# 2006/06/20 21:31:19,cas01v2perfcas1/X01@14543487/CM/ConsumerProxy@-170621102,128945,128945,0,0,5,0,0,19,2006/06/20 20:35:47,0,0,0,10=172450982
+
+$firstLine = $YES;
+&getCommandLine;
+open INPUT, "< $InputFile";
+while (<INPUT>)
+{
+    next unless /ConsumerProxy/;
+    chomp;
+    my @fields = split /,/;
+    my $instTime;
+    $fields[0] =~ / (\d\d:\d\d)/ && ($instTime = $1);
+    next if $instTime lt $StartTime || $instTime gt $EndTime;
+    next if $fields[2] eq $fields[3];
+    my $backlog = (0 + $fields[2]) - $fields[3];
+    if ($firstLine == $YES)
+    {
+        print "time,name,queuedepth,userdata\n";
+        $firstLine = $NO;
+    }
+    print "$fields[0],$fields[1],$backlog,$fields[14]\n";
+}
+close INPUT;

@@ -1,0 +1,74 @@
+<HTML>
+<!--(c)1996 Copyright Sun Microsystems, Inc.-->
+   <TITLE>Java(TM) IDL README</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+<H1><CENTER>
+idltojava README<BR>
+</H1></CENTER>
+<HR>
+
+<P>Welcome to the Early Access Beta <TT>idltojava</TT> download page. 
+Thank you for your interest in this product
+and for taking the time to download the software and documentation.
+
+<HR>
+
+<P>This README contains:
+
+<UL>
+        <LI><A HREF="#LIM">Limitations in this Release</A>
+        <LI><A HREF="#BUG"><TT>idltojava</TT> Known Bugs</A>
+</UL>
+<P>
+<A NAME="LIM">
+<H2>Limitations in this Release</H2></A>
+
+The following are not supported in this release of <TT>idltojava</TT>.
+
+<UL>
+<LI><TT>#pragma ID</TT> and <TT>#pragma version</TT> are not supported;
+<TT>#pragma prefix</TT> can appear only at global scope.
+
+<P>
+<LI><TT>idltojava</TT> allows modules to
+be reopened, but all declarations (particularly the ones
+in the earlier incantation of the module) must be fully qualified.
+For example:
+<PRE>
+  module M {
+    interface I { };
+  };
+
+  module M {
+    interface J : M::I { };
+  };
+</PRE>
+
+<P>
+<LI>Of the recently added type extensions to IDL, only <TT>longlong</TT>
+(signed and unsigned) is supported.  The wide character IDL types
+<TT>wchar</TT> and <TT>wstring</TT> are not supported.
+</LI>
+
+<P>
+
+<A NAME="BUG">
+<H2>Known Bugs</H2></A>
+
+<P>The following is a list of known bugs in this <TT>idltojava</TT>
+release.
+
+
+<UL>
+
+<LI><B>4049820</B> <TT>idltojava</TT> does not handle declarations nested inside
+IDL structs, unions, or exceptions.
+</LI>
+
+<P>
+<LI><B>4064180</B>
+<TT>idltojava</TT> generates illegal Java code for Unions with boolean
+discriminants.
+</LI>

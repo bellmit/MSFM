@@ -1,0 +1,5 @@
+<!DOCTYPE GlobalMarketDataServiceHome SYSTEM "../dtd/MarketDataServiceClientRoutingProxyHome.dtd">
+<GlobalMarketDataServiceHome>
+	<MarketDataServiceClientRoutingProxyHomeImpl name="DefaultService">
+	</MarketDataServiceClientRoutingProxyHomeImpl>
+</GlobalMarketDataServiceHome>

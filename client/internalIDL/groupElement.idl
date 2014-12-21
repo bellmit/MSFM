@@ -1,0 +1,59 @@
+#ifndef GroupElement_idl
+#define GroupElement_idl
+
+#include "exceptions.idl"
+#include "cmiUtil.idl"
+
+module groupElement
+{
+    typedef long long ElementKey;
+    typedef short ElementGroupType;
+    typedef short ElementDataType;
+    typedef short NodeType;
+    typedef string RootName;
+
+    typedef sequence <ElementKey> ElementKeySequence;
+
+    // ##################################
+    // # ElementEntryStruct             #
+    // ##################################
+    struct ElementEntryStruct
+    {
+        string elementName;
+        groupElement::ElementGroupType elementGroupType;
+        groupElement::ElementDataType elementDataType;
+        long long elementDataKey;
+        groupElement::NodeType nodeType;
+        string extensions;
+    };
+
+    typedef sequence <ElementEntryStruct> ElementEntryStructSequence;
+
+    // ##################################
+    // # ElementStruct                  #
+    // ##################################
+    struct ElementStruct
+    {
+        groupElement::ElementKey elementKey;
+        groupElement::ElementEntryStruct entryStruct;
+        cmiUtil::DateTimeStruct createdTime;
+        cmiUtil::DateTimeStruct lastModifiedTime;
+        long versionNumber;
+    };
+
+    typedef sequence <ElementStruct> ElementStructSequence;
+
+    // ##################################
+    // # ElementErrorResultStruct       #
+    // ##################################
+    struct ElementErrorResultStruct
+    {
+        groupElement::ElementStruct elementStruct;
+        exceptions::ErrorCode errorCode;
+        string errorMessage;
+    };
+
+    typedef sequence <ElementErrorResultStruct> ElementErrorResultStructSequence;
+};
+
+#endif

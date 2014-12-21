@@ -1,0 +1,18 @@
+#!/usr/bin/perl -w
+# Process per-second quote counts into per-second quote rates in each
+# 30-second window.
+# Usage: quotesPerSecond | $0
+
+$total = 0;
+while (<>)
+{
+    next unless /^\d\d\d\d\d\d \d+/;
+    /^(\d\d)(\d\d)(\d\d) (\d+)/ && ($hour=$1,$min=$2,$sec=$3,$quotes=$4);
+    if ($sec eq "00" || $sec eq "30")
+    {
+        $avg = int $total / 30;
+        print "$hour:$min $avg\n";
+        $total = 0;
+    }
+    $total += $quotes;
+}

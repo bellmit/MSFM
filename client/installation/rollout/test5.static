@@ -1,0 +1,9 @@
+# DEVENV2 (TEST5)
+
+environment = test5
+
+cas    = dev5cas, 01, dev5fe  dev5fe
+fixcas = dev5fix, 01, dev5fe  dev5fe 
+cfix   = dev5mdc, 01, dev5fe  dev5fe
+mdcas  = dev5mdc, 01, dev5fe  dev5fe
+sacas  = dev5sa,  01, devenv2 devenv2

@@ -1,0 +1,24 @@
+#!/bin/ksh
+
+# -------------------- Constants --------------------
+
+# Error codes from /usr/include/errno.h
+EINVAL=22
+
+# -------------------- Main Program --------------------
+
+if [ -z $2 ] ; then
+    PROG=`basename $0`
+    PROG=${PROG%Worker}
+    print -u2 "Usage: $PROG engine command"
+    print -u2 "Example:"
+    print -u2 "       $PROG 01 help"
+    exit $EINVAL
+fi
+
+ENGINE=$1
+shift
+
+ORBNAME=${SBT_PREFIX}cfix${ENGINE}v2${HOSTNAME}
+
+ar ${ORBNAME} $*

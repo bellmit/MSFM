@@ -1,0 +1,57 @@
+#!/usr/bin/perl -w
+# Usage: cat cas.log | orderOutlier milliseconds
+#
+# Output: comma-separated values
+# - first line is header
+# - subsequent lines are data
+# - last line starts with "#", contains summary data
+#   . field 1 is number of outliers (cas delay >= milliseconds)
+#   . field 2 is number of calls to acceptOrder
+#   . field 3 is percentage of outliers
+#   . field 4 is longest cas delay
+
+die "Usage: cat cas.log | $0 milliseconds\n" if $#ARGV != 0;
+
+$unacceptableDelay = 0 + $ARGV[0];
+$NOrders = 0;
+$NSlowOrders = 0;
+$MaxCasDelay = 0;
+
+while (<STDIN>)
+{
+    next unless /acceptOrder/ && !/calling/;
+
+###
+#low information 2008/2/7 4:25:57.29 CASFilev2 test10cas01v2dev10cas CAS "UserOrderEntryHome:23304033>>> acceptOrder returning TT:1399 CT:3 ST:1396 EID:2860929648754688 UA:ABD SnT:1 SnId:19c24d1 SESN:CFE_MAIN UAID:ABD UA:ABD BR:PPP SEQ:2 CF: EF:501 CK:130031315 PK:456392705 SD:B QTY:200" 0
+###
+    chomp;
+
+    my @f = split / /; 
+    m/"(.*)"/ && ($line = $1); 
+    $line =~ s/.*returning //;
+    my %hash = split /[: ]/, $line;
+    my $firm = $hash{'CF'}; 
+    $firm = $hash{'EF'} if exists $hash{'EF'};
+    my $casDelay = $hash{'CT'}; 
+    ++ $NOrders;
+    $MaxCasDelay = $casDelay if $casDelay > $MaxCasDelay;
+    next if $casDelay < $unacceptableDelay;
+    ++ $NSlowOrders;
+    $firm = $hash{'EF'} if exists $hash{'EF'}; 
+    $s = join ",", $f[2],$f[3],$f[5],$hash{'TT'},$hash{'CT'},$hash{'ST'},$hash{'UA'},$hash{'CK'},$hash{'PK'},$hash{'SESN'},$hash{'BR'},$hash{'SEQ'},$firm,$hash{'EID'},$hash{'TYPE'};
+    print "DAY,TIME,CAS,TOTAL_TIME,CAS_TIME,SERVER_TIME,USER,CLASS_KEY,PROD_KEY,SESSION,BRANCH,SEQUENCE,FIRM,ENTITY_ID,TYPE\n" if $NSlowOrders == 1;
+    print "$s\n";
+}
+
+if ($NOrders > 0 )
+{
+    my $percent = ($NSlowOrders * 100.0) / $NOrders;
+    print "\nCasDelay>$unacceptableDelay, TotalOrders, SlowPercent, MaxCasDelay\n";
+    printf "%8d,%4d,%8.2f%%,%4d\n", $NSlowOrders, $NOrders, $percent, $MaxCasDelay;
+}
+else
+{
+    print "\nCasDelay>$unacceptableDelay, TotalOrders, SlowPercent, MaxCasDelay\n";
+    print "       0,      0,      0.00%,      0\n";
+}
+

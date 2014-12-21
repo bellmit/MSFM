@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Roy Gautam (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalOrbService SYSTEM "../dtd/OrbService.dtd">
+<GlobalOrbService>
+	<OrbServicePOAImpl name="RootOnly">
+		<OrbServicePOAImplProperties>
+			<poolSize>10</poolSize>
+		</OrbServicePOAImplProperties>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="CAS">
+		<OrbServicePOAImplProperties>
+			<poaList>CASPOA,CASAlert,CASMarketQuery,CASOrder,CASCalendarAdmin,CASIntermarketManualHandling,CASProperty,CASOrderEntry,CASTradingSession,CASProductQuery,CASProductDefinition,CASAdministrator,CASUserHistory,CASQuote,CASOrderQuery,CASTradingParameters,CASPreferences,CASSessionManager,CASUserAccess,CASFirm,CASUser,CASProduct,CASExchange,CASTextMessaging,CASSecurityAdmin,CASSessionAdmin,CASNBBOAgentAdmin,CASIntermarketControl,CASGroupService,CASOMTSessionManager,CASUserAccessOMT,CASOMT</poaList>
+			<poolSize>10</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="CASPOA">
+			<POAProperties>				
+				<persistentIor value='false'/>
+				<poolSize>10</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+        <POA name="CASAlert">
+                <POAProperties>
+                        <persistentIor value='false'/>
+                        <poolSize>10</poolSize>
+                        <parentPoa>UserPOA</parentPoa>
+                </POAProperties>
+        </POA>
+                <POA name="CASMarketQuery">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASOrder">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASCalendarAdmin">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASIntermarketManualHandling">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASProperty">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASOrderEntry">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASTradingSession">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>20</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASProductQuery">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>20</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASProductDefinition">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASAdministrator">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASUserHistory">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASQuote">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASOrderQuery">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>20</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASTradingParameters">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASPreferences">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASSessionManager">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>30</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASUserAccess">
+                        <POAProperties>
+                                <persistentIor value='false'/>
+                                <poolSize>10</poolSize>
+                                <parentPoa>UserPOA</parentPoa>
+                        </POAProperties>
+                </POA>
+                <POA name="CASFirm">
+		        <POAProperties>
+		                <persistentIor value='false'/>
+		                <poolSize>10</poolSize>
+		                <parentPoa>UserPOA</parentPoa>
+		        </POAProperties>
+                </POA>
+                <POA name="CASUser">
+		        <POAProperties>
+		                <persistentIor value='false'/>
+		                <poolSize>10</poolSize>
+		                <parentPoa>UserPOA</parentPoa>
+		        </POAProperties>
+                </POA>
+                <POA name="CASProduct">
+		        <POAProperties>
+		                <persistentIor value='false'/>
+		                <poolSize>10</poolSize>
+		                <parentPoa>UserPOA</parentPoa>
+		        </POAProperties>
+                </POA>
+		<POA name="CASExchange">
+		        <POAProperties>
+		                <persistentIor value='false'/>
+		                <poolSize>10</poolSize>
+		                <parentPoa>UserPOA</parentPoa>
+		        </POAProperties>
+		</POA>
+		<POA name="CASTextMessaging">
+		        <POAProperties>
+		                <persistentIor value='false'/>
+		                <poolSize>10</poolSize>
+		                <parentPoa>UserPOA</parentPoa>
+		        </POAProperties>
+		</POA>
+		<POA name="CASSessionAdmin">
+			<POAProperties>
+			        <persistentIor value='false'/>
+			        <poolSize>10</poolSize>
+			        <parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="CASNBBOAgentAdmin">
+			<POAProperties>
+			        <persistentIor value='false'/>
+			        <poolSize>10</poolSize>
+			        <parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="CASSecurityAdmin">
+			<POAProperties>
+			        <persistentIor value='false'/>
+			        <poolSize>10</poolSize>
+			        <parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="CASIntermarketControl">
+			<POAProperties>
+			        <persistentIor value='false'/>
+			        <poolSize>10</poolSize>
+			        <parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="CASGroupService">
+			<POAProperties>
+			        <persistentIor value='false'/>
+			        <poolSize>10</poolSize>
+			        <parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="CASOMTSessionManager">
+            <POAProperties>
+                    <persistentIor value='false'/>
+                    <poolSize>10</poolSize>
+                    <parentPoa>UserPOA</parentPoa>
+            </POAProperties>
+        </POA>
+        <POA name="CASUserAccessOMT">
+            <POAProperties>
+                    <persistentIor value='false'/>
+                    <poolSize>10</poolSize>
+                    <parentPoa>UserPOA</parentPoa>
+            </POAProperties>
+        </POA>
+        <POA name="CASOMT">
+            <POAProperties>
+                    <persistentIor value='false'/>
+                    <poolSize>10</poolSize>
+                    <parentPoa>UserPOA</parentPoa>
+            </POAProperties>
+        </POA>
+	</OrbServicePOAImpl>
+</GlobalOrbService>

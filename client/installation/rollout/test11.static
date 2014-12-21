@@ -1,0 +1,11 @@
+# DEVENV3 (TEST11)
+
+environment = test11
+
+cas    = dev11cas, 01, dev11fe dev11fe
+fixcas = dev11fix, 01, dev11fe dev11fe 
+cfix   = dev11mdc, 01, dev11fe dev11fe
+mdcas  = dev11mdc, 01, dev11fe dev11fe
+mdx    = dev11mdx, 01, dev11fe dev11fe
+sacas  = dev11sa,  01, devenv3 devenv3
+tipsMdxAdapter = devenv3, 01

@@ -1,0 +1,244 @@
+#ifndef Session_idl
+#define Session_idl
+
+#include "cmiUtil.idl"
+#include "cmiProduct.idl"
+#include "product.idl"
+#include "cmiSession.idl"
+
+module session
+{
+
+#pragma use_lookup_for_string ON
+    typedef string TradingSessionName;
+#pragma use_lookup_for_string OFF
+    typedef sequence <TradingSessionName> TradingSessionNameSequence;
+    typedef long  TradingSessionElementKey;
+    typedef short TradingSessionElementState;
+    typedef short TradingSessionEvent;
+    typedef short TradingSessionEventState;
+    typedef short TradingSessionDestinationCode;
+    typedef short BusinessDayState;
+    
+    struct TemplateClassStruct
+    {
+        cmiProduct::ClassStruct classStruct;
+        boolean includeAllProducts;
+        cmiUtil::DateStruct latestExpirationDate;
+        cmiUtil::PriceStruct lowestExercisePrice;
+        cmiUtil::PriceStruct highestExercisePrice;
+        string underlyingSessionName;
+    };
+    typedef sequence <TemplateClassStruct> TemplateClassStructSequence;
+            
+    struct TradingSessionElementTemplateStruct
+    {
+        string templateName;
+        string endOfElementStrategy;
+        session::TradingSessionName sessionName;
+        boolean isActive;
+        boolean autoPreOpenProducts;
+        boolean autoOpenProducts;
+        boolean autoCloseProducts;
+        cmiUtil::TimeStruct productPreOpenTime;
+        cmiUtil::TimeStruct productOpenTime;
+        cmiUtil::TimeStruct productCloseTime;
+        long sequenceNumber;
+        TemplateClassStructSequence templateClasses;
+    };
+
+    struct TradingSessionElementTemplateStructV2
+    {
+	TradingSessionElementTemplateStruct tsElementTemplateStruct;
+	boolean autoEarlyCloseProducts;
+	cmiUtil::TimeStruct productEarlyCloseTime;	
+	string extensions;
+    };
+    typedef sequence <TradingSessionElementTemplateStructV2> TradingSessionElementTemplateStructV2Sequence;
+
+    struct TradingSessionStruct
+    {
+        session::TradingSessionName sessionName;
+	string exchangeAcronym;
+        TradingSessionDestinationCode sessionDestinationCode;
+        cmiSession::TradingSessionState sessionState;
+        string endOfSessionStrategy;
+        boolean isLastSessionForBusinessDay;
+        boolean autoStartEndOfSession;
+        boolean abortEndOfSession;
+        TradingSessionEvent endOfSessionEventCompleted;
+        TradingSessionEvent endOfSessionEventInProgress;
+        cmiUtil::DateStruct businessDay;
+        cmiUtil::TimeStruct startTime;
+        cmiUtil::TimeStruct endTime;
+        long sequenceNumber;
+    };
+
+    typedef sequence <TradingSessionStruct> TradingSessionStructSequence;
+
+    struct TradingSessionElementStruct
+    {
+        string elementName;
+        string templateName;
+        session::TradingSessionName sessionName;
+        boolean autoPreOpenProducts;
+        boolean autoOpenProducts;
+        boolean autoCloseProducts;
+        TradingSessionElementKey elementKey;
+        TradingSessionElementState elementState;
+        cmiUtil::DateStruct businessDay;
+        cmiUtil::DateTimeStruct productPreOpenTime;
+        cmiUtil::DateTimeStruct productOpenTime;
+        cmiUtil::DateTimeStruct productCloseTime;
+        cmiSession::SessionClassStructSequence elementClasses;
+        long sequenceNumber;
+    };
+
+    typedef sequence <TradingSessionElementStruct> TradingSessionElementStructSequence;
+
+    struct TradingSessionElementStructV2
+    {
+        TradingSessionElementStruct tradingSessionElementStruct;
+        cmiUtil::DateTimeStruct productEarlyCloseTime;
+        boolean autoEarlyCloseProducts;
+	string extensions;
+    };
+
+    typedef sequence <TradingSessionElementStructV2> TradingSessionElementStructV2Sequence;
+
+    struct TradingSessionEventDescriptionStruct 
+    {
+        TradingSessionEvent type;
+        string eventName;
+    };
+
+    /**
+     * @deprecated - replaced by TradingSessionEventHistoryStructV2 in project "Hybrid Failover".
+     */
+    struct TradingSessionEventHistoryStruct
+    {
+        TradingSessionEventDescriptionStruct eventDescription;
+        TradingSessionEventState eventState;
+        session::TradingSessionName sessionName;
+        cmiUtil::DateTimeStruct dateTime;
+        string contextString;
+    };
+
+    typedef sequence <TradingSessionEventDescriptionStruct> TradingSessionEventDescriptions;
+
+    struct TradingSessionStrategyDescriptionStruct
+    {
+        string strategyName;
+        string description;
+        TradingSessionEventDescriptions eventDescription;
+    };
+
+    struct ClassStateDetailStruct {
+        cmiSession::ClassStateStruct classState;
+        cmiSession::ProductStateStructSequence productStates;
+    };
+
+    struct BusinessDaySessionStruct {
+        TradingSessionStruct session;
+        cmiProduct::ProductTypeStructSequence sessionProductTypes;
+        cmiSession::SessionClassStructSequence sessionClasses;
+    };
+
+    typedef sequence <BusinessDaySessionStruct> BusinessDaySessionStructSequence;
+        
+    struct BusinessDayStruct {
+        cmiUtil::DateStruct currentDay;
+        BusinessDayState dayState;
+        BusinessDaySessionStructSequence activeSessions;
+    };
+
+    typedef sequence <TradingSessionStrategyDescriptionStruct> TradingSessionStrategies;
+    typedef sequence <TradingSessionElementTemplateStruct> TradingSessionElementTemplateStructSequence;
+    typedef sequence <TradingSessionEventHistoryStruct> TradingSessionEventHistoryStructSequence;
+    typedef sequence <ClassStateDetailStruct> ClassStateDetailStructSequence;
+
+    typedef string RegisteredServerName;
+
+    typedef sequence <RegisteredServerName> RegisteredServerNameSequence;
+
+    struct RegisteredServerNameDetailStruct
+    {
+        session::RegisteredServerName serverName;
+        cmiUtil::KeyValueStructSequence serverDetails;
+    };
+
+    typedef sequence <RegisteredServerNameDetailStruct > RegisteredServerNameDetailStructSequence;
+
+    struct TradingSessionRegistrationStruct
+    {
+       TradingSessionStruct session;
+       RegisteredServerNameDetailStructSequence registeredServers;
+    };
+
+    typedef sequence < TradingSessionRegistrationStruct > TradingSessionRegistrationStructSequence;
+
+    struct TradingSessionGroupStruct
+    {
+        TradingSessionStruct session;
+        product::GroupStructSequence groups;
+    };
+
+    typedef sequence < TradingSessionGroupStruct > TradingSessionGroupStructSequence;
+
+    struct TradingSessionServerEventStateStruct
+    {
+        session::RegisteredServerName serverName;
+        session::TradingSessionName sessionName;
+        TradingSessionEventDescriptionStruct currentEventDescription; 
+        string eventGroup;
+        session::TradingSessionEventState eventState;        
+        long transactionSequenceNumber;
+        cmiUtil::DateTimeStruct dateTime;
+    };   
+    typedef sequence < TradingSessionServerEventStateStruct >  TradingSessionServerEventStateStructSequence;
+       
+    struct TradingSessionEventHistoryStructV2
+    {
+        TradingSessionEventDescriptionStruct eventDescription;
+        TradingSessionEventState eventState;
+        session::TradingSessionName sessionName;
+        cmiUtil::DateTimeStruct dateTime;
+        string contextString;
+        string eventGroup;
+        long eventHistoryKey;  //it will be same for all the incrementalUpdate for this event.
+        session::TradingSessionServerEventStateStructSequence serverEventState; //it will be used by SAGUI to  update the history as well as to update the "session server event state"
+    };
+    typedef sequence <TradingSessionEventHistoryStructV2> TradingSessionEventHistoryStructV2Sequence;
+    
+    struct TradingSessionElementInfoStruct
+    {
+        string elementName;
+        string templateName;
+        session::TradingSessionName sessionName;
+        TradingSessionElementKey elementKey;
+        TradingSessionElementState elementState;
+        cmiUtil::DateStruct businessDay;
+        cmiUtil::DateTimeStruct productPreOpenTime;
+        cmiUtil::DateTimeStruct productOpenTime;
+        cmiUtil::DateTimeStruct productCloseTime;
+        long sequenceNumber;
+    };
+
+    struct TradingSessionElementInfoStructV2
+    {
+	TradingSessionElementInfoStruct tradingSessionElementInfoStruct;
+        cmiUtil::DateTimeStruct productEarlyCloseTime;
+    };
+
+    struct TradingSessionElementClassesDetailStruct
+    {
+        session::TradingSessionElementInfoStruct tradingSessionElementInfo;
+        cmiSession::SessionClassDetailStructSequence sessionClassesDetail;
+    };
+    
+    typedef sequence <TradingSessionElementClassesDetailStruct> TradingSessionElementClassesDetailStructSequence;
+
+};
+
+
+#endif

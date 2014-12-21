@@ -1,0 +1,56 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the OrderHandlingServiceHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalOrderHandlingServiceHome (OrderHandlingServiceHomeImpl*)>
+<!ATTLIST GlobalOrderHandlingServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT OrderHandlingServiceHomeImpl (FullTrade?, HalfTrade?, ZeroTrade?)>
+<!ATTLIST OrderHandlingServiceHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT FullTrade (FullTradeProperties?)>
+<!ATTLIST FullTrade
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #IMPLIED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT HalfTrade (HalfTradeProperties?)>
+<!ATTLIST HalfTrade
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #IMPLIED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT ZeroTrade (ZeroTradeProperties?)>
+<!ATTLIST ZeroTrade
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #IMPLIED
+	objectName CDATA #IMPLIED
+>
+
+<!ELEMENT FullTradeProperties (ReportingClass*)>
+<!ATTLIST FullTradeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT HalfTradeProperties (ReportingClass*)>
+<!ATTLIST HalfTradeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT ZeroTradeProperties (ReportingClass*)>
+<!ATTLIST ZeroTradeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT ReportingClass (#PCDATA)>
+<!ATTLIST ReportingClass
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED ""
+>

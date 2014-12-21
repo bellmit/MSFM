@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserQuoteServiceHome SYSTEM "../dtd/UserQuoteServiceHome.dtd">
+<GlobalUserQuoteServiceHome>
+	<UserQuoteServiceHomeImpl name="DefaultService">
+		<UserQuoteServiceHomeImplProperties>
+			<quoteDeleteReportDispatch booleanValue="true"/>
+			<rateMonitorSessions>CFE_MAIN,W_MAIN,ONE_MAIN,W_STOCK,C2_MAIN,COF_MAIN</rateMonitorSessions>
+			<rateMonitorStartTime>8:15,8:25,8:15,7:45,9:15,8:25</rateMonitorStartTime>
+			<rateMonitorInterval>5000,1000,5000,1000,1000,1000</rateMonitorInterval>
+			<!-- OVERRIDE cas01v2devcas5  REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas1 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas2 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas3 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas4 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas5 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas6 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas9 REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2sbtcas3  REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2sbtcas4  REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2sbtcas5  REPLACE <rateMonitorWindow>250,10000,250,200,10000</rateMonitorWindow> -->
+			<rateMonitorWindow>250,133,250,133,200,133</rateMonitorWindow>
+			<!-- OVERRIDE cas01v2devcas5  REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas1 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas2 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas3 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas4 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas5 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas6 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2perfcas9 REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2sbtcas3  REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2sbtcas4  REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<!-- OVERRIDE cas01v2sbtcas5  REPLACE <quoteRateMonitorInterval>5000,1000,5000,0,1000</quoteRateMonitorInterval> -->
+			<quoteRateMonitorInterval>5000,3000,5000,3000,3000,3000</quoteRateMonitorInterval>
+			<!-- OVERRIDE cas01v2devcas5  REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas1 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas2 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas3 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas4 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas5 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas6 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2perfcas9 REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2sbtcas3  REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2sbtcas4  REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<!-- OVERRIDE cas01v2sbtcas5  REPLACE <quoteRateMonitorWindow>1000,20000,1000,0,20000</quoteRateMonitorWindow> -->
+			<quoteRateMonitorWindow>1000,4000,1000,4000,4000,4000</quoteRateMonitorWindow>
+			<rateMonitorQuoteSequenceSize>12,400,12,400,400,400</rateMonitorQuoteSequenceSize>
+		</UserQuoteServiceHomeImplProperties>
+	</UserQuoteServiceHomeImpl>
+</GlobalUserQuoteServiceHome>

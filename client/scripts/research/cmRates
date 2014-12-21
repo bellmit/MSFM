@@ -1,0 +1,217 @@
+#!/usr/bin/perl -w
+# Summarize Current Market message rates for an MDCAS
+
+# -------------------- Configuration --------------------
+
+$REPORT_IEC = 0;
+
+# -------------------- Constants --------------------
+
+chomp( $PROG=`basename $0` );
+$SECONDS_PER_PERIOD = 30;
+
+# -------------------- Subroutines --------------------
+
+sub usage
+{
+    my $extraFlag = "";
+    my $extraGloss = "";
+    if ($REPORT_IEC == 1)
+    {
+        $extraFlag = " -M miLog";
+        $extraGloss = "   -M: Mandatory.  *MI.log method instrumentation file\n";
+    }
+    die "Usage: $PROG -s startTime -e endTime$extraFlag -Q qiLog -m hostname [-T dir] [-h]\n"
+      . "   -s: Mandatory.  Specify start time.      format example: 08:10\n"
+      . "   -e: Mandatory.  Specify time after end.  format example: 14:31\n"
+      . "   -m: Mandatory.  Name of mdcas.\n"
+      . "   -Q: Mandatory.  *QI.log queue instrumentation file\n"
+      . $extraGloss
+      . "   -T: Optional.   Temporary directory\n"
+      . "   -h: help.\n";
+}
+
+sub parseCommandLine
+{
+    &usage if $#ARGV < 0;
+
+    my $arg;
+    for ($arg = 0; $arg <= $#ARGV; ++$arg)
+    {
+        if ($ARGV[$arg] eq "-s")
+        {
+            $STARTTIME = $ARGV[++$arg];
+        }
+        elsif ($ARGV[$arg] eq "-e")
+        {
+            $ENDTIME = $ARGV[++$arg];
+        }
+        elsif ($ARGV[$arg] eq "-m")
+        {
+            $MDCAS = $ARGV[++$arg];
+        }
+        elsif ($ARGV[$arg] eq "-M")
+        {
+            $MIfile = $ARGV[++$arg];
+        }
+        elsif ($ARGV[$arg] eq "-Q")
+        {
+            $QIfile = $ARGV[++$arg];
+        }
+        elsif ($ARGV[$arg] eq "-h")
+        {
+            &usage;
+        }
+        else
+        {
+            print STDERR "Unrecognized parameter: $ARGV[$arg]\n";
+            &usage;
+        }
+    }
+
+    die "Unspecified -s STARTTIME\n" unless defined $STARTTIME;
+    die "Unspecified -e ENDTIME\n" unless defined $ENDTIME;
+    die "Unspecified -m MDCAS\n" unless defined $MDCAS;
+    if ( $REPORT_IEC == 1 )
+    {
+        die "Unspecified -M MethodInstrumentation file\n" unless defined $MIfile;
+        die "Cannot find $MIfile\n" unless -f $MIfile;
+    } # REPORT_IEC
+    die "Unspecified -Q QueueInstrumentation file\n" unless defined $QIfile;
+    die "Cannot find file $QIfile\n" unless -f $QIfile;
+}
+
+sub resetCounters
+{
+    $NOutMessages = 0;
+    $NInEvents = 0;
+    $NSubscriptions = 0;
+    %AcronymRoster = ();
+    %SessionRoster = ();
+}
+
+# Inputs: $NInEvents, $OldNInEvents, $NOutMessages, $OldNOutMessages,
+#   $NSubscriptions, %AcronymRoster, %SessionRoster, $MDCAS, $Date, $TimeInFile
+sub report
+{
+    if ($TimeInFile eq "")
+    {
+        # First time in this function, print the header line
+        print "host,date,time,inEvents/sec,outCalls/sec,outCalls/event,nSubscriptions,nAcronyms,nUserSessions";
+        print ",iecDate,iecTime,iecCalls/sec,iecTime/call" if $REPORT_IEC == 1;
+        print "\n";
+        # No useful data to print out
+    }
+    elsif ($TimeInFile ge $STARTTIME)
+    {
+        # Print a report line if we're in the right time period
+        my $inEventsThisPeriod = $NInEvents - $OldNInEvents;
+        my $inEventsPerSecond = $inEventsThisPeriod / $SECONDS_PER_PERIOD;
+        my $outMessagesThisPeriod = $NOutMessages - $OldNOutMessages;
+        my $outCallsPerSecond = $outMessagesThisPeriod / $SECONDS_PER_PERIOD;
+        my $outCallsPerEvent = $outMessagesThisPeriod /
+                        ($inEventsThisPeriod == 0 ? 1 : $inEventsThisPeriod);
+        my $nAcronyms = scalar keys %AcronymRoster;
+        my $nUserSessions = scalar keys %SessionRoster;
+
+        printf "%s,%s,%s,%.0f,%.0f,%.0f,%d,%d,%d",
+           $MDCAS, $Date, $TimeInFile, $inEventsPerSecond, $outCallsPerSecond,
+           $outCallsPerEvent, $NSubscriptions, $nAcronyms, $nUserSessions;
+
+        if ($REPORT_IEC == 1)
+        {
+            #==== not implemented
+#    # Get data for calculating IEC time -- one line per time period
+#    if [[ $MIfile = *.gz || $MIfile = *.Z ]] ; then
+#        CAT=gzcat
+#    else
+#        CAT=cat
+#    fi
+#    $CAT $MIfile | grep 'CurrentMarketEventConsumerInterceptor/acceptCurrentMarketsForClass' \
+#      | sed -n "/${STARTTIME}:/,/${ENDTIME}:/p" \
+#      | grep -v ${ENDTIME}: >$IECGREP
+#    # Calculate IEC time: time spent putting CORBA call into Internal Event Channel
+#    # output: date time callsPerSecond timePerSecond
+#    awk -F"," '{printf("%s %.0f %.0f\n", $1, ($3-lastCall)/30, ($5-lastMethodTime)/30); lastCall=$3; lastMethodTime=$5}' \
+#     <$IECGREP >$IECCALC
+        }
+
+        print "\n";
+    }
+
+    # Keep track of previous value of events in and messages out, so
+    # we can calculate how many happened during the next time period.
+
+    $OldNOutMessages = $NOutMessages;
+    $OldNInEvents = $NInEvents;
+    &resetCounters;
+}
+
+# -------------------- Main program --------------------
+
+&parseCommandLine;
+
+if ($QIfile =~ /\.gz$|\.Z$/)
+{
+    open QINST, "/usr/bin/gzcat $QIfile |" or die "Can't open $QIfile: $!\n";
+}
+else
+{
+    open QINST, "<$QIfile" or die "Can't open $QIfile: $!\n";
+}
+
+if ($QIfile =~ /mdx/)
+{
+    $CurrentMarket = "ProdMDXCurrentMarket";
+}
+else
+{
+    $CurrentMarket = "ProdCurrentMarket";
+}
+
+$TimeInFile = "";
+$OldNInEvents = 0;
+$OldNOutMessages = 0;
+
+&resetCounters;
+
+while (<QINST>)
+{
+#time,name,enqueued,dequeued,flushed,overlaid,hwm,cursize,status,overallhwm,overallhwmtime,userdata
+    next if /enqueued/;   # ignore title line
+
+    # sample time: 2006/08/25 08:24:13
+    my $time = substr $_, 11, 8;  # skip "yyyy/mm/dd ", get hh:mm:ss
+    if ($time ne $TimeInFile)
+    {
+        $Date = substr $_, 0, 10;
+        &report;
+        $TimeInFile = $time;
+    }
+    last if $time ge $ENDTIME;
+
+    if (m,$CurrentMarket,o)
+    {
+        my @parts = split /,/;
+        $NInEvents= $parts[3];
+    }
+    elsif (m,cas01v2,)
+    {
+        # sample name: cas01v2cas0171/DC2@33197940/CM/ConsumerProxy@-14311360
+        my @parts = split /,/;
+        my @nameParts = split "/", $parts[1];
+        my $sessionName = $nameParts[0] . "/" . $nameParts[1];
+        $SessionRoster{$sessionName} = 1; # create entry for sessionName
+
+        if (m,/CM/ConsumerProxy,)
+        {
+            my $acronym;
+            $nameParts[1] =~ /^([^@]+)@/ && ($acronym = $1);
+            $AcronymRoster{$acronym} = 1; # create entry for acronym
+            ++$NSubscriptions;
+            $NOutMessages += $parts[3];
+        }
+    }
+}
+&report unless $NSubscriptions == 0;
+close QINST;

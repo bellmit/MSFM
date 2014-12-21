@@ -1,0 +1,8 @@
+#!/bin/ksh
+# v2quickstartacas - script to quickstart sacas01
+
+THIS_CLIENT=sacas
+
+. ClientFunctions
+setQuickstart
+startClient

@@ -1,0 +1,891 @@
+#ifndef ORDER_IDL
+#define ORDER_IDL
+
+#include "cmiUtil.idl"
+#include "cmiMarketData.idl"
+#include "cmiOrder.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "cmiTradeNotification.idl"
+#include "Util.idl"
+#include "marketData.idl"
+#include "session.idl"
+#include "user.idl"
+#include "marketData.idl"
+
+//#pragma javaPackage "com.cboe.idl"
+
+module order
+{
+    typedef short TradingRestriction;
+    typedef short RemainderHandlingMode;
+    typedef short OrderRoutingReason;
+    typedef short OrderRoutingDestination;
+    typedef short MaximumExecutionVolumeReason;
+    typedef short InternalOrderState;
+    typedef string OrsId;
+    typedef sequence <OrsId> OrsIdSequence;
+    
+
+// TODO...TBD on how this struct should look like.
+    struct OrderHandlingInstructionStruct
+    {
+		cmiUtil::PriceStruct executionPrice;
+        long maximumExecutionVolume;
+        order::MaximumExecutionVolumeReason maximumExecutionVolumeReason;
+        order::TradingRestriction tradingRestriction;
+        order::RemainderHandlingMode remainderHandlingMode;
+        boolean ignoreContingency;
+        // add extension here?
+    };
+    
+    
+
+    struct OrderAcknowledgeStruct
+    {
+       string userId;
+       cmiOrder::OrderIdStruct orderId;
+       cmiProduct::ProductKey productKey;
+       cmiProduct::ClassKey classKey;
+       long transactionSequenceNumber;
+    };
+
+    struct InternalCancelReportStruct
+    {
+        cmiOrder::CancelReportStruct cancelReport;
+        long leavesQuantity;
+    };
+    typedef sequence <InternalCancelReportStruct> InternalCancelReportStructSequence;
+
+    struct OrderAcknowledgeStructV3
+    {
+        string userId;
+        cmiOrder::OrderIdStruct orderId;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ClassKey classKey;
+        long transactionSequenceNumber;
+  	    util::TransactionClockPointStructSequence clockPoints;
+     };
+
+
+
+	// CSI changes -- start 
+
+	// struct that groups all the parameters belonging to a CancelReport
+        struct GroupOrderCancelReportStruct
+        {
+                cmiUtil::LongSequence groups;
+                cmiUtil::UpdateStatusReason statusChange;
+                cmiOrder::OrderStruct orderStruct;
+                cmiOrder::CancelReportStructSequence cancelReport;
+        };
+
+	// struct that groups all the parameters belonging to a FillReport
+        struct GroupOrderFillReportStruct
+        {
+                cmiUtil::LongSequence groups;
+                cmiUtil::UpdateStatusReason statusChange;
+                cmiOrder::OrderStruct orderStruct;
+                cmiOrder::FilledReportStructSequence filledOrder;
+        };
+
+	// struct that groups all the parameters belonging to OrderNew,OrderAcceptedByBook and OrderUpdate
+        struct GroupOrderStruct
+        {
+                cmiUtil::LongSequence groups;
+                cmiUtil::UpdateStatusReason statusChange;
+                cmiOrder::OrderStruct newOrder;
+        };
+
+	// struct that groups all the parameters belonging to an Order sequence 
+        struct GroupOrderSequenceStruct
+        {
+                cmiUtil::LongSequence groups;
+		string userId;
+                cmiUser::ExchangeFirmStruct firmKey;
+                cmiOrder::OrderStructSequence orders;
+        };
+
+	// struct that groups all the parameters belonging to an OrderStatusUpdate
+        struct  GroupOrderStatusUpdateStruct
+        {
+                util::RoutingParameterStruct routingParameters;
+                cmiOrder::OrderStruct order;
+                cmiUtil::UpdateStatusReason statusChange;
+        };
+
+	// struct that groups all the parameters belonging to a OrderQueryException
+        struct  GroupOrderQueryExceptionStruct
+        {
+                cmiUtil::LongSequence groups;
+                string userId;
+                long exceptionMapNumber;
+                string description;
+        };
+
+	// struct that groups all the parameters belonging to a OrderBust
+        struct  GroupOrderBustStruct
+        {
+                cmiUtil::LongSequence groups;
+                cmiUtil::UpdateStatusReason statusChange;
+                cmiOrder::OrderStruct orderStruct;
+                cmiOrder::BustReportStructSequence bustedOrder;
+        };
+
+	// struct that groups all the parameters belonging to a OrderBustReinstate
+        struct  GroupOrderBustReinstateStruct
+        {
+                cmiUtil::LongSequence groups;
+                cmiUtil::UpdateStatusReason statusChange;
+                cmiOrder::OrderStruct orderStruct;
+                cmiOrder::BustReinstateReportStruct bustReinstatedOrder;
+        };
+
+
+	// wrapper struct for including any order status message
+	struct BlockedOrderStatus 
+	{
+		util::OrderStatusType orderStatusType;
+		any orderstatusmsg;
+	};
+
+	typedef sequence <BlockedOrderStatus> BlockedOrderStatusSequence;
+
+	// CSI changes -- end 
+     struct OrderHandlingStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+        cmiUser::ExchangeAcronymStruct originator;
+
+        long originalQuantity;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        cmiUtil::PriceStruct effectivePrice;
+        cmiOrder::TimeInForce timeInForce;
+        cmiOrder::OrderContingencyStruct contingency;
+        cmiUser::ExchangeFirmStruct cmta;
+        string extensions;
+        string account;
+        string subaccount;
+        cmiOrder::PositionEffect positionEffect;
+        cmiOrder::CrossingIndicator cross;
+        cmiOrder::OriginType orderOriginType;
+        cmiOrder::Coverage coverage;
+        cmiOrder::NBBOProtectionType orderNBBOProtectionType;
+        string optionalData;
+
+        string userId;
+        cmiProduct::ProductType productType;
+        cmiProduct::ClassKey classKey;
+        long long sourceReceivedTime;
+        long long ohsReceivedTime;
+        InternalOrderState state;
+
+        long tradedQuantity;
+        long cancelledQuantity;
+        long leavesQuantity;
+        long addedQuantity;
+        long bustedQuantity;
+
+        string orsId;
+        cmiUtil::Source source;
+        cmiOrder::OrderIdStruct crossedOrder;
+        long transactionSequenceNumber;
+        string userAssignedId;
+        session::TradingSessionNameSequence sessionNames;
+        session::TradingSessionName activeSession;
+        cmiOrder::LegOrderDetailStructSequence legOrderDetails;
+        
+        boolean hadNBBOProtection;
+        boolean nbboProtectionOverriden;
+        string handlingInstruction;
+        
+    };
+
+    typedef sequence <OrderHandlingStruct> OrderHandlingStructSequence;
+
+	struct OrderHandlingStructV2
+	{
+		OrderHandlingStruct orderHandlingStruct;
+		util::NameValueStructSequence orderExtensions;	
+	};
+	
+    typedef sequence <OrderHandlingStructV2> OrderHandlingStructV2Sequence;
+	   
+    struct OrderRoutingParameterStruct
+    {
+        short sourceType;
+        string source;
+        short destinationType;
+        string destination;
+    };
+    typedef sequence <OrderRoutingParameterStruct> OrderRoutingParameterStructSequence;
+    
+    struct OrderBookUpdateStruct
+    {
+        long long timeBooked;
+        long bookedQuantity;
+        long bookedStatus;
+        cmiUtil::PriceStruct lastBookedPrice;
+    };
+
+    struct FillStruct
+    {
+      cmiOrder::FilledReportStruct filledReport;
+    };
+
+    typedef sequence <FillStruct> FillStructSequence;
+
+    struct CancelStruct
+    {
+        cmiOrder::CancelReportStruct cancelReport;
+    };
+
+    typedef sequence <CancelStruct> CancelStructSequence;
+    typedef sequence <CancelStructSequence> SequenceOfCancelStructSequence;
+
+    struct BustStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiUtil::CboeIdStruct tradeId;
+        cmiUser::ExchangeFirmStruct executingOrGiveUpFirm;         
+        long bustedQuantity;
+        cmiUtil::PriceStruct price;
+        long reinstateRequestedQuantity;
+        cmiUtil::DateTimeStruct timeSent;
+    };
+
+    typedef sequence <BustStruct> BustStructSequence;
+
+    struct BustReinstateStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiUtil::CboeIdStruct tradeId;
+        long reinstatedQuantity;
+        cmiUtil::DateTimeStruct timeSent;
+    };
+    
+
+    // bboBid  = cboeMarket
+    // bookBid = topOfBook
+    struct MarketDetailStruct
+    {
+         long       productKey;
+         short      productType;
+         long long  bboBidPrice;
+         octet      bboBidPriceType;
+		long   	bboBidSize;
+         long long  bboAskPrice;
+         octet      bboAskPriceType;
+         long       bboAskSize;
+
+         long long  botrAskPrice;
+		string 	botrAskExchanges;
+         long long  botrBidPrice;
+		string	botrBidExchanges;
+         long long  nbboAskPrice;
+		string 	nbboAskExchanges;
+         long long  nbboBidPrice;
+		string 	nbboBidExchanges;
+         long long  bookBidPrice;
+         octet      bookBidPriceType;
+		long   	bookBidSize;
+         long long  bookAskPrice;
+         octet      bookAskPriceType;
+		long   	bookAskSize;
+		string  exchangeIndicators;
+		
+         long long  dsmBidPrice;
+         octet      dsmBidPriceType;
+		long   	dsmBidSize;
+         long long  dsmAskPrice;
+         octet      dsmAskPriceType;
+		long   	dsmAskSize;
+		
+		long long activityTime;
+    };
+    typedef sequence <MarketDetailStruct> MarketDetailStructSequence;    
+    
+       
+    struct ORDOrderStruct
+    {
+                cmiOrder::OrderIdStruct orderId;
+                cmiOrder::OrderState state;
+                long bookedQuantity;
+                long bookedStatus;
+                cmiUtil::PriceStruct effectivePrice;
+                order::MarketDetailStructSequence ordMarketDetailInfo;
+    };
+    typedef sequence <ORDOrderStruct> ORDOrderStructSequence;
+    
+    typedef sequence <cmiOrder::OrderIdStruct> OrderIdStructSequence;
+    
+
+   
+   struct CrossOrderIdStruct
+   {
+         cmiOrder::OrderIdStruct buySideOrderId;
+         cmiOrder::OrderIdStruct sellSideOrderId;
+                      
+   };
+
+   
+   typedef sequence <CrossOrderIdStruct> CrossOrderIdStructSequence; 
+   typedef sequence <cmiUtil::UpdateStatusReason> UpdateStatusReasonSequence;
+   typedef sequence <long> TransSeqNumberSequence;
+   
+   struct TransientCancelReportStruct
+   {
+   	order::OrderRoutingParameterStructSequence orderRoutingParameterSeq;
+	cmiOrder::OrderIdStructSequence orderIdSeq;
+	order::UpdateStatusReasonSequence statusChangeSeq;
+	order::SequenceOfCancelStructSequence sequenceOfCancelStructSeq;
+        order::TransSeqNumberSequence transSeqNumberSeq;
+   
+   };
+
+    
+    struct NamedLegOrderDetailStruct
+    {		   
+       cmiOrder::LegOrderDetailStruct legOrderDetails;
+       marketData::QuoteQueryV2Struct marketData;	
+       char rejectInd;				       
+    };
+	typedef sequence <order::NamedLegOrderDetailStruct> NamedLegOrderDetailStructSequence;     
+      	
+    struct OrderManualHandlingStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+		string firmAcronym;        
+        cmiUser::ExchangeAcronymStruct originator;
+        long originalQuantity;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        cmiOrder::TimeInForce timeInForce;
+        cmiOrder::OrderContingencyStruct contingency;
+        cmiUser::ExchangeFirmStruct cmta;
+        string extensions;
+        string account;
+        string subaccount;
+        cmiOrder::PositionEffect positionEffect;
+        cmiOrder::CrossingIndicator cross;
+        cmiOrder::OriginType orderOriginType;
+        cmiOrder::Coverage coverage;
+        cmiOrder::NBBOProtectionType orderNBBOProtectionType;
+        string optionalData;
+
+        string userId;
+        cmiProduct::ProductType productType;
+        cmiProduct::ClassKey classKey;
+        long long sourceReceivedTime;
+        long long ohsReceivedTime;
+        InternalOrderState state;
+
+        long tradedQuantity;
+        long cancelledQuantity;
+        long leavesQuantity;
+        long addedQuantity;
+        long bustedQuantity;
+
+        string orsId;
+        cmiUtil::Source source;
+        cmiOrder::OrderIdStruct crossedOrder;
+        long transactionSequenceNumber;
+        string userAssignedId;
+        session::TradingSessionNameSequence sessionNames;
+        session::TradingSessionName activeSession;
+        
+        boolean hadNBBOProtection;
+        boolean nbboProtectionOverriden;
+        string handlingInstruction;
+        
+        char rejectIndicator; 
+        
+        long timeToLiveSeconds;
+        
+        // added for strategy orders to Par:
+        boolean marketabilityInd;	
+        boolean firstTimeOnPar;		
+        boolean orderAuctionedInd;	
+        boolean firmQuoteOwedInd;	
+        cmiUtil::PriceStruct firmQuotePrice; 
+        long	firmQuoteSize;		
+        boolean coaIndicator;		
+        string	execInstructionsDelta;	
+        boolean deltaNeutralInd;
+    	NamedLegOrderDetailStructSequence legDetail;
+    	
+		//  For Stock Leg  
+    	string meetLocation;
+		string meetFirm;
+ 
+    };
+      		   
+    struct ManualCancelReportStruct
+    {
+        string  sessionName;
+        cmiOrder::OrderIdStruct orderId;
+        string	orsID;
+        long	tlcQuantity;
+        long	cancelledQuantity;
+        long 	linkageCancelledQuantity;  
+        boolean timeOutInd;            	
+        long long transactionTime;
+        long	cxReasonCodeSatisfactionOrder;
+        cmiUtil::LongSequence legCancelVolumes;
+     };
+    typedef sequence <ManualCancelReportStruct> ManualCancelReportStructSequence;
+
+    struct ManualCancelRequestStruct
+    {
+    	cmiOrder::OrderIdStruct orderId;
+		session::TradingSessionName sessionName;
+    	cmiOrder::CancelType cancelType;
+    	long quantity;
+        cmiUtil::LongSequence legCancelVolumes;
+    	
+    	string userId;
+        string firmAcronym;
+        string orsID;
+        long long requestTime;
+     };
+    typedef sequence <ManualCancelRequestStruct> ManualCancelRequestStructSequence;
+    
+    typedef sequence <long> ManualLegTradedQuantitiesSequence;
+	typedef sequence <long> ManualLegRatiosSequence;
+
+	struct ManualLegMarket
+	{
+		cmiUtil::PriceStruct bidPrice;
+		cmiUtil::PriceStruct askPrice;
+		long bidQuantity;
+		long askQuantity;
+	};
+	typedef sequence <ManualLegMarket> ManualLegMarketSequence;
+    
+    struct ManualContraBrokerStruct
+    {
+	    string exchange;
+	    string broker;
+	    string firm;
+	    long tradedQuantity;
+	    ManualLegTradedQuantitiesSequence legTradedQuantities;
+    };
+    typedef sequence <ManualContraBrokerStruct> ManualContraBrokerStructSequence;
+    
+	struct ManualMarketDataStruct
+	{
+		cmiUtil::PriceStruct nbboBidPrice;
+		user::Exchange nbboBidExchange;
+		cmiUtil::PriceStruct nbboAskPrice;
+		user::Exchange nbboAskExchange;
+		cmiUtil::PriceStruct cboeBidPrice;
+		cmiUtil::PriceStruct cboeAskPrice;
+		long long time;
+	};
+	typedef sequence <ManualMarketDataStruct> ManualMarketDataStructSequence;
+	
+	
+	struct ManualMarketBrokerDataStruct
+	{
+		ManualMarketDataStruct marketDataWhenReceived;
+  	 	ManualMarketDataStruct marketDataWhenSelected;
+  	 	ManualMarketDataStruct marketDataWhenTraded;
+  	 	cmiUtil::PriceStruct highLowCboeBidAskPrice;
+  	 	cmiUtil::PriceStruct highLowNbboBidAskPrice;
+  	 	cmiUtil::PriceStruct tradeBookPrice;
+  	 	user::Exchange fadeExchange;
+  	 	
+	};
+	typedef sequence <ManualMarketBrokerDataStruct> ManualMarketBrokerDataStructSequence;
+	
+	struct ManualFillStruct
+  	{
+  	 	cmiOrder::OrderIdStruct orderId;
+  	 	cmiProduct::ProductKey productKey;
+  	 	session::TradingSessionName sessionName;
+  	 	cmiUtil::PriceStruct executionPrice;
+  	 	long long tradeDateTime;
+  	 	cmiUtil::PriceStruct tradeBookPrice;
+  	 	long tradeBookSize;
+  	 	long tradedQuantity;
+  	 	ManualContraBrokerStructSequence contraBrokers;
+	
+  	 	ManualMarketDataStruct marketDataWhenReceived;
+  	 	ManualMarketDataStruct marketDataWhenSelected;
+  	 	ManualMarketDataStruct marketDataWhenTraded;
+  	 	
+  	 	cmiUtil::PriceStruct highLowNbboBidAskPrice;
+  	 	cmiUtil::PriceStruct highLowCboeBidAskPrice;  	 	
+  	 	user::Exchange highLowNbboBidAskExchange;
+  	 	
+  	 	user::ExchangeSequence nbboBidExchanges;
+		user::ExchangeSequence nbboAskExchanges;
+  	 	long long nbboTime;
+  	 	long long cboeTime;
+  	 	
+  	 	user::Exchange awayExchange;
+  	 	user::Exchange fadeExchange;
+		
+  	 	string lastSaleIndicator;
+  	 	char linkageFillIndicator;
+  	 	string mmqAccount;
+  	 	
+  	 	// Fields for Strategy Order.
+  	 	char marketabilityIndicator;
+  	 	ManualLegRatiosSequence legRatios;
+  	 	ManualLegTradedQuantitiesSequence legTradedQuantities;
+		cmiUtil::PriceStructSequence legExecutionPrices;
+		cmiUtil::PriceStruct theoryExecutionPrice;
+		ManualLegMarketSequence cboeQuoteInfo;
+		ManualLegMarketSequence tradeBookInfo;
+		ManualLegMarketSequence tradeBookInfoWhenReceived;
+		ManualLegMarketSequence tradeBookInfoWhenSelected;
+		ManualLegMarketSequence tradeBookInfoWhenTraded;
+		ManualLegMarketSequence tradeBookInfoHighLow;
+		string parBroker;
+		string workStationId;
+		short  totalBundleCount;
+		short  bundleSequenceNumber;
+		short  currentBundleNumber;
+		long   totalBundleTradedQuantity;
+		//  For Stock Leg 
+		string meetLocation;
+		string meetFirm;
+ 
+  	 	
+  	};
+    typedef sequence <ManualFillStruct> ManualFillStructSequence;
+
+	// Struct for TradeThrough Alerts Simple Orders for Same Side and For Complex Orders
+	struct ManualFillStructV2
+	{
+		order::ManualFillStruct manualFill;
+		// Below are the fields for the same Side. Current fields ManualFillStruct are for the opposite side, Name is deceptive... 
+		cmiUtil::PriceStruct tradeBookSameSidePrice;
+		long tradeBookSameSideQuantity;
+  	 	cmiUtil::PriceStruct highLowNbboSameSidePrice;
+  	 	long long highLowNbboSameSideTime;
+  	 	cmiUtil::PriceStruct highLowCboeSameSidePrice;  	 	
+  	 	long long highLowCboeSameSideTime;
+  	 	user::Exchange highLowNbboSameSideExchange;
+		order::ManualMarketDataStructSequence legNbboInfo;
+		cmiUtil::PriceStruct sameSideTheoryExecutionPrice;
+	};	
+    typedef sequence <ManualFillStructV2> ManualFillStructV2Sequence;
+
+    struct ManualFillRoutingStruct 
+    {
+        ManualFillStruct manualFillInfo;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <ManualFillRoutingStruct> ManualFillRoutingStructSequence;
+        
+    struct AuctionHistoryStruct
+        {
+        cmiProduct::ProductKey          productKey;
+    	cmiUtil::TimeStruct             auctionTime;
+    	cmiOrder::AuctionType 		auctionType;
+    	short			        auctionEventType;
+    	boolean				auctionEndedEarly;
+    	long				quantityTradedInAuction;
+    	cmiOrder::OrderIdStruct 	pairedOrderId;
+        };
+    typedef sequence <AuctionHistoryStruct> AuctionHistorySequence;        
+
+    
+    struct OrderLocationDetailStruct
+    {
+        short locationType;		   
+        string location;
+        cmiOrder::OrderStruct order;
+    };
+    typedef sequence <OrderLocationDetailStruct> OrderLocationDetailStructSequence; 
+	
+    struct OrderLocationSummaryStruct
+    {
+        util::LocationStruct locationStruct;
+        boolean isLoggedIn;
+        long ordersCount;
+    };
+    typedef sequence <OrderLocationSummaryStruct> OrderLocationSummaryStructSequence;
+
+    struct OrderLocationSummaryServerResponseStruct
+    {
+        util::ServerTransactionIdStruct transactionId;
+        OrderLocationSummaryStructSequence summary;
+    };
+
+
+    struct  OrderQueryResultStruct
+    {
+        cmiOrder::OrderStructSequence orderStructSequence;
+        long totalOrdersCount;
+        util::ServerResponseStructSequence  serverResponseStructSequence;               
+    };
+    typedef sequence <OrderQueryResultStruct> OrderQueryResultStructSequence; 
+
+    // Used for OMT publishes.
+    struct CancelRoutingStruct
+    {
+		cmiUtil::Identifier orderMaintenanceIdentifier;
+        string userId;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiOrder::CancelRequestStruct cancelRequest;
+        cmiOrder::OrderStruct order;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <CancelRoutingStruct> CancelRoutingStructSequence;
+
+    struct CancelReplaceRoutingStruct
+    {
+		cmiUtil::Identifier orderMaintenanceIdentifier;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiOrder::CancelRequestStruct cancelRequest;
+        cmiOrder::OrderStruct originalOrder;
+        cmiOrder::OrderStruct replacementOrder;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <CancelReplaceRoutingStruct> CancelReplaceRoutingStructSequence;
+
+    struct OrderRoutingStruct
+    {
+        cmiOrder::OrderStruct order;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <OrderRoutingStruct> OrderRoutingStructSequence;
+
+    struct OrderIdRoutingStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <OrderIdRoutingStruct> OrderIdRoutingStructSequence;
+
+    struct CancelReportRoutingStruct
+    {
+        cmiOrder::CancelReportStruct cancelReport;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <CancelReportRoutingStruct> CancelReportRoutingStructSequence;
+
+    struct FilledReportRoutingStruct
+    {
+        cmiOrder::FilledReportStruct fillReport;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <FilledReportRoutingStruct> FilledReportRoutingStructSequence;
+
+	// Used for Linkage Orders from PAR.
+	struct LinkageExtensionsStruct
+	{
+		// to be coverted in to order extensions in FIXFormat
+		user::Exchange cboeExchange;
+		long autoExSize;
+		cmiUtil::DateTimeStruct tradeThruTime;
+		cmiUtil::PriceStruct tradeThruPrice;
+		long tradeThruSize;
+		string text;
+		
+		// Used to set in to extensions on inbound reports.
+		string olaRejectReason;
+		string awayExchangeTransactionTime;
+		string awayExchangeOrderId;
+		string awayExchangeExecutionId;
+		string satisfactionOrderDisposition;
+		
+		// HandlingInstruction
+		string handlingInstruction;
+		
+		// Other PAR Fields used for History
+		boolean autoLinkIndicator;
+		cmiMarketData::NBBOStruct nbbo;
+	};
+	
+	// Used for PAR ORDER and Fill timeout messages.
+	struct ManualOrderTimeoutRoutingStruct
+	{
+		order::OrderRoutingStruct orderRoutingStruct; 
+		order::OrderHandlingInstructionStruct orderHandlingStruct;
+		cmiUtil::DateTimeStruct timeoutTime; 
+		long quantity;
+		cmiUtil::LongSequence legQuantities;
+		short timeoutRequestType;
+	};
+	typedef sequence <ManualOrderTimeoutRoutingStruct> ManualOrderTimeoutRoutingStructSequence;
+	
+	struct ManualFillTimeoutRoutingStruct
+	{
+		order::ManualFillRoutingStruct manualFillRouteMsg;
+		cmiUtil::CboeIdStruct cboeId;
+		short timeoutRequestType;
+	};
+	typedef sequence <ManualFillTimeoutRoutingStruct> ManualFillTimeoutRoutingStructSequence;
+	
+	struct PendingOrderReportStruct
+        {
+                product::PriceAdjustmentStruct priceAdjustment;
+                cmiProduct::ProductNameStruct currentProductName;
+                cmiProduct::PendingNameStruct pendingProductName;
+                cmiOrder::OrderStruct pendingOrder;
+                cmiOrder::OrderStruct currentOrder;
+        };  
+        typedef sequence <PendingOrderReportStruct> PendingOrderReportStructSequence;
+
+	struct OrderLocationServerResponseStruct
+        {
+            util::ServerTransactionIdStruct transactionId;
+            OrderRoutingStructSequence orders;
+            long totalOrdersCount;
+            long pageNum;
+            long totalPageCount;
+        };
+
+        struct CancelReportDropCopyRoutingStruct
+        {
+            cmiOrder::OrderStruct orderStruct;
+            cmiOrder::CancelReportStruct cancelReport;
+            util::RouteReasonStruct routeReasonStruct;
+        };
+
+        typedef sequence <CancelReportDropCopyRoutingStruct> CancelReportDropCopyRoutingStructSequence;
+
+        struct FillReportDropCopyRoutingStruct
+        {
+            cmiOrder::OrderStruct orderStruct;
+            cmiOrder::FilledReportStruct fillReport;
+            util::RouteReasonStruct routeReasonStruct;
+        };
+
+        typedef sequence <FillReportDropCopyRoutingStruct> FillReportDropCopyRoutingStructSequence;
+
+        struct FillReportRejectRoutingStruct
+        {
+           cmiUtil::CboeIdStruct cboeId;
+           order::ManualFillRoutingStructSequence fillReports;
+           string rejectReason;
+        };
+
+        typedef sequence <FillReportRejectRoutingStruct> FillReportRejectRoutingStructSequence;
+
+        struct TradeNotificationRoutingStruct
+        {
+           util::RouteReasonStruct routeReasonStruct;
+	   cmiTradeNotification::TradeNotificationStruct tradeNotification;
+        };
+
+        typedef sequence <TradeNotificationRoutingStruct> TradeNotificationRoutingStructSequence;
+
+        struct LinkageFillReportRoutingStruct
+        {
+	    order::FilledReportRoutingStructSequence fillReports;
+            order::LinkageExtensionsStruct linkageExtensions;
+        };
+
+        typedef sequence <LinkageFillReportRoutingStruct> LinkageFillReportRoutingStructSequence;
+	
+        struct LinkageCancelReportRoutingStruct
+        {
+            order::CancelReportRoutingStructSequence cancelReports;
+            order::LinkageExtensionsStruct linkageExtensions;
+        };
+     
+        typedef sequence <LinkageCancelReportRoutingStruct> LinkageCancelReportRoutingStructSequence;
+        
+	struct AlertTypeDescriptionStruct
+	{
+		cmiIntermarketMessages::AlertType alertType;
+		string alertTypeCreationDescription;
+	};
+        typedef sequence <AlertTypeDescriptionStruct> AlertTypeDescriptionStructSequence;
+        
+        struct TradeServerLegFillWithCMStruct
+        {
+           cmiOrder::FilledReportStructSequence filledReportStruct;
+           order::MarketDetailStructSequence marketDetailForLegs;
+           cmiMarketData::CurrentMarketStructSequence legBestCurrentMarket;
+           cmiMarketData::CurrentMarketStructSequence legBestPublicCurrentMarket;
+           cmiMarketData::CurrentMarketStructSequence legBestLimitMarkets;
+           boolean indexHybridHitMaxNonCustQty;
+           long    indexHybridRemainingVolAfterLegTrading;
+           short  indexHybridReturnCode;
+        };
+        
+        typedef sequence <TradeServerLegFillWithCMStruct> TradeServerLegFillWithCMStructSequence;
+        
+        struct PMMDetailsStruct
+        {
+       		cmiProduct::ProductKey productKey;
+       		cmiUtil::StringSequence preferredFirms;
+       		cmiUtil::LongSequence quantities;
+        };
+        
+        typedef sequence <PMMDetailsStruct> PMMDetailsStructSequence;
+        
+        struct OrderBookSideStruct
+        {
+            cmiProduct::ProductKey productKey;
+            cmiUtil::Side side;
+            cmiUtil::PriceStruct bestPrice;
+            long bestPriceQuantity;
+            cmiUtil::PriceStruct bestVolumeContingencyPrice;
+            long bestContingencyMaxVol;
+            long bestContingencyMinVol;
+            boolean bestVolumeContingencyIsOnTop;
+            boolean bestVolumeContingencyOnlyOnTop;
+            cmiUtil::PriceStruct nbbo;
+            long nbboVol;
+            boolean isVolumeContingencyNBBO;
+            boolean isNBBO;
+            cmiUtil::PriceStruct lastSale;
+        };
+        typedef sequence <OrderBookSideStruct> OrderBookSideStructSequence;
+        
+        struct OrderBookSummaryStruct
+        {
+            order::OrderBookSideStruct definedSideLegs;
+            order::OrderBookSideStruct oppositeSideLegs;
+            cmiMarketData::CurrentMarketStruct legBestMarekt;
+            cmiMarketData::CurrentMarketStruct legBestLimitMarket;
+            cmiMarketData::NBBOStruct nbboStruct;
+        };
+        typedef sequence <OrderBookSummaryStruct> OrderBookSummaryStructSequence;
+    
+        
+	/////////////////////////////
+    // Par to CBOEdirect Structs
+    //
+	struct OrderManualHandlingStructV2
+    {
+        OrderManualHandlingStruct order;
+        marketData::QuoteQueryV3Struct quoteQuery;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <OrderManualHandlingStructV2> OrderManualHandlingStructV2Sequence;
+
+    struct ManualCancelRequestStructV2
+    {
+        ManualCancelRequestStruct cancelRequest;
+        cmiProduct::ProductKeysStruct productKeys;
+        util::RouteReasonStruct routeReason;
+    };
+    typedef sequence <ManualCancelRequestStructV2> ManualCancelRequestStructV2Sequence;
+    
+    struct ManualCancelReplaceStruct
+    { 
+        ManualCancelRequestStruct cancelRequest;
+        OrderManualHandlingStruct order;
+        marketData::QuoteQueryV3Struct quoteQuery;
+        util::RouteReasonStruct routeReason;    
+    };
+    typedef sequence <ManualCancelReplaceStruct> ManualCancelReplaceStructSequence;
+    
+    //
+    // End of PAR to CBOEDirect Structs
+    //////////////////////////////////////
+};
+
+#endif
+

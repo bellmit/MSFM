@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalRemoteCASMarketDataServiceHome SYSTEM "../dtd/RemoteCASMarketDataServiceHome.dtd">
+<GlobalRemoteCASMarketDataServiceHome>
+	<RemoteCASMarketDataServiceHomeImpl name="DefaultService">
+		<RemoteCASMarketDataServiceHomeImplProperties>
+			<!-- OVERRIDE mdcas01v2apimd1 REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<!-- OVERRIDE mdcas01v2apimd2 REPLACE <marketDataCallbackTimeout>20000</marketDataCallbackTimeout> -->
+			<marketDataCallbackTimeout>5000</marketDataCallbackTimeout>
+		</RemoteCASMarketDataServiceHomeImplProperties>
+	</RemoteCASMarketDataServiceHomeImpl>
+</GlobalRemoteCASMarketDataServiceHome>

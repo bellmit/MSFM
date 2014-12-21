@@ -1,0 +1,11 @@
+# DEVENV17 (TEST17)
+
+environment = test17
+
+cas    = dev17cas, 01, dev17fe  dev17fe
+fixcas = dev17fix, 01, dev17fe  dev17fe
+cfix   = dev17mdc, 01, dev17fe  dev17fe
+mdcas  = dev17mdc, 01, dev17fe  dev17fe
+mdcas  = dev17mds, 01, dev17fe  dev17fe
+mdx    = dev17mdx, 01, dev17fe  dev17fe
+sacas  = dev17sa,  01, devenv17 devenv17

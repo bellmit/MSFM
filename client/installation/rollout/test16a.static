@@ -1,0 +1,9 @@
+# DEVENV2 (TEST16)
+
+environment = test16
+
+cas    = dev16cas, 01, dev16fe dev16fe
+fixcas = dev16fix, 01, dev16fe dev16fe 
+cfix   = dev16mdc, 01, dev16fe dev16fe
+mdcas  = dev16mdc, 01, dev16fe dev16fe
+sacas  = dev16sa,  01, devenv2 devenv2

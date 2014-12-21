@@ -1,0 +1,471 @@
+#!/usr/bin/ksh
+###
+### Installs a CAS or SACAS
+###
+
+# --------------- Constants ---------------------
+
+PROG=$( basename $0 )
+WORKDIR=$( dirname $0 )
+DATEFMT='+%Y-%m-%d %H:%M:%S'
+ALERT="*ALERT*"
+LOGFILE=$WORKDIR/$PROG.log
+
+INFRA_HOME=$HOME   # valid for cas and sacas boxes
+
+SETENV_FILE=$INFRA_HOME/.setenv
+PROFILE_FILE=$HOME/.profile
+KSHRC_FILE=$HOME/.kshrc
+CONFIG_BIN_DIR=$INFRA_HOME/config/bin
+CONFIG_IOR_DIR=$INFRA_HOME/config/ior
+SET_CONTEXT_FILE=$CONFIG_BIN_DIR/setContext
+NOW=$( date "+%Y%m%d_%H%M%S" )
+
+# Taken from /usr/include/sys/errno.h
+ENOENT=2   # No such file or directory
+EACCES=13  # Permission denied
+EINVAL=22  # Invalid argument
+
+# --------------- Subroutines -------------------
+usage() 
+{
+    echo "Usage: $PROG -t type [ -c client version ] [ -i INFRA version ] [ -j JDK version ] [ -U ] [ -r ]"
+    echo "    where type is cas or sacas"
+    echo "    where -U specifies a rollback/undo rather than an installation"
+}
+
+# @param 1 variable to set
+# @param 2 file to scan
+# @param 3 variable to look for in input
+getExport()
+{
+    eval $1="'"$( sed <$2 /'^export '$3=/!d | cut -d= -f2 )"'"
+}
+
+# Replace an export statement
+# @param 1 File to modify
+# @param 2 Variable to set
+# @param 3 New value for variable
+replaceExport()
+{
+    typeset FILE=$1; shift
+    typeset VAR=$1; shift
+    typeset NEW_VALUE=$1; shift
+
+    typeset TEMPFILE=/tmp/replace.$$.tmp
+    if ! egrep -s "^export $VAR=$NEW_VALUE" $FILE ; then
+        # File does not contain current definition, change old definition
+        sed <$FILE >$TEMPFILE s:'^export '$VAR'=.*:export '$VAR=$NEW_VALUE: 
+        mv $TEMPFILE $FILE >> $LOGFILE 2>&1
+    fi
+    if ! egrep -s "^export $VAR=" $FILE ; then
+        # File did not contain any definition so the above substitution
+        # did nothing. Add a new line at the end of the file.
+        echo "export $VAR=$NEW_VALUE" >>$FILE
+    fi
+}
+
+readCommandline()
+{
+    ROLLOUT=1
+    while getopts hUt:c:i:j:r name ; do
+        case $name in 
+        h) usage
+           exit 0
+           ;;
+        U)
+           ROLLOUT=""   # no rollout, it's a rollback
+           ;;
+        t) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing type after -t switch\n"
+               usage
+               exit $EINVAL
+           fi
+           TYPE=$( echo $OPTARG | tr '[A-Z]' '[a-z]' )
+           if [[ $TYPE = "cas" ]] ; then
+               START_CAS=v2startcas
+               STOP_CAS=v2stopcas
+               ENGINE=v2cas01
+           elif [[ $TYPE = "sacas" ]] ; then
+               START_CAS=v2startacas
+               STOP_CAS=v2stopacas
+               ENGINE=v2sacas01
+           else
+               print -u2 "$ALERT $PROG: Invalid type $OPTARG"
+               usage
+               exit $EINVAL
+           fi
+           ;;
+        c) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing client version after -c switch\n"
+               usage
+               exit $EINVAL
+           fi
+           CAS_VERSION=$OPTARG
+           ;;
+        i) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing INFRA version after -i switch"
+               usage
+               exit $EINVAL
+           fi
+           INFRA_VERSION=$OPTARG
+           ;;
+        j) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing JDK version after -j switch"
+               usage
+               exit $EINVAL
+           fi
+           JDK_VERSION=$OPTARG
+           ;;
+        r) DO_INITREFS=1
+           ;;
+        ?) print -u2 "$ALERT $PROG: Unknown switch"
+           usage
+           exit $EINVAL
+           ;;
+        esac 
+    done
+
+    if [ -z "$TYPE" ] ; then
+        print -u2 "$ALERT $PROG: Missing -t switch"
+        usage
+        exit $EINVAL
+    fi
+}
+
+# Verify the existence of the files we need to work with
+verifyFiles()
+{
+    cd $HOME
+    FAILED=""
+    for i in $PROFILE_FILE $KSHRC_FILE $SETENV_FILE \
+             $SET_CONTEXT_FILE $SET_CONTEXT_FILE.$ENGINE
+    do
+        if [ ! -f $i ] ; then
+            print -u2 "$ALERT: $PROG: Missing file $i"
+            FAILED=$ENOENT
+        fi
+    done
+    if [ -n "$CAS_VERSION" ] ; then
+        if [ ! -d ../cas/$CAS_VERSION ] ; then
+            print -u2 "$ALERT: $PROG: Missing directory $CAS_VERSION"
+            FAILED=$ENOENT
+        elif [ ! -r ../cas/$CAS_VERSION ] ; then
+            print -u2 "$ALERT: $PROG: Can't read directory $CAS_VERSION"
+            FAILED=$EACCES
+        fi
+    fi
+    if [ -n "$INFRA_VERSION" ] ; then
+        if [ ! -d $INFRA_VERSION ] ; then
+            print -u2 "$ALERT: $PROG: Missing directory $INFRA_VERSION"
+            FAILED=$ENOENT
+        elif [ ! -r $INFRA_VERSION ] ; then
+            print -u2 "$ALERT: $PROG: Can't read directory $INFRA_VERSION"
+            FAILED=$EACCES
+        fi
+    fi
+    if [ -n "$FAILED" ] ; then
+        exit $FAILED
+    fi
+    unset FAILED
+}
+
+# Determine the name of the rollback directory to create (during rollout) or
+# use (during rollback). Sets ROLLBACK_DIR, creates directory (during rollout).
+setRollbackDir()
+{
+    if [ -n "$CAS_VERSION" ] ; then
+        # Save files into $CAS_VERSION, restore from $CAS_VERSION
+        typeset CAS_HOME=${INFRA_HOME%/infra}/cas
+        typeset ROLLBACK_PARENT=$CAS_HOME/$CAS_VERSION/rollback
+    else
+        # Rollout includes no $CAS_VERSION, save/restore files from
+        # pre-existing v2run_dir directory
+        typeset ROLLBACK_PARENT=$INFRA_HOME/v2run_dir/rollback
+    fi
+
+    if [ -n "$ROLLOUT" ] ; then
+        ROLLBACK_DIR=$ROLLBACK_PARENT/$NOW
+        mkdir -p $ROLLBACK_DIR >> $LOGFILE 2>&1
+    else
+        # Get name of rollback directory; if more than one then get
+        # the newest, assume others are from earlier installations.
+        ROLLBACK_DIR=$( ls -1 $ROLLBACK_PARENT | tail -1 )
+        ROLLBACK_DIR=$ROLLBACK_PARENT/$ROLLBACK_DIR
+        date "$DATEFMT - ROLLING BACK USING $ROLLBACK_DIR" >> $LOGFILE
+    fi
+}
+
+# Stop the cas and all remaining java processes
+stopProcesses()
+{
+    # Put marker in log, and mark progress for any real-time watcher
+    date "$DATEFMT - STOPPING CLIENT" | tee -a $LOGFILE
+    
+    $STOP_CAS >> $LOGFILE 2>&1
+    sleep 60
+    # If setContext file exists, get SBT_PREFIX, and kill processes
+    if [ -f $SET_CONTEXT_FILE ] ; then
+        getExport SBT_PREFIX $SET_CONTEXT_FILE SBT_PREFIX
+
+        # Kill Client process if it's still running
+        typeset ENG=${ENGINE#v2}
+        pstats -s | grep "${SBT_PREFIX}$ENG" | awk '{print $6}' > $WORKDIR/pids
+        if [ -s $WORKDIR/pids ] ; then
+            sed -e "s/^/kill -9 /g" $WORKDIR/pids > $WORKDIR/killem
+            date "$DATEFMT - KILLING CLIENT FOR ENGINE $ENG" | tee -a $LOGFILE
+            ksh $WORKDIR/killem
+        fi
+    fi
+}
+
+# Copy any setContext* files in this installation
+# to the appropriate location
+doSetContext()
+{
+    # First save copies of existing files
+    date "$DATEFMT - ARCHIVING setContext FILES" >> $LOGFILE
+    cp -p $CONFIG_BIN_DIR/setContext* $ROLLBACK_DIR >> $LOGFILE 2>&1
+
+    HOSTNAME=$( hostname )
+    cd $WORKDIR
+    if [ -f $HOSTNAME.setContext* ] ; then
+        chmod 666 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+        for file in $HOSTNAME.setContext* ; do
+            # Put marker in log
+            date "$DATEFMT - UPDATING FILE ${file#$HOSTNAME.}" >> $LOGFILE
+            cp $file $CONFIG_BIN_DIR/${file#$HOSTNAME.} >> $LOGFILE 2>&1
+        done
+        chmod 444 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+    fi
+}
+
+# Copy setContext* files from rollback directory to config/bin directory
+# WARNING: If setContext* changed association with FEs, Infra configuration
+# also needs to be rolled back.
+undoSetContext()
+{
+    chmod 666 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+    for i in $ROLLBACK_DIR/setContext* ; do
+        typeset file=$( basename $i )
+        date "$DATEFMT - RESTORING $file" >> $LOGFILE
+        cp -p $i $CONFIG_BIN_DIR >> $LOGFILE 2>&1
+    done
+    chmod 444 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+}
+
+# Set up environment variables
+readProfile()
+{
+    cd $HOME
+    . $PROFILE_FILE >/dev/null 2>&1
+}
+
+# Install the CAS by backing up and linking new version
+doCAS() {
+    # Put marker in log
+    date "$DATEFMT - UPDATING CLIENT TO ${CAS_VERSION}" >> $LOGFILE
+    cd $HOME
+    rm -f ov2run_dir o.v2run_dir o$ENGINE o.$ENGINE v2run_dir >> $LOGFILE 2>&1
+    mv $ENGINE o.$ENGINE >> $LOGFILE 2>&1
+
+    ln -s ../cas/${CAS_VERSION} $ENGINE >> $LOGFILE 2>&1
+    ln -s $ENGINE v2run_dir >> $LOGFILE 2>&1
+}
+
+# Roll back the Client by removing new link and renaming old link
+undoCAS()
+{
+    date "$DATEFMT - ROLLING BACK CLIENT VERSION" >> $LOGFILE
+    cd $HOME
+    if [ -L $ENGINE ] ; then
+        rm -f $ENGINE >> $LOGFILE 2>&1
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT NO NEW ENGINE TO ROLL BACK" | tee -a $LOGFILE
+    fi
+    if [ -L o.$ENGINE ] ; then
+        mv o.$ENGINE $ENGINE >> $LOGFILE 2>&1
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT NO OLD ENGINE TO RESTORE" | tee -a $LOGFILE
+    fi
+}
+
+# Install INFRA by backing up and linking new version
+doInfra() {
+    # Put marker in log
+    date "$DATEFMT - UPDATING INFRA TO ${INFRA_VERSION}" >> $LOGFILE
+    cd $HOME
+    rm -f orun_dir o.run_dir  >> $LOGFILE 2>&1
+    mv run_dir o.run_dir >> $LOGFILE 2>&1
+
+    ln -s ${INFRA_VERSION} run_dir >> $LOGFILE 2>&1
+}
+
+# Roll back the Infra by removing new link and renaming old link
+undoInfra()
+{
+    date "$DATEFMT - ROLLING BACK INFRA VERSION" >> $LOGFILE
+    cd $HOME
+    if [ -L run_dir ] ; then
+        rm -f run_dir >> $LOGFILE 2>&1
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT NO NEW INFRA TO ROLL BACK" | tee -a $LOGFILE
+    fi
+    if [ -L o.run_dir ] ; then
+        mv o.run_dir run_dir >> $LOGFILE 2>&1
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT NO OLD INFRA TO RESTORE" | tee -a $LOGFILE
+    fi
+}
+
+# Verify JDK version exists
+# Set new JDK version in .setenv
+doJdk() {
+    # save current JAVA_HOME value in the rollback directory
+    getExport JAVA_HOME $SETENV_FILE JAVA_HOME
+    echo $JAVA_HOME >$ROLLBACK_DIR/jdk.txt
+
+    # Put marker in log
+    date "$DATEFMT - UPDATING JDK TO $JDK_VERSION" >> $LOGFILE
+    NEW_JAVA_HOME=/usr/local/$JDK_VERSION
+
+    if [ -d $NEW_JAVA_HOME ] ; then
+        replaceExport $SETENV_FILE JAVA_HOME $NEW_JAVA_HOME
+        export PATH=$NEW_JAVA_HOME/bin:$PATH    # new JAVA_HOME for startCAS
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT MISSING $NEW_JAVA_HOME! Install $NEW_JAVA_HOME and update JAVA_HOME in $SETENV_FILE file" | tee -a $LOGFILE
+    fi
+}
+
+# Restore old JDK version in .setenv
+undoJdk()
+{
+    date "$DATEFMT - ROLLING BACK JDK VERSION" >> $LOGFILE
+    NEW_JAVA_HOME=$( head -1 $ROLLBACK_DIR/jdk.txt )
+    replaceExport $SETENV_FILE JAVA_HOME $NEW_JAVA_HOME
+}
+
+# Install the new IOR files
+doInitrefs()
+{
+    typeset OLD_IOR=$( ls -l $CONFIG_IOR_DIR/initrefs.ior | sed 's/.*> //' )
+    date "$DATEFMT - ARCHIVING $OLD_IOR" >> $LOGFILE
+    cp -p $CONFIG_IOR_DIR/$OLD_IOR $ROLLBACK_DIR >> $LOGFILE 2>&1
+
+    # Put marker in log
+    date "$DATEFMT - UPDATING INITREFS" >> $LOGFILE
+    getExport FE $SET_CONTEXT_FILE.$ENGINE FRONTEND1_HOSTNAME
+    IOR_FILE=initrefs.$FE.ior
+    if [ ! -f $WORKDIR/$IOR_FILE ] ; then
+        date "$DATEFMT - $ALERT IOR FILE $IOR_FILE NOT FOUND" | tee -a $LOGFILE
+    else 
+        cd $HOME
+        cp $WORKDIR/$IOR_FILE config/ior/ >> $LOGFILE 2>&1
+        rm -f config/ior/initrefs.ior >> $LOGFILE 2>&1
+        ln -s $IOR_FILE config/ior/initrefs.ior >> $LOGFILE 2>&1
+    fi
+}
+
+# Restore rolled-back initrefs file to config/ior
+undoInitrefs()
+{
+    typeset OLD_IOR=$( ls $ROLLBACK_DIR/*.ior | head -1 | sed 's:.*/::' )
+    cp -p $ROLLBACK_DIR/$OLD_IOR $CONFIG_IOR_DIR >> $LOGFILE 2>&1
+    rm -f $CONFIG_IOR_DIR/initrefs.ior >> $LOGFILE 2>&1
+    ln -s $OLD_IOR $CONFIG_IOR_DIR/initrefs.ior >> $LOGFILE 2>&1
+}
+
+# Run configureCAS.ksh to distribute configuration values
+updateConfig()
+{
+    # Put marker in log
+    date "$DATEFMT - UPDATING CONFIG" >> $LOGFILE
+    cd $HOME/config
+    ksh configureCAS.ksh >> $LOGFILE 2>&1
+}
+
+# Start the CAS
+startCAS() 
+{
+    # Put marker in log, and mark progress for any real-time watcher
+    date "$DATEFMT - STARTING CLIENT" | tee -a $LOGFILE
+    $START_CAS >> $LOGFILE 2>&1
+    EXIT_VALUE=$?
+
+    ### list processes just to get the results back
+    pstats -s >> $LOGFILE
+
+    ### do a directory dump just to get the results back
+    ls -Llart $HOME/v2run_dir/log >> $LOGFILE
+
+    ### if we got this far, let's check that the CAS came up
+    if [ $EXIT_VALUE -eq 0 ] ; then
+        date "$DATEFMT - CLIENT INSTALL SUCCESSFUL" >> $LOGFILE
+    else
+        date "$DATEFMT - $ALERT CLIENT INSTALL FAILED WITH EXIT CODE $EXIT_VALUE" >> $LOGFILE
+    fi
+}
+
+# ------------------------ Main ----------------------------
+
+unalias rm
+readCommandline $*
+verifyFiles
+setRollbackDir
+stopProcesses
+readProfile
+
+
+# on rollout,  assure that SETCONTEXT is done, then INFRA, then CAS
+# on rollback, assure that CAS is done, then INFRA, then SETCONTEXT
+if [ -n "$ROLLOUT" ] ; then
+    doSetContext
+    if [ -n "$INFRA_VERSION" ] ; then
+        doInfra
+    fi
+    if [ -n "$CAS_VERSION" ] ; then
+       doCAS
+    fi
+else
+  if [ -n "$CAS_VERSION" ] ; then
+       undoCAS
+    fi
+    if [ -n "$INFRA_VERSION" ] ; then
+        undoInfra
+    fi
+    undoSetContext
+fi
+
+if [ -n "$JDK_VERSION" ] ; then
+    if [ -n "$ROLLOUT" ] ; then
+        doJdk
+    else
+        undoJdk
+    fi
+fi
+
+if [ -n "$DO_INITREFS" ] ; then
+    if [ -n "$ROLLOUT" ] ; then
+        doInitrefs
+    else
+        undoInitrefs
+    fi
+fi
+
+# read profile once again before invoking 
+readProfile
+
+# Apply configuration data to config and run_dir directories (of course we
+# must do this for rollout; we must also do this for rollback, to apply
+# possibly new config to the rolled-back Infra).
+updateConfig
+
+startCAS
+
+echo "----------------------- Session Log ------------------------" 
+cat $LOGFILE

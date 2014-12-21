@@ -1,0 +1,49 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the EventChannelHomeImpl -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalEventChannelHome (EventChannelHomeImpl*)>
+<!ATTLIST GlobalEventChannelHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT EventChannelHomeImpl (EventChannel*)>
+<!ATTLIST EventChannelHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT EventChannel (EventChannelProperties)>
+<!ATTLIST EventChannel
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT EventChannelProperties (channelName?,defaultMethod?,baseInterface?)>
+<!ATTLIST EventChannelProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT channelName (#PCDATA)>
+<!ATTLIST channelName 
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED ""
+>
+<!ELEMENT defaultMethod (#PCDATA)>
+<!ATTLIST defaultMethod
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED ""
+>
+<!ELEMENT baseInterface (#PCDATA)>
+<!ATTLIST baseInterface 
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED ""
+>

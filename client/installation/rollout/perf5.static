@@ -1,0 +1,36 @@
+# PERF5 (perf5gc2a)
+
+environment = perf5
+
+cas    = perf5cas1,    01, perf5fe1  perf5fe2
+cas    = perf5cas2,    01, perf5fe2  perf5fe1
+cas    = perf5cas3,    01, perf5fe1  perf5fe2
+cas    = perf5cas4,    01, perf5fe2  perf5fe1
+cas    = perf5cas5,    01, perf5fe1  perf5fe2
+cas    = perf5cas6,    01, perf5fe2  perf5fe1
+cas    = perf5cas7,    01, perf5fe1  perf5fe2
+cas    = perf5cas8,    01, perf5fe2  perf5fe1
+cas    = perf5cas9,    01, perf5fe1  perf5fe2
+cas    = perf5cas10,   01, perf5fe2  perf5fe1
+cas    = perf5cas31,   01, perf5fe21 perf5fe22
+cas    = perf5cas32,   01, perf5fe22 perf5fe21
+fixcas = perf5fix1,    01, perf5fe1  perf5fe2
+fixcas = perf5fix1,    02, perf5fe1  perf5fe2
+fixcas = perf5fix1,    03, perf5fe1  perf5fe2
+fixcas = perf5fix1,    04, perf5fe1  perf5fe2
+fixcas = perf5fix1,    05, perf5fe1  perf5fe2
+fixcas = perf5fix1,    06, perf5fe1  perf5fe2
+fixcas = perf5fix1,    07, perf5fe1  perf5fe2
+fixcas = perf5fix2,    01, perf5fe2  perf5fe1
+fixcas = perf5fix2,    02, perf5fe2  perf5fe1
+fixcas = perf5fix2,    03, perf5fe2  perf5fe1
+fixcas = perf5fix2,    04, perf5fe2  perf5fe1
+fixcas = perf5fix2,    05, perf5fe2  perf5fe1
+fixcas = perf5fix2,    06, perf5fe2  perf5fe1
+fixcas = perf5fix2,    07, perf5fe2  perf5fe1
+mdcas  = perf5mds,     01, perf5fe21 perf5fe22
+mdx    = perf5mdx1,    01, nofe1 nofe2
+mdx    = perf5mdx2,    01, nofe1 nofe2
+sacas  = perf5sa1,     01, perf5gc1a perf5gc1b
+
+tipsMdxAdapter = perf5mdgc1a, 01

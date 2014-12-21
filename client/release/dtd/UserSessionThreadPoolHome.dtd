@@ -1,0 +1,45 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the UserSessionThreadPoolHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserSessionThreadPoolHome (UserSessionThreadPoolHomeImpl*)>
+<!ATTLIST GlobalUserSessionThreadPoolHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserSessionThreadPoolHomeImpl (UserSessionThreadPoolHomeImplProperties)>
+<!ATTLIST UserSessionThreadPoolHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserSessionThreadPoolHomeImplProperties (UserSessionThreadPoolSize?,UserRoleOverride?,ThreadPoolSizeOverride?)>
+<!ATTLIST UserSessionThreadPoolHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT UserSessionThreadPoolSize (#PCDATA)>
+<!ATTLIST UserSessionThreadPoolSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "user session thread pool size"
+>
+<!ELEMENT UserRoleOverride (#PCDATA)>
+<!ATTLIST UserRoleOverride
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "user role override"
+>
+<!ELEMENT ThreadPoolSizeOverride (#PCDATA)>
+<!ATTLIST ThreadPoolSizeOverride
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "thread pool size override"
+>
+
+

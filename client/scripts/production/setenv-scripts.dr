@@ -1,0 +1,9 @@
+# Customize scripts to this environment
+export REPORT_ENVIRONMENT=DR
+export HOST_INFRAGC=drgc02a
+export HOST_DEEPFRZ=deepfrzp
+export HOST_DEVSTOR=devstor
+export HOST_WEB=ccserv1
+export USER_WEB=cas
+export SBTBASE_INFRAGC=/sbt/prod
+export CASUSER_INFRAGC=casp

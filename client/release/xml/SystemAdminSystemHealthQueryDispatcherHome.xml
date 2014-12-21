@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalSystemHealthQueryDispatcherHome SYSTEM "../dtd/SystemHealthQueryDispatcherHome.dtd">
+<GlobalSystemHealthQueryDispatcherHome>
+	<SystemHealthQueryDispatcherHomeImpl name="DefaultService">
+		<SystemHealthQueryDispatcherHomeImplProperties>
+            <allowContextDetailQuery booleanValue="true"/>
+            <allowConfigurationDataQuery booleanValue="true"/>
+            <allowProductQuery booleanValue="true"/>
+		</SystemHealthQueryDispatcherHomeImplProperties>
+	</SystemHealthQueryDispatcherHomeImpl>
+</GlobalSystemHealthQueryDispatcherHome>

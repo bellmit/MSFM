@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalCfixUserAccessHome SYSTEM "../dtd/CfixUserAccessHome.dtd">
+<GlobalCfixUserAccessHome>
+	<CfixUserAccessHomeImpl name="DefaultService">
+		<CfixUserAccessHomeImplProperties>
+			<session_mode>${CLIENT_SESSION_MODE}</session_mode>
+		</CfixUserAccessHomeImplProperties>
+	</CfixUserAccessHomeImpl>
+</GlobalCfixUserAccessHome>

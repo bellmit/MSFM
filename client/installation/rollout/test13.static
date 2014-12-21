@@ -1,0 +1,9 @@
+# DEVENV4 (TEST13)
+
+environment = test13
+
+cas    = dev13cas, 01, dev13fe dev13fe
+fixcas = dev13fix, 01, dev13fe dev13fe 
+cfix   = dev13mdc, 01, dev13fe dev13fe
+mdcas  = dev13mdc, 01, dev13fe dev13fe
+sacas  = dev13sa,  01, devenv4 devenv4

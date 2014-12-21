@@ -1,0 +1,1938 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Keith A. Korecky (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLoggingService SYSTEM "${RUN_DIR}/properties/dtd/logging.dtd">
+<GlobalLoggingService name="CASLoggingService1">
+    <!-- ************************* FixCAS201 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS201FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS201Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS201ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS201ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS201ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS201ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS201ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas01/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas01/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS201ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas01/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas01/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS201ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS202 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS202FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS202Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS202ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS202ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS202ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS202ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS202ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas02/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas02/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS202ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas02/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas02/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS202ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS203 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS203FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS203Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS203ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS203ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS203ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS203ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS203ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas03/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas03/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS203ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas03/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas03/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS203ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS204 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS204FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS204Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS204ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS204ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS204ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS204ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS204ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas04/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas04/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS204ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas04/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas04/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS204ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS205 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS205FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS205Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS205ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS205ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS205ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS205ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS205ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas05/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas05/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS205ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas05/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas05/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS205ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS206 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS206FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS206Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS206ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS206ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS206ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS206ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS206ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas06/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas06/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS206ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas06/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas06/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS206ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS207 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS207FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS207Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS207ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS207ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS207ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS207ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS207ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas07/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas07/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS207ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas07/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas07/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS207ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS208 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS208FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS208Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS208ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS208ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS208ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS208ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS208ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas08/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas08/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS208ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas08/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas08/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS208ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS209 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS209FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS209Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS209ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS209ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS209ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS209ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS209ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas09/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas09/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS209ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas09/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas09/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS209ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS210 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS210FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS210Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS210ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS210ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS210ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS210ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS210ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas10/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas10/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS210ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas10/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas10/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS210ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS211 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS211FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS211Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS211ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS211ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS211ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS211ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS211ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas11/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas11/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS211ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas11/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas11/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS211ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS212 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS212FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS212Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS212ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS212ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS212ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS212ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS212ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas12/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas12/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS212ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas12/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas12/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS212ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS213 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS213FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS213Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS213ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS213ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS213ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS213ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS213ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas13/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas13/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS213ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas13/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas13/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS213ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS214 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS214FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS214Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS214ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS214ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS214ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS214ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS214ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas14/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas14/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS214ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas14/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas14/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS214ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS215 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS215FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS215Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS215ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS215ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS215ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS215ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS215ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas15/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas15/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS215ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas15/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas15/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS215ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS216 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS216FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS216Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS216ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS216ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS216ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS216ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS216ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas16/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas16/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS216ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas16/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas16/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS216ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS217 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS217FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS217Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS217ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS217ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS217ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS217ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS217ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas17/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas17/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS217ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas17/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas17/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS217ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS218 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS218FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS218Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS218ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS218ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS218ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS218ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS218ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas18/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas18/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS218ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas18/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas18/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS218ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS219 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS219FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS219Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS219ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS219ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS219ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS219ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS219ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas19/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas19/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS219ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas19/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas19/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS219ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS220 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS220FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS220Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS220ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS220ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS220ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS220ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS220ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas20/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas20/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS220ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas20/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas20/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS220ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS221 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS221FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS221Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS221ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS221ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS221ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS221ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS221ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas21/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas21/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS221ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas21/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas21/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS221ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS222 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS222FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS222Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS222ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS222ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS222ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS222ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS222ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas22/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas22/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS222ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas22/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas22/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS222ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS223 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS223FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS223Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS223ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS223ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS223ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS223ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS223ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas23/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas23/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS223ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas23/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas23/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS223ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS224 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS224FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS224Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS224ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS224ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS224ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS224ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS224ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas24/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas24/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS224ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas24/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas24/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS224ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* FixCAS225 logging client ************************* -->
+	<LoggingServiceClient name="FixCAS225FileClient">
+		<LoggingServiceClientProperties>
+			<remoteAdministrationEnabledProperty booleanValue="false"/>
+			<debugOnProperty booleanValue="false"/>
+			<traceOnProperty booleanValue="false"/>
+		</LoggingServiceClientProperties>
+		<LoggingComponent name="FixCAS225Filev2">
+			<LoggingComponentProperties>
+				<defaultAgentProperty>FixCAS225ClientApplicationAgentv2</defaultAgentProperty>
+			</LoggingComponentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS225ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="debug"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS225ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemAlarm"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+			<LoggingMessageVector>
+				<LoggingMessageVectorProperties>
+					<loggingAgentNameProperty>FixCAS225ClientApplicationDebugv2</loggingAgentNameProperty>
+				</LoggingMessageVectorProperties>
+				<Filter>
+					<FilterProperties>
+						<messageCategoryNameProperty category="systemNotification"/>
+					</FilterProperties>
+				</Filter>
+			</LoggingMessageVector>
+		</LoggingComponent>
+		<FileLoggingAgent name="FixCAS225ClientApplicationAgentv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas25/log/cas.log</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas25/log/cas2.log</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<FileLoggingAgent name="FixCAS225ClientApplicationDebugv2">
+			<FileLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.FileLoggingAgent</typeProperty>
+				<messageFormattingProperty>com.cboe.loggingService.MillisMsgFormat</messageFormattingProperty>
+				<absoluteFilePathProperty>../v2fixcas25/log/cas.debug</absoluteFilePathProperty>
+				<absoluteFilePathSupplementProperty>../v2fixcas25/log/cas2.debug</absoluteFilePathSupplementProperty>
+			</FileLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</FileLoggingAgent>
+		<CentralRepositoryLoggingAgent name="FixCAS225ClientApplicationRepository">
+			<CentralRepositoryLoggingAgentProperties>
+				<typeProperty>com.cboe.loggingService.RepositoryLoggingAgent</typeProperty>
+				<traderOfferNameProperty>CentralLoggingRepositoryPrimary</traderOfferNameProperty>
+			</CentralRepositoryLoggingAgentProperties>
+			<Queue>
+				<QueueProperties/>
+			</Queue>
+		</CentralRepositoryLoggingAgent>
+	</LoggingServiceClient>
+    <!-- ************************* Standard Message Catalog ************************* -->
+	<StandardMessageCatalog name="StandardMessageCatalog1">
+		<StandardMessageCatalogProperties>
+			<StandardLogMessageProperty>Non-standard message.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Failure occurred while trying to read a file.</StandardLogMessageProperty>
+			<StandardLogMessageProperty>Log message generated in response to a management event.</StandardLogMessageProperty>
+		</StandardMessageCatalogProperties>
+	</StandardMessageCatalog>
+</GlobalLoggingService>

@@ -1,0 +1,9 @@
+# DEVENV2 (TEST8)
+
+environment = test8
+
+cas    = dev8cas, 01, dev8fe  dev8fe
+fixcas = dev8fix, 01, dev8fe  dev8fe 
+cfix   = dev8mdc, 01, dev8fe  dev8fe
+mdcas  = dev8mdc, 01, dev8fe  dev8fe
+sacas  = dev8sa,  01, devenv2 devenv2

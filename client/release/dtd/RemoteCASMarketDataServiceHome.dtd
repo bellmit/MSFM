@@ -1,0 +1,26 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by William Wei (CBOE) -->
+<!-- This provides configuration information for the RemoteCASMarketDataServiceHomeImpl -->
+<!-- @author William Wei, Troy Wehrle-->
+<!-- @version 2.0-->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalRemoteCASMarketDataServiceHome (RemoteCASMarketDataServiceHomeImpl*)>
+<!ATTLIST GlobalRemoteCASMarketDataServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT RemoteCASMarketDataServiceHomeImpl (RemoteCASMarketDataServiceHomeImplProperties?)>
+<!ATTLIST RemoteCASMarketDataServiceHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT RemoteCASMarketDataServiceHomeImplProperties (marketDataCallbackTimeout?)>
+<!ELEMENT marketDataCallbackTimeout (#PCDATA)>
+<!ATTLIST marketDataCallbackTimeout
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the timeout value of market data callback objects."
+>

@@ -1,0 +1,54 @@
+#!/usr/bin/perl -w
+# Usage: cat cas.log | quoteOutlier milliseconds
+# Output: comma-separated values
+# - first line is header
+# - subsequent lines are data
+# - last line starts with "#", contains summary data
+#   . field 1 is number of outliers (cas delay >= milliseconds)
+#   . field 2 is number of calls to acceptQuoteByClass*
+#   . field 3 is percentage of outliers
+#   . field 4 is longest cas delay
+
+die "Usage: cat cas.log | $0 milliseconds\n" if $#ARGV != 0;
+
+$unacceptableDelay = 0 + $ARGV[0];
+$NQuotes = 0;
+$NSlowQuotes = 0;
+$MaxCasDelay = 0;
+while (<STDIN>)
+{
+    next unless /acceptQuotesForClass/ && !/calling/;
+###
+#low information 2008/2/7 4:25:38.87 CASFilev2 test10cas01v2dev10cas CAS "UserQuoteHome:23752608>>> acceptQuotesForClassV3 returning TT:852 CT:67 ST:785 ClsLWT:0 ClsLHT:798 CacheLWT:0 CacheLHT:3 EID:2860929517682688 UA:ABD SnT:1 SnId:19c24d1 SESN:CFE_MAIN UAID:ABD CK:130031315 SZ:1 QK:940449 TYPE:C" 0 
+
+###
+    chomp;
+    s/CASFilev2 .*cas..v2//;
+    @f = split / /;
+    m/"(.*)"/ && ($line = $1);
+    $line =~ s/.*returning //;
+    %hash = split /[: ]/, $line;
+
+    ++ $NQuotes;
+    my $casDelay = $hash{'CT'};
+    $MaxCasDelay = $casDelay if $casDelay > $MaxCasDelay;
+    next if $casDelay < $unacceptableDelay;
+    ++ $NSlowQuotes;
+
+    $s = join ",", $f[2],$f[3],$f[5],$hash{'TT'},$hash{'CT'},$hash{'ST'},$hash{'UA'},$hash{'CK'},$hash{'SZ'},$hash{'SESN'},$hash{'ClsLWT'},$hash{'ClsLHT'},$hash{'CacheLWT'},$hash{'CacheLHT'},$hash{'EID'};
+
+    print "DAY,TIME,CAS,TOTAL_TIME,CAS_TIME,SERVER_TIME,USER,CLASS_KEY,BLK_SZ,SESSION,CLASSWAIT,CLASSHOLD,CACHEWAIT,CACHEHOLD,ENTITY_ID\n"  if $NSlowQuotes == 1;
+
+    print "$s\n";
+}
+if ($NQuotes > 0)
+{
+    my $percent = ($NSlowQuotes * 100.0) / $NQuotes;
+    print "\nCasDelay>$unacceptableDelay, TotalQuotes, SlowPercent, MaxCasDelay\n";
+    printf "%8d,%4d,%8.2f%%,%4d\n", $NSlowQuotes, $NQuotes, $percent, $MaxCasDelay;
+}
+else
+{
+    print "\nCasDelay>$unacceptableDelay, TotalQuotes, SlowPercent, MaxCasDelay\n";
+    print "       0,   0,       0.00%,   0\n";
+}

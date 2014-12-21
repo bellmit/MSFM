@@ -1,0 +1,32 @@
+# PERF1 (sbtgc2a)
+
+environment = perf1
+
+cas    = devcas5,   01, sbtfe01 sbtfe02
+cas    = perfcas3,   01, sbtfe01 sbtfe02
+cas    = perfcas4,   01, sbtfe01 sbtfe02
+cas    = perfcas6,   01, sbtfe01 sbtfe02
+sacas  = perfcas7,   01, sbtgc0a sbtgc0b
+sacas  = sbtcas2,    01, sbtgc0a sbtgc0b
+fixcas = sbtfix1a,   01, sbtfe01 sbtfe02 
+fixcas = sbtfix1a,   02, sbtfe01 sbtfe02 
+fixcas = sbtfix1a,   03, sbtfe01 sbtfe02 
+fixcas = sbtfix1a,   04, sbtfe01 sbtfe02 
+fixcas = sbtfix1a,   05, sbtfe01 sbtfe02 
+fixcas = sbtfix1a,   06, sbtfe01 sbtfe02 
+fixcas = sbtfix1a,   07, sbtfe01 sbtfe02 
+fixcas = sbtfix3a,   01, sbtfe03 sbtfe04 
+fixcas = sbtfix3a,   02, sbtfe03 sbtfe04 
+fixcas = sbtfix3a,   03, sbtfe03 sbtfe04 
+fixcas = sbtfix3a,   04, sbtfe03 sbtfe04 
+fixcas = sbtfix3a,   05, sbtfe03 sbtfe04 
+fixcas = sbtfix3a,   06, sbtfe03 sbtfe04 
+fixcas = sbtfix3a,   07, sbtfe03 sbtfe04 
+cfix   = sbtmdc01,   01, sbtfe01 sbtfe02
+mdcas  = sbtmdc01,   01, sbtfe01 sbtfe02
+mdcas  = sbtmdc20,   01, sbtfe01 sbtfe02
+mdx    = perfmdx1a,  01, sbtfe01 sbtfe02
+cas    = tstcas3,    01, sbtfe01 sbtfe02
+cas    = tstcas4,    01, sbtfe01 sbtfe02
+tipsMdxAdapter = sbtmdgca, 01
+tipsMdxAdapter = sbtmdgcb, 01

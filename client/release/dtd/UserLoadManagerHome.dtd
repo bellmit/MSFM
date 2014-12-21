@@ -1,0 +1,43 @@
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the UserLoadManagerHomeImpl -->
+<!-- @author David De La Vega-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserLoadManagerHome (UserLoadManagerHomeImpl*)>
+<!ATTLIST GlobalUserLoadManagerHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserLoadManagerHomeImpl (UserLoadManagerHomeImplProperties)>
+<!ATTLIST UserLoadManagerHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserLoadManagerHomeImplProperties (base_total_quote_load?,base_total_order_load?,managed_poa_list)>
+<!ATTLIST UserLoadManagerHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT base_total_quote_load (#PCDATA)>
+<!ATTLIST base_total_quote_load  
+	type %typeConstraints;  #FIXED 'ManagedProperty'
+	mode %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED 'Base Total Quote Load value' 
+>
+<!ELEMENT base_total_order_load (#PCDATA)>
+<!ATTLIST base_total_order_load  
+	type %typeConstraints;  #FIXED 'ManagedProperty'
+	mode %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED 'Base Total Order Load value' 
+>
+<!ELEMENT managed_poa_list (#PCDATA)>
+<!ATTLIST managed_poa_list
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "List of Managed POA Names"
+>

@@ -1,0 +1,15 @@
+# ATGTEST5
+
+environment = atgtest5
+
+cas    = atgcas5,   01, atgqafe51 atgqafe52 
+fixcas = atgfix5,   01, atgqafe51 atgqafe52
+fixcas = atgfix5,   02, atgqafe51 atgqafe52
+cfix   = atgmd5,    01, atgqafe51 atgqafe52
+mdcas  = atgmd5,    01, atgqafe51 atgqafe52
+mdcas  = atgmd5s,   01, atgqafe51 atgqafe52
+mdx    = atgmd5x,   01, atgqafe51 atgqafe52
+fixcas = atgttfix5, 01, atgqafe51 atgqafe52
+fixcas = atgttfix5, 02, atgqafe51 atgqafe52
+sacas  = saatg5,    01, atgqagc5  atgqagc5
+tipsMdxAdapter = atgqagc5, 01

@@ -1,0 +1,81 @@
+#!/usr/bin/perl -w
+# Calculate sum, median, mean, standard deviation of a bunch of input numbers.
+# One number per line. If there's a command-line argument, it specifies
+# the field number (first field is 1) in a comma-separated values file.
+
+# -------------------- Constants --------------------
+
+$PROG = `basename $0`;
+
+# -------------------- Subroutines --------------------
+
+sub usage()
+{
+    die "Usage: $PROG [ fieldnumber ]\n";
+}
+
+# -------------------- Main program --------------------
+
+if ($#ARGV == -1)
+{
+    $FIELD = 0;
+}
+elsif ($#ARGV == 0)
+{
+    $FIELD = -1 + $ARGV[0];
+}
+else
+{
+    &usage;
+}
+
+@Population = ();
+$Sum = 0;
+$Count = 0;
+$SumSq = 0;
+
+while (<STDIN>)
+{
+    chomp;
+    next if /^\s*$/;    # skip empty lines
+    my @parts = split /,/;
+    my $num = 0 + $parts[$FIELD];
+
+    if (defined $Min)
+    {
+        $Min = $num if $num < $Min;
+        $Max = $num if $num > $Max;
+    }
+    else
+    {
+        # First number, make this initial value of Min and Max
+        $Min = $num;
+        $Max = $num;
+    }
+
+    push @Population, $num;
+    $Sum += $num;
+    $SumSq += $num*$num;
+    $Count ++;
+}
+
+$Mean = $Sum / $Count;
+$StdDev = sqrt( ($SumSq/$Count) - ($Mean*$Mean) );
+
+@Population = sort @Population;
+$middleIndex = int $Count / 2;
+if (($Count % 2) == 1)
+{
+    # Odd number of elements, median is the middle one.
+    # Example: 3 elements [ 0 1 2 ] take element 1
+    $Median = $Population[ $middleIndex ];
+}
+else
+{
+    # Event number of elements, take mean of the middle two
+    # Example: 4 elements [ 0 1 2 3 ] take mean of 1 2
+    $Median = ($Population[$middleIndex-1] + $Population[$middleIndex]) / 2;
+}
+
+print "count,sum,min,max,median,mean,std dev\n";
+print "$Count,$Sum,$Min,$Max,$Median,$Mean,$StdDev\n";

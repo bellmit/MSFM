@@ -1,0 +1,75 @@
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the WebServerHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalSystemHealthQueryDispatcherHome (SystemHealthQueryDispatcherHomeImpl*)>
+<!ATTLIST GlobalSystemHealthQueryDispatcherHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT SystemHealthQueryDispatcherHomeImpl (SystemHealthQueryDispatcherHomeImplProperties, SystemHealthQueryDispatcherHomeImplCommands?)>
+<!ATTLIST SystemHealthQueryDispatcherHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT SystemHealthQueryDispatcherHomeImplProperties (allowContextDetailQuery, allowConfigurationDataQuery, allowProductQuery)>
+<!ATTLIST SystemHealthQueryDispatcherHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT allowContextDetailQuery EMPTY>
+<!ATTLIST allowContextDetailQuery
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT allowConfigurationDataQuery EMPTY>
+<!ATTLIST allowConfigurationDataQuery
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT allowProductQuery EMPTY>
+<!ATTLIST allowProductQuery
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT SystemHealthQueryDispatcherHomeImplCommands (getContextDetail, getProductData, getConfigurationData)>
+<!ATTLIST SystemHealthQueryDispatcherHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT getContextDetail (xml) >
+<!ATTLIST getContextDetail
+    type %typeConstraints;   #FIXED 'ManagedCommand'
+    description CDATA        #FIXED 'System Health Monitor Context Detail Query'
+>
+
+<!ELEMENT getProductData (xml) >
+<!ATTLIST getProductData
+    type %typeConstraints;   #FIXED 'ManagedCommand'
+    description CDATA        #FIXED 'System Health Monitor Product Query'
+>
+
+<!ELEMENT getConfigurationData (xml) >
+<!ATTLIST getConfigurationData
+    type %typeConstraints;   #FIXED 'ManagedCommand'
+    description CDATA        #FIXED 'System Health Monitor Configuration Data Query'
+>
+
+<!ELEMENT xml (#PCDATA) >
+<!ATTLIST xml
+	type CDATA #FIXED 'ManagedParameter'
+	parameterType CDATA #FIXED 'string'
+	description CDATA #FIXED 'paramOne description'
+>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalCfixMDXMarketDataQueryProxyHome SYSTEM "../dtd/CfixMDXMarketQueryHome.dtd">
+<GlobalCfixMDXMarketDataQueryProxyHome>
+	<CfixMDXMarketDataQueryProxyHomeImpl name="DefaultService">
+		<CfixMDXMarketDataQueryProxyHomeImplProperties>
+			<rateMonitorSessionsMDX>W_AM1,W_MAIN,ONE_MAIN,W_STOCK,C2_MAIN</rateMonitorSessionsMDX>
+			<rateMonitorIntervalMDX>1000,1000,1000,1000,1000</rateMonitorIntervalMDX>
+			<rateMonitorWindowMDX>1,1,1,1,1</rateMonitorWindowMDX>
+		</CfixMDXMarketDataQueryProxyHomeImplProperties>
+	</CfixMDXMarketDataQueryProxyHomeImpl>
+</GlobalCfixMDXMarketDataQueryProxyHome>

@@ -1,0 +1,30 @@
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the AuditLogHomeImpl -->
+<!-- @author  -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalAuditLogHome (AuditLogHomeImpl*)>
+<!ATTLIST GlobalAuditLogHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT AuditLogHomeImpl (AuditLogHomeImplProperties?)>
+<!ATTLIST AuditLogHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT AuditLogHomeImplProperties (enableAudit)>
+<!ATTLIST AuditLogHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT enableAudit (#PCDATA)>
+<!ATTLIST enableAudit
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>

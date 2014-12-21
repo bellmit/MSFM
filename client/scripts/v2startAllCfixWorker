@@ -1,0 +1,19 @@
+#!/bin/ksh
+# --------------------------------------------------------------------------
+#
+# Start all cfix engines for this box.
+#
+# Refers to the ENGINE_LIST variable set in $INFRA_HOME/config/bin to
+# determine which engines to start
+#
+# --------------------------------------------------------------------------
+
+if [ -z $RUN_DIR ] ; then
+    cd
+    . ./.profile >/dev/null 2>&1
+fi
+
+for i in $ENGINE_LIST
+do
+    v2startcfix $i
+done

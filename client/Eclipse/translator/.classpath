@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Java/translator"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="cmi_release/jars/cmi_idl.jar" sourcepath="cmi_release/jars/cmi_idl_java.jar"/>
+	<classpathentry kind="lib" path="release/client_common.jar"/>
+	<classpathentry kind="lib" path="release/client_commonTranslator.jar"/>
+	<classpathentry kind="lib" path="release/client_impls.jar"/>
+	<classpathentry kind="lib" path="release/client_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain/event/release/event_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain/event/release/event_impls.jar"/>
+	<classpathentry kind="lib" path="domain/release/domain_idl.jar"/>
+	<classpathentry kind="lib" path="domain/release/domain_impls.jar"/>
+	<classpathentry kind="lib" path="domain/release/domain_interfaces.jar"/>
+	<classpathentry kind="lib" path="release/client_internal_idl.jar"/>
+	<classpathentry kind="lib" path="release/client_idl.jar"/>
+	<classpathentry kind="lib" path="omg_release/jars/OMGBaseClasses.jar"/>
+	<classpathentry kind="lib" path="omg_release/jars/OMGService.jar"/>
+	<classpathentry kind="lib" path="CommonFacilities_release/CommonFacilities.jar"/>
+	<classpathentry kind="lib" path="framework_release/FoundationFramework.jar"/>
+	<classpathentry kind="lib" path="loggingservice_release/jars/LoggingService.jar"/>
+	<classpathentry kind="lib" path="loggingservice_release/jars/LoggingServiceIDL.jar"/>
+	<classpathentry kind="lib" path="domain/event/release/event_idl.jar"/>
+	<classpathentry kind="lib" path="common_release/jars/common.jar"/>
+	<classpathentry kind="lib" path="tools/XMLParser/Apache_Xerces_2.2.1/xerces-2_2_1/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="tools/XMLParser/Apache_Xerces_2.2.1/xerces-2_2_1/xmlParserAPIs.jar"/>
+	<classpathentry kind="lib" path="tools/junit/classes/junit.jar"/>
+	<classpathentry kind="lib" path="tools/java/jars/junit37.jar"/>
+	<classpathentry kind="lib" path="tools/jgl/jars/jgl.jar"/>
+	<classpathentry kind="lib" path="messagingsystem_release/jars/MessagingSystem.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

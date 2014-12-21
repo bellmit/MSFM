@@ -1,0 +1,91 @@
+#! /usr/bin/ksh
+#
+HOSTNAME=`hostname`
+PROG=$( basename $0 )
+PROG=${PROG%Worker}
+LOG=${RUN_DIR}/../v2run_dir/log/startsh_`date +%Y%m%d_%H%M%S_$PROG`.log
+
+NOTIFY="(notify)"
+ALARM="(Alarm)"
+EXCEPTION="(EXCEPTION)"
+
+function log	{
+	MSG="`date` - ${1} :: ${2}"
+	echo ${MSG}
+	print -u2 ${MSG} >> $LOG 2>&1
+}
+
+function logNotify	{
+	log "${NOTIFY}" "${1}"
+}
+
+function logAlarm	{
+	log "${ALARM}" "${1}"
+}
+
+function logException	{
+	log "${EXCEPTION}" "${1}"
+}
+
+function osKill {
+	logAlarm ">>> BEGIN osKill"
+	logAlarm ">>> ...kill -3 ${1} in progress..."
+	kill -3 ${1} >> ${LOG} 2>&1
+	logAlarm ">>> ...waiting 10 seconds before killing process..."
+	sleep 10
+	logAlarm ">>> ...kill -9 ${1} in progress..."
+	kill -9 ${1} >> ${LOG} 2>&1
+	logAlarm ">>> END osKill"
+}
+
+
+PARGS=`whence pargs`
+if [ "${PARGS}" == "" ] ; then
+	logException "!!! ${PROG} ABORT !!!"
+	logException "Unable to locate \"pargs\" script"
+	logException "Unable to continue..."
+	exit -1
+fi
+
+COMPONENT_NAME="MDCAS"
+COMPONENT_TYPE="mdcas"
+
+if [ $# -gt 0 ] ; then
+	HOSTNAME="${1}"
+fi
+
+clear
+echo "!!! WARNING !!!"
+echo "You have executed a program that will terminate the ${COMPONENT_NAME} running on the ${HOSTNAME} system."
+echo "Proceeding from here will terminate the ${COMPONENT_NAME} process WITHOUT notifying anyone using the ${COMPONENT_NAME}."
+echo ""
+echo "Continue with termination of the ${COMPONENT_NAME} (yes/no)?? no"
+read key
+if [ "${key}" != "yes" ] ; then
+	logNotify "Termination of the ${COMPONENT_NAME} has been cancelled."
+	exit 1
+else
+	logNotify "Termination of the ${COMPONENT_NAME} has been confirmed.  Proceeding..."
+fi
+
+logNotify "Searching for ${COMPONENT_NAME} processes on \"${HOSTNAME}\""
+
+USER=`whoami`
+JAVA_PROCS=`ps -u ${USER}|grep -v PID|grep java|cut -b1-6`
+
+logNotify "Currently running java PIDs ... ${JAVA_PROCS}"
+
+for proc in ${JAVA_PROCS} ; do
+	ORBNAME=`${PARGS} $proc|grep "ORB.OrbName"|cut -d "=" -f2`
+	case ${ORBNAME} in
+		${SBT_PREFIX}${COMPONENT_TYPE}[0-9][0-9]v2${HOSTNAME})
+			logAlarm "Killing ${COMPONENT_NAME} process, \"${ORBNAME}\", with PID ${proc}"
+			osKill ${proc}
+			;;
+		*)
+			logNotify "Non-${COMPONENT_NAME} process, \"${ORBNAME}\", with PID ${proc} being skipped."
+			;;
+	esac
+done
+
+

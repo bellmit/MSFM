@@ -1,0 +1,12 @@
+#!/bin/ksh
+# Submit an adminRequest to a named process
+# Usage: ar <orbName> <command> [ <argument>... ]
+
+java \
+ -DORB.OrbName=AdminInvokerOrb$$ \
+ -DORB.PortNum=0 \
+ -DORB.InitRefURL=${IOR_FILE} \
+ -DLocalLog.OFF \
+ -Dprefix=${SBT_PREFIX} \
+ -DEventService.SmartSockets.OptionsFile=${RUN_DIR}/properties/cboe.ssconfig.cm \
+ com.cboe.infrastructureServices.foundationFramework.utilities.AdminInvoker "$@"

@@ -1,0 +1,12 @@
+# devenv21
+ 
+environment = test21
+ 
+cas    = dev21cas,   01, dev21fe    dev21fe
+fixcas = dev21fix,   01, dev21fe    dev21fe
+cfix   = dev21mdcas, 01, dev21fe    dev21fe
+mdcas  = dev21mdcas, 01, dev21fe    dev21fe
+mdcas  = dev21mds,   01, dev21fe    dev21fe
+mdx    = dev21mdx,   01, dev21fe    dev21fe
+sacas  = dev21sa,    01, dev1922svr dev1922svr
+fixcas = dev21ttfix, 01, dev21fe    dev21fe

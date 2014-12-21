@@ -1,0 +1,23 @@
+# PERF1 (perf3gc2a)
+
+environment = perf4
+
+cas    = perf4cas1,    01, perf4fe1  perf4fe2
+cas    = perf4cas2,    01, perf4fe1  perf4fe2
+cas    = perf4cas3,    01, perf4fe1  perf4fe2
+cas    = perf4cas4,    01, perf4fe1  perf4fe2
+cas    = perf4cas5,    01, perf4fe1  perf4fe2
+cas    = perf4cas6,    01, perf4fe1  perf4fe2
+cas    = perf4cas7,    01, perf4fe1  perf4fe2
+cas    = perf4cas8,    01, perf4fe1  perf4fe2
+mdx    = perf4mdx1,     01, nofe1 nofe2
+mdx    = perf4mdx2,     01, nofe1 nofe2
+mdx    = perf4mdx3,     01, nofe1 nofe2
+mdx    = perf4mdx4,     01, nofe1 nofe2
+sacas  = perf4sa1,     01, perf4gc1a perf4gc1b
+sacas  = perf4sa2,     01, perf4gc1a perf4gc1b
+mdcas  = perf4mdcas,   01, perf4fe1  perf4fe2
+mdcas  = perf4mds,     01, perf4fe1  perf4fe2
+
+tipsMdxAdapter = perf4mdgca, 01
+tipsMdxAdapter = perf4mdgcb, 01

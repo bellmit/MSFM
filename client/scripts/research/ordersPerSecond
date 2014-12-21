@@ -1,0 +1,40 @@
+#!/usr/bin/perl -w
+# Count orders handled each second
+# Usage: cat cas.log | $0
+
+sub report()
+{
+    my $now = $thisHour*10000 + $thisMin*100 + $thisSec;
+    return if ($now == 0) && ($count == 0);
+    $now = "0$now" if $thisHour < 10;
+    print "$now $count\n";
+}
+
+$thisHour = 0;
+$thisMin = 0;
+$thisSec = 0;
+$count = 0;
+
+while (<>)
+{
+# low information 2009/3/6 7:42:01.45 CASFilev2 apitest1cas01v2apicas1 CAS "UserOrderEntryHome:28223530>>> acceptOrder returning TT:2176 CT:11 ST:2165 EID:339750010552320 UA:ABC SnT:1 SnId:1023e29 SESN:W_MAIN UAID:ABC UA:ABC BR:TTT SEQ:143 CF: EF:255 CK:69213922 PK:612957266 SD:B QTY:40 TYPE:M" 0 
+
+    next unless /acceptOrder returning/;
+    my ($hour, $min, $sec);
+
+    /low information \S+ (\d+):(\d+):(\d+)/ &&
+     ($hour=0+$1, $min=0+$2, $sec=0+$3);
+
+    if ($hour != $thisHour || $min != $thisMin || $sec != $thisSec)
+    {
+        &report;
+
+        $count = 0;
+        $thisHour = $hour;
+        $thisMin = $min;
+        $thisSec = $sec;
+    }
+    ++ $count;
+}
+
+&report;

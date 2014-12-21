@@ -1,0 +1,13 @@
+# devenv24
+
+environment = test24
+
+cas    = dev24cas,   01, dev24fe    dev24fe2
+cas    = dev24cas2,  02, dev24fe    dev24fe2
+fixcas = dev24fix,   01, dev24fe    dev24fe2
+cfix   = dev24mdc,   01, dev24fe    dev24fe2
+mdcas  = dev24mdc,   01, dev24fe    dev24fe2
+mdcas  = dev24mds,   01, dev24fe    dev24fe2
+mdx    = dev24mdx,   01, nofe1      nofe2
+sacas  = dev24sa,    01, devenv4    devenv4
+fixcas = dev24ttfix, 01, dev24fe    dev24fe2

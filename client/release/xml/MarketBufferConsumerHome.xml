@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalMarketBufferConsumerHome SYSTEM "../dtd/MarketBufferConsumerHome.dtd">
+<GlobalMarketBufferConsumerHome>
+	<MarketBufferConsumerHomeImpl name="DefaultService">
+		<MarketBufferConsumerHomeImplProperties>
+			<numChannels>5</numChannels>
+		</MarketBufferConsumerHomeImplProperties>
+	</MarketBufferConsumerHomeImpl>
+</GlobalMarketBufferConsumerHome>

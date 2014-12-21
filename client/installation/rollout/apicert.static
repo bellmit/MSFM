@@ -1,0 +1,25 @@
+# APICERT
+
+environment = apicert
+
+cas    = certcas1,    01, certfe1 certfe2
+cas    = certcas2,    01, certfe1 certfe2 
+cas    = c1certcas1,  01, certfe1 certfe2
+cas    = c1certcas2,  01, certfe1 certfe2 
+fixcas = certfix1,    01, certfe1 certfe2 
+fixcas = certfix1,    02, certfe1 certfe2 
+fixcas = certfix1,    03, certfe1 certfe2 
+fixcas = certfix1,    04, certfe1 certfe2 
+fixcas = certfix1,    05, certfe1 certfe2 
+fixcas = certfix1,    06, certfe1 certfe2 
+fixcas = certfix1,    07, certfe1 certfe2 
+cfix   = certmdcas1,  01, certfe1 certfe2
+mdcas  = certmdcas1,  01, certfe1 certfe2
+mdcas  = certmdcas1s, 01, certfe1 certfe2
+sacas  = certsa1,     01, certapi certapi
+fixcas = certttfix1,  01, certfe1 certfe2
+fixcas = certttfix1,  02, certfe1 certfe2
+cas    = cmecas1,     01, certfe1 certfe2
+cas    = cmecas2,     01, certfe1 certfe2
+cas    = c1cmecas1,   01, certfe1 certfe2
+cas    = c1cmecas2,   01, certfe1 certfe2

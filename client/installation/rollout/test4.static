@@ -1,0 +1,10 @@
+# DEVENV1 (TEST4)
+
+environment = test4
+
+cas    = dev4cas,   01, dev4fe  dev4fe
+fixcas = dev4fix,   01, dev4fe  dev4fe
+cfix   = dev4mdc,   01, dev4fe  dev4fe
+mdcas  = dev4mdc,   01, dev4fe  dev4fe
+mdx    = dev4mdx,   01, dev4fe  dev4fe
+sacas  = dev4sa,    01, devenv1 devenv1

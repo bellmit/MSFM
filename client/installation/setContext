@@ -1,0 +1,25 @@
+# For FIXCAS
+export TRADESCOPE_AGENT_HOME=$INFRA_HOME/tradescope/tradescope/agent
+export PATH=$PATH:$TRADESCOPE_AGENT_HOME/bin
+export TRADESCOPE_SERVER=170.137.93.127
+# List the correct set of FIXCAS processes such as "01 02 03"
+export ENGINE_LIST="01 02 03 04 05 06 07"
+
+# For all Client processes
+
+export TMOUT=3600
+export SBT_ENVIRONMENT=prod
+export SBT_LOG_PARTITION=/sbt/log/prod
+export CLIENT_TYPE=cas
+export XML_BASE_DIR=$INFRA_HOME/config/properties/xml
+export RUN_DIR_LIST="$INFRA_HOME/v2cas01"
+export HOSTNAME=`hostname`
+export JAVA_ARGS="${JAVA_ARGS} -DORB.InitRefURL=$IOR_FILE"
+export NET_SUFFIX=testfix2
+export MDCAS_SESSIONS_HYBRID=W_MAIN,COF_MAIN
+export MDCAS_SESSIONS_STOCK=Stock_MD,W_STOCK
+export MDCAS_SESSIONS_ALL=$MDCAS_SESSIONS_HYBRID,$MDCAS_SESSIONS_STOCK
+export VALID_GROUP_TYPE=ProcessGroup
+
+# For STOCK CAS and STOCK FIX CAS this should be set to W_STOCK, leave blank for all others
+export SESSION_NAME=

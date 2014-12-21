@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalCfixHome SYSTEM "../dtd/CfixHome.dtd">
+<GlobalCfixHome>
+	<CfixHomeImpl name="DefaultService">
+		<CfixHomeImplProperties>
+			<CfixConfigurationFile>&lt;prefixFixIniFile&gt;</CfixConfigurationFile>
+			<cfixSubscriptionMode>${CFIX_SUBSCRIPTION_MODE}</cfixSubscriptionMode>
+			<isC2Session>${SBT_ENVIRONMENT}</isC2Session>
+		</CfixHomeImplProperties>
+	</CfixHomeImpl>
+</GlobalCfixHome>

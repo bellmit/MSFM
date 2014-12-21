@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalEventChannelHome SYSTEM "../dtd/EventChannelHome.dtd">
+<GlobalEventChannelHome>
+	<EventChannelHomeImpl name="DefaultService">
+		<EventChannel name="CurrentMarket">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;CurrentMarket</channelName>
+				<defaultMethod>acceptCurrentMarket</defaultMethod>
+				<baseInterface>IDL:consumers/CurrentMarketConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="MarketBuffer1">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;MarketBuffer1</channelName>
+				<defaultMethod>acceptMarketBuffer</defaultMethod>
+				<baseInterface>IDL:consumers/MarketBufferConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="MarketBuffer2">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;MarketBuffer2</channelName>
+				<defaultMethod>acceptMarketBuffer</defaultMethod>
+				<baseInterface>IDL:consumers/MarketBufferConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="MarketBuffer3">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;MarketBuffer3</channelName>
+				<defaultMethod>acceptMarketBuffer</defaultMethod>
+				<baseInterface>IDL:consumers/MarketBufferConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="MarketBuffer4">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;MarketBuffer4</channelName>
+				<defaultMethod>acceptMarketBuffer</defaultMethod>
+				<baseInterface>IDL:consumers/MarketBufferConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="MarketBuffer5">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;MarketBuffer5</channelName>
+				<defaultMethod>acceptMarketBuffer</defaultMethod>
+				<baseInterface>IDL:consumers/MarketBufferConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="Alert">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;Alert</channelName>
+				<defaultMethod>acceptAlert</defaultMethod>
+				<baseInterface>IDL:internalConsumers/AlertConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="Auction">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;Auction</channelName>
+				<defaultMethod>acceptAuction</defaultMethod>
+				<baseInterface>IDL:consumers/AuctionConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="IntermarketAdminMessage">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;IntermarketAdminMessage</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:consumers/IntermarketAdminMessageConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="BookDepth">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;BookDepth</channelName>
+				<defaultMethod>acceptBookDepth</defaultMethod>
+				<baseInterface>IDL:consumers/BookDepthConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="Property">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;Property</channelName>
+				<defaultMethod>acceptPropertyUpdate</defaultMethod>
+				<baseInterface>IDL:consumers/PropertyConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="QuoteNotification">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;QuoteNotification</channelName>
+				<defaultMethod>acceptQuoteLockedNotification</defaultMethod>
+				<baseInterface>IDL:consumers/QuoteNotificationConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="TradingSessionEventState">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;TradingSessionEventState</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/TradingSessionEventStateConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="CacheUpdate">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;CacheUpdate</channelName>
+				<defaultMethod>acceptSessionProfileUserUpdate</defaultMethod>
+				<baseInterface>IDL:events/CacheUpdateEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="NewOrder">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;OrderStatus</channelName>
+				<defaultMethod>acceptNewOrder</defaultMethod>
+				<baseInterface>IDL:events/OrderStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="OrderStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;OrderStatus</channelName>
+				<defaultMethod>acceptNewOrder</defaultMethod>
+				<baseInterface>IDL:events/OrderStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="IntermarketOrderStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;IntermarketOrderStatus</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/IntermarketOrderStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="NBBOAgentAdmin">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;NBBOAgentAdmin</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/NBBOAgentAdminEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="ExternalOrderStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;ExternalOrderStatus</channelName>
+				<defaultMethod>acceptNewOrder</defaultMethod>
+				<baseInterface>IDL:events/OrderStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="OrderUpdate">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;OrderStatus</channelName>
+				<defaultMethod>acceptOrderUpdate</defaultMethod>
+				<baseInterface>IDL:events/OrderStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="ProductStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;ProductStatus</channelName>
+				<defaultMethod>updateProduct</defaultMethod>
+				<baseInterface>IDL:events/ProductStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="ProductConfigurationStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;ProductConfigurationStatus</channelName>
+				<defaultMethod/>
+				<baseInterface>IDL:intenalEvents/ProductConfigurationStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="QuoteStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;QuoteStatus</channelName>
+				<defaultMethod>acceptQuoteDeleteReport</defaultMethod>
+				<baseInterface>IDL:events/QuoteStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="ExternalQuoteStatus">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;ExternalQuoteStatus</channelName>
+				<defaultMethod>acceptQuoteDeleteReport</defaultMethod>
+				<baseInterface>IDL:events/QuoteStatusEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RFQ">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RFQ</channelName>
+				<defaultMethod>acceptRFQ</defaultMethod>
+				<baseInterface>IDL:events/RFQEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="Recap">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;Recap</channelName>
+				<defaultMethod>acceptRecap</defaultMethod>
+				<baseInterface>IDL:consumers/RecapConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="Ticker">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;Ticker</channelName>
+				<defaultMethod>acceptTicker</defaultMethod>
+				<baseInterface>IDL:consumers/TickerConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="TradingSession">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;TradingSession</channelName>
+				<defaultMethod>acceptBusinessDayEvent</defaultMethod>
+				<baseInterface>IDL:events/TradingSessionEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="UserTimeoutWarning">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;UserTimeoutWarning</channelName>
+				<defaultMethod>acceptUserTimeoutWarning</defaultMethod>
+				<baseInterface>IDL:infrastructureServices/infrastructureEvents/UserTimeoutWarningConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="TextMessage">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;TextMessage</channelName>
+				<defaultMethod>acceptTextMessageForUser</defaultMethod>
+				<baseInterface>IDL:events/TextMessageEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="CASAdmin">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;CASAdmin</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/CASAdminConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="OrderStatusAdmin">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;OrderStatusAdmin</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:internalEvents/OrderStatusAdminEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="QuoteStatusAdmin">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;QuoteStatusAdmin</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:internalEvents/QuoteStatusAdminEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="MarketDataCallback">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;MarketDataCallback</channelName>
+				<defaultMethod>subscribeCurrentMarket</defaultMethod>
+				<baseInterface>IDL:events/MarketDataCallbackConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASCurrentMarket">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASCurrentMarket</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASCurrentMarketConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASNBBO">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASNBBO</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASNBBOConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASRecap">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASRecap</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASRecapConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASTicker">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASTicker</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASTickerConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASExpectedOpeningPrice">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASExpectedOpeningPrice</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASExpectedOpeningPriceConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASBookDepth">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASBookDepth</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASBookDepthConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASBookDepthUpdate">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASBookDepthUpdate</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASBookDepthUpdateConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASSessionManager">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASSessionManager</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASSessionManagerConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASCallbackRemoval">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASCallbackRemoval</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASCallbackRemovalConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="RemoteCASRecovery">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;RemoteCASRecovery</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/RemoteCASRecoveryConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="CalendarAdminChannel">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;CalendarAdminChannel</channelName>
+				<defaultMethod>updateCalendarEvent</defaultMethod>
+				<baseInterface>IDL:internalEvents/CalendarUpdateEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="SystemControl">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;SystemControl</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/SystemControlEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="GroupElement">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;GroupElement</channelName>
+				<defaultMethod>NONE</defaultMethod>
+				<baseInterface>IDL:events/GroupElementEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+		<EventChannel name="OrderRouting">
+			<EventChannelProperties>
+				<channelName>&lt;prefix&gt;OrderRouting</channelName>
+				<defaultMethod>acceptOrders</defaultMethod>
+				<baseInterface>IDL:ohsEvents/OrderRoutingEventConsumer:1.0</baseInterface>
+			</EventChannelProperties>
+		</EventChannel>
+	</EventChannelHomeImpl>
+</GlobalEventChannelHome>

@@ -1,0 +1,15 @@
+# ATGTEST8
+
+environment = atgtest8
+
+cas    = atgcas8,   01, atgqafe81 atgqafe82
+fixcas = atgfix8,   01, atgqafe81 atgqafe82 
+fixcas = atgfix8,   02, atgqafe81 atgqafe82 
+fixcas = atgttfix8, 01, atgqafe81 atgqafe82
+fixcas = atgttfix8, 02, atgqafe81 atgqafe82
+cfix   = atgmd8,    01, atgqafe81 atgqafe82
+mdcas  = atgmd8,    01, atgqafe81 atgqafe82
+mdcas  = atgmd8s,   01, atgqafe81 atgqafe82
+mdx    = atgmd8x,   01, atgqafe81 atgqafe82
+sacas  = saatg8,    01, atgqagc8  atgqagc8
+tipsMdxAdapter = atgqagc8, 01

@@ -1,0 +1,114 @@
+#!/bin/ksh
+# Produce statistics for client engines, put into
+#   $RUN_DIR/tmp/GCstats.`hostname`.tar
+# Requires scripts in .tar file $DELIVERED_SCRIPTS (see below)
+
+if [ -z "$RUN_DIR" ] ; then
+    HERE=$( pwd )
+    cd
+    . ~/.profile >/dev/null 2>&1
+    cd $HERE
+fi
+
+# -------------------- Configuration --------------------
+
+DELIVERED_SCRIPTS=/tmp/GCscriptsForCAS.tar
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+HOSTNAME=$( hostname )
+
+# Output file to be collected by script that invoked us
+RESULT_FILE=$RUN_DIR/tmp/GCstats.$HOSTNAME.tar
+
+# Used by script GetGCdataCAS
+export WORKPATH=$RUN_DIR/tmp/$PROG.$$
+
+# Error codes from errno.h
+ENOENT=2    # No such file or directory
+EINTR=4     # interrupted system call
+EINVAL=22   # invalid argument
+
+# -------------------- Subroutines --------------------
+
+trace()
+{
+    if [ -n "$VERBOSE" ] ; then
+        date "+%H:%M:%S $PROG $1"
+    fi
+}
+
+cleanup()
+{
+    cd
+    rm -rf $WORKPATH
+}
+
+cleanupAndExit()
+{
+    cleanup
+    exit $EINTR
+}
+
+# -------------------- Main program --------------------
+
+trap cleanupAndExit 1 2 3
+unalias rm
+
+# Remove old result file (if any) so file won't exist if we fail
+if [ -e $RESULT_FILE* ] ; then
+    rm -rf $RESULT_FILE*
+fi
+
+if [ ! -e $DELIVERED_SCRIPTS ] ; then
+    print -u 2 "$PROG: Missing file $DELIVERED_SCRIPTS"
+    cleanup
+    exit $ENOENT
+fi
+
+if [ -n "$VERBOSE" ] ; then
+    TAR_VERBOSE=v
+    trace "... Enter ..."
+else
+    TAR_VERBOSE=
+fi
+
+# Get the names of the directories to process
+cd $INFRA_HOME
+ALLDIRS=$( ls -d v2@(cas|fixcas|mdcas|cfix|sacas)[0-9][0-9] )
+trace "ALLDIRS=$ALLDIRS"
+
+# Make sure we have an empty $WORKPATH directory
+if [ -e $WORKPATH ] ; then
+    rm -rf $WORKPATH
+    trace "rm -rf $WORKPATH"
+fi
+mkdir -p -m777 $WORKPATH
+
+# Get scripts - GetGCdatCAS and all its helpers
+mkdir -m777 $WORKPATH/bin
+cd $WORKPATH/bin
+trace "Get scripts into $WORKPATH/bin $( pwd )"
+tar x${TAR_VERBOSE}f $DELIVERED_SCRIPTS
+export PATH=${PATH}:$WORKPATH/bin
+cd
+
+# Get statistics for each engine
+for dir in $ALLDIRS ; do
+    trace "Process $dir/log"
+    cd $INFRA_HOME/$dir/log
+    GetGCdataCAS $HOSTNAME
+    # Output files are in directory $WORKPATH/$HOSTNAME/cas.
+    # Rename cas to $dir without the leading v2 (so v2cas01 becomes cas01)
+    trace "Rename output to $HOSTNAME/${dir#v2}"
+    mv $WORKPATH/$HOSTNAME/cas $WORKPATH/$HOSTNAME/${dir#v2}
+done
+
+# Create a single output file
+cd $WORKPATH
+tar c${TAR_VERBOSE}f $RESULT_FILE $HOSTNAME
+
+cleanup
+trace "... Exit ..."
+exit 0

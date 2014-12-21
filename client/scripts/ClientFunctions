@@ -1,0 +1,478 @@
+#!/bin/ksh
+# See functions startClient and stopClient for usage
+
+# -------------------- Constants --------------------
+
+# Exit codes (from errno.h)
+ENOENT=2   # no such file or directory
+ESRCH=3    # no such process
+EINTR=4    # interrupted system call
+EINVAL=22  # invalid argument
+
+# -------------------- Internal functions --------------------
+
+# Determine PROG, ENGINE, V2ENGINE, INSTALLDIR, LOGDIR, CONFIG_BIN.
+# If ENGINE is not already set, determine it from the path of the
+# script we are running (probably v2run_dir).
+setupDirNames()
+{
+    PROG=$( basename $0 )
+    PROG=${PROG%Worker}
+    ScriptDir=$( dirname $0 )
+    cd $ScriptDir
+    ScriptDir=$( pwd )                      # example: $INFRA_HOME/v2cas01/bin
+    if [ -z "$ENGINE" ] ; then
+        INSTALLDIR=$( dirname $ScriptDir )  # example: $INFRA_HOME/v2cas01
+        V2ENGINE=$( basename $INSTALLDIR )  # example: v2cas01
+        if [ "$V2ENGINE" == "v2run_dir" ] ; then
+            V2ENGINE=$( ls -ld $INFRA_HOME/v2run_dir | sed 's/.*> //' )
+        fi
+        ENGINE=${V2ENGINE#v2}
+    else
+        V2ENGINE=v2$ENGINE                  # example: v2mdcas01
+    fi
+    export ENGINE
+    INSTALLDIR=$INFRA_HOME/$V2ENGINE
+    LOGDIR=$INSTALLDIR/log
+    CONFIG_BIN=$INFRA_HOME/config/bin
+    unset ScriptDir
+}
+
+# Print a message with standard prefix: script name, current timestamp
+report()
+{
+    date "+$PROG: %Y/%m/%d-%T $*"
+}
+
+# Make sure that architecture-specific files match this architecture
+verifyArchitectureLoad()
+{
+    # Determine what architecture-specific word we'll look for
+    case $( uname -p ) in
+    sparc)
+        ArchWord=SPARC
+        ;;
+    i386)
+        ArchWord=80386
+        ;;
+    *)
+        report "ERROR - Unknown architecture $( uname -p )"
+        exit $EINVAL
+        ;;
+    esac
+
+    # If we have any architecture-specific files, investigate them
+    if [ -f $RUN_DIR/lib/* ] ; then
+        Count=$( file $RUN_DIR/lib/* | grep -c $ArchWord )
+        if [ "$Count" = "0" ] ; then
+            report "ERROR - run_dir incorrect, reinstall for "$( uname -p )" platform!"
+            exit $EINVAL
+        fi
+        unset Count
+    fi
+    unset ArchWord
+}
+
+# Read all applicable configuration files. Calculate CLIENT_BASE_PORT.
+readConfiguration()
+{
+    # We read $CONFIG_BIN/setContext when we logged in.
+
+    # Now read $INSTALLDIR/bin/setContext, parameters that were
+    # calculated when the software was loaded.
+
+    if [ ! -r $INSTALLDIR/bin/setContext ] ; then
+        report "ERROR - Cannot read $INSTALLDIR/bin/setContext"
+        exit $EINVAL
+    fi
+    . $INSTALLDIR/bin/setContext
+    if [ -z "$PORTNUM" ] ; then
+        # PORTNUM is always set; if it's empty, we have a big problem.
+        report "ERROR - Invalid content in $INSTALLDIR/bin/setContext"
+        exit $EINVAL
+    fi
+
+    # Now read $CONFIG_BIN/setContext.$V2ENGINE (parameters that
+    # cannot be pre-calculated), then validate CLIENT_TYPE.
+
+    if [ ! -r $CONFIG_BIN/setContext.$V2ENGINE ] ; then
+        report "ERROR - Cannot read $CONFIG_BIN/setContext.$V2ENGINE"
+        exit $ENOENT
+    fi
+    . $CONFIG_BIN/setContext.$V2ENGINE
+
+    if [ -z "$THIS_CLIENT" ] ; then
+        report "ERROR - Variable THIS_CLIENT is missing"
+        exit $EINVAL
+    elif [ "$CLIENT_TYPE" != "$THIS_CLIENT" ] ; then
+        report "ERROR - Installed software is not $THIS_CLIENT"
+        exit $EINVAL
+    fi
+
+    # Is host configured correctly? Look for a program in /opt/cboeutil
+    # that this script uses.
+
+    count_=$( which pstats | wc -w | tr -d ' ' )
+    if [ "$count_" != "1" ] ; then
+        report "ERROR - Host setup incomplete: missing pstats program"
+        exit $ENOENT
+    fi
+    unset count_
+
+    # $INFRA_HOME/.setenv provides BASE_PORT, a number divisible
+    # by 1000. We need the part before those last 3 zeros.
+    export CLIENT_BASE_PORT=${BASE_PORT%000}
+}
+
+# Read the processes.*.xml file and build a command line.
+# @param 1 name of XML file to read
+# @return variable COMMAND_LINE
+createCommandLine()
+{
+    Process_xml_=$1
+    cat $Process_xml_ | while read Line
+    do
+        if [[ "$Line" = @(\<[!A-Za-z/]*|*/\>) ]] ; then
+            # XML control, or open-close tag, not our data
+            Line=
+            LongLine=
+        elif [[ "$Line" = \<+([!<>])\> ]] ; then
+            # Opening tag with no data, must be structural
+            Line=
+            LongLine=
+        elif [[ "$Line" = *\</+([A-Za-z0-9])\> ]] ; then
+            # Line contains closing tag, we will process it
+            Line="$LongLine$Line"
+            # Empty our multi-line accumulator
+            LongLine=
+        else
+            # Accumulate this line into LongLine
+            LongLine="$LongLine$Line"
+            # Don't process this line now, wait for LongLine to be complete
+            Line=
+        fi
+        Value=${Line#*\>}
+        Value=${Value%\<*}
+        case $Line in
+        *'<Orbname>'*)
+            ORB_NAME_PROPERTY="-DORB.OrbName=$Value"
+            ;;
+        *'<Portnum>'*)
+            PORTNUM_PROPERTY="-DORB.PortNum=$Value"
+            ;;
+        *'<JavaOptionalProperty>'*)
+            JAVA_PROPERTIES="$JAVA_PROPERTIES $Value"
+            ;;
+        *'<SystemOptionalProperty>'*)
+            SYSTEM_PROPERTIES="$SYSTEM_PROPERTIES -D$Value"
+            ;;
+        *'<JavaClassName>'*)
+            MAIN_CLASS=$Value
+            ;;
+        *'<ApplicationArgument>'*)
+            APP_ARGUMENTS="$APP_ARGUMENTS $Value"
+            ;;
+        *'<ProcessComponent>'*)
+            # filename [ :tag_name [ .tag_name ]... ]
+            File=${Value%%:*}
+            if [ -z "$XMLFILES" ] ; then
+                XMLFILES="-DSMA.XMLFiles=${INSTALLDIR}/properties/xml/$File"
+            else
+                XMLFILES="$XMLFILES,${INSTALLDIR}/properties/xml/$File"
+            fi
+            TagList=${Value#*:}
+            if [ "$TagList" == "$Value" ] ; then
+                # Value doesn't contain ":" so there's no list
+                TagList=
+            fi
+            while [ -n "$TagList" ] ; do
+                Pair=${TagList%%.*}
+                TagList=${TagList#*.}
+                if [ "$TagList" == "$Pair" ] ; then
+                    # No . in the list, no more pairs after this one
+                    TagList=
+                fi
+                Tag=${Pair%_*}
+                Name=${Pair#*_}
+                SMA_TAGDEFS="$SMA_TAGDEFS -DSMA.$Tag=$Name"
+            done
+            ;;
+        *)
+            ;;
+        esac
+    done
+
+    if [ -z "$ORB_NAME_PROPERTY" ] ; then
+        report "ERROR - No <Orbname> specified in $Process_xml_"
+        exit $EINVAL
+    elif [ -z "$PORTNUM_PROPERTY" ] ; then
+        report "ERROR - No <Portnum> specified in $Process_xml_"
+        exit $EINVAL
+    elif [ -z "$JAVA_PROPERTIES" ] ; then
+        report "ERROR - No <JavaOptionalProperty> tags specified in $Process_xml_"
+        exit $EINVAL
+    elif [ -z "$SYSTEM_PROPERTIES" ] ; then
+        report "ERROR - No <SystemOptionalProperty> tags specified in $Process_xml_"
+        exit $EINVAL
+    elif [ -z "$MAIN_CLASS" ] ; then
+        report "ERROR - No <JavaClassName> specified in $Process_xml_"
+        exit $EINVAL
+    elif [ -z "$APP_ARGUMENTS" ] ; then
+        report "ERROR - No <ApplicationArgument> tags specified in $Process_xml_"
+        exit $EINVAL
+    fi
+
+    COMMAND_LINE="java $ORB_NAME_PROPERTY $PORTNUM_PROPERTY$JAVA_PROPERTIES"
+    COMMAND_LINE="$COMMAND_LINE$SMA_TAGDEFS $XMLFILES"
+    COMMAND_LINE="$COMMAND_LINE$SYSTEM_PROPERTIES $MAIN_CLASS$APP_ARGUMENTS"
+}
+
+# Get process ID of the target process.
+# Uses PROCESSNAME
+# Sets PID to process ID, or empty if process not running
+getProcessId()
+{
+    PID=$( pstats -s | awk /${PROCESSNAME}/' {print $1}' )
+}
+
+# Report and exit if process is running
+# Uses PROCESSNAME
+exitIfProcessRunning()
+{
+    getProcessId
+    if [ -n "$PID" ] ; then
+        report "WARNING - $PROCESSNAME is already running."
+        exit $ESRCH
+    fi
+}
+
+# Set a process to use a fixed-priority scheduler
+# @param 1 process id of process to modify
+setFixedPriority()
+{
+    typeset pid_=$1
+    typeset os_=$( uname -s )
+    if [ "$os_" == "SunOS" ] ; then
+        typeset ver_=$( uname -r )
+        if [ "$ver_" == "5.10" ] ; then
+            typeset outfile_=/tmp/priocntl.$$
+            # Set fixed-priority scheduler, priority level 58
+            priocntl -s -c FX -m 58 -p 58 -i pid $pid_ >$outfile_ 2>&1
+            typeset code_=$?
+            if [ $code_ -ne 0 ] ; then
+                # Failure is only a problem in production environments
+                if [ "$SBT_ENVIRONMENT" = "prod" ] \
+                || [ "$SBT_ENVIRONMENT" = "dr" ] ; then
+                    report "ERROR - $PROCESSNAME not set to fixed scheduler - "$( cat $outfile_ )
+                    rm $outfile_
+                    exit $code_
+                fi
+            else
+                typeset result_=$( ps -lcp $pid_ | tail -1 \
+                                | awk '{print "scheduler",$6,"priority",$7}' )
+                report "INFO - $PROCESSNAME set to $result_"
+            fi
+            rm $outfile_
+        fi # SunOS 5.10
+    fi # SunOS
+}
+
+# Set APP_LOGFILE
+getAppLogFile()
+{
+    set -A APP_LOGFILE $( ls ../$V2ENGINE/log/@(*cas*|cfix).debug 2>/dev/null )
+    if [ "${APP_LOGFILE[1]}" != "" ] ; then
+        report "ERROR - too many .debug files: ${APP_LOGFILE[*]}"
+        exit $EINVAL
+    fi
+}
+
+# Report and exit if process is not running
+# Uses PROCESSNAME
+exitIfProcessFailed()
+{
+    getProcessId
+    if [ -z "$PID" ] ; then
+        report "ERROR - $PROCESSNAME exited!"
+        exit $ESRCH
+    fi
+}
+
+# Wait until the process is ready or gone (failed)
+# Uses: PROCESSNAME, APP_LOGFILE, PID, FIRST_NEW_LINE
+waitForReady()
+{
+    sleep_time=5
+    report "INFO - $PROCESSNAME process started. Please wait for the READY state."
+    while [ -z "$APP_LOGFILE" ] ; do
+        exitIfProcessFailed $PID
+        sleep $sleep_time
+        getAppLogFile
+    done
+
+    until tail +$FIRST_NEW_LINE $APP_LOGFILE | grep Re-Initialization > /dev/null; do
+        exitIfProcessFailed $PID
+        sleep $sleep_time
+    done
+    report "INFO - $PROCESSNAME READY"
+}
+
+# Remove temporary file, if any. Invoked on signal (see "trap" commands).
+cleanupAndExit()
+{
+    if [ -n "$TMPFILE" ] && [ -f $TMPFILE ] ; then
+        \rm $TMPFILE
+    fi
+    exit $EINTR
+}
+
+# -------------------- Public functions --------------------
+
+setQuickstart()
+{
+    SYSTEM_PROPERTIES="$SYSTEM_PROPERTIES -DClient.Quickstart=true"
+}
+
+clearQuickstart()
+{
+    # nothing to do, but ksh doesn't like empty functions
+    SYSTEM_PROPERTIES=$SYSTEM_PROPERTIES
+}
+
+# Run the client program
+# Usage:
+#   ENGINE=mdcas01      # if multiple engines are installed on this box
+#   THIS_CLIENT=mdcas   # or cas, fixcas, sacas, cfix
+#   . ClientFunctions
+#   setQuickstart       # or clearQuickstart
+#   startClient
+startClient()
+{
+    trap cleanupAndExit 1 2 3
+    setupDirNames
+    verifyArchitectureLoad
+    readConfiguration
+    PROCESSNAME=${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}
+    exitIfProcessRunning
+
+    createCommandLine $INSTALLDIR/properties/xml/processes.$CLIENT_TYPE.xml
+    LOG_FILE=$LOGDIR/startsh_$( date +%Y%m%d_%H%M%S ).log
+
+    cd $RUN_DIR
+    report "INFO - $PROCESSNAME Starting ..."
+
+    date "+---------- %Y-%m-%d %T executing..." >$LOG_FILE
+    eval echo $COMMAND_LINE >>$LOG_FILE
+    date "+----------"      >>$LOG_FILE
+    ulimit -a               >>$LOG_FILE
+    date "+----------"      >>$LOG_FILE
+    if [ -n "$DEBUG" ] ; then
+        echo "# Debug mode, exiting now" >>$LOG_FILE
+        exit 0
+    fi # DEBUG
+
+    getAppLogFile
+    if [ -n "$APP_LOGFILE" ] && [ -f $APP_LOGFILE ] ; then
+        FIRST_NEW_LINE=$( wc -l $APP_LOGFILE | awk '{ print $1 }' )
+    else
+        FIRST_NEW_LINE=0
+    fi
+    FIRST_NEW_LINE=$(( $FIRST_NEW_LINE + 1 ))
+
+    eval $COMMAND_LINE >>$LOG_FILE 2>&1 &
+    report "INFO - Waiting for $PROCESSNAME process to start..."
+    giveup_time=60
+    sleep_time=1
+    wait_time=0
+    PID=
+    while [ -z "$PID" ] ; do
+        if [ $wait_time -ge $giveup_time ] ; then
+            report "ERROR - $PROCESSNAME failed to start!"
+            exit $ESRCH
+        fi
+        sleep $sleep_time
+        wait_time=$(( $wait_time + $sleep_time ))
+        getProcessId
+    done
+    setFixedPriority $PID
+
+    waitForReady
+    return 0
+}
+
+# Stop the client program
+# Usage:
+#   ENGINE=mdcas01      # if multiple engines are installed on this box
+#   THIS_CLIENT=mdcas   # or cas, fixcas, sacas, cfix
+#   . ClientFunctions
+#   stopClient
+stopClient()
+{
+    trap cleanupAndExit 1 2 3
+    setupDirNames
+    readConfiguration
+    PROCESSNAME=${SBT_PREFIX}${CLIENTNAME}${HOSTNAME}
+
+    getProcessId
+    if [ -z "$PID" ] ; then
+        report "WARNING - $PROCESSNAME is not running."
+        exit 0
+    fi
+
+    # Get a thread dump before terminating
+    kill -3 $PID
+    sleep 2
+
+    # Now tell the process to stop
+    report "INFO - Shutting down $PROCESSNAME ..."
+    kill $PID
+
+    sleep_time=5
+    giveup_time=60
+    while [ -n "$PID" ]  && [ $giveup_time -gt 0 ] ; do
+        sleep $sleep_time
+        getProcessId
+        giveup_time=$(( $giveup_time - $sleep_time ))
+    done
+
+    if [ -n "$PID" ] ; then
+        report "ERROR - $PROCESSNAME (pid $PID) has not stopped after $giveup_time seconds!"
+        exit $ESRCH
+    fi
+
+    report "INFO - $PROCESSNAME is stopped successfully."
+
+    # Check for threads still running, when all should be stopped
+
+    DAYOFWEEK=$( date +%a )
+    THREADFILE=$RUN_DIR/tmp/threads.$PROCESSNAME.$DAYOFWEEK.log
+
+    # If THREADFILE is more than 24 hours old, truncate it. Otherwise
+    # it's probably from an earlier run today so preserve that data.
+    NOW=$( perl -e 'print time;' )
+    if [ -f $THREADFILE ] ; then
+        FILETIME=$( perl -e 'print +(stat "'$THREADFILE'")[9];' )
+    else
+        FILETIME=0
+    fi
+    if [[ $(( $NOW - $FILETIME )) -gt 86400 ]] ; then
+        >$THREADFILE
+    fi
+
+    # Look for running threads in Thread Pool Instrumentation log.
+    TPI_LOG=$( ls $RUN_DIR/log/*${PROCESSNAME}*TPI.log 2>/dev/null )
+    if [[ ! -z "$PID" && ! -z "$TPI_LOG" ]] ; then
+        # Look at last group of instrumentation written; if any shows
+        # running threads, add data to THREADFILE.
+        TMPFILE=$RUN_DIR/tmp/$PROG.$$.txt
+        TIMESTAMP=$( tail -1 $TPI_LOG | cut -d, -f1 )
+        egrep "$TIMESTAMP,"'[A-Za-z][^,]*,[^0]' $TPI_LOG > $TMPFILE
+        if [ -s $TMPFILE ] ; then
+            date "+%Y-%m-%d %T,$PROCESSNAME" >> $THREADFILE
+            cat $TMPFILE >> $THREADFILE
+        fi
+        /bin/rm -f $TMPFILE 2>/dev/null
+    fi
+
+    return 0
+}

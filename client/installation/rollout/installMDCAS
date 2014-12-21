@@ -1,0 +1,548 @@
+#!/usr/bin/ksh
+###
+### Installs an MDCAS or CFIX or MDX
+###
+### This script doesn't handle INFRA installs as 
+### that is handled by the infrastructure group
+###
+
+# --------------- Constants ---------------------
+
+PROG=$( basename $0 )
+WORKDIR=$( dirname $0 )
+DATEFMT='+%Y-%m-%d %H:%M:%S'
+ALERT="*ALERT*"
+LOGFILE=$WORKDIR/$PROG.log
+HOSTNAME=$( hostname )
+
+INFRA_HOME=$HOME   # valid for mdcas, cfix and mdx boxes
+
+SETENV_FILE=$INFRA_HOME/.setenv
+PROFILE_FILE=$HOME/.profile
+KSHRC_FILE=$HOME/.kshrc
+CONFIG_BIN_DIR=$INFRA_HOME/config/bin
+CONFIG_IOR_DIR=$INFRA_HOME/config/ior
+SET_CONTEXT_FILE=$CONFIG_BIN_DIR/setContext
+NOW=$( date "+%Y%m%d_%H%M%S" )
+
+# Taken from /usr/include/sys/errno.h
+ENOENT=2   # No such file or directory
+EACCES=13  # Permission denied
+EINVAL=22  # Invalid argument
+
+# --------------- Subroutines -------------------
+usage() 
+{
+    echo "Usage: $PROG -t type [ -c client version ] [ -j JDK version ] [ -U ] [ -b engine1,engine2,...] [ engine1 engine2 ... ] "
+    echo "    where type is mdcas for an mdcas box, cfix for a cfix box or mdx for an mdx box."
+    echo "    where -U specifies a rollback/undo rather than an installation."
+    echo "    where bounce engine is a comma separated list of engines to bounce"
+    echo "    where engine is a space separated list of engines to install"
+    echo "    An example engine format is: mdcas01 cfix01" 
+}
+
+# @param 1 variable to set
+# @param 2 file to scan
+# @param 3 variable to look for in input
+getExport()
+{
+    eval $1="'"$( sed <$2 /'^export '$3=/!d | cut -d= -f2 )"'"
+}
+
+# Replace an export statement
+# @param 1 File to modify
+# @param 2 Variable to set
+# @param 3 New value for variable
+replaceExport()
+{
+    typeset FILE=$1; shift
+    typeset VAR=$1; shift
+    typeset NEW_VALUE=$1; shift
+
+    typeset TEMPFILE=/tmp/replace.$$.tmp
+    if ! egrep -s "^export $VAR=$NEW_VALUE" $FILE ; then
+        # File does not contain current definition, change old definition
+        sed <$FILE >$TEMPFILE s:'^export '$VAR'=.*:export '$VAR=$NEW_VALUE: 
+        mv $TEMPFILE $FILE >> $LOGFILE 2>&1
+    fi
+    if ! egrep -s "^export $VAR=" $FILE ; then
+        # File did not contain any definition so the above substitution
+        # did nothing. Add a new line at the end of the file.
+        echo "export $VAR=$NEW_VALUE" >>$FILE
+    fi
+}
+
+readCommandline()
+{
+    ROLLOUT=1
+    while getopts hUt:c:j:b: name ; do
+        case $name in 
+        h) usage
+           exit 0
+           ;;
+        U) ROLLOUT=""   # no rollout, it's a rollback
+           ;;
+        t) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing type after -t switch\n"
+               usage
+               exit $EINVAL
+           fi
+           TYPE=$( echo $OPTARG | tr '[A-Z]' '[a-z]' )
+
+           CONFIGURE_CAS=configureCAS.ksh
+           if [[ $TYPE = "mdcas" ]] ; then
+               DEFAULT_ENGINE="v2mdcas01"
+           elif [[ $TYPE = "cfix" ]] ; then
+               DEFAULT_ENGINE="v2cfix01"
+           elif [[ $TYPE = "mdx" ]] ; then
+               DEFAULT_ENGINE="v2mdx01"
+               CONFIGURE_CAS=configureMDX.ksh
+           else
+               print -u2 "$ALERT $PROG: Invalid type $OPTARG"
+               usage
+               exit $EINVAL
+           fi
+           ;;
+        c) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing client version after -c switch\n"
+               usage
+               exit $EINVAL
+           fi
+           CAS_VERSION=$OPTARG
+           ;;
+        j) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing JDK version after -j switch"
+               usage
+               exit $EINVAL
+           fi
+           JDK_VERSION=$OPTARG
+           ;;
+        b) if [[ -z $OPTARG ]] || [[ ${OPTARG#-} != $OPTARG ]] ; then
+               print -u2 "$ALERT $PROG: Missing bounce engines after -b switch"
+               usage
+               exit $EINVAL
+           fi
+           BOUNCE_ENGINES=$( echo $OPTARG | sed -e s/,/' '/g )
+           ;;
+        ?) print -u2 "$ALERT $PROG: Unknown switch"
+           usage
+           exit $EINVAL
+           ;;
+        esac 
+    done
+
+    shift $(($OPTIND - 1))
+    INSTALL_ENGINES="$*"
+
+    if [[ -n "$CAS_VERSION" && -z "$INSTALL_ENGINES" ]] ; then
+        print -u2 "$ALERT $PROG: List of engines must be specified with -c switch"
+        usage
+        exit $EINVAL
+    fi
+    if [[ -z "$BOUNCE_ENGINES" && -z "$INSTALL_ENGINES" ]] ; then
+        print -u2 "$ALERT $PROG: Missing list of engines"
+        usage
+        exit $EINVAL
+    fi
+
+    if [ -z "$TYPE" ] ; then
+        print -u2 "$ALERT $PROG: Missing -t switch"
+        usage
+        exit $EINVAL
+    fi
+}
+
+# Verify the existence of the files we need to work with
+verifyFiles()
+{
+    cd $HOME
+    FAILED=""
+    for i in $PROFILE_FILE $KSHRC_FILE $SETENV_FILE $SET_CONTEXT_FILE ; do
+        if [ ! -f $i ] ; then
+            print -u2 "$ALERT: $PROG: Missing file $i"
+            FAILED=$ENOENT
+        fi
+    done
+    if [ -n "$CAS_VERSION" ] ; then
+        for ENGINE in $INSTALL_ENGINES ; do
+            if [[ $ENGINE = *mdx* ]] ; then
+                # No file $SET_CONTEXT_FILE.v2$ENGINE, so don't check for it.
+                SUFFIX=   # No suffix on MDX installation
+            else
+                i=$SET_CONTEXT_FILE.v2$ENGINE
+                if [ ! -f $i ] ; then
+                    print -u2 "$ALERT: $PROG: Missing file $i"
+                    FAILED=$ENOENT
+                fi
+                SUFFIX=_$( echo $ENGINE | tr '[a-z]' '[A-Z]' )
+            fi
+            INST=${CAS_VERSION}$SUFFIX
+            if [ ! -d ../cas/$INST ] ; then
+                print -u2 "$ALERT: $PROG: Missing directory $INST"
+                FAILED=$ENOENT
+            elif [ ! -r ../cas/$INST ] ; then
+                print -u2 "$ALERT: $PROG: Can't read directory $INST"
+                FAILED=$EACCES
+            fi
+        done
+    fi
+    if [ -n "$FAILED" ] ; then
+        exit $FAILED
+    fi
+    unset FAILED
+}
+
+# Determine the name of the rollback directory to create (during rollout) or
+# use (during rollback). Sets ROLLBACK_DIR, creates directory (during rollout).
+# If ROLLBACK_DIR is not set then installation can proceed but without setting
+# up rollback files.
+setRollbackDir()
+{
+    if [ -n "$CAS_VERSION" ] ; then
+        # v2run_dir will be mdcas01 on an mdcas, cfix01 on a cfix box or
+        # mdx01 on an mdx box.
+        # we can setup rollback files only if we are rolling out to the
+        # appropriate directory
+        if [[ $ALL_ENGINES = *mdcas01* ]] ; then
+            typeset ENGINE_DIR=${CAS_VERSION}_MDCAS01
+        elif [[ $ALL_ENGINES = *cfix01* ]] ; then
+            typeset ENGINE_DIR=${CAS_VERSION}_CFIX01
+        elif [[ $ALL_ENGINES = *mdx01* ]] ; then
+            # No suffix for mdx directory name, we only install 1 engine
+            typeset ENGINE_DIR=${CAS_VERSION}
+        else
+            date "$DATEFMT - ROLLBACK DISABLED BECAUSE NO ENGINE 01 SPECIFIED" \
+              | tee -a $LOGFILE
+            return
+        fi
+        # Save files into $ENGINE_DIR, restore from $ENGINE_DIR
+        typeset CAS_HOME=${INFRA_HOME%/infra}/cas
+        typeset ROLLBACK_PARENT=$CAS_HOME/$ENGINE_DIR/rollback
+    else
+        # Rollout includes no $CAS_VERSION, save/restore files from
+        # pre-existing v2run_dir directory
+        typeset ROLLBACK_PARENT=$INFRA_HOME/v2run_dir/rollback
+    fi
+
+    if [ -n "$ROLLOUT" ] ; then
+        ROLLBACK_DIR=$ROLLBACK_PARENT/$NOW
+        mkdir -p $ROLLBACK_DIR >> $LOGFILE 2>&1
+    else
+        # Get name of rollback directory; if more than one then get
+        # the newest, assume others are from earlier installations.
+        ROLLBACK_DIR=$( ls -1 $ROLLBACK_PARENT | tail -1 )
+        ROLLBACK_DIR=$ROLLBACK_PARENT/$ROLLBACK_DIR
+        date "$DATEFMT - ROLLING BACK USING $ROLLBACK_DIR" >> $LOGFILE
+    fi
+}
+
+# Stop the cas
+stopProcesses()
+{
+    for ENGINE in $ALL_ENGINES
+    do
+        stopEngineProcess $ENGINE
+    done
+}
+
+# Stop the cas
+stopEngineProcess()
+{
+    ENG=$1
+    date "$DATEFMT - STOPPING CLIENT FOR ENGINE $ENG" | tee -a $LOGFILE
+    case $ENG in
+    mdcas*)
+        NUM=$( echo $ENG | sed -e s/mdcas// )
+        v2stopmdcas $NUM >> $LOGFILE 2>&1
+        ;;
+    cfix*)
+        NUM=$( echo $ENG | sed -e s/cfix// )
+        v2stopcfix $NUM >> $LOGFILE 2>&1
+        ;;
+    mdx*)
+        v2stopmdx >> $LOGFILE 2>&1
+        ;;
+    *)
+        # Should never get here
+        ;;
+    esac
+    EXIT_VALUE=$?
+    sleep 60
+    # If setContext file exists, get SBT_PREFIX, and kill process
+    if [[ $EXIT_VALUE -ne 0 ]] && [[ -f $SET_CONTEXT_FILE ]] ; then
+        getExport SBT_PREFIX $SET_CONTEXT_FILE SBT_PREFIX
+
+        # Kill $ENG process on the box
+        pstats -s | grep "${SBT_PREFIX}$ENG" | awk '{print $1}' > $WORKDIR/pids 
+        if [ -s $WORKDIR/pids ] ; then
+            sed -e "s/^/kill -9 /g" $WORKDIR/pids > $WORKDIR/killem
+            date "$DATEFMT - KILLING CLIENT FOR ENGINE $ENG" | tee -a $LOGFILE
+            ksh $WORKDIR/killem >> $LOGFILE 2>&1
+        fi
+    fi
+}
+
+# Copy any setContext* files in this installation
+# to the appropriate location
+doSetContext()
+{
+    # First save copies of existing files
+    if [ -n "$ROLLBACK_DIR" ] ; then
+        date "$DATEFMT - ARCHIVING setContext FILES" >> $LOGFILE
+        cp -p $CONFIG_BIN_DIR/setContext* $ROLLBACK_DIR >> $LOGFILE 2>&1
+    fi
+
+    cd $WORKDIR
+    if [ -f $HOSTNAME.setContext* ] ; then
+        chmod 666 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+        for file in $HOSTNAME.setContext* ; do
+            # Put marker in log
+            date "$DATEFMT - UPDATING FILE ${file#$HOSTNAME.}" >> $LOGFILE
+            cp $file $CONFIG_BIN_DIR/${file#$HOSTNAME.} >> $LOGFILE 2>&1
+        done
+        chmod 444 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+    fi
+}
+
+# Copy setContext* files from rollback directory to config/bin directory
+# WARNING: If setContext* changed association with FEs, Infra configuration
+# also needs to be rolled back.
+undoSetContext()
+{
+    chmod 666 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+    for i in $ROLLBACK_DIR/setContext* ; do
+        typeset file=$( basename $i )
+        date "$DATEFMT - RESTORING $file" >> $LOGFILE
+        cp -p $i $CONFIG_BIN_DIR >> $LOGFILE 2>&1
+    done
+    chmod 444 $CONFIG_BIN_DIR/setContext* >> $LOGFILE 2>&1
+}
+
+# Set up environment variables
+readProfile()
+{
+    cd $HOME
+    . $PROFILE_FILE >/dev/null 2>&1
+}
+
+# Install the CAS by backing up and linking new version
+doCAS() {
+    cd $HOME
+    for ENGINE in $INSTALL_ENGINES
+    do
+        date "$DATEFMT - UPDATING CLIENT TO ${CAS_VERSION} FOR ENGINE $ENGINE" >> $LOGFILE
+        if [[ $ENGINE = *mdx* ]] ; then
+            SUFFIX=
+        else
+            SUFFIX=_$( echo $ENGINE | tr '[a-z]' '[A-Z]' )
+        fi
+        ENGINE=v2$ENGINE
+        rm -f o$ENGINE o.$ENGINE >> $LOGFILE 2>&1
+        mv $ENGINE o.$ENGINE >> $LOGFILE 2>&1
+        ln -s ../cas/${CAS_VERSION}$SUFFIX $ENGINE
+        if [ "$ENGINE" = "$DEFAULT_ENGINE" ] ; then
+            rm -f ov2run_dir o.v2run_dir v2run_dir >> $LOGFILE 2>&1
+            ln -s $ENGINE v2run_dir >> $LOGFILE 2>&1
+        fi
+    done
+}
+
+# Roll back the Client by removing new link and renaming old link
+undoCAS()
+{
+    cd $HOME
+    for ENGINE in $INSTALL_ENGINES
+    do
+        date "$DATEFMT - ROLLING BACK CLIENT VERSION FOR ENGINE $ENGINE" \
+            >> $LOGFILE
+        ENGINE=v2$ENGINE
+        if [ -L $ENGINE ] ; then
+            rm -f $ENGINE >> $LOGFILE 2>&1
+        else
+            # Put message in log, and alert any real-time watcher
+            date "$DATEFMT - $ALERT NO NEW ENGINE $ENGINE TO ROLL BACK" \
+            | tee -a $LOGFILE
+        fi
+        if [ -L o.$ENGINE ] ; then
+            mv o.$ENGINE $ENGINE >> $LOGFILE 2>&1
+        else
+            # Put message in log, and alert any real-time watcher
+            date "$DATEFMT - $ALERT NO OLD ENGINE o.$ENGINE TO RESTORE" \
+            | tee -a $LOGFILE
+        fi
+    done
+}
+
+# Verify JDK version exists
+# Set new JDK version in .setenv
+doJdk()
+{
+    if [ -n "$ROLLBACK_DIR" ] ; then
+        # save current JAVA_HOME value in the rollback directory
+        getExport JAVA_HOME $SETENV_FILE JAVA_HOME
+        echo $JAVA_HOME >$ROLLBACK_DIR/jdk.txt
+    fi
+
+    # Put marker in log
+    date "$DATEFMT - UPDATING JDK TO $JDK_VERSION" >> $LOGFILE
+    NEW_JAVA_HOME=/usr/local/$JDK_VERSION
+
+    if [ -d $NEW_JAVA_HOME ] ; then
+        replaceExport $SETENV_FILE JAVA_HOME $NEW_JAVA_HOME
+        export PATH=$NEW_JAVA_HOME/bin:$PATH    # new JAVA_HOME for startCAS
+    else
+        # Put message in log, and alert any real-time watcher
+        date "$DATEFMT - $ALERT MISSING $NEW_JAVA_HOME! Install $NEW_JAVA_HOME and update JAVA_HOME in $SETENV_FILE file" | tee -a $LOGFILE
+    fi
+}
+
+# Restore old JDK version in .setenv
+undoJdk()
+{
+    date "$DATEFMT - ROLLING BACK JDK VERSION" >> $LOGFILE
+    NEW_JAVA_HOME=$( head -1 $ROLLBACK_DIR/jdk.txt )
+    replaceExport $SETENV_FILE JAVA_HOME $NEW_JAVA_HOME
+}
+
+# Install the new IOR files
+doInitrefs()
+{
+    # Put marker in log
+    date "$DATEFMT - UPDATING INITREFS" >> $LOGFILE
+
+    # Infra sets up IOR file for MDCAS, CFIX and MDX, so Client's config
+    # directory should just link to Infra's IOR file.
+    cd $CONFIG_IOR_DIR
+    if [[ -e initrefs.ior && ! -L initrefs.ior ]] ; then
+        rm -f initrefs.ior >> $LOGFILE 2>&1
+    fi
+    if [ ! -L initrefs.ior ] ; then
+        ln -s ../../run_dir/ior/initrefs.ior initrefs.ior >> $LOGFILE 2>&1
+    fi
+}
+
+undoInitrefs()
+{
+    # Infra handles IOR files for MDCAS, CFIX and MDX, nothing for us to undo.
+    typeset dummy=
+}
+
+# Run configureCAS.ksh/configureMDX.ksh to distribute configuration values
+updateConfig()
+{
+    # Put marker in log
+    date "$DATEFMT - UPDATING CONFIG" >> $LOGFILE
+    cd $HOME/config
+    if [[ $CONFIGURE_CAS = *MDX* ]] ; then
+        ksh $CONFIGURE_CAS >> $LOGFILE 2>&1 << FIVE_BLANKS
+
+
+
+
+
+FIVE_BLANKS
+    else
+        ksh $CONFIGURE_CAS >> $LOGFILE 2>&1
+    fi
+}
+
+# Start the CAS
+startCAS() 
+{
+    for ENGINE in $ALL_ENGINES
+    do
+        # Put marker in log, and mark progress for any real-time watcher
+        date "$DATEFMT - STARTING CLIENT FOR ENGINE $ENGINE" | tee -a $LOGFILE
+        case $ENGINE in
+        mdcas*)
+            NUM=$( echo $ENGINE | sed -e s/mdcas// )
+            v2startmdcas $NUM >> $LOGFILE 2>&1
+            ;;
+        cfix*)
+            NUM=$( echo $ENGINE | sed -e s/cfix// )
+            v2startcfix $NUM >> $LOGFILE 2>&1
+            ;;
+        mdx*)
+            NUM=01
+            v2startmdx >> $LOGFILE 2>&1
+            ;;
+        *)
+            # Should never get here
+            ;;
+        esac
+        EXIT_VALUE=$?
+
+        ### list processes just to get the results back
+        pstats -s >> $LOGFILE 2>&1
+
+        ### do a directory dump just to get the results back
+        ls -Llart $HOME/v2$ENGINE/log >> $LOGFILE 2>&1
+
+        ### if we got this far, let's check that the CAS came up
+        if [ $EXIT_VALUE -eq 0 ] ; then
+            date "$DATEFMT - CLIENT INSTALL SUCCESSFUL" >> $LOGFILE
+            # Now that it started, if it's not engine 01,
+            # stop it since we only want engine 01 running.
+            if [ "$NUM" != "01" ] ; then
+                stopEngineProcess $ENGINE
+            fi
+        else
+            date "$DATEFMT - $ALERT CLIENT INSTALL FAILED WITH EXIT CODE $EXIT_VALUE" >> $LOGFILE
+        fi
+
+    done
+}
+
+# ------------------------ Main ----------------------------
+
+unalias rm
+readCommandline $*
+verifyFiles
+
+ALL_ENGINES="$BOUNCE_ENGINES $INSTALL_ENGINES"
+setRollbackDir
+if [ -z "$ROLLOUT" ] && [ -z "$ROLLBACK_DIR" ] ; then
+    # Asked for rollback but no rollback directory available
+    print -u2 "$ALERT $PROG: Cannot roll back installation that did not specify engine 01"
+    exit $EINVAL
+fi
+
+stopProcesses
+
+if [ -n "$ROLLOUT" ] ; then
+    doSetContext
+else
+    # Rolling back
+    undoSetContext
+fi
+
+readProfile
+
+if [ -n "$CAS_VERSION" ] ; then
+    if [ -n "$ROLLOUT" ] ; then
+        doCAS
+    else
+        undoCAS
+    fi
+fi
+
+if [ -n "$JDK_VERSION" ] ; then
+    if [ -n "$ROLLOUT" ] ; then
+        doJdk
+    else
+        undoJdk
+    fi
+fi
+
+if [ -n "$ROLLOUT" ] ; then
+    doInitrefs
+else
+    undoInitrefs
+fi
+
+updateConfig
+
+startCAS
+
+echo "----------------------- Session Log ------------------------" 
+cat $LOGFILE

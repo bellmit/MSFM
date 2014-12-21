@@ -1,0 +1,57 @@
+#!/usr/bin/perl -w
+# Read from MDX *CI.log, determine current market blocks/second,
+# current market messages/second, and blocking factor
+
+# -------------------- Constants --------------------
+
+$SECONDS_PER_PERIOD = 30;
+
+# -------------------- Subroutines --------------------
+
+sub report
+{
+    my $newTime = shift;
+    my $newBlocks = shift;
+    my $newMsgs = shift;
+    if ($OldTime eq "")
+    {
+        print "time,blocksPerSec,messagesPerSec,messagesPerBlock\n";
+    }
+    else
+    {
+        my $blocks = $newBlocks - $OldBlocks;
+        my $msgs = $newMsgs - $OldMsgs;
+        my $blocking = 0;
+        my $blocksPerSec = 0;
+        my $msgsPerSec = 0;
+        if ($blocks != 0)
+        {
+            $blocking = int($msgs / $blocks);
+            $blocksPerSec = int($blocks / $SECONDS_PER_PERIOD);
+            $msgsPerSec = int($msgs / $SECONDS_PER_PERIOD);
+        }
+        print "$newTime,$blocksPerSec,$msgsPerSec,$blocking\n";
+    }
+    $OldTime = $newTime;
+    $OldBlocks = $newBlocks;
+    $OldMsgs = $newMsgs;
+}
+
+# -------------------- Main program --------------------
+
+$OldTime = "";
+$ReadTime = "";
+$ReadBlocks = 0;
+$ReadMsgs = 0;
+
+while (<STDIN>)
+{
+    next unless /,CurrentMarketBlocks,/ || /,CurrentMarketMessages,/;
+    chomp;
+    my @parts = split /,/;
+    my $nextTime = $parts[0];
+    &report($ReadTime, $ReadBlocks, $ReadMsgs) if $ReadTime ne $nextTime && $ReadTime ne "";
+    $ReadTime = $nextTime;
+    $ReadBlocks = 0 + $parts[2] if /,CurrentMarketBlocks,/;
+    $ReadMsgs = 0 + $parts[2] if /,CurrentMarketMessages,/;
+}

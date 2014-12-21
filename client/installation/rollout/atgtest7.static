@@ -1,0 +1,15 @@
+# ATGTEST7
+
+environment = atgtest7
+
+cas    = atgcas7,   01, atgqafe71 atgqafe72
+fixcas = atgfix7,   01, atgqafe71 atgqafe72 
+fixcas = atgfix7,   02, atgqafe71 atgqafe72 
+fixcas = atgttfix7, 01, atgqafe71 atgqafe72
+fixcas = atgttfix7, 02, atgqafe71 atgqafe72
+cfix   = atgmd7,    01, atgqafe71 atgqafe72
+mdcas  = atgmd7,    01, atgqafe71 atgqafe72
+mdcas  = atgmd7s,   01, atgqafe71 atgqafe72
+mdx    = atgmd7x,   01, atgqafe71 atgqafe72
+sacas  = saatg7,    01, atgqagc7  atgqagc7
+tipsMdxAdapter = atgqagc7, 01

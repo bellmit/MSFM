@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalTCSProcessWatcherManagerHome SYSTEM "../dtd/TCSProcessWatcherManagerHome.dtd">
+<GlobalTCSProcessWatcherManagerHome>
+	<TCSProcessWatcherManagerHomeImpl name="TCSProcessWatcherManagerHomeImpl">
+		<TCSProcessWatcherManagerHomeImplProperties>
+			<eventChannelName>&lt;prefix&gt;ProcessWatcherEventChannel</eventChannelName>
+		</TCSProcessWatcherManagerHomeImplProperties>
+	</TCSProcessWatcherManagerHomeImpl>
+</GlobalTCSProcessWatcherManagerHome>

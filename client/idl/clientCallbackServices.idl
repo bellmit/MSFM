@@ -1,0 +1,48 @@
+#ifndef ClientCallbackServices_idl
+#define ClientCallbackServices_idl
+
+#include "cmiAdmin.idl"
+// #include "exceptions.idl"
+// # include "consumers.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module clientCallbackServices 
+{ 
+	// HeartBeatConsumer is a heartbeat callback registered with FE. 
+	// FE will use this heartbeat to detect when CAS goes unreachable.
+	interface HeartBeatConsumer {
+		cmiAdmin::HeartBeatStruct acceptHeartBeat (in cmiAdmin::HeartBeatStruct heartBeat, in string source);
+			//raises(
+			//exceptions::AuthorizationException
+		//);
+	};
+	
+	// interface for registering a CAS with FE for heartbeating.
+	// Primary candidate for source is the orbName although we could potentially 
+	// use other names, if necessary, that uniquely identifies a source, in the future.
+	// Also, the current implementation of the heartbeat will be at the CAS level.
+	// So, the userId will be populated with the same value as source.
+	// interface HeartBeatCallbackService {
+		// void registerHeartBeatCallback(in string userId, in callbackServices::HeartBeatConsumer heartbeatConsumer, 
+							// in string source)
+			// raises(
+				// exceptions::SystemException,
+				// exceptions::CommunicationException,
+				// exceptions::DataValidationException,
+				// exceptions::AuthorizationException
+		// );
+				// 
+		// void deregisterHeartBeatCallback(in string userId, in callbackServices::HeartBeatConsumer heartbeatConsumer, 
+					 // in string source, in short deregistrationMode, in string message)
+			// raises(
+				// exceptions::SystemException,
+				// exceptions::CommunicationException,
+				// exceptions::DataValidationException,
+				// exceptions::AuthorizationException
+		// );
+	// };
+
+};
+
+#endif 

@@ -1,0 +1,240 @@
+#ifndef OMT_IDL
+#define OMT_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 3.2
+//
+// Copyright © 1999-2007 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmi.idl"
+#include "Util.idl"
+#include "order.idl"
+#include "cmiOrder.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+#include "ohsConsumers.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module omt
+{
+    interface OrderManagementService
+    {
+        void subscribeOrdersForManualHandling(in ohsConsumers::OrderRoutingConsumer omtCallback,
+                                              in boolean gmdCallback)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        void publishAllMessagesForDestination()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+		
+        marketData::InternalCurrentMarketStruct getCurrentMarketQuoteForProduct(in cmiSession::TradingSessionName sessionName,
+                                                                                in cmiProduct::ProductKey productKey)
+       		raises(
+            	exceptions::SystemException,
+            	exceptions::CommunicationException,
+            	exceptions::DataValidationException,
+            	exceptions::NotFoundException,
+            	exceptions::AuthorizationException);
+        
+        
+        cmiOrder::OrderStruct getOrderByIdV2(in cmiOrder::OrderIdStruct orderId)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException
+            );
+            
+        cmiOrder::OrderStruct getOrderByORSID(in string orsId)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException
+            );
+            
+        order::OrderQueryResultStruct getOrdersByClassAndTime(in cmiProduct::ClassKey classKey,
+                                                              in cmiUtil::DateTimeStruct startTime,
+                                                              in cmiUtil::QueryDirection direction)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,                
+                exceptions::AuthorizationException
+            );     
+
+        order::OrderQueryResultStruct getOrdersByProductAndTime(in cmiProduct::ProductKey productKey, 
+                                                                in cmiUtil::DateTimeStruct startTime,
+                                                                in cmiUtil::QueryDirection direction)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,                
+                exceptions::AuthorizationException
+            );    
+
+        util::ServerResponseStructV2Sequence getOrdersByLocation(in string location,
+	                                                           in string transactionId,
+	                                                           in util::FilterTypeSequence filterTypes)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotAcceptedException,                              
+                exceptions::AuthorizationException
+            );       
+
+        util::ServerResponseStructV2Sequence getOrdersByLocationType(in util::OrderLocationTypeSequence orderLocationTypes,
+	                                                               in string transactionId)               
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,                
+                exceptions::AuthorizationException
+            );
+
+        cmiTraderActivity::ActivityHistoryStruct queryOrderHistoryV2( 
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiOrder::OrderIdStruct orderId )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException
+            );     
+
+        void acceptDirectRoute(in string destination,
+                               in cmiOrder::OrderStruct anOrder, in short rerouteFlag)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::TransactionFailedException,
+                exceptions::NotAcceptedException,
+                exceptions::AuthorizationException
+            );
+       void acceptManualCancel(in cmiOrder::CancelRequestStruct cancelRequest,
+                               in cmiProduct::ProductKeysStruct productKey,
+                               in cmiUtil::Identifier cancelReqId)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException,
+                exceptions::TransactionFailedException,
+                exceptions::NotAcceptedException
+            );
+
+       void acceptManualUpdate( in long remainingQuantity, in cmiOrder::OrderStruct anOrder)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::TransactionFailedException,
+                exceptions::NotAcceptedException,
+                exceptions::AuthorizationException
+            );
+
+       void acceptManualCancelReplace(in cmiOrder::CancelRequestStruct cancelRequest,
+                                      in cmiProduct::ProductKeysStruct productKey,
+                                      in cmiOrder::OrderStruct anOrder,
+                                      in cmiUtil::Identifier cancelReqId)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException,
+                exceptions::TransactionFailedException,
+                exceptions::NotAcceptedException
+            );
+       void markMessageAsRead(in cmiSession::TradingSessionName sessionName,
+                              in cmiProduct::ProductKey productKey,
+                              in cmiUtil::Identifier messageId)
+            raises (exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::NotFoundException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException
+          );
+       void acceptMessageRoute(in cmiSession::TradingSessionName sessionName,
+                              in cmiProduct::ProductKey productKey,
+                              in string newLocation,
+                              in cmiUtil::Identifier messageId)
+            raises (exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException,
+                    exceptions::AuthorizationException
+          );
+
+       void acceptManualFillReport(in short activityType,
+        	                       in order::ManualFillStructSequence fillReports,
+        	                       in cmiProduct::ProductKey productKey,
+        	                       in long transactionSequenceNumber )
+           	raises(
+           	    exceptions::SystemException,
+           	    exceptions::CommunicationException,
+           	    exceptions::DataValidationException,
+           	    exceptions::NotFoundException,
+           	    exceptions::AuthorizationException,
+           	    exceptions::TransactionFailedException,
+           	    exceptions::NotAcceptedException
+          );  
+       trade::TradeReportStructV2 getTradeReportV2ByTradeId(in cmiUtil::CboeIdStruct tradeId,
+                                                            in boolean activeOnly)
+                raises (exceptions::SystemException,
+                        exceptions::CommunicationException,
+                        exceptions::AuthorizationException,
+                        exceptions::DataValidationException,
+                        exceptions::NotFoundException
+          ); 
+    };
+
+    interface OMTSessionManager
+    {
+        OrderManagementService getOrderManagementService()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+    };
+
+    interface UserAccessOMT
+    {
+        OMTSessionManager getOMTUserSessionManager(in cmi::UserSessionManager sessionManager)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+    };
+};
+
+#endif
+

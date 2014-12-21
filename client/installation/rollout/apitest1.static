@@ -1,0 +1,34 @@
+# APITEST1
+
+environment = apitest1
+
+cas    = apicas1,   01, apife1  apife1
+cas    = apicas2,   01, apife1  apife1
+cas    = apicas3,   01, apife1  apife1
+cas    = c1apicas1, 01, apife1  apife1
+cas    = c1apicas2, 01, apife1  apife1
+cas    = c1apicas3, 01, apife1  apife1
+fixcas = apifix1,   01, apife1  apife1
+fixcas = apifix1,   02, apife1  apife1
+fixcas = apifix1,   03, apife1  apife1
+fixcas = c1apifix1, 01, apife1  apife1
+fixcas = c1apifix1, 02, apife1  apife1
+fixcas = c1apifix1, 03, apife1  apife1
+fixcas = c1apifix1, 04, apife1  apife1
+fixcas = c1apifix1, 05, apife1  apife1
+fixcas = c1apifix1, 06, apife1  apife1
+fixcas = c1apifix1, 07, apife1  apife1
+fixcas = c1apifix1, 08, apife1  apife1
+fixcas = c1apifix1, 09, apife1  apife1
+fixcas = c1apifix1, 10, apife1  apife1
+cfix   = apimd1,    01, apife1  apife1
+mdcas  = apimd1,    01, apife1  apife1
+mdcas  = apimd1s,   01, apife1  apife1
+mdx    = apimd1x,   01, apife1  apife1
+fixcas = apittfix1, 01, apife1  apife1
+fixcas = apittfix1, 02, apife1  apife1
+cas    = democas1,  01, apife1  apife1
+sacas  = sacas3,    01, apisvr1 apisvr1
+cas    = tstcas1,   01, apife1  apife1
+cas    = tstcas2,   01, apife1  apife1
+tipsMdxAdapter = apisvr1, 01

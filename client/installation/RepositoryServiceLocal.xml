@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE LocalRepositoryServices SYSTEM "${RUN_DIR}/properties/dtd/LocalRepositoryService.dtd">
+<LocalRepositoryServices>
+<RepositoryService name="ENVNAMESPECIFY_HOSTNAME_HERE">
+	<RepositoryServiceProperties>
+		<InitialContextFactory>com.sun.jndi.fscontext.FSContextFactory</InitialContextFactory>
+		<ProviderURL>file://${RUN_DIR}/properties/localrep/</ProviderURL>
+		<ConfigurationFileName>SBTCatalog.xml</ConfigurationFileName>
+		<LoggingServiceFile>properties/RepositoryServerLogging.properties</LoggingServiceFile>
+		<LoggingName>RepositoryServerLocal</LoggingName>
+		<ORBPortNum>99999</ORBPortNum>
+		<ORBORBName>use_script_name</ORBORBName>
+		<LookupIORURL>file:///use_script_name.ior</LookupIORURL>
+		<Password>qbert</Password>
+		<Securityfile>abd_cert.p12</Securityfile>
+		<SecureMode>false</SecureMode>
+		<LoadDomFromFiles>false</LoadDomFromFiles>
+		<SynchronizerThreshold>0</SynchronizerThreshold>
+		<ACTIVE>true</ACTIVE>
+		<CatalogClassName>com.cboe.systemsManagementService.managementFramework.repositoryService.XMLLocalCatalog</CatalogClassName>
+		<LocalDBImplClass>XMLFileDBUtil</LocalDBImplClass>
+	</RepositoryServiceProperties>
+</RepositoryService>
+</LocalRepositoryServices>

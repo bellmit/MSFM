@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by emily huang (cboe) -->
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalIntermarketQueryHome SYSTEM "../dtd/IntermarketQueryHome.dtd">
+<GlobalIntermarketQueryHome>
+	<IntermarketQueryHomeImpl name="DefaultService">
+		<IntermarketQueryHomeImplProperties>
+			<rateMonitorSessions>W_AM1,W_MAIN,ONE_MAIN,CFE_MAIN,W_STOCK,C2_MAIN</rateMonitorSessions>
+			<rateMonitorInterval>1000,1000,1000,1000,1000,1000</rateMonitorInterval>
+			<rateMonitorWindow>1,1,1,1,1,1</rateMonitorWindow>
+		</IntermarketQueryHomeImplProperties>
+	</IntermarketQueryHomeImpl>
+</GlobalIntermarketQueryHome>

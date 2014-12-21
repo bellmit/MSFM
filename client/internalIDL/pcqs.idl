@@ -1,0 +1,48 @@
+#ifndef PCQS_IDL
+#define PCQS_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 3.2
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmi.idl"
+#include "exceptions.idl"
+#include "ProductConfigurationQueryService.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module pcqs
+{
+    interface PCQSSessionManager
+    {
+        internalBusinessServices::ProductConfigurationQueryService getProductConfigurationQueryService()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+
+    interface UserAccessPCQS
+    {
+        PCQSSessionManager getPCQSUserSessionManager(in cmi::UserSessionManager sessionManager )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::NotFoundException
+            );
+     };
+     
+};
+
+#endif
+

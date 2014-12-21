@@ -1,0 +1,44 @@
+export FRONTEND1_HOSTNAME=prdfe01
+export FRONTEND2_HOSTNAME=prdfe02
+export FRONTEND_IDENTIFIER=FE01
+export CLIENT_DEBUG_INFRA=xxDEBUG
+export CLIENT_DEBUG_APP=xxApplicationDebugOn
+export CLIENT_DEBUG_AUDIT=false
+export CLIENT_IIOP_THREAD_POOL=50 # Change to 2 for test, atgtest, apitest, apicert environments
+#export ENGINE_MODE=      # cas and fixcas only
+#export FIXSERVERPREFIX=  # fixcas only
+#export MDCAS_GROUP=MDCASSET01                  # mdcas/cfix only
+#export MDCAS_SESSIONS=$MDCAS_SESSIONS_HYBRID   # mdcas/cfix only
+# CLIENT_TYPE is overridden from setContext if mdcas or cfix
+#export CLIENT_TYPE=
+#export MDCAS1_HOSTNAME=mdcas01                 # cfix only
+#export MDCAS2_HOSTNAME=mdcas02                 # cfix only
+#export MQFAILOVER_PORT=5112                    # cfix only
+export ORDER_STATUS_BLOCKSIZE_REMOTE=25
+export ORDER_STATUS_BLOCKSIZE_LOCAL=1
+export CAS_REMOTE=false
+export CONCURRENT_QUOTES_PER_CLASS=5
+export OMT_FILTER_DELAY_TIME=10000              # cas only
+export OSI_SESSIONS=NO_SESSION                  # fixcas only (comma sep list, pseudo-session OSI_DEBUG legal)
+export RATE_MONITOR_CACHE_SESSION_NAME=W_MAIN,W_STOCK
+export EVENT_CACHE_CLASS=com.cboe.domain.iec.NoPoolingChannelEventCache
+export USE_MANAGED_THREADPOOLS=true             # cas only
+export USE_MANAGED_CONNECTIONPOOLS=true         # cas only
+export DYNAMIC_CONNECTIONPOOL_GROWTH=true       # cas only
+export DYNAMIC_THREADPOOL_GROWTH=true           # cas only
+export USE_USERLOADMANAGER_STARTTIMES=true      # cas only
+export GLOBAL_IDENTIFIER=Global			# sacas only
+#export LOGIN_ORDER_PUBLISH_DELAY_TIME=2000     # optional property , should be used only when needed.
+export CFIX_SUBSCRIPTION_MODE=MDX
+# The following are for CFIX CAS LOGIN
+export CFIX_CAS_IP=dev3cas
+export CFIX_CAS_PORT=8003
+export CFIX_CAS_USER_ID=CD168
+export CFIX_CAS_PASSWORD=CD168
+export BKP_CFIX_CAS_IP=dev4cas
+export BKP_CFIX_CAS_PORT=8003
+export BKP_CFIX_CAS_USER_ID=X03
+export BKP_CFIX_CAS_PASSWORD=X03
+export CFIX_MAX_MISSED_HEARTBEAT=5
+export CFIX_CAS_HEARTBEAT_TIMER_INTERVAL=1000
+

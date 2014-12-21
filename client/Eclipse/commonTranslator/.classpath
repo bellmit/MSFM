@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="commonTranslator"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="cmi_release/jars/cmi_idl.jar"/>
+	<classpathentry exported="true" kind="lib" path="release/client_common.jar"/>
+	<classpathentry kind="lib" path="CommonFacilities_release/CommonFacilities.jar"/>
+	<classpathentry kind="lib" path="framework_release/FoundationFramework.jar"/>
+	<classpathentry exported="true" kind="lib" path="release/client_internal_idl.jar"/>
+	<classpathentry kind="lib" path="messagingsystem_release/jars/MessagingSystem.jar"/>
+	<classpathentry kind="lib" path="loggingservice_release/jars/LoggingService.jar"/>
+	<classpathentry kind="lib" path="common_release/jars/common.jar"/>
+	<classpathentry kind="lib" path="loggingservice_release/jars/LoggingServiceIDL.jar"/>
+	<classpathentry kind="lib" path="messagingsystem_release/jars/MessagingSystemIDL.jar"/>
+	<classpathentry kind="lib" path="domain/release/domain_idl.jar"/>
+	<classpathentry kind="lib" path="domain/release/domain_impls.jar"/>
+	<classpathentry kind="lib" path="domain/release/domain_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain/event/release/event_impls.jar"/>
+	<classpathentry kind="lib" path="domain/event/release/event_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain/event/release/event_idl.jar"/>
+	<classpathentry kind="lib" path="commons-net/commons-net-1.4.0/commons-net-1.4.0.jar"/>
+	<classpathentry kind="lib" path="sysAdmin_ics_release/ics_idl.jar"/>
+	<classpathentry kind="lib" path="omg_release/jars/OMGServiceClasses.jar"/>
+	<classpathentry kind="lib" path="release/client_interfaces.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

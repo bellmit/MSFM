@@ -1,0 +1,25 @@
+# APITEST2
+
+environment = apitest2
+
+cas    = apicas4,   01, apife2  apife2
+cas    = apicas5,   01, apife2  apife2
+cas    = apicas6,   01, apife2  apife2
+cas    = c1apicas4, 01, apife2  apife2
+cas    = c1apicas5, 01, apife2  apife2
+cas    = c1apicas6, 01, apife2  apife2
+fixcas = apifix2,   01, apife2  apife2
+fixcas = apifix2,   02, apife2  apife2
+fixcas = apifix2,   03, apife2  apife2
+fixcas = apifix2,   04, apife2  apife2
+cfix   = apimd2,    01, apife2  apife2
+mdcas  = apimd2,    01, apife2  apife2
+mdcas  = apimd2s,   01, apife2  apife2
+mdx    = apimd2x,   01, apife2  apife2
+fixcas = apittfix2, 01, apife2  apife2 
+fixcas = apittfix2, 02, apife2  apife2 
+cas    = democas2,  01, apife2  apife2
+sacas  = sacas4,    01, apisvr2 apisvr2
+cas    = tstcas5,   01, apife2  apife2
+cas    = tstcas6,   01, apife2  apife2
+tipsMdxAdapter = apisvr2, 01

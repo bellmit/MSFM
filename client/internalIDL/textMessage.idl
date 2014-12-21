@@ -1,0 +1,59 @@
+#ifndef    TEXTMESSAGE_IDL
+#define    TEXTMESSAGE_IDL
+
+
+#include "exceptions.idl"
+#include "cmiAdmin.idl"
+
+
+module    textMessage
+{
+    typedef long ReceipientType;
+    typedef long MessageState;
+
+    struct DestinationStruct
+    {
+        string receipient;
+        textMessage::ReceipientType type;
+    };
+
+    typedef sequence<DestinationStruct> DestinationStructSequence;
+
+    struct MessageTransportStruct
+    {
+        textMessage::MessageState state;
+        long timeToLive;
+
+        cmiAdmin::MessageStruct message;
+    };
+
+    typedef sequence<string> templateNameSequence;
+
+
+    struct MessageStatusStruct
+    {
+        string originalReceipient;
+        textMessage::ReceipientType originalType;
+        string resolvedReceipient;
+        textMessage::ReceipientType resolvedType;
+        exceptions::ErrorCode error;
+    };
+
+    typedef sequence<MessageStatusStruct> MessageStatusStructSequence;
+
+    typedef sequence<MessageTransportStruct> MessageTransportStructSequence;
+
+    struct MessageResultStruct
+    {
+        cmiAdmin::MessageKey                     messageKey;
+        textMessage::MessageStatusStructSequence status;
+    };
+
+};
+
+#endif
+
+
+
+
+

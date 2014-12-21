@@ -1,0 +1,346 @@
+#!/usr/bin/perl -w
+# Usage: $0 environment enginetype number
+# Examples: $0 prod cas 01, $0 perf2 fixcas 03, $0 atgtest5 tipsmdxadapter 01
+
+# -------------------- Constants --------------------
+
+chomp($PROG=`basename $0`);
+
+$NOT_USED = -1;  # when added to engine 1, gives result 0
+
+$ENGINE_CAS = "cas";
+$ENGINE_FIXCAS = "fixcas";
+$ENGINE_MDCAS = "mdcas";
+$ENGINE_CFIX = "cfix";
+$ENGINE_SACAS = "sacas";
+$ENGINE_MDX = "mdx";
+$ENGINE_TIPSMDXADAPTER = "tipsmdxadapter";
+
+$ENV_TEST1 = "test1";
+$ENV_TEST2 = "test2";
+$ENV_TEST3 = "test3";
+$ENV_TEST4 = "test4";
+$ENV_TEST5 = "test5";
+$ENV_TEST6 = "test6";
+$ENV_TEST7 = "test7";
+$ENV_TEST8 = "test8";
+$ENV_TEST9 = "test9";
+$ENV_TEST10 = "test10";
+$ENV_TEST11 = "test11";
+$ENV_TEST12 = "test12";
+$ENV_TEST13 = "test13";
+$ENV_TEST14 = "test14";
+$ENV_TEST15 = "test15";
+$ENV_TEST15a = "test15a";
+$ENV_TEST15b = "test15b";
+$ENV_TEST16 = "test16";
+$ENV_TEST16a = "test16a";
+$ENV_TEST17 = "test17";
+$ENV_TEST18 = "test18";
+$ENV_TEST19 = "test19";
+$ENV_TEST20 = "test20";
+$ENV_TEST21 = "test21";
+$ENV_TEST22 = "test22";
+$ENV_TEST23 = "test23";
+$ENV_TEST24 = "test24";
+$ENV_DR   = "dr";
+$ENV_C2   = "c2";
+$ENV_PROD = "prod";
+
+# PORTNUM  <Portnum> -DORB.PortNum=
+%PORTNUM_BASE = (
+   $ENGINE_CAS    => 8202,   # 01 -> 8203
+   $ENGINE_MDCAS  => 8202,   # 01 -> 8203
+   $ENGINE_SACAS  => 8203,   # 01 -> 8204
+   $ENGINE_CFIX   => 8212,   # 01 -> 8213 ... 11 -> 8223
+   $ENGINE_FIXCAS => 13237,  # 01 -> 13238 ... 15 -> 13252
+   $ENGINE_MDX    => 8203,   # 01 -> 8204
+   $ENGINE_TIPSMDXADAPTER => 224  # 01 -> BASE_PORT + 225
+);
+
+# COMMANDHTTPPORT <SystemOptionalProperty>prefixCommandHttpPort=
+%HTTPPORT_BASE = (
+   $ENGINE_CAS    => 3504,
+   $ENGINE_MDCAS  => 3504,
+   $ENGINE_SACAS  => 3704,
+   $ENGINE_CFIX   => 3514,
+   $ENGINE_FIXCAS => 6400,
+   $ENGINE_MDX    => 3704,     # -DprefixCommandHttpPort=
+   $ENGINE_TIPSMDXADAPTER => $NOT_USED
+);
+
+# ORBSERVERPORT <SystemOptionalProperty>ORB.IIOPTransport.PortNum=
+%ORBSERVERPORT_BASE = (
+   $ENGINE_CAS    => 8101,
+   $ENGINE_MDCAS  => 8101,
+   $ENGINE_SACAS  => $NOT_USED,
+   $ENGINE_CFIX   => 8111,
+   $ENGINE_FIXCAS => 8199,
+   $ENGINE_MDX    => $NOT_USED,
+   $ENGINE_TIPSMDXADAPTER => $NOT_USED
+);
+
+# WEBSERVERPORT <SystemOptionalProperty>prefixWebServerPort=
+%WEBSERVERPORT_BASE = (
+   $ENGINE_CAS    => 8002,
+   $ENGINE_MDCAS  => 8002,
+   $ENGINE_SACAS  => $NOT_USED,
+   $ENGINE_CFIX   => 8012,
+   $ENGINE_FIXCAS => 8400,
+   $ENGINE_MDX    => $NOT_USED,
+   $ENGINE_TIPSMDXADAPTER => $NOT_USED
+);
+
+# -Dcom.sun.management.jmxremote.port=
+%JMXREMOTEPORT_BASE = (
+   $ENGINE_CAS    => 23230,
+   $ENGINE_MDCAS  => 23230,
+   $ENGINE_SACAS  => $NOT_USED,
+   $ENGINE_CFIX   => 23240,
+   $ENGINE_FIXCAS => 23230,
+   $ENGINE_MDX    => $NOT_USED,
+   $ENGINE_TIPSMDXADAPTER => $NOT_USED
+);
+
+# -Xms, -Xmx
+%HEAP_SIZE = (
+   $ENGINE_CAS    => "5000M",
+   $ENGINE_MDCAS  => "1536M",
+   $ENGINE_SACAS  => "2560M",
+   $ENGINE_CFIX   => "3280M",
+   $ENGINE_FIXCAS => "2100M",
+   $ENGINE_MDX    => "2000M",
+   $ENGINE_TIPSMDXADAPTER => "2048m"
+);
+
+%REDUCED_HEAP_SIZE = (
+   $ENGINE_CAS    => "2048M",
+   $ENGINE_MDCAS  => "512M",
+   $ENGINE_CFIX   => "512M"
+);
+
+# -XX:NewSize, -XX:MaxNewSize
+%NEW_SIZE = (
+   $ENGINE_CAS    => "1000m",
+   $ENGINE_MDCAS  => "256m",
+   $ENGINE_SACAS  => "200m",
+   $ENGINE_CFIX   => "250m",
+   $ENGINE_FIXCAS => "800m",
+   $ENGINE_MDX    => "300m",
+   $ENGINE_TIPSMDXADAPTER => "100m"
+);
+
+%REDUCED_NEW_SIZE = (
+   $ENGINE_CAS    => "100m",
+   $ENGINE_MDCAS  => "250m",
+   $ENGINE_CFIX   => "250m"
+);
+
+%CASFILENAME_FORMAT = (
+   $ENGINE_CAS    => "CASFile",
+   $ENGINE_MDCAS  => "mdcas%sv2",
+   $ENGINE_SACAS  => "ACASFile2",
+   $ENGINE_CFIX   => "cfix%sv2",
+   $ENGINE_FIXCAS => "FixCAS2%sFile"
+);
+
+# When environments share server boxes, the port numbers
+# of server processes are based on $BASE_PORT
+
+%BASE_PORTS = (
+   "" => 18000,    # value for non-shared server boxes
+   $ENV_TEST1 => 18000,
+   $ENV_TEST2 => 19000,
+   $ENV_TEST3 => 20000,
+   $ENV_TEST4 => 21000,
+   $ENV_TEST5 => 18000,
+   $ENV_TEST6 => 19000,
+   $ENV_TEST7 => 20000,
+   $ENV_TEST8 => 21000,
+   $ENV_TEST9 => 18000,
+   $ENV_TEST10 => 19000,
+   $ENV_TEST11 => 20000,
+   $ENV_TEST12 => 21000,
+   $ENV_TEST13 => 18000,
+   $ENV_TEST14 => 19000,
+   $ENV_TEST15 => 22000,
+   $ENV_TEST15a => 22000,
+   $ENV_TEST15b => 23000,
+   $ENV_TEST16 => 22000,
+   $ENV_TEST16a => 22000,
+   $ENV_TEST17 => 18000,
+   $ENV_TEST18 => 18000,
+   $ENV_TEST19 => 18000,
+   $ENV_TEST20 => 19000,
+   $ENV_TEST21 => 20000,
+   $ENV_TEST22 => 21000,
+   $ENV_TEST23 => 20000,
+   $ENV_TEST24 => 21000
+);
+
+# ksh: use BACKUP_HOST if not empty, else use "localhost"
+$ARCHIVE_HOST = "\${BACKUP_HOST:-\"localhost\"}";
+# ksh: if BACKUP_DIR_BASE is not empty, use what's after the :+
+# Below, we add to the value based on engine type and number.
+$ARCHIVE_DIR_BASE = "\${BACKUP_DIR_BASE:+\${BACKUP_DIR_BASE}";
+
+# From cmiConstants.idl
+$LOGIN_SESSION_MODE_NETWORK_TEST = 2;
+$LOGIN_SESSION_MODE_PRODUCTION = 3;
+
+# -------------------- Subroutines --------------------
+
+sub usage
+{
+    my $message = shift @_;
+    if (defined $message)
+    {
+        $message = "\n" . $message . "\n";
+    }
+    else
+    {
+        $message = "";
+    }
+
+    die "Usage: $PROG environment clientType engineNumber\n"
+      . "   environment  is prod|c2|dr|perf<n>|apicert|apitest<n>|atgtest<n>"
+      .    "|test<n>\n"
+      . "   clientType   is $ENGINE_CAS|"
+                         . "$ENGINE_FIXCAS|"
+                         . "$ENGINE_MDCAS|"
+                         . "$ENGINE_CFIX|"
+                         . "$ENGINE_SACAS|"
+                         . "$ENGINE_MDX|"
+                         . "$ENGINE_TIPSMDXADAPTER\n"
+      . "   engineNumber is a 2-digit number\n"
+      . "output fields are"
+                . " SBT_PREFIX,"
+                . " ORB.PortNum,"
+                . " CLIENT_DIR,"
+                . " CLIENTNAME,"
+         . "\n  "
+                . " session_mode,"
+                . " prefixCommandHttpPort,"
+                . " ORB.IIOPTransport.PortNum,"
+         . "\n  "
+                . " prefixWebServerPort,"
+                . " com.sun.management.jmxremote.port,"
+         . "\n  "
+                . " heapsize,"
+                . " newgensize,"
+                . " prefix[A]CASLogComponentName,"
+                . " ARCHIVE_HOST,"
+         . "\n  "
+                . " ARCHIVE_DIR_BASE"
+      . "\n" . $message;
+}
+
+sub calcSbtPrefix
+{
+    if ($ENVIRONMENT eq $ENV_PROD
+    ||  $ENVIRONMENT eq $ENV_C2
+    ||  $ENVIRONMENT eq $ENV_DR
+    ||  $ENVIRONMENT =~ /^perf\d$/)
+    {
+        $SBT_PREFIX = "Prod";
+    }
+    elsif ($ENVIRONMENT =~ /^(apicert|apitest\d+|atgtest\d+|test\d+)$/
+    ||     $ENVIRONMENT =~ /^(test15[ab]|test16a)$/ )
+    {
+        $SBT_PREFIX = $ENVIRONMENT;
+    }
+    else
+    {
+        &usage("Unknown environment: $ENVIRONMENT");
+    }
+}
+
+# -------------------- Main program --------------------
+
+&usage if $#ARGV != 2;
+
+$ENVIRONMENT = $ARGV[0];
+$ENGINE_TYPE = $ARGV[1];
+$ENGINE_NUM = $ARGV[2];
+
+&usage("Unknown clientType: $ENGINE_TYPE")
+    unless exists $PORTNUM_BASE{ $ENGINE_TYPE };
+&calcSbtPrefix;
+
+# Set $BASE_PORT for server processes
+$BASE_PORT = exists $BASE_PORTS{ $ENVIRONMENT } ?
+                    $BASE_PORTS{ $ENVIRONMENT } : $BASE_PORTS{ "" };
+
+if ($ENGINE_TYPE eq $ENGINE_TIPSMDXADAPTER)
+{
+    $CLIENT_DIR = "tipsmdx$ENGINE_NUM";
+    $CLIENT_NAME = "TipsMdxAdapter$ENGINE_NUM";
+}
+else
+{
+    $BASE_PORT = 0;     # Client process, no base port needed
+    $CLIENT_DIR = "v2" . $ENGINE_TYPE . $ENGINE_NUM;
+    $CLIENT_NAME = $ENGINE_TYPE . $ENGINE_NUM . "v2";
+}
+
+# In case we archive to a remote central location, direct archived files
+# to a unique directory by engine type and engine number
+if ($ENGINE_TYPE eq $ENGINE_CAS)
+{
+    $ARCHIVE_DIR_BASE .= "/cas";
+}
+elsif ($ENGINE_TYPE eq $ENGINE_FIXCAS)
+{
+    $ARCHIVE_DIR_BASE .= "/fix/fix$ENGINE_NUM";
+}
+if ($ENGINE_TYPE eq $ENGINE_SACAS)
+{
+    $ARCHIVE_DIR_BASE .= "/sacas";
+}
+elsif ($ENGINE_TYPE eq $ENGINE_MDCAS)
+{
+    $ARCHIVE_DIR_BASE .= "/mdcas/mdcas$ENGINE_NUM";
+}
+elsif ($ENGINE_TYPE eq $ENGINE_MDX)
+{
+    $ARCHIVE_DIR_BASE .= "/mdx";
+}
+elsif ($ENGINE_TYPE eq $ENGINE_CFIX)
+{
+    $ARCHIVE_DIR_BASE .= "/cfix/cfix$ENGINE_NUM";
+}
+elsif ($ENGINE_TYPE eq $ENGINE_TIPSMDXADAPTER)
+{
+    $ARCHIVE_DIR_BASE .= "/tipsmdx/tipsmdx$ENGINE_NUM";
+}
+$ARCHIVE_DIR_BASE .= "}";
+
+$ORB_PORTNUM = $BASE_PORT + $PORTNUM_BASE{$ENGINE_TYPE} + $ENGINE_NUM;
+$COMMAND_HTTPPORT = $BASE_PORT + $HTTPPORT_BASE{$ENGINE_TYPE} + $ENGINE_NUM;
+$ORBSERVER_PORT = $BASE_PORT + $ORBSERVERPORT_BASE{$ENGINE_TYPE} + $ENGINE_NUM;
+$WEBSERVER_PORT = $BASE_PORT + $WEBSERVERPORT_BASE{$ENGINE_TYPE} + $ENGINE_NUM;
+$JMXREMOTE_PORT = $BASE_PORT + $JMXREMOTEPORT_BASE{$ENGINE_TYPE} + $ENGINE_NUM;
+
+if (($ENVIRONMENT =~ /^test|^atg/ && defined $REDUCED_HEAP_SIZE{$ENGINE_TYPE})
+||  ($ENVIRONMENT =~ /^api/ && $ENGINE_TYPE eq $ENGINE_CAS))
+{
+    $HEAP_SIZE = $REDUCED_HEAP_SIZE{$ENGINE_TYPE};
+    $NEW_SIZE = $REDUCED_NEW_SIZE{$ENGINE_TYPE};
+}
+else
+{
+    $HEAP_SIZE = $HEAP_SIZE{$ENGINE_TYPE};
+    $NEW_SIZE = $NEW_SIZE{$ENGINE_TYPE};
+}
+
+$SESSION_MODE = ($ENVIRONMENT =~ /^test|^atg|^api/)
+    ? $LOGIN_SESSION_MODE_NETWORK_TEST
+    : $LOGIN_SESSION_MODE_PRODUCTION;
+
+$CASFILENAME = (exists $CASFILENAME_FORMAT{$ENGINE_TYPE})
+    ? sprintf $CASFILENAME_FORMAT{$ENGINE_TYPE}, $ENGINE_NUM
+    : "";
+
+print "$SBT_PREFIX,$ORB_PORTNUM,$CLIENT_DIR,$CLIENT_NAME,$SESSION_MODE"
+    . ",$COMMAND_HTTPPORT,$ORBSERVER_PORT,$WEBSERVER_PORT,$JMXREMOTE_PORT"
+    . ",$HEAP_SIZE,$NEW_SIZE,$CASFILENAME,$ARCHIVE_HOST,$ARCHIVE_DIR_BASE\n";

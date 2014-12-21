@@ -1,0 +1,30 @@
+export PATH=/usr/local/bin:/usr/bin:$PATH
+export OUTDIR=$HOME/CASInstall/bin.new
+
+export REMOTEHOST=${REMOTEHOST-$LOCALHOST}
+setHostList () 
+{
+    cd $OUTDIR
+    CASLIST="atgcas1 saatg1 atgmd1 atgmd1s atgfix1 
+		atgcas2 saatg2 atgmd2 atgmd2s atgfix2 
+		atgcas3 saatg3 atgmd3 atgmd3s atgfix3 
+		atgcas4 saatg4 atgmd4 atgmd4s atgfix4
+		apicas1 apicas2 apicas3 tstcas1 tstcas2 democas1 sacas3 sacas4 apimd1 apimd1s apimd2 apimd2s apifix1 apittfix1 
+                certcas1 certcas2 cmecas1 cmecas2 certmdcas1 certmdcas1s certsa1 certfix1 certttfix1"
+    export REMOTEHOST=$CASLIST
+}
+
+cleanLogs ()
+{
+    setHostList
+
+    cd $OUTDIR
+    for i in $REMOTEHOST
+    do
+        mv -f $i.status yesterday >/dev/null 2>&1
+        ftp $i <<! >/dev/null 2>&1 
+cd /tmp
+del ..log
+!
+    done
+}

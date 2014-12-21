@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserServiceHome SYSTEM "../dtd/UserServiceHome.dtd">
+<GlobalUserServiceHome>
+	<UserServiceHomeImpl name="DefaultService">
+		<UserServiceHomeImplProperties>
+			<quoteRiskEventChannelProperty>QuoteRiskManagementProfileEvent</quoteRiskEventChannelProperty>
+		</UserServiceHomeImplProperties>
+	</UserServiceHomeImpl>
+</GlobalUserServiceHome>

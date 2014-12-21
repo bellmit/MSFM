@@ -1,0 +1,38 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the HeartBeatHomeImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalHeartBeatHome (HeartBeatHomeImpl*)>
+<!ATTLIST GlobalHeartBeatHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT HeartBeatHomeImpl (HeartBeatHomeImplProperties)>
+<!ATTLIST HeartBeatHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT HeartBeatHomeImplProperties (HeartBeatInterval?, ConnectionLostFatal?)>
+<!ATTLIST HeartBeatHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT HeartBeatInterval (#PCDATA)>
+<!ATTLIST HeartBeatInterval
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "time window"
+>
+<!ELEMENT ConnectionLostFatal (#PCDATA)>
+<!ATTLIST ConnectionLostFatal
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+	description CDATA #FIXED ""
+>

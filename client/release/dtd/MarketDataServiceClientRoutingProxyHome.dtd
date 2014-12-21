@@ -1,0 +1,29 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalMarketDataServiceHome (MarketDataServiceClientRoutingProxyHomeImpl*)>
+<!ATTLIST GlobalMarketDataServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT MarketDataServiceClientRoutingProxyHomeImpl (MarketDataServiceClientRoutingProxyHomeImplCommands?)>
+<!ATTLIST MarketDataServiceClientRoutingProxyHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT MarketDataServiceClientRoutingProxyHomeImplCommands (adminUseRegularMDSRoutingProxy)>
+<!ATTLIST MarketDataServiceClientRoutingProxyHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT adminUseRegularMDSRoutingProxy (trueFalse)>
+<!ATTLIST adminUseRegularMDSRoutingProxy
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Choose MDS routing proxy or global proxy"
+>
+<!ELEMENT trueFalse (#PCDATA)>
+<!ATTLIST trueFalse
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "true | false"
+>

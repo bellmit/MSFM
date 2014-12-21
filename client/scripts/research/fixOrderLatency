@@ -1,0 +1,98 @@
+#!/usr/bin/perl -w
+# Determine turnaround time for FIX orders: when New Order 35=D message
+# arrives to when corresponding Execution Report 35=8 goes out.
+#
+# USAGE:
+#    $0  < FIXinput  > CSVoutput
+#    grep pattern FIXinput  |  $0  > CSVoutput
+# CSVoutput is suitable for input to spreadsheets.
+#
+# If input contains a likely Execution Report that has no matching
+# New Order, output will show *** in the t-order (time of New Order)
+# field. Cancel/Replace is one such condition.
+# If input contains a New Order with no matching Execution Report,
+# output will show *** in the t-new (time of New response) field.
+
+# -------------------- Constants --------------------
+
+$SEP = '\x01';  # Control-A, FIX field delimiter
+$NEW = $SEP . "35=D" . $SEP;
+$ACK1 = $SEP . "35=8" . $SEP;
+$ACK2 = $SEP . "20=0" . $SEP;
+$ACK3 = $SEP . "150=0" . $SEP;
+$ACK4 = $SEP . "39=0" . $SEP;
+
+$GET_ORDER_ID = $SEP . "11=([A-Z0-9]+)";
+
+$MISSING = "***";
+
+# -------------------- Subroutines --------------------
+
+sub time2int
+{
+    my $str = shift @_;
+    my ($hour,$min,$sec,$ms);
+    $str =~ /^(\d+):(\d+):(\d+):(\d+)/ && ($hour = $1, $min = $2, $sec = $3, $ms = $4);
+    return ((($hour * 60) + $min) * 60 + $sec) * 1000 + $ms;
+}
+
+sub printHeader
+{
+    print "connection,brseq,t-order,t-new,dt-msec\n" unless $HeaderPrinted;
+    $HeaderPrinted = 1;
+}
+
+sub newOrder
+{
+    my $time;
+    /^\S+ \S+ \S+ (\S+)/ && ($time = $1);
+    $time =~ s/:$//;
+
+    my $orderId;
+    /$GET_ORDER_ID/o && ($orderId = $1);
+
+    $Orders{$orderId} = $time;
+}
+
+sub ackOrder
+{
+    my $time;
+    /\S+ \S+ \S+ (\S+)/ && ($time = $1);
+    $time =~ s/:$//;
+
+    my $orderId;
+    /$GET_ORDER_ID/o && ($orderId = $1);
+
+    my $connection;
+    /\{([^{]+)\}/ && ($connection = $1);
+
+    if (exists $Orders{$orderId})
+    {
+        my $startTime = &time2int($Orders{$orderId});
+        my $endTime = &time2int($time);
+        my $milliseconds = $endTime - $startTime;
+        print "$connection,$orderId,\"$Orders{$orderId}\",\"$time\",$milliseconds\n";
+        delete $Orders{$orderId};
+    }
+    else
+    {
+        print "$connection,$orderId,$MISSING,\"$time\",$MISSING\n";
+    }
+}
+
+# -------------------- Main program --------------------
+
+%Orders = ();
+$HeaderPrinted = 0;
+
+while (<STDIN>)
+{
+    &newOrder if /$NEW/o;
+    &ackOrder if (/$ACK1/o && /$ACK2/o && /$ACK3/o && /$ACK4/o);
+}
+
+my $orderId;
+foreach $orderId (sort keys %Orders)
+{
+    print ",$orderId,\"$Orders{$orderId}\",$MISSING,$MISSING\n";
+}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="internalTranslator"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="cmi_release/jars/cmi_idl.jar" sourcepath="cmi_release/jars/cmi_idl_java.jar"/>
+	<classpathentry kind="lib" path="release/client_intermarketTranslator.jar"/>
+	<classpathentry kind="lib" path="release/client_common.jar"/>
+	<classpathentry kind="lib" path="release/client_commonTranslator.jar"/>
+	<classpathentry kind="lib" path="release/client_impls.jar"/>
+	<classpathentry kind="lib" path="release/client_interfaces.jar"/>
+	<classpathentry kind="lib" path="release/client_translator.jar"/>
+	<classpathentry kind="lib" path="server_release/server_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain_release/domain_idl.jar"/>
+	<classpathentry kind="lib" path="domain_release/domain_impls.jar"/>
+	<classpathentry kind="lib" path="domain_release/domain_interfaces.jar"/>
+	<classpathentry kind="lib" path="server_release/server_idl.jar"/>
+	<classpathentry kind="lib" path="event_release/event_idl.jar"/>
+	<classpathentry kind="lib" path="event_release/event_impls.jar"/>
+	<classpathentry kind="lib" path="event_release/event_interfaces.jar"/>
+	<classpathentry kind="lib" path="sysAdminClient_release/sysAdminClient_idl.jar"/>
+	<classpathentry kind="lib" path="sysAdminClient_release/sysAdminClient_interfaces.jar"/>
+	<classpathentry kind="lib" path="release/client_idl.jar"/>
+	<classpathentry kind="lib" path="CommonFacilities_release/CommonFacilities.jar"/>
+	<classpathentry kind="lib" path="FoundationFramework_release/jars/FoundationFramework.jar"/>
+	<classpathentry kind="lib" path="java_jars/junit.jar"/>
+	<classpathentry kind="lib" path="java_jars/junit37.jar"/>
+	<classpathentry kind="lib" path="objectwave_release/objectwave.jar"/>
+	<classpathentry kind="lib" path="jgl/run_dir/jars/jgl.jar"/>
+	<classpathentry kind="lib" path="SessionManagementService_release/SessionManagementService.jar"/>
+	<classpathentry kind="lib" path="omg_release/jars/OMGBaseClasses.jar"/>
+	<classpathentry kind="lib" path="omg_release/jars/OMGServiceClasses.jar"/>
+	<classpathentry kind="lib" path="MessagingSystem_release/jars/MessagingSystem.jar"/>
+	<classpathentry kind="lib" path="MessagingSystem_release/jars/MessagingSystemIDL.jar"/>
+	<classpathentry kind="lib" path="SecurityService_release/jars/SecurityServiceIDL.jar"/>
+	<classpathentry kind="lib" path="InfraVerity_release/jars/InfraVerityIDLClasses.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

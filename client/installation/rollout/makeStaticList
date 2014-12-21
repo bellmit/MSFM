@@ -1,0 +1,209 @@
+#!/usr/bin/perl -w
+# Transform standard input into ProcessWatcher and SMS static lists
+
+# -------------------- Constants --------------------
+
+$NO_POA = "NO_POA";
+$NO_RELATIONS = "NO_RELATIONS";
+
+$PROCESS_SOURCE = "Source";
+$PROCESS_GLOBAL = "Global";
+# $PROCESS_CRITICAL = "Critical"; # not used...
+
+$IS_CRITICAL = "CRITICAL";
+$NON_CRITICAL = "NON_CRITICAL";
+
+chomp($PROG=`basename $0`);
+
+# Taken from /usr/include/sys/errno.h
+$EINVAL = 22;  # Invalid argument
+
+# -------------------- Subroutines --------------------
+
+# Remove leading and trailing blanks (spaces, tabs, etc.)
+# @param 1 text to trim
+# @return trimmed version
+sub trim
+{
+    my $word = shift @_;
+    $word =~ s/^\s+//;
+    $word =~ s/\s+$//;
+    return $word;
+}
+
+sub numParms
+{
+    my $goodCount = shift @_;
+    my $lastIndex = shift @_;
+    die "\n$PROG: Didn't specify $goodCount parameters, line $.: $_\n"
+        unless $lastIndex == ($goodCount - 1);
+}
+
+sub makeFeList
+{
+    my $hostlist = shift @_;
+    my $delimiter = shift @_;
+    my @hosts = split " ", $hostlist;
+    my $h;
+    for $h (@hosts)
+    {
+        $h = "v20Frontend" . $h;
+    }
+    return join $delimiter, @hosts;
+}
+
+sub emitPW
+{
+    my $processName = $ENGINE_TYPE . $ENGINE_NUM . $V2 . $HOSTNAME;
+    my $orbName = $SBT_PREFIX . $processName;
+
+    print "$HOSTNAME,$processName,$orbName,$ORB_PORTNUM,$SBT_PREFIX,"
+        . "$POA,$CRITICAL\n";
+}
+
+sub emitSMS
+{
+    my $processName = $ENGINE_TYPE . $ENGINE_NUM . $V2 . $HOSTNAME;
+
+    print "$processName,$PROCESS_SOURCE,$RELATIONS\n";
+}
+
+sub readCommandLine
+{
+    &usage if $#ARGV != 0;
+
+    my $switch = $ARGV[0];
+    if ($switch eq "-p")
+    {
+        $PW_LIST=1;
+    }
+    elsif ($switch eq "-s") 
+    {
+       $SMS_LIST=1;
+    }
+    else
+    {
+       print "$PROG: Unknown switch $switch";
+       exit $EINVAL;
+    }
+}
+
+sub usage
+{
+    print "Usage: $PROG [ -p | -s ]\n";
+    print "   -p = process watcher list\n";
+    print "   -s = SMS list\n";
+    exit $EINVAL;
+}
+
+# -------------------- Main program --------------------
+&readCommandLine;
+my $delimiter = (defined $PW_LIST ) ? "|" : ",";
+
+while (<STDIN>)
+{
+    # Ignore empty lines and # comment lines
+
+    chomp;
+    s /^\s*//;
+    next if /^#|^$/;
+
+    # Useful lines: keyword=value
+
+    die "\n$PROG: Invalid input line $.: $_\n" unless /=/;
+    my ($keyword, $value);
+    /([^=]+)=(.*)/ && ($keyword = $1, $value=$2);
+    $keyword =~ tr/[A-Z]/[a-z]/;
+    $keyword = &trim($keyword);
+    $value = &trim($value);
+
+    if ($keyword eq "environment")
+    {
+        die "\n$PROG: ENVIRONMENT specified more than once\n"
+            if defined $ENVIRONMENT;
+        $ENVIRONMENT = $value;
+        next;
+    }
+
+    die "\n$PROG: ENVIRONMENT not specified\n" unless defined $ENVIRONMENT;
+
+    # Assume we have an engine specification. Set up default values.
+    $PROCESS_TYPE = $PROCESS_SOURCE;
+    $CRITICAL = $NON_CRITICAL;
+    $POA = $NO_POA;
+    $V2 = "v2";
+
+    # <engine_type>=<hostname>,<engineNum>,<fehosts>...
+    # fehosts is one or more hostnames separated by spaces
+
+    $ENGINE_TYPE = $keyword;
+    my @parts = split /,/, $value;
+    $HOSTNAME = &trim($parts[0]);
+    $ENGINE_NUM = "01";
+    $ENGINE_NUM = &trim($parts[1]) if $#parts >= 1;
+    $RELATIONS = &makeFeList($parts[2], $delimiter) if $#parts >= 2;
+
+    my $parmString = `calcEngineParms $ENVIRONMENT $keyword $ENGINE_NUM`;
+    chomp($parmString);
+    my @parms = split /,/, $parmString;
+    $SBT_PREFIX = $parms[0];
+    $ORB_PORTNUM = $parms[1];
+
+    if ($keyword eq "cas")
+    {
+        # cas=<hostname>,<engineNum>,<fehosts>
+        &numParms(3, $#parts);
+        defined $SMS_LIST ? &emitSMS : &emitPW;
+    }
+    elsif ($keyword eq "fixcas")
+    {
+        # fixcas=<hostname>,<engineNum>,<fehosts>
+        &numParms(3, $#parts);
+        defined $SMS_LIST ? &emitSMS : &emitPW;
+    }
+    elsif ($keyword eq "mdcas")
+    {
+        # mdcas=<hostname>,<engineNum>,<fehosts>
+        &numParms(3, $#parts);
+        defined $SMS_LIST ? &emitSMS : &emitPW;
+    }
+    elsif ($keyword eq "cfix")
+    {
+        # cfix=<hostname>,<engineNum>,<fehosts>
+        &numParms(3, $#parts);
+        $CRITICAL = $IS_CRITICAL;
+        defined $SMS_LIST ? &emitSMS : &emitPW;
+    }
+    elsif ($keyword eq "sacas")
+    {
+        # mdcas=<hostname>,<engineNum>,<fehosts>
+        &numParms(3, $#parts);
+        defined $SMS_LIST ? &emitSMS : &emitPW;
+    }
+    elsif ($keyword eq "mdx")
+    {
+        # mdx=<hostname>,<engineNum>,<fehosts>
+        &numParms(3, $#parts);
+
+        $V2 = "";
+        defined $SMS_LIST ? &emitSMS : &emitPW;
+    }
+    elsif ($keyword eq "tipsmdxadapter")
+    {
+        # tipsmdxadapter=<hostname>
+        &numParms(2, $#parts);
+
+        $PROCESS_TYPE = $PROCESS_GLOBAL;
+        $CRITICAL = $IS_CRITICAL;
+        $POA = "/UserPOA";
+        $V2 = "";
+
+        $ENGINE_TYPE = "TipsMdxAdapter";
+        $RELATIONS = $NO_RELATIONS;
+        &emitPW if defined $PW_LIST;
+    }
+    else
+    {
+        die "\n$PROG: Unknown specification $keyword\n";
+    }
+}

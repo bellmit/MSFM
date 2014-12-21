@@ -1,0 +1,173 @@
+#!/bin/ksh
+# Determine environment and type of Client box
+
+
+# apittfix1 is shared across apitest1 (test)and apicert (prod)
+
+
+# -------------------- Constants --------------------
+
+PROG=$( basename $0 )
+
+# -------------------- Subroutines --------------------
+
+calcClientType()
+{
+    case $HOSTNAME in
+    apicas*|atgcas*|cas*|certcas*|cmecas*|democas*|dev[0-9]cas|dev[0-9][0-9]cas|devcas5|perfcas[!7]|sbtcas5|tstcas*|dev1casb|dev15casb|drcas*)
+        CLIENT_TYPE=cas
+        ;;
+    *sa*|sbtcas[126]|perfcas7)
+        CLIENT_TYPE=sacas
+        ;;
+    *cfix*) # must come before overly simple FIX pattern
+        CLIENT_TYPE=cfix
+        ;;
+    *fix*)
+        CLIENT_TYPE=fixcas
+        ;;
+    *md*x*) # must come before overly simple MDCAS pattern
+        CLIENT_TYPE=mdx
+        ;;
+    apisvr*|atgqagc*|devenv*|dev[0-9]*svr|*mdgc*) # must come before MDCAS pattern
+        CLIENT_TYPE=tipsmdxadapter
+        ;;
+    *md*)
+        CLIENT_TYPE=mdcas
+        ;;
+    *)
+        # Can't identify type of this host
+        CLIENT_TYPE=""
+        ;;
+    esac
+}
+
+calcEnvironment()
+{
+    case $HOSTNAME in
+    api*|tstcas[1256]|democas*|sacas[34])
+        ENVIRONMENT=api
+        ;;
+    cert*|cme*)
+        ENVIRONMENT=cert
+        ;;
+    atg*|saatg*)
+        ENVIRONMENT=atg
+        ;;
+    dev[0-9]*|devenv*|dev[0-9]*svr)
+        ENVIRONMENT=test
+        ;;
+    sbt*|perf*|devcas5|tstcas[34])
+        ENVIRONMENT=perf
+        ;;
+    dr*)
+        ENVIRONMENT=dr
+        ;;
+    cas*|fix*|md*|prd*|sacas[12])
+        ENVIRONMENT=prod
+        ;;
+    *)
+        # Can't identify environment of this host
+        ENVIRONMENT=""
+        ;;
+    esac
+}
+
+calcSbtLogPartition()
+{
+    case $ENVIRONMENT in
+    api|atg|test)
+        SBT_LOG_PARTITION=/sbt/log/test
+        ;;
+    perf|prod|dr|cert)
+        SBT_LOG_PARTITION=/sbt/log/prod
+        ;;
+    *)
+        SBT_LOG_PARTITION=""
+        ;;
+    esac
+}
+
+usage()
+{
+    cat - << _USAGE_
+Usage: $PROG [-h hostname] [-b boxType] [-e environment]
+  boxType is cas | fix[cas] | sacas | mdcas | mdx
+  environment is prod | api | atg | cert | perf | test
+Examples:
+  $PROG
+  $PROG -h prdmdx04a
+  $PROG -b cas -e perf
+_USAGE_
+}
+
+readCommandLine()
+{
+    while [ $# -gt 0 ] ; do
+        case $1 in
+        -h)
+            shift
+            if [ -z $1 ] ; then
+                print -u2 "Missing value for -h switch"
+                usage
+                exit 1
+            fi
+            HOSTNAME=$1
+            ;;
+        -b)
+            shift
+            if [ -z $1 ] ; then
+                print -u2 "Missing value for -b switch"
+                usage
+                exit 1
+            fi
+            CLIENT_TYPE=$1
+            ;;
+        -e)
+            shift
+            if [ -z $1 ] ; then
+                print -u2 "Missing value for -e switch"
+                usage
+                exit 1
+            fi
+            ENVIRONMENT=$1
+            ;;
+        *)
+            print -u2 "Unknown switch '$1'"
+            usage
+            exit 1
+            ;;
+        esac
+        shift  # get past this parameter
+    done
+}
+
+
+# -------------------- Main program --------------------
+
+readCommandLine $*
+
+if [ -z "$HOSTNAME" ] ; then
+    HOSTNAME=$( hostname )
+fi
+if [ -z "$CLIENT_TYPE" ] ; then
+    calcClientType
+fi
+if [ -z "$ENVIRONMENT" ] ; then
+    calcEnvironment
+fi
+calcSbtLogPartition
+
+if [ -n "$HOSTNAME" ] ; then
+    echo "# $HOSTNAME"
+fi
+if [ -n "$CLIENT_TYPE" ] ; then
+    echo "export CLIENT_TYPE=$CLIENT_TYPE"
+else
+    echo "# CLIENT_TYPE unknown!"
+fi
+if [ -n "$SBT_LOG_PARTITION" ] ; then
+    echo "export SBT_LOG_PARTITION=$SBT_LOG_PARTITION"
+else
+    echo "# SBT_LOG_PARTITION unknown!"
+fi

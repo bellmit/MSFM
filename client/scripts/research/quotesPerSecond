@@ -1,0 +1,38 @@
+#!/usr/bin/perl -w
+# Count quotes handled each second
+# Usage: cat cas.log | $0
+
+sub report()
+{
+    my $now = $thisHour*10000 + $thisMin*100 + $thisSec;
+    return if ($now == 0) && ($count == 0);
+    $now = "0$now" if $thisHour < 10;
+    print "$now $count\n";
+}
+
+$thisHour = 0;
+$thisMin = 0;
+$thisSec = 0;
+$count = 0;
+
+while (<>)
+{
+    next unless /acceptQuotesForClass\S* returning/;
+    my ($hour, $min, $sec, $size);
+
+    /low information \S+ (\d+):(\d+):(\d+).*SZ:(\d+)/ &&
+     ($hour=0+$1, $min=0+$2, $sec=0+$3, $size=$4);
+
+    if ($hour != $thisHour || $min != $thisMin || $sec != $thisSec)
+    {
+        &report;
+
+        $count = 0;
+        $thisHour = $hour;
+        $thisMin = $min;
+        $thisSec = $sec;
+    }
+    $count += $size;
+}
+
+&report;

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalUserOrderServiceHome SYSTEM "../dtd/UserOrderServiceHome.dtd">
+<GlobalUserOrderServiceHome>
+	<UserOrderServiceHomeImpl name="DefaultService">
+		<UserOrderServiceHomeImplProperties>
+			<rateMonitorSessions>CFE_MAIN,W_MAIN,ONE_MAIN,W_STOCK,C2_MAIN,COF_MAIN</rateMonitorSessions>
+			<rateMonitorStartTime>8:15,8:25,8:15,7:45,9:15,8:25</rateMonitorStartTime>
+			<rateMonitorInterval>5000,5000,5000,5000,1000,5000</rateMonitorInterval>
+			<rateMonitorWindow>150,150,150,150,150,150</rateMonitorWindow>
+		</UserOrderServiceHomeImplProperties>
+	</UserOrderServiceHomeImpl>
+</GlobalUserOrderServiceHome>

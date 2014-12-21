@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalProductQueryServiceAdapterHome SYSTEM "../dtd/ProductQueryServiceAdapterHome.dtd">
+<GlobalProductQueryServiceAdapterHome>
+	<ProductQueryServiceAdapterHome name="DefaultService">
+		<ProductQueryServiceAdapterHomeProperties>
+			<cacheType>ehcache</cacheType>
+			<cacheDirectory>../{}/tmp</cacheDirectory>
+			<productCacheName>productCache</productCacheName>
+			<productClassCacheName>productClassCache</productClassCacheName>
+			<maxClassesToPreload>10000</maxClassesToPreload>
+		</ProductQueryServiceAdapterHomeProperties>
+	</ProductQueryServiceAdapterHome>
+</GlobalProductQueryServiceAdapterHome>

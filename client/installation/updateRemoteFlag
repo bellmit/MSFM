@@ -1,0 +1,35 @@
+#!/bin/ksh
+
+#
+# For whichever CAS is listed as remote, change the 
+# value of CAS_REMOTE to true in the setContext.v2cas01 file.
+#
+TIMESTAMP=`date +%Y%m%d%H%M%S`
+LOG=/tmp/`basename $0`_$TIMESTAMP.log
+
+if [ ! -e remoteCASes.list ]
+then
+	echo "The file remoteCASes.list is missing!" | tee -a $LOG
+	exit 1
+fi
+
+for cas in `cat remoteCASes.list | grep -v "^#"`
+do
+	if [ -e "${cas}.setContext.v2cas01" ]
+	then
+		echo trying to set remote to true for $cas 
+		cp -p ${cas}.setContext.v2cas01 ${cas}.setContext.v2cas01.tmp 2>&1
+		sed -e "s/CAS_REMOTE.*false/CAS_REMOTE=true/g" ${cas}.setContext.v2cas01.tmp > ${cas}.setContext.v2cas01 
+		diff ${cas}.setContext.v2cas01.tmp ${cas}.setContext.v2cas01
+		if [ $? -ne 0 ]
+		then
+			echo "${cas}.setContext.v2cas01 updated!"
+		else
+			echo "${cas}.setContext.v2cas01 was set already!"
+		fi
+		\rm -rf ${cas}.setContext.v2cas01.tmp
+	fi
+done > $LOG 2>&1 
+echo "Check log file $LOG for details..."
+exit 0
+

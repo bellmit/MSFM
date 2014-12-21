@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalRemoteMarketQueryHome SYSTEM "../dtd/RemoteMarketQueryHome.dtd">
+<GlobalRemoteMarketQueryHome>
+	<RemoteMarketQueryHomeImpl name="DefaultService">
+		<RemoteMarketQueryHomeImplProperties>
+            <marketDataCallbackTimeout>5000</marketDataCallbackTimeout>
+            <resubscribeInterval>60000</resubscribeInterval>
+            <maxResubscribeAttempts>3</maxResubscribeAttempts>
+		</RemoteMarketQueryHomeImplProperties>
+	</RemoteMarketQueryHomeImpl>
+</GlobalRemoteMarketQueryHome>

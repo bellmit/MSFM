@@ -1,0 +1,58 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the ProductConfigurationServiceHomeCachedProxyImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalProductConfigurationService (ClientProductConfigurationServiceHome*)>
+<!ATTLIST GlobalProductConfigurationService
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT ClientProductConfigurationServiceHome (ClientProductConfigurationServiceHomeProperties, ClientProductConfigurationServiceHomeCommands?)>
+<!ATTLIST ClientProductConfigurationServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT ClientProductConfigurationServiceHomeProperties (cacheDirectory,cacheBasename)>
+<!ATTLIST ClientProductConfigurationServiceHomeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT cacheDirectory (#PCDATA)>
+<!ATTLIST cacheDirectory
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "directory for persistent cache"
+>
+<!ELEMENT cacheBasename (#PCDATA)>
+<!ATTLIST cacheBasename
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "base name of disk file for persistent cache"
+>
+<!-- -->
+<!ELEMENT ClientProductConfigurationServiceHomeCommands (pcsCache)>
+<!ATTLIST ClientProductConfigurationServiceHomeCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT pcsCache (command, pattern?)>
+<!ATTLIST pcsCache
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "List keys in the PCS cache"
+>
+<!ELEMENT command (#PCDATA)>
+<!ATTLIST command
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "KEYS | COUNT | keyValue"
+>
+<!ELEMENT pattern (#PCDATA)>
+<!ATTLIST pattern
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "HELP | regex"
+>

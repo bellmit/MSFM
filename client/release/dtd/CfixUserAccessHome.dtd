@@ -1,0 +1,36 @@
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the WebServerHomeImpl -->
+<!-- @author William Wei-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCfixUserAccessHome (CfixUserAccessHomeImpl*)>
+<!ATTLIST GlobalCfixUserAccessHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixUserAccessHomeImpl (CfixUserAccessHomeImplProperties)>
+<!ATTLIST CfixUserAccessHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT CfixUserAccessHomeImplProperties (session_mode,heartbeat_timeout?)>
+<!ATTLIST CfixUserAccessHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT session_mode (#PCDATA)>
+<!ATTLIST session_mode
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "LoginSessionMode"
+>
+<!ELEMENT heartbeat_timeout (#PCDATA)>
+<!ATTLIST heartbeat_timeout  
+	type %typeConstraints;  #FIXED 'ManagedProperty'
+	mode %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED 'Heartbeat timeout value' 
+>

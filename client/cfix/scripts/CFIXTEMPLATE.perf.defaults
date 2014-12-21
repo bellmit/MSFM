@@ -1,0 +1,79 @@
+# Settings for CFIX (FIX 4.2 Market Data)
+#
+
+### AVAILABLE DEFAULTS
+#
+###
+### Can be overridded by copying and replacing "defaults.connection.MarketData_Fix42" with connection name (eg "connection.PORT")
+###
+### defaults.connection.MarketData_Fix42.cfix.fixNetworkAcceptor.fixSessionManagerClass=com.cboe.cfix.fix.session.FixSessionManager
+### defaults.connection.MarketData_Fix42.cfix.fixNetworkAcceptor.fixSessionThreadPoolConfigurationPrefix=defaults
+### defaults.connection.MarketData_Fix42.cfix.fixNetworkAcceptor.oneConnectionAtATime=false
+### defaults.connection.MarketData_Fix42.cfix.fixNetworkAcceptor.retryListening=true
+### defaults.connection.MarketData_Fix42.cfix.fixNetworkAcceptor.startUpAtHHMM=00:00
+### defaults.connection.MarketData_Fix42.cfix.fixNetworkAcceptor.preLogonSocketTimeout=15
+### defaults.connection.MarketData_Fix42.cfix.fixSessionManager.fixMessageFactoryClass=com.cboe.cfix.fix.fix42.generated.messages.FixMessageFactory
+### defaults.connection.MarketData_Fix42.cfix.fixSessionManager.fixSessionClass=com.cboe.cfix.fix.fix42.session.FixSession
+
+###
+### Can be overridded by copying and replacing "defaults.session.MarketData_Fix42" with session name (eg "session.SENDER")
+###
+### defaults.session.MarketData_Fix42.cfix.fixSession.fixSessionInformationClass=com.cboe.cfix.fix.fix42.session.FixSessionInformation
+### defaults.session.MarketData_Fix42.cfix.fixSession.skipCompIdValidation=false
+### defaults.session.MarketData_Fix42.cfix.fixSession.unchangeableHeartBeatInterval=false
+### defaults.session.MarketData_Fix42.cfix.fixSession.resetOnReconnection=false
+### defaults.session.MarketData_Fix42.cfix.fixSession.heartBeatInterval=30
+### defaults.session.MarketData_Fix42.cfix.fixSession.maxOutstandingTestRequests=5
+### defaults.session.MarketData_Fix42.cfix.fixSession.maxSendingTimeDifferenceInSeconds=1200000000
+### defaults.session.MarketData_Fix42.cfix.fixSession.startUpAtHHMM=00:00
+### defaults.session.MarketData_Fix42.cfix.fixSession.resendList.storedMsgTypes=
+### defaults.session.MarketData_Fix42.cfix.fixSession.description=No Description Specified
+### defaults.session.MarketData_Fix42.cfix.fixSession.users=
+### defaults.session.MarketData_Fix42.cfix.fixSession.suppressSentFixMsgTypes=
+### defaults.session.MarketData_Fix42.cfix.fixSession.suppressRecvFixMsgTypes=
+
+### Tourist
+#
+defaults.tourist.defaultsPrefix=defaults.tourist
+defaults.tourist.cfix.touristNetworkAcceptor.logOutput=true
+defaults.tourist.cfix.touristNetworkAcceptor.retryListening=true
+defaults.tourist.cfix.runnableInitializableClass=com.cboe.client.util.tourist.TouristNetworkAcceptor
+
+### Log.isDebugOn()
+#
+log.debug=false
+
+### FIX MARKET DATA DISPATCHER DEFAULTS
+#
+##--- options for marketDataDispatcher.debugFlags are DEBUG_OFF,DEBUG_ALL,DEBUG_SUBSCRIBE,DEBUG_ACCEPT,DEBUG_CHANNELUPDATE,DEBUG_CHANNELUPDATEDECODE
+defaults.marketDataDispatcher.debugFlags=DEBUG_OFF
+
+### FIX SESSION THREAD POOL SETTINGS -- Each FIX session gets its own pool with these parameters
+#
+defaults.adaptiveThreadPool.idleThreadRemovalSeconds=10
+defaults.adaptiveThreadPool.maximumPoolSize=6
+defaults.adaptiveThreadPool.minimumPoolSize=2
+defaults.adaptiveThreadPool.startPoolSize=3
+defaults.adaptiveThreadPool.shrinkSleepTime=10000
+defaults.adaptiveThreadPool.warmPoolSize=0
+defaults.adaptiveThreadPool.debugFlags=0
+
+### FIX CONNECTION DEFAULTS
+#
+defaults.connection.defaultsPrefix=defaults.connection.MarketData_Fix42
+defaults.connection.MarketData_Fix42.cfix.runnableInitializableClass=com.cboe.cfix.fix.net.FixNetworkAcceptor
+##--- options for connection.MarketData_Fix42.cfix.fixSession.debugFlags are DEBUG_OFF,DEBUG_ALL,SESSION_SHOW_RAW_SENT_MESSAGES,SESSION_SHOW_RAW_RECEIVED_MESSAGES
+defaults.connection.MarketData_Fix42.cfix.fixSession.debugFlags=SESSION_SHOW_RAW_SENT_MESSAGES,SESSION_SHOW_RAW_RECEIVED_MESSAGES
+
+### FIX SESSION DEFAULTS
+#defaults.session.MarketData_Fix42.cfix.fixSession.overlayPolicy=UserSelectedOverlay
+#defaults.session.MarketData_Fix42.cfix.fixSession.overlayPolicy=AlwaysOverlay
+#defaults.session.MarketData_Fix42.cfix.fixSession.overlayPolicy=NeverOverlay
+#
+defaults.session.defaultsPrefix=defaults.session.MarketData_Fix42
+#defaults.session.MarketData_Fix42.cfix.fixSession.suppressSentFixMsgTypes=W,0,1
+defaults.session.MarketData_Fix42.cfix.fixSession.suppressSentFixMsgTypes=W,0,1
+defaults.session.MarketData_Fix42.cfix.fixSession.suppressRecvFixMsgTypes=
+defaults.session.MarketData_Fix42.cfix.fixSession.overlayPolicy=NeverOverlay
+##--- options for cfix.fixSession.debugFlags are DEBUG_OFF,DEBUG_ALL,SESSION_SHOW_RAW_SENT_MESSAGES SESSION_SHOW_RAW_RECEIVED_MESSAGES [ expensive SESSION_DECODE_RECEIVED_MESSAGES MARKET_DATA_CONSUMER_ACCEPT WRITER_SHOW_EVENT_CHANNEL ] [very expensive SESSION_DECODE_SENT_MESSAGES MARKET_DATA_DECODER ]
+defaults.session.MarketData_Fix42.cfix.fixSession.debugFlags=SESSION_SHOW_RAW_SENT_MESSAGES,SESSION_SHOW_RAW_RECEIVED_MESSAGES

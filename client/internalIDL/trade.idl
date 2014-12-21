@@ -1,0 +1,348 @@
+#ifndef TRADE_IDL
+#define TRADE_IDL
+
+#include "cmiUtil.idl"
+#include "cmiSession.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+#include "cmiUser.idl"
+#include "cmiConstants.idl"
+#include "session.idl"
+#include "Util.idl"
+
+module trade
+{
+    typedef char TradeType;
+    typedef char TradeReportEntryType;
+#pragma use_lookup_for_string ON
+    typedef string TradeSource;
+#pragma use_lookup_for_string OFF
+    typedef char ClearingType;
+    typedef short DaysAheadType;
+    typedef short SupressionReason;
+    typedef string Exchange;
+    typedef string User;
+    typedef string UserGroup;
+    typedef sequence<Exchange> ExchangeSequence;
+    typedef sequence<User> UserSequence;
+    typedef sequence<UserGroup> UserGroupSequence;
+    
+	struct PersistentBObjectStruct 
+	{
+		boolean insertOrUpdate;	// true - insert, false - update
+		string  objectName;
+		sequence<octet>  serialized_object;
+	};
+
+    typedef sequence<PersistentBObjectStruct> PersistentBObjectStructSequence;
+
+	struct DB_TradeReportStruct 
+	{
+		boolean		insertOrUpdate;
+		cmiUtil::CboeIdStruct	databaseIdentifier;
+		long	transactionSequenceNumber;
+		long	quantity;
+		long	time;
+		cmiUtil::PriceStruct	price;
+		cmiProduct::ProductKey	product;
+		long	parent;
+		string	prefix;
+		TradeSource	tradeSource;
+		TradeType	trade_type;
+		string	settlementDate;
+		string	reportedTradeDate;
+		long	transactionTime;
+		char	asOfFlag;
+		string	extensions;
+	};
+
+    typedef sequence<DB_TradeReportStruct> DB_TradeReportStructSequence;
+
+	struct DB_TradeReportEntryStruct 
+	{
+		boolean		insertOrUpdate;
+		cmiUtil::CboeIdStruct	databaseIdentifier;
+		long	matchedSequenceNumber;
+		char	active;
+		char	entry_type;
+		long	entry_time;
+		char	last_entry_type;
+		long	last_update_time;
+		long	buyerUserKey;
+		string	buyer;
+		string	buy_broker_exch;
+		long	sellerUserKey;
+		string	seller;
+		string	sell_broker_exch;
+		string	buyFirm;
+		string	buy_firm_exch;
+		string	buy_firm_branch;
+		long	buy_firm_branch_seq_no;
+		long	buyOrderId;
+		long	buyQuoteId;
+		char	buyReinstatable;
+		char	buyerOriginType;
+		string	buyerCmta;
+		string	buy_cmta_exch;
+		char	buyerPositionEffect;
+		string	buy_acct;
+		string	buyerSubAccount;
+		string	buyerOptionalData;
+		char	buy_auct_trade_ind;
+		string	buy_orderdate;
+		string	buy_orsid;
+		string	sellFirm;
+		string	sell_firm_exch;
+		string	sell_firm_branch;
+		long	sell_firm_branch_seq_no;
+		long	sellOrderId;
+		long	sellQuoteId;
+		char	sellReinstatable;
+		char	sellerOriginType;
+		string	sellerCmta;
+		string	sell_cmta_exch;
+		char	sellerPositionEffect;
+		string	sell_acct;
+		string	sellerSubAccount;
+		string	sellerOptionalData;
+		char	sell_auct_trade_ind;
+		string	sell_orderdate;
+		string	sell_orsid;
+		long	quantity;
+		long	tradeReportForEntry;
+		string	session_name;
+		string	buy_corr_id;
+		string	buy_originator;
+		string	buy_originator_exch;
+		string	sell_corr_id;
+		string	sell_originator;
+		string	sell_originator_exch;
+		char	buy_bill_type_code;
+		char	sell_bill_type_code;
+		long	round_lot_qty;
+		char	buyer_clear_type;
+		char	seller_clear_type;
+		string	extensions;
+		string	buy_away_exch_text;
+		string	sell_away_exch_text;
+		string	buyer_session_name;
+		string	seller_session_name;
+		long	buyerExternalOrderId;
+		long	sellerExternalOrderId;
+	};
+
+    typedef sequence<DB_TradeReportEntryStruct> DB_TradeReportEntryStructSequence;
+
+    struct AtomicTradeStruct {
+        cmiUtil::CboeIdStruct atomicTradeId;
+	long matchedSequenceNumber;
+        boolean active;
+        cmiUtil::DateTimeStruct entryTime;
+        TradeReportEntryType entryType;
+        cmiUtil::DateTimeStruct lastUpdateTime;
+        TradeReportEntryType lastEntryType;
+        long quantity;
+        string sessionName;
+        char buyerOriginType;
+        string buyerFirmBranch;               /* orders only */
+        long buyerFirmBranchSequenceNumber;   /* orders only */
+        cmiUser::ExchangeFirmStruct buyerCmta;         
+        string buyerCorrespondentId;
+        char buyerPositionEffect;
+        string buyerAccount;
+        string buyerSubaccount;
+        cmiUser::ExchangeAcronymStruct buyerBroker;      
+        cmiUser::ExchangeAcronymStruct buyerOriginator;
+        cmiUser::ExchangeFirmStruct buyerFirm;
+        string buyerOptionalData;
+        cmiUtil::CboeIdStruct buyerOrderOrQuoteKey;
+        boolean buyerOrderOrQuote;
+        boolean reinstatableForBuyer;
+        char sellerOriginType;
+        string sellerFirmBranch;               /* orders only */
+        long sellerFirmBranchSequenceNumber;   /* orders only */
+        cmiUser::ExchangeFirmStruct sellerCmta;        
+        string sellerCorrespondentId;
+        char sellerPositionEffect;
+        string sellerAccount;
+        string sellerSubaccount;
+        cmiUser::ExchangeAcronymStruct sellerBroker;
+        cmiUser::ExchangeAcronymStruct sellerOriginator;
+        cmiUser::ExchangeFirmStruct sellerFirm;         
+        string sellerOptionalData;
+        cmiUtil::CboeIdStruct sellerOrderOrQuoteKey;
+        boolean sellerOrderOrQuote;
+        boolean reinstatableForSeller;
+     };
+
+    typedef sequence <AtomicTradeStruct> AtomicTradeStructSequence;
+
+    struct BustTradeStruct {
+        cmiUtil::CboeIdStruct  atomicTradeId;
+        long bustedQuantity;
+        boolean buyerReinstateRequested;
+        boolean sellerReinstateRequested;
+   };
+
+    typedef sequence <BustTradeStruct> BustTradeStructSequence;
+
+    struct MultipleTradeBustStruct  {
+        cmiUtil::CboeIdStruct tradeId;
+        trade::BustTradeStructSequence tradeBustDetail;
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName tradingSessionName;
+        string reason;
+    };
+    typedef sequence <MultipleTradeBustStruct> MultipleTradeBustStructSequence;
+    
+    struct TradeBustResponseStruct  
+    {
+    	cmiUtil::CboeIdStruct tradeId;
+    	string serverId;
+        util::ServerResponseCode errorCode;
+        string description;    	
+    };   
+    typedef sequence <TradeBustResponseStruct> TradeBustResponseStructSequence;
+    
+    struct TradeReportStruct {
+        long quantity;
+        cmiUtil::PriceStruct price;
+        session::TradingSessionName sessionName;
+        cmiProduct::ProductKey productKey;
+        TradeSource tradeSource;
+        cmiUtil::CboeIdStruct tradeId;
+        trade::TradeType tradeType;
+        boolean bustable;
+        cmiUtil::DateStruct businessDate;
+        cmiUtil::DateTimeStruct timeTraded;
+        AtomicTradeStructSequence parties;
+    };
+
+    typedef sequence <TradeReportStruct>  TradeReportStructSequence;
+
+	struct RelatedTradeReportStruct {
+		TradeReportStructSequence relatedTradeReports;
+		long parentReportIndex;
+	};
+	
+	typedef sequence <RelatedTradeReportStruct>  RelatedTradeReportStructSequence;
+	
+    struct TradeReportSummaryStruct {
+        cmiUtil::CboeIdStruct tradeId;
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName session;
+        cmiUtil::DateTimeStruct timeTraded; 
+        boolean active;       
+    };
+    
+    typedef sequence <TradeReportSummaryStruct> TradeReportSummaryStructSequence;
+
+	struct RelatedTradeReportSummaryStruct {
+		TradeReportSummaryStructSequence relatedTradeReports;
+		long parentReportIndex;
+		sequence<long> extraSearchReportIndexes;
+	};
+	
+	typedef sequence <RelatedTradeReportSummaryStruct> RelatedTradeReportSummaryStructSequence;
+		
+    struct TradeReportSettlementStruct {
+        cmiUtil::DateStruct settlementDate;
+        cmiUtil::DateTimeStruct transactionTime;
+        boolean asOfFlag;
+    };
+
+    struct TradeReportStructV2 {
+        trade::TradeReportStruct tradeReport;
+        trade::TradeReportSettlementStruct settlementTradeReport;
+    };
+
+    typedef sequence <TradeReportStructV2>  TradeReportStructV2Sequence;
+
+/* CBSX Billing Enhancements and Realtime Clearing  */
+/* Additional Struct added for Billing and realtime clearing */
+    struct AtomicTradeBillingStruct { 
+        cmiUtil::CboeIdStruct atomicTradeId;
+        cmiConstants::BillingTypeIndicator    buyBillingType;
+        cmiConstants::BillingTypeIndicator    sellBillingType;
+        long    roundLotQuantity;
+        trade::ClearingType buyerClearingType;
+        trade::ClearingType sellerClearingType;
+        string  buyAwayExchanges;
+        string  sellAwayExchanges;
+        string  extensions;         /* RESERVED FOR FUTURE USE */
+    };
+    
+    typedef sequence <AtomicTradeBillingStruct> AtomicTradeBillingStructSequence;
+    
+    struct AtomicCmtaAllocationStruct { 
+        cmiUtil::CboeIdStruct atomicTradeId;      
+        cmiUser::ExchangeAcronymStruct buyerAwayExchangeAcronym;
+        cmiUser::ExchangeAcronymStruct sellerAwayExchangeAcronym;
+        string buyerOrderDate;
+        string sellerOrderDate;
+        string buyerOrsid;
+        string sellerOrsid;
+        SupressionReason buyerSupressionReason; //This will be place holder field for changes to be made by OHS
+        SupressionReason sellerSupressionReason; //This will be place holder field for changes to be made by OHS
+    };
+
+      typedef sequence <AtomicCmtaAllocationStruct> AtomicCmtaAllocationStructSequence;
+
+     struct CmtaAllocationStruct {
+         AtomicCmtaAllocationStructSequence cmta;
+    };
+ 
+    struct TradeReportBillingStruct{ 
+        cmiUtil::CboeIdStruct tradeId;
+        AtomicTradeBillingStructSequence partiesBillingType;
+        string  extensions;   /* RESERVED FOR FUTURE USE */
+        CmtaAllocationStruct  cmtaStruct; /* This is new addition to existing struct  */        
+    };
+
+    struct TradeReportStructV3 {
+        trade::TradeReportStruct tradeReport;
+        trade::TradeReportSettlementStruct settlementTradeReport;
+        trade::TradeReportBillingStruct billingInfo;
+    };
+
+    typedef sequence <TradeReportStructV3>  TradeReportStructV3Sequence;
+    
+    struct ErrorFlagStruct
+    {
+        long highBits;
+        long lowBits;
+    };
+    typedef sequence <ErrorFlagStruct> ErrorFlagStructSequence;
+
+    struct AtomicTradeAcknowledgmentStruct
+    {
+        char entryType;
+        long matchedSequenceNumber;
+        cmiUtil::CboeIdStruct atomicTradeId;
+        long productKey;
+        long classKey;
+        long sourceGroup;
+        boolean processOk;
+        ErrorFlagStruct errorFlags;
+    };
+    typedef sequence <AtomicTradeAcknowledgmentStruct> AtomicTradeAcknowledgmentStructSequence;
+
+    typedef sequence <char> ManualReportTypeSequence;
+    struct ClearingTradeReportStruct
+    {
+        trade::TradeReportStruct tradeReport;
+        trade::AtomicCmtaAllocationStructSequence atomicCmtaAllocations;
+        boolean isParTrade;
+        char tradedSide;
+        trade::ManualReportTypeSequence manualReportTypes;
+    };
+    typedef sequence <ClearingTradeReportStruct> ClearingTradeReportStructSequence;
+	
+    struct ManualTradeReportStruct
+    {
+        trade::ClearingTradeReportStructSequence tradeReports;
+    };
+};
+
+#endif
+

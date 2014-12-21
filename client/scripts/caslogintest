@@ -1,0 +1,33 @@
+#!/bin/ksh
+# Run a small test of basic CAS function. Script takes no command-line args.
+# To change invocation, modify the "java ... LoginTest" command.
+
+if [ -z $RUN_DIR ] ; then
+    cd
+    . ./.profile >/dev/null 2>&1
+fi
+ 
+cd $RUN_DIR
+
+# Look at file processes$root().child(1,Process,name,cas01v2`hostname`).xml
+# The characters $ ( ) are all special to shell, so use a file pattern
+# instead of the full name for our convenience
+
+HOSTNAME=`hostname`
+classpath=`grep classpath ../v2run_dir/properties/xml/processes.${CLIENT_TYPE}.xml | sed 's#</JavaOptionalProperty>##;s#^.*<JavaOptionalProperty.*>##'`
+classpath="${classpath}:../v2run_dir/tmp/LoginTest.jar"
+classpath=$( echo "$classpath" | sed 's/\${CLIENT_DIR}/v2run_dir/g' )
+
+# We can define the following:
+# -DTest.CasIp=           (default is 127.0.0.1)
+# -DTest.CasPort=         (default is 8003)
+# -DTest.LoginMode=Production|StandAloneTest|NetworkTest
+# -DTest.TradingSession=  (no default)
+# -DTest.ClassName=       (no default)
+# -DTest.ProductType=Equity|Future|Option
+
+java $classpath \
+  com.cboe.application.test.LoginTest X01
+
+result=$?
+exit $result

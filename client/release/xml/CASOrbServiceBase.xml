@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Roy Gautam (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalOrbService SYSTEM "../dtd/OrbService.dtd">
+<GlobalOrbService>
+	<OrbServicePOAImpl name="RootOnly">
+		<OrbServicePOAImplProperties>
+			<poolSize>10</poolSize>
+		</OrbServicePOAImplProperties>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="CAS">
+		<OrbServicePOAImplProperties>
+			<poolSize>10</poolSize>
+		</OrbServicePOAImplProperties>
+	</OrbServicePOAImpl>
+</GlobalOrbService>

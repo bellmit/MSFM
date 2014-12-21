@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="client_Java/impls"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="client_cfix_release/cfix_interceptors.jar"/>
+	<classpathentry exported="true" kind="lib" path="domain_event_release/event_idl.jar" sourcepath="domain_Java/interfaces"/>
+	<classpathentry exported="true" kind="lib" path="domain_release/domain_idl.jar" sourcepath="domain_idl_java/trade.ida.out"/>
+	<classpathentry exported="true" kind="lib" path="domain_release/domain_xml.jar"/>
+	<classpathentry exported="true" kind="lib" path="cmi_release/cmi_idl.jar" sourcepath="cmi_release/cmi_idl_java.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jaxb/jaxb-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jaxb/jaxb-impl.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jaxb/jaxb-libs.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jaxb/jaxb-xjc.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jwsdpShared/xsdlib.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jwsdpShared/jax-qname.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jwsdpShared/commons-logging.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jwsdpShared/namespace.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_jwsdpShared/relaxngDatatype.jar"/>
+	<classpathentry exported="true" kind="lib" path="tpt_tools/ehcache/run_dir/ehcache-1.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="tpt_tools/jcache/run_dir/jcache-1.0-dev-3.jar"/>
+	<classpathentry exported="true" kind="lib" path="jcache_release/jcache_impls.jar"/>
+	<classpathentry exported="true" kind="lib" path="SessionManagementService_release/SessionManagementService.jar"/>
+	<classpathentry exported="true" kind="lib" path="sysAdminClient_release/sysAdminClient_idl.jar"/>
+	<classpathentry exported="true" kind="lib" path="objectwave_release/objectwave.jar"/>
+	<classpathentry exported="true" kind="lib" path="eis_release/eis_interfaces.jar"/>
+	<classpathentry exported="true" kind="lib" path="FoundationFramework_release/FoundationFramework.jar"/>
+	<classpathentry exported="true" kind="lib" path="client_tools/junit38.jar"/>
+	<classpathentry exported="true" kind="lib" path="MessagingSystem_release/MessagingSystem.jar"/>
+	<classpathentry exported="true" kind="lib" path="common_release/common.jar"/>
+	<classpathentry exported="true" kind="lib" path="LoggingService_release/LoggingService.jar"/>
+	<classpathentry exported="true" kind="lib" path="LoggingService_release/LoggingServiceIDL.jar"/>
+	<classpathentry exported="true" kind="lib" path="InfraVerity_release/InfraVerityIDLClasses.jar"/>
+	<classpathentry exported="true" kind="lib" path="jgl_release/jgl.jar"/>
+	<classpathentry exported="true" kind="lib" path="tools_java_release/jawall.jar"/>
+	<classpathentry exported="true" kind="lib" path="tools_java_release/xml4j.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_release/xmlParserAPIs.jar"/>
+	<classpathentry exported="true" kind="lib" path="XMLParser_release/xercesImpl.jar"/>
+	<classpathentry exported="true" kind="lib" path="server_release/server_interfaces.jar" sourcepath="server_Java/interfaces"/>
+	<classpathentry exported="true" kind="lib" path="server_release/server_idl.jar"/>
+	<classpathentry exported="true" kind="lib" path="server_release/server_interceptors.jar"/>
+	<classpathentry kind="lib" path="domain_release/domain_impls.jar" sourcepath="domain_Java/impls"/>
+	<classpathentry kind="lib" path="domain_release/domain_interfaces.jar" sourcepath="domain_release/domain_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain_event_release/event_impls.jar" sourcepath="domain_event_Java/impls"/>
+	<classpathentry kind="lib" path="domain_event_release/event_interfaces.jar" sourcepath="domain_event_Java/interfaces"/>
+	<classpathentry kind="lib" path="eis_release/eis_impls.jar"/>
+	<classpathentry kind="lib" path="server_release/server_impls.jar" sourcepath="server_Java/impls"/>
+	<classpathentry kind="lib" path="server_release/server_common.jar"/>
+	<classpathentry kind="lib" path="server_release/server_proxies.jar" sourcepath="server_Java/proxies"/>
+	<classpathentry kind="lib" path="server_release/server_status.jar"/>
+	<classpathentry kind="lib" path="sysAdminClient_release/sysAdminClient_impls.jar"/>
+	<classpathentry kind="lib" path="sysAdminClient_release/sysAdminClient_interceptors.jar"/>
+	<classpathentry kind="lib" path="sysAdminClient_release/sysAdminClient_interfaces.jar"/>
+	<classpathentry kind="lib" path="sysAdminClient_release/sysAdminClient_proxies.jar"/>
+	<classpathentry kind="lib" path="CommonFacilities_release/CommonFacilities.jar" sourcepath="CommonFacilities_Java"/>
+	<classpathentry kind="lib" path="client_cfix_release/cfix_impls.jar"/>
+	<classpathentry kind="lib" path="client_cfix_release/cfix_interfaces.jar"/>
+	<classpathentry kind="lib" path="jms_release/jms.jar"/>
+	<classpathentry kind="lib" path="InfraVerity_release/InfraUtility.jar"/>
+	<classpathentry kind="lib" path="Talirain_release/ss.jar"/>
+	<classpathentry kind="lib" path="InfraVerity_release/InfraVerityIDL.jar"/>
+	<classpathentry kind="lib" path="InfraVerity_release/InfraVerity.jar"/>
+	<classpathentry kind="lib" path="client_release/client_common.jar"/>
+	<classpathentry kind="lib" path="client_release/client_commonTranslator.jar"/>
+	<classpathentry kind="lib" path="client_release/client_fixTranslator.jar"/>
+	<classpathentry kind="lib" path="client_release/client_idl_java.jar"/>
+	<classpathentry kind="lib" path="client_release/client_idl.jar"/>
+	<classpathentry kind="lib" path="client_release/client_instrumentationTranslator.jar"/>
+	<classpathentry kind="lib" path="client_release/client_interceptors.jar"/>
+	<classpathentry kind="lib" path="client_release/client_interfaces.jar" sourcepath="client_Java/interfaces"/>
+	<classpathentry kind="lib" path="client_release/client_intermarketTranslator.jar"/>
+	<classpathentry kind="lib" path="client_release/client_internal_idl_java.jar"/>
+	<classpathentry kind="lib" path="client_release/client_internal_idl.jar"/>
+	<classpathentry kind="lib" path="client_release/client_internalTranslator.jar"/>
+	<classpathentry kind="lib" path="client_release/client_messagingTranslator.jar"/>
+	<classpathentry kind="lib" path="client_release/client_translator.jar"/>
+	<classpathentry kind="lib" path="client_release/ClientPatch.jar"/>
+	<classpathentry kind="lib" path="tools_junit_release/junit.jar"/>
+	<classpathentry kind="lib" path="tools_java_release/junit37.jar"/>
+	<classpathentry kind="lib" path="jgl_release"/>
+	<classpathentry kind="lib" path="xml_parser/relaxngDatatype.jar"/>
+	<classpathentry kind="lib" path="xml_parser/xsdlib.jar"/>
+	<classpathentry kind="lib" path="tpt_tools/ehcache/run_dir/ehcache.jar"/>
+	<classpathentry kind="lib" path="SystemManagement_release/SystemManagement.jar"/>
+	<classpathentry kind="lib" path="SystemManagement_release/SystemManagementIDL.jar"/>
+	<classpathentry kind="lib" path="SystemManagement_release/SystemManagementIDLClasses.jar"/>
+	<classpathentry kind="lib" path="OMG_release/OMGBase.jar"/>
+	<classpathentry kind="lib" path="OMG_release/OMGBaseClasses.jar"/>
+	<classpathentry kind="lib" path="OMG_release/OMGService.jar"/>
+	<classpathentry kind="lib" path="OMG_release/OMGServiceClasses.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

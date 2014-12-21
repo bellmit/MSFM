@@ -1,0 +1,45 @@
+<!-- edited with XML Spy v3.5 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the OrderQueryHomeImpl -->
+<!-- @author  -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalUserOrderQueryHome (UserOrderQueryHomeImpl*)>
+<!ATTLIST GlobalUserOrderQueryHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT UserOrderQueryHomeImpl (UserOrderQueryHomeImplProperties?)>
+<!ATTLIST UserOrderQueryHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT UserOrderQueryHomeImplProperties (useOrderQueryService, filterAuctionEventsByUser, auctionCallbackTimeout)>
+<!ATTLIST UserOrderQueryHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT useOrderQueryService (#PCDATA)>
+<!ATTLIST useOrderQueryService
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT filterAuctionEventsByUser (#PCDATA)>
+<!ATTLIST filterAuctionEventsByUser
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT auctionCallbackTimeout (#PCDATA)>
+<!ATTLIST auctionCallbackTimeout
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Defines the timeout value of auction callback objects."
+>

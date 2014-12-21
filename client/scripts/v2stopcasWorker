@@ -1,0 +1,7 @@
+#!/bin/ksh
+# v2stopcas - script to stop cas01
+
+THIS_CLIENT=cas
+
+. $( dirname $0 )/ClientFunctions
+stopClient

@@ -1,0 +1,39 @@
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!-- This provides configuration information for the CasCoppeliaAdapterHomeImpl -->
+<!-- @author-->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCfixHome (CfixHomeImpl*)>
+<!ATTLIST GlobalCfixHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixHomeImpl (CfixHomeImplProperties)>
+<!ATTLIST CfixHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CfixHomeImplProperties (CfixConfigurationFile?, cfixSubscriptionMode?, isC2Session?)>
+<!ATTLIST CfixHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT CfixConfigurationFile (#PCDATA)>
+<!ATTLIST CfixConfigurationFile type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The configuration file for Cfix server."
+>
+<!ELEMENT cfixSubscriptionMode (#PCDATA)>
+<!ATTLIST cfixSubscriptionMode type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The subscription mode - Event Channel or MDX - for CFIX."
+>
+<!ELEMENT isC2Session (#PCDATA)>
+<!ATTLIST isC2Session type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The indicator for C2 for CFIX."
+>

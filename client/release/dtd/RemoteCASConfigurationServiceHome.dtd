@@ -1,0 +1,34 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalRemoteCASConfigurationServiceHome (RemoteCASConfigurationServiceHomeImpl*)>
+<!ATTLIST GlobalRemoteCASConfigurationServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT RemoteCASConfigurationServiceHomeImpl (RemoteCASConfigurationServiceHomeImplCommands?)>
+<!ATTLIST RemoteCASConfigurationServiceHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT RemoteCASConfigurationServiceHomeImplCommands (publishExpectedOpeningPrice, publishLargeTradeLastSale)>
+<!ATTLIST RemoteCASConfigurationServiceHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT publishExpectedOpeningPrice (action)>
+<!ATTLIST publishExpectedOpeningPrice
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Print status for all channel adapters"
+>
+<!ELEMENT action (#PCDATA)>
+<!ATTLIST action
+	type CDATA #FIXED "ManagedParameter"
+	parameterType CDATA #FIXED "string"
+	description CDATA #FIXED "start | stop | status"
+>
+<!ELEMENT publishLargeTradeLastSale (action)>
+<!ATTLIST publishLargeTradeLastSale
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Display list of active users"
+>

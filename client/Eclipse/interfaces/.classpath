@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="interfaces"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="client/client_interfaces.jar"/>
+	<classpathentry kind="lib" path="cmi/jars/cmi_idl_java.jar"/>
+	<classpathentry kind="lib" path="CommonFacilities/CommonFacilities.jar"/>
+	<classpathentry kind="lib" path="domain/domain_idl.jar"/>
+	<classpathentry kind="lib" path="domain/domain_interfaces.jar"/>
+	<classpathentry kind="lib" path="domain_event/event_interfaces.jar"/>
+	<classpathentry kind="lib" path="cmi/jars/cmi_idl.jar"/>
+	<classpathentry kind="lib" path="domain_event/event_idl_java.jar"/>
+	<classpathentry kind="lib" path="client/client_internal_idl_java.jar"/>
+	<classpathentry kind="lib" path="client/client_idl.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

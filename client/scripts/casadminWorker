@@ -1,0 +1,21 @@
+#!/bin/ksh
+
+# -------------------- Constants --------------------
+
+# Error codes from /usr/include/errno.h
+EINVAL=22
+
+# -------------------- Main Program --------------------
+
+if [ -z $1 ] ; then
+    PROG=`basename $0`
+    PROG=${PROG%Worker}
+    print -u2 "Usage: $PROG command [args...]"
+    print -u2 "Example:"
+    print -u2 "       $PROG help"
+    exit $EINVAL
+fi
+
+ORBNAME=${SBT_PREFIX}cas01v2${HOSTNAME}
+
+ar ${ORBNAME} $*

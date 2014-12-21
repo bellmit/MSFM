@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Chicago Board Options Exchange (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalCommandCallbackService SYSTEM "../dtd/CommandCallback.dtd">
+<GlobalCommandCallbackService>
+	<CommandCallbackService name="CAS">
+		<CommandCallbackServiceProperties>
+			<HTTPPort>&lt;prefixConsolePort&gt;</HTTPPort>
+		</CommandCallbackServiceProperties>
+	</CommandCallbackService>
+</GlobalCommandCallbackService>
