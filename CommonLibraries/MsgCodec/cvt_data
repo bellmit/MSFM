@@ -1,0 +1,136 @@
+EXPORT_FORMAT 5
+GLOBALS_BEGIN
+ExportFromDir 18:/vobs/dte/MsgCodec
+NumElements 2
+NumVersions 7
+ExporterKind 7
+GLOBALS_END
+TYPES_BEGIN
+BRTYPE_BEGIN
+BrType 23:msgcodec_0.0_FAST_CODEC
+BRTYPE_END
+ELTYPE_BEGIN
+ElType 3:xml
+ELTYPE_END
+TYPES_END
+DIR_BEGIN
+DirName 1:.
+DIR_END
+DIR_BEGIN
+DirName 4:FAST
+DIR_END
+DIR_BEGIN
+DirName 9:FAST/java
+DIR_END
+DIR_BEGIN
+DirName 12:FAST/release
+DIR_END
+DIR_BEGIN
+DirName 9:FAST/test
+DIR_END
+ELEMENT_BEGIN
+Name 13:FAST/.project
+ElType 3:xml
+Mode 33060
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077346
+Comment 0:
+VERSION_BEGIN
+VersionId 7:/main/0
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077346
+ExtractFile 22:FAST/.project@@/main/0
+SubBranch 23:msgcodec_0.0_FAST_CODEC
+Comment 0:
+VERSION_END
+VERSION_BEGIN
+VersionId 31:/main/msgcodec_0.0_FAST_CODEC/0
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077346
+OnBranch 23:msgcodec_0.0_FAST_CODEC
+ExtractFile 46:FAST/.project@@/main/msgcodec_0.0_FAST_CODEC/0
+Comment 0:
+VERSION_END
+VERSION_BEGIN
+VersionId 31:/main/msgcodec_0.0_FAST_CODEC/1
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077346
+OnBranch 23:msgcodec_0.0_FAST_CODEC
+ExtractFile 46:FAST/.project@@/main/msgcodec_0.0_FAST_CODEC/1
+Comment 0:
+VERSION_END
+ELEMENT_END
+ELEMENT_BEGIN
+Name 15:FAST/.classpath
+ElType 3:xml
+Mode 33060
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077347
+Comment 0:
+VERSION_BEGIN
+VersionId 7:/main/0
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077347
+ExtractFile 24:FAST/.classpath@@/main/0
+SubBranch 23:msgcodec_0.0_FAST_CODEC
+Comment 0:
+VERSION_END
+VERSION_BEGIN
+VersionId 31:/main/msgcodec_0.0_FAST_CODEC/0
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077347
+OnBranch 23:msgcodec_0.0_FAST_CODEC
+ExtractFile 48:FAST/.classpath@@/main/msgcodec_0.0_FAST_CODEC/0
+Comment 0:
+VERSION_END
+VERSION_BEGIN
+VersionId 31:/main/msgcodec_0.0_FAST_CODEC/1
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1235077347
+OnBranch 23:msgcodec_0.0_FAST_CODEC
+ExtractFile 48:FAST/.classpath@@/main/msgcodec_0.0_FAST_CODEC/1
+Comment 0:
+VERSION_END
+VERSION_BEGIN
+VersionId 31:/main/msgcodec_0.0_FAST_CODEC/2
+AbsVersion TRUE
+EventUser 6:kumara
+EventGroup 8:tradeeng
+EventName 6:kumara
+EventHost 10:KUMARA-W2K
+EventTime 1240866709
+OnBranch 23:msgcodec_0.0_FAST_CODEC
+ExtractFile 48:FAST/.classpath@@/main/msgcodec_0.0_FAST_CODEC/2
+Comment 0:
+VERSION_END
+ELEMENT_END

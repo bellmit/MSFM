@@ -1,0 +1,16 @@
+#!/usr/bin/ksh
+
+# Note -- the '-f' switch is the default for
+# ln if the input is not coming from a terminal
+if [[ "$1" = "-f" ]]; then
+	shift
+fi
+
+if [[ ! -a $1 ]]; then
+	echo "File not found: $1" >&2
+	exit 255;
+elif /usr/bin/ln -s $*; then
+	exit 0;
+else
+	exit 255;
+fi

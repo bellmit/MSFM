@@ -1,0 +1,166 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEArrayHolderImpl.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM TypedArrayHolderImpl.template (KEYNAME/KEYTYPE)
+ *
+ */
+
+IMPORTS
+
+public class KEYNAMEArrayHolderImpl implements KEYNAMEArrayHolder
+{
+    public KEYTYPE[] keys;
+    public int size;
+
+    public static final KEYTYPE[] emptyKEYNAMEArray = new KEYTYPE[0];
+
+    public static final KEYNAMEArrayHolder EmptyArrayHolder = new KEYNAMEArrayHolderImpl()
+    {
+        public KEYNAMEArrayHolder add(KEYTYPE key)                            {return this;}
+        public KEYNAMEArrayHolder add(KEYTYPE[] keys)                         {return this;}
+        public KEYNAMEArrayHolder add(KEYTYPE[] keys, int offset, int length) {return this;}
+    };
+
+    public KEYNAMEArrayHolderImpl()
+    {
+        keys = emptyKEYNAMEArray;
+    }
+
+    public KEYNAMEArrayHolderImpl(int capacity)
+    {
+        keys = new KEYTYPE[capacity];
+    }
+
+    public int size()
+    {
+        return size;
+    }
+
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+
+    public int capacity()
+    {
+        return keys.length;
+    }
+
+    public int ensureCapacity(int capacity)
+    {
+        if (keys.length < capacity)
+        {
+            keys = KEYarrayclone(keys, 0, keys.length, capacity);
+        }
+
+        return keys.length;
+    }
+
+    public KEYTYPE[] keys()
+    {
+        return keys;
+    }
+
+    public KEYTYPE[] toArray()
+    {
+        return KEYarrayclone(keys, size);
+    }
+
+    public KEYNAMEArrayHolder add(KEYTYPE key)
+    {
+        int newSize = size + 1;
+
+        if (newSize >= keys.length)
+        {
+            keys = KEYarrayclone(keys, 0, keys.length, newSize);
+        }
+
+        keys[size] = key;
+
+        size = newSize;
+        
+        return this;
+    }
+
+    public KEYNAMEArrayHolder add(KEYTYPE[] keys)
+    {
+        int newSize = size + keys.length;
+
+        if (newSize >= this.keys.length)
+        {
+            this.keys = KEYarrayclone(this.keys, 0, this.keys.length, newSize);
+        }
+
+        System.arraycopy(keys, 0, this.keys, size, keys.length);
+
+        size = newSize;
+        
+        return this;
+    }
+
+    public KEYNAMEArrayHolder add(KEYTYPE[] keys, int offset, int length)
+    {
+        int newSize = size + length;
+
+        if (newSize >= this.keys.length)
+        {
+            this.keys = KEYarrayclone(this.keys, 0, this.keys.length, newSize);
+        }
+
+        System.arraycopy(keys, offset, this.keys, size, length);
+
+        size = newSize;
+        
+        return this;
+    }
+
+    public KEYTYPE getKey(int keyIndex)
+    {
+        if (keyIndex < size)
+        {
+            return keys[keyIndex];
+        }
+
+        return KEYEMPTY;
+    }
+
+    public boolean containsKey(KEYTYPE key)
+    {
+        for (int keyIndex = 0; keyIndex < size; keyIndex++)
+        {
+            if (KEYEQUALS)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public KEYNAMEVisitor acceptVisitor(KEYNAMEVisitor visitor)
+    {
+        for (int keyIndex = 0; keyIndex < size; keyIndex++)
+        {
+            visitor.visit(keys[keyIndex]);
+        }
+
+        return visitor;
+    }
+
+    public KEYNAMEArrayHolder clear()
+    {
+        for (int keyIndex = 0; keyIndex < size; keyIndex++)
+        {
+            keys[keyIndex] = KEYEMPTY;
+        }
+
+        size = 0;
+
+        return this;
+    }
+    ARRAYCLONES
+}

@@ -1,0 +1,190 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVALNAMEMapArrayHolderImpl.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM KeyValueArrayHolderImpl.template (KEYNAME/KEYTYPE, VALNAME/VALTYPE)
+ *
+ */
+
+IMPORTS
+
+public class KEYNAMEVALNAMEMapArrayHolderImpl implements KEYNAMEVALNAMEMapArrayHolder
+{
+    public KEYTYPE[] keys;
+    public VALTYPE[] values;
+    public int       size;
+
+    public static final VALTYPE VALUE_INVALID_VALUE = VALINVALID;
+    public static final KEYTYPE KEY_INVALID_VALUE   = KEYINVALID;
+
+    public static final KEYNAMEVALNAMEMapArrayHolder EmptyArrayHolder = new KEYNAMEVALNAMEMapArrayHolderImpl()
+    {
+        public KEYNAMEVALNAMEMapArrayHolder add(KEYTYPE key, VALTYPE value) {return this;}
+    };
+
+    public KEYNAMEVALNAMEMapArrayHolderImpl()
+    {
+        this(0);
+    }
+
+    public KEYNAMEVALNAMEMapArrayHolderImpl(int capacity)
+    {
+        keys   = new KEYTYPE[capacity];
+        values = new VALTYPE[capacity];
+    }
+
+    public int size()
+    {
+        return size;
+    }
+
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+
+    public int capacity()
+    {
+        return keys.length;
+    }
+
+    public int ensureCapacity(int capacity)
+    {
+        if (keys.length < capacity)
+        {
+            keys   = KEYarrayclone(keys,   0, keys.length,   capacity);
+            values = VALarrayclone(values, 0, values.length, capacity);
+        }
+
+        return keys.length;
+    }
+
+    public KEYTYPE[] keys()
+    {
+        return keys;
+    }
+
+    public KEYTYPE[] toKeyArray()
+    {
+        return KEYarrayclone(keys, size);
+    }
+
+    public VALTYPE[] values()
+    {
+        return values;
+    }
+
+    public VALTYPE[] toValueArray()
+    {
+        return VALarrayclone(values, size);
+    }
+
+    public KEYNAMEVALNAMEMapArrayHolder add(KEYTYPE key, VALTYPE value)
+    {
+        int newSize = size + 1;
+
+        if (newSize >= keys.length)
+        {
+            keys   = KEYarrayclone(keys,   0, keys.length,   newSize);
+            values = VALarrayclone(values, 0, values.length, newSize);
+        }
+
+        keys[size]   = key;
+        values[size] = value;
+
+        size = newSize;
+        
+        return this;
+    }
+
+    public KEYNAMEVALNAMEMapArrayHolder add(KEYTYPE[] keys, VALTYPE[] values, int count)
+    {
+        int newSize = size + count;
+
+        if (newSize >= this.keys.length)
+        {
+            this.keys   = KEYarraycloneExpandGap(this.keys,   0, size, newSize, size, 0);
+            this.values = VALarraycloneExpandGap(this.values, 0, size, newSize, size, 0);
+        }
+
+        System.arraycopy(keys,   size, this.keys,   size, count);
+        System.arraycopy(values, size, this.values, size, count);
+
+        size = newSize;
+        
+        return this;
+    }
+
+    public KEYTYPE getKey(int index)
+    {
+        if (index < size)
+        {
+            return keys[index];
+        }
+
+        return KEY_INVALID_VALUE;
+    }
+
+    public VALTYPE getValue(int index)
+    {
+        if (index < size)
+        {
+            return values[index];
+        }
+
+        return VALUE_INVALID_VALUE;
+    }
+
+    public boolean containsKey(KEYTYPE key)
+    {
+        for (int keyIndex = 0; keyIndex < size; keyIndex++)
+        {
+            if (KEYEQUALS)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean containsValue(VALTYPE value)
+    {
+        for (int keyIndex = 0; keyIndex < size; keyIndex++)
+        {
+            if (VALEQUALS)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public KEYNAMEVALNAMEMapVisitor acceptVisitor(KEYNAMEVALNAMEMapVisitor visitor)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            visitor.visit(keys[i], values[i]);
+        }
+
+        return visitor;
+    }
+
+    public KEYNAMEVALNAMEMapArrayHolder clear()
+    {
+        for (int i = 0; i < size; i++)
+        {
+            keys[i]   = KEYEMPTY;
+            values[i] = VALEMPTY;
+        }
+
+        size = 0;
+
+        return this;
+    }
+    ARRAYCLONES
+}

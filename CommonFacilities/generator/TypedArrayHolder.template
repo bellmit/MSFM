@@ -1,0 +1,29 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEArrayHolderImpl.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM TypedArrayHolder.template (KEYNAME/KEYTYPE)
+ *
+ */
+
+IMPORTS
+
+public interface KEYNAMEArrayHolder
+{
+    public int size();
+    public boolean isEmpty();
+    public int capacity();
+    public int ensureCapacity(int capacity);
+    public KEYTYPE[] keys();
+    public KEYTYPE[] toArray();
+    public KEYNAMEArrayHolder add(KEYTYPE key);
+    public KEYNAMEArrayHolder add(KEYTYPE[] keyArray);
+    public KEYNAMEArrayHolder add(KEYTYPE[] keyArray, int offset, int length);
+    public KEYTYPE getKey(int index);
+    public boolean containsKey(KEYTYPE key);
+    public KEYNAMEVisitor acceptVisitor(KEYNAMEVisitor visitor);
+    public KEYNAMEArrayHolder clear();
+}

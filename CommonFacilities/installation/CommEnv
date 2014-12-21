@@ -1,0 +1,189 @@
+#!/usr/bin/ksh
+
+usage() {
+	echo "usage: $0 [-h] [-f] [[-c]|[-l]|[-r hostname [-u user]]] [-g group] destinationDirectory" >&2
+	echo "purpose: to install server components" >&2
+	echo "switches:" >&2
+	echo "   -h = print this message and abort" >&2
+	echo "   -p = partial install (jars and shared libraries)" >&2
+	echo "   -f = try to overwrite old files" >&2
+	echo "   -c = copy the files to the destinationDirectory" >&2
+	echo "        this is the default." >&2
+	echo "   -l = create soft links in the destinationDirectory to the sources" >&2
+	echo "   -x = install XML and IDLs only This option should be used while installing to common infra" >&2	
+	echo "   -r hostname = do an installation to the remote machine 'hostname'" >&2
+	echo "   -u user = login to use for remote installs. Default = 'tradeeng'" >&2
+	echo "       (A prompt will be given to enter the password)" >&2
+	echo "   NOTE: -c, -l, and -r are mutually exclusive" >&2
+	echo "   -g group = the name of the group that will own the directories" >&2
+	echo "      default is tradeeng" >&2
+	echo "   NOTE: the group owner must be manually validated. No error is seen if" >&2
+	echo "   the switch to the specified group fails" >&2
+	echo "arguments:" >&2
+	echo "   destinationDirectory = directory into which installs should be done." >&2
+	echo "      for local installs, this is the complete path. For remote installs," >&2
+	echo "      this is relative to the user's home directory" >&2
+
+	exit 1
+}
+
+setDefaults() {
+	user=tradeeng
+	GROUP=tradeeng
+	XARGS="/usr/bin/xargs -t -i"
+	COPY="./cpScript"
+	REMOTE=
+	PPROMPT="/opt/cboeutil/bin/PasswdPrompt"
+	AWK=/usr/bin/nawk
+  	# The following variables are used in CopyFile, so they must be exported
+	export REXEC="/opt/cboeutil/bin/rexec"
+	export ELBOW="/opt/cboeutil/bin/elbow"
+	export FORCE=
+	xmlIDLOnly=no
+}
+
+
+setDefaults
+
+while getopts hfxcdlr:u:g:p name; do
+	case $name in
+		h) usage
+			exit 1;;
+		p) PARTIAL="true";;
+		f) export FORCE="-f";;
+		x) export xmlIDLOnly="true";;
+		c) COPY="./cpScript";;
+		l) COPY="./lnScript";;
+		r) if [[ -z $OPTARG ]]; then
+				echo "\\nMissing argument to -r switch\\n" >&2
+				usage
+			fi
+			if [[ ${OPTARG#-} != $OPTARG ]]; then
+				echo "\\nMissing argument to -r switch\\n" >&2
+				usage
+			fi
+			hostname="$OPTARG"
+			COPY="./CopyFile $hostname"
+			REMOTE="true";;
+		u) if [[ -z $OPTARG ]]; then
+				echo "\\nMissing argument to -u switch\\n" >&2
+				usage
+			fi
+			if [[ ${OPTARG#-} != $OPTARG ]]; then
+				echo "\\nMissing argument to -u switch\\n" >&2
+				usage
+			fi
+			user="$OPTARG";;
+		g) if [[ -z $OPTARG ]]; then
+				echo "\\nMissing argument to -g switch\\n" >&2
+				usage
+			fi
+			if [[ ${OPTARG#-} != $OPTARG ]]; then
+				echo "\\nMissing argument to -g switch\\n" >&2
+				usage
+			fi
+			GROUP=$OPTARG;;
+	esac
+done
+shift $(($OPTIND - 1))
+export directory="$*"
+if [[ -z $directory ]]; then
+	echo "\\nMissing destination directory\\n" >&2
+	usage
+fi
+
+
+if [[ ! -z $hostname ]]; then
+	# We need the .netrc file to be what we want, so we will save the existing file and create a new one
+	NETRC=.netrc.$RANDOM
+	mv ~/.netrc ~/$NETRC
+	password=`$PPROMPT "Password ($user): "`
+	echo "machine $hostname login $user password $password" > ~/.netrc
+	password=""
+	chmod 600 ~/.netrc
+fi
+
+if [[ -z $hostname ]]; then
+	# For regular copies, we need to augment command with force switch, if necessary.
+	# For links, the force switch will have no effect
+	# For remote installs, CopyFile will get the force option from the environment
+	COPY="$COPY $FORCE"
+fi
+
+# Make sure we have the necessary directories
+# Because we need an embedded space in an argument and variables lose that distinction, wee need to us an if clause
+if [[ -z $REMOTE ]]; then
+	# First, create the root directory -- this gives us the correct permissions, if it hasn't already been created
+	if ! echo "mkdir -m 751 -p $directory" | /usr/bin/ksh -c "/usr/bin/newgrp $GROUP"; then
+		exit 1
+	fi
+	# Next, create all the group read-only directories
+	if ! $AWK '{printf( "mkdir -m 751 -p %s/%s\n", ENVIRON[ "directory" ], $1 ); }' < commRDirs.txt | /usr/bin/ksh -c "/usr/bin/newgrp $GROUP"; then
+		exit 1
+	fi
+	# Finally, the group writable directories
+	if ! $AWK '{printf( "mkdir -m 771 -p %s/%s\n", ENVIRON[ "directory" ], $1 ); }' < commWDirs.txt | /usr/bin/ksh -c "/usr/bin/newgrp $GROUP"; then
+		exit 1
+	fi
+else
+	# First, create the root directory -- this gives us the correct permissions, if it hasn't already been created
+	if ! echo "mkdir -m 751 -p $directory" | $REXEC $hostname /usr/bin/newgrp $GROUP; then
+		exit 1
+	fi
+	# Next, create all the group read-only directories
+	if ! $AWK '{printf( "mkdir -m 751 -p %s/%s\n", ENVIRON[ "directory" ], $1 ); }' < commRDirs.txt | $REXEC $hostname /usr/bin/newgrp $GROUP; then
+		exit 1
+	fi
+	# Finally, the group writable directories
+	if ! $AWK '{printf( "mkdir -m 771 -p %s/%s\n", ENVIRON[ "directory" ], $1 ); }' < commWDirs.txt | $REXEC $hostname /usr/bin/newgrp $GROUP; then
+		exit 1
+	fi
+fi
+
+# If only XML , XMLTemplates and IDLs is to be installed, (From common infra box), install only these files and exit the script
+if [[ $xmlIDLOnly = true ]]; then
+	# IDL files
+	if ! $AWK '{print $1}' < commIDL.txt | $XARGS $COPY {} $directory/idl ; then
+		exit 1
+	fi
+	# DTD and XML files
+	if ! $AWK '{print $1}' < commDTD.txt | $XARGS $COPY {} $directory/properties/dtd ; then
+		exit 1
+	fi
+	if ! $AWK '{print $1}' < commXML.txt | $XARGS $COPY {} $directory/properties/xml ; then
+		exit 1
+	fi
+
+	echo "Installation of ONLY xmls and XMLTemplates and IDL is completed"
+	exit 1
+fi
+
+# Jar files
+if ! $AWK '{print $1}' < commJars.txt | $XARGS $COPY {} $directory/classes ; then
+	exit 1
+fi
+if [[ -z $PARTIAL ]]; then
+	# Now for the sql files
+	if ! $AWK '{print $1}' < commSQL.txt | $XARGS $COPY {} $directory/sql ; then
+		exit 1
+	fi
+	# IDL files
+	if ! $AWK '{print $1}' < commIDL.txt | $XARGS $COPY {} $directory/idl ; then
+		exit 1
+	fi
+	# DTD and XML files
+	if ! $AWK '{print $1}' < commDTD.txt | $XARGS $COPY {} $directory/properties/dtd ; then
+		exit 1
+	fi
+	if ! $AWK '{print $1}' < commXML.txt | $XARGS $COPY {} $directory/properties/xml ; then
+		exit 1
+	fi
+
+
+fi
+
+
+if [[ ! -z $hostname ]]; then
+	rm ~/.netrc
+	mv ~/$NETRC ~/.netrc
+fi

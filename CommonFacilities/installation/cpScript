@@ -1,0 +1,7 @@
+#!/usr/bin/ksh
+
+if /usr/bin/cp -p $*; then
+	exit 0;
+else
+	exit 255;
+fi

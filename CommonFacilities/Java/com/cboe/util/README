@@ -1,0 +1,5 @@
+The unique number generator uses a native library call to 
+retrieve the VM's process ID. 
+Therefore the libjavautil.so (currently in /usr/local/lib) 
+needs to be found in your LD_LIBRARY_PATH.
+

@@ -1,0 +1,19 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVisitor.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM TypedVisitor.template (KEYNAME/KEYTYPE)
+ *
+ */
+
+IMPORTS
+
+public interface KEYNAMEVisitor extends ControllableVisitor
+{
+    public int visit(KEYTYPE key);
+    public KEYNAMEVisitor beforeVisit(Object arg);
+    public KEYNAMEVisitor afterVisit(Object arg);
+}

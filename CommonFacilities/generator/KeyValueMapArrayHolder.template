@@ -1,0 +1,33 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVALNAMEMapArrayHolder.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM KeyValueArrayHolder.template (KEYNAME/KEYTYPE, VALNAME/VALTYPE)
+ *
+ */
+
+IMPORTS
+
+public interface KEYNAMEVALNAMEMapArrayHolder
+{
+    public int size();
+    public boolean isEmpty();
+    public int capacity();
+    public int ensureCapacity(int capacity);
+    public KEYTYPE[] keys();
+    public KEYTYPE[] toKeyArray();
+    public VALTYPE[] values();
+    public VALTYPE[] toValueArray();
+    public KEYNAMEVALNAMEMapArrayHolder add(KEYTYPE key, VALTYPE value);
+    public KEYNAMEVALNAMEMapArrayHolder add(KEYTYPE[] keys, VALTYPE[] values, int count);
+    public KEYTYPE getKey(int index);
+    public VALTYPE getValue(int index);
+    public boolean containsKey(KEYTYPE key);
+    public boolean containsValue(VALTYPE value);
+    public KEYNAMEVALNAMEMapArrayHolder clear();
+    public KEYNAMEVALNAMEMapVisitor acceptVisitor(KEYNAMEVALNAMEMapVisitor visitor);
+}
+

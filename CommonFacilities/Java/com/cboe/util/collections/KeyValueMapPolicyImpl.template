@@ -1,0 +1,20 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVALNAMEMapPolicy.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM KeyValueMapPolicy.template (KEYNAME/KEYTYPE, VALNAME/VALTYPE)
+ *
+ */
+
+IMPORTS
+
+public class KEYNAMEVALNAMEMapPolicyImpl implements KEYNAMEVALNAMEMapPolicy
+{
+    public boolean canInsert(KEYTYPE key, VALTYPE newValue)                         {return true;}
+    public boolean canUpdate(KEYTYPE key, VALTYPE newValue, VALTYPE oldValue)       {return true;}
+    public boolean canRemove(KEYTYPE key, VALTYPE oldValue)                         {return true;}
+    public boolean canRetrieve(KEYTYPE key, VALTYPE oldValue)                       {return true;}
+}

@@ -1,0 +1,9 @@
+##########################################################
+# Include core definitions for compilers, extentions, etc.
+#
+##########################################################
+include $(COMMONBUILD)/defs/common.defs
+
+JFLAGS16  =-J-mx256m -g
+
+

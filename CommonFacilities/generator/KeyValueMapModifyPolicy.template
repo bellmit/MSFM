@@ -1,0 +1,18 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVALNAMEMapModifyPolicy.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM KeyValueMapModifyPolicy.template (KEYNAME/KEYTYPE, VALNAME/VALTYPE)
+ *
+ */
+
+IMPORTS
+
+public interface KEYNAMEVALNAMEMapModifyPolicy extends KEYNAMEVALNAMEMapPolicy
+{
+    public VALTYPE valueToInsert(KEYTYPE key, VALTYPE newValue);
+    public VALTYPE valueToUpdate(KEYTYPE key, VALTYPE oldValue, VALTYPE newValue);
+}

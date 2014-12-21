@@ -1,0 +1,19 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVALNAMEMapVisitor.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM KeyValueMapVisitor.template (KEYNAME/KEYTYPE, VALNAME/VALTYPE)
+ *
+ */
+
+IMPORTS
+
+public interface KEYNAMEVALNAMEMapVisitor extends ControllableVisitor
+{
+    public int visit(KEYTYPE key, VALTYPE value);
+    public KEYNAMEVALNAMEMapVisitor beforeVisit(Object arg);
+    public KEYNAMEVALNAMEMapVisitor afterVisit(Object arg);
+}

@@ -1,0 +1,889 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVALNAMEMap.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM KeyValueMap.template where keytype = (KEYTYPE) and valtype = (VALTYPE)
+ *
+ */
+
+IMPORTS
+
+public class KEYNAMEVALNAMEMap
+{
+    protected final    Bucket[]           buckets;
+    protected final    int                highestBucketIndex;
+    protected volatile int                mapSize;
+    protected final    MapInstrumentation mapInstrumentation;
+
+    public static final VALTYPE INVALID_VALUE = VALINVALID;
+
+    public VALTYPE ValueNotFound = INVALID_VALUE;
+
+    public static final int DEFAULT_MODE                      = 0;
+    public static final int MULTITHREAD_MODE_ON               = 1 << 1;
+    public static final int INSTRUMENTATION_MODE_ON           = 1 << 2;
+
+    public static final int DEFAULT_SMALL_MAP_NUMBER_BUCKETS  = 16;
+    public static final int DEFAULT_MEDIUM_MAP_NUMBER_BUCKETS = 64;
+    public static final int DEFAULT_LARGE_MAP_NUMBER_BUCKETS  = 256;
+    public static final int DEFAULT_HUGE_MAP_NUMBER_BUCKETS   = 1024;
+    public static final int DEFAULT_NUMBER_BUCKETS            = DEFAULT_LARGE_MAP_NUMBER_BUCKETS;
+    public static final int MAXIMUM_NUMBER_BUCKETS            = 1024 * 16; // must be a power of ^2
+    public static final int MINIMUM_NUMBER_BUCKETS            = 16;        // must be a power of ^2
+    public static final int DEFAULT_ENTRY_LIST_CAPACITY       = 4;
+    public static final int DEFAULT_ENTRY_LIST_GROWTH         = 4;
+
+    public KEYNAMEVALNAMEMap()
+    {
+        this(DEFAULT_NUMBER_BUCKETS, DEFAULT_MODE);
+    }
+
+    public KEYNAMEVALNAMEMap(int numberBuckets)
+    {
+        this(numberBuckets, DEFAULT_MODE);
+    }
+
+    public KEYNAMEVALNAMEMap(int numberBuckets, int mapParameters)
+    {
+        if ((mapParameters & INSTRUMENTATION_MODE_ON) == INSTRUMENTATION_MODE_ON)
+        {
+            mapInstrumentation = new MapInstrumentation();
+        }
+        else
+        {
+            mapInstrumentation = MapInstrumentation.NopMapInstrumentation;
+        }
+
+        if (numberBuckets < 2)
+        {
+            numberBuckets = DEFAULT_NUMBER_BUCKETS;
+        }
+        else if (numberBuckets > MAXIMUM_NUMBER_BUCKETS)
+        {
+            numberBuckets = MAXIMUM_NUMBER_BUCKETS;
+        }
+
+        int powerOf2;
+
+        for (powerOf2 = MINIMUM_NUMBER_BUCKETS; powerOf2 < numberBuckets; powerOf2 <<= 1)
+        {
+
+        }
+
+        numberBuckets = powerOf2;
+
+        highestBucketIndex = numberBuckets - 1;
+
+        buckets = new Bucket[numberBuckets];
+
+        if ((mapParameters & MULTITHREAD_MODE_ON) == MULTITHREAD_MODE_ON)
+        {
+            for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+            {
+                buckets[bucketIndex] = new SynchronizedBucket();
+            }
+        }
+        else
+        {
+            for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+            {
+                buckets[bucketIndex] = new UnsynchronizedBucket();
+            }
+        }
+    }
+
+    /**
+     * This allows to switch internally from the synchronized map to an unsynchronized, as many times as you want.
+     *
+     * It is a moderately cheap operation IFF you are SURE that nobody is modifying the map while you are doing this.
+     *
+     * This is mostly used for cases where you want to add a number of items up front unsynchronized, and then make the
+     * map synchronized for subsequent lookups/additions
+     *
+     */
+    public boolean switchSynchronization(int mapParameters)
+    {
+        if ((mapParameters & MULTITHREAD_MODE_ON) == MULTITHREAD_MODE_ON)
+        {
+            if (buckets[0] instanceof SynchronizedBucket)
+            {
+                return false;
+            }
+
+            for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+            {
+                buckets[bucketIndex] = new UnsynchronizedBucket(buckets[bucketIndex]);
+            }
+
+            return true;
+        }
+        else
+        {
+            if (buckets[0] instanceof UnsynchronizedBucket)
+            {
+                return false;
+            }
+
+            for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+            {
+                buckets[bucketIndex] = new SynchronizedBucket(buckets[bucketIndex]);
+            }
+
+            return true;
+        }
+    }
+
+    public MapInstrumentation getMapInstrumentation()
+    {
+        return mapInstrumentation;
+    }
+
+    public VALTYPE getValueNotFound()
+    {
+        return ValueNotFound;
+    }
+
+    public KEYNAMEVALNAMEMap setValueNotFound(VALTYPE ValueNotFound)
+    {
+        this.ValueNotFound = ValueNotFound;
+
+        return this;
+    }
+
+    public int size()
+    {
+        return mapSize;
+    }
+
+    public boolean isEmpty()
+    {
+        return mapSize == 0;
+    }
+
+    public boolean containsKey(KEYTYPE key)
+    {
+        return buckets[KEYINDEX].containsKey(key);
+    }
+
+    public boolean containsKey(KEYTYPE key, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        return buckets[KEYINDEX].containsKey(key, policy);
+    }
+
+    public boolean containsValue(VALTYPE value)
+    {
+        boolean contains = false;
+
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex && !contains; bucketIndex++)
+        {
+            contains = buckets[bucketIndex].containsValue(value);
+        }
+
+        return contains;
+    }
+
+    public boolean containsValue(VALTYPE value, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        boolean contains = false;
+
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex && !contains; bucketIndex++)
+        {
+            contains = buckets[bucketIndex].containsValue(value, policy);
+        }
+
+        return contains;
+    }
+
+    public KEYNAMEArrayHolder getKeysForValue(VALTYPE value, KEYNAMEArrayHolder arrayHolder)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].getKeysForValue(value, arrayHolder);
+        }
+
+        return arrayHolder;
+    }
+
+    public KEYNAMEArrayHolder getKeysForValue(VALTYPE value, KEYNAMEArrayHolder arrayHolder, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].getKeysForValue(value, arrayHolder, policy);
+        }
+
+        return arrayHolder;
+    }
+
+    public VALTYPE get(KEYTYPE key)
+    {
+        return buckets[KEYINDEX].get(key);
+    }
+
+    public VALTYPE get(KEYTYPE key, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        return buckets[KEYINDEX].get(key, policy);
+    }
+
+    public VALTYPE put(KEYTYPE key, VALTYPE value)
+    {
+        return buckets[KEYINDEX].put(key, value);
+    }
+
+    public VALTYPE put(KEYTYPE key, VALTYPE value, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        return buckets[KEYINDEX].put(key, value, policy);
+    }
+
+    public VALTYPE put(KEYTYPE key, VALTYPE value, KEYNAMEVALNAMEMapModifyPolicy policy)
+    {
+        return buckets[KEYINDEX].put(key, value, policy);
+    }
+
+    public VALTYPE remove(KEYTYPE key)
+    {
+        return buckets[KEYINDEX].remove(key);
+    }
+
+    public VALTYPE remove(KEYTYPE key, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        return buckets[KEYINDEX].remove(key, policy);
+    }
+
+    public void remove(KEYNAMEVALNAMEMapPolicy policy)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].remove(policy);
+        }
+    }
+
+    public void remove(KEYNAMEVALNAMEMapArrayHolder arrayHolder, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].remove(arrayHolder, policy);
+        }
+    }
+
+    public void find(KEYNAMEVALNAMEMapArrayHolder arrayHolder)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].find(arrayHolder);
+        }
+    }
+
+    public void find(KEYNAMEVALNAMEMapArrayHolder arrayHolder, KEYNAMEVALNAMEMapPolicy policy)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].find(arrayHolder, policy);
+        }
+    }
+
+    public KEYNAMEVALNAMEMap clear()
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].clear();
+        }
+
+        mapSize = 0;
+
+        return this;
+    }
+
+    public KEYNAMEVALNAMEMapVisitor acceptVisitor(KEYNAMEVALNAMEMapVisitor visitor)
+    {
+        for (int bucketIndex = 0; bucketIndex <= highestBucketIndex; bucketIndex++)
+        {
+            buckets[bucketIndex].acceptVisitor(visitor);
+        }
+
+        return visitor;
+    }
+
+    DUPLICATE_WITH_SYNCHRONIZED_START
+    protected class Bucket
+    {
+        protected KEYTYPE[] keys;
+        protected VALTYPE[] values;
+        protected int       keyCount;
+
+        public CLASSNAME()
+        {
+
+        }
+
+        public CLASSNAME(Bucket bucket)
+        {
+            if (bucket instanceof SynchronizedBucket)
+            {
+                this.keys     = ((SynchronizedBucket) bucket).keys;
+                this.values   = ((SynchronizedBucket) bucket).values;
+                this.keyCount = ((SynchronizedBucket) bucket).keyCount;
+            }
+            else
+            {
+                this.keys     = ((UnsynchronizedBucket) bucket).keys;
+                this.values   = ((UnsynchronizedBucket) bucket).values;
+                this.keyCount = ((UnsynchronizedBucket) bucket).keyCount;
+            }
+        }
+
+        public boolean containsKey(KEYTYPE key)
+        {
+            int keyIndex = keyFind(key);
+            if (keyIndex >= 0)
+            {
+                mapInstrumentation.incHit();
+
+                return true;
+            }
+
+            mapInstrumentation.incMiss();
+
+            return false;
+        }
+
+        public boolean containsKey(KEYTYPE key, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            int keyIndex = keyFind(key);
+            if (keyIndex >= 0)
+            {
+                mapInstrumentation.incHit();
+
+                return policy.canRetrieve(keys[keyIndex], values[keyIndex]);
+            }
+
+            mapInstrumentation.incMiss();
+
+            return false;
+        }
+
+        public boolean containsValue(VALTYPE value)
+        {
+            for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+            {
+                if (VALEQUALS)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public boolean containsValue(VALTYPE value, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+            {
+                if (VALEQUALS)
+                {
+                    return policy.canRetrieve(keys[keyIndex], value);
+                }
+            }
+
+            return false;
+        }
+
+        public VALTYPE get(KEYTYPE key)
+        {
+            if (keyCount > 0)
+            {
+                int keyIndex = keyFind(key);
+                if (keyIndex >= 0)
+                {
+                    mapInstrumentation.incHit();
+
+                    return values[keyIndex];
+                }
+            }
+
+            mapInstrumentation.incMiss();
+
+            return ValueNotFound;
+        }
+
+        public VALTYPE get(KEYTYPE key, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            if (keyCount > 0)
+            {
+                int keyIndex = keyFind(key);
+                if (keyIndex >= 0)
+                {
+                    VALTYPE value = values[keyIndex];
+                    if (policy.canRetrieve(key, value))
+                    {
+                        mapInstrumentation.incHit();
+
+                        return value;
+                    }
+                }
+            }
+
+            mapInstrumentation.incMiss();
+
+            return ValueNotFound;
+        }
+
+        public void getKeysForValue(VALTYPE value, KEYNAMEArrayHolder arrayHolder)
+        {
+            for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+            {
+                if (VALEQUALS)
+                {
+                    arrayHolder.add(keys[keyIndex]);
+                }
+            }
+        }
+
+        public void getKeysForValue(VALTYPE value, KEYNAMEArrayHolder arrayHolder, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+            {
+                if (VALEQUALS)
+                {
+                    KEYTYPE key = keys[keyIndex];
+
+                    if (policy.canRetrieve(key, value))
+                    {
+                        arrayHolder.add(key);
+                    }
+                }
+            }
+        }
+
+        public VALTYPE put(KEYTYPE key, VALTYPE value)
+        {
+            if (keyCount == 0)
+            {
+                if (keys == null)
+                {
+                    keys   = new KEYTYPE[DEFAULT_ENTRY_LIST_CAPACITY];
+                    values = new VALTYPE[DEFAULT_ENTRY_LIST_CAPACITY];
+                }
+
+                keys[0]   = key;
+                values[0] = value;
+                keyCount  = 1;
+
+                mapSize++;
+
+                mapInstrumentation.incAdded();
+
+                return value;
+            }
+
+            int keyIndex = keyFind(key);
+            if (keyIndex >= 0)
+            {
+                values[keyIndex] = value;
+
+                mapInstrumentation.incReplaced();
+
+                return value;
+	        }
+
+            // if we got here, this is completely new key, we let's add it
+            keyIndex = MapHelper.normalizeBinarySearchPosition(keyIndex);
+            if (keyCount >= keys.length) // need to expand
+            {
+                if (keyIndex == keyCount) // if at end, then just arrayclone, and append later
+                {
+                    keys   = KEYarrayclone(keys,   0, keys.length,   keys.length   + DEFAULT_ENTRY_LIST_GROWTH);
+                    values = VALarrayclone(values, 0, values.length, values.length + DEFAULT_ENTRY_LIST_GROWTH);
+                }
+                else
+                {
+                    keys   = KEYarraycloneExpandGap(keys,   0, keys.length,   keys.length   + DEFAULT_ENTRY_LIST_GROWTH, keyIndex, 1);
+                    values = VALarraycloneExpandGap(values, 0, values.length, values.length + DEFAULT_ENTRY_LIST_GROWTH, keyIndex, 1);
+                }
+            }
+            else
+            {
+                if (keyIndex < keyCount)
+                {
+                    System.arraycopy(values, keyIndex, values, keyIndex + 1, keyCount - keyIndex);
+                    System.arraycopy(keys,   keyIndex, keys,   keyIndex + 1, keyCount - keyIndex);
+                }
+            }
+
+            keys[keyIndex]   = key;
+            values[keyIndex] = value;
+
+            keyCount++;
+            mapSize++;
+
+            mapInstrumentation.incAdded();
+
+            return value;
+        }
+
+        public VALTYPE put(KEYTYPE key, VALTYPE value, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            if (keyCount == 0)
+            {
+                if (!policy.canInsert(key, value))
+                {
+                    return ValueNotFound;
+                }
+
+                if (keys == null)
+                {
+                    keys   = new KEYTYPE[DEFAULT_ENTRY_LIST_CAPACITY];
+                    values = new VALTYPE[DEFAULT_ENTRY_LIST_CAPACITY];
+                }
+
+                keys[0]   = key;
+                values[0] = value;
+                keyCount  = 1;
+
+                mapSize++;
+
+                mapInstrumentation.incAdded();
+
+                return value;
+            }
+
+            int keyIndex = keyFind(key);
+            if (keyIndex >= 0)
+            {
+                if (policy.canUpdate(keys[keyIndex], values[keyIndex], value))
+                {
+                    values[keyIndex] = value;
+
+                    mapInstrumentation.incReplaced();
+                }
+
+                return values[keyIndex];
+	        }
+
+            // if we got here, this is completely new key, we let's add it
+            if (!policy.canInsert(key, value))
+            {
+                return ValueNotFound;
+            }
+
+            keyIndex = MapHelper.normalizeBinarySearchPosition(keyIndex);
+            if (keyCount >= keys.length) // need to expand
+            {
+                if (keyIndex == keyCount) // if at end, then just arrayclone, and append later
+                {
+                    keys   = KEYarrayclone(keys,   0, keys.length,   keys.length   + DEFAULT_ENTRY_LIST_GROWTH);
+                    values = VALarrayclone(values, 0, values.length, values.length + DEFAULT_ENTRY_LIST_GROWTH);
+                }
+                else
+                {
+                    keys   = KEYarraycloneExpandGap(keys,   0, keys.length,   keys.length   + DEFAULT_ENTRY_LIST_GROWTH, keyIndex, 1);
+                    values = VALarraycloneExpandGap(values, 0, values.length, values.length + DEFAULT_ENTRY_LIST_GROWTH, keyIndex, 1);
+                }
+            }
+            else
+            {
+                if (keyIndex < keyCount)
+                {
+                    System.arraycopy(values, keyIndex, values, keyIndex + 1, keyCount - keyIndex);
+                    System.arraycopy(keys,   keyIndex, keys,   keyIndex + 1, keyCount - keyIndex);
+                }
+            }
+
+            keys[keyIndex]   = key;
+            values[keyIndex] = value;
+
+            keyCount++;
+            mapSize++;
+
+            mapInstrumentation.incAdded();
+
+            return value;
+        }
+
+        public VALTYPE put(KEYTYPE key, VALTYPE value, KEYNAMEVALNAMEMapModifyPolicy policy)
+        {
+            if (keyCount == 0)
+            {
+                if (!policy.canInsert(key, value))
+                {
+                    return ValueNotFound;
+                }
+
+                if (keys == null)
+                {
+                    keys   = new KEYTYPE[DEFAULT_ENTRY_LIST_CAPACITY];
+                    values = new VALTYPE[DEFAULT_ENTRY_LIST_CAPACITY];
+                }
+
+                keys[0]   = key;
+                values[0] = policy.valueToInsert(key, value);
+                keyCount  = 1;
+
+                mapSize++;
+
+                mapInstrumentation.incAdded();
+
+                return value;
+            }
+
+            int keyIndex = keyFind(key);
+            if (keyIndex >= 0)
+            {
+                if (policy.canUpdate(keys[keyIndex], values[keyIndex], value))
+                {
+                    values[keyIndex] = policy.valueToUpdate(key, values[keyIndex], value);
+
+                    mapInstrumentation.incReplaced();
+                }
+
+                return values[keyIndex];
+	        }
+
+            // if we got here, this is completely new key, we let's add it
+            if (!policy.canInsert(key, value))
+            {
+                return ValueNotFound;
+            }
+
+            keyIndex = MapHelper.normalizeBinarySearchPosition(keyIndex);
+            if (keyCount >= keys.length) // need to expand
+            {
+                if (keyIndex == keyCount) // if at end, then just arrayclone, and append later
+                {
+                    keys   = KEYarrayclone(keys,   0, keys.length,   keys.length   + DEFAULT_ENTRY_LIST_GROWTH);
+                    values = VALarrayclone(values, 0, values.length, values.length + DEFAULT_ENTRY_LIST_GROWTH);
+                }
+                else
+                {
+                    keys   = KEYarraycloneExpandGap(keys,   0, keys.length,   keys.length   + DEFAULT_ENTRY_LIST_GROWTH, keyIndex, 1);
+                    values = VALarraycloneExpandGap(values, 0, values.length, values.length + DEFAULT_ENTRY_LIST_GROWTH, keyIndex, 1);
+                }
+            }
+            else
+            {
+                if (keyIndex < keyCount)
+                {
+                    System.arraycopy(values, keyIndex, values, keyIndex + 1, keyCount - keyIndex);
+                    System.arraycopy(keys,   keyIndex, keys,   keyIndex + 1, keyCount - keyIndex);
+                }
+            }
+
+            keys[keyIndex]   = key;
+            values[keyIndex] = policy.valueToInsert(key, value);
+
+            keyCount++;
+            mapSize++;
+
+            mapInstrumentation.incAdded();
+
+            return value;
+        }
+
+        public VALTYPE remove(KEYTYPE key)
+        {
+            if (keyCount > 0)
+            {
+                int keyIndex = keyFind(key);
+                if (keyIndex >= 0)
+                {
+                    VALTYPE oldValue = values[keyIndex];
+
+                    int highest_index = keys.length - 1;
+
+                    if (keyIndex < highest_index)
+                    {
+                        System.arraycopy(values, keyIndex + 1, values, keyIndex, highest_index - keyIndex);
+                        System.arraycopy(keys,   keyIndex + 1, keys,   keyIndex, highest_index - keyIndex);
+                    }
+
+                    keys[highest_index]   = KEYEMPTY;
+                    values[highest_index] = VALEMPTY;
+
+                    keyCount--;
+                    mapSize--;
+
+                    mapInstrumentation.incRemoved();
+
+                    return oldValue;
+	            }
+            }
+
+            mapInstrumentation.incMiss();
+
+            return ValueNotFound;
+        }
+
+        public VALTYPE remove(KEYTYPE key, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            if (keyCount > 0)
+            {
+                int keyIndex = keyFind(key);
+                if (keyIndex >= 0)
+                {
+                    VALTYPE oldValue = values[keyIndex];
+
+                    if (!policy.canRemove(key, oldValue))
+                    {
+                        mapInstrumentation.incMiss();
+
+                        return ValueNotFound;
+                    }
+
+                    int highest_index = keys.length - 1;
+
+                    if (keyIndex < highest_index)
+                    {
+                        System.arraycopy(values, keyIndex + 1, values, keyIndex, highest_index - keyIndex);
+                        System.arraycopy(keys,   keyIndex + 1, keys,   keyIndex, highest_index - keyIndex);
+                    }
+
+                    keys[highest_index]   = KEYEMPTY;
+                    values[highest_index] = VALEMPTY;
+
+                    keyCount--;
+                    mapSize--;
+
+                    mapInstrumentation.incRemoved();
+
+                    return oldValue;
+	            }
+            }
+
+            mapInstrumentation.incMiss();
+
+            return ValueNotFound;
+        }
+
+        public void remove(KEYNAMEVALNAMEMapPolicy policy)
+        {
+            if (keyCount > 0)
+            {
+                int startKeyCount = keyCount;
+
+                for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+                {
+                    KEYTYPE key      = keys[keyIndex];
+                    VALTYPE oldValue = values[keyIndex];
+
+                    if (!policy.canRemove(key, oldValue))
+                    {
+                        mapInstrumentation.incMiss();
+
+                        continue;
+                    }
+
+                    int highest_index = keys.length - 1;
+
+                    if (keyIndex < highest_index)
+                    {
+                        System.arraycopy(values, keyIndex + 1, values, keyIndex, highest_index - keyIndex);
+                        System.arraycopy(keys,   keyIndex + 1, keys,   keyIndex, highest_index - keyIndex);
+                    }
+
+                    keys[highest_index]   = KEYEMPTY;
+                    values[highest_index] = VALEMPTY;
+
+                    keyCount--;
+                    mapSize--;
+                }
+
+                mapInstrumentation.incRemoved(startKeyCount - keyCount);
+            }
+        }
+
+        public void remove(KEYNAMEVALNAMEMapArrayHolder arrayHolder, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            if (keyCount > 0)
+            {
+                int startKeyCount = keyCount;
+
+                for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+                {
+                    KEYTYPE key      = keys[keyIndex];
+                    VALTYPE oldValue = values[keyIndex];
+
+                    if (!policy.canRemove(key, oldValue))
+                    {
+                        mapInstrumentation.incMiss();
+
+                        continue;
+                    }
+
+                    arrayHolder.add(key, oldValue);
+
+                    int highest_index = keys.length - 1;
+
+                    if (keyIndex < highest_index)
+                    {
+                        System.arraycopy(values, keyIndex + 1, values, keyIndex, highest_index - keyIndex);
+                        System.arraycopy(keys,   keyIndex + 1, keys,   keyIndex, highest_index - keyIndex);
+                    }
+
+                    keys[highest_index]   = KEYEMPTY;
+                    values[highest_index] = VALEMPTY;
+
+                    keyCount--;
+                    mapSize--;
+                }
+
+                mapInstrumentation.incRemoved(startKeyCount - keyCount);
+            }
+        }
+
+        public void acceptVisitor(KEYNAMEVALNAMEMapVisitor visitor)
+        {
+            for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+            {
+                if (visitor.visit(keys[keyIndex], values[keyIndex]) == KEYNAMEVALNAMEMapVisitor.ABORT)
+                {
+                    break;
+                }
+            }
+        }
+
+        public void clear()
+        {
+            keys     = null;
+            values   = null;
+            keyCount = 0;
+        }
+
+        public void find(KEYNAMEVALNAMEMapArrayHolder arrayHolder)
+        {
+            if (keyCount > 0)
+            {
+                arrayHolder.add(keys, values, keyCount);
+            }
+        }
+
+        public void find(KEYNAMEVALNAMEMapArrayHolder arrayHolder, KEYNAMEVALNAMEMapPolicy policy)
+        {
+            if (keyCount > 0)
+            {
+                KEYTYPE key;
+                VALTYPE value;
+
+                for (int keyIndex = 0; keyIndex < keyCount; keyIndex++)
+                {
+                    key   = keys[keyIndex];
+                    value = values[keyIndex];
+
+                    if (policy.canRetrieve(key, value))
+                    {
+                        arrayHolder.add(key, value);
+                    }
+                }
+            }
+        }
+
+        private int keyFind(KEYTYPE key)
+        {
+            KEYFIND
+        }
+
+        ARRAYCLONES
+    }
+    DUPLICATE_WITH_SYNCHRONIZED_END
+}

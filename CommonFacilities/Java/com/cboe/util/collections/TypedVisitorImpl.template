@@ -1,0 +1,31 @@
+package com.cboe.util.collections;
+
+/**
+ * KEYNAMEVisitorImpl.java
+ *
+ * @author Dmitry Volpyansky
+ *
+ * FILE GENERATED FROM TypedVisitorImpl.template (KEYNAME/KEYTYPE)
+ *
+ */
+
+IMPORTS
+
+public class KEYNAMEVisitorImpl implements KEYNAMEVisitor
+{
+    public KEYNAMEVisitor beforeVisit(Object arg)
+    {
+        return this;
+    }
+
+    public KEYNAMEVisitor afterVisit(Object arg)
+    {
+        return this;
+    }
+
+    public int visit(KEYTYPE key)
+    {
+        return ABORT;
+    }
+}
+

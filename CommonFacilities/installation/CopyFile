@@ -1,0 +1,23 @@
+#!/usr/bin/ksh
+if [[ 3 != $# ]]; then
+	echo "usage $0 hostname sourceFile destDirectory"
+	echo "example: $0 sbtgc0a /vobs/dte/MessagingSystem/release/jars/MessagingSystem.jar /infrastructure/classes"
+	exit 1
+fi
+fileName=${2##*/}
+if file $2 | egrep -s 'executable|ELF|commands';then
+	mode="0551"
+else
+	mode="0440"
+fi
+tstamp=`/opt/cboeutil/bin/ftime -r -m $2`
+echo "$2 --> $1:$3/$fileName"
+if [[ -z $GROUP ]]; then
+	if ! $REXEC $1 $ELBOW $FORCE -m $mode -t $tstamp $3/$fileName < $2 ; then
+		exit 255
+	fi
+else
+	if ! echo "$ELBOW $FORCE -m $mode -t $tstamp $3/$fileName" | cat - $2 | $REXEC $1 /usr/bin/newgrp $GROUP; then
+		exit 255
+	fi
+fi
