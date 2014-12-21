@@ -1,0 +1,141 @@
+#ifndef CMI_EVENTS_V2_IDL
+#define CMI_EVENTS_V2_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiSession.idl"
+#include "cmiMarketData.idl"
+#include "cmiQuote.idl"
+#include "cmiStrategy.idl"
+#include "cmiOrder.idl"
+#include "cmiUser.idl"
+#include "cmiAdmin.idl"
+#include "cmiUtil.idl"
+#include "cmi.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiCallbackV2
+{
+    interface CMICurrentMarketConsumer {
+        void acceptCurrentMarket(
+            in cmiMarketData::CurrentMarketStructSequence currentMarket,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+    
+    interface CMINBBOConsumer {
+        void acceptNBBO( 
+            in cmiMarketData::NBBOStructSequence nbbo,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMIExpectedOpeningPriceConsumer {
+        void acceptExpectedOpeningPrice(
+            in cmiMarketData::ExpectedOpeningPriceStructSequence expectedOpeningPrices,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMIRFQConsumer {
+        void acceptRFQ(
+            in cmiQuote::RFQStructSequence rfqs,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMIRecapConsumer {
+        void acceptRecap(
+            in cmiMarketData::RecapStructSequence recap,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMITickerConsumer {
+        void acceptTicker(
+            in cmiMarketData::TickerStructSequence ticker,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMIOrderBookConsumer {
+        void acceptBookDepth(
+            in cmiMarketData::BookDepthStructSequence productBooks,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMIOrderBookUpdateConsumer {
+        void acceptBookDepthUpdate(
+            in cmiMarketData::BookDepthUpdateStructSequence productBooks,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+    interface CMIOrderStatusConsumer {
+        void acceptOrderStatus( 
+            in cmiOrder::OrderDetailStructSequence orders,
+            in long queueDepth);
+
+        void acceptOrderCanceledReport(
+            in cmiOrder::OrderCancelReportStruct canceledReport,
+            in long queueDepth);
+
+        void acceptOrderFilledReport(
+            in cmiOrder::OrderFilledReportStruct filledReport,
+            in long queueDepth);
+
+        void acceptOrderBustReport(
+            in cmiOrder::OrderBustReportStruct bustReport,
+            in long queueDepth);
+
+        void acceptOrderBustReinstateReport(
+            in cmiOrder::OrderBustReinstateReportStruct bustReinstatedReport,
+            in long queueDepth);
+
+        void acceptNewOrder(
+            in cmiOrder::OrderDetailStruct order,
+            in long queueDepth);
+    };
+
+    interface CMIQuoteStatusConsumer {
+        // Quote Deletes will no longer be published as part of Quote Status
+        // Listen for the acceptQuoteDeleteReport message instead
+        // New Quote messages will only be published if ‘includeBookedStatus’
+        // is set to true on the subscribe call
+        void acceptQuoteStatus( 
+            in cmiQuote::QuoteDetailStructSequence quotes,
+            in long queueDepth);  
+
+        void acceptQuoteFilledReport(
+            in cmiQuote::QuoteFilledReportStruct filledReport,
+            in long queueDepth);
+
+        void acceptQuoteBustReport(
+            in cmiQuote::QuoteBustReportStruct bustReport,
+            in long queueDepth);
+
+        void acceptQuoteDeleteReport(
+            in cmiQuote::QuoteDeleteReportStructSequence deleteReports,
+            in long queueDepth);
+    };
+
+    interface CMILockedQuoteStatusConsumer {
+        void acceptQuoteLockedReport(
+            in cmiQuote::LockNotificationStructSequence lockedQuotes,
+            in long queueDepth);
+    };
+};
+
+#endif

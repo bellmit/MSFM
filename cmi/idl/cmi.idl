@@ -1,0 +1,1439 @@
+#ifndef CMI_IDL
+#define CMI_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiCallback.idl"
+#include "cmiOrder.idl"
+#include "cmiQuote.idl"
+#include "cmiUser.idl"
+#include "cmiAdmin.idl"
+#include "cmiUtil.idl"
+#include "cmiSession.idl"
+#include "cmiStrategy.idl"
+#include "cmiMarketData.idl"
+#include "cmiTraderActivity.idl"
+#include "exceptions.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmi {
+    interface Version {
+        const cmiUtil::VersionLabel CMI_VERSION = "9.0";
+        cmiUtil::VersionLabel getVersionNumber();
+    };
+
+
+//-----------------------------------------------------------------------------------------------------------
+//  MARKET QUERY SERVICE
+//-----------------------------------------------------------------------------------------------------------
+
+    interface MarketQuery
+    {
+        void subscribeRecapForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeRecapForProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeCurrentMarketForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeCurrentMarketForProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+         void subscribeNBBOForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeNBBOForProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeCurrentMarketForProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeCurrentMarketForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+         void unsubscribeNBBOForProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeNBBOForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeTicker(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMITickerConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeRecapForProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeRecapForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeTicker(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMITickerConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiMarketData::MarketDataHistoryStruct getMarketDataHistoryByTime(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiUtil::DateTimeStruct startTime,
+            in cmiUtil::QueryDirection direction)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        void subscribeExpectedOpeningPrice(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIExpectedOpeningPriceConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeExpectedOpeningPrice(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIExpectedOpeningPriceConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiMarketData::BookDepthStruct getBookDepth(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException,
+                    exceptions::NotAcceptedException
+                );
+
+        void subscribeBookDepth(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIOrderBookConsumer orderBookConsumer)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+            );
+
+        void unsubscribeBookDepth(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIOrderBookConsumer orderBookConsumer)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeBookDepthUpdate(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIOrderBookUpdateConsumer orderBookConsumer)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeBookDepthUpdate(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIOrderBookUpdateConsumer orderBookConsumer)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+     };
+
+//-----------------------------------------------------------------------------------------------------------
+//  QUOTE SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface Quote {
+        void acceptQuote(
+            in cmiQuote::QuoteEntryStruct quote )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+        cmiQuote::ClassQuoteResultStructSequence acceptQuotesForClass(
+            in cmiProduct::ClassKey classKey,
+            in cmiQuote::QuoteEntryStructSequence quotes )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+
+        cmiQuote::QuoteDetailStruct getQuote(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        void subscribeQuoteStatus(
+            in cmiCallback::CMIQuoteStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException
+                );
+
+        void subscribeQuoteStatusWithoutPublish(
+            in cmiCallback::CMIQuoteStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException
+                );
+
+        void unsubscribeQuoteStatus(
+            in cmiCallback::CMIQuoteStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeQuoteStatusForFirm(
+            in cmiCallback::CMIQuoteStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException
+                );
+
+        void subscribeQuoteStatusForFirmWithoutPublish(
+            in cmiCallback::CMIQuoteStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException
+                );
+
+        void unsubscribeQuoteStatusForFirm(
+            in cmiCallback::CMIQuoteStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void cancelQuote(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException,
+                    exceptions::NotFoundException
+                );
+
+        void cancelAllQuotes(
+            in cmiSession::TradingSessionName sessionName)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+        void cancelQuotesByClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException,
+                    exceptions::NotFoundException
+                );
+
+        void subscribeRFQ(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIRFQConsumer clientListener )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeRFQ(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIRFQConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+//  ORDER QUERY SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface OrderQuery {
+        cmiOrder::OrderDetailStructSequence getOrdersForProduct(
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::OrderDetailStructSequence getOrdersForSession (
+            in cmiSession::TradingSessionName sessionName)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+         cmiOrder::OrderDetailStruct getOrderById(
+            in cmiOrder::OrderIdStruct orderId)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        void subscribeOrdersByFirm(
+            in cmiCallback::CMIOrderStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeOrdersByFirmWithoutPublish(
+            in cmiCallback::CMIOrderStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeOrders(
+            in cmiCallback::CMIOrderStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeOrdersWithoutPublish(
+            in cmiCallback::CMIOrderStatusConsumer clientListener,
+            in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::OrderDetailStructSequence getOrdersForType(
+            in cmiProduct::ProductType productType)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::OrderDetailStructSequence getOrdersForClass(
+            in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+       cmiTraderActivity::ActivityHistoryStruct queryOrderHistory(
+            in cmiOrder::OrderIdStruct orderId )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotFoundException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::PendingOrderStructSequence getPendingAdjustmentOrdersByProduct(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::PendingOrderStructSequence getPendingAdjustmentOrdersByClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeOrderStatusForProduct(
+            in cmiProduct::ProductKey productKey,
+            in cmiCallback::CMIOrderStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeOrderStatusForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiCallback::CMIOrderStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeOrderStatusForFirm(
+            in cmiCallback::CMIOrderStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeAllOrderStatusForType(
+            in cmiProduct::ProductType productType,
+            in cmiCallback::CMIOrderStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeOrderStatusByClass(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIOrderStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+     };
+
+//-----------------------------------------------------------------------------------------------------------
+// PRODUCT QUERY SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface ProductQuery {
+        cmiProduct::ProductTypeStructSequence getProductTypes()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        cmiProduct::ClassStructSequence getProductClasses(
+            in cmiProduct::ProductType productType)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiProduct::ProductStructSequence getProductsByClass(
+            in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        boolean isValidProductName(
+            in cmiProduct::ProductNameStruct productName)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiProduct::ProductStruct getProductByName(
+            in cmiProduct::ProductNameStruct productName  )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiProduct::ProductNameStruct getProductNameStruct(
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiProduct::PendingAdjustmentStructSequence getAllPendingAdjustments()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        cmiProduct::PendingAdjustmentStructSequence getPendingAdjustments(
+            in cmiProduct::ClassKey classKey,
+            in boolean includeProducts)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiProduct::PendingNameStructSequence getPendingAdjustmentProducts(
+            in cmiProduct::ClassKey classKey )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiStrategy::StrategyStruct getStrategyByKey(
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+
+        cmiProduct::ClassStruct getClassByKey(
+            in cmiProduct::ClassKey classKey )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiProduct::ProductStruct getProductByKey(
+            in cmiProduct::ProductKey productKey )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiProduct::ClassStruct getClassBySymbol(
+            in cmiProduct::ProductType productType,
+            in string className)
+            raises (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiStrategy::StrategyStructSequence getStrategiesByComponent(
+            in cmiProduct::ProductKey componentKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiStrategy::StrategyStructSequence getStrategiesByClass(
+            in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// PRODUCT DEFINITION SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface ProductDefinition {
+        cmiSession::SessionStrategyStruct acceptStrategy(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiStrategy::StrategyRequestStruct strategyRequest )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiStrategy::StrategyRequestStruct buildStrategyRequestByName(
+            in cmiStrategy::StrategyType strategyType,
+            in cmiProduct::ProductNameStruct anchorProduct,
+            in cmiUtil::PriceStruct priceIncrement,
+            in cmiStrategy::MonthIncrement monthIncrement)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::DataValidationException,
+                    exceptions::AuthorizationException,
+                    exceptions::CommunicationException
+            );
+
+       cmiStrategy::StrategyRequestStruct buildStrategyRequestByProductKey(
+           in cmiStrategy::StrategyType strategyType,
+           in cmiProduct::ProductKey anchorProductKey,
+           in cmiUtil::PriceStruct priceIncrement,
+           in cmiStrategy::MonthIncrement monthIncrement)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::DataValidationException,
+                   exceptions::AuthorizationException,
+                   exceptions::CommunicationException
+            );
+
+
+    };
+
+
+//-----------------------------------------------------------------------------------------------------------
+// ORDER ENTRY SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface OrderEntry {
+
+        cmiOrder::OrderIdStruct acceptOrder(
+            in cmiOrder::OrderEntryStruct anOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::AlreadyExistsException
+                );
+
+        cmiOrder::OrderIdStruct acceptOrderByProductName(
+            in cmiProduct::ProductNameStruct product,
+            in cmiOrder::OrderEntryStruct anOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::AlreadyExistsException
+                );
+
+        void acceptOrderCancelRequest(
+            in cmiOrder::CancelRequestStruct cancelRequest)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+
+        void acceptOrderUpdateRequest(
+            in long currentRemainingQuantity,
+            in cmiOrder::OrderEntryStruct updatedOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+        cmiOrder::OrderIdStruct acceptOrderCancelReplaceRequest(
+            in cmiOrder::CancelRequestStruct cancelRequest,
+            in cmiOrder::OrderEntryStruct newOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+        void acceptCrossingOrder(
+            in cmiOrder::OrderEntryStruct buyCrossingOrder,
+            in cmiOrder::OrderEntryStruct sellCrossingOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::AlreadyExistsException
+                );
+
+        void acceptRequestForQuote(
+            in cmiQuote::RFQEntryStruct rfq )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+       cmiOrder::OrderIdStruct acceptStrategyOrder(
+           in cmiOrder::OrderEntryStruct anOrder,
+           in cmiOrder::LegOrderEntryStructSequence legEntryDetails)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException,
+                   exceptions::AlreadyExistsException
+               );
+
+       void acceptStrategyOrderUpdateRequest(
+           in long currentRemainingQuantity,
+           in cmiOrder::OrderEntryStruct updatedOrder,
+           in cmiOrder::LegOrderEntryStructSequence legEntryDetails)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException
+               );
+
+       cmiOrder::OrderIdStruct acceptStrategyOrderCancelReplaceRequest(
+           in cmiOrder::CancelRequestStruct cancelRequest,
+           in cmiOrder::OrderEntryStruct newOrder,
+           in cmiOrder::LegOrderEntryStructSequence legEntryDetails)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException
+               );
+
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// User Preference Query Service
+//-----------------------------------------------------------------------------------------------------------
+    interface UserPreferenceQuery
+    {
+        void setUserPreferences(in cmiUser::PreferenceStructSequence preferenceSequence)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void removeUserPreference(in cmiUser::PreferenceStructSequence preferenceSequence)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiUser::PreferenceStructSequence getAllUserPreferences()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiUser::PreferenceStructSequence getUserPreferencesByPrefix(in string prefix)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void removeUserPreferencesByPrefix(in string prefix)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiUser::PreferenceStructSequence getAllSystemPreferences()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiUser::PreferenceStructSequence getSystemPreferencesByPrefix(in string prefix)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// ADMINISTRATOR SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface Administrator
+    {
+        cmiAdmin::MessageKey sendMessage( in cmiAdmin::MessageStruct message )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException,
+                exceptions::DataValidationException
+            );
+    };
+
+
+//-----------------------------------------------------------------------------------------------------------
+// TRADING SESSION SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface TradingSession
+    {
+        cmiSession::TradingSessionStructSequence getCurrentTradingSessions(
+            in cmiCallback::CMITradingSessionStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeTradingSessionStatus(
+            in cmiCallback::CMITradingSessionStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiProduct::ProductTypeStructSequence getProductTypesForSession(
+            in cmiSession::TradingSessionName sessionName)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiSession::SessionClassStructSequence getClassesForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductType productType,
+            in cmiCallback::CMIClassStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiSession::SessionProductStructSequence getProductsForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIProductStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiSession::SessionStrategyStructSequence getStrategiesByClassForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIStrategyStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiSession::SessionProductStruct getProductBySessionForKey(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiSession::SessionStrategyStruct getStrategyBySessionForKey(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiSession::SessionClassStruct getClassBySessionForKey(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiSession::SessionProductStruct getProductBySessionForName(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductNameStruct productName  )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiSession::SessionClassStruct getClassBySessionForSymbol(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductType productType,
+            in string className)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        void unsubscribeClassesByTypeForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductType productType,
+            in cmiCallback::CMIClassStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeProductsByClassForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIProductStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeStrategiesByClassForSession(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallback::CMIStrategyStatusConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+    cmiSession::SessionStrategyStructSequence getStrategiesByComponent(
+           in cmiProduct::ProductKey componentKey,
+           in cmiSession::TradingSessionName sessionName)
+               raises(
+                  exceptions::SystemException,
+                  exceptions::DataValidationException,
+                  exceptions::AuthorizationException,
+                  exceptions::CommunicationException
+               );
+
+
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// USER HISTORY SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface UserHistory
+    {
+        cmiTraderActivity::ActivityHistoryStruct getTraderClassActivityByTime(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiUtil::DateTimeStruct startTime,
+            in cmiUtil::QueryDirection direction )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiTraderActivity::ActivityHistoryStruct getTraderProductActivityByTime(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiUtil::DateTimeStruct startTime,
+            in cmiUtil::QueryDirection direction )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// USER TRADING PARAMETERS SERVICE
+//-----------------------------------------------------------------------------------------------------------
+
+    interface UserTradingParameters
+    {
+        cmiQuote::UserQuoteRiskManagementProfileStruct getAllQuoteRiskProfiles()
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiQuote::QuoteRiskManagementProfileStruct getQuoteRiskManagementProfileByClass(in cmiProduct::ClassKey classKey)
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotFoundException
+                );
+
+
+        void setQuoteRiskManagementEnabledStatus(in boolean status)
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::TransactionFailedException
+                );
+
+        boolean getQuoteRiskManagementEnabledStatus()
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        cmiQuote::QuoteRiskManagementProfileStruct getDefaultQuoteRiskProfile()
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotFoundException
+                );
+
+        void setQuoteRiskProfile(in cmiQuote::QuoteRiskManagementProfileStruct quoteRiskProfile)
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::DataValidationException
+                );
+
+        void removeQuoteRiskProfile(in cmiProduct::ClassKey classKey)
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException
+                );
+
+        void removeAllQuoteRiskProfiles()
+                raises    (
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::TransactionFailedException
+                );
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// User Session Manager
+//-----------------------------------------------------------------------------------------------------------
+    interface UserSessionManager
+    {
+        void logout()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        void authenticate(in cmiUser::UserLogonStruct logonStruct)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthenticationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        TradingSession getTradingSession()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        MarketQuery getMarketQuery()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        OrderQuery getOrderQuery()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        ProductDefinition getProductDefinition()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        ProductQuery getProductQuery()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        Quote getQuote()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        OrderEntry getOrderEntry()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        UserPreferenceQuery getUserPreferenceQuery()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        UserTradingParameters getUserTradingParameters()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        Administrator getAdministrator()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        UserHistory getUserHistory()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+         cmiUser::UserStruct getValidUser()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+	cmiUser::SessionProfileUserStruct getValidSessionProfileUser()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+	void changePassword(in string oldPassword, in string newPassword)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiUtil::VersionLabel getVersion()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+        cmiUtil::DateTimeStruct getSystemDateTime()
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+
+  };
+
+//-----------------------------------------------------------------------------------------------------------
+// USER ACCESS SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface UserAccess
+    {
+        UserSessionManager logon(in cmiUser::UserLogonStruct logonStruct,
+                in cmiSession::LoginSessionType sessionType,
+                in cmiCallback::CMIUserSessionAdmin clientListener,
+                in boolean gmdTextMessaging )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::AuthenticationException,
+                    exceptions::DataValidationException
+                );
+    };
+};
+#endif
+

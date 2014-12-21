@@ -1,0 +1,58 @@
+#ifndef CMI_TRADENOTIFICATION_IDL
+#define CMI_TRADENOTIFICATION_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 4.2
+//
+// Copyright ¨ 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "cmiSession.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+#include "cmiOrder.idl"
+#pragma javaPackage "com.cboe.idl"
+
+module cmiTradeNotification
+{
+    typedef short TradeNotificationState;
+    typedef short TradeNotificationReason;
+       
+    struct TradeNotificationContraPartyStruct
+    {
+    	cmiOrder::OrderIdStruct orderId;
+    	string orsId;
+    	cmiUtil::CboeIdStruct tradeId;
+    	cmiOrder::ContraPartyStruct contraParty;
+    };
+    
+    typedef sequence <TradeNotificationContraPartyStruct> TradeNotificationContraPartyStructSequence;
+
+    struct TradeNotificationStruct 
+    {
+    	string tradeNotificationId;					/* Trade Notification ID */
+        cmiUser::ExchangeAcronymStruct executingBroker;			/* Par Broker (PAR Login) */
+	cmiUser::ExchangeAcronymStruct etnBroker;				
+        cmiUser::ExchangeFirmStruct etnExchangeFirm;			/* Executing - traded with */
+    	cmiUtil::DateTimeStruct tnDateTime;				/* Trade Notification Time */
+    	cmiProduct::ProductKeysStruct prodKeysStruct;			/* Product Keys Struct product and class keys*/
+    	cmiSession::TradingSessionName sessionName;			/* Session Name */
+    	cmiUtil::Side side;						/* Buy or Sell Side */
+    	long tradedQuantity;
+    	cmiUtil::PriceStruct executionPrice;				/* Execution Price */
+    	cmiUtil::DateTimeStruct executionTime;				/* Execution time */
+    	cmiUtil::DateTimeStruct endorseTime;				/* Endorsement time */
+    	char spreadIndicator;						/* Indicates whether ETN is part of Strategy Order */
+    	TradeNotificationContraPartyStructSequence tnContraParties;	/* Underlying Orders traded by the executingBroker (PAR Broker)*/
+    };
+    typedef sequence <TradeNotificationStruct> TradeNotificationStructSequence;
+    
+};
+#endif

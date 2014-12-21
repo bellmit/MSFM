@@ -1,0 +1,112 @@
+#ifndef CMI_V9_IDL
+#define CMI_V9_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 9.0
+//
+// Copyright © 1999-2010 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either Express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiV8.idl"
+#include "cmiOrder.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV9
+{	
+	//-----------------------------------------------------------------------------------------------------------
+	//  	Light Order Entry Interface
+	//-----------------------------------------------------------------------------------------------------------
+
+
+	
+	interface OrderEntry: cmiV7::OrderEntry
+  	{
+		cmiOrder:: LightOrderResultStruct acceptLightOrder(
+		    in cmiOrder:: LightOrderEntryStruct anOrder)
+			raises(
+			    exceptions::SystemException,
+			    exceptions::CommunicationException,
+			    exceptions::AuthorizationException,
+			    exceptions::DataValidationException,
+			    exceptions::NotAcceptedException,
+			    exceptions::TransactionFailedException,
+			    exceptions::AlreadyExistsException
+			);
+
+
+		cmiOrder:: LightOrderResultStruct acceptLightOrderCancelRequest(
+			in string branch,
+			in long branchSequenceNumber,
+			in cmiProduct::ProductKey productKey,
+			in cmiSession::TradingSessionName activeSession,
+			in string userAssignedCancelId
+				)
+			raises(
+			    exceptions::SystemException,
+			    exceptions::CommunicationException,
+			    exceptions::AuthorizationException,
+			    exceptions::DataValidationException,
+			    exceptions::NotAcceptedException,
+			    exceptions::TransactionFailedException
+			);
+
+		cmiOrder:: LightOrderResultStruct acceptLightOrderCancelRequestById(
+			in long orderHighId,
+			in long orderLowId,
+			in cmiProduct::ProductKey productKey,
+			in cmiSession::TradingSessionName activeSession,
+			in string userAssignedCancelId
+				)
+			raises(
+			    exceptions::SystemException,
+			    exceptions::CommunicationException,
+			    exceptions::AuthorizationException,
+			    exceptions::DataValidationException,
+			    exceptions::NotAcceptedException,
+			    exceptions::TransactionFailedException
+			);
+
+
+    	};
+
+    interface UserSessionManagerV9 : cmiV8::UserSessionManagerV8
+	{
+		cmiV9::OrderEntry   getOrderEntryV9()
+            	raises(
+                    	exceptions::SystemException,
+                    	exceptions::CommunicationException,
+                    	exceptions::AuthorizationException,
+                    	exceptions::AuthenticationException,
+                    	exceptions::NotFoundException
+                	);
+
+    };
+    
+    interface UserAccessV9
+    {
+        	UserSessionManagerV9 logon(
+            	in cmiUser::UserLogonStruct logonStruct,
+            	in cmiSession::LoginSessionType sessionType,
+            	in cmiCallback::CMIUserSessionAdmin clientListener,
+            	in boolean gmdTextMessaging )
+                		raises(
+                    		exceptions::SystemException,
+                    		exceptions::CommunicationException,
+                    		exceptions::AuthorizationException,
+                    		exceptions::AuthenticationException,
+                    		exceptions::DataValidationException,
+                    		exceptions::NotFoundException
+                		);
+
+     };
+};
+#endif

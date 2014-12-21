@@ -1,0 +1,138 @@
+#ifndef CMI_USER_IDL
+#define CMI_USER_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "cmiSession.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiUser
+{
+
+    typedef char UserRole;
+    typedef char LoginSessionMode;
+    typedef string Exchange;
+    typedef char  OriginType;
+    typedef sequence <cmiUser::Exchange> ExchangeSequence;
+
+#pragma use_factory_for_struct ON 
+    struct ExchangeFirmStruct
+    {
+        cmiUser::Exchange exchange;
+        string firmNumber;
+    };
+    typedef sequence <ExchangeFirmStruct> ExchangeFirmStructSequence;
+
+    struct ExchangeAcronymStruct
+    {
+        cmiUser::Exchange exchange;
+        string acronym;
+    };
+#pragma use_factory_for_struct OFF
+
+    typedef sequence <ExchangeAcronymStruct> ExchangeAcronymStructSequence;
+
+    struct PreferenceStruct
+    {
+        string name;
+        string value;
+    };
+
+    typedef sequence <PreferenceStruct> PreferenceStructSequence;
+
+    struct ProfileStruct
+    {
+        cmiProduct::ClassKey classKey;
+        string account;
+        string subAccount;
+        cmiUser::ExchangeFirmStruct executingGiveupFirm;
+
+    };
+
+    typedef sequence <ProfileStruct> ProfileStructSequence;
+
+    struct SessionProfileStruct
+    {
+        cmiProduct::ClassKey classKey;
+        string account;
+        string subAccount;
+        cmiUser::ExchangeFirmStruct executingGiveupFirm;
+        	// session name of the profile, it applies all the sessions if it is ALL_SESSION_NAME
+	cmiSession::TradingSessionName sessionName;
+   		// add one boolean to indicate if the account will be overwritten to blank account
+   	boolean isAccountBlanked;
+        cmiUser::OriginType originCode;
+    };
+
+    typedef sequence <SessionProfileStruct> SessionProfileStructSequence;
+    
+    struct AccountStruct
+    {
+        string account;
+        cmiUser::ExchangeFirmStruct executingGiveupFirm;
+    };
+
+    typedef sequence <AccountStruct> AccountStructSequence;
+
+    struct DpmStruct
+    {
+        string dpmUserId;
+        cmiProduct::ClassKeySequence dpmAssignedClasses;
+    };
+
+    typedef sequence <DpmStruct> DpmStructSequence;
+
+    struct UserStruct
+    {
+        cmiUser::ExchangeAcronymStruct userAcronym;
+        string userId; //unique per user
+        cmiUser::ExchangeFirmStruct firm;
+        string fullName;
+        cmiUser::UserRole role;
+        cmiUser::ExchangeFirmStructSequence executingGiveupFirms;
+        cmiUser::ProfileStructSequence profilesByClass;
+        cmiUser::ProfileStruct defaultProfile;
+        cmiUser::AccountStructSequence accounts;
+        cmiProduct::ClassKeySequence assignedClasses;
+        cmiUser::DpmStructSequence dpms;
+    };
+    struct UserLogonStruct
+    {
+        string userId; //unique per user
+        string password;
+        cmiUtil::VersionLabel version;
+        cmiUser::LoginSessionMode loginMode;
+    };
+
+    struct SessionProfileUserStruct
+    {
+	cmiUser::ExchangeAcronymStruct userAcronym;
+	string userId; //unique per user
+	cmiUser::ExchangeFirmStruct firm;
+	string fullName;
+	cmiUser::UserRole role;
+	cmiUser::ExchangeFirmStructSequence executingGiveupFirms;
+	cmiUser::AccountStructSequence accounts;
+	cmiProduct::ClassKeySequence assignedClasses;
+	cmiUser::DpmStructSequence dpms;
+	cmiUser::SessionProfileStructSequence sessionProfilesByClass; // excludes all profiles with default class key
+	cmiUser::SessionProfileStructSequence defaultSessionProfiles;  // session default profiles
+	cmiUser::SessionProfileStruct defaultProfile; //generic profile for all classes and all sessions
+    };
+    
+    typedef sequence <SessionProfileUserStruct> SessionProfileUserStructSequence;
+};
+
+#endif

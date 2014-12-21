@@ -1,0 +1,450 @@
+#ifndef CMI_MARKET_DATA_IDL
+#define CMI_MARKET_DATA_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "cmiOrder.idl"
+#include "cmiUtil.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiMarketData
+{
+    typedef short ExpectedOpeningPriceType;
+    typedef short MarketDataHistoryEntryType;
+    typedef short MarketChangeReason;
+    typedef short VolumeType;
+    typedef short CurrentMarketViewType;
+    typedef char BookDepthUpdateType;
+    typedef char TickDirectionType;
+    typedef octet MarketIndicator;
+    typedef short OrderBookPriceViewType;
+    typedef octet CurrentMarketType;
+    typedef long IntegerTime;  
+    typedef long IntegerPrice; 
+    typedef octet MultiplePartiesIndicator;
+    typedef string RecapSuffix;
+
+             
+    struct MarketVolumeStruct {
+        cmiMarketData::VolumeType volumeType;
+        long quantity;
+        boolean multipleParties;
+    };
+    typedef sequence <MarketVolumeStruct> MarketVolumeStructSequence;
+
+    struct CurrentMarketStruct {
+        cmiProduct::ProductKeysStruct productKeys;  
+        cmiSession::TradingSessionName sessionName;
+        string exchange;
+        cmiUtil::PriceStruct bidPrice;
+        cmiMarketData::MarketVolumeStructSequence bidSizeSequence;
+        boolean bidIsMarketBest;
+        cmiUtil::PriceStruct askPrice;
+        cmiMarketData::MarketVolumeStructSequence askSizeSequence;
+        boolean askIsMarketBest;
+        cmiUtil::TimeStruct sentTime;
+        boolean legalMarket;
+    };
+    typedef sequence <CurrentMarketStruct> CurrentMarketStructSequence;
+
+#pragma use_factory_for_struct ON
+    struct ExchangeVolumeStruct {
+        string exchange;
+        long volume;
+    };
+#pragma use_factory_for_struct OFF
+
+    typedef sequence <ExchangeVolumeStruct> ExchangeVolumeStructSequence;
+    
+     struct NBBOStruct {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiUtil::PriceStruct bidPrice;
+        cmiMarketData::ExchangeVolumeStructSequence bidExchangeVolume;
+        cmiUtil::PriceStruct askPrice;
+        cmiMarketData::ExchangeVolumeStructSequence askExchangeVolume;
+        cmiUtil::TimeStruct sentTime;     
+    };
+    typedef sequence <NBBOStruct> NBBOStructSequence;
+    
+    struct RecapStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiProduct::ProductNameStruct productInformation;
+        cmiUtil::PriceStruct lastSalePrice;
+        cmiUtil::TimeStruct tradeTime;
+        long lastSaleVolume;
+        long totalVolume;
+        char tickDirection; //Use the constants defined for TickDirectionType for this field. 
+        char netChangeDirection;
+        char bidDirection;
+        cmiUtil::PriceStruct netChange;
+        cmiUtil::PriceStruct bidPrice;
+        long bidSize;
+        cmiUtil::TimeStruct bidTime;
+        cmiUtil::PriceStruct askPrice;
+        long askSize;
+        cmiUtil::TimeStruct askTime;
+        string recapPrefix;
+        cmiUtil::PriceStruct tick;
+        cmiUtil::PriceStruct lowPrice;
+        cmiUtil::PriceStruct highPrice;
+        cmiUtil::PriceStruct openPrice;
+        cmiUtil::PriceStruct closePrice;
+        long openInterest;
+        cmiUtil::PriceStruct previousClosePrice;
+        boolean isOTC;
+    };
+    typedef sequence < RecapStruct > RecapStructSequence;
+
+    struct TickerStruct
+    {
+       cmiProduct::ProductKeysStruct productKeys;
+       cmiSession::TradingSessionName sessionName;
+       cmiProduct::Symbol exchangeSymbol;
+       string salePrefix;
+       cmiUtil::PriceStruct lastSalePrice;
+       long lastSaleVolume;
+       string salePostfix;
+    };
+    typedef sequence < TickerStruct > TickerStructSequence;
+
+    struct ExpectedOpeningPriceStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiMarketData::ExpectedOpeningPriceType eopType;
+        cmiUtil::PriceStruct expectedOpeningPrice;
+        long imbalanceQuantity;
+        boolean legalMarket;
+    };
+    typedef sequence <ExpectedOpeningPriceStruct> ExpectedOpeningPriceStructSequence;
+
+    struct MarketDataHistoryEntryStruct {
+        cmiMarketData::MarketDataHistoryEntryType entryType;
+        cmiUtil::Source source;
+        cmiUtil::DateTimeStruct reportTime;
+        cmiUtil::PriceStruct price;
+        long quantity;
+        string sellerAcronym;
+        string buyerAcronym;
+        long bidSize;
+        cmiUtil::PriceStruct bidPrice;
+        long askSize;
+        cmiUtil::PriceStruct askPrice;
+        cmiUtil::PriceStruct underlyingLastSalePrice;
+        cmiMarketData::ExpectedOpeningPriceType eopType;
+        cmiSession::ProductState marketCondition;
+        string optionalData;
+        string exceptionCode;
+        string physLocation;
+        string prefix;
+    };
+    typedef sequence <MarketDataHistoryEntryStruct> MarketDataHistoryEntryStructSequence;
+
+    struct MarketDataHistoryStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiUtil::DateTimeStruct startTime;
+        cmiUtil::DateTimeStruct endTime;
+        cmiMarketData::MarketDataHistoryEntryStructSequence entries;
+    };
+    typedef sequence <MarketDataHistoryStruct> MarketDataHistoryStructSequence;
+
+    typedef short ExchangeIndicatorType ;
+
+    struct ExchangeIndicatorStruct
+    {
+        string exchange;
+        cmiMarketData::ExchangeIndicatorType marketCondition;
+    };
+    typedef sequence <ExchangeIndicatorStruct> ExchangeIndicatorStructSequence;
+
+    typedef char OverrideIndicatorType;
+
+    struct MarketDataDetailStruct
+    {
+        cmiMarketData::OverrideIndicatorType overrideIndicator;
+        cmiUtil::PriceStruct nbboAskPrice;
+        cmiMarketData::ExchangeVolumeStructSequence nbboAskExchanges;
+        cmiUtil::PriceStruct nbboBidPrice;
+        cmiMarketData::ExchangeVolumeStructSequence nbboBidExchanges;
+        boolean tradeThroughIndicator;
+        cmiMarketData::ExchangeIndicatorStructSequence exchangeIndicators;
+        cmiUtil::PriceStruct bestPublishedBidPrice;
+        long bestPublishedBidVolume;
+        cmiUtil::PriceStruct bestPublishedAskPrice;
+        long bestPublishedAskVolume;
+        cmiUser::ExchangeAcronymStructSequence brokers;
+        cmiUser::ExchangeAcronymStructSequence contras;
+        cmiUtil::KeyValueStructSequence extensions;
+    };
+
+    struct MarketDataHistoryDetailEntryStruct
+    {
+        cmiMarketData::MarketDataHistoryEntryStruct historyEntry;
+        cmiMarketData::MarketDataDetailStruct detailData;
+    };
+    typedef sequence <MarketDataHistoryDetailEntryStruct>  MarketDataHistoryDetailEntryStructSequence;
+
+
+    struct MarketDataHistoryDetailStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiUtil::DateTimeStruct startTime;
+        cmiUtil::DateTimeStruct endTime;
+        boolean isOutOfSequence;
+        cmiMarketData::MarketDataHistoryDetailEntryStructSequence entries;
+    };
+    typedef sequence <MarketDataHistoryDetailStruct>  MarketDataHistoryDetailStructSequence;
+
+
+    struct OrderBookPriceStruct
+    {
+        cmiUtil::PriceStruct price;
+        long totalVolume;
+        long contingencyVolume;
+    };
+    typedef sequence <OrderBookPriceStruct> OrderBookPriceStructSequence;
+
+    struct BookDepthStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiMarketData::OrderBookPriceStructSequence buySideSequence;
+        cmiMarketData::OrderBookPriceStructSequence sellSideSequence;
+        boolean allPricesIncluded;
+        long transactionSequenceNumber;
+    };
+    typedef sequence <BookDepthStruct> BookDepthStructSequence;    
+
+    struct BookDepthUpdatePriceStruct {
+        cmiMarketData::BookDepthUpdateType updateType;
+        cmiUtil::PriceStruct price;
+        long totalVolume;                            // U: new quantity, I: quantity, D: ignored
+        long contingencyVolume;                 // U: new quantity, I: quantity, D: ignored
+    };
+
+    typedef sequence <BookDepthUpdatePriceStruct> BookDepthUpdatePriceStructSequence;
+
+    struct BookDepthUpdateStruct {
+        long sequenceNumber;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiMarketData::BookDepthUpdatePriceStructSequence buySideChanges;
+        cmiMarketData::BookDepthUpdatePriceStructSequence sellSideChanges;
+    };
+
+    typedef sequence <BookDepthUpdateStruct> BookDepthUpdateStructSequence;
+
+        struct CurrentMarketViewStruct
+    {
+        cmiMarketData::CurrentMarketViewType currentMarketViewType;
+        cmiUtil::PriceStruct bidPrice;
+        cmiMarketData::MarketVolumeStructSequence bidSizeSequence;
+        cmiUtil::PriceStruct askPrice;
+        cmiMarketData::MarketVolumeStructSequence askSizeSequence;
+    };
+    typedef  sequence <CurrentMarketViewStruct> CurrentMarketViewStructSequence;
+
+    struct CurrentMarketStructV2
+    {
+        cmiProduct::ProductKeysStruct productKeys;  
+        cmiSession::TradingSessionName sessionName;
+        string exchange;
+        cmiMarketData::CurrentMarketViewStructSequence currentMarketViews;
+        cmiUtil::TimeStruct sentTime;
+        boolean bidIsMarketBest;
+        boolean askIsMarketBest;
+        boolean legalMarket;
+    };
+    typedef sequence <CurrentMarketStructV2> CurrentMarketStructV2Sequence;
+    
+    struct OrderBookPriceViewStruct
+    {
+        cmiMarketData::OrderBookPriceViewType orderBookPriceViewType;
+        cmiMarketData::MarketVolumeStructSequence viewSequence;
+    };
+    typedef sequence <OrderBookPriceViewStruct> OrderBookPriceViewStructSequence;
+
+    struct OrderBookPriceStructV2
+    {
+        cmiUtil::PriceStruct price;
+        OrderBookPriceViewStructSequence views;
+    };
+    typedef sequence <OrderBookPriceStructV2> OrderBookPriceStructV2Sequence;
+    
+    struct BookDepthStructV2
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiMarketData::OrderBookPriceStructV2Sequence buySideSequence;
+        cmiMarketData::OrderBookPriceStructV2Sequence sellSideSequence;
+        boolean allPricesIncluded;
+        long transactionSequenceNumber;
+    };
+
+#pragma use_factory_for_struct ON
+
+    struct MarketVolumeStructV4 {
+        cmiMarketData::VolumeType volumeType;
+        long quantity;
+        cmiMarketData::MultiplePartiesIndicator multipleParties;
+    };
+#pragma use_factory_for_struct OFF
+    typedef sequence <MarketVolumeStructV4> MarketVolumeStructV4Sequence;
+
+    struct CurrentMarketStructV4
+    {
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ProductType productType;
+        string exchange;
+        cmiMarketData::IntegerTime sentTime;
+
+        cmiMarketData::CurrentMarketType currentMarketType; 
+        cmiMarketData::IntegerPrice bidPrice;
+		cmiMarketData::TickDirectionType bidTickDirection;
+        cmiMarketData::MarketVolumeStructV4Sequence bidSizeSequence;        
+        cmiMarketData::IntegerPrice askPrice;
+        cmiMarketData::MarketVolumeStructV4Sequence askSizeSequence;        
+        cmiMarketData::MarketIndicator marketIndicator;
+        cmiSession::ProductState productState;
+        octet priceScale;
+    };
+    typedef sequence <CurrentMarketStructV4> CurrentMarketStructV4Sequence;
+
+    struct TickerStructV4
+    {
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ProductType productType;
+        string exchange;
+        cmiMarketData::IntegerTime sentTime;
+
+        octet priceScale;
+        cmiMarketData::IntegerTime tradeTime;      
+        cmiMarketData::IntegerPrice tradePrice;
+        long tradeVolume;                           
+        string salePrefix;
+        string salePostfix;
+     };
+     typedef sequence <TickerStructV4> TickerStructV4Sequence;
+
+    struct RecapStructV4
+    {
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ProductType productType; 
+        string exchange;
+        cmiMarketData::IntegerTime sentTime;
+
+        octet priceScale;
+        cmiMarketData::IntegerPrice lowPrice;
+        cmiMarketData::IntegerPrice highPrice;
+        cmiMarketData::IntegerPrice openPrice;
+        cmiMarketData::IntegerPrice previousClosePrice;        
+        string statusCodes;
+    };    
+    typedef sequence <RecapStructV4> RecapStructV4Sequence;
+
+    struct LastSaleStructV4
+    {
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ProductType productType; 
+        string exchange;
+        cmiMarketData::IntegerTime sentTime;
+
+        octet priceScale;
+        cmiMarketData::IntegerTime lastSaleTime; // millis since midnight
+        cmiMarketData::IntegerPrice lastSalePrice;
+        long lastSaleVolume;
+        long totalVolume;
+        cmiMarketData::TickDirectionType tickDirection;
+        cmiMarketData::IntegerPrice netPriceChange;
+    };
+    typedef sequence <LastSaleStructV4> LastSaleStructV4Sequence;
+    
+    struct NBBOStructV4 {
+	    cmiProduct::ClassKey classKey;
+	    cmiProduct::ProductKey productKey;
+	    cmiProduct::ProductType productType;
+	    cmiMarketData::IntegerTime sentTime;
+	    
+	    cmiMarketData::IntegerPrice bidPrice;
+	    cmiMarketData::ExchangeVolumeStructSequence bidExchangeVolume;
+	    cmiMarketData::IntegerPrice askPrice;
+	    cmiMarketData::ExchangeVolumeStructSequence askExchangeVolume;
+	    octet priceScale; 
+	};
+	typedef sequence <NBBOStructV4> NBBOStructV4Sequence;
+    
+    //Added for VOL - TPF-Migration Reporting
+    struct ClassVolumeStruct 
+    {
+        long classCallsVolume;
+        long classPutsVolume;
+        long classTotalVolume;
+    	long numberOfTradesForCalls;
+    	long numberOfTradesForPuts;
+    	long numberOfTotalTrades;
+    	long averageCallsContractSize;
+    	long averagePutsContractSize;
+    	long averageTotalContractSize;
+    };          		
+        
+    struct ProductClassVolumeStruct
+    {
+    	cmiProduct::ClassKey productClassKey;
+    	cmiMarketData::ClassVolumeStruct classVolume;
+    };
+    
+    struct RecapStructV5
+    {
+        RecapStruct aRecapStruct;
+        cmiUtil::DateTimeStruct lowPriceTime;
+        cmiUtil::DateTimeStruct highPriceTime;
+        cmiUtil::DateTimeStruct openingPriceTime;
+        RecapSuffix aRecapSuffix;
+	long lastSalePriceVolume;
+	long openPriceVolume;
+	long highPriceVolume;
+	long lowPriceVolume;
+        long numberOfTrades;  
+
+    };
+
+    typedef sequence <RecapStructV5> RecapStructV5Sequence;
+    
+    struct ClassRecapStructV5 
+	{
+        RecapStructV5  underlyingRecap;
+        RecapStructV5Sequence  productRecaps;
+    };	
+    typedef sequence < ClassRecapStructV5> ClassRecapStructV5Sequence;
+
+     struct ProductAndUnderlyingRecapStruct
+     {
+            RecapStruct  underlyingRecap;
+            RecapStruct  productRecap;
+     };
+};
+
+#endif

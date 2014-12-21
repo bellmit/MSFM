@@ -1,0 +1,122 @@
+#ifndef CMI_V6_IDL
+#define CMI_V6_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 6.0
+//
+// Copyright © 1999-2009 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either Express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "cmiTrade.idl"
+#include "cmiV5.idl"
+
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV6
+{
+	interface OrderQuery : cmiV3::OrderQuery
+    {
+		void registerForDirectedAIM(in cmiSession::TradingSessionName sessionName,
+                                    in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException,
+                    exceptions::AuthorizationException
+                );
+    };
+
+    interface FloorTradeMaintenanceService 
+    {
+         cmiUtil::CboeIdStruct acceptFloorTrade(in cmiTrade::FloorTradeEntryStruct floorTrade)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+		    exceptions::TransactionFailedException
+                );
+
+         void deleteFloorTrade(	in cmiSession::TradingSessionName sessionName,
+				in cmiProduct::ProductKey productKey,
+				in cmiUtil::CboeIdStruct tradeId, 
+				in cmiUser::ExchangeAcronymStruct user,
+				in cmiUser::ExchangeFirmStruct firm,
+				in string reason
+			)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::NotFoundException,
+                    exceptions::TransactionFailedException
+                );
+	
+         void subscribeForFloorTradeReportsByClass(in cmiCallbackV2::CMIQuoteStatusConsumer floorTradeReportConsumer, in cmiProduct::ClassKey classKey, in boolean gmdCallback)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+		);
+	
+	
+         void unsubscribeForFloorTradeReportsByClass(in cmiCallbackV2::CMIQuoteStatusConsumer floorTradeReportConsumer, in cmiProduct::ClassKey classKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+		);
+	
+    };
+
+
+    interface UserSessionManagerV6 : cmiV5::UserSessionManagerV5  {
+    	cmiV6::OrderQuery   getOrderQueryV6()
+           raises(
+            exceptions::SystemException,
+            exceptions::CommunicationException,
+            exceptions::AuthorizationException
+           );
+
+        FloorTradeMaintenanceService getFloorTradeMaintenanceService()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+    
+    interface UserAccessV6
+    {
+        UserSessionManagerV6 logon(
+            in cmiUser::UserLogonStruct logonStruct,
+            in cmiSession::LoginSessionType sessionType,
+            in cmiCallback::CMIUserSessionAdmin clientListener,
+            in boolean gmdTextMessaging )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::AuthenticationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+     };
+};
+#endif

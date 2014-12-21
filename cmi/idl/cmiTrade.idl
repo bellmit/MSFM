@@ -1,0 +1,165 @@
+#ifndef CMI_TRADE_IDL
+#define CMI_TRADE_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "cmiSession.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+#pragma javaPackage "com.cboe.idl"
+
+module cmiTrade
+{
+    typedef char TradeType;
+    typedef char TradeReportEntryType;
+    typedef string TradeSource;
+   
+    struct ExternalAtomicTradeEntryStruct {
+        cmiUtil::DateTimeStruct entryTime;
+        TradeReportEntryType entryType;
+        long quantity;
+        string sessionName;
+        char buyerOriginType;
+        cmiUser::ExchangeFirmStruct buyerCmta;         
+        char buyerPositionEffect;
+        string buyerAccount;
+        string buyerSubaccount;
+        cmiUser::ExchangeAcronymStruct buyerBroker;      
+        cmiUser::ExchangeAcronymStruct buyerOriginator;
+        cmiUser::ExchangeFirmStruct buyerFirm;
+        string buyerOptionalData;
+        char sellerOriginType;
+        cmiUser::ExchangeFirmStruct sellerCmta;        
+        char sellerPositionEffect;
+        string sellerAccount;
+        string sellerSubaccount;
+        cmiUser::ExchangeAcronymStruct sellerBroker;
+        cmiUser::ExchangeAcronymStruct sellerOriginator;
+        cmiUser::ExchangeFirmStruct sellerFirm;         
+        string sellerOptionalData;
+    };
+
+    typedef sequence <ExternalAtomicTradeEntryStruct> ExternalAtomicTradeEntryStructSequence;
+
+    struct ExternalAtomicTradeResultStruct {
+        cmiUtil::CboeIdStruct atomicTradeId;
+        long matchedSequenceNumber;
+        boolean active;
+        cmiUtil::DateTimeStruct entryTime;
+        TradeReportEntryType entryType;
+        cmiUtil::DateTimeStruct lastUpdateTime;
+        TradeReportEntryType lastEntryType;
+        long quantity;
+        string sessionName;
+        char buyerOriginType;
+        string buyerFirmBranch;               /* orders only */
+        long buyerFirmBranchSequenceNumber;   /* orders only */
+        cmiUser::ExchangeFirmStruct buyerCmta;         
+        string buyerCorrespondentId;
+        char buyerPositionEffect;
+        string buyerAccount;
+        string buyerSubaccount;
+        cmiUser::ExchangeAcronymStruct buyerBroker;      
+        cmiUser::ExchangeAcronymStruct buyerOriginator;
+        cmiUser::ExchangeFirmStruct buyerFirm;
+        string buyerOptionalData;
+        cmiUtil::CboeIdStruct buyerOrderOrQuoteKey;
+        boolean buyerOrderOrQuote;
+        boolean reinstatableForBuyer;
+        char sellerOriginType;
+        string sellerFirmBranch;               /* orders only */
+        long sellerFirmBranchSequenceNumber;   /* orders only */
+        cmiUser::ExchangeFirmStruct sellerCmta;        
+        string sellerCorrespondentId;
+        char sellerPositionEffect;
+        string sellerAccount;
+        string sellerSubaccount;
+        cmiUser::ExchangeAcronymStruct sellerBroker;
+        cmiUser::ExchangeAcronymStruct sellerOriginator;
+        cmiUser::ExchangeFirmStruct sellerFirm;         
+        string sellerOptionalData;
+        cmiUtil::CboeIdStruct sellerOrderOrQuoteKey;
+        boolean sellerOrderOrQuote;
+        boolean reinstatableForSeller;
+     };
+
+    typedef sequence <ExternalAtomicTradeResultStruct> ExternalAtomicTradeResultStructSequence;
+
+    struct ExternalBustTradeStruct {
+        cmiUtil::CboeIdStruct  atomicTtradeId;
+        long bustedQuantity;
+        boolean buyerReinstateRequested;
+        boolean sellerReinstateRequested;
+    };
+
+    typedef sequence <ExternalBustTradeStruct> ExternalBustTradeStructSequence;
+
+    struct ExternalTradeEntryStruct {
+        long quantity;
+        cmiUtil::PriceStruct price;
+        cmiSession::TradingSessionName sessionName;
+        cmiProduct::ProductKey productKey;
+        TradeSource theTradeSource;
+        short  handlingInstruction;	  
+        TradeType externalTradeType;
+        boolean bustable;
+        cmiUtil::DateStruct businessDate;
+        cmiUtil::DateTimeStruct timeTraded;
+        ExternalAtomicTradeEntryStructSequence parties;
+        cmiUtil::DateStruct settlementDate;
+        cmiUtil::DateTimeStruct transactionTime;
+        boolean asOfFlag;
+    };
+
+    typedef sequence <ExternalTradeEntryStruct> ExternalTradeEntryStructSequence;
+
+    struct ExternalTradeReportStruct {
+        long quantity;
+        cmiUtil::PriceStruct price;
+        cmiSession::TradingSessionName sessionName;
+        cmiProduct::ProductKey productKey;
+        TradeSource theTradeSource;
+        cmiUtil::CboeIdStruct tradeId;
+        TradeType externalTradeType;
+        boolean bustable;
+        cmiUtil::DateStruct businessDate;
+        cmiUtil::DateTimeStruct timeTraded;
+        ExternalAtomicTradeResultStructSequence parties;
+        cmiUtil::DateStruct settlementDate;
+        cmiUtil::DateTimeStruct transactionTime;
+        boolean asOfFlag;
+    };
+
+    typedef sequence <ExternalTradeReportStruct> ExternalTradeReportStructSequence;
+
+    struct FloorTradeEntryStruct {
+        cmiSession::TradingSessionName sessionName;
+        cmiProduct::ProductKey productKey;
+        long quantity;
+        cmiUtil::PriceStruct price;
+	cmiUtil::Side side;
+        string account;
+        string subaccount;
+        cmiUser::ExchangeFirmStruct cmta;         
+        cmiUser::ExchangeAcronymStruct executingMarketMaker;      
+        cmiUser::ExchangeFirmStruct firm;
+        char positionEffect; 
+        cmiUser::ExchangeAcronymStruct contraBroker;    
+        cmiUser::ExchangeFirmStruct contraFirm;
+	cmiUtil::DateTimeStruct timeTraded;
+        string optionalData; 
+    };
+
+};
+#endif

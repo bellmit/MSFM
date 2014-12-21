@@ -1,0 +1,127 @@
+#ifndef CMI_UTIL_IDL
+#define CMI_UTIL_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "exceptions.idl"
+#pragma javaPackage "com.cboe.idl"
+
+module cmiUtil
+{
+
+    typedef string VersionLabel;
+    typedef short PriceType;
+    typedef sequence <PriceType> PriceTypeSequence;
+    typedef char  EntryType;
+    typedef char  Side;
+    typedef char  Source;
+    typedef short UpdateStatusReason;
+    typedef short ActivityReason;
+    typedef short QueryDirection;
+    typedef sequence <string> StringSequence;
+    typedef sequence <long> LongSequence;
+    typedef double PricingModelParameter;
+    typedef short ReportType;
+    typedef short OrderFlowDirection;
+    typedef short QueueAction;
+    typedef string Description;
+    typedef long Key;
+    typedef short LinkageMechanism;
+    typedef short SatisfactionOrderDisposition;
+    typedef short SatisfactionOrderRejectReason;
+    typedef short FillRejectReason;
+    typedef long long Identifier;
+    typedef short LinkageIndicatorReturnType;
+    typedef string RecapSuffix;
+    typedef short TradingClassStatusIndicator;
+    
+
+#pragma use_factory_for_struct ON 
+    struct DateStruct
+    {
+        octet month;
+        octet day;
+        short year;
+    };
+    typedef sequence< DateStruct > DateStructSequence;
+
+    struct TimeStruct
+    {
+        octet hour;
+        octet minute;
+        octet second;
+        octet fraction;
+    };
+    typedef sequence< TimeStruct > TimeStructSequence;
+
+    struct DateTimeStruct
+    {
+        cmiUtil::DateStruct date;
+        cmiUtil::TimeStruct time;
+    };
+#pragma use_factory_for_struct OFF
+    typedef sequence< DateTimeStruct > DateTimeStructSequence;
+
+#pragma use_factory_for_struct ON 
+    struct PriceStruct
+    {
+        cmiUtil::PriceType type;
+        long whole;
+        long fraction;
+    };
+#pragma use_factory_for_struct OFF
+
+    typedef sequence< PriceStruct > PriceStructSequence;
+
+
+    struct CallbackInformationStruct
+    {
+        string subscriptionInterface;
+        string subscriptionOperation;
+        string subscriptionValue;
+        string ior;
+    };
+
+    struct CboeIdStruct
+    {
+        long highCboeId;
+        long lowCboeId;
+    };
+
+    struct KeyValueStruct
+    {
+        string key;
+        string value;
+    };
+
+    typedef sequence <KeyValueStruct> KeyValueStructSequence;
+
+    struct KeyDescriptionStruct
+    {
+      cmiUtil::Key key;
+      cmiUtil::Description description;
+    };
+
+    typedef sequence <KeyDescriptionStruct> KeyDescriptionStructSequence;	
+
+
+    struct OperationResultStruct
+    {
+        exceptions::ErrorCode errorCode;
+        string errorMessage;
+    };
+    typedef sequence <OperationResultStruct> OperationResultStructSequence;
+
+};
+
+#endif

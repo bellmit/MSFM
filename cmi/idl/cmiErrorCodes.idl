@@ -1,0 +1,293 @@
+#ifndef ERROR_CODES_IDL
+#define ERROR_CODES_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+#include "exceptions.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+// NOTE:
+// ErrorCodes 30000 and up are reserved for internal use.
+//
+module cmiErrorCodes
+{
+    interface DataValidationCodes  {
+        const exceptions::ErrorCode DUPLICATE_ID = 1000;
+        const exceptions::ErrorCode INVALID_TIME = 1020;
+        const exceptions::ErrorCode INCOMPLETE_QUOTE = 1030;
+        const exceptions::ErrorCode INVALID_QUANTITY = 1040;
+        const exceptions::ErrorCode INVALID_STRATEGY = 1060;
+        const exceptions::ErrorCode INVALID_STRATEGY_RATIO = 1061;
+        const exceptions::ErrorCode INVALID_SPREAD = 1070;
+        const exceptions::ErrorCode INVALID_USER = 1080;
+        const exceptions::ErrorCode INVALID_PRODUCT = 1090;
+        const exceptions::ErrorCode INVALID_PRODUCT_CLASS = 1091;
+        const exceptions::ErrorCode INVALID_REPORTING_CLASS = 1092;
+        const exceptions::ErrorCode INVALID_PRODUCT_DESCRIPTION = 1093;
+        const exceptions::ErrorCode INVALID_OPRA_MONTH_CODE = 1094;
+        const exceptions::ErrorCode INVALID_PRICE_ADJUSTMENT = 1095;
+        const exceptions::ErrorCode INVALID_SESSION = 1100;
+        const exceptions::ErrorCode INVALID_STATE = 1110;
+        const exceptions::ErrorCode PREFERENCE_PATH_MISMATCH = 1120;
+        const exceptions::ErrorCode INVALID_ORDER_ID = 1130;
+        const exceptions::ErrorCode NO_WORKING_ORDER = 1135;
+        const exceptions::ErrorCode LISTENER_ALREADY_REGISTERED = 1140;
+        const exceptions::ErrorCode INVALID_SIDE = 1150;
+        const exceptions::ErrorCode MISSING_SIDE_INDICATOR = 1151;
+        const exceptions::ErrorCode INVALID_SIDE_INDICATOR = 1152;
+        const exceptions::ErrorCode SIDE_INDICATOR_MISMATCH = 1153;
+        const exceptions::ErrorCode INVALID_PRICE = 1160;
+        const exceptions::ErrorCode INVALID_UPDATE_ATTEMPT = 1170;
+        const exceptions::ErrorCode INVALID_ORIGINATOR = 1180;
+        const exceptions::ErrorCode INVALID_ACCOUNT = 1200;
+        const exceptions::ErrorCode INVALID_EXECUTING_GIVEUP_FIRM = 1210;
+        const exceptions::ErrorCode INVALID_CONTINGENCY_TYPE = 1220;
+        const exceptions::ErrorCode INVALID_TIME_IN_FORCE = 1230;
+        const exceptions::ErrorCode INVALID_POSITION_EFFECT = 1240;
+        const exceptions::ErrorCode INVALID_ORIGIN_TYPE = 1250;
+        const exceptions::ErrorCode INVALID_COVERAGE = 1260;
+        const exceptions::ErrorCode INVALID_PRODUCT_TYPE = 1270;
+        const exceptions::ErrorCode INVALID_ORDER_STATE = 1280;
+        const exceptions::ErrorCode INVALID_ORDER_SOURCE = 1290;
+        const exceptions::ErrorCode INVALID_BRANCH_SEQUENCE_NUMBER = 1300;
+        const exceptions::ErrorCode MISSING_LISTENER = 1310;
+        const exceptions::ErrorCode BUSINESS_DAY_NOT_STARTED = 1320;
+        const exceptions::ErrorCode INVALID_FIELD_LENGTH = 1330;
+        const exceptions::ErrorCode INVALID_STRATEGY_LEG = 1340;
+        const exceptions::ErrorCode MULTICLASS_STRATEGY_NOT_ALLOWED = 1345;
+        const exceptions::ErrorCode DUPLICATE_STRATEGY_LEG = 1350;
+        const exceptions::ErrorCode INVALID_LEG_CONTINGENCY = 1360;
+        const exceptions::ErrorCode INVALID_CANCEL_REQUEST = 1370;
+        const exceptions::ErrorCode INVALID_VERSION = 1380;
+        const exceptions::ErrorCode INVALID_LOGIN_MODE = 1390;
+        const exceptions::ErrorCode GMD_LISTENER_ALREADY_REGISTERED = 1400;
+        const exceptions::ErrorCode INVALID_TRADE_SOURCE = 1410;
+        const exceptions::ErrorCode INVALID_TRADE_TYPE = 1420;
+        const exceptions::ErrorCode NO_REMAINING_QUANTITY = 1430;
+        const exceptions::ErrorCode INVALID_OPENING_REQUIREMENT = 1440;
+        const exceptions::ErrorCode INVALID_PROCESS_NAME = 1450;
+        const exceptions::ErrorCode INVALID_GROUP = 1460;
+        const exceptions::ErrorCode INVALID_NAME = 1461;
+        const exceptions::ErrorCode INVALID_THRESHOLD = 1462;
+        const exceptions::ErrorCode INVALID_OPERATOR = 1463;
+        const exceptions::ErrorCode INVALID_TRADE_REPORT_HANDLING_INSTRUCTION = 1464;
+	const exceptions::ErrorCode INVALID_OPERATION_TYPE = 1475;
+	// GroupService related section
+        const exceptions::ErrorCode INVALID_GROUPELEMENT = 1474;
+        const exceptions::ErrorCode INVALID_GROUPELEMENT_TYPE = 1465;
+        const exceptions::ErrorCode INVALID_GROUPELEMENT_RELATIONSHIP = 1466;
+	const exceptions::ErrorCode GROUPELEMENT_ALREADY_EXISTS = 1467;
+	const exceptions::ErrorCode GROUPRELATIONSHIP_ALREADY_EXISTS = 1468;
+	const exceptions::ErrorCode INVALID_USERID_REQUESTING_CANCEL = 1469;
+	const exceptions::ErrorCode INVALID_WORKSTATION_ID = 1470;
+	const exceptions::ErrorCode INVALID_USERID_LIST = 1471;
+	const exceptions::ErrorCode ROOT_ALREADY_EXISTS = 1472;
+	const exceptions::ErrorCode INVALID_GROUP_TYPE = 1473;
+
+        // 1500 series for additions made for linkage support
+        const exceptions::ErrorCode INVALID_EXCHANGE = 1500;
+        const exceptions::ErrorCode INVALID_EXTENSIONS = 1510;
+        const exceptions::ErrorCode INVALID_REJECT_REQUEST = 1520;
+
+        const exceptions::ErrorCode INVALID_ID = 1530;
+        const exceptions::ErrorCode INVALID_POLICIES = 1531;
+        const exceptions::ErrorCode INVALID_LIMITS = 1532;
+        const exceptions::ErrorCode INVALID_TYPE = 1533;
+        const exceptions::ErrorCode INVALID_COUNT_BOUNDARIES = 1534;
+        const exceptions::ErrorCode INVALID_TIME_BOUNDARIES = 1535;
+
+        // 1600 series for additions made to support internalized orders
+        const exceptions::ErrorCode INVALID_MATCH_TYPE = 1600;
+        const exceptions::ErrorCode INVALID_AUCTION_STATE = 1610;
+        const exceptions::ErrorCode INVALID_AUCTION_ID = 1620;
+        const exceptions::ErrorCode INTERNALIZATION_NOT_ALLOWED = 1630;
+        const exceptions::ErrorCode INVALID_AUCTION_TYPE = 1640;
+        const exceptions::ErrorCode INVALID_OPTIONAL_DATA = 1650;
+
+        // 1700 series for additions made to support index hybrid feature
+        const exceptions::ErrorCode INVALID_CONTINGENCY_BOB_IORDER = 1700;
+        const exceptions::ErrorCode INVALID_CONTINGENCY_VIX_SETTLEMENT = 1701;
+ 
+        // 1710 series for  Cross Product
+        const exceptions::ErrorCode UNSUPPORTED_ORIGIN_TYPE = 1711;
+        const exceptions::ErrorCode UNDERLYING_LEG_NOT_LISTED_INSTOCK = 1712;
+        const exceptions::ErrorCode INVALID_RATIO_FOR_CROSS_PROD = 1713;
+        const exceptions::ErrorCode INVALID_LEG_STOCK_PROD_STATE = 1714;
+        const exceptions::ErrorCode INVALID_CLEARING_FIRM = 1715;
+        
+        //1800 series for manual price reporting
+        const exceptions::ErrorCode END_OF_SALE = 1800;
+        const exceptions::ErrorCode NOT_AN_OPENING_ONLY_TRADE = 1801;
+        const exceptions::ErrorCode NO_TRADE_SO_FAR = 1802;
+        const exceptions::ErrorCode NOT_AN_ONLY_TRADE = 1803;
+        const exceptions::ErrorCode ONLY_OPENING_TRADE_SO_FAR = 1804;
+        const exceptions::ErrorCode EITHER_LAST_SALE_OR_OPENING_TRADE = 1805;
+        const exceptions::ErrorCode PRICE_NOT_EQUAL_TO_LAST_SALE = 1806;
+        const exceptions::ErrorCode CANCELED_VOL_NOT_CUMMULATIVE_VOL = 1807;
+        const exceptions::ErrorCode PRICE_NOT_EQUAL_TO_OPENING_PRICE = 1808;
+        const exceptions::ErrorCode PRICE_GREATER_THAN_HIGH = 1809;
+        const exceptions::ErrorCode PRICE_LESS_THAN_LOW = 1810;
+        const exceptions::ErrorCode VOLUME_GREATER_THAN_CUMUMATIVE_VOL = 1811;       
+
+
+     // 1900 series for OHS Release One
+	const exceptions::ErrorCode INVALID_CONTRA_BROKER = 1900;
+        const exceptions::ErrorCode INVALID_CONTRA_FIRM = 1901;
+        const exceptions::ErrorCode INVALID_EXECUTING_BROKER = 1903;
+        const exceptions::ErrorCode INVALID_EXECUTING_BROKER_FIRM = 1904;
+        const exceptions::ErrorCode INVALID_CABINET_ON_CXLRE = 1905;
+        const exceptions::ErrorCode INVALID_NO_CURRENT_MARKET = 1906;
+     	const exceptions::ErrorCode INVALID_UPDATE_PRICE_REPORT = 1907;
+     	const exceptions::ErrorCode INVALID_NO_MATCHING_MDH = 1908;
+		const exceptions::ErrorCode ORDER_REJECTED_ON_RSS = 1909;
+
+	// light orders
+	const exceptions::ErrorCode INVALID_USER_ID_FOR_LIGHT_ORDERS = 1950;
+
+	// 2000 series for DirectedAIM
+	const exceptions::ErrorCode INVALID_DIRECTED_AIM_TARGET_FIRM = 2000;
+
+        // 2100 for weak password exception in enhanced security project
+        const exceptions::ErrorCode WEAK_PASSWORD = 2100;
+
+    };
+
+    interface AuthenticationCodes  {
+        const exceptions::ErrorCode UNKNOWN_USER = 2000;
+        const exceptions::ErrorCode INCORRECT_PASSWORD = 2010;
+        const exceptions::ErrorCode FUNCTION_NOT_IMPLEMENTED = 2020;
+        const exceptions::ErrorCode INVALID_CLIENT_LOGIN_MODE = 2030;
+        const exceptions::ErrorCode USER_NOT_ENABLED = 2040;
+    };
+
+    interface CommunicationFailureCodes  {
+        const exceptions::ErrorCode TRANSPORT_FAILURE = 2500;
+        const exceptions::ErrorCode ROUTING_SESSION_UNAVAILABLE = 2510;
+        const exceptions::ErrorCode LOST_CONNECTION = 2520;
+        const exceptions::ErrorCode SERVER_NOT_AVAILABLE = 2530;
+        const exceptions::ErrorCode TIME_OUT = 2540;        
+    };
+
+    interface TransactionFailedCodes  {
+        const exceptions::ErrorCode CREATE_FAILED = 3000;
+        const exceptions::ErrorCode UPDATE_FAILED = 3010;
+        const exceptions::ErrorCode ACTION_VETOED = 3020;
+        const exceptions::ErrorCode INVALID_STATE_CHANGE = 3050;
+        const exceptions::ErrorCode INCOMPLETE_STATE_CHANGE = 3060;
+    };
+
+    interface NotAcceptedCodes  {
+        const exceptions::ErrorCode UNKNOWN_TYPE = 4000;
+        const exceptions::ErrorCode INVALID_STATE = 4010;
+        const exceptions::ErrorCode INVALID_REQUEST = 4020;
+        const exceptions::ErrorCode QUOTE_RATE_EXCEEDED = 4030;
+        const exceptions::ErrorCode RATE_EXCEEDED = 4040;
+        const exceptions::ErrorCode SEQUENCE_SIZE_EXCEEDED = 4050;
+        const exceptions::ErrorCode QUOTE_BEING_PROCESSED = 4060;
+        const exceptions::ErrorCode ORDER_BEING_PROCESSED = 4070;
+        const exceptions::ErrorCode EXCHANGE_CLASS_GATE_CLOSED = 4080;
+        const exceptions::ErrorCode SERVER_NOT_AVAILABLE = 4090;
+        const exceptions::ErrorCode ACTION_VETOED = 4100;
+        const exceptions::ErrorCode QUOTE_CONTROL_ID = 4110;
+        const exceptions::ErrorCode UNSUPPORTED_INTERNALIZATION = 4120;
+        const exceptions::ErrorCode AUCTION_INACTIVE = 4130;
+        const exceptions::ErrorCode AUCTION_ENDED = 4140;
+        
+        //New ErrorCode for Single Acronym Scrum for Quote Entry Restriction.
+        // If a class is being quoted by userId1 and any other userId sharing acronym tries to
+        //send quote for same class, quote will be rejected with following error code.
+        const exceptions::ErrorCode OTHER_USER_FOR_ACR_QUOTING_CLASS = 4150;
+
+	const exceptions::ErrorCode EXCEEDS_CONCURRENT_QUOTE_LIMIT = 4160;
+	const exceptions::ErrorCode QUOTE_CANCEL_IN_PROGRESS = 4170;
+        
+        // ErrorCodes for User Maintenance:
+        //
+        const exceptions::ErrorCode ONLY_USER_FOR_ACRONYM = 4200;
+        const exceptions::ErrorCode USER_IS_ENABLED = 4210;
+        const exceptions::ErrorCode USER_LOGGED_IN = 4220;
+        const exceptions::ErrorCode USER_HAS_ORDER = 4230;
+        const exceptions::ErrorCode RECENT_USER_ACTIVITY = 4240;
+
+	// OHS PendingCancel ErrorCodes.
+	const exceptions::ErrorCode PENDING_CANCEL = 4300;
+	const exceptions::ErrorCode LOCATION_NOT_AVAILABLE = 4310;
+        
+	//Error code for Manul Quote Reporting
+	//This code can not be changed as these codes are mapped with TPF contsants 
+	//for manul quote
+	const exceptions::ErrorCode MANUAL_QUOTE_ACCEPTED = 6001;
+	const exceptions::ErrorCode MANUAL_QUOTE_MARKETABLE = 6002;
+	const exceptions::ErrorCode MANUAL_QUOTE_WORSE_THAN_MARKET = 6003;
+	const exceptions::ErrorCode MANUAL_QUOTE_MARKETABLE_WITH_STRATEGY = 6004;
+	const exceptions::ErrorCode MANUAL_QUOTE_SYSTEM_ERROR = 6005;
+	const exceptions::ErrorCode MANUAL_QUOTE_INVALID_REQUEST = 6006;
+	const exceptions::ErrorCode MANUAL_QUOTE_NOT_ACCEPTED = 6007;
+	const exceptions::ErrorCode MANUAL_QUOTE_OVERRIDE_NEEDED = 6008;
+	const exceptions::ErrorCode MANUAL_QUOTE_CLASS_NOT_IDX_HYBRID_ENABLED = 6009;
+
+	// DirectedAIM NotAccepted Codes.
+	const exceptions::ErrorCode DIRECTED_AIM_PRIMARY_EXPIRED = 7000;
+	const exceptions::ErrorCode NOT_REGISTERED_FOR_DIRECTED_AIM = 7001;
+	const exceptions::ErrorCode NO_PDPM_AVAILABLE_FOR_DIRECTED_AIM = 7002;
+	const exceptions::ErrorCode NO_DPM_AVAILABLE_FOR_DIRECTED_AIM = 7003;
+	const exceptions::ErrorCode NO_AFFILIATED_MM_AVAILABLE_FOR_DIRECTED_AIM = 7004;
+	const exceptions::ErrorCode USER_NOT_AFFILIATED_TO_ANY_FIRM = 7005;
+	const exceptions::ErrorCode INVALID_AFFILIATED_FIRM = 7006;
+	const exceptions::ErrorCode ALREADY_UPDATED_AS_REGISTERED = 7007;
+	const exceptions::ErrorCode ALREADY_UPDATED_AS_UNREGISTERED = 7008;
+    
+    // Short Sale
+	const exceptions::ErrorCode SELL_SHORT_REJECT = 7100;
+
+
+        const exceptions::ErrorCode INVALID_ORIGIN_TYPE_FOR_LIGHT_ORDERS = 7200;
+
+    };
+
+    interface NotFoundCodes {
+        const exceptions::ErrorCode RESOURCE_DOESNT_EXIST = 5000;
+    };
+
+    interface SystemCodes {
+        const exceptions::ErrorCode PERSISTENCE_FAILURE = 6000;
+    };
+
+    interface AuthorizationCodes
+    {
+        const exceptions::ErrorCode USER_DISABLED = 7000;
+        const exceptions::ErrorCode NOT_PERMITTED = 7001;
+        const exceptions::ErrorCode INVALID_SESSION_ID = 7002;
+        const exceptions::ErrorCode MAX_TIMEOUT_EXCEEDED = 7003;
+        const exceptions::ErrorCode INVALID_PASSWORD = 7004;
+        const exceptions::ErrorCode AUTHENTICATION_ERROR = 7005;
+        const exceptions::ErrorCode INVALID_LOCATION = 7006;
+
+	const exceptions::ErrorCode USER_NOT_ENABLED_FOR_LIGHT_ORDERS = 7051;
+    };
+
+    // (note: codes  >= 30000 are for internal use only)
+	interface AlreadyExistCodes
+    {
+        const short PRODUCT_DESCRIPTION_ALREADY_EXISTS = 30001;
+        const short PRODUCT_ALREADY_EXISTS = 30002;
+        const short REPORTING_CLASS_ALREADY_EXISTS = 30003;
+        const short PRODUCT_CLASS_ALREADY_EXISTS = 30004;
+        const short ADJUSTMENT_ALREADY_EXISTS = 30005;
+        const short GROUPELEMENT_ALREADY_EXISTS = 30006;
+        const short GROUPRELATIONSHIP_ALREADY_EXISTS = 30007;
+    };
+
+};
+#endif
+

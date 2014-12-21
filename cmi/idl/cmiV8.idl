@@ -1,0 +1,112 @@
+#ifndef CMI_V8_IDL
+#define CMI_V8_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 8.0
+//
+// Copyright © 1999-2009 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either Express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiV7.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "cmiCallbackV5.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV8
+{	
+	//-----------------------------------------------------------------------------------------------------------
+	//  	Trading Class  Query Service - 	
+	//		Reports the trading class alvailability during trading hours, due to any outage. 
+	//	This service is based on a subscription mechanism, once subscribed, users will be notified 
+	//	of the unavailability of a Group or clases to trade for example a network outage, 
+	//	subsequently the user will be notified of the availability of a group or class to trade once 
+	//	the problem is resolved during trading hours.         
+	//-----------------------------------------------------------------------------------------------------------
+
+
+	
+	interface TradingClassStatusQuery
+    	{
+		cmiProduct::ProductGroupSequence getProductGroups()
+               	raises(
+		    		exceptions::SystemException,
+                    	exceptions::CommunicationException,
+                    	exceptions::DataValidationException,
+                    	exceptions::NotFoundException,
+                    	exceptions::AuthorizationException 
+			);
+
+		cmiProduct::ClassKeySequence getClassesForProductGroup(in cmiProduct::ProductGroup productGroupName)
+			raises(
+				exceptions::SystemException,
+				exceptions::CommunicationException,
+				exceptions::DataValidationException,
+	                	exceptions::NotFoundException,
+				exceptions::AuthorizationException 
+			);
+
+		void subscribeTradingClassStatusForProductGroup(
+            	in cmiSession::TradingSessionName sessionName,
+            	in cmiProduct::ProductGroupSequence productGroupNames,
+            	in cmiCallbackV5::CMITradingClassStatusQueryConsumer clientListener)
+                		raises(
+                    		exceptions::SystemException,
+                    		exceptions::CommunicationException,
+                    		exceptions::AuthorizationException,
+                    		exceptions::DataValidationException
+                		);
+
+		void subscribeTradingClassStatusForClasses(
+            	in cmiSession::TradingSessionName sessionName,
+            	in cmiProduct::ClassKeySequence classKeys,
+            	in cmiCallbackV5::CMITradingClassStatusQueryConsumer clientListener)
+                		raises(
+                    		exceptions::SystemException,
+                    		exceptions::CommunicationException,
+                    		exceptions::AuthorizationException,
+                    		exceptions::DataValidationException
+                		);
+
+
+    	};
+
+    	interface UserSessionManagerV8 : cmiV7::UserSessionManagerV7  
+	{
+		TradingClassStatusQuery getTradingClassStatusQuery()
+            	raises(
+                    	exceptions::SystemException,
+                    	exceptions::CommunicationException,
+                    	exceptions::AuthorizationException,
+                    	exceptions::AuthenticationException,
+                    	exceptions::NotFoundException
+                	);
+
+    	};
+    
+    	interface UserAccessV8
+    	{
+        	UserSessionManagerV8 logon(
+            	in cmiUser::UserLogonStruct logonStruct,
+            	in cmiSession::LoginSessionType sessionType,
+            	in cmiCallback::CMIUserSessionAdmin clientListener,
+            	in boolean gmdTextMessaging )
+                		raises(
+                    		exceptions::SystemException,
+                    		exceptions::CommunicationException,
+                    		exceptions::AuthorizationException,
+                    		exceptions::AuthenticationException,
+                    		exceptions::DataValidationException,
+                    		exceptions::NotFoundException
+                		);
+
+     };
+};
+#endif

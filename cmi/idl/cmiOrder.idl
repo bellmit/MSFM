@@ -1,0 +1,445 @@
+#ifndef CMI_ORDER_IDL
+#define CMI_ORDER_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "exceptions.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "cmiUser.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiOrder
+{
+    typedef short ContingencyType;
+    typedef short OrderState;
+    typedef char  TimeInForce;
+    typedef char  PositionEffect;
+    typedef char  OriginType;
+    typedef char  Coverage;
+    typedef boolean  CrossingIndicator;
+    typedef short CancelType;
+    typedef short NBBOProtectionType;
+    typedef short AuctionType;
+    typedef short AuctionState;
+    typedef short OrderMaintenanceType;
+    typedef char OrderType;
+
+    typedef sequence <cmiOrder::OriginType> OriginTypeSequence;
+    typedef sequence <cmiOrder::AuctionType> AuctionTypeSequence;
+    typedef sequence <cmiOrder::OrderType> OrderTypeSequence;
+
+
+#pragma use_factory_for_struct ON 
+    struct OrderContingencyStruct
+    {
+        cmiOrder::ContingencyType type;
+        cmiUtil::PriceStruct price;
+        long volume;
+    };
+#pragma use_factory_for_struct OFF
+
+#pragma use_factory_for_struct ON 
+    struct OrderIdStruct
+    {
+        cmiUser::ExchangeFirmStruct executingOrGiveUpFirm;
+        string branch;
+        long branchSequenceNumber;
+        string correspondentFirm;
+        string orderDate; // YYYYMMDD format
+        long highCboeId;
+        long lowCboeId;
+    };
+
+#pragma use_factory_for_struct OFF
+
+    typedef sequence <OrderIdStruct> OrderIdStructSequence;
+    
+    struct ORDOrderStruct
+    {
+        OrderIdStruct orderId;
+        cmiOrder::OrderState state;
+        long bookedQuantity;
+    };
+    typedef sequence <ORDOrderStruct> ORDOrderStructSequence;
+           
+    struct OrderEntryStruct
+    {
+        cmiUser::ExchangeFirmStruct executingOrGiveUpFirm;
+        string branch;
+        long branchSequenceNumber;
+        string correspondentFirm;
+        string orderDate; // YYYYMMDD format
+
+        cmiUser::ExchangeAcronymStruct originator;
+        long originalQuantity;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        cmiOrder::TimeInForce timeInForce;
+        cmiUtil::DateTimeStruct expireTime;
+        cmiOrder::OrderContingencyStruct contingency;
+        cmiUser::ExchangeFirmStruct cmta;
+        string extensions;
+        string account;
+        string subaccount;
+        cmiOrder::PositionEffect positionEffect;
+        cmiOrder::CrossingIndicator cross;
+        cmiOrder::OriginType orderOriginType;
+        cmiOrder::Coverage coverage;
+        cmiOrder::NBBOProtectionType orderNBBOProtectionType;
+        string optionalData;
+        string userAssignedId;
+        cmiSession::TradingSessionNameSequence sessionNames;
+    };
+    typedef sequence <OrderEntryStruct> OrderEntryStructSequence;
+
+
+    struct LegOrderEntryStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiUtil::PriceStruct mustUsePrice;
+        cmiUser::ExchangeFirmStruct clearingFirm;
+        cmiOrder::Coverage coverage;
+        cmiOrder::PositionEffect positionEffect;
+    };
+    typedef sequence <LegOrderEntryStruct> LegOrderEntryStructSequence;
+
+    struct LegOrderEntryStructV2
+    {
+        cmiOrder::LegOrderEntryStruct legOrderEntry;
+        cmiUtil::Side side;
+	string extensions;
+    };
+    typedef sequence <LegOrderEntryStructV2> LegOrderEntryStructV2Sequence;
+
+
+    struct LegOrderDetailStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiUtil::PriceStruct mustUsePrice;
+        cmiUser::ExchangeFirmStruct clearingFirm;
+        cmiOrder::Coverage coverage;
+        cmiOrder::PositionEffect positionEffect;
+        cmiUtil::Side side;
+        long originalQuantity;
+        long tradedQuantity;
+        long cancelledQuantity;
+        long leavesQuantity;
+    };
+    typedef sequence <LegOrderDetailStruct> LegOrderDetailStructSequence;
+
+
+#pragma use_factory_for_struct ON 
+    struct OrderStruct
+    {
+        OrderIdStruct orderId;
+        cmiUser::ExchangeAcronymStruct originator;
+
+        // Fields from the OrderEntryStruct
+        long originalQuantity;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        cmiOrder::TimeInForce timeInForce;
+        cmiUtil::DateTimeStruct expireTime;
+        cmiOrder::OrderContingencyStruct contingency;
+        cmiUser::ExchangeFirmStruct cmta;
+        string extensions;
+        string account;
+        string subaccount;
+        cmiOrder::PositionEffect positionEffect;
+        cmiOrder::CrossingIndicator cross;
+        cmiOrder::OriginType orderOriginType;
+        cmiOrder::Coverage coverage;
+        cmiOrder::NBBOProtectionType orderNBBOProtectionType;
+        string optionalData;
+
+        // Additional Order Fields
+        string userId;
+        cmiUser::ExchangeAcronymStruct userAcronym;
+        cmiProduct::ProductType productType;
+        cmiProduct::ClassKey classKey;
+        cmiUtil::DateTimeStruct receivedTime;
+        cmiOrder::OrderState state;
+        long tradedQuantity;
+        long cancelledQuantity;
+
+        long leavesQuantity;
+        cmiUtil::PriceStruct averagePrice;
+        long sessionTradedQuantity;
+        long sessionCancelledQuantity;
+        cmiUtil::PriceStruct sessionAveragePrice;
+
+        string orsId;
+        cmiUtil::Source source;
+        cmiOrder::OrderIdStruct crossedOrder;
+        long transactionSequenceNumber;
+        string userAssignedId;
+        cmiSession::TradingSessionNameSequence sessionNames;
+        cmiSession::TradingSessionName activeSession;
+        cmiOrder::LegOrderDetailStructSequence legOrderDetails;
+    };
+#pragma use_factory_for_struct OFF
+    typedef sequence <OrderStruct> OrderStructSequence;
+
+    struct OrderDetailStruct
+    {
+        cmiProduct::ProductNameStruct productInformation;
+        cmiUtil::UpdateStatusReason statusChange;
+        cmiOrder::OrderStruct orderStruct;
+    };
+    typedef sequence <OrderDetailStruct> OrderDetailStructSequence;
+
+    struct CancelReportStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+        cmiUtil::ReportType cancelReportType;
+        cmiUtil::ActivityReason cancelReason;
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName sessionName;
+        long cancelledQuantity;
+        long tlcQuantity;
+        long mismatchedQuantity;
+        cmiUtil::DateTimeStruct timeSent;
+        string orsId;
+        long totalCancelledQuantity;
+        long transactionSequenceNumber;
+        string userAssignedCancelId;
+    };
+    typedef sequence <CancelReportStruct> CancelReportStructSequence;
+
+    struct CancelRequestStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+        cmiSession::TradingSessionName sessionName;
+        string userAssignedCancelId;
+        cmiOrder::CancelType cancelType;
+        long quantity;
+    };
+
+    struct ContraPartyStruct
+    {
+        cmiUser::ExchangeAcronymStruct user;
+        cmiUser::ExchangeFirmStruct firm;
+        long quantity;
+    };
+    typedef sequence <ContraPartyStruct> ContraPartyStructSequence;
+
+
+    struct FilledReportStruct
+    {
+        cmiUtil::CboeIdStruct tradeId;
+        cmiUtil::ReportType fillReportType;
+        cmiUser::ExchangeFirmStruct executingOrGiveUpFirm;
+        string userId;
+        cmiUser::ExchangeAcronymStruct  userAcronym;
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName sessionName;
+        long tradedQuantity;
+        long leavesQuantity;
+        cmiUtil::PriceStruct price;
+        cmiUtil::Side side;
+        string orsId;
+        string executingBroker;
+        cmiUser::ExchangeFirmStruct cmta;
+        string account;
+        string subaccount;
+        cmiUser::ExchangeAcronymStruct originator;
+        string optionalData;
+        string userAssignedId;
+        string extensions;
+        cmiOrder::ContraPartyStructSequence contraParties;
+        cmiUtil::DateTimeStruct timeSent;
+        cmiOrder::PositionEffect positionEffect;
+        long transactionSequenceNumber;
+    };
+    typedef sequence <FilledReportStruct> FilledReportStructSequence;
+
+    struct OrderFilledReportStruct
+    {
+        cmiOrder::OrderDetailStruct filledOrder;
+        cmiOrder::FilledReportStructSequence filledReport;
+    };
+    typedef sequence <OrderFilledReportStruct> OrderFilledReportStructSequence;
+
+    struct OrderCancelReportStruct
+    {
+        cmiOrder::OrderDetailStruct cancelledOrder;
+        cmiOrder::CancelReportStructSequence cancelReport;
+    };
+    typedef sequence <OrderCancelReportStruct> OrderCancelReportStructSequence;
+
+    struct PendingOrderStruct {
+        cmiProduct::PendingNameStruct pendingProductName;
+        cmiOrder::OrderStruct pendingOrder;
+        cmiOrder::OrderStruct currentOrder;
+    };
+    typedef sequence <PendingOrderStruct> PendingOrderStructSequence;
+
+    struct BustReportStruct
+    {
+        cmiUtil::CboeIdStruct tradeId;
+        cmiUtil::ReportType bustReportType;
+        cmiSession::TradingSessionName sessionName;
+        cmiUser::ExchangeFirmStruct executingOrGiveUpFirm;
+        string userId;
+        cmiUser::ExchangeAcronymStruct  userAcronym;
+        long bustedQuantity;
+        cmiUtil::PriceStruct price;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiUtil::DateTimeStruct timeSent;
+        long reinstateRequestedQuantity;
+        long transactionSequenceNumber;
+    };
+    typedef sequence <BustReportStruct> BustReportStructSequence;
+
+    struct OrderBustReportStruct
+    {
+        cmiOrder::OrderDetailStruct bustedOrder;
+        cmiOrder::BustReportStructSequence bustedReport;
+    };
+    typedef sequence <OrderBustReportStruct> OrderBustReportStructSequence;
+
+    struct BustReinstateReportStruct
+    {
+        cmiUtil::CboeIdStruct tradeId;
+        long bustedQuantity;
+        long reinstatedQuantity;
+        long totalRemainingQuantity;
+        cmiUtil::PriceStruct price;
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName sessionName;
+        cmiUtil::Side side;
+        cmiUtil::DateTimeStruct timeSent;
+        long transactionSequenceNumber;
+    };
+
+    typedef sequence <BustReinstateReportStruct> BustReinstateReportStructSequence;
+
+    struct OrderBustReinstateReportStruct
+    {
+        cmiOrder::OrderDetailStruct reinstatedOrder;
+        cmiOrder::BustReinstateReportStruct bustReinstatedReport;
+    };
+
+    typedef sequence <OrderBustReinstateReportStruct> OrderBustReinstateReportStructSequence;
+
+    typedef short MatchType; // can be auto-match, fixed limit price match, or guaranteed auction starting price match
+
+    struct AuctionStruct
+    {
+            cmiSession::TradingSessionName sessionName;
+            cmiProduct::ClassKey classKey;
+            cmiProduct::ProductType productType;
+            cmiProduct::ProductKey productKey;
+            cmiUtil::CboeIdStruct auctionId;
+            cmiOrder::AuctionType auctionType;
+            cmiOrder::AuctionState auctionState;
+            cmiUtil::Side side;
+            long auctionQuantity;
+            cmiUtil::PriceStruct startingPrice;
+            cmiOrder::ContingencyType auctionedOrderContingencyType;
+            cmiUtil::TimeStruct entryTime;
+            string extensions;
+    };
+    typedef sequence <AuctionStruct> AuctionStructSequence;
+
+    // For internalization Orders call return
+    struct OrderResultStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+        cmiUtil::OperationResultStruct result;
+    };
+    typedef sequence <OrderResultStruct> OrderResultStructSequence;
+
+    struct InternalizationOrderResultStruct
+    {
+        cmiOrder::OrderResultStruct primaryOrderResult;
+        cmiOrder::OrderResultStruct matchOrderResult;
+    };
+    typedef sequence <InternalizationOrderResultStruct> InternalizationOrderResultStructSequence;
+
+    struct AuctionSubscriptionResultStruct
+    {
+        cmiOrder::AuctionType auctionType;
+        cmiUtil::OperationResultStruct subscriptionResult;
+    };
+    typedef sequence <AuctionSubscriptionResultStruct> AuctionSubscriptionResultStructSequence;
+
+    struct OrderResultStructV2
+    {
+        cmiOrder::OrderStruct order;
+        cmiUtil::OperationResultStruct result;
+    };
+    typedef sequence <OrderResultStructV2> OrderResultStructV2Sequence;
+
+    struct InternalizationOrderResultStructV2
+    {
+        cmiOrder::OrderResultStructV2 primaryOrderResult;
+        cmiOrder::OrderResultStructV2 matchOrderResult;
+    };
+    typedef sequence <InternalizationOrderResultStructV2> InternalizationOrderResultStructV2Sequence;
+
+    struct CrossOrderStruct
+    {
+	cmiOrder::OrderStruct buySideOrder;
+        cmiOrder::OrderStruct sellSideOrder;
+    };
+    struct LightOrderEntryStruct
+    {
+        string branch;
+        long branchSequenceNumber;
+        long originalQuantity;
+    	double Price;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiOrder::PositionEffect positionEffect;
+        cmiOrder::Coverage coverage;
+        boolean isNBBOProtected;
+    	boolean isIOC;
+        cmiOrder::OriginType orderOriginType;
+    	cmiUser::Exchange cmtaExchange;
+        string cmtaFirmNumber;
+        string pdpm;
+        string userAssignedId;
+        cmiSession::TradingSessionName activeSession;
+    };
+
+    struct LightOrderResultStruct
+    {
+        string branch;
+        long branchSequenceNumber;
+        long orderHighId;
+        long orderLowId;
+        cmiUtil::Side side;
+        long leavesQuantity;
+        long tradedQuantity;
+        long cancelledQuantity;
+        cmiUtil::ActivityReason reason;
+        cmiUtil::DateTimeStruct time;
+    };
+
+    typedef sequence <LightOrderResultStruct> LightOrderResultStructSequence;
+
+    struct LightOrderReplaceResultStruct
+    {
+	cmiOrder::LightOrderResultStruct originalOrder;
+	cmiOrder::LightOrderResultStruct newOrder;
+    };
+    typedef sequence <LightOrderReplaceResultStruct> LightOrderReplaceResultStructSequence;
+
+};
+#endif

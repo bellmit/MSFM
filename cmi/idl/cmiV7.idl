@@ -1,0 +1,234 @@
+#ifndef CMI_V7_IDL
+#define CMI_V7_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 7.0
+//
+// Copyright © 1999-2009 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either Express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "cmiTrade.idl"
+#include "cmiV6.idl"
+
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV7
+{
+    interface OrderEntry: cmiV5::OrderEntry
+    {
+        cmiOrder::OrderStruct acceptOrderNoAckV7(
+            in cmiOrder::OrderEntryStruct anOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::AlreadyExistsException
+                );
+
+        cmiOrder::OrderStruct acceptOrderByProductNameNoAckV7(
+            in cmiProduct::ProductNameStruct product,
+            in cmiOrder::OrderEntryStruct anOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::AlreadyExistsException
+                );
+
+        cmiOrder::OrderStruct acceptOrderCancelReplaceRequestNoAckV7(
+            in cmiOrder::CancelRequestStruct cancelRequest,
+            in cmiOrder::OrderEntryStruct newOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+       cmiOrder::OrderStruct acceptStrategyOrderNoAckV7(
+           in cmiOrder::OrderEntryStruct anOrder,
+           in cmiOrder::LegOrderEntryStructV2Sequence legEntryDetailsV2)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException,
+                   exceptions::AlreadyExistsException
+               );
+
+       cmiOrder::OrderIdStruct acceptStrategyOrderV7(
+           in cmiOrder::OrderEntryStruct anOrder,
+           in cmiOrder::LegOrderEntryStructV2Sequence legEntryDetailsV2)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException,
+                   exceptions::AlreadyExistsException
+               );
+
+       cmiOrder::OrderStruct acceptStrategyOrderCancelReplaceRequestNoAckV7(
+           in cmiOrder::CancelRequestStruct cancelRequest,
+           in cmiOrder::OrderEntryStruct newOrder,
+           in cmiOrder::LegOrderEntryStructV2Sequence legEntryDetailsV2)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException
+               );
+
+       cmiOrder::OrderIdStruct acceptStrategyOrderCancelReplaceRequestV7(
+           in cmiOrder::CancelRequestStruct cancelRequest,
+           in cmiOrder::OrderEntryStruct newOrder,
+           in cmiOrder::LegOrderEntryStructV2Sequence legEntryDetailsV2)
+               raises(
+                   exceptions::SystemException,
+                   exceptions::CommunicationException,
+                   exceptions::AuthorizationException,
+                   exceptions::DataValidationException,
+                   exceptions::NotAcceptedException,
+                   exceptions::TransactionFailedException
+               );
+
+        cmiOrder::InternalizationOrderResultStructV2 acceptInternalizationOrderNoAckV7(
+            in cmiOrder::OrderEntryStruct primaryOrder,
+            in cmiOrder::OrderEntryStruct matchOrder,
+            in cmiOrder::MatchType matchType)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+         cmiOrder::InternalizationOrderResultStructV2 acceptInternalizationStrategyOrderNoAckV7(
+            in cmiOrder::OrderEntryStruct primaryOrder,
+            in cmiOrder::LegOrderEntryStructV2Sequence primaryOrderLegEntriesV2,
+            in cmiOrder::OrderEntryStruct matchOrder,
+            in cmiOrder::LegOrderEntryStructV2Sequence matchOrderLegEntriesV2,
+            in cmiOrder::MatchType matchType)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+         cmiOrder::InternalizationOrderResultStruct acceptInternalizationStrategyOrderV7(
+            in cmiOrder::OrderEntryStruct primaryOrder,
+            in cmiOrder::LegOrderEntryStructV2Sequence primaryOrderLegEntriesV2,
+            in cmiOrder::OrderEntryStruct matchOrder,
+            in cmiOrder::LegOrderEntryStructV2Sequence matchOrderLegEntriesV2,
+            in cmiOrder::MatchType matchType)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+        cmiOrder::CrossOrderStruct acceptCrossingOrderNoAckV7(
+            in cmiOrder::OrderEntryStruct buyCrossingOrder,
+            in cmiOrder::OrderEntryStruct sellCrossingOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::AlreadyExistsException
+                );
+    };
+    
+    interface Quote: cmiV5::Quote
+    {
+	cmiQuote::ClassQuoteResultStructV3Sequence acceptQuotesForClassV7(
+            in cmiProduct::ClassKey classKey,
+            in cmiQuote::QuoteEntryStructV4Sequence quotes )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+	void acceptQuoteV7(
+            in cmiQuote::QuoteEntryStructV4 quote )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+    };
+
+    interface UserSessionManagerV7 : cmiV6::UserSessionManagerV6  
+    {
+	cmiV7::OrderEntry getOrderEntryV7()
+           raises(
+            exceptions::SystemException,
+            exceptions::CommunicationException,
+            exceptions::AuthorizationException
+           );
+
+	cmiV7::Quote getQuoteV7()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+    };
+    
+    interface UserAccessV7
+    {
+        UserSessionManagerV7 logon(
+            in cmiUser::UserLogonStruct logonStruct,
+            in cmiSession::LoginSessionType sessionType,
+            in cmiCallback::CMIUserSessionAdmin clientListener,
+            in boolean gmdTextMessaging )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::AuthenticationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+     };
+};
+#endif

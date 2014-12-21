@@ -1,0 +1,82 @@
+#ifndef CMI_V10_IDL
+#define CMI_V10_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 10.0
+//
+// Copyright © 1999-2011 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either Express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiV9.idl"
+#include "cmiOrder.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV10
+{	
+	//-----------------------------------------------------------------------------------------------------------
+	//  	Light Order Cancel Replacement Interface
+	//-----------------------------------------------------------------------------------------------------------
+	
+    interface OrderEntry: cmiV9::OrderEntry
+    {
+
+		cmiOrder:: LightOrderReplaceResultStruct acceptLightOrderCancelReplaceRequest(
+                        in long originalOrderHighId,
+                        in long originalOrderLowId,
+                        in cmiSession::TradingSessionName activeSession,
+                        in long quantityToCancel,
+                        in string userAssignedCancelReplaceId,
+			in cmiOrder::LightOrderEntryStruct replaceOrder
+                 		)
+			raises(
+			    exceptions::SystemException,
+			    exceptions::CommunicationException,
+			    exceptions::AuthorizationException,
+			    exceptions::DataValidationException,
+			    exceptions::NotAcceptedException,
+			    exceptions::TransactionFailedException
+			);
+
+    };
+
+    interface UserSessionManagerV10 : cmiV9::UserSessionManagerV9
+	{
+		cmiV10::OrderEntry   getOrderEntryV10()
+            	raises(
+                    	exceptions::SystemException,
+                    	exceptions::CommunicationException,
+                    	exceptions::AuthorizationException,
+                    	exceptions::AuthenticationException,
+                    	exceptions::NotFoundException
+                	);
+
+    };
+    
+    interface UserAccessV10
+    {
+        	UserSessionManagerV10 logon(
+            	in cmiUser::UserLogonStruct logonStruct,
+            	in cmiSession::LoginSessionType sessionType,
+            	in cmiCallback::CMIUserSessionAdmin clientListener,
+            	in boolean gmdTextMessaging )
+                		raises(
+                    		exceptions::SystemException,
+                    		exceptions::CommunicationException,
+                    		exceptions::AuthorizationException,
+                    		exceptions::AuthenticationException,
+                    		exceptions::DataValidationException,
+                    		exceptions::NotFoundException
+                		);
+
+     };
+};
+#endif
