@@ -1,0 +1,1266 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef cmiConstants_idl
+#define cmiConstants_idl
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiProduct.idl"
+#include "cmiQuote.idl"
+#include "cmiUtil.idl"
+#include "cmiUser.idl"
+#include "cmiSession.idl"
+#include "cmiAdmin.idl"
+#include "cmiTraderActivity.idl"
+#include "cmiIntermarketMessages.idl"
+#include "cmiTradeNotification.idl"
+
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiConstants
+{
+
+    interface LoginSessionModes
+    {
+        const cmiUser::LoginSessionMode STAND_ALONE_TEST = '1';
+        const cmiUser::LoginSessionMode NETWORK_TEST = '2';
+        const cmiUser::LoginSessionMode PRODUCTION = '3';
+    };
+
+    interface LoginSessionTypes
+    {
+        const cmiSession::LoginSessionType PRIMARY = 1;
+        const cmiSession::LoginSessionType SECONDARY = 2;
+    };
+
+    interface MarketDataHistoryEntryTypes
+    {
+        const cmiMarketData::MarketDataHistoryEntryType QUOTE_ENTRY = 1;
+        const cmiMarketData::MarketDataHistoryEntryType PRICE_REPORT_ENTRY = 2;
+        const cmiMarketData::MarketDataHistoryEntryType EXPECTED_OPEN_PRICE = 3;
+        const cmiMarketData::MarketDataHistoryEntryType MARKET_CONDITION_ENTRY = 4;
+        const cmiMarketData::MarketDataHistoryEntryType UNSIZED_QUOTE_ENTRY = 5;
+    };
+
+    interface ExchangeIndicatorTypes
+    {
+        const cmiMarketData::ExchangeIndicatorType CLEAR = 21;
+        const cmiMarketData::ExchangeIndicatorType HALTED = 22;
+        const cmiMarketData::ExchangeIndicatorType FAST_MARKET = 23;
+        const cmiMarketData::ExchangeIndicatorType OPENING_ROTATION = 24;
+    };
+
+    interface OverrideIndicatorTypes
+    {
+    	const cmiMarketData::OverrideIndicatorType NONE = ' ';
+    	const cmiMarketData::OverrideIndicatorType LINKAGE = 'L';
+    	const cmiMarketData::OverrideIndicatorType BOOK_OVERRIDE = 'B';
+    	const cmiMarketData::OverrideIndicatorType OFFER_OVERRIDE = 'O';
+    	const cmiMarketData::OverrideIndicatorType SUPERVISORY_OVERRIDE = 'X';
+    };
+
+    interface MarketChangeReasons
+    {
+        const cmiMarketData::MarketChangeReason EXCHANGE = 1;
+        const cmiMarketData::MarketChangeReason NBBO = 2;
+        const cmiMarketData::MarketChangeReason COMBINED = 3;
+    };
+
+    interface QueryDirections
+    {
+        const cmiUtil::QueryDirection QUERY_FORWARD = 1;
+        const cmiUtil::QueryDirection QUERY_BACKWARD = 2;
+    };
+
+
+    interface PriceDisplayTypes
+    {
+        const cmiProduct::PriceDisplayType FRACTION = 1;
+        const cmiProduct::PriceDisplayType DECIMAL = 2;
+    };
+
+    interface OptionTypes
+    {
+        const cmiProduct::OptionType CALL = 'C';
+        const cmiProduct::OptionType PUT = 'P';
+    };
+
+    interface ProductTypes
+    {
+        const cmiProduct::ProductType COMMODITY = 1;
+        const cmiProduct::ProductType DEBT = 2;
+        const cmiProduct::ProductType EQUITY = 3;
+        const cmiProduct::ProductType FUTURE = 4;
+        const cmiProduct::ProductType INDEX = 5;
+        const cmiProduct::ProductType LINKED_NOTE = 6;
+        const cmiProduct::ProductType OPTION = 7;
+        const cmiProduct::ProductType UNIT_INVESTMENT_TRUST = 8;
+        const cmiProduct::ProductType VOLATILITY_INDEX = 9;
+        const cmiProduct::ProductType WARRANT = 10;
+        const cmiProduct::ProductType STRATEGY = 11;
+        const cmiProduct::ProductType INTEREST_RATE_COMPOSITE = 12;
+    };
+
+    interface ProductStates
+    {
+        const cmiSession::ProductState UNKNOWN = 0;
+        const cmiSession::ProductState CLOSED = 1;
+        const cmiSession::ProductState PRE_OPEN = 2;
+        const cmiSession::ProductState OPENING_ROTATION = 3;
+        const cmiSession::ProductState OPEN = 4;
+        const cmiSession::ProductState HALTED = 5;
+        const cmiSession::ProductState FAST_MARKET = 6;
+        const cmiSession::ProductState NO_SESSION = 7;
+        const cmiSession::ProductState ON_HOLD = 8;
+        const cmiSession::ProductState ENDING_HOLD = 9;
+        const cmiSession::ProductState SUSPENDED = 10;
+    };
+
+    interface ListingStates
+    {
+        const cmiProduct::ListingState ACTIVE = 1;
+        const cmiProduct::ListingState INACTIVE = 2;
+        const cmiProduct::ListingState UNLISTED = 3;
+        const cmiProduct::ListingState OBSOLETE = 4;
+    };
+
+    interface ClassStates
+    {
+        const cmiSession::ClassState NOT_IMPLEMENTED = 1;
+        const cmiSession::ClassState PRE_OPEN = 2;
+        const cmiSession::ClassState OPENING_ROTATION = 3;
+        const cmiSession::ClassState OPEN = 4;
+        const cmiSession::ClassState HALTED = 5;
+        const cmiSession::ClassState FAST_MARKET = 6;
+        const cmiSession::ClassState NO_SESSION = 7;
+        const cmiSession::ClassState ON_HOLD = 8;
+        const cmiSession::ClassState ENDING_HOLD = 9;
+        const cmiSession::ClassState CLOSED = 10;
+        const cmiSession::ClassState SUSPENDED = 11;
+    };
+
+    interface TradingSessionStates
+    {
+        const cmiSession::TradingSessionState CLOSED = 1;
+        const cmiSession::TradingSessionState OPEN = 2;
+    };
+
+    interface TradingSessionType
+    {
+        const cmiSession::TradingSessionState DAY = 1;
+        const cmiSession::TradingSessionState EVENING = 2;
+    };
+
+    interface TradingSessionMethod
+    {
+        const cmiSession::TradingSessionState SBT = 1;
+        const cmiSession::TradingSessionState OPENOUTCRY = 2;
+    };
+
+    interface StatusUpdateReasons
+    {
+        const cmiUtil::UpdateStatusReason BOOKED = 1;
+        const cmiUtil::UpdateStatusReason CANCEL = 2;
+        const cmiUtil::UpdateStatusReason FILL = 3;
+        const cmiUtil::UpdateStatusReason QUERY = 4;
+        const cmiUtil::UpdateStatusReason UPDATE = 5;
+        const cmiUtil::UpdateStatusReason OPEN_OUTCRY = 6;
+        const cmiUtil::UpdateStatusReason NEW = 7;
+        const cmiUtil::UpdateStatusReason BUST = 8;
+        const cmiUtil::UpdateStatusReason REINSTATE = 9;
+        const cmiUtil::UpdateStatusReason POSSIBLE_RESEND = 10;
+        const cmiUtil::UpdateStatusReason QUOTE_TRIGGER_BUY = 11;
+        const cmiUtil::UpdateStatusReason QUOTE_TRIGGER_SELL = 12;
+    };
+
+    interface ContingencyTypes
+    {
+        const cmiOrder::ContingencyType NONE = 1; // no contingency
+        const cmiOrder::ContingencyType AON = 2; // All or None
+        const cmiOrder::ContingencyType FOK = 3; // Fill or Kill
+        const cmiOrder::ContingencyType IOC = 4; // Immediate or Cancel
+        const cmiOrder::ContingencyType OPG = 5; // Opening only
+        const cmiOrder::ContingencyType MIN = 6; // Minimum
+        const cmiOrder::ContingencyType NOTHELD = 7; // Not held
+        const cmiOrder::ContingencyType WD = 8; // With discretion
+        const cmiOrder::ContingencyType MIT = 9; // Market if touched
+        const cmiOrder::ContingencyType STP = 10; // Stop order
+        const cmiOrder::ContingencyType STP_LOSS = 11; // Stop loss
+        const cmiOrder::ContingencyType CLOSE = 12; // On close
+        const cmiOrder::ContingencyType STP_LIMIT = 13; // Stop limit
+        const cmiOrder::ContingencyType AUCTION_RESPONSE = 14; // Auction response order
+        const cmiOrder::ContingencyType INTERMARKET_SWEEP = 15; // Intermarket sweep
+        const cmiOrder::ContingencyType RESERVE = 16; // Reserve order
+        const cmiOrder::ContingencyType MIDPOINT_CROSS    = 17; // Mid Point Cross
+        const cmiOrder::ContingencyType CROSS             = 18; // Cross
+        const cmiOrder::ContingencyType TIED_CROSS        = 19; // Tied cross
+        const cmiOrder::ContingencyType AUTOLINK_CROSS    = 20; // Auto link cross
+        const cmiOrder::ContingencyType AUTOLINK_CROSS_MATCH = 21; // Auto link cross
+        const cmiOrder::ContingencyType CROSS_WITHIN      = 22; 
+        const cmiOrder::ContingencyType TIED_CROSS_WITHIN = 23;
+        const cmiOrder::ContingencyType STOCK_ODD_LOT_NBBO_ONLY = 24;
+        const cmiOrder::ContingencyType NBBO_FLASH_THEN_CANCEL = 25;
+        const cmiOrder::ContingencyType CBSX_ONLY = 26;
+        const cmiOrder::ContingencyType NBBO_FLASH_RESPONSE = 27;
+    };
+
+    interface VolumeTypes
+    {
+        const cmiMarketData::VolumeType LIMIT = 1; // Limit (no contingency)
+        const cmiMarketData::VolumeType AON = 2; // All or None
+        const cmiMarketData::VolumeType FOK = 3; // Fill or Kill
+        const cmiMarketData::VolumeType IOC = 4; // Immediate or Cancel
+        const cmiMarketData::VolumeType NO_CONTINGENCY = 5;
+        const cmiMarketData::VolumeType CUSTOMER_ORDER = 6; // Customer
+        const cmiMarketData::VolumeType PROFESSIONAL_ORDER = 7; // BD
+        const cmiMarketData::VolumeType QUOTES = 8; // In-Crowd Market Maker
+        const cmiMarketData::VolumeType ODD_LOT = 9; // All Non-round lot amounts
+
+    };
+
+    interface OrderStates
+    {
+        const cmiOrder::OrderState BOOKED = 1;
+        const cmiOrder::OrderState CANCEL = 2;
+        const cmiOrder::OrderState FILL = 3;
+        const cmiOrder::OrderState OPEN_OUTCRY = 4;
+        const cmiOrder::OrderState INACTIVE = 5;
+        const cmiOrder::OrderState ACTIVE = 6;
+        const cmiOrder::OrderState EXPIRED = 7;
+        const cmiOrder::OrderState PURGED = 8;
+        const cmiOrder::OrderState REMOVED = 9;
+        const cmiOrder::OrderState WAITING = 10;
+    };
+
+    interface RFQTypes
+    {
+        const cmiQuote::RFQType MANUAL = 1;
+        const cmiQuote::RFQType SYSTEM = 2;
+    };
+
+    interface OrderMaintenanceTypes
+    {
+        const cmiOrder::OrderMaintenanceType CANCEL_REQUEST = 1;
+        const cmiOrder::OrderMaintenanceType CANCEL_REPLACE_REQUEST = 2;
+    };
+
+    interface Sides
+    {
+        const cmiUtil::Side UNSPECIFIED = 'U';
+        const cmiUtil::Side BUY  = 'B';
+        const cmiUtil::Side SELL = 'S';
+        const cmiUtil::Side BID  = 'B';
+        const cmiUtil::Side ASK  = 'A';
+        const cmiUtil::Side AS_DEFINED = 'D';
+        const cmiUtil::Side OPPOSITE = 'O';
+        const cmiUtil::Side SELL_SHORT = 'H';          // Fix defines this as '5'
+        const cmiUtil::Side SELL_SHORT_EXEMPT = 'X';   // Fix defines this as '6'
+        const cmiUtil::Side BUY_MINUS = 'M';           // Fix defines this as '3'
+        const cmiUtil::Side SELL_PLUS = 'P';           // Fix defines this as '4'
+
+    };
+
+    interface TimesInForce
+    {
+        const cmiOrder::TimeInForce GTC = 'G';
+        const cmiOrder::TimeInForce DAY = 'D';
+        const cmiOrder::TimeInForce GTD = 'T'; // Good until datetime
+        const cmiOrder::TimeInForce ALL = 'A'; // stands for all orders i.e. GTC+DTD+DAY
+    };
+
+    interface PositionEffects
+    {
+        const cmiOrder::PositionEffect OPEN = 'O';
+        const cmiOrder::PositionEffect CLOSED = 'C';
+        const cmiOrder::PositionEffect NOTAPPLICABLE = 'N';
+    };
+
+    interface OrderOrigins
+    {
+        const cmiOrder::OriginType PRINCIPAL_ACTING_AS_AGENT = 'A';
+        const cmiOrder::OriginType BROKER_DEALER = 'B';
+        const cmiOrder::OriginType CUSTOMER = 'C';          //CTI Equivalent - Non Member, Customer Segregated Account
+        const cmiOrder::OriginType CUSTOMER_FBW = 'D';
+        const cmiOrder::OriginType CTI1Origin2 = 'E';       //Member, House Account
+        const cmiOrder::OriginType FIRM = 'F';              //CTI Equivalent - Firm Trader, House Account
+        const cmiOrder::OriginType CTI3Origin1 = 'G';           //User Proxy for trader, Customer Segregated Account
+        const cmiOrder::OriginType CTI3Origin2 = 'H';           //User Proxy for trader, House Account
+        const cmiOrder::OriginType MARKET_MAKER_IN_CROWD = 'I';
+        const cmiOrder::OriginType FIRM_FBW_ICM = 'J';
+        const cmiOrder::OriginType BROKER_DEALER_FBW_ICM = 'K';
+        const cmiOrder::OriginType FIRM_FBW_NON_CUSTOMER = 'L';
+        const cmiOrder::OriginType MARKET_MAKER = 'M';
+        const cmiOrder::OriginType MARKET_MAKER_AWAY = 'N';
+        const cmiOrder::OriginType CTI4Origin2 = 'O';           //Non Member, House Account
+        const cmiOrder::OriginType PRINCIPAL = 'P';
+        const cmiOrder::OriginType CTI1Origin5 = 'Q';           //Member, SIPC Protected Account
+        const cmiOrder::OriginType CTI3Origin5 = 'R';           //User Proxy for trader, SIPC Protected Account
+        const cmiOrder::OriginType SATISFACTION = 'S';
+        const cmiOrder::OriginType CTI4Origin5 = 'T';           //Non Member, SIPC Protected Account
+        const cmiOrder::OriginType M_N_Y_FBW = 'U';             //Market Maker, Non-CBOE Member, Specialist Away
+        const cmiOrder::OriginType CTI1Origin1 = 'V';           //Member, Customer Segregated Account
+        const cmiOrder::OriginType BROKER_DEALER_FBW_NON_CUSTOMER = 'W';
+        const cmiOrder::OriginType CUSTOMER_BROKER_DEALER = 'X';
+        const cmiOrder::OriginType UNDERLY_SPECIALIST = 'Y';
+        const cmiOrder::OriginType N_Y_FBW = 'Z';          //Non-CBOE Member & Secialist Away. Now U is only for MarketMaker
+	const cmiOrder::OriginType ITS_POR = 'a';          //Order on behalf of ITS PreOpening Response from away exchange
+    };
+
+    interface QueueActions
+    {
+        const cmiUtil::QueueAction NO_ACTION = 0;
+        const cmiUtil::QueueAction FLUSH_QUEUE = 1;
+        const cmiUtil::QueueAction OVERLAY_LAST = 2;
+        const cmiUtil::QueueAction DISCONNECT_CONSUMER = 3;
+    };
+
+
+    interface UserRoles
+    {
+        const cmiUser::UserRole FIRM = 'F';
+        const cmiUser::UserRole BROKER_DEALER = 'B';
+        const cmiUser::UserRole CUSTOMER_BROKER_DEALER = 'X';
+        const cmiUser::UserRole MARKET_MAKER = 'M';
+        const cmiUser::UserRole HELP_DESK = 'H';
+        const cmiUser::UserRole DPM_ROLE = 'D';
+        const cmiUser::UserRole UNKNOWN_ROLE = 'K';
+        const cmiUser::UserRole CLASS_DISPLAY = 'C';
+        const cmiUser::UserRole FIRM_DISPLAY = 'R';
+        const cmiUser::UserRole EXCHANGE_BROKER = 'E';
+        const cmiUser::UserRole EXPECTED_OPENING_PRICE_ROLE = 'Q';
+        const cmiUser::UserRole PRODUCT_MAINTENANCE = 'P';
+        const cmiUser::UserRole TFL_ROLE = 'T';
+        const cmiUser::UserRole HELP_DESK_OMT = 'A';
+        const cmiUser::UserRole BOOTH_OMT = 'G';
+        const cmiUser::UserRole DISPLAY_OMT = 'J';
+        const cmiUser::UserRole CROWD_OMT = 'L';
+        const cmiUser::UserRole REPORTING = 'N';
+        const cmiUser::UserRole OPRA = 'S';
+    };
+
+    interface EntryTypes
+    {
+        const cmiUtil::EntryType ADD = 'A';
+        const cmiUtil::EntryType CANCEL = 'C';
+        const cmiUtil::EntryType CANCEL_REPLACE = 'R';
+        const cmiUtil::EntryType FILL = 'F';
+        const cmiUtil::EntryType BOOK = 'B';
+        const cmiUtil::EntryType STATE = 'S';
+        const cmiUtil::EntryType PRICE_ADJUST = 'P';
+        const cmiUtil::EntryType UPDATE = 'U';
+        const cmiUtil::EntryType BUST = 'K';
+    };
+
+    interface CoverageTypes
+    {
+        const cmiOrder::Coverage UNSPECIFIED = 'B';
+        const cmiOrder::Coverage COVERED = 'C';
+        const cmiOrder::Coverage UNCOVERED = 'U';
+    };
+
+    interface Sources
+    {
+        const cmiUtil::Source TPF = 'T';
+        const cmiUtil::Source SBT = 'S';
+        const cmiUtil::Source COMPASS = 'C';
+        const cmiUtil::Source LINKAGE = 'L';
+        const cmiUtil::Source ITS = 'I';
+    };
+
+    interface PriceTypes
+    {
+        const cmiUtil::PriceType NO_PRICE = 1;
+        const cmiUtil::PriceType LIMIT = 2;
+        const cmiUtil::PriceType VALUED = 2;
+        const cmiUtil::PriceType MARKET = 3;
+        const cmiUtil::PriceType CABINET = 4;
+    };
+
+    interface ExpirationStyles
+    {
+        const cmiProduct::ExpirationStyle EUROPEAN = 'E';
+        const cmiProduct::ExpirationStyle AMERICAN = 'A';
+    };
+
+    interface ExchangeStrings
+    {
+    const cmiUser::Exchange AMEX    = "AMEX";   //American Stock Exchange
+    const cmiUser::Exchange BSE     = "BSE";    //Boston Stock Exchange
+    const cmiUser::Exchange CBOE    = "CBOE";   //Chicago Board Options Exchange
+    const cmiUser::Exchange CBOT    = "CBOT";   //Chicago Board of Trade
+    const cmiUser::Exchange CHX     = "CHX";    //Chicago Stock Exchange
+    const cmiUser::Exchange CME     = "CME";    //Chicago Mercantile Exchange
+    const cmiUser::Exchange CSE     = "CSE";    //Cincinnati Stock Exchange
+    const cmiUser::Exchange ISE     = "ISE";    //International Stock Exchange
+    const cmiUser::Exchange LIFFE   = "LIFFE";  //International Financial Futures and Options Exchange
+    const cmiUser::Exchange NASD    = "NASD";   //National Association of Securities Dealers
+    const cmiUser::Exchange NYME    = "NYME";   //New York Mercantile Exchange
+    const cmiUser::Exchange NYSE    = "NYSE";   //New York Stock Exchange
+    const cmiUser::Exchange ONE     = "ONE";    //OneChicago Exchange
+    const cmiUser::Exchange PHLX    = "PHLX";   //Philadelphia Stock Exchange
+    const cmiUser::Exchange PSE     = "PSE";    //Pacific Stock Exchange
+    const cmiUser::Exchange NQLX    = "NQLX";   //Nasdaq Liffe Markets
+    const cmiUser::Exchange BOX     = "BOX";    // Boston Options Exchange
+    const cmiUser::Exchange CFE     = "CFE";    //CBOE Futures Exchange
+    const cmiUser::Exchange NSX     = "NSX";    //National Stock Exchange
+    const cmiUser::Exchange NASDAQ  = "NASDQ";  //National Association of Securities Dealers Automated Quotation
+    };
+
+
+    interface ExpectedOpeningPriceTypes
+    {
+        const cmiMarketData::ExpectedOpeningPriceType OPENING_PRICE = 1;
+        const cmiMarketData::ExpectedOpeningPriceType MORE_BUYERS = 2;//deprecated 
+        const cmiMarketData::ExpectedOpeningPriceType MORE_SELLERS = 3;//deprecated 
+        const cmiMarketData::ExpectedOpeningPriceType NEED_MORE_SELLERS = 2; 
+        const cmiMarketData::ExpectedOpeningPriceType NEED_MORE_BUYERS = 3;
+        const cmiMarketData::ExpectedOpeningPriceType NO_OPENING_TRADE = 4;
+        const cmiMarketData::ExpectedOpeningPriceType MULTIPLE_OPENING_PRICES = 5;
+        const cmiMarketData::ExpectedOpeningPriceType NEED_QUOTE_TO_OPEN = 6;
+        const cmiMarketData::ExpectedOpeningPriceType PRICE_NOT_IN_QUOTE_RANGE = 7;
+        const cmiMarketData::ExpectedOpeningPriceType NEED_DPM_QUOTE_TO_OPEN = 8;
+        const cmiMarketData::ExpectedOpeningPriceType DPM_QUOTE_INVALID = 9;
+        const cmiMarketData::ExpectedOpeningPriceType PRICE_NOT_IN_BOTR_RANGE = 10;
+    };
+
+    interface PriceAdjustmentTypes
+    {
+        const cmiProduct::PriceAdjustmentType SPLIT = 1;
+        const cmiProduct::PriceAdjustmentType DIVIDEND_CASH = 2;
+        const cmiProduct::PriceAdjustmentType DIVIDEND_PERCENT = 3;
+        const cmiProduct::PriceAdjustmentType DIVIDEND_STOCK = 4;
+        const cmiProduct::PriceAdjustmentType LEAP_ROLLOVER = 5;
+        const cmiProduct::PriceAdjustmentType MERGER = 6;
+        const cmiProduct::PriceAdjustmentType SYMBOL_CHANGE = 7;
+        const cmiProduct::PriceAdjustmentType COMMON_DISTRIBUTION = 8;
+    };
+
+    interface PriceAdjustmentActions
+    {
+        const cmiProduct::PriceAdjustmentAction PRICE_ADJUSTMENT_UPDATE = 1;
+        const cmiProduct::PriceAdjustmentAction PRICE_ADJUSTMENT_DELETE = 2;
+        const cmiProduct::PriceAdjustmentAction PRICE_ADJUSTMENT_CREATE = 3;
+        const cmiProduct::PriceAdjustmentAction PRICE_ADJUSTMENT_MOVE = 4;
+    };
+
+    interface PriceScale
+    {
+        const long DEFAULT_SCALE = 1000000000;
+    };
+
+    interface ProductClass
+    {
+        const long DEFAULT_CLASS_KEY = 0;
+    };
+
+    interface ProductKeys
+    {
+        const long DEFAULT_PRODUCT_KEY = 0;
+    };
+
+    interface OrderCancelTypes
+    {
+        const cmiOrder::CancelType DESIRED_CANCEL_QUANTITY    = 1;
+        const cmiOrder::CancelType DESIRED_REMAINING_QUANTITY = 2;
+        const cmiOrder::CancelType CANCEL_ALL_QUANTITY        = 3;
+    };
+
+    interface ActivityTypes
+    {
+        // Order Activity Events
+        const cmiTraderActivity::ActivityType  NEW_ORDER               = 1;
+        const cmiTraderActivity::ActivityType  FILL_ORDER              = 2;
+        const cmiTraderActivity::ActivityType  CANCEL_ORDER            = 3;
+        const cmiTraderActivity::ActivityType  BUST_ORDER_FILL         = 4;
+        const cmiTraderActivity::ActivityType  BUST_REINSTATE_ORDER    = 5;
+        const cmiTraderActivity::ActivityType  CANCEL_REPLACE_ORDER    = 6;
+        const cmiTraderActivity::ActivityType  UPDATE_ORDER            = 7;
+        const cmiTraderActivity::ActivityType  BOOK_ORDER              = 8;
+        const cmiTraderActivity::ActivityType  STATE_CHANGE_ORDER      = 9;
+        const cmiTraderActivity::ActivityType  PRICE_ADJUST_ORDER      = 10;
+        const cmiTraderActivity::ActivityType  CANCEL_ALL_ORDERS       = 11;
+        const cmiTraderActivity::ActivityType  HELD_FOR_IPP_PROTECTION = 12;        // new for IPP
+        const cmiTraderActivity::ActivityType  CANCEL_REPLACE_ORDER_REQUEST = 13;
+        const cmiTraderActivity::ActivityType  ORDER_ROUTED 	       = 14;
+        const cmiTraderActivity::ActivityType  CROSSING_ORDER_ROUTED   = 15;
+        const cmiTraderActivity::ActivityType  FAILED_ROUTE	       	   = 16;
+        const cmiTraderActivity::ActivityType  CANCEL_REQUEST_ROUTED   = 17;
+	const cmiTraderActivity::ActivityType  CANCEL_REQUEST_FAILED_ROUTE = 18;
+        const cmiTraderActivity::ActivityType  CANCEL_REPLACE_ORDER_REQUEST_FAILED_ROUTE = 19 ;
+
+        // Strategy Order leg activity types
+        const cmiTraderActivity::ActivityType  NEW_ORDER_STRATEGY_LEG      = 51;
+        const cmiTraderActivity::ActivityType  FILL_STRATEGY_LEG           = 52;
+        const cmiTraderActivity::ActivityType  CANCEL_STRATEGY_LEG         = 53;
+        const cmiTraderActivity::ActivityType  BUST_STRATEGY_LEG_FILL      = 54;
+        const cmiTraderActivity::ActivityType  BUST_REINSTATE_STRATEGY_LEG = 55;
+        const cmiTraderActivity::ActivityType  BOOK_STRATEGY_LEG           = 56;
+        const cmiTraderActivity::ActivityType  UPDATE_STRATEGY_LEG         = 57;
+        const cmiTraderActivity::ActivityType  PRICE_ADJUST_ORDER_LEG      = 60;
+        const cmiTraderActivity::ActivityType  MANUAL_TA_TIMEOUT_STRATEGY_LEG = 70;
+        const cmiTraderActivity::ActivityType  MANUAL_BOOK_TIMEOUT_STRATEGY_LEG = 71;
+        const cmiTraderActivity::ActivityType  MANUAL_AUCTION_TIMEOUT_STRATEGY_LEG = 72;
+        const cmiTraderActivity::ActivityType  MANUAL_FILL_TIMEOUT_STRATEGY_LEG = 73;
+        const cmiTraderActivity::ActivityType  MANUAL_FILL_REJECT_STRATEGY_LEG = 74;
+
+        // Quote Activity Events
+        const cmiTraderActivity::ActivityType  NEW_QUOTE               = 101;
+        const cmiTraderActivity::ActivityType  FILL_QUOTE              = 102;
+        const cmiTraderActivity::ActivityType  CANCEL_QUOTE            = 103;
+        const cmiTraderActivity::ActivityType  CANCEL_ALL_QUOTES       = 104;
+        const cmiTraderActivity::ActivityType  SYSTEM_CANCEL_QUOTE     = 105;
+        const cmiTraderActivity::ActivityType  UPDATE_QUOTE            = 106;
+        const cmiTraderActivity::ActivityType  BUST_QUOTE_FILL         = 107;
+
+        // Strategy Quote leg activity types
+        const cmiTraderActivity::ActivityType  QUOTE_LEG_FILL          = 152;
+        const cmiTraderActivity::ActivityType  BUST_QUOTE_LEG_FILL     = 157;
+
+        // RFQ Activity Events
+        const cmiTraderActivity::ActivityType  NEW_RFQ                 = 201;
+
+        // New Activity Types for Linkage
+        const cmiTraderActivity::ActivityType INBOUND_S_ORDER_FILL			= 300;
+        const cmiTraderActivity::ActivityType NEW_ORDER_REJECT 				= 301;
+        const cmiTraderActivity::ActivityType FILL_REJECT 				= 302;
+        const cmiTraderActivity::ActivityType CANCEL_ORDER_REQUEST 			= 303;
+        const cmiTraderActivity::ActivityType CANCEL_ORDER_REQUEST_REJECT 		= 304;
+        const cmiTraderActivity::ActivityType CANCEL_REPORT_REJECT 			= 305;
+        const cmiTraderActivity::ActivityType NEW_ORDER_REJECT_REJECTED 		= 306;
+        const cmiTraderActivity::ActivityType FILL_REJECT_REJECTED 			= 307;
+        const cmiTraderActivity::ActivityType CANCEL_ORDER_REQUEST_REJECT_REJECTED 	= 308;
+        const cmiTraderActivity::ActivityType CANCEL_REPORT_REJECT_REJECTED 		= 309;
+        const cmiTraderActivity::ActivityType ROUTE_TO_AWAY_EXCHANGE 			= 310;
+        const cmiTraderActivity::ActivityType LINKAGE_ORDER_RELATIONSHIP 		= 311;
+	const cmiTraderActivity::ActivityType EXECUTION_REPORT_ON_LINKED_ORDER 		= 312;
+	const cmiTraderActivity::ActivityType EXECUTION_REPORT_ROUTED 			= 313;
+	const cmiTraderActivity::ActivityType EXECUTION_REPORT_FAILED_ROUTE 		= 314;
+        
+        //New Activity Types for Auction
+        const cmiTraderActivity::ActivityType AUCTION_START 			= 401;
+        const cmiTraderActivity::ActivityType AUCTION_TRIGGER_START 	= 402;
+        const cmiTraderActivity::ActivityType AUCTION_END 				= 403;
+        const cmiTraderActivity::ActivityType AUCTION_TRIGGER_END 		= 404;
+        
+        //TSB Request events
+        const cmiTraderActivity::ActivityType TSB_REQUEST = 501;
+        
+        //Volume maintenance event
+        const cmiTraderActivity::ActivityType VOL_MAINTENANCE 			= 601;
+        //Par Broker Select Time event
+        const cmiTraderActivity::ActivityType PAR_BROKER_USED_MKT_DATA 	= 602;
+        const cmiTraderActivity::ActivityType PAR_BROKER_MKT_DATA 		= 603;
+
+		//ManualOrder return events
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_TA 		= 701;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_TB 		= 702;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_BOOK 	= 703;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_AUCTION 	= 704;
+
+        //PAR print activity events
+        const cmiTraderActivity::ActivityType PAR_PRINT_INTRA_DAY 	= 705;
+        const cmiTraderActivity::ActivityType PAR_PRINT_END_OF_DAY 	= 706;
+        const cmiTraderActivity::ActivityType MANUAL_FILL_REJECT 	= 707;
+
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_TA_TIMEOUT           = 708;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_TB_TIMEOUT           = 709;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_BOOK_TIMEOUT 	= 710;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_AUCTION_TIMEOUT 	= 711;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_LINKAGE_TIMEOUT 	= 712;
+        const cmiTraderActivity::ActivityType MANUAL_FILL_TIMEOUT               = 713;
+        const cmiTraderActivity::ActivityType MANUAL_FILL_LINKAGE_TIMEOUT 	= 714;
+	const cmiTraderActivity::ActivityType MANUAL_ORDER_REROUTE_REQUEST 	= 715;
+	const cmiTraderActivity::ActivityType MANUAL_ORDER_REROUTE_CROWD_REQUEST	= 716;
+	    const cmiTraderActivity::ActivityType FORCED_LOGOFF_PAR	= 717;
+
+	// ManualTimeouts Failure Events. 800 series.
+        const cmiTraderActivity::ActivityType MANUAL_FILL_REJECT_FAILURE 		= 807;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_TA_TIMEOUT_FAILURE           = 808;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_TB_TIMEOUT_FAILURE           = 809;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_BOOK_TIMEOUT_FAILURE 	= 810;
+        const cmiTraderActivity::ActivityType MANUAL_ORDER_AUCTION_TIMEOUT_FAILURE 	= 811;
+        const cmiTraderActivity::ActivityType MANUAL_FILL_TIMEOUT_FAILURE               = 813;
+        const cmiTraderActivity::ActivityType MANUAL_FILL_LINKAGE_TIMEOUT_FAILURE 	= 814;
+	    const cmiTraderActivity::ActivityType FORCED_LOGOFF_PAR_FAILURE	= 815;
+
+        // Non-order Message Reroute Events
+        const cmiTraderActivity::ActivityType NON_ORDER_MESSAGE_REROUTE 	= 901;
+        
+        // AUDIT History Event
+        const cmiTraderActivity::ActivityType AUDIT_HISTORY_EVENT 	= -100;
+
+    };
+
+    interface ActivityFieldTypes
+    {
+        const cmiTraderActivity::ActivityFieldType     ORDERID                     = 1;
+        const cmiTraderActivity::ActivityFieldType     ACCOUNT                     = 2;
+        const cmiTraderActivity::ActivityFieldType     ASK_PRICE                   = 3;
+        const cmiTraderActivity::ActivityFieldType     ASK_QTY                     = 4;
+        const cmiTraderActivity::ActivityFieldType     BID_PRICE                   = 5;
+        const cmiTraderActivity::ActivityFieldType     BID_QTY                     = 6;
+        const cmiTraderActivity::ActivityFieldType     BUSTED_QUANTITY             = 7;
+        const cmiTraderActivity::ActivityFieldType     CANCELLED_QUANTITY          = 8;
+        const cmiTraderActivity::ActivityFieldType     CMTA                        = 9;
+        const cmiTraderActivity::ActivityFieldType     CONTINGENCY_TYPE            = 10;
+        const cmiTraderActivity::ActivityFieldType     EVENT_STATUS                = 11;
+        const cmiTraderActivity::ActivityFieldType     LEAVES_QUANTITY             = 12;
+        const cmiTraderActivity::ActivityFieldType     MISMATCHED_QUANTITY         = 13;
+        const cmiTraderActivity::ActivityFieldType     OPTIONAL_DATA               = 14;
+        const cmiTraderActivity::ActivityFieldType     ORIGINAL_QUANTITY           = 15;
+        const cmiTraderActivity::ActivityFieldType     PRICE                       = 16;
+        const cmiTraderActivity::ActivityFieldType     PRODUCT_STATE               = 17;   // to capture FAST_MARKET
+        const cmiTraderActivity::ActivityFieldType     QUANTITY                    = 18;
+        const cmiTraderActivity::ActivityFieldType     QUOTEKEY                    = 19;
+        const cmiTraderActivity::ActivityFieldType     REINSTATED_QUANTITY         = 20;
+        const cmiTraderActivity::ActivityFieldType     REPLACE_ORDERID             = 21;
+        const cmiTraderActivity::ActivityFieldType     RFQ_TYPE                    = 22;
+        const cmiTraderActivity::ActivityFieldType     SIDE                        = 23;
+        const cmiTraderActivity::ActivityFieldType     TIME_IN_FORCE               = 24;
+        const cmiTraderActivity::ActivityFieldType     TIME_TO_LIVE                = 25;
+        const cmiTraderActivity::ActivityFieldType     TLC_QUANTITY                = 26;
+        const cmiTraderActivity::ActivityFieldType     TRADED_QUANTITY             = 27;
+        const cmiTraderActivity::ActivityFieldType     TRADEID                     = 28;
+        const cmiTraderActivity::ActivityFieldType     TRANSACTION_SEQUENCE_NUMBER = 29;
+        const cmiTraderActivity::ActivityFieldType     USER_ASSIGNED_ID            = 30;
+        const cmiTraderActivity::ActivityFieldType     CANCEL_REASON               = 31;
+        const cmiTraderActivity::ActivityFieldType     BOOKED_QUANTITY             = 32;
+        const cmiTraderActivity::ActivityFieldType     ORDER_STATE                 = 33; // see OrderStates
+        const cmiTraderActivity::ActivityFieldType     PRODUCT                     = 34;
+        const cmiTraderActivity::ActivityFieldType     EXEC_BROKER                 = 35;
+        const cmiTraderActivity::ActivityFieldType     QUOTE_UPDATE_CONTROL_ID     = 36;
+	const cmiTraderActivity::ActivityFieldType     ROUTE_REASON		   = 37;
+	const cmiTraderActivity::ActivityFieldType     ACTIVITY_TIME		   = 38;
+	const cmiTraderActivity::ActivityFieldType     ROUTED_QUANTITY		   = 39;	
+	const cmiTraderActivity::ActivityFieldType     BBO_BID_PRICE		   = 40;
+	const cmiTraderActivity::ActivityFieldType     BBO_BID_SIZE		   = 41;
+	const cmiTraderActivity::ActivityFieldType     BBO_ASK_PRICE		   = 42;
+	const cmiTraderActivity::ActivityFieldType     BBO_ASK_SIZE		   = 43;
+	const cmiTraderActivity::ActivityFieldType     BOTR_ASK_PRICE		   = 44;
+	const cmiTraderActivity::ActivityFieldType     BOTR_BID_PRICE		   = 45;
+	const cmiTraderActivity::ActivityFieldType     BOTR_ASK_EXCHANGES	   = 46;
+	const cmiTraderActivity::ActivityFieldType     BOTR_BID_EXCHANGES	   = 47;
+	const cmiTraderActivity::ActivityFieldType     DSM_BID_PRICE		   = 48;
+	const cmiTraderActivity::ActivityFieldType     DSM_BID_SIZE		   = 49;
+	const cmiTraderActivity::ActivityFieldType     DSM_ASK_PRICE		   = 50;
+	const cmiTraderActivity::ActivityFieldType     DSM_ASK_SIZE		   = 51;
+	const cmiTraderActivity::ActivityFieldType     USER_KEY                    = 52;
+	const cmiTraderActivity::ActivityFieldType     CLASS_KEY                   = 53;
+	const cmiTraderActivity::ActivityFieldType     USER_ID                     = 54;
+	const cmiTraderActivity::ActivityFieldType     ORDER_PRICE                 = 55;
+	const cmiTraderActivity::ActivityFieldType     MISMATCHED_QTY              = 56;		
+	const cmiTraderActivity::ActivityFieldType     AUCTION_TYPE		   = 57;
+	const cmiTraderActivity::ActivityFieldType     QUANTITY_TRADED_IN_AUCTION  = 58;
+	const cmiTraderActivity::ActivityFieldType     EARLY_AUCTION_END_FLAG      = 59;
+	const cmiTraderActivity::ActivityFieldType     COMPLEX_ORDER_TYPE	   = 60;
+	const cmiTraderActivity::ActivityFieldType     CMTA_EXCH_ACRONYM	   = 61;
+        const cmiTraderActivity::ActivityFieldType     SOURCE_FIELD	           = 63;
+        const cmiTraderActivity::ActivityFieldType     ROUTE_DESCRIPTION	   = 64;
+	const cmiTraderActivity::ActivityFieldType     NBBO_ASK_PRICE		   = 65;
+	const cmiTraderActivity::ActivityFieldType     NBBO_BID_PRICE		   = 66;
+	const cmiTraderActivity::ActivityFieldType     NBBO_ASK_EXCHANGES	   = 67;
+	const cmiTraderActivity::ActivityFieldType     NBBO_BID_EXCHANGES	   = 68;
+	const cmiTraderActivity::ActivityFieldType     LOCATION	                   = 69;
+	const cmiTraderActivity::ActivityFieldType     LOCATION_TYPE	           = 70;
+	const cmiTraderActivity::ActivityFieldType     BOOK_BID_PRICE              = 71;
+        const cmiTraderActivity::ActivityFieldType     BOOK_BID_SIZE               = 72;
+        const cmiTraderActivity::ActivityFieldType     BOOK_ASK_PRICE              = 73;
+        const cmiTraderActivity::ActivityFieldType     BOOK_ASK_SIZE               = 74;
+        const cmiTraderActivity::ActivityFieldType     DELTA_NEUTRAL_INDICATOR     = 75;
+        const cmiTraderActivity::ActivityFieldType     SOURCE_FIELD_TYPE           = 76;
+        const cmiTraderActivity::ActivityFieldType     TT_INDICATOR                = 77;
+        const cmiTraderActivity::ActivityFieldType     EXCHANGE_INDICATORS         = 78;
+        const cmiTraderActivity::ActivityFieldType     BTM_INDICATOR               = 79;
+        const cmiTraderActivity::ActivityFieldType     MARKETIBILITY_INDICATOR     = 80;
+	const cmiTraderActivity::ActivityFieldType     IS_AUTO_LINKED              = 81;
+	const cmiTraderActivity::ActivityFieldType     LINKED_ORDERDBID            = 82;
+	const cmiTraderActivity::ActivityFieldType     LINKED_ORDERIDSTR           = 83;
+	const cmiTraderActivity::ActivityFieldType     FILL_REJECT_REASON          = 84;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDERDBID           = 85;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_FIRMNUMEBR    = 86;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_FIRMEXCHANGE  = 87;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_BRANCH        = 88;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_BRANCHSEQNUMBER = 89;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_CORRESPONDENTFIRM = 90;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_DATE          = 91;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_ORSID         = 92;
+	const cmiTraderActivity::ActivityFieldType     RETURN_CODE                 = 93;
+	const cmiTraderActivity::ActivityFieldType     EVENT_TYPE                  = 94;
+	const cmiTraderActivity::ActivityFieldType     SUBEVENT_TYPE               = 95;
+	const cmiTraderActivity::ActivityFieldType     NEW_PRODUCT_KEY             = 96;
+	const cmiTraderActivity::ActivityFieldType     NEW_ORDER_PRICE             = 97;
+	const cmiTraderActivity::ActivityFieldType     NEW_QUANTITY                = 98;
+	const cmiTraderActivity::ActivityFieldType     SESSION_NAME                = 99;
+	const cmiTraderActivity::ActivityFieldType     HANDLING_INSTRUCTION        = 100;
+	const cmiTraderActivity::ActivityFieldType     BULK_ORDER_REQ_ID           = 101;
+	const cmiTraderActivity::ActivityFieldType     PARTITION_FLAG              = 102;
+	const cmiTraderActivity::ActivityFieldType     SUBACCOUNT                  = 103;
+
+        
+        //These are not used anymore, should be deleted
+    const cmiTraderActivity::ActivityFieldType     ROUTE_DESTINATION	   = 104;        
+	const cmiTraderActivity::ActivityFieldType     TSB_BID_PRICE		   = 105;
+	const cmiTraderActivity::ActivityFieldType     TSB_BID_SIZE		   = 106;
+	const cmiTraderActivity::ActivityFieldType     TSB_ASK_PRICE		   = 107;
+	const cmiTraderActivity::ActivityFieldType     TSB_ASK_SIZE		   = 108;
+	const cmiTraderActivity::ActivityFieldType     LEG_TRADE_RPT_IDS	   = 109;
+	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_IDS	   = 110;
+	const cmiTraderActivity::ActivityFieldType     FILL_REASON		   = 111; 
+	const cmiTraderActivity::ActivityFieldType     REJECT_INDICATOR		   = 112;
+	const cmiTraderActivity::ActivityFieldType     COA_ELIGIBILITY_INDICATOR = 113;
+	
+	const cmiTraderActivity::ActivityFieldType     VOLUME_MAINTENANCE_QUANTITY = 114;
+	const cmiTraderActivity::ActivityFieldType     STOP_ORDER_TRIGGERED = 115;
+
+   // const cmiTraderActivity::ActivityFieldType     ROUTE_DESTINATION	   = 38;        
+//	const cmiTraderActivity::ActivityFieldType     TSB_BID_PRICE		   = 52;
+//	const cmiTraderActivity::ActivityFieldType     TSB_BID_SIZE		   = 53;
+//	const cmiTraderActivity::ActivityFieldType     TSB_ASK_PRICE		   = 54;
+//	const cmiTraderActivity::ActivityFieldType     TSB_ASK_SIZE		   = 55;
+//	const cmiTraderActivity::ActivityFieldType     LEG_TRADE_RPT_IDS	   = 61;
+//	const cmiTraderActivity::ActivityFieldType     RELATED_ORDER_IDS	   = 62;
+//	const cmiTraderActivity::ActivityFieldType     FILL_REASON		   = 56; 
+    };
+
+    interface ActivityReasons
+    {
+        const cmiUtil::ActivityReason NOTHING_DONE = 1;
+        const cmiUtil::ActivityReason USER = 2;
+        const cmiUtil::ActivityReason SYSTEM = 3;
+        const cmiUtil::ActivityReason LOST_CONNECTION = 4;
+        const cmiUtil::ActivityReason INSUFFICIENT_QUANTITY = 5;
+        const cmiUtil::ActivityReason SPECIAL_ADJUSTMENT = 6;
+        const cmiUtil::ActivityReason QRM_REMOVED = 7;
+        const cmiUtil::ActivityReason INSUFFICIENT_QUANTITY_BUY_SIDE  = 8;
+        const cmiUtil::ActivityReason INSUFFICIENT_QUANTITY_SELL_SIDE  = 9;
+        const cmiUtil::ActivityReason QUOTE_UPDATE_CONTROL =10;
+        // acceptServerFailure event would have following reason
+        const cmiUtil::ActivityReason FAILOVER= 11;
+        const cmiUtil::ActivityReason QUOTE_IN_TRIGGER =12;
+        const cmiUtil::ActivityReason INVALID_SESSION_ID =13;
+        const cmiUtil::ActivityReason SAL_IN_PROGRESS = 14;
+        const cmiUtil::ActivityReason CROSS_IN_PROGRESS = 15;
+        const cmiUtil::ActivityReason INVALID_NBBO = 16;
+        const cmiUtil::ActivityReason NOT_WITHIN_NBBO = 17;
+        const cmiUtil::ActivityReason TRADE_THROUGH_CBOE = 18;
+        const cmiUtil::ActivityReason INSUFFICIENT_CUSTOMER_ORDER_QUANTITY = 19;
+        const cmiUtil::ActivityReason INSUFFICIENT_CROSS_ORDER_SIZE = 20;
+        const cmiUtil::ActivityReason INSUFFICIENT_CROSS_ORDER_DOLLAR_AMOUNT = 21;
+        const cmiUtil::ActivityReason SELL_SHORT_RULE_VIOLATION = 22;
+        // acceptUserActivityTimeout (UIM) event would have the following reason:
+        const cmiUtil::ActivityReason NO_USER_ACTIVITY = 23;
+        const cmiUtil::ActivityReason CANCEL_ON_RSS = 24;
+
+        // The following are used for Linkage
+
+        const cmiUtil::ActivityReason BROKER_OPTION = 100;
+        const cmiUtil::ActivityReason CANCEL_PENDING = 101;
+        const cmiUtil::ActivityReason CROWD_TRADE = 102;
+        const cmiUtil::ActivityReason DUPLICATE_ORDER = 103;
+        const cmiUtil::ActivityReason EXCHANGE_CLOSED = 104;
+        const cmiUtil::ActivityReason GATE_VIOLATION = 105;
+        const cmiUtil::ActivityReason INVALID_ACCOUNT = 106;
+        const cmiUtil::ActivityReason INVALID_AUTOEX_VALUE = 107;
+        const cmiUtil::ActivityReason INVALID_CMTA = 108;
+        const cmiUtil::ActivityReason INVALID_FIRM = 109;
+        const cmiUtil::ActivityReason INVALID_ORIGIN_TYPE = 110;
+        const cmiUtil::ActivityReason INVALID_POSITION_EFFECT = 111;
+        const cmiUtil::ActivityReason INVALID_PRICE = 112;
+        const cmiUtil::ActivityReason INVALID_PRODUCT = 113;
+        const cmiUtil::ActivityReason INVALID_PRODUCT_TYPE = 114;
+        const cmiUtil::ActivityReason INVALID_QUANTITY = 115;
+        const cmiUtil::ActivityReason INVALID_SIDE = 116;
+        const cmiUtil::ActivityReason INVALID_SUBACCOUNT = 117;
+        const cmiUtil::ActivityReason INVALID_TIME_IN_FORCE = 118;
+        const cmiUtil::ActivityReason INVALID_USER = 119;
+        const cmiUtil::ActivityReason LATE_PRINT = 120;
+        const cmiUtil::ActivityReason NOT_FIRM = 121;
+        const cmiUtil::ActivityReason MISSING_EXEC_INFO = 122;
+        const cmiUtil::ActivityReason NO_MATCHING_ORDER = 123;
+        const cmiUtil::ActivityReason NON_BLOCK_TRADE = 124;
+        const cmiUtil::ActivityReason NOT_NBBO = 125;
+        const cmiUtil::ActivityReason COMM_DELAYS = 126;
+        const cmiUtil::ActivityReason ORIGINAL_ORDER_REJECTED = 127;
+        const cmiUtil::ActivityReason OTHER = 128;
+        const cmiUtil::ActivityReason PROCESSING_PROBLEMS = 129;
+        const cmiUtil::ActivityReason PRODUCT_HALTED = 130;
+        const cmiUtil::ActivityReason PRODUCT_IN_ROTATION = 131;
+        const cmiUtil::ActivityReason STALE_EXECUTION = 132;
+        const cmiUtil::ActivityReason STALE_ORDER = 133;
+        const cmiUtil::ActivityReason ORDER_TOO_LATE = 134;
+        const cmiUtil::ActivityReason TRADE_BUSTED = 135;
+        const cmiUtil::ActivityReason TRADE_REJECTED = 136;
+        const cmiUtil::ActivityReason ORDER_TIMEOUT = 141;
+        const cmiUtil::ActivityReason REJECTED_LINKAGE_TRADE  = 170;
+        const cmiUtil::ActivityReason SATISFACTION_ORD_REJ_OTHER  = 171;
+        const cmiUtil::ActivityReason PRODUCT_SUSPENDED = 172;
+
+        // Currently used for TPF linkage; in future may be used for CBOEdirect
+        const cmiUtil::ActivityReason UNKNOWN_ORDER = 137;
+        const cmiUtil::ActivityReason INVALD_EXCHANGE = 138;
+        const cmiUtil::ActivityReason TRANSACTION_FAILED = 139;
+        const cmiUtil::ActivityReason NOT_ACCEPTED = 140;
+
+        // Used for linkage when cancel reason is not provided (could be user cancel or cancel remaining)
+        const cmiUtil::ActivityReason AWAY_EXCHANGE_CANCEL = 199;
+
+		// Force Cancel Orders due to fallback
+		const cmiUtil::ActivityReason CANCEL_ON_FALLBACK = 800;
+		
+        // Linkage Business Message Reject codes
+        const cmiUtil::ActivityReason LINKAGE_CONDITIONAL_FIELD_MISSING = 900;
+        const cmiUtil::ActivityReason LINKAGE_EXCHANGE_UNAVAILABLE = 901;
+        const cmiUtil::ActivityReason LINKAGE_INVALID_MESSAGE = 902;
+        const cmiUtil::ActivityReason LINKAGE_INVALID_DESTINATION = 903;
+        const cmiUtil::ActivityReason LINKAGE_INVALID_PRODUCT = 904;
+        const cmiUtil::ActivityReason LINKAGE_SESSION_REJECT = 905;
+    };
+
+    interface StrategyTypes
+    {
+        const cmiStrategy::StrategyType UNKNOWN = 1;
+        const cmiStrategy::StrategyType STRADDLE = 2;
+        const cmiStrategy::StrategyType PSEUDO_STRADDLE = 3;
+        const cmiStrategy::StrategyType VERTICAL = 4;
+        const cmiStrategy::StrategyType RATIO = 5;
+        const cmiStrategy::StrategyType TIME = 6;
+        const cmiStrategy::StrategyType DIAGONAL = 7;
+        const cmiStrategy::StrategyType COMBO = 8;
+        const cmiStrategy::StrategyType BUY_WRITE = 9;
+    };
+
+    interface ReportTypes
+    {
+        const cmiUtil::ReportType REGULAR_REPORT = 1;
+        const cmiUtil::ReportType STRATEGY_REPORT = 2;
+        const cmiUtil::ReportType STRATEGY_LEG_REPORT = 3;
+
+        const cmiUtil::ReportType NEW_ORDER_REJECT = 101;
+        const cmiUtil::ReportType FILL_REJECT = 102;
+//        const cmiUtil::ReportType CANCEL_ORDER_REQUEST = 103; // not needed - not used in CancelReportStruct
+        const cmiUtil::ReportType CANCEL_ORDER_REQUEST_REJECT = 104;
+        const cmiUtil::ReportType CANCEL_REPORT_REJECT = 105;
+        const cmiUtil::ReportType NEW_ORDER_REJECT_REJECTED = 106;
+        const cmiUtil::ReportType FILL_REJECT_REJECTED = 107;
+        const cmiUtil::ReportType CANCEL_ORDER_REQUEST_REJECT_REJECTED = 108;
+        const cmiUtil::ReportType CANCEL_REPORT_REJECT_REJECTED = 109;
+    };
+
+    interface BookDepthTypes
+    {
+        const cmiMarketData::BookDepthUpdateType DELETE_PRICE = 'D';        // delete book price
+        const cmiMarketData::BookDepthUpdateType INSERT_PRICE = 'I';        // new book price
+        const cmiMarketData::BookDepthUpdateType UPDATE_PRICE = 'U';        // book price update
+    };
+
+    interface OrderNBBOProtectionTypes
+    {
+        const cmiOrder::NBBOProtectionType NONE = 1;
+        const cmiOrder::NBBOProtectionType FULL = 2;
+    };
+
+    interface HandlingInstructions
+    {
+        const cmiIntermarketMessages::HandlingInstruction AUTOMATIC = 1;
+        const cmiIntermarketMessages::HandlingInstruction MANUAL = 2;
+        const cmiIntermarketMessages::HandlingInstruction OTHER = 3;
+    };
+
+
+    typedef string ExtensionField;
+
+
+    interface ExtensionFields
+    {
+
+        // Used for routing an order to a BART terminal
+
+        const ExtensionField BARTID = "BARTID";
+
+        // Firm information for stock leg of a buy-write
+
+        const ExtensionField STOCK_FIRM = "STOCK_FIRM";
+        const ExtensionField STOCK_FIRM_NAME = "STOCK_FIRM_NAME";
+        const ExtensionField MEET_LOCATION_IN = "9380";
+        const ExtensionField MEET_FIRM_NAME = "9381";
+        const ExtensionField MEET_LOCATION_OUT = "207";
+        
+
+        // The following are used for linkage
+
+        const ExtensionField CBOE_EXEC_ID = "cboeExecId";
+        const ExtensionField ORIGINAL_QUANTITY = "originalQuantity";
+        const ExtensionField SIDE = "side";
+        const ExtensionField EXEC_BROKER = "execBroker";
+        const ExtensionField ORS_ID = "orsId";
+        const ExtensionField SATISFACTION_ALERT_ID = "satAlertId";
+        const ExtensionField ASSOCIATED_ORDER_ID = "assocOrderId";
+        const ExtensionField LINKAGE_MECHANISM = "LinkageMechanism";
+        const ExtensionField EXPIRATION_TIME = "ExpirationTime";
+
+        const ExtensionField AWAY_CANCEL_REPORT_EXEC_ID="awayCancelReportExecId";
+        const ExtensionField AWAY_EXCHANGE_USER_ACRONYM="1";
+        const ExtensionField USER_ASSIGNED_CANCEL_ID="11";
+        const ExtensionField AWAY_EXCHANGE_EXEC_ID="17";
+        const ExtensionField HANDLING_INSTRUCTION="21";
+        const ExtensionField AWAY_EXCHANGE_ORDER_ID = "37";
+        const ExtensionField TEXT = "58";
+        const ExtensionField AWAY_EXCHANGE_TRANSACT_TIME = "60";
+        const ExtensionField EXCHANGE_DESTINATION = "100";
+        const ExtensionField AUTO_EXECUTION_SIZE = "5201";
+        const ExtensionField TRADE_THRU_TIME = "5202";
+        const ExtensionField TRADE_THRU_SIZE = "5203";
+        const ExtensionField TRADE_THRU_PRICE = "5204";
+        const ExtensionField ADJUSTED_PRICE_INDICATOR = "5205";
+        const ExtensionField SATISFACTION_ORDER_DISPOSITION = "5206";
+        const ExtensionField EXECUTION_RECEIPT_TIME = "5207";
+        const ExtensionField ORIGINAL_ORDER_TIME = "5208";
+        const ExtensionField OLA_REJECT_REASON = "5209";
+        const ExtensionField ORDER_CAPACITY = "6528";
+        const ExtensionField ORDER_RESTRICTIONS = "6529";
+        
+        // The following are used for Auction response
+        const ExtensionField AUCTION_ID = "auctionId";
+        const ExtensionField BILLING_TYPE = "billingType"; // CBSX Billing Enhancements
+        
+        // The following are used for TradeThrough Processing
+        const ExtensionField FADE_EXCHANGE = "FADE_EXCHANGE";
+        
+    };
+
+    interface ExchangeMarketInfoType
+    {
+        const cmiIntermarketMessages::ExchangeMarketInfoType NBBO_ORDER_RECEIVED = 1;
+        const cmiIntermarketMessages::ExchangeMarketInfoType NBBO_ORDER_EXECUTED = 2;
+        const cmiIntermarketMessages::ExchangeMarketInfoType BBO_ORDER_RECEIVED = 3;
+        const cmiIntermarketMessages::ExchangeMarketInfoType BBO_ORDER_EXECUTED = 4;
+        const cmiIntermarketMessages::ExchangeMarketInfoType WORST_NBBO_IN_TIME_WINDOW = 5;
+        const cmiIntermarketMessages::ExchangeMarketInfoType WORST_BBO_IN_TIME_WINDOW = 6;        
+        const cmiIntermarketMessages::ExchangeMarketInfoType NBBO_ORDER_SELECTED= 7;
+        const cmiIntermarketMessages::ExchangeMarketInfoType BBO_ORDER_SELECTED = 8;
+        const cmiIntermarketMessages::ExchangeMarketInfoType NBBO_ORDER_HIGH_LOW = 9;
+        const cmiIntermarketMessages::ExchangeMarketInfoType BBO_ORDER_HIGH_LOW = 10;
+        const cmiIntermarketMessages::ExchangeMarketInfoType BOOK_ORDER = 11;
+        
+        
+        
+
+        
+    };
+
+    interface CurrentMarketViewTypes
+    {
+        const cmiMarketData::CurrentMarketViewType BEST_PRICE = 1;
+        const cmiMarketData::CurrentMarketViewType BEST_LIMIT_PRICE = 2;
+        const cmiMarketData::CurrentMarketViewType BEST_PUBLIC_ORDER_PRICE = 3;
+    };
+
+    interface OrderBookPriceViewTypes
+    {
+       const cmiMarketData::OrderBookPriceViewType BY_ORIGIN_TYPE = 1;
+    };
+
+    interface OrderFlowDirectionType
+    {
+       const cmiUtil::OrderFlowDirection INBOUND = 1;
+       const cmiUtil::OrderFlowDirection OUTBOUND = 2;
+       const cmiUtil::OrderFlowDirection BOTH = 3;
+    };
+
+    interface PreOpeningIndicationTypes
+    {
+        const cmiIntermarketMessages::PreOpeningIndicationType INDICATION = 1;
+        const cmiIntermarketMessages::PreOpeningIndicationType CANCEL = 2;
+        const cmiIntermarketMessages::PreOpeningIndicationType SEC_LOOK = 3;
+    };
+
+    interface MessageKeyTypes
+    {
+        const cmiAdmin::MessageKey ITS_GENERAL_ADMIN = 1;
+        const cmiAdmin::MessageKey ITS_PRE_OPEN_INDICATION = 2;
+        const cmiAdmin::MessageKey ITS_PRE_OPEN_RESPONSE = 3;
+        const cmiAdmin::MessageKey ITS_PRE_OPEN_SECOND_LOOK = 4;
+        const cmiAdmin::MessageKey ITS_PRE_OPEN_CANCEL = 5;
+    };
+
+    interface AlertTypes
+    {
+        const cmiIntermarketMessages::AlertType CBOE_TRADE_THROUGH = 1;
+        const cmiIntermarketMessages::AlertType NBBO_TRADE_THROUGH = 2;
+        const cmiIntermarketMessages::AlertType NON_EXECUTION = 3;
+        const cmiIntermarketMessages::AlertType NO_NBBO_AGENT = 4;
+        const cmiIntermarketMessages::AlertType SATISFACTION_ALERT = 5;
+        const cmiIntermarketMessages::AlertType FIRM_QUOTE_TRADE_THROUGH = 6; 
+        const cmiIntermarketMessages::AlertType BOOK_TRADE_THROUGH = 7;  
+        const cmiIntermarketMessages::AlertType BOOK_TRADE_THROUGH_INVALID_QUOTE =  8; 
+        const cmiIntermarketMessages::AlertType FIRM_QUOTE_THROUGH_INVALID_QUOTE  =  9; 
+        const cmiIntermarketMessages::AlertType NBBO_TRADE_THROUGH_INVAID_QUOTE  =  10; 
+    };
+
+    interface AlertResolutions
+    {
+        const cmiIntermarketMessages::AlertResolution NOT_RESOLVED ="NR";
+        const cmiIntermarketMessages::AlertResolution ADJUSTED="A";
+        const cmiIntermarketMessages::AlertResolution PARTIAL_PRICE_ADJUSTMENT="AP";
+        const cmiIntermarketMessages::AlertResolution PARTIAL_QUANTITY_ADJ="AQ";
+        const cmiIntermarketMessages::AlertResolution CONTRA_UNAVAILABLE="CU";
+        const cmiIntermarketMessages::AlertResolution DELAYED_REPORT="DR";
+        const cmiIntermarketMessages::AlertResolution ERRONEOUS_REPORT="ER";
+        const cmiIntermarketMessages::AlertResolution FIRM_DISCRETION="FD";
+        const cmiIntermarketMessages::AlertResolution EXECUTED_UNDER_FIRM_INSTRUCTIONS="FI";
+        const cmiIntermarketMessages::AlertResolution FAST_MARKET_AWAY="FM";
+        const cmiIntermarketMessages::AlertResolution FLASH_QUOTE="FQ";
+        const cmiIntermarketMessages::AlertResolution AWAY_MARKET_UNAVAIL_TO_TRADE="IN";
+        const cmiIntermarketMessages::AlertResolution NBBO_LOCKED_W_CBOE="LB";
+        const cmiIntermarketMessages::AlertResolution NBBO_FADE="NF";
+        const cmiIntermarketMessages::AlertResolution AWAY_MARKET_REFUSE_TO_TRADE_OR_FADE="NU";
+        const cmiIntermarketMessages::AlertResolution OTHER="O";
+        const cmiIntermarketMessages::AlertResolution POST_TRADE_QUOTE="PQ";
+        const cmiIntermarketMessages::AlertResolution SHUT_OFF_ERROR="SE";
+        const cmiIntermarketMessages::AlertResolution SINGLE_LISTED_OPTION="SL";
+        const cmiIntermarketMessages::AlertResolution CBOE_SYSTEM_PROBLEMS="SP";
+        const cmiIntermarketMessages::AlertResolution TRADE_BUSTED="TB";
+        const cmiIntermarketMessages::AlertResolution NOT_ADJUSTED="UA";
+        const cmiIntermarketMessages::AlertResolution BOOK_TAKEN_OUT_AFTER_NOTIFICATION="BA";
+        const cmiIntermarketMessages::AlertResolution TRADE_ENTERED_ON_REFRESHED_QUOTE="TO";
+    };
+
+    interface LinkageMechanisms
+    {
+        const cmiUtil::LinkageMechanism NON_CBOE_LINKAGE_MECHANISM = 1;
+    };
+
+    interface SatisfactionOrderDispositions
+    {
+        const cmiUtil::SatisfactionOrderDisposition SATISFIED_AS_SPECIFIED  = 0;
+        const cmiUtil::SatisfactionOrderDisposition PRO_RATA_DISTRIBUTION = 1;
+        const cmiUtil::SatisfactionOrderDisposition ORDER_SIZE_MORE_THAN_TRADE_THROUGH_SIZE  = 2;
+    };
+
+    interface SatisfactionOrderRejectReasons
+    {
+        const cmiUtil::SatisfactionOrderRejectReason LATE_PRINT =  ActivityReasons::LATE_PRINT;
+        const cmiUtil::SatisfactionOrderRejectReason COMM_DELAYS = ActivityReasons::COMM_DELAYS;
+        const cmiUtil::SatisfactionOrderRejectReason CROWD_TRADE = ActivityReasons::CROWD_TRADE;
+        const cmiUtil::SatisfactionOrderRejectReason PROCESSING_PROBLEMS = ActivityReasons::PROCESSING_PROBLEMS;
+        const cmiUtil::SatisfactionOrderRejectReason INVALID_PRODUCT_TYPE = ActivityReasons::INVALID_PRODUCT_TYPE;
+        const cmiUtil::SatisfactionOrderRejectReason TRADE_REJECTED = ActivityReasons::TRADE_REJECTED;
+        const cmiUtil::SatisfactionOrderRejectReason TRADE_BUSTED = ActivityReasons::TRADE_BUSTED;
+        const cmiUtil::SatisfactionOrderRejectReason ORIGINAL_ORDER_REJECTED = ActivityReasons::ORIGINAL_ORDER_REJECTED;
+        const cmiUtil::SatisfactionOrderRejectReason NON_BLOCK_TRADE = ActivityReasons::NON_BLOCK_TRADE;
+    };
+
+    interface FillRejectReasons
+    {
+        const cmiUtil::FillRejectReason INVALID_PRODUCT = ActivityReasons::INVALID_PRODUCT;
+        const cmiUtil::FillRejectReason INVALID_SIDE =  ActivityReasons::INVALID_SIDE;
+        const cmiUtil::FillRejectReason INVALID_QUANTITY =  ActivityReasons::INVALID_QUANTITY;
+        const cmiUtil::FillRejectReason NO_MATCHING_ORDER =  ActivityReasons::NO_MATCHING_ORDER;
+        const cmiUtil::FillRejectReason INVALID_PRICE =  ActivityReasons::INVALID_PRICE;
+        const cmiUtil::FillRejectReason STALE_EXECUTION =  ActivityReasons::STALE_EXECUTION;
+        const cmiUtil::FillRejectReason OTHER=  ActivityReasons::OTHER;
+    };
+
+    interface SessionNameValues
+    {
+       const cmiSession::TradingSessionName ALL_SESSION_NAME = "ALL_SESSIONS";
+    };
+
+    interface TickDirectionTypes
+    {
+        const cmiMarketData::TickDirectionType PLUS_TICK        = '+';
+        const cmiMarketData::TickDirectionType MINUS_TICK       = '-';
+        const cmiMarketData::TickDirectionType ZERO_MINUS_TICK  = '_';
+        const cmiMarketData::TickDirectionType ZERO_PLUS_TICK   = '*';
+        const cmiMarketData::TickDirectionType UNKNOWN_TICK     = ' ';
+    };
+
+
+    interface OrderBookStatusValues
+    {
+        const cmiIntermarketMessages::OrderBookStatus ORDER_BOOK_OPENING_ROTATION_LOCKED = 1;
+        const cmiIntermarketMessages::OrderBookStatus ORDER_BOOK_OPENING_ROTATION_UNLOCKED = 2;
+    };
+    
+
+    interface OrderBookStructTradableTypes
+    {
+        const cmiIntermarketMessages::OrderBookTradableType BOOK_ITEM_ORDER = 'O';
+        const cmiIntermarketMessages::OrderBookTradableType BOOK_ITEM_QUOTE = 'Q'; // Quote Side
+        const cmiIntermarketMessages::OrderBookTradableType BOOK_ITEM_QUOTE_TRIGGER = 'T';
+    };
+
+    interface QuoteUpdateControlValues{
+        const cmiQuote::QuoteUpdateControl CONTROL_DISABLED = 0;
+    };
+    
+    interface MatchTypes // the match type provided by firms which matches the internalized order
+    {
+            
+        // the default match type for internalization
+        const cmiOrder::MatchType UNSPECIFIED = 0;
+        const cmiOrder::MatchType GUARANTEE_STARTING_PRICE = 1;
+        const cmiOrder::MatchType LIMIT_PRICE = 2;
+        const cmiOrder::MatchType AUTO_MATCH = 3;
+    };
+
+    interface AuctionTypes // Auction type codes
+    {
+       	const cmiOrder::AuctionType AUCTION_INTERNALIZATION =1;
+        const cmiOrder::AuctionType AUCTION_STRATEGY =2;
+        const cmiOrder::AuctionType AUCTION_REGULAR_SINGLE =3;
+        const cmiOrder::AuctionType AUCTION_HAL = 4;
+        const cmiOrder::AuctionType AUCTION_SAL = 5;
+        const cmiOrder::AuctionType AUCTION_UNSPECIFIED = 0;
+        // sharing the Auction channel
+        const cmiOrder::AuctionType STOCK_NBBO_FLASH = 6;
+        const cmiOrder::AuctionType STOCK_ODD_LOT = 7;
+    };
+
+    interface AuctionStates // Auction State codes
+    {
+       	const cmiOrder::AuctionState STARTED = 1;
+        const cmiOrder::AuctionState ENDED = 2;
+        const cmiOrder::AuctionState PREMATURELY_ENDED = 3;
+        const cmiOrder::AuctionState ABORTED = 4;
+    };
+    
+    interface CurrentMarketTypes
+    {
+        const cmiMarketData::CurrentMarketType BEST_MARKETS = 1;
+        const cmiMarketData::CurrentMarketType BEST_PUBLIC_MARKETS = 2;
+        const cmiMarketData::CurrentMarketType BEST_LIMIT_MARKETS = 3;
+        const cmiMarketData::CurrentMarketType BEST_PUBLIC_MARKETS_AT_TOP = 4;
+        const cmiMarketData::CurrentMarketType MANUAL_QUOTE_MARKETS = 5;
+    };
+        
+    interface PriceConstants
+    {
+       const cmiMarketData::IntegerPrice NO_PRICE = -2147483648; 
+    };
+
+    interface MarketIndicators
+    {
+        const cmiMarketData::MarketIndicator REGULAR_QUOTE             =  1;     
+        const cmiMarketData::MarketIndicator AUTO_EXECUTION            =  2;
+        const cmiMarketData::MarketIndicator BID_IS_BOOK               =  3;
+        const cmiMarketData::MarketIndicator ASK_IS_BOOK               =  4;
+        const cmiMarketData::MarketIndicator BID_ASK_IS_BOOK           =  5;
+        const cmiMarketData::MarketIndicator INACTIVE                  =  6;
+        const cmiMarketData::MarketIndicator ROTATION                  =  7;   
+        const cmiMarketData::MarketIndicator FAST_MARKET               =  8;       
+        const cmiMarketData::MarketIndicator TRADING_HALT              =  9;       
+        const cmiMarketData::MarketIndicator DISQUALIFIED              =  10;
+        const cmiMarketData::MarketIndicator UNKNOWN                   =  11;
+        const cmiMarketData::MarketIndicator DEPTH_ON_OFFER            =  12;
+        const cmiMarketData::MarketIndicator DEPTH_ON_BID              =  13;
+        const cmiMarketData::MarketIndicator CLOSING                   =  14;
+        const cmiMarketData::MarketIndicator NEWS_DISSEMINATION        =  15;
+        const cmiMarketData::MarketIndicator ORDER_INFLUX              =  16;
+        const cmiMarketData::MarketIndicator PRE_OPENING_INDICATION    =  17;
+        const cmiMarketData::MarketIndicator DEPTH_BID_OFFER           =  18;
+        const cmiMarketData::MarketIndicator ORDER_IMBALANCE           =  19;
+        const cmiMarketData::MarketIndicator HALT_REL_SEC_NEWS_DISS    =  20;
+        const cmiMarketData::MarketIndicator HALT_REL_SEC_NEWS_PEND    =  21;
+        const cmiMarketData::MarketIndicator CLOSED_MARKET_MAKER       =  22;
+        const cmiMarketData::MarketIndicator ADDITIONAL_INFORMATION    =  23;
+        const cmiMarketData::MarketIndicator NON_FIRM_QUOTE            =  24;
+        const cmiMarketData::MarketIndicator OPENING                   =  25;
+        const cmiMarketData::MarketIndicator NEWS_PENDING              =  26;
+        const cmiMarketData::MarketIndicator ADDITIONAL_INFO_REL_SEC   =  27;
+        const cmiMarketData::MarketIndicator HALT_FOR_RELATED_SEC      =  28;
+        const cmiMarketData::MarketIndicator RESUME                    =  29;
+        const cmiMarketData::MarketIndicator HALT_IN_VIEW_COMMON       =  30;
+        const cmiMarketData::MarketIndicator EQUIPMENT_CHANGOVER       =  31;
+        const cmiMarketData::MarketIndicator NO_OPEN_RESUME            =  32;
+        const cmiMarketData::MarketIndicator SLOW_ON_BID_SIDE          =  33;
+        const cmiMarketData::MarketIndicator SLOW_ON_ASK_SIDE          =  34;
+        const cmiMarketData::MarketIndicator SLOW_ON_BOTH_SIDES        =  35;
+    };
+
+    interface MultiplePartiesIndicators
+    {
+        const cmiMarketData::MultiplePartiesIndicator YES     = 1;
+        const cmiMarketData::MultiplePartiesIndicator NO      = 2;
+        const cmiMarketData::MultiplePartiesIndicator UNKNOWN = 3;
+    };
+    
+    interface TradeReportHandlingInstructions
+    {	        
+	const short REGULAR 	            = 0;
+        const short NO_TRADEREPORT  	    = 1;
+        const short NO_TICKER                = 2;
+        const short NO_TRADEREPORT_NO_TICKER = 3;
+    };
+
+    // CBSX Billing Enhancements
+    typedef char BillingTypeIndicator;
+
+    interface BillingTypeIndicators
+    {
+        const BillingTypeIndicator MAKER                = 'A';
+        const BillingTypeIndicator TAKER                = 'R';
+        const BillingTypeIndicator FLASH_RESPONSE       = 'E';
+        const BillingTypeIndicator FLASH                = 'F';
+        const BillingTypeIndicator CROSS                = 'C';
+        const BillingTypeIndicator LINKED_AWAY          = 'X';
+        const BillingTypeIndicator LINKED_AWAY_RESPONSE = 'L';
+        const BillingTypeIndicator OPENING              = 'O';
+        const BillingTypeIndicator ODD_LOT_FLASH        = 'N';
+        const BillingTypeIndicator ODD_LOT_RESPONSE     = 'B';
+    };
+
+    // CBSX Billing Enhancements
+    typedef string OptionalDataField;
+
+    interface OptionalDataFields
+    {
+        const OptionalDataField NAMES_LATER             = "NLTR";
+    };
+    
+    interface LinkageIndicatorReturnTypes
+    {
+        const cmiUtil::LinkageIndicatorReturnType	ENABLE      = 1;
+        const cmiUtil::LinkageIndicatorReturnType	DISABLE     = 2;
+        const cmiUtil::LinkageIndicatorReturnType	NOTFOUND    = 3;
+        const cmiUtil::LinkageIndicatorReturnType	SUCCESS     = 4;
+        const cmiUtil::LinkageIndicatorReturnType	FAILURE     = 5;
+    }; 
+
+
+    //Trade Notifications (ETNs) Processing constants for OHS Release1.
+    interface TradeNotificationReasons
+    {
+        const cmiTradeNotification::TradeNotificationReason FIRM_REJECT = 1; 	// ETN rejected by the Firm
+        const cmiTradeNotification::TradeNotificationReason SYSTEM_REJECT = 2;  // MMHHA can not process the ETN
+    };
+
+
+    interface TradeNotificationStates
+    {
+        const cmiTradeNotification::TradeNotificationState ACKNOWLEDGED       = 1; 	// ETN is Acknowledged
+        const cmiTradeNotification::TradeNotificationState REJECT 	      = 2; 	// ETN is rejected
+        const cmiTradeNotification::TradeNotificationState REJECT_ACK         = 3; 	// ETN reject acknowledged
+        const cmiTradeNotification::TradeNotificationState WAITING_ACK 	      = 4; 	// Waiting for ETN Acknowledgement
+        const cmiTradeNotification::TradeNotificationState ACK_TIMEOUT	      = 5; 	// Acknowledge timeOut
+        const cmiTradeNotification::TradeNotificationState WAITING_FOR_BUNDLE = 6; 	// ETN waiting for Bundle trades
+        const cmiTradeNotification::TradeNotificationState BUNDLE_TIMEOUT     = 7; 	// Bundle Trades time out.
+    };
+
+    
+    
+};
+
+#endif
+</pre>

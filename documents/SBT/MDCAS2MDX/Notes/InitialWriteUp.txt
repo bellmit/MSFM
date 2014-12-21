@@ -1,0 +1,126 @@
+Goal:
+Move EOP/EOS and Large Trade Last Sale (LTLS) processing from MDCAS to MDX.
+-----------------------------------------------------------------------------------
+Event-Channel-Type					DataType		Publish		Subscribe
+RemoteCASExpectedOpeningPrice				subscription	CAS			MDCAS 
+CurrentMarket						market-data		BC			MDCAS	
+RemoteCASTicker						subscription	CAS			MDCAS
+Ticker							market-data		BC			MDCAS
+-----------------------------------------------------------------------------------
+Event-Channel-Type					Interface
+RemoteCASExpectedOpeningPrice				comsumers.RemoteCASExpectedOpeningPriceConsumer
+CurrentMarket						comsumers.CurrentMarketConsumer
+RemoteCASTicker						comsumers.RemoteCASTickerConsumer
+Ticker							comsumers.TickerConsumer
+-----------------------------------------------------------------------------------
+Subscription processing
+CAS:	It publishes subscriptions for EOP/EOS and LTLS with routing parameters containing group 	key/session name/class key.
+	It publishes subscriptions for V4 with routing parameters containing group key/empty 	session name/class key.
+MDCAS:	It subscribes subscriptions based on group keys (multiple BCs).
+		See 	com.cboe.consumers.eventChannel.RemoteCASCurrentMarketConsumerHomeEventImpl,
+			com.cboe.consumers.eventChannel.RemoteCASTickerConsumerHomeEventImpl.
+MDX: 	It subscribes subscriptions based on group key (single BC).
+	See com.cboe.mdx.consumers.eventChannel.MarketDataCallbackConsumerHomeEventImpl.
+Solution:
+1. No impact on CAS code. 
+2. MDX has to listen to RemoteCASExpectedOpeningPrice and RemoteCASTicker channels and
+process subscription based on its group key configuration.
+-----------------------------------------------------------------------------------
+Market data processing
+MDCAS on CurrentMarket and Ticker channels:
+	It filters out EOP/EOS on class or product key in ExpectedOpeningPriceStruct.
+      See com.cboe.consumers.eventChannel.CurrentMarketConsumerHomeEventImpl.
+      It filters out LTLS on class key in routing parameter.
+	See com.cboe.consumers.eventChannel.TickerConsumerHomeEventImpl.		
+MDX on  MDXCurrentMarket, MDXLastSale, MDXRecap and MDXTicker channels:
+	It filters out v4 market data based on group keys.
+	See 	com.cboe.mdx.consumers.eventChannel.CurrentMarketConsumerHomeEventImpl,
+		com.cboe.mdx.consumers.eventChannel.LastSaleConsumerHomeEventImpl,
+		com.cboe.mdx.consumers.eventChannel.RecapConsumerHomeEventImpl,
+		com.cboe.mdx.consumers.eventChannel.TickerConsumerHomeEventImpl.
+Solution:
+MDX has to listen to CurrentMarket and Ticker channels and process market data on 
+its group key configuration.
+-----------------------------------------------------------------------------------
+Interface: RemoteCASExpectedOpeningPriceConsumer
+Methods:
+void subscribeExpectedOpeningPriceForClassV2(
+	in util::RoutingParameterStruct routingParameters,
+	in string casOrigin,
+	in string userId,
+	in string userSessionIOR,
+	in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener,
+	in cmiUtil::QueueAction actionOnQueue);
+
+void subscribeExpectedOpeningPriceForClass(
+	in util::RoutingParameterStruct routingParameters,
+  	in string casOrigin,
+  	in string userId,
+  	in string userSessionIOR,
+  	in cmiCallback::CMIExpectedOpeningPriceConsumer clientListener);
+
+void unsubscribeExpectedOpeningPriceForClassV2(
+	in util::RoutingParameterStruct routingParameters,
+  	in string casOrigin,
+  	in string userId,
+  	in string userSessionIOR,
+  	in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener);
+
+void unsubscribeExpectedOpeningPriceForClass(
+	in util::RoutingParameterStruct routingParameters,
+	in string casOrigin,
+	in string userId,
+	in string userSessionIOR,
+	in cmiCallback::CMIExpectedOpeningPriceConsumer clientListener);
+
+void subscribeExpectedOpeningPriceForProductV2(
+	in util::RoutingParameterStruct routingParameters,
+  	in string casOrigin,
+  	in string userId,
+  	in string userSessionIOR,
+  	in cmiProduct::ProductKey productKey,
+  	in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener,
+  	in cmiUtil::QueueAction actionOnQueue);
+
+void unsubscribeExpectedOpeningPriceForProductV2(
+	in util::RoutingParameterStruct routingParameters,
+  	in string casOrigin,
+  	in string userId,
+  	in string userSessionIOR,
+  	in cmiProduct::ProductKey productKey,
+  	in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener);
+
+Interface: CurrentMarket
+Methods:
+void acceptExpectedOpeningPrice(
+	in cmiUtil::LongSequence groups, 
+	in cmiMarketData::ExpectedOpeningPriceStruct expectedOpeningPrice);
+
+void acceptExpectedOpeningPricesForClass(
+    in util::RoutingParameterStruct routingParameters,
+    in cmiMarketData::ExpectedOpeningPriceStructSequence expectedOpeningPrices);
+
+
+Interface: RemoteCASTickerConsumer
+Methods:    
+void subscribeLargeTradeLastSaleForClass(
+	in util::RoutingParameterStruct routingParameters,
+  	in string casOrigin,
+  	in string userId,
+  	in string userSessionIOR,
+  	in TickerConsumer clientListener,
+  	
+  	in cmiUtil::QueueAction actionOnQueue);
+
+void unsubscribeLargeTradeLastSaleForClass(
+	in util::RoutingParameterStruct routingParameters,
+  	in string casOrigin,
+  	in string userId,
+  	in string userSessionIOR,
+  	in TickerConsumer clientListener);
+                      
+Interface: TickerConsumer {
+Methods:  
+void acceptLargeTradeTickerDetailForClass(
+	in util::RoutingParameterStruct routingParameters, 
+	in marketData::InternalTickerDetailStructSequence tickerDetails );

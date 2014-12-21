@@ -1,0 +1,9 @@
+whenever sqlerror continue^M
+^M
+whenever sqlerror exit failure^M
+^M
+ALTER TABLE sbt_alert^M
+   ADD (^M
+             orsId                   varchar2(6)^M
+       );
+

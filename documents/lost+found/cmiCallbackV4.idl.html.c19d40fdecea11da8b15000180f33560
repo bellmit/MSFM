@@ -1,0 +1,59 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_EVENTS_V4_IDL
+#define CMI_EVENTS_V4_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 4.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+
+#include "cmiUtil.idl"
+#include "cmiMarketData.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiCallbackV4
+{
+  interface CMICurrentMarketConsumer {
+        oneway void acceptCurrentMarket(
+            in cmiMarketData::CurrentMarketStructV4Sequence bestMarkets,
+            in cmiMarketData::CurrentMarketStructV4Sequence bestPublicMarkets,
+            in long messageSequence,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+  interface CMITickerConsumer {
+        oneway void acceptTicker(
+            in cmiMarketData::TickerStructV4Sequence ticker,
+            in long messageSequence,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+
+  interface CMIRecapConsumer {
+        oneway void acceptRecap(
+            in cmiMarketData::RecapStructV4Sequence recap,
+            in long messageSequence,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+
+        oneway void acceptLastSale(
+            in cmiMarketData::LastSaleStructV4Sequence lastSale,
+            in long messageSequence,
+            in long queueDepth,
+            in cmiUtil::QueueAction queueAction);
+    };
+};
+
+#endif
+</pre>

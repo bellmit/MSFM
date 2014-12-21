@@ -1,0 +1,1071 @@
+# ------------------------------------------------------
+# Extra stuff needed ONLY FOR development environments.
+# Not needed in production.
+# ------------------------------------------------------
+export EDITOR=vim
+export VIEW_NAME=devsvr4_test1_lou
+export RUN_SET_CONTEXT=YES
+# default is NO (fe01 should be YES in rollout Mode)
+export RUN_EC_CONVERTERS=NO
+
+# --------------------------------------------------------------------------
+# ****************** READ THIS FIRST *********************
+#
+# This file contains global constants that are needed by all processes.
+# This file also contains set routines for each of the process
+# eg setTipsAdapterArgs, setTradeServerArgs etc.
+# To change arguments passed in for a particular process all we need to
+# do is modify the set routine associated with the process that requires
+# changes.
+#
+# All variables values that have a value 'please_specify' must be changed
+# to values that are appropriate for your environment.
+#
+# Then go thru all the functions and update the values approppriately
+# for each process.
+#
+# We need to put the following lines in the .kshrc
+#
+# FOR PRODUCTION
+# ----------------
+# if [[ -r $RUN_DIR/bin/setContext ]]
+# then
+# 	. $RUN_DIR/bin/setContext
+# fi
+#
+# FOR DEVELOPMENT 
+# ----------------
+# if [[ -r $RUN_DIR/bin/setContext && $RUN_SET_CONTEXT == "YES" ]]
+# then
+# 	. $RUN_DIR/bin/setContext
+# fi
+# 
+#
+# --------------------------------------------------------------------------
+
+# ------------------------------------------------------
+# VARIABLES NEEDED GLOBALLY BY ALL PROGRAMS.
+# ------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Per-environment prefix. All event channel's, all exports to trader have
+# this name prepended. For production it is Prod.
+# ---------------------------------------------------------------------------
+export SBT_PREFIX=devsvr4tst1
+
+# ---------------------------------------------------------------------------
+# All Path name variables
+# RUN_DIR 	  - path to run_dir
+# INFRA_HOME_DIR  - path to directory one level above INFRA_RUN_DIR.
+# SMA Directories - Need by all process configuration to point to the XML
+# XML Directories - Same as above, but needed ty Central Logging and used
+#                   in standalone mode.
+# LOG/PID BASEDIR - Needed by all scripts for output redirection and
+#                   for storing their pid's.
+# ---------------------------------------------------------------------------
+export RUN_DIR=/tradeengine/sbt/test1/tradeeng/run_dir
+
+export INFRA_HOME_DIR=/tradeengine/sbt/test1/infra
+export INFRA_RUN_DIR=${INFRA_HOME_DIR}/run_dir
+
+export COMMON_HOME_DIR=/tradeengine/sbt/test1/common
+export COMMON_RUN_DIR=${COMMON_HOME_DIR}/run_dir
+
+export SBT_SMA_FILES_DIR=${RUN_DIR}/properties
+export INFRA_SMA_FILES_DIR=${INFRA_RUN_DIR}/properties
+
+# export XML_ROOT_DIR=file://${RUN_DIR}/xml
+# export XML_BASE_DIR=${INFRA_RUN_DIR}/xml
+
+export LOG_BASE_DIR=${RUN_DIR}/log
+export PID_BASE_DIR=$RUN_DIR/pid
+
+
+# ---------------------------------------------------------------------------
+# Cluster ID, ex "BC01", "BC02", "Global".  The global cluster
+# must have the cluster id of "Global". The Cluster id is used in
+# in configuring the route name and used in trader exports.
+# NOTE: This name is part of routename and [routenames and config group]
+# names are synonymous]. For BC's and GC's you should specify values
+#
+# Leave it blank for development testing having all processes in one cluster
+# ---------------------------------------------------------------------------
+export CLUSTER_ID=
+
+# ---------------------------------------------------------------------------
+# Defines the name of the cluster used in route name in the xml. eg ProdBC01
+# ---------------------------------------------------------------------------
+export CLUSTER_NAME=${SBT_PREFIX}${CLUSTER_ID}
+
+# ---------------------------------------------------------------------------
+# Used by startServer script.
+# ---------------------------------------------------------------------------
+export ORB_NAME_PREFIX=${CLUSTER_NAME}
+
+# -------------------------------------------------------------------------------------------
+# Defines which instance of servers will be started under the given login.  Normally,
+# two 'copies' of a server will be started using identical route names for failover.
+# Their admin request names must be different, however, so this value is appended to
+# their route name to define their admin server name (i.e. the command callback exported name).
+# Suggested values: A, B
+# -------------------------------------------------------------------------------------------
+export INSTANCE_ID=A
+
+# ---------------------------------------------------------------------------
+# The ORB port is used by the application processes.
+# The INFRA port is used by INRA utilities.
+# ---------------------------------------------------------------------------
+export BASE_PORT=18000
+export INFRA_BASE_PORT=18025
+
+# ---------------------------------------------------------------------------
+# XML catalog name suffix substitition.
+# Yes - for those environments where xml properties are identified uniquely
+# by host. So changing one property in sysman agent on that host does not
+# change the property globally for all hosts.
+# NOTE: If any value is provided yes is assumed (as this is coded as a boolean).
+# ---------------------------------------------------------------------------
+export DO_XML_SUFFIX_SUB=Yes
+
+# ---------------------------------------------------------------------------
+# By pass extent maps for event channels.
+# Yes - for those environments where DN's are not being used
+# NOTE: If any value is provided yes is assumed (as this is coded as a boolean).
+# ---------------------------------------------------------------------------
+export BY_PASS_EXTENT_MAPS=Yes
+
+# ---------------------------------------------------------------------------
+# Miscellaneous variables need for the environment and infrastructure
+# for the all processes to run.
+# ---------------------------------------------------------------------------
+export JAVA_HOME=/usr/java
+export TALARIAN_ROOT_DIR=/opt/Talarian/ss55
+export SBT_SSCONFIG=${INFRA_RUN_DIR}/properties/ssconfig.cm
+export IOR_BASE_DIR=${INFRA_RUN_DIR}/ior
+
+# needs to be specified, if we have 2 ior initrefs
+export IOR_FILE=file://${IOR_BASE_DIR}/initrefs.ior  
+
+HOST=`hostname`
+export REG_EXTENTMAP_PREFIX=${HOST%[ab]}
+export EC_EXTENTMAP_PREFIX=${REG_EXTENTMAP_PREFIX%[12]}
+# in rollout mode, it should be V2, if we configure 2.0 server with V2 Node name
+export EXTENTMAP_PREFIX=$REG_EXTENTMAP_PREFIX"V2"
+
+export PROXY_IOR_FILE=file://${IOR_BASE_DIR}/initrefs.migproxy.ior
+export PROCESS_WATCHER_LIFELINE_TIMEOUT=10000
+
+# ---------------------------------------------------------------------------
+# Change these when you add or remove a server.
+# These are going to needed for various scripts.
+# PLEASE CONFIGURE THE NAMES OF ONLY THOSE PROCESSES THAT RUN ON THIS HOST.
+# ---------------------------------------------------------------------------
+ALL_SERVER_NAMES=""
+ALL_SERVER_NAMES="${ALL_SERVER_NAMES} TipsAdapter TpfAdapter TpfGlobal"
+ALL_SERVER_NAMES="${ALL_SERVER_NAMES} ExtTradeServer1 TradeServer1 TradeServer2"
+ALL_SERVER_NAMES="${ALL_SERVER_NAMES} StatusServer SMSServer IdServer MemAdapter"
+ALL_SERVER_NAMES="${ALL_SERVER_NAMES} CtmAdapter v20Frontend Frontend GlobalServer CoppAdapter"
+ALL_SERVER_NAMES="${ALL_SERVER_NAMES} CoppGlobalAdapter CompassAdapter"
+export ALL_SERVER_NAMES
+
+# ---------------------------------------------------------------------------
+# Change these when you add or remove a session.
+# These are going to needed for various scripts.
+# ---------------------------------------------------------------------------
+export ALL_SESSION_NAMES="W_AM1 ONE_MAIN W_MAIN"
+
+# ---------------------------------------------------------------------------
+# VARIABLES NEEDED BY CLEANUP SERVER.
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Identifies the cluster type and is used for different types of
+# cleanup operations.
+# Values are GC,BC,FE or ALL_IN_ONE(for development where all processes are
+# running on one cluster).
+# ---------------------------------------------------------------------------
+export CLUSTER_TYPE=ALL_IN_ONE
+
+# ---------------------------------------------------------------------------
+# The user id used for TPF Entered orders. cleanupServer uses this to delete
+# all user reports at EOD for the TPF entered orders. This is becasue no one
+# is acking these reports.
+# ---------------------------------------------------------------------------
+export TPF_ORDERS_USER_ID=XXS
+
+# ---------------------------------------------------------------------------
+# The CtmIdService name. This is used in the cleanup server sript to reset
+# the current value back to 4000000 at the end of day.
+# Due to a bug in ID service where it doesnot correctly wrap the ids
+# for ranged id services.
+# ---------------------------------------------------------------------------
+export CTM_ID_SERVICE_NAME=CtmIdService
+export CTM_INITIAL_ID=4000000
+
+export CTM_FUTURES_ID_SERVICE_NAME=CtmFuturesIdService
+export CTM_FUTURES_INITIAL_ID=1
+
+# ---------------------------------------------------------------------------
+# how long the ProcessWatcherWatcher in the SMS facade should wait before assuming that
+# the process watcher is dead and therefore all processes are assumed to be dead. (milliseconds)
+export PROCESS_WATCHER_LIFELINE=10000
+
+
+# Freezer end of day copy for development viewing
+#
+# FTP_LOG_FILES_TO_FREEZER - If yes then log files will be FTP'd to freezer.
+# FREEZER_FTP_PARAMS - specifies the following arguments
+# freezer_host_name log_dir[from where to get the files] destinationDir[on freezer]
+# userName password[to get to freezer for ftping stuff].
+# ---------------------------------------------------------------------------
+export FTP_LOG_FILES_TO_FREEZER=
+export FREEZER_FTP_PARAMS="freezer $RUN_DIR/log /sbt/server tradeeng tradeeng"
+
+# ---------------------------------------------------------------------------
+# E-mail accounts that will receive EOD statistics reports.  If no ids
+# are is the list, e-mail won't be sent.
+# ---------------------------------------------------------------------------
+export EOD_STAT_REPORT_EMAIL_LIST=
+
+# ---------------------------------------------------------------------------
+# SETUP JAVA ARGUMENTS, GLOBAL ONES AND THEN PROCESS SPECIFIC ONES.
+# For process specific Java Arguments - There is a setup function used for
+# each process. All these setup functions are exported so other scripts can
+# call these functions.
+# ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# JAVA_ARGS - BASE Arguments passed to all processes started under this
+# environment. You should not have to change these.
+# ---------------------------------------------------------------------------
+JAVA_ARGS=" "
+JAVA_ARGS="${JAVA_ARGS} -Xnoclassgc"
+JAVA_ARGS="${JAVA_ARGS} -Xbootclasspath/p:$INFRA_RUN_DIR/classes/threadutil.jar"
+JAVA_ARGS="${JAVA_ARGS} -DORB.Verbose=true"
+JAVA_ARGS="${JAVA_ARGS} -DORB.FlowControl=none"
+JAVA_ARGS="${JAVA_ARGS} -DCHECK_REP_IDL=false"
+JAVA_ARGS="${JAVA_ARGS} -DORB.InitRefURL=$IOR_FILE"
+JAVA_ARGS="${JAVA_ARGS} -DORB.LocationService.Timeout=330000"
+JAVA_ARGS="${JAVA_ARGS} -DSecurity.Admin.ServiceType=${SBT_PREFIX}SecurityAdminService"
+JAVA_ARGS="${JAVA_ARGS} -DSecurity.Logout.ServiceType=${SBT_PREFIX}SecurityServerLogout"
+JAVA_ARGS="${JAVA_ARGS} -DSecurity.Authorizor.ServiceType=${SBT_PREFIX}SecurityServerAuthorize"
+JAVA_ARGS="${JAVA_ARGS} -DEventService.TrackFiltersECName=${SBT_PREFIX}FilterNotification"
+JAVA_ARGS="${JAVA_ARGS} -DEventService.Admin.ExtentMapServerName=${SBT_PREFIX}ExtentMapAdminServer"
+JAVA_ARGS="${JAVA_ARGS} -DEventService.Admin.ChannelAdminServerName=${SBT_PREFIX}ChannelAdminServer"
+JAVA_ARGS="${JAVA_ARGS} -DSecurity.Authenticator.ServiceType=${SBT_PREFIX}SecurityServerAuthenticator"
+export JAVA_ARGS
+
+# --------------------------------------------------------------------------
+# WE NEED TO EXPORT ALL THE FUNCTIONS DEFINED HERE.
+# --------------------------------------------------------------------------
+# --------------------------------------------------------------------------
+# Function to validate is a given server runs on this host.
+# usage: $0 serverName [eg. TipsAdapter or CtmAdapter or TradeServer1 etc..
+# Returns 0 if it is a valid server.
+# --------------------------------------------------------------------------
+isServerConfiguredForThisHost()
+{
+        for configuredServer in $ALL_SERVER_NAMES
+        do
+                if [[ $configuredServer == $1 ]]
+                then
+                        return 0
+                fi
+        done
+        return 1
+}
+typeset -fx isServerConfiguredForThisHost
+
+# --------------------------------------------------------------------------
+# Function to get the process group names given a session name.
+# This function will set the variables GROUPS_FOR_SESSION
+# This function is used by the showClasses script.
+# usage: $0 sessionName
+# --------------------------------------------------------------------------
+getGroupsForSession()
+{
+	GROUPS_FOR_SESSION=""
+
+	if [[ $1 == "W_AM1" ]]
+	then
+		GROUPS_FOR_SESSION="devsvr4tst1TradeServer1"
+	elif [[ $1 == "ONE_MAIN" ]]
+	then
+		GROUPS_FOR_SESSION="devsvr4tst1TradeServer2"
+	elif [[ $1 == "W_MAIN" ]]
+	then
+		GROUPS_FOR_SESSION="devsvr4tst1ExternalTradeServer1"
+	elif [[ $1 == "Underlying" ]]
+	then
+		GROUPS_FOR_SESSION="${SBT_PREFIX}ExternalTradeServer1.underlyingProducts ${SBT_PREFIX}TradeServer1.underlyingProducts ${SBT_PREFIX}TradeServer2.underlyingProducts"
+	fi
+}
+typeset -fx getGroupsForSession
+
+# --------------------------------------------------------------------------
+# Function to setup database schema specific information.
+# One of more processes may share the same schema. The process specific
+# function will list the schema that it wants to use.
+#
+# FOR the variable ALL_DATABASE_SESSION_NAMES.
+# YOU SHOULD PUT ONLY THOSE SCHEMA'S THAT ARE APPLICABLE TO THE CURRENT
+# HOST. I.E. ON GLOBAL-CLUSTER PUT ONLY THE GLOBAL SCHEMA.
+# ON THE BUSINESS CLUSTER PUT ONLY THE SESSION SPECIFIC SCHEMAS
+# ON THE FRONTEND LEAVE IT BLANK.
+#
+# ALSO THE GLOBAL SCHEMA name must be GLOBAL - because a lot of scripts
+# that run on the global cluster setup the GLOBAL schema inside the script.
+#
+# eg's
+# export CONNECT_URL=jdbc:oracle:thin:@localhost:1521:SBTDD000
+# export DB_CONNECT=SBTDD000
+# leave  DB_CONNECT blank if you don't need it for sqlplus.
+#
+# usage: $0 schemaName [must be one of names specified in the env variable
+#           ALL_DATABASE_SCHEMA_NAMES as shownAbove]
+# --------------------------------------------------------------------------
+export ALL_DATABASE_SCHEMA_NAMES="GLOBAL W_AM1 W_MAIN ONE_MAIN"
+
+setupDb()
+{
+        schemaName=$1
+        if [[ ${schemaName} == "W_AM1" ]]
+        then
+                DB_USER=tradeeng
+                DB_PASSWORD=tradeeng
+                CONNECT_URL=jdbc:oracle:thin:@localhost:1521:SBTDD040
+                DB_CONNECT=
+        elif [[ ${schemaName} == "W_MAIN" ]]
+        then
+                DB_USER=tradeeng2
+                DB_PASSWORD=tradeeng2
+                CONNECT_URL=jdbc:oracle:thin:@localhost:1521:SBTDD040
+                DB_CONNECT=
+        elif [[ ${schemaName} == "ONE_MAIN" ]]
+        then
+                DB_USER=tradeeng3
+                DB_PASSWORD=tradeeng3
+                CONNECT_URL=jdbc:oracle:thin:@localhost:1521:SBTDD040
+                DB_CONNECT=
+        elif [[ ${schemaName} == "GLOBAL" ]]
+        then
+                DB_USER=tradeeng
+                DB_PASSWORD=tradeeng
+                CONNECT_URL=jdbc:oracle:thin:@localhost:1521:SBTDD040
+                DB_CONNECT=
+        else
+                DB_USER=
+                DB_PASSWORD=
+                CONNECT_URL=
+                DB_CONNECT=
+        fi
+}
+typeset -fx setupDb
+
+# ----------------------------------------------------------------------------------
+# SETUP FUNCTIONS - There is one for each process type.
+# The following variables are always setup by these functions.
+#
+# 1. TIME_TO_WAIT - Used by start server (Time allowed for process to start).
+# 2. JAVA_CMD     - Path to java
+# 3. VM_SETTINGS  - VM size etc.
+# 4. PROCESS_ARGS - Application's process specific arguments.
+# 5. PORT_NBR	  - The ORB port number.
+# 6. DB_USER	  - Database user
+# 7. DB_PASSWORD  - Database password
+# 8. CONNECT_URL  - Database connection string
+# 9. DB_CONNECT   - Database sometimes required by sqplus (is the instance name).
+# 10.CLASSPATH    - Sets the CLASSPATH Variable
+#
+# ----------------------------------------------------------------------------------
+
+# -------------------------------------------------------------
+# Function to set TradeServer related arguments.
+# TradeServer1 - for W_AM1 session
+# TradeServer2 - for ONE_MAIN session
+# usage : $0 serverInstanceNbr
+# -------------------------------------------------------------
+setTradeServerArgs()
+{
+	case $1 in
+	1)
+        	JAVA_CMD=java
+		VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        	let TIME_TO_WAIT=200
+        	let PORT_NBR=$BASE_PORT+1
+
+		setupDb W_AM1
+
+		CLASSPATH=$CLASSPATH
+
+		PROCESS_ARGS=""
+                PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixLogServiceComponent=TradeServer1"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixSessionList=W_AM1"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixPriceTick=0.125"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixIdServiceName=CtmIdService"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixPoaPair=Pair1"
+		;;
+	2)
+        	JAVA_CMD=java
+		VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        	let TIME_TO_WAIT=200
+        	let PORT_NBR=$BASE_PORT+2
+
+		setupDb ONE_MAIN
+
+		CLASSPATH=$CLASSPATH
+
+		PROCESS_ARGS=""
+                PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixLogServiceComponent=TradeServer2"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixSessionList=ONE_MAIN"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixPriceTick=0.125"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixIdServiceName=CtmFuturesIdService"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixPoaPair=Pair2"
+		;;
+
+	*)
+		echo "Invalid Instance Nbr specified: '$1'. Aborting ...." >&2
+		exit 1
+		;;
+
+	esac
+
+}
+typeset -fx setTradeServerArgs
+
+# -------------------------------------------------------------
+# Function to set v11 Front related arguments.
+# -------------------------------------------------------------
+setFrontendv11Args()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+5
+
+        setupDb NONE
+       
+        # ExtentMap needs to be specified
+        
+        #we should not change the node name of 1.1 FE, so no change from old version!
+        EXTENTMAP_PREFIX=$REG_EXTENTMAP_PREFIX        
+
+        # If using different ior initrefs, needs to be specified
+        export IOR_FILE=file://$IOR_BASE_DIR/initrefs.nonrepud.ior
+
+        # Version 1.1 CLASSPATH, needs to be verified
+
+        CLASSPATH=
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/OMGBaseClasses.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/OMGServiceClasses.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/SystemManagement.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/SystemManagementIDLClasses.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/xml4j.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/DirectoryService.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/IDLCompiler.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/MessagingSystem.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/MessagingSystemIDL.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/LoggingService.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/LoggingServiceIDLClasses.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/SecurityService.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/SecurityServiceIDLClasses.jar
+        #Note: SecurityAdminServiceHelp.jar is in the SecurityService VOB as help.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/SecurityAdminServiceHelp.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/common.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/threadutil.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/javautil.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/Rollout.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/jgl.jar
+        
+        #Foundation Framework and Objectwave Jars (v1.1 Common Facilities, still come from infra )
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/SessionManagementService.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/ffimpl.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/ffpersist.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/FoundationFramework.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/Utility.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/objectwave.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/infrastructure.jar       
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/cfIDLclasses.jar
+        
+        #Driver and Helper Jars
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/concurrency.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/ldapjdk.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/iaik_jce_full.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/junit.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/jndi.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/ldap.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/providerutil.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/fscontext.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/js.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/jstools.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/816classes12.zip
+        #Coppelia jars
+        #CLASSPATH=$CLASSPATH:$COPPELIA_ROOT_DIR/lib/CoppeliaHA.jar
+        #CLASSPATH=$CLASSPATH:$COPPELIA_ROOT_DIR/lib/pro.jar
+        #CLASSPATH=$CLASSPATH:$COPPELIA_ROOT_DIR/lib/mct3_0.zip
+        #CLASSPATH=$CLASSPATH:$COPPELIA_ROOT_DIR/lib/rogue.zip
+        #CLASSPATH=$CLASSPATH:$COPPELIA_ROOT_DIR/lib/OrbixWeb31c.jar
+
+        #Application Jars
+        CLASSPATH=$CLASSPATH:$RUN_DIR
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/server_impls.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/server_interfaces.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/server_interceptors.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/server_message.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/server_connectionServer.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/server_applappl.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/client_impls.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/client_interfaces.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/client_interceptors.jar
+        #don't truely know if this is need but since we need client_impls there is the possiblity of needing the interceptors
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/domain_impls.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/domain_persist_impls.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/domain_interfaces.jar
+       
+        #IDL Jars
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/serverIDL.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes_v11/clientIDL.jar
+        
+        #JavaHelp, JDMK and Jikes debugger
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/jhall.jar
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/jawall.jar
+        #Utilities
+        CLASSPATH=$CLASSPATH:$INFRA_RUN_DIR/classes/CBOEUtility.jar
+        CLASSPATH=$CLASSPATH:$TALARIAN_ROOT_DIR/java/lib/ss.jar
+
+        #add property directory to path
+        CLASSPATH=$CLASSPATH:$RUN_DIR/properties_v11
+        # Translation code
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes/rollout/oldBaseImpl.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes/rollout/oldBaseUtil.jar
+        CLASSPATH=$CLASSPATH:$RUN_DIR/classes/rollout/translateUtil.jar
+
+        echo  "========================v11 CLASSPATH========================="
+        echo $CLASSPATH
+
+        PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+    
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixFEIdentifier= "
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixHAHostName=Frontend1 -DprefixHAPort=2"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixHAAltHostName=Frontend2 -DprefixHAAltPort=2"
+        PROCESS_ARGS="${PROCESS_ARGS} -DDORB.AltHostName=Frontend2 -DORB.AltPort=2 -DORB.AltOrbName= "
+        
+        # in Rollout Mode, it should be com.cboe.rolloutUtil.IORResolverImpl
+        PROCESS_ARGS="${PROCESS_ARGS} -DIORResolverProperties=IORResolver.properties -DIORResolver=com.cboe.rolloutUtil.IORResolverImpl"
+ 
+        # set Infra Classloader Verbose on/off
+        PROCESS_ARGS="${PROCESS_ARGS} -DFCL.Verbose=true"
+        PROCESS_ARGS="${PROCESS_ARGS} -DORB.InitRefURL=$IOR_FILE"
+               
+}
+     
+typeset -fx setFrontendv11Args
+
+# -------------------------------------------------------------
+# Function to set v20 Front related arguments.
+# -------------------------------------------------------------
+        
+setFrontendv20Args()
+{
+        JAVA_CMD=java
+        VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+23
+               
+        setupDb NONE
+
+        CLASSPATH=$CLASSPATH
+
+        PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+  
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixFEIdentifier= "
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixHAHostName=Frontend1 -DprefixHAPort=2"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixHAAltHostName=Frontend2 -DprefixHAAltPort=2"
+        PROCESS_ARGS="${PROCESS_ARGS} -DDORB.AltHostName=Frontend2 -DORB.AltPort=2 -DORB.AltOrbName= "
+        # in Rollout Mode, it should be com.cboe.rolloutUtil.IORResolverImpl)
+        PROCESS_ARGS="${PROCESS_ARGS} -DIORResolverProperties=IORResolver.properties -DIORResolver=com.cboe.rolloutUtil.NullIORResolver"        
+
+        # REQUIRED if you want order/quote timing enabled
+        # These lines may be commented out in test environments where timing not needed
+        PROCESS_ARGS="${PROCESS_ARGS} -DtransactionTimer=true -DRegistration.ServiceType=${SBT_PREFIX}RegistrationService"
+        PROCESS_ARGS="${PROCESS_ARGS} -DOrderMetricsEnabled -DQuoteMetricsEnabled"
+}
+
+typeset -fx setFrontendv20Args
+
+# -------------------------------------------------------------
+# Function to set TipsAdapter related arguments.
+# Live TIPS udp ports: 30210
+# Scripting TIPS udp ports: 30240
+# -------------------------------------------------------------
+setTipsAdapterArgs()
+{
+    JAVA_CMD=java
+    VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact"
+    let TIME_TO_WAIT=200
+    let PORT_NBR=$BASE_PORT+6
+
+    setupDb GLOBAL
+
+    CLASSPATH=$CLASSPATH
+
+    PROCESS_ARGS=" -DLocalLog.Debug -DSMA.NoEventConsumer "
+    PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+
+##    PROCESS_ARGS="${PROCESS_ARGS} -DconfigVerbose=true"
+
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsEqHosts=m31a,m31b -DprefixTipsEqPorts=32103,32103"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsOpHosts=m31a,m31b -DprefixTipsOpPorts=32106,32106"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsDownloadHosts=m31a,m31b -DprefixTipsDownloadPorts=32102,32102"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsUdpAHosts=170.137.237.255 -DprefixTipsUdpAPorts=30210"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsUdpBHosts=170.137.238.255 -DprefixTipsUdpBPorts=30210"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsConnectionControllerName=TipsUdp"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsConnectionControllerAlarmStartTime=07:00:00"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixTipsConnectionControllerAlarmEndTime=08:00:00"
+
+##      PROCESS_ARGS="${PROCESS_ARGS} -DprefixPdsHosts=rcn16a,pds16a -DprefixPdsPorts=30122,30123"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixPdsHosts=pds16b,rcn16a -DprefixPdsPorts=30123,30122"
+
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixPdsMessageHandler=com.cboe.externalIntegrationServices.pdsAdapter.PDSMarketDataMessage"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixPdsNbrDispatchingQueues=7"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixPdsDequeueBlockSize=15"
+##      PROCESS_ARGS="${PROCESS_ARGS} -DprefixListOfFilteringGroupsUnderlying=W_MAIN.topNUnderlying,${SBT_PREFIX}TradeServer2.underlyingProducts"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixListOfFilteringGroupsUnderlying=W_MAIN.topNUnderlying,${SBT_PREFIX}TradeServer2.underlyingProducts,${SBT_PREFIX}TradeServer1.underlyingProducts"
+##      PROCESS_ARGS="${PROCESS_ARGS} -DprefixListOfFilteringGroupsUnderlying=W_MAIN.topNUnderlying"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixListOfPublishingGroupsUnderlying=${SBT_PREFIX}TradeServer1.underlyingProducts,${SBT_PREFIX}TradeServer2.underlyingProducts,${SBT_PREFIX}ExternalTradeServer1.underlyingProducts"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixListOfFilteringGroupsTpf=W_MAIN.topNOptions"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixListOfPublishingGroupsTpf=${SBT_PREFIX}ExternalTradeServer1"
+
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixEventChannelsForUnderlyingProductFilter=${SBT_PREFIX}Ticker"
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixEventChannelsForTpfProductFilter=${SBT_PREFIX}CurrentMarket,${SBT_PREFIX}Ticker"
+
+## KAK 7/3/02  add new -DDelayInitRegistrar for GMD/restart
+##
+    PROCESS_ARGS="${PROCESS_ARGS} -DDelayInitRegistrar=true"
+##
+}
+typeset -fx setTipsAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set TpfAdapter related arguments.
+# -------------------------------------------------------------
+setTpfAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+7
+
+	setupDb W_AM1
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixTpfHosts=m31a,m31b"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixTpfPorts=30212,30212"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixTpfLoginName=SBT01"
+
+    # POA pair - if more TPFAdapter pairs are added this will need to be
+    # based on some other piece of information, such as an instance number (see setTradeServerArgs)
+    PROCESS_ARGS="${PROCESS_ARGS} -DprefixPoaPair=Pair1"
+}
+typeset -fx setTpfAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set TpfGlobalAdapter related arguments.
+# -------------------------------------------------------------
+setTpfGlobalAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+8
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixTpfGlobalHosts=m31a,m31b"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixTpfGlobalPorts=30212,30212"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixTpfGlobalLoginName=SBT01"
+}
+typeset -fx setTpfGlobalAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set MemAdapter related arguments.
+# -------------------------------------------------------------
+setMemAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+9
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixMembershipUrl=$CONNECT_URL"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixMembershipDbUser=$DB_USER"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixMembershipDbPassword=$DB_PASSWORD"
+}
+typeset -fx setMemAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set CtmAdapter related arguments.
+# -------------------------------------------------------------
+setCtmAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+10
+
+	setupDb W_AM1
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmConnectionList=CtmOptionsReportsServiceConnection,CtmOptionsAcknowledgementsServiceConnection,CtmFuturesReportsServiceConnection,CtmFuturesAcknowledgementsServiceConnection"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmApplServiceList=OptionsReportsService,OptionsAcknowledgementsService,FuturesReportsService,FuturesAcknowledgementsService"
+
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmOptionsLoginName=SB01SB01 -DprefixCtmOptionsLoginPassword=PASS"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmOptionsHosts=170.137.235.7 -DprefixCtmOptionsPorts=3567"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmOptionsReportsSessionId=I500 -DprefixCtmOptionsAcknowledgementsSessionId=I500"
+
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmFuturesLoginName=FU01FU01 -DprefixCtmFuturesLoginPassword=PASS"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmFuturesHosts=170.137.235.7 -DprefixCtmFuturesPorts=3567"
+        PROCESS_ARGS="${PROCESS_ARGS} -DprefixCtmFuturesReportsSessionId=F500 -DprefixCtmFuturesAcknowledgementsSessionId=F500"
+}
+typeset -fx setCtmAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set coppAdapter related arguments.
+# -------------------------------------------------------------
+setCoppAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+11
+
+	setupDb ONE_MAIN
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixCoppLastSaleHosts=m31a,m31b -DprefixCoppLastSalePorts=30214,30214"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixCoppLastSaleServiceName=COPPFUT -DprefixCoppLastSaleLoginName=CBOEDIR1"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixCoppCurrentMarketHosts=m31a,m31b -DprefixCoppCurrentMarketPorts=30214,30214"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixCoppCurrentMarketServiceName=COPPFUT -DprefixCoppCurrentMarketLoginName=CBOEDIR2"
+}
+typeset -fx setCoppAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set coppGlobalAdapter related arguments.
+# -------------------------------------------------------------
+setCoppGlobalAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+12
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixCoppGlobalHosts=m31a,m31b -DprefixCoppGlobalPorts=30214,30214"
+  	PROCESS_ARGS="${PROCESS_ARGS} -DprefixCoppGlobalServiceName=COPP -DprefixCoppGlobalLoginName=SBTG01"
+}
+typeset -fx setCoppGlobalAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set compassAdapter related arguments.
+# -------------------------------------------------------------
+setCompassAdapterArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+13
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM8CompassOrderHosts=m10a,m10b -DprefixM8CompassOrderPorts=30050,30050"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM8CompassOrderName=CMPORD8 -DprefixM8CompassOrderLoginName=SBTORD8"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM8CompassReportsHosts=m10a,m10b -DprefixM8CompassReportsPorts=30051,30051"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM8CompassReportsName=CMPREP8 -DprefixM8CompassReportsLoginName=SBTREP8"
+
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM9CompassOrderHosts=m10a,m10b -DprefixM9CompassOrderPorts=30050,30050"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM9CompassOrderName=CMPORD9 -DprefixM9CompassOrderLoginName=SBTORD9"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM9CompassReportsHosts=m10a,m10b -DprefixM9CompassReportsPorts=30051,30051"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixM9CompassReportsName=CMPREP9 -DprefixM9CompassReportsLoginName=SBTREP9"
+ 
+       PROCESS_ARGS="${PROCESS_ARGS} -DprefixHAPSEventChannelName=please_specify"
+}
+typeset -fx setCompassAdapterArgs
+
+# -------------------------------------------------------------
+# Function to set ApplSimulatorArgs related arguments.
+# -------------------------------------------------------------
+setApplSimulatorArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+14
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixApplSimulatorHosts=dte2 -DprefixApplSimulatorPorts=3567"
+}
+typeset -fx setApplSimulatorArgs
+
+# -------------------------------------------------------------
+# Function to set SMS related arguments.
+# -------------------------------------------------------------
+setSmsArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+15
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DprefixProcessViewName=views:Views_0.View_AllProcesses"
+ 	PROCESS_ARGS="${PROCESS_ARGS} -DSMA.NoEventFilters"
+}
+typeset -fx setSmsArgs
+
+# -------------------------------------------------------------
+# Function to set ID server related arguments.
+# -------------------------------------------------------------
+setIdServerArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+16
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+}
+typeset -fx setIdServerArgs
+
+# -------------------------------------------------------------
+# Function to set Status server related arguments.
+# -------------------------------------------------------------
+setStatusServerArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+17
+
+	setupDb W_AM1
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+}
+typeset -fx setStatusServerArgs
+
+# -------------------------------------------------------------
+# Function to set ExtTradeServer related arguments.
+# ExtTradeServer1 - is for W_MAIN session
+# usage : $0 serverInstanceNbr
+# -------------------------------------------------------------
+setExtTradeServerArgs()
+{
+	case $1 in
+	1)
+        	JAVA_CMD=java
+		VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        	let TIME_TO_WAIT=200
+        	let PORT_NBR=$BASE_PORT+18
+
+		setupDb W_MAIN
+
+		CLASSPATH=$CLASSPATH
+
+		PROCESS_ARGS=""
+                PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixSessionList=W_MAIN,Underlying"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixPriceTick=0.125"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixIdServiceName=CtmIdService"
+                PROCESS_ARGS="${PROCESS_ARGS} -DprefixPoaPair=Pair1"
+		;;
+	*)
+		echo "Invalid Instance Nbr specified: '$1'. Aborting ...." >&2
+		exit 1
+		;;
+
+	esac
+
+}
+typeset -fx setExtTradeServerArgs
+
+# -------------------------------------------------------------
+# Function to set Global server related arguments.
+# -------------------------------------------------------------
+setGlobalServerArgs()
+{
+        JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+        let TIME_TO_WAIT=200
+        let PORT_NBR=$BASE_PORT+19
+
+	setupDb GLOBAL
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+        PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+}
+typeset -fx setGlobalServerArgs
+
+# -------------------------------------------------------------
+# Function to set CTMBackdoor related arguments.
+# -------------------------------------------------------------
+setCTMBackdoorArgs()
+{
+    JAVA_CMD=java
+	VM_SETTINGS="-Xgenconfig:32m,32m,semispaces:48m,1024m,markcompact -Xoptimize"
+    let TIME_TO_WAIT=200
+    let PORT_NBR=$BASE_PORT+20
+
+	CLASSPATH=$CLASSPATH
+
+	PROCESS_ARGS=""
+
+    PROCESS_ARGS="${PROCESS_ARGS} -DPropertyPrefix=$SBT_PREFIX"
+    PROCESS_ARGS="${PROCESS_ARGS} -Dow.persistVerbose=true"
+    PROCESS_ARGS="${PROCESS_ARGS} -Dow.persistConnectionVerbose=true"
+    PROCESS_ARGS="${PROCESS_ARGS} -DORB.OrbName=${SBT_PREFIX}CTMBackdoor"
+    PROCESS_ARGS="${PROCESS_ARGS} -DORB.PortNum=$PORT_NBR"
+    PROCESS_ARGS="${PROCESS_ARGS} -DORB.InitRefURL=$IOR_FILE"
+    PROCESS_ARGS="${PROCESS_ARGS} -DApplicationDebugOn"
+}
+typeset -fx setCTMBackdoorArgs
+
+# -------------------------------------------------------------
+# Function to set CTMReports (OPTIONS) related arguments.
+# -------------------------------------------------------------
+setCTMReportsOptionsArgs()
+{
+
+	# ---------------------------------------------------------------------------
+	# Ctm Backdoor Tape Drive - Set this to the tape drive to be used for the system
+	# In development environments it can be left blank unless testing CTM Backdoor
+	# ---------------------------------------------------------------------------
+	export CTM_BACKDOOR_TAPE_DRIVE=please_specify
+
+	# Query variables
+
+	# The DEFAULT_ROUTELIST variable should be changed depending on your system.
+	# In production this value will be set and never changed.
+	# The route list parameter represents the routes the CTM report formatting
+	# program will get trade reports from.  It is a comma-separated list with no
+	# spaces.
+	DEFAULT_ROUTELIST="${CLUSTER_NAME}TradeServer1"
+
+	# FTP variables
+
+	DEF_CTM_HOST=please_specify
+	DEF_CTM_PORT=please_specify
+	DEF_CTM_USER=please_specify
+	DEF_CTM_PASS=please_specify
+
+	DEF_SBT_DATA_SRC="${RUN_DIR}/log/RJE.CTM.FTP.SBT.DATA"
+	DEF_CTM_DATA_DEST="RJE.CTM.FTP.SBT.DATA"
+	DEF_SBT_JCL_SRC="${RUN_DIR}/bin/ctm_options_jcl.dat"
+	DEF_CTM_JCL_DEST="RJE.CTM.FTP.SBT.JCL"
+
+	# Tape variables
+	DEF_TAPE_DRIVE=${CTM_BACKDOOR_TAPE_DRIVE}
+
+	DEF_BLOCK_SIZE=please_specify
+	DEF_CONV_BUFSIZE=please_specify
+
+	PROCESS_ARGS=""
+
+    ## currently relies on ctmBackdoor script which sets its own
+    ## environment parameters ( see setCTMBackdoor )
+}
+typeset -fx setCTMReportsOptionsArgs
+
+# -------------------------------------------------------------
+# Function to set CTMReports (FUTURES) related arguments.
+# -------------------------------------------------------------
+setCTMReportsFuturesArgs()
+{
+
+	# ---------------------------------------------------------------------------
+	# Ctm Backdoor Tape Drive - Set this to the tape drive to be used for the system
+	# In development environments it can be left blank unless testing CTM Backdoor
+	# ---------------------------------------------------------------------------
+	export CTM_BACKDOOR_TAPE_DRIVE=please_specify
+
+	# Query variables
+
+	# The DEFAULT_ROUTELIST variable should be changed depending on your system.
+	# In production this value will be set and never changed.
+	# The route list parameter represents the routes the CTM report formatting
+	# program will get trade reports from.  It is a comma-separated list with no
+	# spaces.
+	DEFAULT_ROUTELIST="${CLUSTER_NAME}TradeServer2"
+
+	# FTP variables
+
+	DEF_CTM_HOST=please_specify
+	DEF_CTM_PORT=please_specify
+	DEF_CTM_USER=please_specify
+	DEF_CTM_PASS=please_specify
+
+	DEF_SBT_DATA_SRC="${RUN_DIR}/log/RJE.CTM.FTP.FUT.DATA"
+	DEF_CTM_DATA_DEST="RJE.CTM.FTP.FUT.DATA"
+	DEF_SBT_JCL_SRC="${RUN_DIR}/bin/ctm_futures_jcl.dat"
+	DEF_CTM_JCL_DEST="${RUN_DIR}/log/RJE.CTM.FTP.FUT.JCL"
+
+	# Tape variables
+	DEF_TAPE_DRIVE=${CTM_BACKDOOR_TAPE_DRIVE}
+
+	DEF_BLOCK_SIZE=please_specify
+	DEF_CONV_BUFSIZE=please_specify
+
+	PROCESS_ARGS=""
+
+    ## currently relies on ctmBackdoor script which sets its own
+    ## environment parameters ( see setCTMBackdoor )
+}
+typeset -fx setCTMReportsFuturesArgs

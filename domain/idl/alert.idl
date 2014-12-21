@@ -1,0 +1,36 @@
+//## Module: alert
+
+#ifndef Alert_idl
+#define Alert_idl
+
+//#pragma GENERATE_CODE OFF
+
+#include "cmiUtil.idl"
+#include "cmiMarketData.idl"
+#include "cmiOrder.idl"
+#include "cmiIntermarketMessages.idl"
+#include "session.idl"
+module alert {
+
+    struct AlertSearchCriteriaStruct
+    {
+        session::TradingSessionName sessionName;  // use "" for all sessions
+        cmiProduct::ClassKey classKey;              // use 0 for all classes
+        cmiProduct::ProductKey productKey;          // use 0 for all products
+        cmiUtil::DateTimeStruct fromDateTime;       // required
+        cmiUtil::DateTimeStruct toDateTime;
+    };
+
+    struct AlertHistoryHdrStruct
+    {
+        cmiUtil::DateTimeStruct startTime;
+        cmiUtil::DateTimeStruct endTime;
+        boolean moreAlertsIndicator;
+    };
+
+    struct AlertHistoryStruct{
+        AlertHistoryHdrStruct alertHistoryHdr;
+        cmiIntermarketMessages::AlertStructSequence entries;
+    };
+};
+#endif

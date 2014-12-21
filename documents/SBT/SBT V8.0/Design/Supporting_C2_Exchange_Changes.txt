@@ -1,0 +1,41 @@
+JAVA files:
+
+/vobs/dte/serverptd/Java/impls/com/cboe/networkDrivers/botrDriver/BOTRDriver.java - not yet added C2 to test exchanges due to rollout concerns.
+/vobs/dte/server/Java/common/com/cboe/server/util/BOTRDriver.java - not yet added C2 to test exchange.  File needs to be deleted
+/vobs/dte/server/eis/Java/impls/com/cboe/externalIntegrationServices/tpfAdapter/TPFExchangeCodes.java  (CBOE2 - 'W')
+/vobs/dte/server/eis/Java/impls/com/cboe/externalIntegrationServices/tpfAdapter/order/TPFOrderService.java
+/vobs/dte/server/eis/Java/impls/com/cboe/externalIntegrationServices/tpfAdapter/mdr/MdrRequest.java
+/vobs/dte/server/Java/common/com/cboe/server/internalEvents/BestOfTheRestConsumerImpl.java
+/vobs/dte/server/eis/Java/impls/com/cboe/externalIntegrationServices/tpfAdapter/TPFFixFormatter.java
+/vobs/dte/server/eis/Java/impls/com/cboe/externalIntegrationServices/tipsAdapter/botr/BestOfTheRestServiceHomeImpl.java - - not yet added C2 to test exchanges due to rollout concerns.
+/vobs/dte/domain/Java/impls/com/cboe/domain/util/fixUtil/FixUtilConstants.java (CAS to change)
+/vobs/dte/domain/Java/impls/com/cboe/domain/util/fixUtil/FixUtilMapper.java (CAS to change)
+/vobs/dte/linkage/Java/impls/com/cboe/integrationServices/linkage/linkageConstants/LinkageExchangeStrings.java (Fix Linkage String CBOE2 = 'WBO')
+/vobs/dte/linkage/Java/impls/com/cboe/integrationServices/linkage/util/LinkageExchangeStringMapper.java
+/vobs/dte/server/eis/Java/impls/com/cboe/externalIntegrationServices/tipsAdapter/equity/ExchangeMapper.java - no change since this is used by Stock only
+
+XMLs:
+
+/vobs/dte/ohs/properties/xml/OhsOrderValidationStrategy.xml
+/vobs/dte/server/properties/xml/TpfApplFramework.xml (CBOE2=W)
+/vobs/dte/server/properties/xml/TipsConnectionService.xml (WO)
+/vobs/dte/server/properties/xml/OrderValidationStrategy.xml
+/vobs/dte/server/properties/xml/BestOfTheRestService.xml (WO)
+/vobs/dte/server/properties/xml/PdsConnectionService.xml (CBOE2 - WO)
+/vobs/dte/server/properties/xml/LinkageClassGateHome.xml
+/vobs/dte/server/properties/xml/TipsAdapter.xml
+/vobs/dte/server/properties/xml/HubSimulatorMessageHandlerHome.xml
+
+
+
+Scripts:
+
+/vobs/dte/server/scripts/bin/setContext.main
+/vobs/dte/server/scripts/bin/setContext.main.c2
+/vobs/dte/server/scripts/bin/configureTemplateAndSessionsC2  - change exchange to be CBOE2
+
+
+
+
+ 
+

@@ -1,0 +1,279 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_INTERMARKETMESSAGES_IDL
+#define CMI_INTERMARKETMESSAGES_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "cmiUser.idl"
+#include "cmiOrder.idl"
+#include "cmiMarketData.idl"
+#include "cmiUtil.idl"
+#include "cmiAdmin.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiIntermarketMessages
+{
+
+    typedef char OrderBookTradableType;
+    typedef short FillRejectReason;
+    typedef short HandlingInstruction;
+    typedef short ExchangeMarketInfoType;
+    typedef short OrderBookStatus;
+    typedef short PreOpeningIndicationType;
+    typedef short AlertType;
+    typedef string AlertResolution;
+    typedef sequence <cmiOrder::OrderIdStruct > OrderIdSequence;    
+
+    struct ExchangeMarketStruct
+    {
+        cmiIntermarketMessages::ExchangeMarketInfoType marketInfoType;
+        cmiUtil::PriceStruct bestBidPrice;
+        cmiMarketData::ExchangeVolumeStructSequence bidExchangeVolumes;
+        cmiUtil::PriceStruct bestAskPrice;
+        cmiMarketData::ExchangeVolumeStructSequence askExchangeVolumes;
+    };
+
+    typedef sequence <ExchangeMarketStruct> ExchangeMarketStructSequence;
+    
+    struct ExchangeMarketStructV2
+    {
+        cmiIntermarketMessages::ExchangeMarketInfoType marketInfoType;
+        cmiUtil::PriceStruct bestBidPrice;
+        cmiMarketData::ExchangeVolumeStructSequence bidExchangeVolumes;
+        cmiUtil::PriceStruct bestAskPrice;
+        cmiMarketData::ExchangeVolumeStructSequence askExchangeVolumes;
+        long long time;
+        char usedForTradeThrough;
+    };
+
+    typedef sequence <ExchangeMarketStructV2> ExchangeMarketStructV2Sequence;
+    
+
+    struct HeldOrderStruct
+    {
+       cmiOrder::OrderStruct order;
+       cmiIntermarketMessages::ExchangeMarketStructSequence currentMarketBest;
+    };
+
+    typedef sequence <HeldOrderStruct> HeldOrderStructSequence;
+
+    struct HeldOrderDetailStruct
+    {
+        cmiProduct::ProductNameStruct productInformation;
+        cmiUtil::UpdateStatusReason statusChange;
+        cmiIntermarketMessages::HeldOrderStruct heldOrder;
+    };
+
+    typedef sequence <HeldOrderDetailStruct> HeldOrderDetailStructSequence;
+
+    struct OrderReminderStruct
+    {
+        cmiOrder::OrderIdStruct reminderId;
+        string reminderReason;
+        cmiUtil::DateTimeStruct timeSent;
+    };
+
+    struct HeldOrderCancelRequestStruct
+    {
+        cmiUtil::CboeIdStruct cancelReqId;
+        cmiOrder::CancelRequestStruct cancelRequest;
+    };
+    typedef sequence <HeldOrderCancelRequestStruct> HeldOrderCancelRequestStructSequence;
+
+    struct HeldOrderCancelReportStruct
+    {
+        HeldOrderDetailStruct heldOrderDetail;
+        cmiUtil::CboeIdStruct cancelReqId;
+        cmiOrder::CancelReportStruct cancelReport;
+    };
+
+    struct HeldOrderFilledReportStruct
+    {
+        HeldOrderDetailStruct heldOrderDetail;
+        cmiOrder::FilledReportStructSequence filledReport;
+    };
+
+    struct CurrentIntermarketBestStruct {
+         cmiUser::Exchange exchange;
+         cmiSession::ProductState marketCondition;
+         cmiUtil::PriceStruct bidPrice;
+         long bidVolume;
+         cmiUtil::PriceStruct askPrice;
+         long askVolume;
+         cmiUtil::TimeStruct sentTime;
+    };
+    typedef sequence <CurrentIntermarketBestStruct> CurrentIntermarketBestStructSequence;
+
+    struct CurrentIntermarketStruct
+    {
+         cmiProduct::ProductKeysStruct productKeys;
+         CurrentIntermarketBestStructSequence otherMarketsBest;
+    };
+    typedef sequence <CurrentIntermarketStruct> CurrentIntermarketStructSequence;
+
+    struct FillRejectStruct
+    {
+         cmiUtil::CboeIdStruct tradeId;
+         cmiOrder::OrderStruct order;
+         long transactionSequenceNumber;
+         cmiUtil::FillRejectReason rejectReason;
+         string extensions;
+         string text;
+    };
+    typedef sequence <FillRejectStruct> FillRejectStructSequence;
+
+    struct OrderFillRejectStruct
+    {
+         cmiOrder::OrderDetailStruct rejectedFillOrder;
+         cmiIntermarketMessages::FillRejectStructSequence fillRejectReports;
+    };
+    typedef sequence <OrderFillRejectStruct> OrderFillRejectStructSequence;
+
+    struct FillRejectRequestStruct
+    {
+         cmiOrder::OrderIdStruct orderId;
+         cmiUtil::ActivityReason rejectReason;
+         string fillReportExtensions;
+         long tradedQuantity;
+         cmiUtil::PriceStruct tradePrice;
+    };
+
+    struct PreOpeningIndicationPriceStruct
+    {
+         cmiIntermarketMessages::PreOpeningIndicationType preOpenType;
+         cmiOrder::OriginType preOpenOriginType;
+         cmiUtil::PriceStruct lowOpeningPrice;
+         cmiUtil::PriceStruct highOpeningPrice;
+         cmiUtil::Side side;
+         long principalQuantity;
+    };
+    typedef  sequence <PreOpeningIndicationPriceStruct> PreOpeningIndicationPriceStructSequence;
+
+    struct PreOpeningResponsePriceStruct
+    {
+        cmiOrder::OrderState orderState;
+        cmiUtil::Side side;
+        long principalQuantity;
+        long agencyQuantity;
+        cmiUtil::PriceStruct responsePrice;
+    };
+    typedef  sequence <PreOpeningResponsePriceStruct> PreOpeningResponsePriceStructSequence;
+
+    struct AdminStruct
+    {
+        cmiAdmin::MessageStruct messageStruct;
+        string userAssignedId;
+        cmiProduct::ProductKey productKey;
+        cmiUser::Exchange sourceExchange;
+        cmiUser::Exchange destinationExchange;
+    };
+    typedef  sequence <AdminStruct> AdminStructSequence;
+
+    struct AlertHdrStruct{        //this information is required in all alert kinds
+         cmiUtil::CboeIdStruct alertId;
+         cmiUtil::DateTimeStruct alertCreationTime;
+         cmiIntermarketMessages::AlertType alertType;
+         cmiSession::TradingSessionName sessionName;
+         string hdrExtensions;
+    };
+    
+    struct AlertStruct{        // these are alerts sent to the TFL related to NBBO Agent
+         AlertHdrStruct alertHdr;
+         AlertResolution resolution;
+         string comments;
+         cmiOrder::OrderIdStruct orderId;
+         string nbboAgentId;        // rename Userid to nbboAgentId for clarity
+         string updatedById;        // new field to keep track of who updated the field last
+         cmiUtil::CboeIdStruct tradeId;
+         cmiProduct::ProductKeysStruct productKeys;
+         cmiIntermarketMessages::ExchangeMarketStructSequence exchangeMarket;
+         boolean cboeMarketableOrder; // If order was marketable against CBOE BBBO
+         string extensions;
+    };
+    typedef sequence <AlertStruct> AlertStructSequence;
+    
+    struct AlertStructV2{        // these are alerts sent to the TFL related to NBBO Agent
+         AlertHdrStruct alertHdr;
+         AlertResolution resolution;
+         string comments;
+         cmiOrder::OrderIdStruct orderId;
+         string nbboAgentId;        // rename Userid to nbboAgentId for clarity
+         string updatedById;        // new field to keep track of who updated the field last
+         cmiUtil::CboeIdStruct tradeId;
+         cmiProduct::ProductKeysStruct productKeys;
+         cmiIntermarketMessages::ExchangeMarketStructV2Sequence exchangeMarket;
+         boolean cboeMarketableOrder; // If order was marketable against CBOE BBBO
+         string extensions;
+         cmiUtil::PriceStruct tradedThroughPrice;
+         long tradedThroughQuantity;
+         cmiUtil::Side side;
+         string orsId;
+            
+    };
+    typedef sequence <AlertStructV2> AlertStructV2Sequence;
+    
+    struct SatisfactionAlertStruct{     // This is an alert that our book was traded through by a remote exchange
+        AlertHdrStruct alertHdr;
+        long tradedThroughquantity;
+        cmiUtil::PriceStruct tradedThroughPrice;
+        cmiUtil::Side side;
+        cmiMarketData::TickerStruct lastSale; // remote exchange last sale causing tradethrough
+        OrderIdSequence tradedThroughOrders;  //our orders that were traded through
+        string extensions;
+    };
+    typedef sequence <SatisfactionAlertStruct> SatisfactionAlertStructSequence;
+
+    struct OrderBookStruct
+    {
+        cmiOrder::OrderIdStruct orderId;
+        long originalQuantity; 
+        long remainingQuantity; 
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ProductType productType;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        cmiOrder::TimeInForce timeInForce;
+        cmiUtil::DateTimeStruct receivedTime;
+        cmiOrder::OrderContingencyStruct contingency;
+        cmiOrder::OriginType orderOriginType;
+        cmiOrder::OrderState state;        
+        cmiOrder::NBBOProtectionType orderNBBOProtectionType; 
+        string optionalData;
+        char tradableType;
+    };
+    typedef sequence <OrderBookStruct> OrderBookStructSequence;
+    
+    struct OrderBookDetailPriceStruct
+    {
+        OrderBookStructSequence orderInfo;
+        cmiUtil::PriceStruct price;
+    };
+    typedef sequence <OrderBookDetailPriceStruct> OrderBookDetailPriceStructSequence;
+
+    struct BookDepthDetailedStruct 
+    {
+        cmiProduct::ProductKeysStruct productKeys; 
+        cmiSession::TradingSessionName sessionName; 
+        OrderBookDetailPriceStructSequence buyOrdersAtDifferentPrice;
+        OrderBookDetailPriceStructSequence sellOrdersAtDifferentPrice; 
+        long transactionSequenceNumber;
+    }; 
+
+};
+#endif
+</pre>

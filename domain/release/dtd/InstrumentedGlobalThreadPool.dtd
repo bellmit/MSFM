@@ -1,0 +1,23 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalInstrumentedGlobalThreadPoolHome (GlobalThreadPoolHomeImpl* )>
+<!ATTLIST GlobalThreadPoolHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT GlobalThreadPoolHomeImpl (GlobalThreadPoolHomeImplProperties) >
+<!ATTLIST GlobalThreadPoolHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT GlobalThreadPoolHomeImplProperties  (globalThreadPoolSize)>
+<!ATTLIST GlobalThreadPoolHomeImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT globalThreadPoolSize (#PCDATA)>
+<!ATTLIST globalThreadPoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'Set the size of the cache to store products ' >
+
+

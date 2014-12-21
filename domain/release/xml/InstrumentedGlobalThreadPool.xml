@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Jing Chen (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalInstrumentedGlobalThreadPoolHome SYSTEM "../dtd/InstrumentedGlobalThreadPool.dtd">
+<GlobalInstrumentedGlobalThreadPoolHome>
+	<GlobalThreadPoolHomeImpl name="InstrumentedGlobalThreadPool">
+		<GlobalThreadPoolHomeImplProperties>
+			<globalThreadPoolSize>200</globalThreadPoolSize>
+		</GlobalThreadPoolHomeImplProperties>
+	</GlobalThreadPoolHomeImpl>
+</GlobalInstrumentedGlobalThreadPoolHome>

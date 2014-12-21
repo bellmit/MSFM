@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<systemConfiguration>
+    <casConfigurations>
+        <casConfiguration>
+            <casNumber>cas1000</casNumber>
+            <firm>Test Firm 1000</firm>
+            <hwLocation>Test Firm NY</hwLocation>
+            <hwManufacturer>SUN</hwManufacturer>
+            <hwModel>E280R</hwModel>
+            <ipAddress>127.0.0.1</ipAddress>
+            <networkConnectivityProvider></networkConnectivityProvider>
+            <softwareProvider>PROP</softwareProvider>
+        </casConfiguration>
+        <casConfiguration>
+            <casNumber>cas1001</casNumber>
+            <firm>Test Firm 1001</firm>
+            <hwLocation>Test Firm NY</hwLocation>
+            <hwManufacturer>SUN</hwManufacturer>
+            <hwModel>E280R</hwModel>
+            <ipAddress>127.0.0.2</ipAddress>
+            <networkConnectivityProvider></networkConnectivityProvider>
+            <softwareProvider>PROP</softwareProvider>
+        </casConfiguration>
+        <casConfiguration>
+            <casNumber>cas1003</casNumber>
+            <firm>Test Firm 1003</firm>
+            <hwLocation>Test Firm NY</hwLocation>
+            <hwManufacturer>SUN</hwManufacturer>
+            <hwModel>E280R</hwModel>
+            <ipAddress>127.0.0.3</ipAddress>
+            <networkConnectivityProvider></networkConnectivityProvider>
+            <softwareProvider>PROP</softwareProvider>
+        </casConfiguration>
+    </casConfigurations>
+</systemConfiguration>

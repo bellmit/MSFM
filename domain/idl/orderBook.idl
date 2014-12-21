@@ -1,0 +1,40 @@
+#ifndef ORDERBOOK_idl
+#define ORDERBOOK_idl
+
+#include "cmiMarketData.idl"
+#include "cmiUser.idl"
+
+//#pragma javaPackage "com.cboe.idl"
+#include "session.idl"
+module orderBook {
+
+    typedef char OrderBookItemType;
+    typedef short OpeningRequirement;
+
+    struct BestBookStruct {
+        session::TradingSessionName sessionName;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::PriceStruct bidPrice;
+        cmiMarketData::MarketVolumeStructSequence bidSizeSequence;
+        cmiUtil::PriceStruct askPrice;
+        cmiMarketData::MarketVolumeStructSequence askSizeSequence;
+        boolean legalMarket;
+    };
+    typedef sequence <BestBookStruct> BestBookStructSequence;
+
+    struct TradableStruct
+    {
+        orderBook::OrderBookItemType   tradableType;
+        cmiUtil::CboeIdStruct          tradableId;
+        cmiUtil::Side                  side;
+        cmiProduct::ProductKey         productKey;
+        cmiUtil::PriceStruct           price;
+        long                           remainingQuantity;  // calculated from data in OrderStruct; bidQuantity, askQuantity from QuoteStruct
+        string                         userId;
+        cmiUser::ExchangeFirmStruct    firm;               // clearingFirm from QuoteStruct, executingOrGiveUpFirm from OrderStruct
+        string                         userAssignedId;
+   };
+
+   typedef sequence <TradableStruct> TradableStructSequence;
+};
+#endif

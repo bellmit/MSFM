@@ -1,0 +1,17 @@
+ORB.ListenHostName	_node 
+ClientProperties	SbtAdminGui.properties 
+FFPropertiesFile	SA.properties 
+FFServerName	SystemAdminServer 
+ORB.InitRefURL	ftp://infra13:infra13@devenv4.cboe.com:21/%2Fsbt/test13/infra/run_dir/ior/initrefs.ior
+ORB.PortNum	6014 
+ORB.OrbName	WATTAM-APITESTCLIENT 
+PropertyPrefix	test13 
+EventService.Admin.ChannelAdminServerName	test13ChannelAdminServer 
+EventService.Admin.ExtentMapServerName		test13ExtentMapAdminServer 
+ORB.FlowControl			none 
+ORB.LocatorDiscovery.Disable	true 
+ORB.Verbose			true 
+Security.Authenticator.ServiceType	test13SecurityServerAuthenticator 
+Security.Authorizor.ServiceType		test13SecurityServerAuthorize 
+Security.Logout.ServiceType		test13SecurityServerLogout 
+Security.Admin.ServiceType		test13SecurityAdminService

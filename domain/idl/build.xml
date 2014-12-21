@@ -1,0 +1,166 @@
+
+<project name="ant for domain.idl" default="all">
+
+    <description>
+    This ant build file compiles the idl under /vobs/dte/domain/idl
+    </description>
+
+    <!-- ant.file is the current file -->
+    <echo>Building ${ant.file}</echo>
+
+    <!-- top level domain build -->
+    <import file="/vobs/dte/domain/build/domain-build.xml"/>
+
+    <!-- **************************************************************
+            Init dirs based on OS.
+    ******************************************************************* -->
+    <target name="-domain.idl.Init" depends="-domain.Init" description="set environment variables">
+
+    <!-- **************************************************************
+            path name locations
+    ******************************************************************* -->
+
+        <!-- DOMAIN TEST SPECIFIC SOURCE LOCATIONS -->
+
+        <property name="sbt.domain.idl.output.dir"    location="${sbt.domain.idl.dir}/trc_output"/>
+        <property name="sbt.domain.idl.classes.dir"   location="${sbt.domain.idl.output.dir}/classes"/>
+        <property name="sbt.domain.idl.src.dir"       location="${sbt.domain.idl.output.dir}/java"/>
+        <property name="sbt.domain.idl.class.jar"               location="${sbt.domain.idl.classes.dir}/domain_idl.jar"/>
+        <property name="sbt.domain.idl.java.class.jar"          location="${sbt.domain.idl.classes.dir}/domain_idl_java.jar"/>
+
+        <!-- property name="sbt.domain.idl.includes"      value="-I ${dte.root}/InfraVerity/idl -I ${dte.root}/cmi/idl "/ -->
+        <property name="sbt.domain.idl.includes"      value="-I ${dte.root}/InfraVerity/idl -I ${dte.root}/cmi/idl ${sbt.idl.pswitches} -Tie"/>
+
+
+        <!-- **************************************************************
+            Classpaths
+	DOMAIN_IDL_CLASSPATH =$(DOMAIN_IDL_CLASS):$(CMI_IDL_JAR):$(OMGBASECLASSESJAR):$(OMGSERVICECLASSESJAR):$(MSIMPJAR):$(IVIDLCLASSESJAR)
+        ******************************************************************* -->
+ 
+        <path id="sbt.domain.idl.classpath"> <!-- (classpath for idl jar compilation) -->
+                <path refid="sbt.third.party.classpath"/>
+                <path refid="third.party.classpath"/>
+
+                <pathelement location="/vobs/dte/cmi/release/jars/cmi_idl.jar"/>
+                <pathelement location="/vobs/dte/MessagingSystem/release/jars/MessagingSystem.jar"/>
+                <pathelement location="/vobs/dte/idlbase/omg/release/jars/OMGBaseClasses.jar"/>
+                <pathelement location="/vobs/dte/idlbase/omg/release/jars/OMGServiceClasses.jar"/>
+                <pathelement location="/vobs/dte/InfraVerity/release/jars/InfraVerityIDLClasses.jar"/>
+        </path>
+
+        <path id="sbt.domain.run.idl.classpath"> <!-- (classpath for JUnit test execution) -->
+            <pathelement location="/vobs/tpt/tpt_tools/junit/run_dir/junit.jar"/>
+                <pathelement location="/vobs/tpt/tpt_tools/ant/run_dir/lib/ant-junit.jar"/>
+            <pathelement location="${sbt.domain.idl.class.jar}"/>
+                <path refid="sbt.domain.idl.classpath"/>
+                <path refid="sbt.third.party.classpath"/>
+                <!-- pathelement location="${domain.common.class.jar}"/ -->
+        </path>
+
+    </target>
+
+
+    <!-- **************************************************************
+            Clean
+    ******************************************************************* -->
+    <target name="Clean"
+    description="Cleans IDL generated classes."
+            depends="-domain.idl.Init">
+
+        <delete  
+		failonerror="false"
+		includeEmptyDirs="true">
+            <fileset dir="${sbt.domain.idl.output.dir}">
+                <filename name="**/*"/>
+            </fileset>
+        </delete>
+
+        <ccuncheckout viewpath="${sbt.domain.idl.rel.jar}"
+                failonerr="false"
+                keepcopy="false"/>
+    </target>
+
+
+    <!-- **************************************************************
+            Compile and Build
+    ******************************************************************* -->
+    <target name="parseIDL" depends="-domain.idl.Init, Clean"
+		description="Uses IDLBase IDLCompiler to generate java source">
+
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="Util.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="TradingProperty.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="alert.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="constants.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="exchange.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="firm.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="groupElement.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="marketData.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="marketDataSummary.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="order.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="orderBook.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="product.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="property.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="quote.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="session.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="sweepAutoLink.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="textMessage.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="trade.idl" />
+            <parseIDL-ASYNC-macro IDLdir="${sbt.domain.idl.dir}" IDLjavadir="${sbt.domain.idl.src.dir}" IDLincludes="${sbt.domain.idl.includes}" IDLfile="user.idl" />
+
+
+    </target>
+
+    <!-- **************************************************************
+            Compile and Build
+            (private target: no description and has a "-" prefix)
+    ******************************************************************* -->
+    <target name="-CompileCode" depends="-domain.idl.Init, parseIDL">
+            <catBuildInfo-macro rootDir="${dte.root}" outputDir="${build.info.dir}"
+                outputFilename="${build.info.file}"/>
+
+            <compile-macro  source="${sbt.domain.idl.src.dir}" classpathref="sbt.domain.idl.classpath" classesdir="${sbt.domain.idl.classes.dir}" />
+
+            <tstamp prefix="build">
+                <format property="time" pattern="yyyy-MM-dd HH:mm:ss" />
+            </tstamp>
+
+            <jar jarfile="${sbt.domain.idl.class.jar}">
+               <fileset dir="${sbt.domain.idl.classes.dir}" includes="**/*.class,**/*.txt,**/*.csv"/>
+               <manifest>
+                   <attribute name="Build-User" value="${user.name}"/>
+                   <attribute name="OS-Platform" value="${os.name}"/>
+                   <attribute name="Ant-Version" value="${ant.version}"/>
+                   <attribute name="Created-At" value="${build.time}"/>
+                   <attribute name="Created-By" value="JDK ${java.version}"/>
+                   <attribute name="Main-Class" value="${configspec.class}"/>
+               </manifest>
+           </jar>
+    </target>
+
+
+
+    <!-- **************************************************************
+            Copy Build Jar
+            (private target: no description and has a "-" prefix)
+    ******************************************************************* -->
+    <target name="-CopyBuild"
+        description="Copy view-private Jars to version controlled release directory"
+            depends="-CompileCode">
+            <buildcopy-macro  classesjar="${sbt.domain.idl.class.jar}" releasejar="${sbt.domain.idl.rel.jar}" releasedir="${sbt.domain.release.dir}" />
+    </target>
+
+
+    <!-- **************************************************************
+            Checkin Release Jar
+    ******************************************************************* -->
+    <target name="Install"
+        description="Checkin production version of the code"
+            depends="-domain.idl.Init">
+            <install-macro  releasejar="${sbt.domain.idl.rel.jar}" />
+    </target>
+
+
+
+
+</project>
+

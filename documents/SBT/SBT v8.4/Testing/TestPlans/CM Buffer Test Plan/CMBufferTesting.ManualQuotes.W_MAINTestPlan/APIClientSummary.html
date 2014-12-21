@@ -1,0 +1,260 @@
+<html>
+<body>
+<title>CM Buffer Testing. Manual Quotes. W_MAIN Test Plan</title>
+<b><center><big><h1>CM Buffer Testing. Manual Quotes. W_MAIN Test Plan</h1></big></center></b><br>
+<br><hr><br><b>
+Log in HD User and Perform Test Requirements</b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD15 (Password: HD15)</small><br>
+&nbsp;&nbsp;<small>	Selecting 1 Product(s) from 1 Class(es) (by Reporting Class): [DAN]Class: DAN (543572694), Rpt Class: DAN (543572697), Products: DAN 12/2010 12.500000000 C (841526823); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:RMM2, Full Name: Automated API MM User, Role: M, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NMM2, Full Name: Automated API MM User, Role: M, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NMM3, Full Name: Automated API MM User, Role: M, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NBD1, Full Name: Automated API BD User, Role: B, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NBD2, Full Name: Automated API BD User, Role: B, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NBD3, Full Name: Automated API BD User, Role: B, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NBD4, Full Name: Automated API BD User, Role: B, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NMM4, Full Name: Automated API MM User, Role: N, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NMM5, Full Name: Automated API MM User, Role: N, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NMM6, Full Name: Automated API MM User, Role: N, Firm: CBOE:221, Give-Up Firm(s): CBOE:221,</small><br>
+&nbsp;&nbsp;<small>	Making User CBOE:RMM2 a DPM for selected Class(es): 'DAN' (543572694) </small><br>
+&nbsp;&nbsp;<small>	Verify that User RMM2 is a DPM for selected Class(es): 'DAN' (543572694)</small><br>
+&nbsp;&nbsp;<small>	Verify User RMM2 exists and is set as expected. User: CBOE:RMM2, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NMM2 exists and is set as expected. User: CBOE:NMM2, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NMM3 exists and is set as expected. User: CBOE:NMM3, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NBD1 exists and is set as expected. User: CBOE:NBD1, Role: B, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NBD2 exists and is set as expected. User: CBOE:NBD2, Role: B, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NBD3 exists and is set as expected. User: CBOE:NBD3, Role: B, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NBD4 exists and is set as expected. User: CBOE:NBD4, Role: B, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NMM4 exists and is set as expected. User: CBOE:NMM4, Role: N, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NMM5 exists and is set as expected. User: CBOE:NMM5, Role: N, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User NMM6 exists and is set as expected. User: CBOE:NMM6, Role: N, Active: true</small><br>
+<br><hr><br><b>
+Log in Trader Users</b><br>
+&nbsp;&nbsp;<small>	Log in Trader User: RMM2 (Password: RMM2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NMM2 (Password: NMM2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NMM3 (Password: NMM3), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NBD1 (Password: NBD1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NBD2 (Password: NBD2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NBD3 (Password: NBD3), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NBD4 (Password: NBD4), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NMM4 (Password: NMM4), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NMM5 (Password: NMM5), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NMM6 (Password: NMM6), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+Log in initial PAR test users</b><br>
+&nbsp;&nbsp;<small>	Log in PAR User: ABC (Password: CBOE), Workstation ID:  (W907) </small><br>
+&nbsp;&nbsp;<small>	Connecting to PTS</small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set Index Hybrid Indicator Enabled(Trading Property) for Class 'DAN' (543572694) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Index Hybrid Indicator Enabled (Trading Property) for Class 'DAN' (543572694) to: true</small><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 221 Key ( 543572694) , Volume : 49999</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify volume routing property for Session : W_MAIN Key ( 543572694) , Volumes: 49999</small><br>
+&nbsp;&nbsp;<small>	Set Help Desk Default Destination routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Destination: PUNT1</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Par Default Destination routing property for Session : W_MAIN Firm : 221 Key ( 543572694) , Destination: PUNT1:7</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 221 Class ( 543572694) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Class enable for Allow Incoming ISO Orders Routing property for Session : W_MAIN Key (543572694) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (543572694) , Value: 0</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+<br><hr><br><b>
+ Pre-Test Settings and Subscriptions</b><br>
+&nbsp;&nbsp;<small>	Set Product 'DAN 12/2010 12.500000000 C' (841526823) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'DAN 12/2010 12.500000000 C' (841526823) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'DAN 12/2010 12.500000000 C' (841526823) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'DAN 12/2010 12.500000000 C' (841526823) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for Current Market (V1, V2 & V3) for Class 'DAN' (543572694) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for CurrentMarketV4  for Class 'DAN' (543572694) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for Recap for Product 'DAN 12/2010 12.500000000 C' (841526823) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for Ticker for Product 'DAN 12/2010 12.500000000 C' (841526823) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for Current Market (V1, V2 & V3) for Class 'DAN' (543572694) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for Expected Opening Price for Class 'DAN' (543572694) </small><br>
+&nbsp;&nbsp;<small>	Set ManualQuoteCancelTimerForPAR (Trading Property) for class 'DAN'( 543572694) to: 60000 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Verified ManualQuoteCancelTimerForPAR (Trading Property) for class 'DAN'( 543572694) to: 60000 (seconds)</small><br>
+<br><hr><br><b>
+Test Case 1. Scenario 1:Verify Best Market (book depth & book depth detail) when Manual Quotes updates Current Market</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Set Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 1</small><br>
+&nbsp;&nbsp;<small>	Verify Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 1</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'DAN 12/2010 12.500000000 C' (841526823) : 100@1.0 x 100@1.300000000</small><br>
+&nbsp;&nbsp;<small>	Quote Query by User RMM2 for Product 'DAN 12/2010 12.500000000 C' (841526823): 100@1.0 x 100@1.300000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 100@1.0 x , Ask: 100@1.300000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [100@1.0 x 100@1.300000000]</small><br>
+<br><hr><br><b>
+Scenario 2. Incoming Manual Quote (BID) (Bid 20@1.00) is accepted and booked: Join</b><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of 20@0001.0000000 - null@null for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 120@1.0 x , Ask: 100@1.300000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [100@1.0 x 100@1.300000000]</small><br>
+<br><hr><br><b>
+Scenario 3. Incoming Manual Quote (BID) (Bid 80@1.10) is accepted and booked: Improves</b><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of 80@0001.1000000 - null@null for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 80@1.100000000 x , Ask: 100@1.300000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [80@1.100000000 x 100@1.300000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.100000000, Total Volume: 80, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.300000000, Total Volume: 100, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>	Set Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 2</small><br>
+&nbsp;&nbsp;<small>	Verify Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 2</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.100000000, Total Volume: 80, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.0, Total Volume: 100, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.300000000, Total Volume: 100, Contingency Volume: 0</small><br>
+<br><hr><br><b>
+Scenario 3. Incoming CUST Buy Order Buy 50 @ 1.05 Incoming Order is booked</b><br>
+&nbsp;&nbsp;<small>	Submit Order by User NBD1 for Product 'DAN 12/2010 12.500000000 C' (841526823) : B 50@1.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: JMM:3505</small><br>
+&nbsp;&nbsp;<small>	Order Query by User NBD1 for Product 'DAN 12/2010 12.500000000 C' (841526823) : B 50@1.50000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: JMM:3505</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [80@1.100000000 x 100@1.300000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 80@1.100000000 x , Ask: 100@1.300000000</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.100000000, Total Volume: 80, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.50000000, Total Volume: 50, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.300000000, Total Volume: 100, Contingency Volume: 0</small><br>
+<br><hr><br><b>
+Scenario 4. Incoming Manual Quote (OFFER) (ASK 20@1.20) is accepted and booked: Improves</b><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of null@null - 20@0001.2000000 for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 80@1.100000000 x , Ask: 20@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [80@1.100000000 x 20@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.100000000, Total Volume: 80, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.50000000, Total Volume: 50, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.200000000, Total Volume: 20, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.300000000, Total Volume: 100, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>	Set Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 3</small><br>
+&nbsp;&nbsp;<small>	Verify Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 3</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.100000000, Total Volume: 80, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.50000000, Total Volume: 50, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.0, Total Volume: 100, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.200000000, Total Volume: 20, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.300000000, Total Volume: 100, Contingency Volume: 0</small><br>
+<br><hr><br><b>
+Scenario 5. Incoming Manual Quote (BID) (Bid 10@1.15) is accepted and booked: Improves</b><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of 10@0001.1500000 - null@null for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 10@1.150000000 x , Ask: 20@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [10@1.150000000 x 20@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.150000000, Total Volume: 10, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.50000000, Total Volume: 50, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.0, Total Volume: 100, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.200000000, Total Volume: 20, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small> - Price: 1.300000000, Total Volume: 100, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>	Set Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 1</small><br>
+&nbsp;&nbsp;<small>	Verify Book Depth Size (Trading Property) for Class 'DAN' (543572694) to: 1</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'DAN 12/2010 12.500000000 C' (841526823) </small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NBD1 for Order JMM:3505, Cancelled Qty: 50, Cancel Type: 'CANCEL_ALL_QUANTITY' (3)</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NMM3 for Product 'DAN 12/2010 12.500000000 C' (841526823) : B 50@1.250000000, Contingency: 'IOC' (4) , Origin Code: I, Branch/Seq: IBB:7053</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NMM3 for Order IBB:7053, Cancelled Qty: 50, Cancel Type: 'CANCEL_ALL_QUANTITY' (3) <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NMM3 for Product 'DAN 12/2010 12.500000000 C' (841526823) : B 50@1.200000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: IBB:7065</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NMM3 for Order IBB:7065, Cancelled Qty: 50, Cancel Type: 'CANCEL_ALL_QUANTITY' (3)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+<br><hr><br><b>
+Test Case 2. Scenario 6. Verify Best Market when Manual Quote is canceled by Manual Quote Cancel Timer</b><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of 11@0001.0000000 - null@null for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 11@1.0 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [11@1.0 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 65000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'DAN 12/2010 12.500000000 C' (841526823), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [0@0.0 x 0@0.0]</small><br>
+<br><hr><br><b>
+Test Case 3. Scenario 7. Verify Best Market when Manual Quote is canceled by User</b><br>
+&nbsp;&nbsp;<small>	Set ManualQuoteCancelTimerForPAR (Trading Property) for class 'DAN'( 543572694) to: 30000 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Verified ManualQuoteCancelTimerForPAR (Trading Property) for class 'DAN'( 543572694) to: 30000 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of null@null - 20@0001.2000000 for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of null@null - 20@0001.2000000 for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [0@0.0 x 20@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.200000000, Total Volume: 20, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'DAN 12/2010 12.500000000 C' (841526823) : S 50@1.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: EEE:9521</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order EEE:9521, Cancelled Qty: 50, Cancel Type: 'CANCEL_ALL_QUANTITY' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [0@0.0 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of 10@0001.1000000 - null@null for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [10@1.100000000 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.100000000, Total Volume: 10, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'DAN 12/2010 12.500000000 C' (841526823) : B 50@1.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: EEE:9522</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order EEE:9522, Cancelled Qty: 50, Cancel Type: 'CANCEL_ALL_QUANTITY' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [0@0.0 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small>	Set ManualQuoteCancelTimerForNONPAR (Trading Property) for class 'DAN'( 543572694) to: 30000 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Verified ManualQuoteCancelTimerForNONPAR (Trading Property) for class 'DAN'( 543572694) to: 30000 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Submit Manual Quote of null@null - 20@0001.2000000 for product 'DAN 12/2010 12.500000000 C'</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [0@0.0 x 20@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+&nbsp;&nbsp;<small> - Price: 1.200000000, Total Volume: 20, Contingency Volume: 0</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'DAN 12/2010 12.500000000 C' (841526823) : S 50@1.150000000, Contingency: 'NONE' (1) , Origin Code: W, Branch/Seq: EEE:9523</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order EEE:9523, Cancelled Qty: 50, Cancel Type: 'CANCEL_ALL_QUANTITY' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'DAN 12/2010 12.500000000 C' (841526823): [0@0.0 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Trader (HD15) Book Depth Detail for Product 'DAN 12/2010 12.500000000 C' (841526823)</small><br>
+&nbsp;&nbsp;<small>Buy/Bid Side:</small><br>
+&nbsp;&nbsp;<small>Sell/Ask Side:</small><br>
+<br><hr><br><b>
+LOGOUT</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: RMM2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NMM2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NMM3</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NBD1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NBD2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NBD3</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NBD4</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD15</small><br>

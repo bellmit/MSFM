@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Database Build Procedure</TITLE>
+<META NAME="Template" CONTENT="C:\msoffice\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<H1 ALIGN="CENTER"><A NAME="top"></A>Database Build Procedure</H1>
+<P><HR></P>
+<H2>Table of Contents</H2>
+
+<UL>
+<LI><A HREF="#introduction">Introduction</A> </LI>
+<LI><A HREF="#buildingDatabase">Build the Database</A> </LI>
+
+<UL>
+<LI><A HREF="#addingTablesToDatabase">Add Tables to the Database Build</A> </LI>
+<LI><A HREF="#addingUpdatingTestData">Add or Update Test Data to Import</A></LI>
+<LI><A HREF="#runTheMakeFile">Run the Makefile</A></LI></UL>
+</UL>
+
+<P><HR></P>
+<H2><A NAME="introduction"></A>Introduction</H2>
+<FONT SIZE=2><P>This document describes the steps involved in building a database. </P>
+<P>The database is built via a Makefile.   The location the makefile looks for the files is relative to the current directory.  This means you must be in the /vobs/dte/domain/sql directory when using the makefile.  This is to support copying the files out of clearcase and executing the makefile elsewhere.  Do not forget to add your new tables to the build. If you are adding tables that have test data that must be seeded before the Global and/or Trade servers can run, you need to add your data to the import. </P>
+<P>&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="buildingDatabase"></A>Build the Database</H2>
+<FONT SIZE=2><P>1) Log into dte2</P>
+<P>2) set your view </P>
+<P>3) goto the domain/sql directory and run these command -</P>
+
+<UL>
+<LI>envirion </LI>
+<LI>clearmake -C gnu DB_USERID=&lt;db login&gt; DB_PASSWORD=&lt;db password&gt; all</LI></UL>
+
+<B><P>Note:  </B>The DB_USERID macro was changed to DB_USER which matches the environment variable we use in the setContext.  This means you do not have to specify the DB_USER and DB_PASSWORD on the clearmake command line (although you still can) if you are logged in as tradeeng (it will take it from the environment vars).</P>
+<P>4) If you want to load the test data, run this command</P>
+
+<UL>
+<LI>clearmake -C gnu DB_USERID=&lt;db login&gt; DB_PASSWORD=&lt;db password&gt; imp_test_data</LI></UL>
+
+<P>5) Change the rows in the configurationGroup table so that have a GroupName beginning with 'prefix' to the name of your environment. Some of the current environments are bussvc1, bussvc2, curincr, etc. </P>
+
+<UL>
+<LI>clearmake -C gnu DB_USERID=&lt;db login&gt; DB_PASSWORD=&lt;db password&gt; PREFIX=&lt;prefix&gt; update_config</LI></UL>
+
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="addingTablesToDatabase"></A>Add Tables to the Database Build</H2>
+<FONT SIZE=2><P>1) goto the domain/sql directory and open the file domain_sql.mk</P>
+<P>2) add your file containing the DDL to the list - TABLE_DDL_FILES</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="addingUpdatingTestData"></A>Add or Update Test Data to Import</H2>
+<FONT SIZE=2><P>This is somewhat manual right now. The makefile has support for exporting tables but for now we should talk with Ravi or John about how to get a full export of all the test data.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="runTheMakeFile"></A>Run the Makefile</H2>
+<FONT SIZE=2><P>The "valid environ" rule has been removed.  This means you can just run the makefile outright and the is no need to 'dot the environ'  The makefile will work assuming you have your Oracle environment setup properly.  The Oracle setup is not standard from machine to machine.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<FONT SIZE=2><P>&nbsp;</P>
+<P ALIGN="CENTER">Last Updated: Friday, December 01, 2000</P></FONT></BODY>
+</HTML>

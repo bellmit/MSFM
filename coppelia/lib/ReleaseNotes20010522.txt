@@ -1,0 +1,100 @@
+===============================================================================
+
+    Title: DBServer Synchronization fix
+Developer: Ben Lai
+     Date: May 20, 2001
+     
+Statement
+---------
+In the DBServer synchronization process, 1 too many messages was being distributed.
+
+Description Of Changes
+----------------------
+
+-------------------------------------------------------------------------------
+
+    Title: FIXometer changes
+Developer: Stuart Goldberg
+     Date: May 17, 2001
+     
+Statement
+---------
+FIXometer enhancements
+
+Description Of Changes
+----------------------
+1) Query Results Dialog column sizes and positions are preserved within the
+   entire run of a FIXometer session.
+2) Formatted Query Results now show "Exec Broker" and "Open/Close".
+3) Temporarily removed sorting of messages in the Query Results window.
+
+-------------------------------------------------------------------------------
+    
+    Title: FIXometer Changes
+Developer: Stuart Goldberg
+     Date: May 7, 2001
+     
+Statement
+---------
+Updates to FIXometer
+
+Description Of Changes
+----------------------
+1) Fixed bug whereby cells were selected instead of rows in FIXometer's main
+   grid.
+2) Redid Find Messages Dialog query to
+   a) FIX date bug
+   b) work around JDK1.2.2_006/JDK1.3.0_02 bug where secondary dialogs sometimes
+      were frozen.
+
+-------------------------------------------------------------------------------
+    
+    Title: PASSIVE_LOGON Feature added to FIXometer
+Developer: Stuart Goldberg
+     Date: May 1, 2001
+     
+Statement
+---------
+PASSIVE_LOGON Feature added to FIXometer
+
+Description Of Changes
+----------------------
+A new attribute has been added to the MAIN block of the Fixometer.ini file. It
+is called passive_logon. By default it is ON. When turned ON, the last
+username and password entered by the user is saved. When FIXometer needs to
+logon to another entitlement database before continuing, it will silently and
+passively attempt the logon with the previously entered username and password.
+
+-------------------------------------------------------------------------------
+    
+
+    Title: FIXometer enhancements
+Developer: Stuart Goldberg
+     Date: April 27, 2001
+     
+Statement
+---------
+Many small enhancements have been made to FIXometer.
+
+Description Of Changes
+----------------------
+1) Message Printing
+   A) Multiple messages are printed per page
+	 B) Only fields that have values are printed
+	 C) Field Values are displayed with textual representation
+	    rather than the raw FIX codes
+2) Refresh Button Added 
+   You can redo the current search with the click of a button.
+3) You can now search DBServer message based on Exec Broker.
+4) Messages are sorted by time.
+5) Formatted message view can be exported to a comma delimited file.
+6) Formatted message view now shows many more fields.
+7) DBServer messages can now be searched even when FIX engines are down.
+8) FIXometer grid settings (sort column, sort order, column widths, and
+   column order) are saved between FIXometer sessions.
+9) Message Area in bottom of FIXometer screen now has only black text. The
+   severity of messages is indicated by the color of a "bullet" placed to the
+	 left of the message.
+
+
+-------------------------------------------------------------------------------

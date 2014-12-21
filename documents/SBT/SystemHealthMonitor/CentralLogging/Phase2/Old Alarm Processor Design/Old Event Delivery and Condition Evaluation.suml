@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sequencediagram>
+  <Definition>[InstrumentorCacheImpl channelUpdate
+[InstrumentorCacheImpl processCountBlock
+[InstrumentorCacheImpl publishEvent
+[ChannelAdapter dispatch]]]]
+[ICAlarmProcessorImpl channelUpdate
+[ICAlarmProcessorImpl processBlock
+[AlarmProcessorCache hasConditionsForContextType]
+[AlarmProcessorCache getAlarmConditionProcessorList]
+[AlarmConditionProcessor removeConditionValue]
+[AlarmConditionProcessor process]
+[AlarmProcessorImpl processConditions
+[AlarmProcessorImpl fireNotificationForAllMatchedConditions
+[AlarmProcessorImpl publishNotificationEvent]]]]]</Definition>
+  <Links>
+    <Link Id="0" Class="com.cboe.instrumentationCollector.cache.InstrumentorCacheImpl" Method="channelUpdate" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="1" Class="com.cboe.instrumentationCollector.cache.InstrumentorCacheImpl" Method="processCountBlock" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="instrumentorBlock" Type="com.cboe.instrumentationCollector.common.instrumentor.CountInstrumentorBlock" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="2" Class="com.cboe.instrumentationCollector.cache.InstrumentorCacheImpl" Method="publishEvent" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="orbName" Type="java.lang.String" Description="" />
+        <Param Sequence="1" Name="channelType" Type="java.lang.Integer" Description="" />
+        <Param Sequence="2" Name="instrumentorBlock" Type="com.cboe.instrumentationCollector.common.instrumentor.InstrumentorBlock" Description="" />
+        <Param Sequence="3" Name="publishAll" Type="boolean" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="true">Double publishes on the IEC using ChannelType.IC_COUNT_INSTRUMENTOR_DETAILS. One publish uses Integer(0) for a key, the other uses the orbname.</CallComment>
+    </Link>
+    <Link Id="3" Class="com.cboe.util.channel.ChannelAdapter" Method="dispatch" Return="false">
+      <Comment>dispatch  dispatch places a new event in the event channel queue for processing   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="the channel event to dispatch. " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="4" Class="com.cboe.instrumentationCollector.cache.InstrumentorCacheImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="5" Class="com.cboe.instrumentationCollector.cache.InstrumentorCacheImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="6" Class="com.cboe.instrumentationCollector.cache.InstrumentorCacheImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="8" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="channelUpdate" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="9" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processBlock" Return="false">
+      <Comment>processBlock  Process a block of instrumentors  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="block" Type="com.cboe.instrumentationCollector.common.instrumentor.InstrumentorBlock" Description="instrumentor block " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="10" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="hasConditionsForContextType" Return="false">
+      <Comment>hasConditionsForContextType  Check to see if the cache has any conditions for the particular  contextType.   </Comment>
+      <Return Description="true if conditions exist for the contextType ">boolean</Return>
+      <Arguments>
+        <Param Sequence="0" Name="contextType" Type="java.lang.String" Description="  " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="12" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="getAlarmConditionProcessorList" Return="false">
+      <Comment>getAlarmConditionProcessorList  Get a list of AlarmConditionProcessor objects that apply.   </Comment>
+      <Return Description="list of AlarmConditionProcessors ">java.util.List</Return>
+      <Arguments>
+        <Param Sequence="0" Name="conditionType" Type="short" Description="" />
+        <Param Sequence="1" Name="subjectName" Type="java.lang.String" Description="" />
+        <Param Sequence="2" Name="contextName" Type="java.lang.String" Description="" />
+        <Param Sequence="3" Name="contextType" Type="java.lang.String" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="14" Class="com.cboe.interfaces.instrumentationCollector.AlarmConditionProcessor" Method="removeConditionValue" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="contextType" Type="java.lang.String" Description="" />
+        <Param Sequence="1" Name="subjectName" Type="java.lang.String" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="16" Class="com.cboe.interfaces.instrumentationCollector.AlarmConditionProcessor" Method="process" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="contextType" Type="java.lang.String" Description="" />
+        <Param Sequence="1" Name="subjectName" Type="java.lang.String" Description="" />
+        <Param Sequence="2" Name="contextName" Type="java.lang.String" Description="" />
+        <Param Sequence="3" Name="value" Type="java.lang.Object" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="18" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorImpl" Method="processConditions" Return="false">
+      <Comment>processConditions  Find out which conditions met and generate a list of data that matched.  This list is used to fire a notification.  There has to be at least one match for each condition in the definition before a notification is fired.  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="contextType" Type="java.lang.String" Description="  " />
+        <Param Sequence="1" Name="subjectName" Type="java.lang.String" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="19" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorImpl" Method="fireNotificationForAllMatchedConditions" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="matchedConditions" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="20" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorImpl" Method="publishNotificationEvent" Return="false">
+      <Comment>publishNotificationEvent  Publish the notification to the IEC for the publisher to pick up.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="struct" Type="com.cboe.idl.alarm.AlarmNotificationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="21" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorImpl" Method="processConditions" Return="true">
+      <Comment>processConditions  Find out which conditions met and generate a list of data that matched.  This list is used to fire a notification.  There has to be at least one match for each condition in the definition before a notification is fired.  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="contextType" Type="java.lang.String" Description="  " />
+        <Param Sequence="1" Name="subjectName" Type="java.lang.String" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="22" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorImpl" Method="processConditions" Return="true">
+      <Comment>processConditions  Find out which conditions met and generate a list of data that matched.  This list is used to fire a notification.  There has to be at least one match for each condition in the definition before a notification is fired.  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="contextType" Type="java.lang.String" Description="  " />
+        <Param Sequence="1" Name="subjectName" Type="java.lang.String" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+  </Links>
+</Sequencediagram>
+

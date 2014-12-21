@@ -1,0 +1,35 @@
+#ifndef EXCHANGE_IDL
+#define EXCHANGE_IDL
+
+#include "cmiUtil.idl"
+#include "cmiProduct.idl"
+#include "cmiMarketData.idl"
+
+//#pragma javaPackage "com.cboe.idl"
+
+module exchange
+{
+    typedef long ExchangeKey;
+
+    struct ExchangeStruct
+    {
+       ExchangeKey exchangeKey;
+       long membershipKey;
+       string acronym;
+       string name;
+    };
+
+    typedef sequence<ExchangeStruct> ExchangeStructSequence;
+
+    struct ExchangeClassIndicatorStruct
+    {
+       string exchange;
+       cmiMarketData::ExchangeIndicatorType marketCondition;
+       cmiProduct::ClassKey classKey;
+    };
+
+    typedef sequence<ExchangeClassIndicatorStruct> ExchangeClassIndicatorStructSequence;
+
+};
+#endif
+

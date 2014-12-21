@@ -1,0 +1,17 @@
+Notes:
+--------
+
+ CFN Build and Release Dependancy
+   - There is new IDL from cfn for NASDAQ handling.  Need to have the LATEST from cfnstock_1.0_nasdaq.  This branch contain the cfnStockIDL.idl and cfnStockIDL.jar
+
+
+ New Channel names:
+    - These are listed in the Impl plan.  But they are: CfnStockService and CfnStockAdmin.  The createSbtEC has amended to create these channels
+
+
+ Enabling StockHybrid:
+    - In the StockCFNTradeConsumer.xml and StockCFNQuoteConsumer.xml  
+
+       <enableHybridReporting booleanValue="true"/>
+       <siacReportingExchanges>NYSE,CBOE</siacReportingExchanges>  
+           + This property is used to determine wether the Qt/TR reports are sent to SIAC or NASDAQ.  The list is the primary exchanges.  If the primary exchange for a prod class is in the list then sent to SIAC if NOT in the list then sent to NASDAQ.

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalUserLoadManagerHome SYSTEM "../dtd/UserLoadManager.dtd">
+<GlobalUserLoadManagerHome>
+    <UserLoadManagerHomeImpl name="UserLoadManager">
+        <UserLoadManagerHomeImplProperties>
+			<casQuoteMaximumPoolSize>240</casQuoteMaximumPoolSize>
+			<casOrderEntryMaximumPoolSize>120</casOrderEntryMaximumPoolSize>
+			<casLightOrderEntryMaximumPoolSize>120</casLightOrderEntryMaximumPoolSize>
+			<poaPoolSizeGrowthFactor>10</poaPoolSizeGrowthFactor>
+			<baseTotalQuoteLoad>13333</baseTotalQuoteLoad>
+			<baseTotalOrderLoad>300</baseTotalOrderLoad>
+			<baseTotalLightOrderLoad>300</baseTotalLightOrderLoad>		
+			<maximumConnectionPoolSize>60</maximumConnectionPoolSize>
+			<minimumConnectionPoolSize>20</minimumConnectionPoolSize>
+			<connectionPoolGowthFactor>10</connectionPoolGowthFactor>
+            <evaluatorCorePoolSize>3</evaluatorCorePoolSize>
+			<evaluatorStartTime>08:40:00</evaluatorStartTime>
+			<evaluatorDelay>300</evaluatorDelay>
+			<fileWriterCorePoolSize>3</fileWriterCorePoolSize>
+			<fileWriterStartTime>09:00:00</fileWriterStartTime>
+			<fileWriterDelay>1800</fileWriterDelay>
+			<historyFileName>ConnectionPoolHistory</historyFileName>
+			<historyFileLocation>../v2run_dir/tmp/</historyFileLocation> 
+		</UserLoadManagerHomeImplProperties>
+    </UserLoadManagerHomeImpl>
+</GlobalUserLoadManagerHome>

@@ -1,0 +1,5 @@
+package com.cboe.domain.routingProperty.properties;
+
+public class BackupLinkageRouterAssignmentPostStationGroupBeanInfo extends LinkageRouterAssignmentPostStationtGroupBeanInfo
+{
+}

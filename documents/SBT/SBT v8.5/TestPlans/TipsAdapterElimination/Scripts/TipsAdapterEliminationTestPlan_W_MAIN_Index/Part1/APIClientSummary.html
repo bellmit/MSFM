@@ -1,0 +1,1388 @@
+<html>
+<body>
+<title>Tips Adapter Elimination Test Plan_W_MAIN</title>
+<b><center><big><h1>Tips Adapter Elimination Test Plan_W_MAIN</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD6 (Password: HD6)</small><br>
+<br><hr><br><b>
+ Test Cases:44</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 4  Product(s) from 1 Class(es): [ADRE]Class: ADRE (288096841), Products: ADRE 12/2010 47.0 P (841614597); ADRE 12/2010 43.0 C (843232933); ADRE 12/2010 43.0 P (843232934); ADRE 12/2010 40.0 C (853409828); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:KMM1, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Verify User KMM1 exists and is set as expected. User: CBOE:KMM1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: KMM1 (Password: KMM1), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+ Strategy Setup</b><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User KMM1 in Class 'ADRE' (288096841) Defined as: B 1 'ADRE 12/2010 43.0 C' (843232933), S 1 'ADRE 12/2010 43.0 P' (843232934)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User KMM1 in Class 'ADRE' (288096841) Defined as: B 1 'ADRE 12/2010 47.0 P' (841614597), S 1 'ADRE 12/2010 43.0 P' (843232934)</small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set Index Hybrid Indicator Enabled(Trading Property) for Class 'ADRE' (288096841) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Index Hybrid Indicator Enabled (Trading Property) for Class 'ADRE' (288096841) to: true</small><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+<br><hr><br><b>
+ Subscriptions</b><br>
+&nbsp;&nbsp;<small>	Subscribe User KMM1 for Ticker for Product 'ADRE 12/2010 47.0 P' (841614597) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User KMM1 for Recap for Product 'ADRE 12/2010 47.0 P' (841614597) </small><br>
+<br><hr><br><b>
+ Test Case 1:Set Underlying Recap Last Sale and verify that recap is published for the derivative product</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE 12/2010 47.0 P' (841614597) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE 12/2010 47.0 P' (841614597) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ADRE 12/2010 47.0 P' (841614597), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128200803 , Last Sale Price: 1.50, Net Change Price 0.05 , Last Sale Volume: 30, Total Volume 150 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Underlying Last Sale Values for Product 'ADRE 12/2010 47.0 P' (841614597): [</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128207880 , Last Sale Price: 0.03, Net Change Price 1.19 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: +,  Net Change Direction: + , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Underlying Last Sale Values for Product 'ADRE 12/2010 47.0 P' (841614597): [</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128212974 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 100 , Tick Direction: +,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Underlying Last Sale Values for Product 'ADRE 12/2010 47.0 P' (841614597): [</small><br>
+<br><hr><br><b>
+ Test Case 2:Set Underlying Recap Quote and verify that recap is published for the derivative product</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ADRE 12/2010 47.0 P' (841614597), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128218098 , Bid Price: 1.00, Ask Price 1.20 , Bid Size: 150, Ask Size 150 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Underlying Last Sale Values for Product 'ADRE 12/2010 47.0 P' (841614597): [</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128225176 , Bid Price: 0.13, Ask Price 0.00 , Bid Size: 850, Ask Size 1500 , Bid Direction: +,  Is OTC (Over The Counter): false , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Underlying Last Sale Values for Product 'ADRE 12/2010 47.0 P' (841614597): [</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128230254 , Bid Price: 0.13, Ask Price 0.01 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): false , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Underlying Last Sale Values for Product 'ADRE 12/2010 47.0 P' (841614597): [</small><br>
+<br><hr><br><b>
+ Test Case 3:Underlying State change OPEN or Halted is received before Class state is in Pre-Open or Opening Rotation state. Verify that derivative class state is not changed</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128241378 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128241409 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128257470 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128257501 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 4:Set the derivative class to Pre-Open state and verify that incoming underlying product state with OPEN indicator changes the derivate product to OPEN ROTATION state on the first request</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+<br><hr><br><b>
+ Test Scenario A:Incoming Underlying Recap Last Sale only with Product State OPEN. Verify that derivative product state is changed to Opening Rotation</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128287671 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128287702 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Scenario B:Incoming Underlying Recap Quote only with Product State OPEN. Verify that derivatice product state does not change</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128301841 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128301873 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 5:Set the derivative class to Opening Rotation state and verify that incoming underlying product state with HALTED indicator changes the derivaite product to HALTED state on the first request</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Scenario A:Incoming Underlying Recap Last Sale only with Product State HALTED. Verify that derivative product state changed to Halted</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128312012 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128312044 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Scenario B:Incoming Underlying Recap Quote only with Product State HALTED. Verify that derivatice product state changed to Halted</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128326183 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128326214 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 6:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with CLOSED state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128334339 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128334386 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128334417 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128334448 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128350572 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128350603 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128356649 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128356696 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128371804 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128371836 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128371867 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128371914 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128396052 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128396084 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128396115 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128396162 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128420300 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128420347 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128420378 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128420410 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128444548 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128444579 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128444611 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128444642 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128468827 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128468859 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128468890 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128468921 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 7:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with PRE-OPEN state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128490076 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128490107 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128509246 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128509277 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128509308 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128509340 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128528479 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128528510 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128528541 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128528573 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128549711 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128549743 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128549789 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128549821 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128570960 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128570991 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128571022 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128571069 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128592208 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128592239 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128592270 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128592302 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128613472 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128613503 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128613534 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128613565 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 8:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with OPENING ROTATION state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128634720 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128634751 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128653890 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128653921 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128653953 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128653984 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128673123 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128673154 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128673201 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128673232 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128694371 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128694402 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128694434 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128694465 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128715619 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128715651 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128715682 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128715713 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128736852 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128736883 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128736915 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128736961 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128758100 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128758132 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128758163 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128758194 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 9:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with OPEN state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128779333 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128779380 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128798519 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128798550 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128798581 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128798613 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128817752 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128817783 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128817814 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128817845 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128838984 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128839015 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128839062 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128839094 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128860217 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128860248 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128860295 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128860326 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128881465 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128881496 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128881528 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128881559 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128902698 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128902729 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128902760 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128902807 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 10:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with FAST state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128923961 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128923993 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128943147 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128943179 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128943210 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128943241 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128962380 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128962411 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128962443 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128962474 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128983613 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128983644 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288128983675 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288128983707 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129004845 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129004877 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129004908 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129004939 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129026078 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129026125 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129026156 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129026187 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129047311 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129047342 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129047389 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129047420 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 11:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with HALTED state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129068574 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129068606 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129068637 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129068668 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129075777 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129075808 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129075839 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129075871 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129082964 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129082995 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129083026 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129083058 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129104196 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129104228 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129104275 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129104306 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129125445 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129125476 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129125507 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129125538 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129146693 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129146724 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129146755 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129146787 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129167941 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129167972 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129168004 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129168035 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 12:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with SUSPENDED state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129189174 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129189205 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129189236 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129189268 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129226452 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129226483 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129226514 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129226546 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129247685 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129247716 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129247747 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129247778 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129268933 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129268964 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129268995 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129269027 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129290150 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129290197 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129290228 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129290259 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129311382 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129311414 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129311445 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129311492 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 13:Set the derivative class to Suspended state and verify that any incoming underlying product state does not change the derivaite product state</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'SUSPENDED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'SUSPENDED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129324616 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129324647 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129324678 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129324709 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129329818 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129329850 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129329896 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129329928 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129335037 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129335068 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129335099 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129335146 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129340255 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129340286 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129340317 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129340349 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129345458 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129345489 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129345520 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129345551 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129350645 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129350676 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129350707 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129350754 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'SUSPENDED'</small><br>
+<br><hr><br><b>
+ Test Case 14:Set the derivative class to Closed state and verify that any incoming underlying product state does not change the derivaite product state</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129363878 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129363909 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129363940 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129363972 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129369065 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129369112 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129369143 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129369174 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129374283 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129374315 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129374346 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129374377 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129379455 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129379486 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129379517 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129379549 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129384736 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129384767 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129384798 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129384829 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129394938 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129394969 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129395000 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129395032 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 15:Set the derivative class to Halted state and verify that any incoming underlying product state does not change the derivaite product state</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129425185 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129425217 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129425248 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129425279 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129430388 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129430419 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129430451 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129430482 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129435591 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129435622 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129435653 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129435685 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129440793 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129440825 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129440856 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129440887 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129445996 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129446027 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129456120 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129456152 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129456183 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129456214 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 16:Set the derivative class to Open Rotation state and verify that any incoming underlying product state does not change the derivate product state except for Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129480353 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129480384 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129480415 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129480446 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129485555 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129485587 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129485618 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129485649 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129490758 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129490789 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129490821 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129490867 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129495961 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129495992 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129496023 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129496055 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129501163 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129501195 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129501242 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129501273 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129511366 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129511397 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129511444 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129511475 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 17:Set the derivative class to Open state and verify that any incoming underlying product state does not change the derivaite product state except for Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129538613 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129538645 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129538676 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129538707 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129543801 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129543847 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129543879 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129543910 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129549003 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129549034 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129549081 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129549113 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129554222 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129554253 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129554284 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129554315 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129559424 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129559455 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129559487 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129559518 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129569611 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129569642 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129569689 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129569720 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 18:Set the derivative class to Fast state and verify that any incoming underlying product state does not change the derivaite product state except for Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096841) State by Class to 'FAST MARKET' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'FAST MARKET' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129599999 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129600030 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129600061 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129600093 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129605186 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129605217 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129605249 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129605295 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129610389 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129610420 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129610467 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129610482 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129615607 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129615670 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129615716 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129615748 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129620857 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129620888 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129620919 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129620950 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129631075 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129631106 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129631137 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129631168 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 19:Derivative option class is Halted and strategy is On-Hold state. verify that incoming underlying product state expect for CLOSED changes the derivative product state for strategy to Opening Rotation or Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129641277 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129641324 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129641355 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129641386 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129651495 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129651526 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129651557 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129651588 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129664947 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129664978 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129665009 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129665040 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129678164 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129678196 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129678242 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129678274 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129691382 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129691413 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129691444 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129691491 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129704600 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129704631 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129704662 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129704693 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ADRE' (288096842) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096841) </small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ADRE' (288096842) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE 12/2010 47.0 P' (841614597) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129717802 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129717833 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (308347262) , Trade Time 1288129717864 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (308347262) , Quote Time 1288129717895 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ADRE: Combo 20101218 43.0000:1288123929500' (499258826) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: KMM1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD6</small><br>

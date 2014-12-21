@@ -1,0 +1,320 @@
+<html>
+<body>
+<title>CBSX MKT Order Handling Test Plan</title>
+<b><center><big><h1>CBSX MKT Order Handling Test Plan</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD2 (Password: HD2)</small><br>
+<br><hr><br><b>
+ Test Cases:15</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [ABT]Class: ABT (69206138), Products: ABT 0/0 0.0   (69206140); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_STOCK is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:CC1, Full Name: Automated API $CUST1 User, Role: X, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User CC1 exists and is set as expected. User: CBOE:CC1, Role: X, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:CC2, Full Name: Automated API $CUST2 User, Role: X, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User CC2 exists and is set as expected. User: CBOE:CC2, Role: X, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:WMM1, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User WMM1 exists and is set as expected. User: CBOE:WMM1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: CC1 (Password: CC1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: CC2 (Password: CC2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: WMM1 (Password: WMM1), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'ABT' (69206138) to: [6 : true, 7 : true]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Enabled (Trading Property) for Class 'ABT' (69206138) to: [6 : true, 7 : true]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Cross Minimum Dollar Amount (Trading Property) for class 'ABT'( 69206138) to: 100 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Cross Minimum Dollar Amount (Trading Property) for class 'ABT' (69206138) is set to: 100 (seconds)</small><br>
+&nbsp;&nbsp;<small>	Set Cross Minimum Order Size (Trading Property) for class 'ABT'( 69206138) to: 100  </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Cross Minimum Order Size (Trading Property) for class 'ABT'( 69206138) to: 100  </small><br>
+&nbsp;&nbsp;<small>	Set Auto Link Enabled  (Trading Property) for class 'ABT'( 69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify AUTO LINK ENABLED  (Trading Property) for class 'ABT' (69206138) is set to: true  </small><br>
+&nbsp;&nbsp;<small>	Set Lot Size (Trading Property) for class 'ABT'( 69206138) to: 100  </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Lot Size (Trading Property) for class 'ABT'( 69206138) to: 100  </small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 56227000 and Close Time: 77827000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT 0/0 0.0  ' (69206140) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT 0/0 0.0  ' (69206140) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT 0/0 0.0  ' (69206140) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT 0/0 0.0  ' (69206140) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Subscribe User WMM1 for Current Market (V1, V2 & V3) for Class 'ABT' (69206138) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User WMM1 for Auction RFP's for Class 'ABT' (69206138) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User WMM1 for Auction RFP's for Class 'ABT' (69206138) </small><br>
+<br><hr><br><b>
+ Test Case 1:Verify that Market order without contingency MIDPOINT CROSS BID PEG CROSS OFFER PEG CROSS is rejected if received prior to the regular trading hours</b><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 0.00 , Exchange Volumes: NYSE:0 Bid Price 0.00, Exchange Volumes: NYSE:0</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 56236000 and Close Time: 77836000</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: false</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: false</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 500@0.0, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: QMT:9828</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: QMT:9828, Filled 500@1.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 500@1.0 (Leaves: 500) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [500@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (26) , Origin Code: C, Branch/Seq: PVV:1794</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: PVV:1794, Filled 500@1.0 (Leaves: 500, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 500@1.0 (Leaves: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: PVV:1794, Cancel Quantity: 500, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [0@0.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) B  Price 1.05 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) S  Price 1.15 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.05 , Exchange Volumes: NYSE:500 Bid Price 1.05, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1700@0.0, Contingency: 'null' (25) , Origin Code: C, Branch/Seq: LJK:8607</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [S 1700@1.50000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1700@1.50000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 10000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: LJK:8607, Cancel Quantity: 1700, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) </small><br>
+<br><hr><br><b>
+ Test Case 2:Verify that Market order without contingency MIDPOINT CROSS BID PEG CROSS OFFER PEG CROSS is accepted if received within the regular trading hours</b><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 0.00 , Exchange Volumes: NYSE:0 Bid Price 0.00, Exchange Volumes: NYSE:0</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 52667000 and Close Time: 77867000</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 500@0.0, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: EBQ:2751</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: EBQ:2751, Filled 500@1.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 500@1.0 (Leaves: 500) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [500@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (26) , Origin Code: C, Branch/Seq: MTW:4972</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: MTW:4972, Filled 500@1.0 (Leaves: 500, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 500@1.0 (Leaves: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: MTW:4972, Cancel Quantity: 500, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [0@0.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) B  Price 1.05 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) A  Price 1.15 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.05 , Exchange Volumes: NYSE:500 Bid Price 1.05, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 700@0.0, Contingency: 'null' (25) , Origin Code: C, Branch/Seq: GRG:7837</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [B 700@1.150000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 700@1.150000000 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 10000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: GRG:7837, Cancel Quantity: 700, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) </small><br>
+<br><hr><br><b>
+ Test Case 3:Verify that Market order without contingency MIDPOINT CROSS BID PEG CROSS OFFER PEG CROSS is rejected if received prior to the regular trading hours and when Trading Property Regular Market Time Validation is set to TRUE</b><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 56303000 and Close Time: 77903000</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 0.00 , Exchange Volumes: NYSE:0 Bid Price 0.00, Exchange Volumes: NYSE:0</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 500@0.0, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: SMV:8676 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [1000@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (26) , Origin Code: C, Branch/Seq: MJS:2162 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) B  Price 1.05 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) A  Price 1.15 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.05 , Exchange Volumes: NYSE:500 Bid Price 1.05, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1700@0.0, Contingency: 'null' (25) , Origin Code: C, Branch/Seq: VFH:3849 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) </small><br>
+<br><hr><br><b>
+ Test Case 4:Verify that Market order without contingency MIDPOINT CROSS BID PEG CROSS OFFER PEG CROSS is rejected if received later than the regular trading hours and when Trading Property Regular Market Time Validation is set to TRUE</b><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 41917000 and Close Time: 51717000</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 0.00 , Exchange Volumes: NYSE:0 Bid Price 0.00, Exchange Volumes: NYSE:0</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 500@0.0, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: TMV:8676 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (26) , Origin Code: C, Branch/Seq: TJS:2162 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [1000@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) B  Price 1.05 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update stock quote for Product 'ABT 0/0 0.0  ' (69206140) (NYSE) A  Price 1.15 Exchange Volumes: 5</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.05 , Exchange Volumes: NYSE:500 Bid Price 1.05, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1700@0.0, Contingency: 'null' (25) , Origin Code: C, Branch/Seq: TFH:3849 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) </small><br>
+<br><hr><br><b>
+ Test Case 5:Verify that Market order with contingency BID PEG CROSS is accepted if received prior to or Later than the regular trading hours</b><br>
+<br><hr><br><b>
+ Test Scenario A:Matched Cross Order:Trade Immediately</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.00 , Exchange Volumes: NYSE:500 Bid Price 1.00, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Scenario B:Paired Cross Order:Wait and trade</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 1000@0.0, Contingency: 'null' (29) , Origin Code: C, Branch/Seq: WKM:8268</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (29) , Origin Code: C, Branch/Seq: UCR:5712</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: WKM:8268, Filled 1000@1.150000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: UCR:5712, Filled 1000@1.150000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Scenario C:Single Cross Order:wait and cancel</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (29) , Origin Code: C, Branch/Seq: ECX:4883</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: ECX:4883, Cancel Quantity: 1000, Cancel Reason: 'SYSTEM' (3)</small><br>
+<br><hr><br><b>
+ Test Case 6:Verify that Market order with contingency OFFER PEG CROSS is accepted if received prior to or Later than the regular trading hours</b><br>
+<br><hr><br><b>
+ Test Scenario A:Matched Cross Order:Trade Immediately</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Scenario B:Paired Cross Order:Wait and trade</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 850@0.0, Contingency: 'null' (30) , Origin Code: C, Branch/Seq: HWF:5655</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 850@0.0, Contingency: 'null' (30) , Origin Code: C, Branch/Seq: INA:7331</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: HWF:5655, Filled 850@1.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: INA:7331, Filled 850@1.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Scenario C:Single Cross Order:wait and cancel</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 1000@0.0, Contingency: 'null' (30) , Origin Code: C, Branch/Seq: SIJ:3002</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: SIJ:3002, Cancel Quantity: 1000, Cancel Reason: 'SYSTEM' (3)</small><br>
+<br><hr><br><b>
+ Test Case 7:Verify that Market order with contingency MIDPOINT CROSS is accepted if received prior to or Later than the regular trading hours</b><br>
+<br><hr><br><b>
+ Test Scenario A:Matched Cross Order:Trade Immediately</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Scenario B:Paired Cross Order:Wait and trade</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 99@0.0, Contingency: 'MIDPOINT_CROSS' (17) , Origin Code: C, Branch/Seq: GFI:9851</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 99@0.0, Contingency: 'MIDPOINT_CROSS' (17) , Origin Code: C, Branch/Seq: MII:8621</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: GFI:9851, Filled 99@1.75000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: MII:8621, Filled 99@1.75000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Scenario C:Single Cross Order:wait and cancel</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 500@0.0, Contingency: 'MIDPOINT_CROSS' (17) , Origin Code: C, Branch/Seq: LYF:2810</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: LYF:2810, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+<br><hr><br><b>
+ Test Case 8:Verify that Market order without contingency MIDPOINT CROSS: BID PEG CROSS: OFFER PEG CROSS is accepted during the Regular Trading hours and executed after the Regular Trading hour</b><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.00 , Exchange Volumes: NYSE:500 Bid Price 1.00, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 52759000 and Close Time: 56359000</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 850@0.0, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: VTT:9634</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 49172000 and Close Time: 51872000</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [B 800@1.150000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [B 50@1.150000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 800@1.150000000 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 10000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: VTT:9634, Filled 300@1.200000000 (Leaves: 550, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: VTT:9634, Filled 50@1.200000000 (Leaves: 500, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 300@1.200000000 (Leaves: 700) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 50@1.200000000 (Leaves: 650) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V3 (Best Market) Values for Product 'ABT 0/0 0.0  ' (69206140): [1000@1.0 x 650@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 52789000 and Close Time: 56389000</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 0.00 , Exchange Volumes: NYSE:0 Bid Price 0.00, Exchange Volumes: NYSE:0</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.05 , Exchange Volumes: NYSE:500 Bid Price 1.05, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1700@0.0, Contingency: 'null' (25) , Origin Code: C, Branch/Seq: STX:6968</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 49200000 and Close Time: 51900000</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [S 1700@1.50000000, ]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1700@1.50000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC2 for Product 'ABT 0/0 0.0  ' (69206140) : B 700@1.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: TAU:3144</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: STX:6968, Filled 700@1.50000000 (Leaves: 1000, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC2 for Order Branch/Seq: TAU:3144, Filled 700@1.50000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Pause for 10000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: STX:6968, Cancel Quantity: 1000, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+<br><hr><br><b>
+ Test Case 9:Verify that Market order without contingency MIDPOINT CROSS: BID PEG CROSS: & OFFER PEG CROSS is accepted if received during the Regular Trading hours (Closing time is same as opening time)</b><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.00 , Exchange Volumes: NYSE:500 Bid Price 1.00, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hours (Trading Property) for Class 'ABT' (69206138) to: Open Time: 52816000 and Close Time: 52816000</small><br>
+&nbsp;&nbsp;<small>	Set Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Regular Market Hour Validation Enable (Trading Property) for Class 'ABT' (69206138) to: true</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : B 850@0.0, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: DSW:7608</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [B 800@1.150000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [B 50@1.150000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 800@1.150000000 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 10000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: DSW:7608, Filled 300@1.200000000 (Leaves: 550, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: DSW:7608, Filled 50@1.200000000 (Leaves: 500, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 300@1.200000000 (Leaves: 700) </small><br>
+&nbsp;&nbsp;<small>	Quote Fill Verification for User WMM1 for Product: 'ABT 0/0 0.0  ' (69206140), Filled 50@1.200000000 (Leaves: 650) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1000@0.0, Contingency: 'null' (26) , Origin Code: C, Branch/Seq: QXS:9092</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 0.00 , Exchange Volumes: NYSE:0 Bid Price 0.00, Exchange Volumes: NYSE:0</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Update NBBO for Product 'ABT 0/0 0.0  ' (69206140) Ask Price 1.05 , Exchange Volumes: NYSE:500 Bid Price 1.05, Exchange Volumes: NYSE:500</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC1 for Product 'ABT 0/0 0.0  ' (69206140) : S 1700@0.0, Contingency: 'null' (25) , Origin Code: C, Branch/Seq: JEE:3938</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'ABT 0/0 0.0  ' (69206140): [S 1700@1.50000000, ]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1700@1.50000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User CC2 for Product 'ABT 0/0 0.0  ' (69206140) : B 700@1.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: RVY:2030</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC1 for Order Branch/Seq: JEE:3938, Filled 700@1.50000000 (Leaves: 1000, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User CC2 for Order Branch/Seq: RVY:2030, Filled 700@1.50000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Pause for 10000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User CC1 for Product 'ABT 0/0 0.0  ' (69206140), Order: JEE:3938, Cancel Quantity: 1000, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 0/0 0.0  ' (69206140), Bid: 1000@1.0 x , Ask: 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User WMM1 for Product 'ABT 0/0 0.0  ' (69206140) </small><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: WMM1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: CC2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: CC1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD2</small><br>

@@ -1,0 +1,818 @@
+-------------- Output Heading --------------
+Application: ITG API Client, version 3.0
+Test Suite: MKT Order Handling Test Plan (Other Sessions)
+Test Suite File: TestEvents
+
+-------------- Test Step --------------
+Test Case:	SALoginAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:56:56.101
+End Time:	2010-05-06 08:57:04.789
+Message:	SAUser HD12 successfully logged in.
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Cases:8
+
+-------------- Comment --------------
+Comment:	 Test Environment Setup
+
+-------------- Test Step --------------
+Test Case:	ReportTradingPropertiesAtomCMIImpl - 
+Start Time:	2010-05-06 08:57:05.32
+End Time:	2010-05-06 08:57:06.351
+Message:	Successful Reporting Trading Properties
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SelectClassesAndProductsAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:04.82
+End Time:	2010-05-06 08:57:06.383
+Message:	Successful Class & Product Selection : $CLASS1=69206035 (AAI, 7) : [$CLASS1PRODUCT1=751320692 (AAI 7/2010 2.500000000 C); ]  (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	ReportTradingPropertiesAtomCMIImpl - 
+Start Time:	2010-05-06 08:57:06.664
+End Time:	2010-05-06 08:57:07.648
+Message:	Successful Reporting Trading Properties
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SelectClassesAndProductsAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:06.383
+End Time:	2010-05-06 08:57:07.695
+Message:	Successful Class & Product Selection : $CLASS11=75170016 (BBY, 4) : [$CLASS11PRODUCT1=778351682 (BBY1C 9/2010 0.0  ); ]  (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	ReportTradingPropertiesAtomCMIImpl - 
+Start Time:	2010-05-06 08:57:07.742
+End Time:	2010-05-06 08:57:08.664
+Message:	Successful Reporting Trading Properties
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SelectClassesAndProductsAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:07.695
+End Time:	2010-05-06 08:57:08.695
+Message:	Successful Class & Product Selection : $CLASS21=130031315 (BT, 4) : [$CLASS21PRODUCT1=757370035 (BT 6/2010 0.0  ); ]  (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifySessionStateAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:08.695
+End Time:	2010-05-06 08:57:08.711
+Message:	Successful Verify Session State (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifySessionStateAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:08.711
+End Time:	2010-05-06 08:57:08.711
+Message:	Successful Verify Session State (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifySessionStateAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:08.711
+End Time:	2010-05-06 08:57:08.711
+Message:	Successful Verify Session State (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 User Setup
+
+-------------- Test Step --------------
+Test Case:	CreateUserAtomCMIImpl - New User for Clearing Firm "671" and Exchange "CBOE" !
+Start Time:	2010-05-06 08:57:08.726
+End Time:	2010-05-06 08:57:23.414
+Message:	Successful Create User [CC1] (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyUserExistenceAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:23.414
+End Time:	2010-05-06 08:57:23.414
+Message:	Successful Verify User Existence - CC1 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	CreateUserAtomCMIImpl - New User for Clearing Firm "671" and Exchange "CBOE" !
+Start Time:	2010-05-06 08:57:23.414
+End Time:	2010-05-06 08:57:25.695
+Message:	Successful Create User [KMM1] (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyUserExistenceAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:25.695
+End Time:	2010-05-06 08:57:25.695
+Message:	Successful Verify User Existence - KMM1 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TraderLoginAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:25.758
+End Time:	2010-05-06 08:57:27.93
+Message:	CMITraderUser CC1 successfully logged in - Accessed at TCP/IP Location: IP(atgcas2) Port(8003), Connection Point: atgcas2
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TraderLoginAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:27.992
+End Time:	2010-05-06 08:57:30.117
+Message:	CMITraderUser KMM1 successfully logged in - Accessed at TCP/IP Location: IP(atgcas2) Port(8003), Connection Point: atgcas2
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Trading Property Setup
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHourValidationEnableAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:30.164
+End Time:	2010-05-06 08:57:33.18
+Message:	Successful Set Regular Market Hour Validation Enable 69206035 to true(HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyRegularMarketHourValidationEnableAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:35.18
+End Time:	2010-05-06 08:57:35.18
+Message:	Successful Verify Regular Market Hour Validation Enable 69206035 to true (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHourValidationEnableAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:35.18
+End Time:	2010-05-06 08:57:38.211
+Message:	Successful Set Regular Market Hour Validation Enable 75170016 to true(HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyRegularMarketHourValidationEnableAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:40.211
+End Time:	2010-05-06 08:57:40.211
+Message:	Successful Verify Regular Market Hour Validation Enable 75170016 to true (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHourValidationEnableAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:40.211
+End Time:	2010-05-06 08:57:43.227
+Message:	Successful Set Regular Market Hour Validation Enable 130031315 to true(HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyRegularMarketHourValidationEnableAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:45.227
+End Time:	2010-05-06 08:57:45.227
+Message:	Successful Verify Regular Market Hour Validation Enable 130031315 to true (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Routing Property Setup
+
+-------------- Test Step --------------
+Test Case:	SetHelpDeskDefaultDestinationRPAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:47.477
+End Time:	2010-05-06 08:57:47.571
+Message:	Successful set Help Desk Default Destination routing property for W_MAIN:Default:Default:69206035:HelpDeskDefaultDestination
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyHelpDeskDefaultDestinationRPAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:49.649
+End Time:	2010-05-06 08:57:49.742
+Message:	Successfully verified Help Desk Default Destination for W_MAIN:Default:Default:69206035:HelpDeskDefaultDestination, on OHS Servers: atgtest2BC03x1OHServerHybridA, atgtest2BC04x1OHServerHybridA
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetVolumeRoutingPropertyAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:49.758
+End Time:	2010-05-06 08:57:49.774
+Message:	Successful set Firm Volume Limit routing property for W_MAIN:Default:Default:69206035:VolumeSimple
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyVolumeRoutingPropertyAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:51.883
+End Time:	2010-05-06 08:57:51.93
+Message:	Successfully verified Firm Volume Limit for W_MAIN:Default:Default:69206035:VolumeSimple, on OHS Servers: atgtest2BC03x1OHServerHybridA, atgtest2BC04x1OHServerHybridA
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetVolumeDeviationCheckAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:51.977
+End Time:	2010-05-06 08:57:51.992
+Message:	Successfully set routing property for W_MAIN:Default:Default:69206035:*:1:VolumeDevCheckSimple
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	VerifyVolumeDeviationCheckAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:54.055
+End Time:	2010-05-06 08:57:54.117
+Message:	Successfully verified Booth Default Destination for W_MAIN:Default:Default:69206035:*:1:VolumeDevCheckSimple, on OHS Servers: atgtest2BC04x1OHServerHybridA, atgtest2BC03x1OHServerHybridA
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Pre-Test Settings
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:54.242
+End Time:	2010-05-06 08:57:54.758
+Message:	Successful Set Product State (by Product) 751320692 to 1 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:54.758
+End Time:	2010-05-06 08:57:55.258
+Message:	Successful Set Product State (by Product) 751320692 to 2 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:55.258
+End Time:	2010-05-06 08:57:55.758
+Message:	Successful Set Product State (by Product) 751320692 to 3 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:55.758
+End Time:	2010-05-06 08:57:56.258
+Message:	Successful Set Product State (by Product) 751320692 to 4 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:56.258
+End Time:	2010-05-06 08:57:56.758
+Message:	Successful Set Product State (by Product) 778351682 to 1 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:56.758
+End Time:	2010-05-06 08:57:57.258
+Message:	Successful Set Product State (by Product) 778351682 to 2 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:57.258
+End Time:	2010-05-06 08:57:57.758
+Message:	Successful Set Product State (by Product) 778351682 to 3 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:57.758
+End Time:	2010-05-06 08:57:58.258
+Message:	Successful Set Product State (by Product) 778351682 to 4 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:58.274
+End Time:	2010-05-06 08:57:58.789
+Message:	Successful Set Product State (by Product) 757370035 to 1 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:58.789
+End Time:	2010-05-06 08:57:59.289
+Message:	Successful Set Product State (by Product) 757370035 to 2 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:59.289
+End Time:	2010-05-06 08:57:59.789
+Message:	Successful Set Product State (by Product) 757370035 to 3 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SetProductStateByProductAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:57:59.789
+End Time:	2010-05-06 08:58:00.289
+Message:	Successful Set Product State (by Product) 757370035 to 4 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case 1:Verify that Market order is ACCEPTED if received prior to the regular trading hours (W_MAIN Class)
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHoursAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:00.368
+End Time:	2010-05-06 08:58:03.399
+Message:	Successful Set Regular Market Hours 35880000 57480000 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:05.524
+End Time:	2010-05-06 08:58:05.54
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:05.727
+End Time:	2010-05-06 08:58:06.321
+Message:	Successful Quote Entry & Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:06.821
+End Time:	2010-05-06 08:58:07.383
+Message:	Successful Order Entry & Verification (XTR:5692 - CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:12.43
+End Time:	2010-05-06 08:58:12.93
+Message:	Successful Order Status Query & Fill Report Verification (CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:12.977
+End Time:	2010-05-06 08:58:13.477
+Message:	Successful Quote Fill Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:13.477
+End Time:	2010-05-06 08:58:13.477
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case 2:Verify that Market order is ACCEPTED if received later than the regular trading hours (W_MAIN Class)
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHoursAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:13.493
+End Time:	2010-05-06 08:58:16.508
+Message:	Successful Set Regular Market Hours 21493000 31293000 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:18.508
+End Time:	2010-05-06 08:58:18.508
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:18.508
+End Time:	2010-05-06 08:58:19.055
+Message:	Successful Order Entry & Verification (XBX:8731 - CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:24.055
+End Time:	2010-05-06 08:58:24.555
+Message:	Successful Order Status Query & Fill Report Verification (CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:24.555
+End Time:	2010-05-06 08:58:25.055
+Message:	Successful Quote Fill Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:25.055
+End Time:	2010-05-06 08:58:25.055
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteCancelAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:25.055
+End Time:	2010-05-06 08:58:25.618
+Message:	Successful Quote Cancel & Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case 3:Verify that Market order is ACCEPTED if received prior to the regular trading hours (ONE_MAIN Class)
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHoursAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:25.618
+End Time:	2010-05-06 08:58:28.618
+Message:	Successful Set Regular Market Hours 35905000 57505000 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:30.618
+End Time:	2010-05-06 08:58:30.618
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:30.618
+End Time:	2010-05-06 08:58:31.321
+Message:	Successful Quote Entry & Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:31.321
+End Time:	2010-05-06 08:58:32.337
+Message:	Successful Order Entry & Verification (TID:9543 - CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:37.337
+End Time:	2010-05-06 08:58:37.837
+Message:	Successful Order Status Query & Fill Report Verification (CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:37.837
+End Time:	2010-05-06 08:58:38.337
+Message:	Successful Quote Fill Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:38.337
+End Time:	2010-05-06 08:58:38.337
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case 4:Verify that Market order is ACCEPTED if received later than the regular trading hours (ONE_MAIN Class)
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHoursAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:38.337
+End Time:	2010-05-06 08:58:41.352
+Message:	Successful Set Regular Market Hours 21518000 31318000 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:43.352
+End Time:	2010-05-06 08:58:43.352
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:43.352
+End Time:	2010-05-06 08:58:43.884
+Message:	Successful Order Entry & Verification (RHC:461 - CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:48.884
+End Time:	2010-05-06 08:58:49.384
+Message:	Successful Order Status Query & Fill Report Verification (CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:49.384
+End Time:	2010-05-06 08:58:49.884
+Message:	Successful Quote Fill Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:49.884
+End Time:	2010-05-06 08:58:49.884
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteCancelAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:49.884
+End Time:	2010-05-06 08:58:50.446
+Message:	Successful Quote Cancel & Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case 5:Verify that Market order is ACCEPTED if received prior to the regular trading hours (CFE_MAIN Class)
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHoursAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:50.446
+End Time:	2010-05-06 08:58:53.462
+Message:	Successful Set Regular Market Hours 35930000 57530000 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:55.462
+End Time:	2010-05-06 08:58:55.462
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:55.462
+End Time:	2010-05-06 08:58:56.181
+Message:	Successful Quote Entry & Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:58:56.181
+End Time:	2010-05-06 08:58:57.15
+Message:	Successful Order Entry & Verification (SEI:7930 - CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:02.15
+End Time:	2010-05-06 08:59:02.65
+Message:	Successful Order Status Query & Fill Report Verification (CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:02.65
+End Time:	2010-05-06 08:59:03.15
+Message:	Successful Quote Fill Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:03.15
+End Time:	2010-05-06 08:59:03.15
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case 6:Verify that Market order is ACCEPTED if received later than the regular trading hours (CFE_MAIN Class)
+
+-------------- Test Step --------------
+Test Case:	SetRegularMarketHoursAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:03.15
+End Time:	2010-05-06 08:59:06.181
+Message:	Successful Set Regular Market Hours 21543000 31343000 (HD12)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:08.181
+End Time:	2010-05-06 08:59:08.181
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:08.181
+End Time:	2010-05-06 08:59:08.806
+Message:	Successful Order Entry & Verification (SBO:9028 - CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	OrderFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:13.806
+End Time:	2010-05-06 08:59:14.306
+Message:	Successful Order Status Query & Fill Report Verification (CC1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteFillVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:14.306
+End Time:	2010-05-06 08:59:14.806
+Message:	Successful Quote Fill Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TopOfBookVerificationAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:14.806
+End Time:	2010-05-06 08:59:14.806
+Message:	Successful Top Of Book Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	QuoteCancelAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:14.806
+End Time:	2010-05-06 08:59:15.369
+Message:	Successful Quote Cancel & Verification (KMM1)
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Comment --------------
+Comment:	 Test Case:Cleaning Up Task
+
+-------------- Test Step --------------
+Test Case:	TraderLogoutAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:15.462
+End Time:	2010-05-06 08:59:15.494
+Message:	TraderUser Logged out: KMM1
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	TraderLogoutAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:15.494
+End Time:	2010-05-06 08:59:15.509
+Message:	TraderUser Logged out: CC1
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Test Step --------------
+Test Case:	SALogoutAtomCMIImpl - Comment
+Start Time:	2010-05-06 08:59:15.619
+End Time:	2010-05-06 08:59:15.65
+Message:	SAUser Logged out: HD12
+Expected Success:	true
+Received Success:	true
+Results:	Pass
+
+-------------- Output Summary --------------
+Execution Start Time: 2010-05-06 08:56:56.054
+Execution End Time: 2010-05-06 08:59:15.65
+Execution Duration: 00:02:19.596
+Test Cases Executed: 85
+Test Cases PASS: 85
+Expected Non-Pass Events: 0
+Test Cases FAIL: 0
+

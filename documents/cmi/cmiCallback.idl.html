@@ -1,0 +1,132 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_EVENTS_IDL
+#define CMI_EVENTS_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiSession.idl"
+#include "cmiMarketData.idl"
+#include "cmiQuote.idl"
+#include "cmiStrategy.idl"
+#include "cmiOrder.idl"
+#include "cmiUser.idl"
+#include "cmiAdmin.idl"
+#include "cmiUtil.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiCallback
+{
+
+    interface CMICurrentMarketConsumer {
+        void acceptCurrentMarket(
+            in cmiMarketData::CurrentMarketStructSequence currentMarket);        
+    };
+    
+    interface CMINBBOConsumer {
+      void acceptNBBO( in cmiMarketData::NBBOStructSequence nbbo);
+    };
+
+    interface CMIExpectedOpeningPriceConsumer {
+        void acceptExpectedOpeningPrice(
+            in cmiMarketData::ExpectedOpeningPriceStruct expectedOpeningPrice );
+    };
+
+    interface CMIOrderStatusConsumer {
+        void acceptOrderStatus( in cmiOrder::OrderDetailStructSequence orders);
+
+        void acceptOrderCanceledReport(
+            in cmiOrder::OrderCancelReportStruct canceledReport );
+
+        void acceptOrderFilledReport(
+            in cmiOrder::OrderFilledReportStruct filledReport );
+
+        void acceptOrderBustReport(
+            in cmiOrder::OrderBustReportStruct bustReport);
+
+        void acceptOrderBustReinstateReport(
+            in cmiOrder::OrderBustReinstateReportStruct bustReinstatedReport);
+
+        void acceptNewOrder(in cmiOrder::OrderDetailStruct order);
+    };
+
+    interface CMIQuoteStatusConsumer {
+        void acceptQuoteStatus( in cmiQuote::QuoteDetailStructSequence quotes);
+
+        void acceptQuoteFilledReport(
+            in cmiQuote::QuoteFilledReportStruct filledReport );
+
+        void acceptQuoteBustReport(
+            in cmiQuote::QuoteBustReportStruct bustReport );
+
+        void acceptQuoteCancelReport(
+            in cmiQuote::QuoteCancelReportStruct cancelReport );
+    };
+
+    interface CMIRFQConsumer {
+        void acceptRFQ(
+            in cmiQuote::RFQStruct rfq);
+    };
+
+    interface CMIClassStatusConsumer {
+        void updateProductClass(in cmiSession::SessionClassStruct updatedClass);
+
+        void acceptClassState(in cmiSession::ClassStateStructSequence classState);
+    };
+
+
+    interface CMIStrategyStatusConsumer {
+        void updateProductStrategy(in cmiSession::SessionStrategyStructSequence updatedStrategies);
+    };
+
+    interface CMIProductStatusConsumer {
+        void updateProduct(in cmiSession::SessionProductStruct updatedProduct);
+        void acceptProductState(in cmiSession::ProductStateStructSequence productState);
+    };
+
+    interface CMITradingSessionStatusConsumer {
+        void acceptTradingSessionState( in cmiSession::TradingSessionStateStruct sessionState);
+    };
+
+    interface CMIRecapConsumer {
+        void acceptRecap(
+             in cmiMarketData::RecapStructSequence recap);
+    };
+
+    interface CMITickerConsumer {
+        void acceptTicker(
+             in cmiMarketData::TickerStructSequence ticker);
+    };
+
+    interface CMIUserSessionAdmin {
+         cmiAdmin::HeartBeatStruct acceptHeartBeat (in cmiAdmin::HeartBeatStruct heartbeat);
+         void acceptLogout( in string reason );
+         void acceptTextMessage( in cmiAdmin::MessageStruct message );
+         void acceptAuthenticationNotice();
+         void acceptCallbackRemoval(    in cmiUtil::CallbackInformationStruct callbackInformation,
+                                        in string reason,
+                                        in exceptions::ErrorCode errorCode);
+
+    };
+
+    interface CMIOrderBookConsumer {
+         void acceptBookDepth(in cmiMarketData::BookDepthStruct productBook);
+    };
+
+    interface CMIOrderBookUpdateConsumer {
+      void acceptBookDepthUpdate(in cmiMarketData::BookDepthUpdateStruct productBook );
+    };
+};
+#endif
+</pre>

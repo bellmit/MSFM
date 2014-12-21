@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+jxb:version="1.0"
+elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+	<xs:include schemaLocation="ExceptionDefinitions.xsd"/>
+	<xs:include schemaLocation="CommonProductDefinitions.xsd"/>
+	<xs:element name="PQO" type="GIProductQueryOperationsType">
+		<xs:annotation>
+			<xs:documentation>Product Query Operations</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIProductQueryOperations"/>
+				<jxb:property name="productQueryOperations"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GIProductQueryOperationsType">
+		<xs:sequence>
+			<xs:element name="TSS" type="GITradingSessionStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="tradingSessionStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PTS" type="GIProductTypeStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productTypeStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SCS" type="GISessionClassStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionClassStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CSS" type="GIClassStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="classStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SPSS" type="GISessionProductStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionProductStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PSS" type="GIProductStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SSS" type="GISessionStrategyStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionStrategyStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="STS" type="GIStrategyStructsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="strategyStructSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EX" type="GIUserExceptionType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="userException"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GITradingSessionStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.TradingSessionStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GITradingSessionStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TS" type="GITradingSessionStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="tradingSessionStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIProductTypeStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ProductTypeStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIProductTypeStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PTY" type="GIProductTypeStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productTypeStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GISessionClassStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionClassStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GISessionClassStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SC" type="GISessionClassStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionClassStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GISessionStrategyStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionStrategyStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GISessionStrategyStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SS" type="GISessionStrategyStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionStrategyStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIStrategyStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiStrategy.StrategyStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIStrategyStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="STGS" type="GIStrategyStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="strategyStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:element name="STTM" type="GITimeStructType">
+		<xs:annotation>
+			<xs:documentation>Start Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIStartTime"/>
+				<jxb:property name="startTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ENTM" type="GITimeStructType">
+		<xs:annotation>
+			<xs:documentation>End Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIEndTime"/>
+				<jxb:property name="endTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GITradingSessionStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.TradingSessionStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="STTM"/>
+			<xs:element ref="ENTM"/>
+		</xs:sequence>
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="sst" use="required"/>
+		<xs:attribute ref="tsn" use="required">
+			<xs:annotation>
+				<xs:documentation>Transaction Sequence Number</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="sequenceNumber"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<!-- GIProductStructType -->
+	<xs:complexType name="GIProductTypeStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ProductTypeStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="CRTM"/>
+			<xs:element ref="LMTM"/>
+		</xs:sequence>
+		<xs:attribute ref="pt" use="required">
+			<xs:annotation>
+				<xs:documentation>Type</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="type"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="nm" use="required"/>
+		<xs:attribute ref="dsc" use="required"/>
+	</xs:complexType>
+	<!-- GISessionClassStructType -->
+	<xs:complexType name="GISessionStrategyLegStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionStrategyLegStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="pk" use="required">
+			<xs:annotation>
+				<xs:documentation>Product Key</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="product"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="rq" use="required"/>
+		<xs:attribute ref="sd" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GISessionStrategyLegsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionStrategyLegStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GISessionStrategyLegSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SSL" type="GISessionStrategyLegStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionStrategyLegs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GISessionStrategyStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionStrategyStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SP" type="GISessionProductStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionProductStruct"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SSLS" type="GISessionStrategyLegsType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionStrategyLegSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="sty" use="required"/>
+	</xs:complexType>
+
+	<xs:complexType name="GIStrategyStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiStrategy.StrategyStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PS" type="GIProductStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productStruct"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SLS" type="GIStrategyLegsType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="strategyLegSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="sty" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIStrategyLegsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiStrategy.StrategyStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIStrategyLegSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SL" type="GIStrategyLegStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="strategyLegs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIStrategyLegStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiStrategy.StrategyLegStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="pk" use="required">
+			<xs:annotation>
+				<xs:documentation>Product Key</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="product"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="rq" use="required"/>
+		<xs:attribute ref="sd" use="required"/>
+	</xs:complexType>
+
+
+	<xs:attribute name="sst" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>State</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="state"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="rq">
+		<xs:annotation>
+			<xs:documentation>Ratio Quantity</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="ratioQuantity"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="sd" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Side</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="side">
+					<jxb:baseType>
+						<jxb:javaType name="char" hasNsContext="false" parseMethod="com.cboe.xmlParser.XmlBindingDataConversionUtility.getFirstChar" printMethod="java.lang.Character.toString"/>
+					</jxb:baseType>
+				</jxb:property>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sty" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Strategy Type</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="strategyType"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+
+	<xs:complexType name="GIClassStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ClassStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIClassStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CS" type="GIClassStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="classStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:complexType name="GIProductStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ProductStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIProductStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PS" type="GIProductStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:complexType name="GISessionProductStructsType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionProductStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GISessionProductStructSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SPS" type="GISessionProductStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="sessionProductStructs"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+</xs:schema>

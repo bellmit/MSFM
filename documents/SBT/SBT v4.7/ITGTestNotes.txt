@@ -1,0 +1,36 @@
+-----------------------------------------------------------------------
+Functional Interaction
+-----------------------------------------------------------------------
+Case	Summery			Passed	Target	Date	
+1	Login/Logout		Y	Test10	06/01
+				Y		06/08
+2	Login/Forced-Logout	Y	Test10	06/01
+				Y		06/08
+3	DPM/EOP			Y	Test10	06/01
+	
+4	Trade/Clearance		Y	Test10	06/02	
+				Y		06/09	
+5	Quote Lock 1		Y	Test10	06/13
+6	Quote Lock 2		Y	Test10	06/13
+7	Quote Lock 3		Y	Test10	06/13
+8	Quote Lock 4		Y	Test10	06/13
+9	Quote Trigger 1		Y	Test10	06/13
+10	Quote Trigger	2	Y	Test10	06/13
+11	QRM			Y	Test10	06/13
+12	Quote Control ID	N/A
+13	Trade/Activity Log	Y	Test10	06/02
+				Y		06/10
+14	Block Trade		Y	Test10	06/10
+15	Trade Bust		Y	Test10	06/02
+
+16	Trade Bust w/o Re	Y	Test10	06/02
+				N		06/10	stock/block trade
+17	Text Messaging		Y	Test10	06/10
+18	Book Depth		N	Test10	06/10	SA GUI 
+19	Firm Affilation		N/A	
+20	PDPM		`	N/A
+21
+22	RFQ			Y	Test10	06/10 
+23	Stock			N/A
+24	Stock			N/A	
+25	Stock			N/A

@@ -1,0 +1,1075 @@
+<html>
+<body>
+<title>Tips Adapter Elimination Test Plan_W_MAIN</title>
+<b><center><big><h1>Tips Adapter Elimination Test Plan_W_MAIN</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD1 (Password: HD1)</small><br>
+<br><hr><br><b>
+ Test Cases:43</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 4  Product(s) from 1 Class(es): [ABT]Class: ABT (69206141), Products: ABT 5/2010 35.0 P (726851052); IQ 2/2010 60.0 C (736408326); IQ 2/2010 60.0 P (736408327); IQ 5/2010 65.0 P (736408329); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ZMM1, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User ZMM1 exists and is set as expected. User: CBOE:ZMM1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ZMM1 (Password: ZMM1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ZMM1 in Class 'ABT' (69206141) Defined as: B 1 'IQ 2/2010 60.0 C' (736408326), S 1 'IQ 2/2010 60.0 P' (736408327)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ZMM1 in Class 'ABT' (69206141) Defined as: B 1 'ABT 5/2010 35.0 P' (726851052), S 1 'IQ 2/2010 60.0 P' (736408327)</small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+&nbsp;&nbsp;<small>	Subscribe User ZMM1 for Ticker for Product 'ABT 5/2010 35.0 P' (726851052) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ZMM1 for Recap for Product 'ABT 5/2010 35.0 P' (726851052) </small><br>
+<br><hr><br><b>
+ Test Case 1:Set Underlying Recap Last Sale and verify that recap is published for the derivative product</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT 5/2010 35.0 P' (726851052) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT 5/2010 35.0 P' (726851052) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 5/2010 35.0 P' (726851052), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686873060 , Last Sale Price: 1.50, Net Change Price 0.05 , Last Sale Volume: 30, Total Volume 150 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686880092 , Last Sale Price: 0.03, Net Change Price 1.19 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: +,  Net Change Direction: + , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686885123 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 100 , Tick Direction: +,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+<br><hr><br><b>
+ Test Case 2:Set Underlying Recap Quote and verify that recap is published for the derivative product</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'ABT 5/2010 35.0 P' (726851052), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686890123 , Bid Price: 1.00, Ask Price 1.20 , Bid Size: 150, Ask Size 150 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686897170 , Bid Price: 0.13, Ask Price 0.00 , Bid Size: 850, Ask Size 1500 , Bid Direction: +,  Is OTC (Over The Counter): false , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686902201 , Bid Price: 0.13, Ask Price 0.01 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): false , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+<br><hr><br><b>
+ Test Case 3:Underlying State change OPEN or Halted is received before Class state is in Pre-Open or Opening Rotation state. Verify that derivative class state is not changed</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686913311 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686913342 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686929421 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686929436 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 4:Set the derivative class to Pre-Open state and verify that incoming underlying product state with OPEN indicator does not change the derivaite product to OPEN ROTATION state unless both quote and last sale are received and last indicator received has OPEN state</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+<br><hr><br><b>
+ Test Scenario A:Incoming Underlying Recap Last Sale only with Product State OPEN. Verify that derivative product state does not change Verify that subsequent request with another product state does not change the derivative state</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686959702 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686961718 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+<br><hr><br><b>
+ Test Scenario B:Incoming Underlying Recap Quote only with Product State OPEN. Verify that derivatice product state does not change</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686963765 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+<br><hr><br><b>
+ Test Case 5:Set the derivative class to Opening Rotation state and verify that incoming underlying product state with HALTED indicator changes the derivaite product to HALTED state on the first request</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Scenario A:Incoming Underlying Recap Last Sale only with Product State HALTED. Verify that derivative product state changed to Halted</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271686973905 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Scenario B:Incoming Underlying Recap Quote only with Product State HALTED. Verify that derivatice product state changed to Halted</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686988093 , Bid Price: 1.00, Ask Price 1.00 , Bid Size: 200, Ask Size 200 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 6:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with CLOSED state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271686996187 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687002125 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687018250 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687024312 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687039391 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687039422 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687063594 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687063625 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687087798 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687087829 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687112001 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687112032 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687136204 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687136236 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 7:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with PRE-OPEN state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687157408 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687157439 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687164470 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687164502 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687171533 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687171533 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687192690 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687192705 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687214846 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687214862 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687235987 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687236003 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687257128 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687257143 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 8:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with OPENING ROTATION state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687278284 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687278300 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687285331 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687285331 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687292363 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687292378 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687313519 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687313519 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687334691 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687334691 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687355848 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687355848 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687376989 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687377004 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 9:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with OPEN state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687398145 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687398161 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687405192 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687405192 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687412224 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687417224 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687438380 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687438396 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687459552 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687459568 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687480709 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687480724 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687501881 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687501897 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 10:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with FAST state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687523053 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687523069 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687530084 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687530100 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687537131 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687537147 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687558304 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687558319 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687579460 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687579476 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687600632 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687600648 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687621804 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687621820 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 11:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with HALTED state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687647977 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687647992 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687655024 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687655039 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687662071 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687662071 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687683243 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687683243 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687704462 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687704462 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687725696 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687725712 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687746962 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687746978 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 12:Derivative class is in Pre-Open state. Incoming Underlying Recap Quote with SUSPENDED state and Recap Last Sale with various product states other than CLOSED or HALTED. Verify that derivative product state changes to OPENING ROTATION</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687768259 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687768275 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687775306 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687775322 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687782353 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687782369 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687803541 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687803541 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687824713 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687824729 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687845901 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687845917 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687867089 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687867104 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+<br><hr><br><b>
+ Test Case 13:Set the derivative class to Suspended state and verify that any incoming underlying product state does not change the derivaite product state</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'SUSPENDED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'SUSPENDED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687885308 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687885323 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687890339 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687890402 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687895433 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687895433 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687900464 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687900480 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687905511 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687905511 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687910542 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687910558 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'SUSPENDED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'SUSPENDED'</small><br>
+<br><hr><br><b>
+ Test Case 14:Set the derivative class to Closed state and verify that any incoming underlying product state does not change the derivaite product state</b><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687923715 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687923730 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687928761 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687928777 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687933855 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687933871 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687938887 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687938902 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687943934 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687943949 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687953965 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687953996 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 15:Set the derivative class to Halted state and verify that any incoming underlying product state does not change the derivaite product state</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'HALTED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687984309 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687984325 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687989450 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687989465 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687994497 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687994497 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271687999528 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271687999544 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688004575 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688004591 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688014669 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688014684 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 16:Set the derivative class to OpenRotation state and verify that any incoming underlying product state does not change the derivaite product state except for Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688038857 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688038872 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688044044 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688044060 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688049091 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688049107 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688054138 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688054154 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688059185 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688059185 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688069216 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688069232 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 17:Set the derivative class to Open state and verify that any incoming underlying product state does not change the derivaite product state except for Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688096467 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688096482 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688101732 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688106857 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688111873 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688111889 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688116920 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688116936 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688121967 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688121983 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688132014 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688132014 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 18:Set the derivative class to Fast state and verify that any incoming underlying product state does not change the derivaite product state except for Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206141) State by Class to 'FAST MARKET' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'FAST MARKET' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688162311 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688162311 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688167343 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688167358 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688172436 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688172452 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688177468 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688177483 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688182515 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688182530 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'FAST MARKET'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688192546 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688192562 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case 19:Derivative option class is Halted and strategy is On-Hold state. verify that incoming underlying product state expect for CLOSED changes the derivaite product state for strategy to Opening Rotation or Halted</b><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688202702 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688202702 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'CLOSED' (1) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688212734 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688212749 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'SUSPENDED' (10) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688225797 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688225812 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'PREOPEN' (2) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688238875 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688238875 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPENING ROTATION' (3) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688251937 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688251969 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'OPEN' (4) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688265031 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688265047 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'FAST MARKET' (6) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'ABT' (69206142) State by Class to 'ON HOLD' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Clear Underlying Cache Data for class 'ABT' (69206141) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT 5/2010 35.0 P' (726851052) State is 'HALTED'</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'ON HOLD'</small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Last Sale for Product 'null' (69206140) , Trade Time 1271688278094 , Last Sale Price: 0.00, Net Change Price 0.00 , Last Sale Volume: 0, Total Volume 0 , Tick Direction: -,  Net Change Direction: - , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Update Underlying Recap Quote for Product 'null' (69206140) , Quote Time 1271688278110 , Bid Price: 0.00, Ask Price 0.00 , Bid Size: 0, Ask Size 0 , Bid Direction: -,  Is OTC (Over The Counter): true , Product State: 'HALTED' (5) </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'ABT: Combo 20100220 60.0000:1270584606387' (561381452) State is 'HALTED'</small><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ZMM1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD1</small><br>

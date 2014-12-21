@@ -1,0 +1,33 @@
+#ifndef INTERMARKET_QSSS_IDL
+#define INTERMARKET_QSSS_IDL
+
+#include "QuoteStatusSubscriptionService.idl"
+#include "consumers.idl"
+
+module businessServices
+{
+    interface QuoteStatusSubscriptionServiceExt : businessServices::QuoteStatusSubscriptionService
+    {
+        void subscribeIntermarketQuoteStatus(in string userId,
+                                  in consumers::QuoteStatusConsumerExt quoteStatusConsumer)
+             raises
+             (
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+             );
+
+        void unsubscribeIntermarketQuoteStatus(in string userId,
+                                    in consumers::QuoteStatusConsumerExt quoteStatusConsumer)
+             raises
+             (
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+             );
+    };
+};
+
+#endif

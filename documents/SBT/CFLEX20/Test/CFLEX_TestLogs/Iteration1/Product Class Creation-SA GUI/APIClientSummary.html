@@ -1,0 +1,88 @@
+<html>
+<body>
+<title>CFLEX Product Class Creation Test Plan Using SA GUI Part1 WR:6708</title>
+<b><center><big><h1>CFLEX Product Class Creation Test Plan Using SA GUI Part1 WR:6708</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD15 (Password: HD15)</small><br>
+<br><hr><br><b>
+ Test Cases:19</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [AAT]Class: AAT (1003001644), Products: AAT 3/2011 22.500000000 C (1004723473); </small><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [DBA]Class: AAT (1003001644), Products: AAT 3/2011 22.500000000 C (1004723473); Class: DBA (358481966), Products: DBA 1/2012 30.0 C (714250744); </small><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [2AA]Class: AAT (1003001644), Products: AAT 3/2011 22.500000000 C (1004723473); Class: DBA (358481966), Products: DBA 1/2012 30.0 C (714250744); Class: 2AA (427455879), Products: 2AA 4/2013 0.0 C (427950166); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+&nbsp;&nbsp;<small>	Verify Session FLEX_MAIN is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+<br><hr><br><b>
+ Strategy Setup</b><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Firm Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+&nbsp;&nbsp;<small>
+Change Ipd Enabled on OHS : false</small><br>
+<br><hr><br><b>
+ Subscriptions</b><br>
+<br><hr><br><b>
+ Test Case 1:1.2.1 Verify FLEX Product Class creation with Equity underlying using SA gui</b><br>
+&nbsp;&nbsp;<small>	Create Class '2ONA' (428111410) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 2:1.2.2 Verify FLEX Product Class creation with Index underlying using SA gui</b><br>
+&nbsp;&nbsp;<small>	Create Class '3UNM' (428111413) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 3:1.2.3 Verify that Product Class is created End of Day</b><br>
+&nbsp;&nbsp;<small>	Create Class '2QUX' (428111416) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 4:1.3.1 Create Product Class With Lead Character 1 with Index underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class '1DBA' (428111419) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 5:1.3.2 Create Product Class With Lead Character 2 with Index underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class '2DBA' (428111422) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 6:1.3.3 Create Product Class With Lead Character 3 with Index underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class '3DBA' (428111425) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 7:1.3.4 Create Product Class With Lead Character 4 with Index underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class '4DBA' (428111428) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 8:1.3.5 Create Product Class With Lead Character 1 with Equity underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class '1AAT' (428111431) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 9:1.3.6 Create Product Class With Lead Character 2 with Equity underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class '2AAT' (428111434) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 10:1.3.7 Verify that a Product Class with Equity underlying cannot be created with AM settlement type</b><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case 11:1.3.8 Verify that Settlement type and exercise style cannot be created inappropriately for Equity underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case 12:1.3.9 Verify that Settlement type and exercise style cannot be created inappropriately for Index underlying</b><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case 13:1.3.10 Verify that Product Class for FLEX MAIN cannot be created without a lead character</b><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case 14:1.3.11 Verify that Product Class for FLEX MAIN cannot be created with invalid lead character</b><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case 15:1.3.12 Verify that FLEX Product Class cannot be created with Exercise Style as None</b><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (358481965), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Index', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case 16:1.4.2 Verify update functionality of Product Class using SA gui</b><br>
+&nbsp;&nbsp;<small>	Verify Class Existence: 427455879</small><br>
+&nbsp;&nbsp;<small>	Updated Class '2AA' (427455879) Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 4/11/2012, and Listing State: 'ACTIVE' (with verification)</small><br>
+<br><hr><br><b>
+ Test Case 17:1.5.2 Verify dedupe check for an existing Product Class using SA gui</b><br>
+&nbsp;&nbsp;<small>	Verify Class Existence: 427455879</small><br>
+&nbsp;&nbsp;<small>	Create Class 'null' (0) using the Underlying Product: 'null' (990691616), Primary Exhcange: 'CBOE', Product Description: 'CFLEX Equity', Activation Date: 4/11/2011, Inactivation Date: 3/22/2012, and Listing State: 'ACTIVE' (with verification) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD15</small><br>

@@ -1,0 +1,422 @@
+#ifndef PRODUCT_IDL
+#define PRODUCT_IDL
+
+#include "exceptions.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "cmiUtil.idl"
+#include "cmiMarketData.idl"
+
+
+module product
+{
+    typedef short SpreadNormalizationStrategyType;
+    
+#pragma use_lookup_for_string ON
+    typedef string Symbol;
+#pragma use_lookup_for_string OFF
+
+#pragma use_lookup_for_string ON
+    typedef string SessionName;
+#pragma use_lookup_for_string OFF
+    typedef short SettlementType;
+
+    //###################################
+	// Product Struct wrapper to allow
+	// CUSIP id. Future enhancement might
+	// be multiple id's instead of just 
+	// CUSIP.
+	//###################################
+    struct ProductStructV2
+	{
+	    cmiProduct::ProductStruct product;
+		string cusip; // Identification for securities products.
+	};
+
+    typedef sequence <ProductStructV2> ProductStructV2Sequence;
+
+    
+    // ##################################
+    // # ProductClassStruct              #
+    // ##################################
+    struct ProductClassStruct
+    {
+      string sessionCode;
+      string defaultTransactionFeeCode;
+      product::SettlementType settlementType;
+      cmiProduct::ClassStruct info;
+      cmiProduct::ProductStructSequence products;
+    };
+
+    typedef sequence <ProductClassStruct> ProductClassStructSequence;
+
+
+    // ##################################
+    // # PriceAdjustmentStruct          #
+    // ##################################
+    typedef short PriceAdjustmentAction;
+
+    struct PriceAdjustmentItemStruct {
+      cmiProduct::PriceAdjustmentAction action;
+      cmiProduct::ProductNameStruct currentName;
+      cmiProduct::ProductNameStruct newName;
+      char newOpraMonthCode;
+      char newOpraPriceCode;
+    };
+
+#pragma use_lookup_for_string ON
+    typedef string SessionCode;
+#pragma use_lookup_for_string OFF
+    typedef string SessionCodeDescription;
+
+    struct SessionCodeDescriptionStruct {
+	SessionCode sessionCode;
+	SessionCodeDescription sessionCodeDescription;
+    };
+
+    typedef sequence< SessionCodeDescriptionStruct > SessionCodeDescriptionStructSequence;
+
+    typedef sequence< PriceAdjustmentItemStruct > PriceAdjustmentItemStructSequence;
+
+    struct PriceAdjustmentClassStruct {
+      cmiProduct::PriceAdjustmentAction action;
+      cmiProduct::ReportingClassKey classKey;
+      Symbol currentClassSymbol;
+      cmiProduct::ProductType productType;
+      Symbol newClassSymbol;
+      long beforeContractSize;
+      long afterContractSize;
+      PriceAdjustmentItemStructSequence items;
+    };
+
+    struct ProductOpenInterestStruct {
+        cmiProduct::ProductKeysStruct productKeys;
+        long openInterest;
+    };
+
+    typedef sequence< ProductOpenInterestStruct > ProductOpenInterestStructSequence;
+
+    struct ClassOpenInterestStruct {
+        ProductOpenInterestStructSequence openInterests;
+    };
+
+    typedef sequence< ClassOpenInterestStruct > ClassOpenInterestStructSequence;
+
+    typedef sequence< PriceAdjustmentClassStruct > PriceAdjustmentClassStructSequence;
+
+    typedef short PriceAdjustmentSource;
+
+    typedef short AdjustmentOrderAction;
+
+    struct PriceAdjustmentStruct {
+      long adjustmentNumber;
+      cmiProduct::PriceAdjustmentType type;
+      product::PriceAdjustmentSource source;
+      cmiProduct::ProductKey productKey;
+      Symbol productSymbol;
+      Symbol newProductSymbol;
+      cmiUtil::DateStruct effectiveDate;
+      cmiUtil::DateStruct runDate;
+      short splitNumerator;
+      short splitDenominator;
+      cmiUtil::PriceStruct cashDividend;
+      cmiUtil::PriceStruct stockDividend;
+      cmiUtil::PriceStruct lowRange;
+      cmiUtil::PriceStruct highRange;
+      PriceAdjustmentClassStructSequence adjustedClasses;
+      cmiUtil::DateTimeStruct createdTime;
+      cmiUtil::DateTimeStruct lastModifiedTime;
+      product::AdjustmentOrderAction orderAction;
+    };
+
+    typedef sequence< PriceAdjustmentStruct > PriceAdjustmentStructSequence;
+
+    typedef long    GroupKey;
+    typedef long    GroupType;
+#pragma use_lookup_for_string ON
+    typedef string  GroupName;
+#pragma use_lookup_for_string OFF
+
+    typedef sequence<GroupKey>  GroupKeySequence;
+    typedef sequence<GroupType> GroupTypeSequence;
+
+    struct GroupTypeStruct
+    {
+    GroupType   groupType;
+    string      groupTypeDescription;
+    boolean     exclusiveMembership;
+    };
+    typedef sequence<GroupTypeStruct> GroupTypeStructSequence;
+
+
+    struct GroupStruct
+    {
+      GroupKey        groupKey;
+      GroupName       groupName;
+      GroupTypeStruct groupType;
+    };
+
+    typedef sequence<GroupStruct> GroupStructSequence;
+
+    struct ClassDefinitionStruct
+    {
+      cmiProduct::ClassKey classKey;
+      cmiProduct::ProductType productType;
+      cmiProduct::ListingState listingState;
+      Symbol classSymbol;
+      cmiProduct::ProductStruct underlyingProduct;
+      Symbol primaryExchange;
+      cmiProduct::ProductDescriptionName descriptionName;
+      string defaultTransactionFeeCode;
+      product::SettlementType settlementType;
+      cmiUtil::DateStruct activationDate;
+      cmiUtil::DateStruct inactivationDate;
+      boolean testClass;
+    };
+    typedef sequence<ClassDefinitionStruct> ClassDefinitionStructSequence;
+
+    typedef sequence <cmiProduct::ProductKeysStruct> ProductKeysStructSequence;
+
+    struct ProductSettlementStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiUtil::PriceStruct settlementPrice;
+    };
+
+    typedef sequence <ProductSettlementStruct> ProductSettlementStructSequence;
+
+    struct ClassSettlementStruct
+    {
+        ProductSettlementStructSequence settlements;
+    };
+
+    typedef sequence <ClassSettlementStruct> ClassSettlementStructSequence;
+
+    struct TransactionFeeCodeStruct {
+        string transactionFeeCode;
+        string description;
+    };
+
+    typedef sequence <TransactionFeeCodeStruct> TransactionFeeCodeStructSequence;
+
+    struct ProductClassExtStruct {
+        product::ProductClassStruct productClass;
+        string post;
+        string station;
+    };
+
+    typedef sequence <ProductClassExtStruct> ProductClassExtStructSequence ;
+
+    struct ErrorCodeResultStruct 
+    {
+        cmiProduct::ClassKey                  classKey;
+        string                                exceptionDescription;
+        exceptions::ErrorCode                 errorCode;
+        cmiUtil::KeyDescriptionStructSequence failedProducts;
+    };
+    typedef sequence<ErrorCodeResultStruct> ErrorCodeResultStructSequence;
+
+    typedef sequence <GroupName> GroupNameSequence;
+
+    struct GroupErrorCodeResultStruct 
+    {
+        product::GroupStruct group;
+        product::ErrorCodeResultStructSequence errorResults;
+    };
+    typedef sequence<GroupErrorCodeResultStruct> GroupErrorCodeResultStructSequence;
+
+    struct ProductLocationStruct
+    {
+        string postNumber;
+        string stationNumber;
+    };
+
+    struct ClassDefinitionStructV2
+    {
+        ClassDefinitionStruct classDefinition;
+        string sessionCode;
+        product::ProductLocationStruct productLocation;
+        string extensions;
+    };
+    typedef sequence<ClassDefinitionStructV2> ClassDefinitionStructV2Sequence;
+
+    struct ClassDefinitionStructV3
+    {
+        ClassDefinitionStructV2 classDefinition;
+  	    boolean     multiList;
+    };
+    typedef sequence<ClassDefinitionStructV3> ClassDefinitionStructV3Sequence;
+
+    struct ProductClassStructV2
+    {
+        ProductClassStruct productClass;
+        product::ProductLocationStruct productLocation;
+        string extensions;
+    };
+    typedef sequence <ProductClassStructV2> ProductClassStructV2Sequence;
+
+    
+    struct ProductStructV3
+    {
+        ProductStructV2 productV2;
+        string extensions;
+    };
+    typedef sequence <ProductStructV3> ProductStructV3Sequence;
+
+	struct ProductStructV4
+    {
+	    cmiProduct::ProductStruct product;
+		string                  cusip;     // Identification for securities products.
+	    cmiUtil::PriceStruct	closingPrice;
+	    string	                closingSuffix;
+	    boolean 	            restrictedProductIndicator;
+        string                  extensions;
+    };
+
+    typedef sequence <ProductStructV4> ProductStructV4Sequence;
+
+    struct ProductClassStructV3
+    {
+      string sessionCode;
+      string defaultTransactionFeeCode;
+      product::SettlementType settlementType;
+      cmiProduct::ClassStruct info;
+      product::ProductStructV4Sequence products;
+      product::ProductLocationStruct productLocation;
+	  boolean     multiList;
+      string      extensions;
+    };
+    typedef sequence <ProductClassStructV3> ProductClassStructV3Sequence;
+
+
+    struct ProductResultStruct
+    {
+        cmiProduct::ProductKey productKey;
+        exceptions::ErrorCode errorCode;
+        string errorMessage;
+    };
+    typedef sequence <ProductResultStruct> ProductResultStructSequence;
+
+    struct ReportingClassStructV2
+    {
+        cmiProduct::ReportingClassStruct reportingClass;
+        string extensions;
+    };
+    typedef sequence <ReportingClassStructV2> ReportingClassStructV2Sequence;
+
+    struct PriceAdjustmentProductResultStruct
+    {
+        cmiProduct::ProductKey productKey;
+    	cmiUtil::OperationResultStruct productErrorResult;
+    };
+    typedef sequence <PriceAdjustmentProductResultStruct> PriceAdjustmentProductResultStructSequence;
+
+    struct PriceAdjustmentReportingClassResultStruct 
+    {
+    	cmiProduct::ProductKey underlyingProductKey;
+    	cmiProduct::ReportingClassKey reportingClassKey;
+    	cmiUtil::OperationResultStruct reportingClassErrorResult;
+        PriceAdjustmentProductResultStructSequence products;
+    };
+    typedef sequence <PriceAdjustmentReportingClassResultStruct> PriceAdjustmentReportingClassResultStructSequence;
+    
+    typedef string SettlementSuffix;
+    
+    struct ProductSettlementStructV2 {
+		ProductSettlementStruct productSettlementStruct;
+		SettlementSuffix settlementSuffix;
+		long openInterest;
+	};
+    typedef sequence <ProductSettlementStructV2> 	ProductSettlementStructV2Sequence;
+    
+    struct ClassSettlementStructV2 {
+		ProductSettlementStructV2Sequence settlementsV2;
+    };
+    typedef sequence <ClassSettlementStructV2> ClassSettlementStructV2Sequence;
+    
+    struct ClassSettlementStructV3
+	{
+		cmiProduct::ClassKey classKey;
+		boolean multilist;
+		string extension;
+		product::ProductLocationStruct productLocation;
+		product:: ProductSettlementStructV2Sequence productSettlements;
+	};
+	typedef sequence <ClassSettlementStructV3> ClassSettlementStructV3Sequence;
+	
+	struct ProductClassStructV4
+	{
+		product :: ProductClassStruct productClass;
+		product :: ClassSettlementStructV3 classSettlement;
+	};
+	typedef sequence < ProductClassStructV4> ProductClassStructV4Sequence;
+	
+	struct ProductSettlementStructV4 {
+		ProductSettlementStruct productSettlementStruct;
+		cmiUtil::PriceStruct lastSalePrice;
+    };
+    
+    typedef sequence <ProductSettlementStructV4> ProductSettlementStructV4Sequence;
+    
+    struct ClassSettlementStructV4 {
+		ProductSettlementStructV4Sequence settlementsV4;
+    };
+    
+    typedef sequence <ClassSettlementStructV4> ClassSettlementStructV4Sequence;
+ 
+     struct LinkageIndicatorResultStruct
+    {
+        product::SessionName sessionName;
+        cmiProduct::ClassKey    classKey;
+        boolean 		linkageIndicator;
+        cmiUtil::LinkageIndicatorReturnType linkageIndicatorReturnType;
+    };
+    typedef sequence <LinkageIndicatorResultStruct> LinkageIndicatorResultStructSequence;
+
+	struct ProductInformationStruct
+	{
+		cmiProduct::ProductKey productKey;
+		boolean		restrictedIndicator;
+		string		closingSuffix;
+		cmiUtil::PriceStruct closingPrice;
+		string		extensions;
+		string		cusip;
+	};
+	typedef sequence <ProductInformationStruct> ProductInformationStructSequence;
+   
+   	struct ClassStructV2
+   	{
+ 		cmiProduct::ClassKey classKey;
+  		cmiProduct::ProductType productType;
+  		cmiProduct::ListingState listingState;
+  		Symbol classSymbol;
+  		cmiProduct::ProductStruct underlyingProduct;
+  		Symbol primaryExchange;
+  		cmiUtil::DateStruct activationDate;
+  		cmiUtil::DateStruct inactivationDate;
+  		cmiUtil::DateTimeStruct createdTime;
+  		cmiUtil::DateTimeStruct lastModifiedTime;
+  		cmiProduct::EPWStructSequence epwValues;
+  		double epwFastMarketMultiplier;
+  		cmiProduct::ProductDescriptionStruct productDescription;
+ 		boolean testClass;
+  		product::ReportingClassStructV2Sequence reportingClasses;
+   	};
+	typedef sequence <ClassStructV2> ClassStructV2Sequence;
+	
+	struct ProductClassStructV5
+	{
+		string sessionCode;
+		string defaultTransactionFeeCode;
+		product::SettlementType settlementType;
+		product::ClassStructV2 info;
+		product::ProductStructV4Sequence products;
+		product::ProductLocationStruct productLocation;
+		boolean     multiList;
+		string      extensions;
+	};
+	typedef sequence <ProductClassStructV5> ProductClassStructV5Sequence;
+ 	
+};
+
+#endif

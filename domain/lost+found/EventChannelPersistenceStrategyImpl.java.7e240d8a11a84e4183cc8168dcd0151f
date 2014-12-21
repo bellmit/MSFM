@@ -1,0 +1,152 @@
+package com.cboe.domain.migratePersistence;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.cboe.exceptions.SystemException;
+import com.cboe.idl.trade.PersistentBObjectStruct;
+import com.cboe.infrastructureServices.foundationFramework.BOHome;
+import com.cboe.infrastructureServices.foundationFramework.PersistentBObject;
+import com.cboe.infrastructureServices.foundationFramework.utilities.Log;
+import com.cboe.interfaces.domain.migratePersistence.Migratable;
+import com.cboe.interfaces.domain.migratePersistence.MigratePersistenceHome;
+import com.cboe.interfaces.domain.migratePersistence.PersistenceStrategy;
+import com.cboe.interfaces.domain.migratePersistence.PersistenceStrategyProperties;
+import com.cboe.server.internalEvents.PersistentBObjectsPublisher;
+
+public class EventChannelPersistenceStrategyImpl implements PersistenceStrategy
+{
+	private PersistenceStrategyProperties properties;
+	private PersistentBObjectsPublisher[] publishers;
+	private MigratePersistenceHome home;
+
+	public void acceptObjects(AbstractCollection<PersistentBObject> insertList, AbstractCollection<PersistentBObject> updateList)
+			throws SystemException
+	{
+		try
+		{
+			ArrayList<PersistentBObjectStruct> list = new ArrayList<PersistentBObjectStruct>();
+
+			int key = addToList(list, insertList, true);
+			int key1 = addToList(list, updateList, false);
+
+			if (list.size() > 0)
+			{
+				int useKey = key >= 0 ? key : key1; 
+				
+				PersistentBObjectStruct[] array = new PersistentBObjectStruct[list.size()];
+
+				getPublisher(useKey % getNumPublishers()).acceptPersistentBObjects(list.toArray(array));
+			}
+		}
+		finally
+		{
+		}
+	}
+	
+	private BOHome getBOHome()
+	{
+		return (BOHome) home;
+	}
+
+	private int getNumPublishers()
+	{
+		return this.getProperties().getNumberEventChannels();
+	}
+
+	private PersistentBObjectsPublisher getPublisher(int offset)
+	{
+		return publishers [offset];
+	}
+
+	private int addToList(ArrayList<PersistentBObjectStruct> list, AbstractCollection<PersistentBObject> insertList, boolean insert)
+	{
+		Iterator<PersistentBObject> itor = insertList.iterator();
+		
+		int key = -1;
+
+		while (itor.hasNext())
+		{
+			PersistentBObject obj = itor.next();
+
+			if (obj instanceof Migratable)
+			{
+				PersistentBObjectStruct struct = new PersistentBObjectStruct();
+
+				struct.insertOrUpdate = insert;
+				struct.objectName = obj.getClass().getName();
+
+				Migratable m_obj = (Migratable) obj;
+
+				serializeObject(struct, m_obj);
+				
+				if (key == -1)
+				{
+					key = m_obj.getKey();
+				}
+				
+				list.add(struct);
+			}
+			else
+			{
+				Log.alarm(getBOHome(), "****** Could not process object of type: " + obj.getClass().getName() + ". It does not implement Migratable interface. OBJECT NOT PERSISTED. CALL SERVER SUPPORT.");
+			}
+		}
+		
+		return key;
+	}
+
+	private void serializeObject(PersistentBObjectStruct struct, Migratable m_obj)
+	{
+		ByteArrayOutputStream os = new ByteArrayOutputStream(1000);
+
+		try
+		{
+			ObjectOutputStream oos = new ObjectOutputStream(os);
+
+			m_obj.writeExternal(oos);
+
+			struct.serialized_object = os.toByteArray();
+
+			oos.close();
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void setBOHome(BOHome home)
+	{
+		this.home = (MigratePersistenceHome) home;
+	}
+	
+	private PersistenceStrategyProperties getProperties()
+	{
+		return this.properties;
+	}
+
+	public void init(PersistenceStrategyProperties properties)
+	{
+		this.properties = properties;
+		
+		initPublishers();
+	}
+
+	private void initPublishers()
+	{
+		int numPublishers = getProperties().getNumberEventChannels();
+		
+		this.publishers = new PersistentBObjectsPublisher [numPublishers];
+		
+		for (int i = 0; i < numPublishers;i++)
+		{
+			// TODO
+		}
+	}
+}

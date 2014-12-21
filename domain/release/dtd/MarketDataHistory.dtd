@@ -1,0 +1,113 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalMarketDataHistory (MarketDataHistoryHomeImpl* )>
+<!ATTLIST GlobalMarketDataHistory  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT MarketDataHistoryHomeImpl (MarketDataHistoryHomeImplProperties) >
+<!ATTLIST MarketDataHistoryHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT MarketDataHistoryHomeImplProperties  (idgenerationstrategy, maxResultSize,lastPrefixSearchDurationInSeconds,marketDataHistoryPersistenceBatchSize?, marketDataHistoryDequeueBatchSize?, marketDataHistoryBatchTime?, numberProcessingThreads?,maxQueueDepth?, dbIdBlockSize?, useMarketBufferPublishing?, instanceId?, numberMarketDataHistoryProcessingThreads?, clusterName?, serverInstanceNumber?)>
+<!ATTLIST MarketDataHistoryHomeImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT idgenerationstrategy (#PCDATA)>
+<!ATTLIST idgenerationstrategy
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+>
+
+<!ELEMENT dbIdBlockSize (#PCDATA)>
+<!ATTLIST dbIdBlockSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readWrite'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'Used to configure per thread id block size used in Id service' >
+
+<!ELEMENT maxResultSize (#PCDATA)>
+<!ATTLIST maxResultSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readOnly'
+	propertyType  %propertyTypes;    #FIXED 'integer'
+	description   CDATA              #FIXED 'Set the size of the cache to store products ' >
+
+<!ELEMENT lastPrefixSearchDurationInSeconds (#PCDATA) >
+<!ATTLIST lastPrefixSearchDurationInSeconds
+    type           %typeConstraints;    #FIXED 'ManagedProperty'
+    mode           %modeConstraints;    #FIXED 'readOnly'
+    propertyType   %propertyTypes;      #FIXED 'integer'
+   description   CDATA              #FIXED 'Duration in seconds for last sale prefix evaluation logic ' >    
+
+<!ELEMENT marketDataHistoryPersistenceBatchSize (#PCDATA)>
+<!ATTLIST marketDataHistoryPersistenceBatchSize
+    type           %typeConstraints;    #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;    #FIXED 'readWrite'
+	propertyType   %propertyTypes;      #FIXED 'integer'
+	description    CDATA	            #FIXED 'number of market data events that will be combined in a single transaction' >
+
+<!ELEMENT marketDataHistoryDequeueBatchSize (#PCDATA)>
+<!ATTLIST marketDataHistoryDequeueBatchSize
+    type           %typeConstraints;    #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;    #FIXED 'readWrite'
+	propertyType   %propertyTypes;      #FIXED 'integer'
+	description    CDATA	            #FIXED 'number of market data events that will be combined in a single transaction' >
+
+<!ELEMENT marketDataHistoryBatchTime (#PCDATA)>
+<!ATTLIST marketDataHistoryBatchTime
+    type           %typeConstraints;    #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;    #FIXED 'readWrite'
+	propertyType   %propertyTypes;      #FIXED 'integer'
+	description    CDATA	            #FIXED 'number of millis to wait for marketDataBatchSize to be enqueued for batching transactions.' >
+
+<!ELEMENT numberProcessingThreads (#PCDATA)>
+<!ATTLIST numberProcessingThreads
+    type           %typeConstraints;    #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;    #FIXED 'readWrite'
+	propertyType   %propertyTypes;      #FIXED 'string'
+	description    CDATA	            #FIXED 'number of threads used to process market data' >
+
+
+<!ELEMENT maxQueueDepth (#PCDATA)>
+<!ATTLIST maxQueueDepth  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readWrite'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'max queue depth before flushing' >
+	
+<!ELEMENT numberMarketDataHistoryProcessingThreads (#PCDATA)>
+<!ATTLIST numberMarketDataHistoryProcessingThreads 
+    type           %typeConstraints;    #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;    #FIXED 'readWrite'
+	propertyType   %propertyTypes;      #FIXED 'integer'
+	description    CDATA	            #FIXED 'number of threads used to process MDH data' >
+	
+<!ELEMENT instanceId (#PCDATA)>
+<!ATTLIST instanceId  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readWrite'
+	propertyType  %propertyTypes;   #FIXED 'string' >
+	
+<!ELEMENT useMarketBufferPublishing (#PCDATA)>
+<!ATTLIST useMarketBufferPublishing
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string">
+        
+<!ELEMENT clusterName (#PCDATA)>
+<!ATTLIST clusterName
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+>
+
+<!ELEMENT serverInstanceNumber (#PCDATA) >
+<!ATTLIST serverInstanceNumber 
+    type            %typeConstraints;   #FIXED 'ManagedProperty'
+	mode            %modeConstraints;   #FIXED 'readWrite'
+	propertyType    %propertyTypes;     #FIXED 'string'
+	description     CDATA               #FIXED 'the trade server instance number' 
+>
+	
+
+
+

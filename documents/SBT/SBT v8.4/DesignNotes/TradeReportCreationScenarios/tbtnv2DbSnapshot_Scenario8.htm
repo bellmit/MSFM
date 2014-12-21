@@ -1,0 +1,432 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=Cp1252">
+<!-- base href="http://apexdev.us.oracle.com:7778/pls/apx11w/" -->
+<style type="text/css">
+table {
+background-color:#F2F2F5;
+border-width:1px 1px 0px 1px;
+border-color:#C9CBD3;
+border-style:solid;
+}
+td {
+color:#000000;
+font-family:Tahoma,Arial,Helvetica,Geneva,sans-serif;
+font-size:9pt;
+background-color:#EAEFF5;
+padding:8px;
+background-color:#F2F2F5;
+border-color:#ffffff #ffffff #cccccc #ffffff;
+border-style:solid solid solid solid;
+border-width:1px 0px 1px 0px;
+}
+th {
+font-family:Tahoma,Arial,Helvetica,Geneva,sans-serif;
+font-size:9pt;
+padding:8px;
+background-color:#CFE0F1;
+border-color:#ffffff #ffffff #cccccc #ffffff;
+border-style:solid solid solid none;
+border-width:1px 0px 1px 0px;
+white-space:nowrap;
+}
+</style>
+<script type="text/javascript">
+window.apex_search = {};
+apex_search.init = function (){
+	this.rows = document.getElementById('data').getElementsByTagName('TR');
+	this.rows_length = apex_search.rows.length;
+	this.rows_text =  [];
+	for (var i=0;i<apex_search.rows_length;i++){
+        this.rows_text[i] = (apex_search.rows[i].innerText)?apex_search.rows[i].innerText.toUpperCase():apex_search.rows[i].textContent.toUpperCase();
+	}
+	this.time = false;
+}
+
+apex_search.lsearch = function(){
+	this.term = document.getElementById('S').value.toUpperCase();
+	for(var i=0,row;row = this.rows[i],row_text = this.rows_text[i];i++){
+		row.style.display = ((row_text.indexOf(this.term) != -1) || this.term  === '')?'':'none';
+	}
+	this.time = false;
+}
+
+apex_search.search = function(e){
+    var keycode;
+    if(window.event){keycode = window.event.keyCode;}
+    else if (e){keycode = e.which;}
+    else {return false;}
+    if(keycode == 13){
+		apex_search.lsearch();
+	}
+    else{return false;}
+}</script>
+</head><body onload="apex_search.init();">
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody><tr><td><input type="text" size="30" maxlength="1000" value="" id="S" onkeyup="apex_search.search(event);" /><input type="button" value="Search" onclick="apex_search.lsearch();"/> 
+</td></tr>
+</tbody></table>
+<br>
+<table border="0" cellpadding="0" cellspacing="0">
+<tr>	<th>TRADE_TIME</th>
+	<th>TRADEREPORTDBID</th>
+	<th>CLASSKEY</th>
+	<th>PRODUCT</th>
+	<th>QUANTITY</th>
+	<th>TIME</th>
+	<th>PRICE</th>
+	<th>PARENTTRADEREPORTDBID</th>
+	<th>TRADEREPORTENTRYDBID</th>
+	<th>DATABASEIDENTIFIER</th>
+	<th>MATCHEDSEQUENCENUMBER</th>
+	<th>ACTIVE</th>
+	<th>ENTRY_TYPE</th>
+	<th>ENTRY_TIME</th>
+	<th>LAST_ENTRY_TYPE</th>
+	<th>LAST_UPDATE_TIME</th>
+	<th>BUYERUSERKEY</th>
+	<th>BUYER</th>
+	<th>BUY_BROKER_EXCH</th>
+	<th>SELLERUSERKEY</th>
+	<th>SELLER</th>
+	<th>SELL_BROKER_EXCH</th>
+	<th>BUYFIRM</th>
+	<th>BUY_FIRM_EXCH</th>
+	<th>BUY_FIRM_BRANCH</th>
+	<th>BUY_FIRM_BRANCH_SEQ_NO</th>
+	<th>BUYORDERID</th>
+	<th>BUYQUOTEID</th>
+	<th>BUYREINSTATABLE</th>
+	<th>BUYERORIGINTYPE</th>
+	<th>BUYERCMTA</th>
+	<th>BUY_CMTA_EXCH</th>
+	<th>BUYERPOSITIONEFFECT</th>
+	<th>BUY_ACCT</th>
+	<th>BUYERSUBACCOUNT</th>
+	<th>BUYEROPTIONALDATA</th>
+	<th>BUY_AUCT_TRADE_IND</th>
+	<th>BUY_ORDERDATE</th>
+	<th>BUY_ORSID</th>
+	<th>SELLFIRM</th>
+	<th>SELL_FIRM_EXCH</th>
+	<th>SELL_FIRM_BRANCH</th>
+	<th>SELL_FIRM_BRANCH_SEQ_NO</th>
+	<th>SELLORDERID</th>
+	<th>SELLQUOTEID</th>
+	<th>SELLREINSTATABLE</th>
+	<th>SELLERORIGINTYPE</th>
+	<th>SELLERCMTA</th>
+	<th>SELL_CMTA_EXCH</th>
+	<th>SELLERPOSITIONEFFECT</th>
+	<th>SELL_ACCT</th>
+	<th>SELLERSUBACCOUNT</th>
+	<th>SELLEROPTIONALDATA</th>
+	<th>SELL_AUCT_TRADE_IND</th>
+	<th>SELL_ORDERDATE</th>
+	<th>SELL_ORSID</th>
+	<th>QUANTITY_1</th>
+	<th>TRADEREPORTFORENTRY</th>
+	<th>SESSION_NAME</th>
+	<th>BUY_CORR_ID</th>
+	<th>BUY_ORIGINATOR</th>
+	<th>BUY_ORIGINATOR_EXCH</th>
+	<th>SELL_CORR_ID</th>
+	<th>SELL_ORIGINATOR</th>
+	<th>SELL_ORIGINATOR_EXCH</th>
+	<th>BUY_BILL_TYPE_CODE</th>
+	<th>SELL_BILL_TYPE_CODE</th>
+	<th>ROUND_LOT_QTY</th>
+	<th>EXTENSIONS</th>
+	<th>BUY_AWAY_EXCH_TEXT</th>
+	<th>SELL_AWAY_EXCH_TEXT</th>
+	<th>SELLER_CLEAR_TYPE</th>
+	<th>BUYER_CLEAR_TYPE</th>
+	<th>BUYER_SESSION_NAME</th>
+	<th>SELLER_SESSION_NAME</th>
+	<th>BUYEREXTERNALORDERID</th>
+	<th>SELLEREXTERNALORDERID</th>
+	<th>BUY_SUPRESSION_REASON</th>
+	<th>SELL_SUPRESSION_REASON</th>
+	<th>BUY_AWAY_EXCHANGE_ACRONYM</th>
+	<th>SELL_AWAY_EXCHANGE_ACRONYM</th>
+	<th>CREAT_REC_TIME</th>
+	<th>OUTBOUNDVENDOR</th>
+	<th>BUY_USER_ID</th>
+	<th>BUY_USER_ACRONYM</th>
+	<th>SELL_USER_ID</th>
+	<th>SELL_USER_ACRONYM</th>
+</tr>
+<tbody id="data">
+
+	<tr>
+<td>10-15-2009 13:22:58</td>
+<td align="right">283932772695292</td>
+<td align="right">69206141</td>
+<td align="right">378081506</td>
+<td align="right">110</td>
+<td align="right">1255630978275</td>
+<td>1.1000</td>
+<td align="right">&nbsp;</td>
+<td align="right">283932772695293</td>
+<td align="right">283932772695293</td>
+<td align="right">4020019</td>
+<td>1</td>
+<td>A</td>
+<td align="right">1255630978275</td>
+<td>A</td>
+<td align="right">1255630978275</td>
+<td align="right">546832482</td>
+<td>XXH</td>
+<td>CBOE</td>
+<td align="right">546832483</td>
+<td>XXH</td>
+<td>CBOE</td>
+<td>695</td>
+<td>CBOE</td>
+<td>HAT</td>
+<td align="right">24</td>
+<td align="right">283932746266313</td>
+<td align="right">0</td>
+<td>1</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>C</td>
+<td>SRK</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>0</td>
+<td>20091015</td>
+<td>0005G0</td>
+<td>690</td>
+<td>CBOE</td>
+<td>THA</td>
+<td align="right">6</td>
+<td align="right">283932746266230</td>
+<td align="right">0</td>
+<td>1</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>C</td>
+<td>AAM</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>0</td>
+<td>20091015</td>
+<td>0005E0</td>
+<td align="right">10</td>
+<td align="right">283932772695292</td>
+<td>W_MAIN</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>R</td>
+<td>A</td>
+<td align="right">10</td>
+<td>&nbsp;</td>
+<td> </td>
+<td> </td>
+<td>C</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>15-OCT-09 01.22.58.351451000 PM</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+	</tr>
+	<tr>
+<td>10-15-2009 13:22:58</td>
+<td align="right">283932772695292</td>
+<td align="right">69206141</td>
+<td align="right">378081506</td>
+<td align="right">110</td>
+<td align="right">1255630978275</td>
+<td>1.1000</td>
+<td align="right">&nbsp;</td>
+<td align="right">283932772695295</td>
+<td align="right">283932772695295</td>
+<td align="right">4020021</td>
+<td>1</td>
+<td>A</td>
+<td align="right">1255630978275</td>
+<td>A</td>
+<td align="right">1255630978275</td>
+<td align="right">546832482</td>
+<td>XXH</td>
+<td>CBOE</td>
+<td align="right">546832483</td>
+<td>AAM</td>
+<td>CBOE</td>
+<td>695</td>
+<td>CBOE</td>
+<td>HAT</td>
+<td align="right">24</td>
+<td align="right">283932746266313</td>
+<td align="right">0</td>
+<td>1</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>C</td>
+<td>SRK</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>0</td>
+<td>20091015</td>
+<td>0005G0</td>
+<td>690</td>
+<td>CBOE</td>
+<td>&nbsp;</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-1707946705</td>
+<td>0</td>
+<td>I</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>N</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="right">50</td>
+<td align="right">283932772695292</td>
+<td>W_MAIN</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>R</td>
+<td>A</td>
+<td align="right">50</td>
+<td>&nbsp;</td>
+<td> </td>
+<td> </td>
+<td>C</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>15-OCT-09 01.22.58.351451000 PM</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+	</tr>
+	<tr>
+<td>10-15-2009 13:22:58</td>
+<td align="right">283932772695292</td>
+<td align="right">69206141</td>
+<td align="right">378081506</td>
+<td align="right">110</td>
+<td align="right">1255630978275</td>
+<td>1.1000</td>
+<td align="right">&nbsp;</td>
+<td align="right">283932772695294</td>
+<td align="right">283932772695294</td>
+<td align="right">4020020</td>
+<td>1</td>
+<td>A</td>
+<td align="right">1255630978275</td>
+<td>A</td>
+<td align="right">1255630978275</td>
+<td align="right">546832482</td>
+<td>XXH</td>
+<td>CBOE</td>
+<td align="right">546832484</td>
+<td>ABD</td>
+<td>CBOE</td>
+<td>695</td>
+<td>CBOE</td>
+<td>HAT</td>
+<td align="right">24</td>
+<td align="right">283932746266313</td>
+<td align="right">0</td>
+<td>1</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>C</td>
+<td>SRK</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>0</td>
+<td>20091015</td>
+<td>0005G0</td>
+<td>501</td>
+<td>CBOE</td>
+<td>&nbsp;</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">-1710706412</td>
+<td>0</td>
+<td>I</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>N</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="right">50</td>
+<td align="right">283932772695292</td>
+<td>W_MAIN</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>R</td>
+<td>A</td>
+<td align="right">50</td>
+<td>&nbsp;</td>
+<td> </td>
+<td> </td>
+<td>C</td>
+<td>C</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>15-OCT-09 01.22.58.351451000 PM</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+	</tr>
+</tbody></table><!-- SQL:
+select to_char(convert_java_time(tr.time), 'MM-DD-YYYY HH24:MI:SS') as trade_time, tr.databaseidentifier as TradeReportDBID, 
+tr.classkey, tr.product, tr.quantity, tr.time, tr.price, tr.parent as ParentTradeReportDBID,  
+tre.databaseidentifier as TradeReportEntryDBID, tre.* from sbt_tradereport tr join sbt_tradereportentry tre  
+on tr.databaseidentifier = tre.tradereportforentry where (classkey = 69206142 or classkey = 69206141) and 
+tr.time > 1255630397245 order by tr.time asc--</body></html>

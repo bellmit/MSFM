@@ -1,0 +1,911 @@
+//## module: constants
+
+#ifndef constants_idl
+#define constants_idl
+
+#include "cmiOrder.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "user.idl"
+#include "textMessage.idl"
+#include "order.idl"
+#include "orderBook.idl"
+#include "TradingProperty.idl"
+#include "session.idl"
+#include "trade.idl"
+#include "product.idl"
+#include "alert.idl"
+#include "property.idl"
+#include "Util.idl"
+#include "marketData.idl"
+#include "quote.idl"
+
+module constants {
+
+    interface LoginSession // UserSession
+    {
+        const short SESSION_PROTECTION_DISABLE=-1;
+        const short SESSION_NOT_OPEN=0;
+    };
+
+    interface Categories // TradingCategories
+    {
+        const short EQUITY_OPTIONS=1;
+        const short COMPOSITE_OPTIONS=2;
+        const short INDEX_OPTIONS=3;
+        const short DOWJONES_OPTIONS=4;
+        const short TEENIES_OPTIONS=5;
+    };
+
+    interface SettlementTypes // Settlement type codes
+    {
+        const product::SettlementType AM_SETTLED=1;
+        const product::SettlementType PM_SETTLED=2;
+    };
+
+    interface PriceDisplayTypes // Trading scale
+    {
+        const short FRACTION=1;
+        const short DECIMAL=2;
+    };
+
+    interface Source // Originator of events
+    {
+        const short TIPS=1;
+        const short TRADE_SERVER=2;
+    };
+
+    interface UserTypes {
+        const user::UserType INDIVIDUAL_ACCOUNT = 1;
+        const user::UserType JOINT_ACCOUNT = 2;        // joint account and DPM are the user types not covered by role.
+        const user::UserType DPM_ACCOUNT = 3;
+        const user::UserType FIRM_LOGIN = 4;
+        const user::UserType HELP_DESK = 5;
+        const user::UserType SYSTEMS_OPERATIONS = 6;
+    };
+
+    interface TextMessageStates
+    {
+        const textMessage::MessageState UNDELIVERED = 1;
+        const textMessage::MessageState DELIVERED   = 2;
+        const textMessage::MessageState READ        = 3;
+        const textMessage::MessageState DELETED     = 4;
+    };
+
+    interface TextMessageTypes
+    {
+        const textMessage::ReceipientType USER      = 1;
+        const textMessage::ReceipientType GROUP     = 2;
+        const textMessage::ReceipientType PRODUCT   = 3;
+        const textMessage::ReceipientType FIRM      = 4;
+        const textMessage::ReceipientType ROLE      = 5;
+    };
+
+    interface TextMessageConstants
+    {
+        const short INFINITE_TIME_TO_LIVE = -1;
+    };
+
+    interface TradingSessionElementStates
+    {
+        const session::TradingSessionElementState STARTED  = 1;
+        const session::TradingSessionElementState PRE_OPEN = 2;
+        const session::TradingSessionElementState OPEN     = 3;
+        const session::TradingSessionElementState CLOSED   = 4;
+    };
+
+    // (These states are for TradingSessionEvent as well as for TradingSessionServerEvents)
+    interface TradingSessionEventStates
+    {
+        const session::TradingSessionEventState UNFIRED = 1;
+        const session::TradingSessionEventState FIRED = 2;
+        const session::TradingSessionEventState COMPLETED = 3;
+        const session::TradingSessionEventState FAILED = 4;
+        const session::TradingSessionEventState NOT_AVAILABLE = 5;
+        const session::TradingSessionEventState TIMEOUT = 6;
+        const session::TradingSessionEventState VETOED = 7;
+        const session::TradingSessionEventState TEMPORARILY_DISABLED = 8;
+    };
+
+    interface TradingSessionDestinationCodes
+    {
+        const session::TradingSessionDestinationCode SBT = 1;
+        const session::TradingSessionDestinationCode OPEN_OUTCRY = 2;
+        const session::TradingSessionDestinationCode UNDERLYING = 3;
+        const session::TradingSessionDestinationCode NOT_APPLICABLE = 4;
+    };
+
+    interface BusinessDayStates
+    {
+        const session::TradingSessionElementState STARTED  = 1;
+        const session::TradingSessionElementState ENDED    = 2;
+    };
+
+    interface OrderBookItemTypes
+    {
+        const orderBook::OrderBookItemType BOOK_ITEM_ORDER = 'O';
+        const orderBook::OrderBookItemType BOOK_ITEM_QUOTE = 'Q'; // Quote Side
+        const orderBook::OrderBookItemType BOOK_ITEM_QUOTE_TRIGGER = 'T';
+    };
+
+    interface AllocationStrategyCodes
+    {
+        const tradingProperty::AllocationStrategyCode PRICE_TIME = 1;
+        const tradingProperty::AllocationStrategyCode PRO_RATA = 2;
+        const tradingProperty::AllocationStrategyCode DPM_FIXED_PCT = 3;
+        const tradingProperty::AllocationStrategyCode CUSTOMER = 4;
+        const tradingProperty::AllocationStrategyCode MARKET_TURNER = 5;
+        const tradingProperty::AllocationStrategyCode DPM_VAR_PCT = 6;
+        const tradingProperty::AllocationStrategyCode UMA_Q_NONQ = 7;
+        const tradingProperty::AllocationStrategyCode UMA_VAR_PCT = 8;
+        const tradingProperty::AllocationStrategyCode DPM_SCALED_PCT = 9;
+        const tradingProperty::AllocationStrategyCode BEST_OF_DPM_UMA = 10;
+        const tradingProperty::AllocationStrategyCode UMA_WITH_DPM = 11;
+        const tradingProperty::AllocationStrategyCode DPM_COMPLEX = 12;
+        const tradingProperty::AllocationStrategyCode BEST_DPMCOMPLEX_UMA = 13;
+        const tradingProperty::AllocationStrategyCode LOCK_MINIMUM_TRADE = 14;
+        const tradingProperty::AllocationStrategyCode CAPPEDUMA = 15;
+        const tradingProperty::AllocationStrategyCode CAPPEDUMA_WITH_DPM = 16;
+        const tradingProperty::AllocationStrategyCode DPM_COMPLEX_REVISED = 17;
+        const tradingProperty::AllocationStrategyCode BEST_DPMCOMPLEXREVISED_CAPPEDUMAWITHDPM = 18;
+        const tradingProperty::AllocationStrategyCode PREF_DPM_UMA = 19;
+        const tradingProperty::AllocationStrategyCode PREF_DPM_UMA2 = 20;
+        const tradingProperty::AllocationStrategyCode COMPLEX_PREF_DPM = 21;
+        const tradingProperty::AllocationStrategyCode PREF_DPM_ELECTRONIC = 22;
+        
+        const tradingProperty::AllocationStrategyCode INTERNALIZATION_FIXED_PCT = 30;
+        const tradingProperty::AllocationStrategyCode UMA_NO_DPM_CHECK = 31;
+        const tradingProperty::AllocationStrategyCode CUMA_NO_DPM_CHECK = 32;
+        const tradingProperty::AllocationStrategyCode MANUAL_QUOTE = 33;
+        const tradingProperty::AllocationStrategyCode CUSTOMER_PRE_AUCTION =  34;
+        const tradingProperty::AllocationStrategyCode MANUAL_QUOTE_PRE_AUCTION =  35;
+
+    };
+
+    interface TradeSources
+    {
+        const trade::TradeSource MANUAL 				= "MANUAL";
+        const trade::TradeSource SYSTEM 				= "SYSTEM";
+        const trade::TradeSource PAR    				= "PAR";
+        const trade::TradeSource MARKET_MAKER_MANUAL	= "MARKET_MAKER_MANUAL";
+    };
+
+    interface TradeTypes
+    {
+        const trade::TradeType BLOCK_TRADE = 'B';                   // 1
+        const trade::TradeType EXCHANGE_FOR_PHYSICAL = 'E';         // 2
+        const trade::TradeType REGULAR_TRADE = 'R';                 // 3
+        const trade::TradeType CASH_TRADE = 'C';                    // 4
+        const trade::TradeType NEXT_DAY_TRADE = 'N';                // 5
+        const trade::TradeType SOLD = 'Z';                          // 6
+        const trade::TradeType INTERMARKET_SWEEP = 'F';             // 7
+        const trade::TradeType NO_PRINT_LINKAGE_TRADE = 'L';        // 8
+        const trade::TradeType MANUAL_TRADE = 'M';    		        // 9
+        const trade::TradeType PAR_TRADE = 'P';    		            //10
+        const trade::TradeType CROSS_PRODUCT_LEG_TRADE = 'X';       //11
+        const trade::TradeType CROSS_PRODUCT_CROSS_TRADE = 'S';     //12
+        const trade::TradeType CROSS_PRODUCT_AIM_CROSS_TRADE = 'I'; //13
+        const trade::TradeType GWAP_TRADE = 'G';                    //14
+        const trade::TradeType HANDHELD_TRADE = 'H';                //15
+        const trade::TradeType PAR_TO_MARKET_MAKER_TRADE = 'Q';     //16
+        const trade::TradeType REGULAR_TRADE_REVERSAL = '1';        //17
+        const trade::TradeType NO_PRINT_LINKAGE_TRADE_REVERSAL = '2';        //18
+        const trade::TradeType NO_PRINT_LINKAGE_TRADE_MANUAL = '3';        //19 
+        const trade::TradeType TWO_DAY_TRADE = 'T';                 // 20
+        const trade::TradeType VARIANCE_STRIP_TRADE = 'V';          //21
+    };
+
+    interface TradeReportEntryTypes
+    {
+        const trade::TradeReportEntryType ADD = 'A';
+        const trade::TradeReportEntryType DELETE = 'D';
+    };
+
+    interface PriceAdjustmentSources
+    {
+        const product::PriceAdjustmentSource MANUAL = 1;
+        const product::PriceAdjustmentSource TPF_DOWNLOAD = 2;
+        const product::PriceAdjustmentSource IPD = 3;
+    };
+
+    interface AdjustmentOrderActions
+    {
+        const product::AdjustmentOrderAction NORMAL_ADJUSTMENT = 1;
+        const product::AdjustmentOrderAction CANCEL_ALL_ORDERS = 2;
+    };
+
+    interface TradingRestrictions
+    {
+	//the following constants are for simple order
+        const order::TradingRestriction NONE = 1;
+        const order::TradingRestriction NON_Q_ONLY = 2;
+	const order::TradingRestriction SWEEP_AND_RETURN = 3;
+	const order::TradingRestriction FISH_AND_RETURN = 4;
+	
+	//the following constants are for strategy order handling
+	//And constants will start with 1001
+	const order::TradingRestriction AUCTION = 1001;
+	const order::TradingRestriction BOOK = 1002;
+	const order::TradingRestriction AUTO_EX = 1003;
+	const order::TradingRestriction PAR_AUCTION = 1004;
+	const order::TradingRestriction TOP_SPREAD_BOOK = 1005;
+	const order::TradingRestriction PAR_TRADE_ALL = 1006;
+    };
+
+    interface RemainderHandlingModes
+    {
+        const order::RemainderHandlingMode NOT_SPECIFIED = 0;
+        const order::RemainderHandlingMode BOOK_REMAINDER = 1;
+        const order::RemainderHandlingMode RETURN_REMAINDER = 2;
+        const order::RemainderHandlingMode AUCTION_AND_RETURN_REMAINDER = 3;
+        const order::RemainderHandlingMode HAL = 4;
+    };
+
+    interface OHSRoutingReasons
+    {
+    	const order::OrderRoutingReason VOLUME_CHECK = 1    ;         
+		const order::OrderRoutingReason AUTO_EXECUTION = 2	;
+		const order::OrderRoutingReason DIRECT_ROUTE = 3	;    
+		const order::OrderRoutingReason ALTERNATE_ROUTE = 4	   ;
+	 	const order::OrderRoutingReason DISCRETIONARY_OR_NH_ORDER = 5 ;
+		const order::OrderRoutingReason ALL_ROUTING_ATTEMPT_FAILED = 6 ;
+				
+		//Following are for reroute attempts 
+		const order::OrderRoutingReason HAL_REROUTING = 7 ;
+		const order::OrderRoutingReason REROUTING_TO_SENDER = 8 ;
+		const order::OrderRoutingReason REROUTING_TO_DEFAULT_OMT = 9 ;
+
+        const order::OrderRoutingReason LINKAGE_ROUTE = 10;
+
+        //Following are for PAR print requests 
+        const order::OrderRoutingReason PAR_PRINT_ORDER_INTRA_DAY = 11;
+        const order::OrderRoutingReason PAR_PRINT_ORDER_END_OF_DAY = 12;	
+        const order::OrderRoutingReason PAR_PRINT_CANCEL = 13;
+        const order::OrderRoutingReason PAR_PRINT_CANCEL_REPLACE = 14;	
+
+        //Following are for PAR order reroute TA and TB
+        const order::OrderRoutingReason MANUAL_REROUTE_ORDER_TA = 15;
+        const order::OrderRoutingReason MANUAL_REROUTE_ORDER_TB = 16;
+        const order::OrderRoutingReason MANUAL_REROUTE_ORDER_BOOK = 17;
+        const order::OrderRoutingReason MANUAL_REROUTE_ORDER_AUCTION = 18;
+        
+        const order::OrderRoutingReason CANCEL_FOLLOW_ORDER = 19;
+        
+        //Following are for PAR order and fill timeouts
+        const order::OrderRoutingReason MANUAL_ORDER_TIMEOUT = 20;
+        const order::OrderRoutingReason MANUAL_FILL_TIMEOUT = 21;
+        
+        //Cabinet order
+        const order::OrderRoutingReason CABINET_ORDER = 22;
+        
+        //Following are for PAR FILL REJECTS
+        const order::OrderRoutingReason SIMPLE_FILL_REJECT = 23;
+        const order::OrderRoutingReason COMPLEX_FILL_REJECT = 24;
+        const order::OrderRoutingReason TRADE_NOTIFICATION_BUNDLE_TIMEOUT = 27;
+        const order::OrderRoutingReason TRADE_NOTIFICATION_ACK_TIMEOUT = 28;
+        const order::OrderRoutingReason TRADE_NOTIFICATION_REJECT = 29;
+
+        //Following are for OMT Drop Copies
+        const order::OrderRoutingReason FILL_REPORT_DROP_COPY = 30;
+        const order::OrderRoutingReason CANCEL_REPORT_DROP_COPY = 31;
+
+        // Route Reason for Cancel Request on RestrictedSeries
+    	const order::OrderRoutingReason CANCEL_REQUEST_ON_RSS = 25;
+	
+        // NBBO Reject 
+        const order::OrderRoutingReason NBBO_REJECT = 26;
+	
+        // Route Reason when an order is routed to FCB OMT due to reasonability edit check
+        const order::OrderRoutingReason PREMIUM_EXCEEDS_REASONABILITY = 32;
+	
+        //Multi-level volume deviation check
+        const order::OrderRoutingReason VOLUME_DEVIATION_CHECK_FAILED_ALL_LEVELS = 33;
+        const order::OrderRoutingReason VOLUME_DEVIATION_CHECK_PASSED_LEVEL_1 = 34;
+        const order::OrderRoutingReason VOLUME_DEVIATION_CHECK_PASSED_LEVEL_2 = 35;
+        const order::OrderRoutingReason VOLUME_DEVIATION_CHECK_PASSED_LEVEL_3 = 36;
+        
+        // Route Reason for Cancel Request on Fallback
+    	const order::OrderRoutingReason CANCEL_REQUEST_ON_FALLBACK = 37;
+    	
+    	//Max route attempt
+        const order::OrderRoutingReason TOO_MANY_ROUTES = 38;
+        
+	// Route on ProductState
+        const order::OrderRoutingReason PRODUCT_STATE_ROUTE = 39;
+	
+        //Vol Maintenance
+        const order::OrderRoutingReason VOLUME_MAINTENANCE_MISMATCH = 40;
+	
+	// Forced logoff Par workstation
+	const order::OrderRoutingReason FORCED_LOGOFF_PAR = 41;
+	
+	// Manual Sweep and Return PAR Reroute
+	const order::OrderRoutingReason MANUAL_REROUTE_ORDER_SR = 42;
+	
+	//Linkage Stale Execution
+	const order::OrderRoutingReason LINKAGE_STALE_EXECUTION = 302;
+
+        //Following related to MMHH-CBOEdirect
+        const order::OrderRoutingReason TRADE_NOTIFICATION_INVALID_CONTRA = 43;
+        const order::OrderRoutingReason TRADE_NOTIFICATION_TRADE_BUST = 44; 
+        const order::OrderRoutingReason TRADE_NOTIFICATION_CMI_USER_UNDEFINED = 45;
+        
+        // Manual Fish and Return PAR Reroute
+		const order::OrderRoutingReason MANUAL_REROUTE_ORDER_FR = 46; 
+
+	};
+
+    interface OrderRoutingReasons // all non-0 values higher than cmiErrorCodes.DataValidationCodes.
+    {
+        //Codes from 5100 - 5199 should be used for normal processing conditions where TPF could normally
+        //immediately re-route the order back to CBOEdirect if there is remaining quantity on the order.
+        const order::OrderRoutingReason SUCCESS = 5100;
+        const order::OrderRoutingReason COMPLETED_INSTRUCTIONS = 5101;
+        const order::OrderRoutingReason PARTIALLY_TRADED = 5102;
+        const order::OrderRoutingReason REPLACEMENT_ORDER = 5103;
+
+        //Codes from 5200 - 5299 should be used for normal processing conditions where the current market
+        //does not allow the order to be traded.
+        const order::OrderRoutingReason NOT_TRADED_EXEC_PRICE = 5200;
+        const order::OrderRoutingReason NOT_TRADED_WIDE_MKT = 5201;
+        const order::OrderRoutingReason NOT_TRADED_ONE_SIDED = 5202;
+        const order::OrderRoutingReason NOT_TRADED_NO_MKT = 5203;
+        const order::OrderRoutingReason NOT_TRADED_STOP_ORDER = 5204;
+        const order::OrderRoutingReason NOT_TRADED_BOTR = 5205;
+        const order::OrderRoutingReason NOT_TRADED_LINKAGE_ORDER = 5206;
+        const order::OrderRoutingReason NOT_TRADED_VOLUME_CONTINGENCY_ORDER = 5207; //for AON and FOK
+        const order::OrderRoutingReason NOT_TRADED_NO_VALID_QUOTE = 5208; //for MKT order not traded due to no valid quote
+
+        //Codes from 5300 - 5399 should be used for error conditions.
+        const order::OrderRoutingReason SYSTEM_ERROR = 5300;
+        const order::OrderRoutingReason ORDER_NOT_HERE = 5302;
+        const order::OrderRoutingReason MISMATCH_QUANTITY = 5303;
+        const order::OrderRoutingReason ORDER_REJECTED = 5304;
+        const order::OrderRoutingReason INVALID_INSTRUCTION = 5305;
+        const order::OrderRoutingReason RATIO_VOLUME_MISMATCH = 5306;
+        const order::OrderRoutingReason MARKET_STRATEGY_ORDER_NOT_ACCEPTED = 5307;
+        const order::OrderRoutingReason UNSUPPORTED_STRATEGY_PRODUCT = 5308;
+        const order::OrderRoutingReason ORDER_BEING_PROCESSED = 5309;
+        const order::OrderRoutingReason UNSUPPORTED_ORDER_TYPE = 5310;
+
+        //Codes from 5400 - 5499 should be used for auction
+        const order::OrderRoutingReason MATCHED_ORDER_SIZE_MISMATCH = 5400;
+        const order::OrderRoutingReason MATCHED_ORDER_PRICE_MISMATCH = 5401;
+        const order::OrderRoutingReason MATCHED_ORDER_NOT_RECEIVED = 5402;
+        const order::OrderRoutingReason MATCHED_ORDER_SIDE_MISMATCH = 5403;
+        const order::OrderRoutingReason MATCHED_ORDER_PRODUCT_MISMATCH = 5404;
+
+        const order::OrderRoutingReason NOT_ENOUGH_QUOTERS = 5410;
+        const order::OrderRoutingReason NOT_ELIGIBLE_FOR_AUCTION = 5411;
+        const order::OrderRoutingReason INVALID_OPTIONAL_DATA_FOR_AUCTION = 5412;
+
+              // for complex order auction 5450-5499
+        const order::OrderRoutingReason NOT_TRADED_NOT_AUCTIONED = 5450;   // for the internalized order not satisfy to start an auction
+        const order::OrderRoutingReason PARTIALLY_TRADED_AUCTIONED = 5451; // for the auctioned (strategy)order not fully traded
+        const order::OrderRoutingReason NOT_TRADED_AUCTIONED = 5452;       // for the auctioned strategy order, but is not able to be traded
+        const order::OrderRoutingReason TSB_RETURNED = 5453; //Top of the spread book returned 
+        const order::OrderRoutingReason TSB_NOT_AVAILABLE = 5454; //Top of the spread book is not available 
+        const order::OrderRoutingReason NOT_TRADED_PRICE_PROTECTION = 5455; 
+        const order::OrderRoutingReason STRATEGY_LEGS_NOT_IN_ORIGINAL_RATIO  = 5456;
+        const order::OrderRoutingReason ORDER_TOUCHES_LEG_QUOTES  = 5457;
+        
+        // added by AIM enhancement
+        const order::OrderRoutingReason  MISMATCHED_AIM_FOR_AON = 5461;   
+	const order::OrderRoutingReason  MISMATCHED_CLEARING_FIRM_AIMAON = 5462;
+	const order::OrderRoutingReason  AUTO_MATCH_INVALID_FOR_AIMAON = 5463;
+	const order::OrderRoutingReason  INSUFFICIANT_QUANTITY_FOR_AIMAON = 5464;
+	const order::OrderRoutingReason  INVALID_AIM_MATCH_TYPE= 5465;
+	const order::OrderRoutingReason  MISMATCH_SESSION= 5466;
+	const order::OrderRoutingReason  NOT_ELIGIBLE_FOR_COMPLEX_AUCTION = 5467;
+	
+        // 5500-5549 are used for HAL
+        const order::OrderRoutingReason NO_FLASH_NO_TRADE_AND_SHIP  = 5500;
+        const order::OrderRoutingReason NO_FLASH_WITH_TRADE_AND_SHIP  = 5501;
+        const order::OrderRoutingReason FLASH_NO_TRADE_AND_SHIP  = 5502;
+        const order::OrderRoutingReason FLASH_WITH_TRADE_AND_SHIP  = 5503;
+        const order::OrderRoutingReason NOT_ALLOWED_TRADE_AND_SHIP  = 5504;
+        const order::OrderRoutingReason MARKET_CLOSED  = 5505;
+        
+        //5600-5699 are used for Manual quote
+        const order::OrderRoutingReason MARKETABLE_WITH_MANUAL_QUOTE  = 5600;
+        const order::OrderRoutingReason NOT_TRADED_AUTO_EX_AGAINST_NON_CUST = 5601;
+        
+        const order::OrderRoutingReason MANUAL_QUOTE_PRESENT_AUCTION_NOT_STARTED  = 5602;
+        const order::OrderRoutingReason STRATEGY_PARTIALLY_TRADED_AGAINST_AUTO_EX = 5603;
+        const order::OrderRoutingReason STRATEGY_MARKETABLE_WITH_MANUAL_QUOTE  = 5604;
+
+        //5620-5629 are used for Cross Product 
+        const order::OrderRoutingReason STOCK_ENGINE_NOT_AVAILABLE = 5621;
+        const order::OrderRoutingReason CROSS_PRODUCT_ELIGIBLE_FOR_SPLITTING = 5622;
+        
+        //5630-5635 are used for Delta Neutrals
+        const order::OrderRoutingReason DELTA_NEUTRAL_NOT_SUPPORTED = 5630;
+        
+        //5636-5637 are used for Linked Away Order publish to OMT during failover
+        const order::OrderRoutingReason SHIPPED_AWAY_UNDERLYING_ORDER = 5636;
+    };
+
+     interface OrderRoutingDestinations 
+     {
+        const order::OrderRoutingDestination UNSPECIFIED 	= 0;
+        const order::OrderRoutingDestination CMI 		= 1;
+	const order::OrderRoutingDestination TPF 		= 2;
+	const order::OrderRoutingDestination TE 		= 3;
+	const order::OrderRoutingDestination PAR 		= 4;
+	const order::OrderRoutingDestination BART 		= 5;
+	const order::OrderRoutingDestination DEFAULT 		= 6;
+    };
+
+    interface MaximumExecutionReasons
+    {
+        const order::MaximumExecutionVolumeReason NONE = 1;
+    };
+
+    interface OpeningRequirementCodes
+    {
+        const orderBook::OpeningRequirement UNSUPPORTED = -1;
+        const orderBook::OpeningRequirement REQUIREMENTS_OFF = 0;
+        const orderBook::OpeningRequirement REQUIREMENTS_ON = 1;
+    };
+    interface PropertyCategoryTypes
+    {
+        const property::Category USER_ENABLEMENT = "userenablement";
+        const property::Category TRADING_PROPERTIES = "tradingproperty";
+        const property::Category TCLOC = "tcloc";
+    };
+
+    interface OperationTypes
+    {
+        const property::OperationType DEFAULT_OPERATION = 1; // default operation will always be enabled
+        const property::OperationType MARKETQUERY_RECAP = 2;
+        const property::OperationType MARKETQUERY_CURRENTMARKET = 3;
+        const property::OperationType MARKETQUERY_NBBO = 4;
+        const property::OperationType MARKETQUERY_TICKER = 5;
+        const property::OperationType MARKETQUERY_MARKETDATAHISTORY = 6;
+        const property::OperationType MARKETQUERY_EXPECTEDOPENINGPRICE = 7;
+        const property::OperationType MARKETQUERY_BOOKDEPTH = 8;
+        const property::OperationType QUOTE_RFQ = 9;
+        const property::OperationType QUOTE_QUOTESTATUS = 10;
+        const property::OperationType QUOTE_QUOTEENTRY = 11;
+        const property::OperationType ORDERQUERY = 12;
+        const property::OperationType PRODUCTQUERY = 13;
+        const property::OperationType PRODUCTDEFINITION = 14;
+        const property::OperationType USERPREFERENCEQUERY = 15;
+        const property::OperationType ADMINISTRATOR = 16;
+        const property::OperationType TRADINGSESSION = 17;
+        const property::OperationType USERHISTORY = 18;
+        const property::OperationType USERTRADINGPARAMETERS = 19;
+        const property::OperationType ORDERENTRY_ORDER = 20;
+        const property::OperationType ORDERENTRY_RFQ = 21;
+        const property::OperationType INTERMARKETQUERY = 22;
+        const property::OperationType INTERMARKET_MANUALHANDLING = 23;
+        const property::OperationType DYNAMIC_BOOKDEPTH = 24;
+        const property::OperationType MARKETQUERY_DETAILMDHISTORY = 25;
+        const property::OperationType MARKETQUERY_PRIORITYMDHISTORY = 26;
+        const property::OperationType AUCTION = 27;
+        const property::OperationType EFPBLOCKTRADE = 28;
+        const property::OperationType ORDERENTRY_LIGHTORDER = 29;
+        const short MAXIUM_OPERATION_TYPE = 29;
+
+
+    };
+
+    interface AllocationTradeTypes
+    {
+        const tradingProperty::AllocationTradeType REGULAR = 0;
+        const tradingProperty::AllocationTradeType OPENING = 1;
+        const tradingProperty::AllocationTradeType QUOTE_TRIGGER = 2;
+        const tradingProperty::AllocationTradeType QUOTE_LOCK_MIN_TRADE  = 3;
+        
+        // for auction allocation algorithm only
+	const tradingProperty::AllocationTradeType INTERNALIZATION_AUCTION_TRADE = 5; 
+	const tradingProperty::AllocationTradeType INTERNALIZATION_NO_AUCTION_TRADE = 6;
+	const tradingProperty::AllocationTradeType STRATEGY_AUCTION_TRADE = 8;
+	const tradingProperty::AllocationTradeType SAL_AUCTION_TRADE = 9;
+	const tradingProperty::AllocationTradeType BOB_SAL_AUCTION_TRADE = 10;
+	const tradingProperty::AllocationTradeType ALLOC_ALL_TO_RIGHTS_TRADE = 11;
+	const tradingProperty::AllocationTradeType NON_ENTITLEMENT_WITH_CUSTOMER_JOINTERS = 12;
+
+    };
+
+    interface MarketMakerClassAssignmentTypes
+  	{
+        const user::MarketMakerClassAssignmentType NOT_APPLICABLE = 0; // (for DPM account class assignments)
+        const user::MarketMakerClassAssignmentType MM = 1;
+        const user::MarketMakerClassAssignmentType EDPM = 2;
+        const user::MarketMakerClassAssignmentType RMM = 3;
+    };
+
+    interface ServerTypes
+    {
+        const util::ServerType ID_SERVER = 1;
+        const util::ServerType CFN_ADAPTER = 2;
+        const util::ServerType COPP_ADAPTER = 3;
+        const util::ServerType COPP_GLOBAL = 4;
+        const util::ServerType COMPASS_ADAPTER = 5;
+        const util::ServerType CTM_ADAPTER = 6;
+        const util::ServerType FIX_LINKAGE = 7;
+        const util::ServerType FRONT_END = 8;
+        const util::ServerType GLOBAL_SERVER = 9;
+        const util::ServerType MEM_ADAPTER = 10;
+        const util::ServerType PDS_ADAPTER = 11;
+        const util::ServerType SMS_SERVER = 12;
+        const util::ServerType STATUS_SERVER = 13;
+        const util::ServerType TIPS_ADAPTER = 14;
+        const util::ServerType TPF_ADAPTER = 15;
+        const util::ServerType TPF_GLOBAL = 16;
+        const util::ServerType TRADE_SERVER = 17;
+    };
+
+    interface ProgramInterfaces
+    {
+        const util::SystemInterface ALL = 1;
+        const util::SystemInterface CMI = 2;       
+        const util::SystemInterface ADAPTERS = 3;      
+    };
+    
+    interface OrderRelationshipTypes
+    {
+        const short S_ORDER_TO_CUSTOMER_ORDER = 1;
+        const short PA_ORDER_TO_CUSTOMER_ORDER = 2;
+        const short AUCTION_RESPONSE_TO_AUCTION = 3;
+        const short FIRM_ORDER_TO_INTERNALIZED_ORDER = 4;
+        const short AUCTION_INITIATING_ORDER = 5;
+        const short AUCTION_JOINING_ORDER = 6;
+        const short CROSS_PRODUCT_LEG_ORDER = 7;        
+        const short P_ORDER_TO_CUSTOMER_ORDER = 8;
+        const short INTERMARKET_SWEEP_ORDER = 9;        
+    };
+
+    typedef string AlertExtensionField;
+
+    interface AlertExtensionFields
+    {
+
+        const AlertExtensionField COUNTER = "1";
+        const AlertExtensionField LAST_SENT_TIME = "2";
+
+     };
+
+    interface ProductOpenProcedureTypeCode
+    {
+        const tradingProperty::ProductOpenProcedureTypeCode PRODUCT_OPEN_PROCEDURE_TYPE_AUTO = 1;
+        const tradingProperty::ProductOpenProcedureTypeCode PRODUCT_OPEN_PROCEDURE_TYPE_MANUAL = 2;
+    };
+
+    interface TransactionClockPoints
+    {
+            const util::TransactionClockPoint OHS_SEND=1;	//OrderHandlingService
+            const util::TransactionClockPoint OHS_RECEIVE=2;
+            const util::TransactionClockPoint MMQS_SEND=3;	//MarketMakerQuoteService
+            const util::TransactionClockPoint MMQS_RECEIVE=4;
+            const util::TransactionClockPoint FE_SEND=5;		//Frontend
+            const util::TransactionClockPoint FE_RECEIVE=6;
+            const util::TransactionClockPoint CAS_SEND=7;	//Client Application Server
+		    const util::TransactionClockPoint CAS_RECEIVE=8;
+            const util::TransactionClockPoint USER_ACK=9;
+     };
+
+     interface TickerSources
+     {
+            const marketData::TickerSource TPF = 'T';
+            const marketData::TickerSource SBT = 'S';
+     };
+
+    interface AuctionReceiverType
+    {
+        const short AUCTION_RECEIVER_TYPE_IN_CLASS = 1;
+        const short AUCTION_RECEIVER_TYPE_IN_SERIES = 2;
+        const short AUCTION_RECEIVER_TYPE_AT_TOP = 3;
+    };
+
+    interface AuctionEventTypes
+    {
+	const short AUCTION_START = 1;
+	const short AUCTION_TRIGGER_START = 2;
+	const short AUCTION_END = 3;
+	const short AUCTION_TRIGGER_END = 4;
+    };
+
+    interface PropertyQueryTypes
+    {
+        const property::QueryType BEGINS_WITH = 1;
+        const property::QueryType CONTAINS = 2;
+        const property::QueryType ENDS_WITH = 3;
+    };
+
+    interface TradableTypes
+    {
+        const short UNSPECIFIED = 0;
+        const short ORDER = 1;
+        const short QUOTE_SIDE = 2;
+        const short QUOTE_TRIGGER = 3;
+        const short DERIVED_ORDER = 4;
+	const short NBBO_DERIVED_ORDER = 5;
+     };
+
+     interface ExchangeGateState
+    {
+        const short GATE_OPEN = 1;
+        const short GATE_CLOSED = 2;
+    };
+
+   
+        // interface defines all the order status message types that can be present in a block
+        interface OrderStatusTypes 
+	{
+            const util::OrderStatusType NEW_ORDER = 1;
+            const util::OrderStatusType NEW_ORDER_BY_FIRM = 2;
+            const util::OrderStatusType ORDER_UPDATE = 3;
+            const util::OrderStatusType ORDER_UPDATE_BY_FIRM = 4;
+            const util::OrderStatusType CANCEL_REPORT = 5;
+            const util::OrderStatusType CANCEL_REPORT_BY_FIRM = 6;
+            const util::OrderStatusType ORDER_FILL_REPORT = 7;
+            const util::OrderStatusType ORDER_FILL_REPORT_BY_FIRM = 8;
+            const util::OrderStatusType ORDER_ACCEPTED_BY_BOOK = 9;
+            const util::OrderStatusType ORDER_ACCEPTED_BY_BOOK_BY_FIRM = 10;
+            const util::OrderStatusType ACCEPT_ORDERS = 11;
+            const util::OrderStatusType ACCEPT_ORDERS_BY_FIRM = 12;
+            const util::OrderStatusType ORDER_BUST_REPORT = 13;
+            const util::OrderStatusType ORDER_BUST_REPORT_BY_FIRM = 14;
+            const util::OrderStatusType ORDER_BUST_REINSTATE_REPORT = 15;
+            const util::OrderStatusType ORDER_BUST_REINSTATE_REPORT_BY_FIRM = 16;
+            const util::OrderStatusType ORDER_QUERY_EXCEPTION = 17;
+            const util::OrderStatusType ORDER_STATUS_UPDATE = 18;
+            const util::OrderStatusType ORDER_FILL_REPORT_BY_TRADING_FIRM = 19;
+            const util::OrderStatusType ORDER_BUST_REPORT_BY_TRADING_FIRM = 20;
+            const util::OrderStatusType ORDER_BUST_REINSTATE_REPORT_BY_TRADING_FIRM = 21;
+        };
+
+	// interface defines all the quote status message types that can be present in a block
+        interface QuoteStatusTypes 
+	{
+            const util::QuoteStatusType QUOTE_FILL_REPORT = 1;
+            const util::QuoteStatusType QUOTE_FILL_REPORTV3 = 2;
+            const util::QuoteStatusType QUOTE_DELETE_REPORT = 3;
+            const util::QuoteStatusType QUOTE_DELETE_REPORTV2 = 4;
+            const util::QuoteStatusType QUOTE_DELETE_REPORTV3 = 5;
+            const util::QuoteStatusType QUOTE_BUST_REPORT = 6;
+            const util::QuoteStatusType QUOTE_BUST_REPORTV3 = 7;
+            const util::QuoteStatusType QUOTE_STATUS_UPDATE = 8;
+
+            const util::QuoteStatusType MULTIPLIER = 1000;
+        };
+
+	interface ManualQuoteCancelReasonCodes
+	{
+		const char	USER_CANCEL = 'C';
+		const char	TIMER_CANCEL = 'T';
+		const char	SYSTEM_CANCEL = 'S';
+		const char	SYSTEM_CANCEL_SPREAD = 'X';
+		const char  NULL_CANCEL = ' ';
+	};
+
+	interface ManualQuoteResponseCodes
+	{
+		const short	 MANUAL_QUOTE_ACCEPTED = 6001;
+		const short	 MANUAL_QUOTE_MARKETABLE = 6002;
+		const short	 MANUAL_QUOTE_WORSE_THAN_MARKET = 6003;
+		const short  MANUAL_QUOTE_MARKETABLE_WITH_STRATEGY = 6004;
+		const short  MANUAL_QUOTE_SYSTEM_ERROR = 6005;
+		const short  MANUAL_QUOTE_INVALID_REQUEST = 6006;
+		const short  MANUAL_QUOTE_NOT_ACCEPTED = 6007;
+		const short  MANUAL_QUOTE_OVERRIDE_NEEDED = 6008;
+		const short  MANUAL_QUOTE_CLASS_NOT_IDX_HYBRID_ENABLED = 6009;
+		
+	};     
+    interface ElementGroupTypes
+    {
+        const short GROUP_TYPE_USER = 1;
+        const short GROUP_TYPE_PROCESS = 2;
+    };
+
+    interface ElementDataTypes
+    {
+        const short DATA_TYPE_EMPTY = 0;
+        const short DATA_TYPE_USER = 1;
+        const short DATA_TYPE_PROCESS = 2;
+        const short DATA_TYPE_HOST = 3;
+        const short DATA_TYPE_CLUSTER = 4;
+    };
+
+    interface ElementNodeTypes
+    {
+        // node types
+        const short NODE_TYPE_ROOT = 1;
+        const short NODE_TYPE_LEAF = 2;
+        const short NODE_TYPE_GROUP = 3;
+    };
+
+    interface ServerResponseCodes
+    {
+	const util::ServerResponseCode SUCCESS = 0;
+		const util::ServerResponseCode ALREADY_EXISTS_EXCEPTION = 1;
+		const util::ServerResponseCode AUTHENTICATION_EXCEPTION = 2;
+		const util::ServerResponseCode COMMUNICATION_EXCEPTION = 3;
+		const util::ServerResponseCode DATA_VALIDATION_EXCEPTION = 4;
+		const util::ServerResponseCode NOT_FOUND_EXCEPTION = 5;
+		const util::ServerResponseCode NOT_ACCEPTED_EXCEPTION = 6;
+		const util::ServerResponseCode NOT_SUPPORTED_EXCEPTION = 7;
+		const util::ServerResponseCode SYSTEM_EXCEPTION = 8;
+		const util::ServerResponseCode TRANSACTION_FAILED_EXCEPTION = 9;
+    };
+
+    typedef string FederatedBulkOperationField;
+
+    interface PropertyFederatedBulkOperation
+    {
+        // property constatnts related to bulk operations
+        const FederatedBulkOperationField WORKSTATION_ID = "workstationID";
+        const FederatedBulkOperationField GROUP_NAME = "groupName";
+        const FederatedBulkOperationField GROUP_KEY = "groupKey";
+    };
+
+    interface FederatedOperationType
+    {
+        // operation type related to bulk operation
+        const short ORDERS = 1;
+        const short QUOTES = 2;
+        const short IORDERS = 3;
+        const short ALL_ORDERS = 4;
+        const short TRADEBUST = 5;
+    };
+    
+    interface OrderLocations
+    {
+        const short UNSPECIFIED = 0;
+        const short CMI = 1;
+        const short TPF = 2;
+        const short TE = 3;
+        const short PAR = 4;
+        const short BOOTH_OMT = 5;
+        const short CROWD_OMT = 6;
+        const short HELP_DESK_OMT = 7;
+        const short OHS = 8;
+        const short LINKAGE = 9;   
+        const short DISPLAY = 10;     
+    };
+    
+    interface OMTRouteDestinations
+    {
+        const string OHS = "OHS";
+        const string TE  = "TE";
+        const string CROWD = "CROWD"; 
+    };
+    interface BookedStatusTypes
+    {
+        const short MARKET_TURNER = 1;
+        const short NOT_MARKET_TURNER = 2;
+    };    
+
+    interface ManualFillReportTypes
+        {
+            const short MANUAL_FILL_REPORT = 1;
+            const short LINKAGE_FILL_REPORT = 2;
+            const short LINKAGE_FILL_ENDORSE_REPORT = 3;
+            const short OMT_MANUAL_FILL_REPORT = 4;
+    };
+    
+    interface ActivitySubTypes
+        {
+            // PAR MarketData sub activity types.
+            const short SELECTED = 1;
+            const short RECEIVED = 2;
+            const short TRADED = 3;
+            const short HILO = 4;
+
+            // Adjustment Types.
+            const short SPLIT = 500;
+            const short DIVIDEND_CASH = 501;
+            const short DIVIDEND_PERCENT = 502;
+            const short DIVIDEND_STOCK = 503;
+            const short LEAP_ROLLOVER = 504;
+            const short MERGER = 505;
+            const short SYMBOL_CHANGE = 506;
+            const short COMMON_DISTRIBUTION = 507;
+
+            // Values as requested by DWH for ORS backfill ...
+            const short MANUAL_FILL_REJECT_SYSTEM_ERROR = 1079;
+            const short MANUAL_FILL_REJECT_INVALID_VOLUME = 2000;
+
+	    // Non-order messages
+	    const short MANUAL_FILL_REJECT_REROUTE = 3001;
+    };
+
+    interface ClearingTypes
+    {
+        const trade::ClearingType CLEAR = 'C';		    /* full CTMr processing to be applied immediately */
+        const trade::ClearingType IGNORE = 'I';		    /* ignore this side of the trade altogether */
+        const trade::ClearingType DEFERRED = 'D';   	/* store trade, deferring matching until EOD CTMi */
+        const trade::ClearingType NAMES_LATER = 'N';	/* store trade, for EOD matching.  For CBSX "non-realtime" clearing */
+        const trade::ClearingType FORCE_CLEAR = 'E';	/* full CTMr processing to be applied immediately for Express orders */
+       
+        /* DEFERRED and NAMES_LATER may or may not have the same CTMr behavior,
+         * so we want to distinguish between them for possible deviation.
+         */
+     };
+      interface ClearingTypeFilters
+    {
+       const short  NOT_FILTERED = 0 ;                /*  clearing not overiden by firm */
+       const short  FILTERED_BY_FIRM_PROPERTY = 1;   /* firm property supresses clearing indicator */
+       const short  FILTERED_BY_MANUAL_QUOTE = 2;  
+     };
+    interface OrderSource
+    {        
+         const char UNSPECIFIED = 'U';
+         const char TE = 'S';
+         const char PAR = 'P';
+    };
+    
+     interface ReasonabilityEditGroups
+    {
+        const string GROUPA = "GroupA";
+        const string GROUPB  = "GroupB";
+    };
+    
+    interface SalePrefixes
+    {
+        const marketData::SalePrefix OPENING_ONLY_TRADE = "OPNL";
+        const marketData::SalePrefix LATE_REPORTED_TRADE = "LATE";
+        const marketData::SalePrefix COMPEX_ORDER_TRADE = "SPRD";
+        const marketData::SalePrefix COMPEX_ORDER_TRADE_STRADDLE = "STDL";
+    	const marketData::SalePrefix OUT_OF_SEQUENCE_TRADE = "OSEQ";
+    	const marketData::SalePrefix CONTRACT_TERM_ADJUSTED_TRADE = "AJST";
+    	const marketData::SalePrefix RE_OPENING_TRADE = "REOP";
+    	const marketData::SalePrefix CANCLE_LAST_TRADE = "CNCL";
+    	const marketData::SalePrefix CANCLE_OPENING_TRADE = "CNCO";
+    	const marketData::SalePrefix CANCLE_ONLY_TRADE = "CNOL";
+    	const marketData::SalePrefix CANCEL_TRADE = "CANC";
+    	const marketData::SalePrefix OPENING_TRADE = "OPEN";
+    	const marketData::SalePrefix CMBO = "CMBO";
+   };
+
+    
+   interface ManualTextMessageConstants
+   {
+	const string MANUAL_TEXT_MESSAGE_USER_ID = "OPRA";       
+   };
+
+   typedef string ExtensionField;
+   
+   interface ExtensionFields
+   {
+	const ExtensionField SOURCE = "source";
+    const ExtensionField MMTN = "MMTN";
+    const ExtensionField BUY_SIDE = "BUY";
+    const ExtensionField SELL_SIDE = "SELL";
+   };
+     
+   interface BOBIndicatoryConstants
+   {
+	const marketData::BOBIndicatorType HYBRID_NOT_HAL        = 'Y';
+	const marketData::BOBIndicatorType HYBRID_HAL            = 'A';  
+        const marketData::BOBIndicatorType INDEX_HYBRID_NOT_HAL  = 'W';
+        const marketData::BOBIndicatorType INDEX_HYBRID_HAL      = 'I';
+        const marketData::BOBIndicatorType HYBRID_NEW_LINKAGE = 'L';
+        const marketData::BOBIndicatorType INDEX_HYBRID_NEW_LINKAGE = 'N';
+        const marketData::BOBIndicatorType NEW_INDEX_HYBRID_NEW_LINKAGE = 'M';
+   };
+
+   interface OrderStatesExt
+   {
+        const cmiOrder::OrderState ROUTED_TO_BOOTH = 101;
+        const cmiOrder::OrderState ROUTED_TO_CROWD = 102;
+        const cmiOrder::OrderState ROUTED_TO_HELP_DESK = 103;
+        const cmiOrder::OrderState NOT_ROUTED = 104;
+   };
+   
+   interface ShortSellLegInvolvements
+   {
+        const short INCOMING_ORDER = 1;
+        const short AUCTION_RESPONSES = 2;
+        const short RESTING_ORDERS = 3;
+   };
+
+    interface OrderReturnCodes
+    {
+    	const short DEFAULT = 0;
+    	const short DRILL_THROUGH_PROTECTION = 1;
+    };
+};
+#endif

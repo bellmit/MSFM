@@ -1,0 +1,30 @@
+#ifndef UserMaintenanceEventService_idl
+#define UserMaintenanceEventService_idl
+
+#include "UserMaintenanceService.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module businessServices
+{
+    interface UserMaintenanceEventService : internalBusinessServices::UserMaintenanceService
+    {
+        void subscribeUserMaintenanceEvent( in consumers::CacheUpdateConsumer cacheUpdateConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+            
+        void unsubscribeUserMaintenanceEvent( in consumers::CacheUpdateConsumer cacheUpdateConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            ); 
+    };
+};
+
+#endif

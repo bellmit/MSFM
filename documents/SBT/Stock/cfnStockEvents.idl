@@ -1,0 +1,265 @@
+#ifndef _CFN_STOCK_EVENTS
+#define _CFN_STOCK_EVENTS
+
+#include "CosTypedEventComm.idl"
+#include "exceptions.idl"
+
+#pragma javaPackage "com.cboe.cfn.idl"
+
+module stock { module sbt {
+
+    typedef short PriceType;
+
+    struct DateStruct
+    {
+        octet month;
+        octet day;
+        short year;
+    };
+
+    struct TimeStruct
+    {
+        octet hour;
+        octet minute;
+        octet second;
+        octet fraction;
+    };
+
+    struct DateTimeStruct
+    {
+        DateStruct date;
+        TimeStruct time;
+    };
+
+    struct PriceStruct
+    {
+        PriceType type;
+        long whole;
+        long fraction;
+    };
+
+    struct SIACTradeReportStruct{
+        string referenceNumber;
+        string symbol;
+        PriceStruct tradePrice;
+        DateTimeStruct dateTime;
+        long tradeQuantity;
+        short transactionStatus;
+        string saleCondition;
+        long sellersSaleDays;
+        char tradePrint;
+        short stopStockIndicator;
+        short localIssueIndicator;
+        short issueType;
+        char outputNetwork;
+    };
+
+    struct SIACTradeCorrectionStruct{
+        SIACTradeReportStruct originalTrade;
+        SIACTradeReportStruct newTrade;
+        PriceStruct lastPrice;
+        short lastTick;
+    };
+
+    struct SIACTradeCancelStruct{
+        string referenceNumber;
+        SIACTradeReportStruct originalTrade;
+        PriceStruct lastPrice;
+        short lastTick;
+        short cancelErrorIndicator;
+        short cancelErrorAction;
+    };
+
+    struct SIACPriorDayTradeCancelStruct{
+        string referenceNumber;
+        SIACTradeReportStruct priorDayTrade;
+        short cancelErrorIndicator; 
+    };
+
+    struct SIACPriorDayTradeCorrectionStruct{
+        SIACTradeReportStruct priorDayOriginalTrade;
+        SIACTradeReportStruct priorDayNewTrade;
+    };
+
+    struct SIACQuoteReportStruct{
+        string referenceNumber;
+        string symbol;
+        char instrumentType;
+        char cancelCorrectionIndicator;
+        char settlementCondition;
+        char quoteCondition;
+        char marketCondition;
+        PriceStruct bidPrice;
+        long bidSize;
+        PriceStruct askPrice;
+        long askSize;
+        char bankruptcyThousandDigitIndicator;
+    };
+
+    struct SIACAdminMessageStruct{
+        string destination;
+        char status;
+        string text;
+    };
+    
+    struct SIACErrorMessageStruct{
+        string errorCode;
+        string errorDesc;
+        string referenceNumber;
+        string message;
+    };
+
+    interface EventChannelConsumer: CosTypedEventComm::TypedPushConsumer 
+    {
+    };
+
+    interface CfnStockConsumer
+    {
+        void publishTradeReport( in  stock::sbt::SIACTradeReportStruct aTrade );
+        void publishTradeCorrection( in stock::sbt::SIACTradeCorrectionStruct aTradeCorrection );
+        void publishTradeCancel( in stock::sbt::SIACTradeCancelStruct aTradeCancel );
+        void publishPriorDayTradeReport( in  stock::sbt::SIACTradeReportStruct aPriorDayTrade );
+        void publishPriorDayTradeCancel( in stock::sbt::SIACPriorDayTradeCancelStruct aPriorDayTradeCancel );
+        void publishPriorDayTradeCorrection( in stock::sbt::SIACPriorDayTradeCorrectionStruct aPriorDayTradeCorrection );
+        void publishQuoteReport( in stock::sbt::SIACQuoteReportStruct aQuote );
+        void publishAdminMessage( in  stock::sbt::SIACAdminMessageStruct aMessage );
+    };
+    
+	interface CfnStockEvents : EventChannelConsumer, CfnStockConsumer
+    {
+    };        
+    
+    interface CfnSiacConsumer
+    {
+        void publishAdminMessage( in  stock::sbt::SIACAdminMessageStruct aMessage );
+        void publishErrorMessage( in  stock::sbt::SIACErrorMessageStruct aMessage );
+    };
+
+	interface CfnSiacEvents : EventChannelConsumer, CfnSiacConsumer
+    {
+    }; 
+
+    /*
+     * Above is the original IDL for the initial stock system
+     * Below is the IDL for version 2 which uses CORBA for passing messages to
+     *  Cfn stock, does blocking, and supports traffic from multiple BCs
+    */
+
+    typedef long  BCid;
+    typedef char  TradeMessageType;
+    typedef char  QuoteMessageType;
+    typedef char  ReportingAgency;
+    typedef char  TradeSide;
+
+    interface TradeMessageCategories
+    {
+        const TradeMessageType TRADE_REPORT               = '1';
+        const TradeMessageType TRADE_CORRECTION           = '2';
+        const TradeMessageType TRADE_CANCEL               = '3';
+        const TradeMessageType PRIOR_DAY_TRADE_REPORT     = '4';
+        const TradeMessageType PRIOR_DAY_TRADE_CANCEL     = '5';
+        const TradeMessageType PRIOR_DAY_TRADE_CORRECTION = '6';
+        const TradeMessageType TRADE_TEST                 = '7';
+    };
+
+    interface QuoteMessageCategories
+    {
+        const QuoteMessageType QUOTE_REPORT               = '1';
+        const QuoteMessageType QUOTE_WIPEOUT              = '2';
+        const QuoteMessageType QUOTE_TEST                 = '3';
+    };
+
+    interface ReportingAgencies
+    {
+        const ReportingAgency SIAC                        = 'S';
+        const ReportingAgency NASDAQ                      = 'N';
+    };
+
+    interface TradeSides
+    {
+        const TradeSide CROSS                                   = 'X';
+        const TradeSide BUY                                     = 'B';
+        const TradeSide SELL                                    = 'S';
+        const TradeSide SHORT                                   = 'R';
+    };
+
+    struct  TradeStruct{
+        //string primaryMarket; /* to determine if the message goes to SIAC or NASDAQ */
+		ReportingAgency agency;
+        TradeMessageType type;
+        SIACTradeReportStruct newTrade; /* the dateTime needs to be in here always */
+        SIACTradeReportStruct originalTrade;
+        PriceStruct lastPrice;
+        short lastTick;
+        short cancelErrorIndicator;
+        short cancelErrorAction;
+        TradeSide tradeSide;   /* probably always X for cross for CBOE's system */
+    };
+
+    struct  QuoteStruct{
+        //string primaryMarket; /* to determine if the message goes to SIAC or NASDAQ */
+		ReportingAgency agency;
+        QuoteMessageType type;
+        SIACQuoteReportStruct quote;
+        /* next for items for NASDAQ quote wipeout */
+		char wipeoutCommand; 
+		string firstSymbol;
+		string lastSymbol;
+		char wipeoutAction;
+		DateTimeStruct dateTime;
+    };
+
+    interface CfnStockAdminConsumer 
+    {
+        void acceptAdminMessage( in stock::sbt::ReportingAgency agency, in  stock::sbt::SIACAdminMessageStruct aMessage );
+        void acceptErrorMessage( in stock::sbt::BCid id, in  stock::sbt::SIACErrorMessageStruct aMessage );
+    };
+	
+    interface CfnStockAdminEventConsumer : EventChannelConsumer, CfnStockAdminConsumer
+    {
+    };
+	
+    typedef sequence<TradeStruct> TradeStructSequence;
+    typedef sequence<QuoteStruct> QuoteStructSequence;
+
+    interface CfnStockServiceConsumer
+    {
+		void acceptTradeEvent( in stock::sbt::BCid id, in stock::sbt::TradeStructSequence block);
+		void acceptQuoteEvent( in stock::sbt::BCid id, in stock::sbt::QuoteStructSequence block );
+		void acceptAdminMessageEvent( in stock::sbt::BCid id, in stock::sbt::DateTimeStruct timeDate, 
+	    in stock::sbt::ReportingAgency agency, in stock::sbt::SIACAdminMessageStruct aMessage );
+    };
+    
+   	interface CfnStockServiceEventConsumer : EventChannelConsumer, CfnStockServiceConsumer
+    {
+    };
+
+    
+};};
+
+module externalIntegrationServices {
+    interface StockService {
+	void acceptTradeEvent( in stock::sbt::BCid id, in stock::sbt::TradeStructSequence block)
+            raises( 
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+	void acceptQuoteEvent( in stock::sbt::BCid id, in stock::sbt::QuoteStructSequence block )
+            raises( 
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+	void acceptAdminMessageEvent( in stock::sbt::BCid id, in stock::sbt::DateTimeStruct timeDate, 
+	    in stock::sbt::ReportingAgency agency, in stock::sbt::SIACAdminMessageStruct aMessage )
+            raises( 
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+
+};
+
+#endif _CFN_STOCK_EVENTS

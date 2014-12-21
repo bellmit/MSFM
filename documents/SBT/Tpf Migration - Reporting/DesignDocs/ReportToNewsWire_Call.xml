@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportToNewsWire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="/sbt/test12/tradeeng/run_dir/log/ReportToNewsWire.xsd">
+	<reportHeader>
+		<senderName>Chicago Board Options Exchange</senderName>
+		<senderAppName>CBOE Direct</senderAppName>
+		<reportName>Half Hourly NewsWire Report</reportName>
+		<reportDateTime>2007-09-05T02:56:27-05:00</reportDateTime>
+		<version>1.0</version>
+	</reportHeader>
+	<reportDetail>
+		<category name="Equity">
+			<volumeInfo>
+				<callVolume>10</callVolume>
+				<putVolume>0</putVolume>
+				<totalVolume>10</totalVolume>
+			</volumeInfo>
+			<gainersLosersInfo>
+				<gainersLosersInfoForCall>
+					<gainers>9</gainers>
+					<losers>101</losers>
+					<unchanged>11</unchanged>
+					<totalGainersLosersUnchanged>121</totalGainersLosersUnchanged>
+				</gainersLosersInfoForCall>
+				<gainersLosersInfoForPut>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForPut>
+			</gainersLosersInfo>
+			<mostActive>
+				<mostActiveCall>
+					<underlying name="X Equity0">
+						<expiryMonth>1</expiryMonth>
+						<strikePrice>5.0</strikePrice>
+						<volume>6</volume>
+						<lastSalePrice>9.0</lastSalePrice>
+						<netChange>13.0</netChange>
+					</underlying>
+				</mostActiveCall>
+			</mostActive>
+		</category>
+		<category name="Composite">
+			<volumeInfo>
+				<callVolume>20</callVolume>
+				<putVolume>0</putVolume>
+				<totalVolume>20</totalVolume>
+			</volumeInfo>
+			<gainersLosersInfo>
+				<gainersLosersInfoForCall>
+					<gainers>33</gainers>
+					<losers>44</losers>
+					<unchanged>99</unchanged>
+					<totalGainersLosersUnchanged>176</totalGainersLosersUnchanged>
+				</gainersLosersInfoForCall>
+				<gainersLosersInfoForPut>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForPut>
+			</gainersLosersInfo>
+			<mostActive>
+				<mostActiveCall>
+					<underlying name="Y Composite0">
+						<expiryMonth>5</expiryMonth>
+						<strikePrice>11.0</strikePrice>
+						<volume>5</volume>
+						<lastSalePrice>39.0</lastSalePrice>
+						<netChange>3.0</netChange>
+					</underlying>
+				</mostActiveCall>
+			</mostActive>
+		</category>
+	<category name="Index">
+		<volumeInfo>
+			<callVolume>30</callVolume>
+			<putVolume>0</putVolume>
+			<totalVolume>30</totalVolume>
+		</volumeInfo>
+		<gainersLosersInfo>
+			<gainersLosersInfoForCall>
+				<gainers>68</gainers>
+				<losers>200</losers>
+				<unchanged>450</unchanged>
+				<totalGainersLosersUnchanged>718</totalGainersLosersUnchanged>
+			</gainersLosersInfoForCall>
+			<gainersLosersInfoForPut>
+				<gainers>0</gainers>
+				<losers>0</losers>
+				<unchanged>0</unchanged>
+				<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+			</gainersLosersInfoForPut>
+		</gainersLosersInfo>
+		<mostActive>
+			<mostActiveCall>
+				<underlying name="D Index0">
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>13.0</strikePrice>
+					<volume>54</volume>
+					<lastSalePrice>6.0</lastSalePrice>
+					<netChange>55.0</netChange>
+				</underlying>
+			</mostActiveCall>
+		</mostActive>
+	</category>
+	<topTenMostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC0">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC1">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC2">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC3">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC4">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC5">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC6">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC7">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC8">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+		<mostActiveSeries>
+			<optionType>CALL</optionType>
+			<underlying name="ABC9">
+				<expiryMonth>9</expiryMonth>
+				<strikePrice>45.0</strikePrice>
+				<volume>69</volume>
+				<lastSalePrice>77.0</lastSalePrice>
+				<netChange>12.0</netChange>
+			</underlying>
+		</mostActiveSeries>
+	</topTenMostActiveSeries>
+	<totalVolumeInfo>
+		<totalCallVolume>60</totalCallVolume>
+		<totalPutVolume>0</totalPutVolume>
+		<totalVolume>60</totalVolume>
+	</totalVolumeInfo>
+	<totalGainersLosersInfo>
+		<totalGainersLosersInfoForCall>
+			<gainers>110</gainers>
+			<losers>345</losers>
+			<unchanged>560</unchanged>
+			<totalGainersLosersUnchanged>1015</totalGainersLosersUnchanged>
+		</totalGainersLosersInfoForCall>
+		<totalGainersLosersInfoForPut>
+			<gainers>0</gainers>
+			<losers>0</losers>
+			<unchanged>0</unchanged>
+			<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+		</totalGainersLosersInfoForPut>
+	</totalGainersLosersInfo>
+	</reportDetail>
+</ReportToNewsWire>

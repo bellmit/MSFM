@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Building a Development Environment</TITLE>
+<META NAME="Template" CONTENT="C:\msoffice\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<H1 ALIGN="CENTER"><A NAME="top"></A>Building a Development Environment</H1>
+<P ALIGN="CENTER"><HR></P>
+<H2>Introduction</H2>
+<FONT FACE="Arial" SIZE=2><P>In an effort to get better control over the test environments some clean up of existing environments is being done and new environments will be created that will be assigned to people as needed.  </P>
+<P>The new environments are set to use a view "NONE", so you will get an error the first time you try to use them. Just set the view in the setContext file and re-login.</P>
+<P>You should assume that the environment is in an unknown state and rebuild it. The steps for building a development environment are detailed below.</P>
+</FONT><P ALIGN="CENTER"><HR></P>
+<H2>Steps for Building a Development Environment</H2>
+<FONT FACE="Arial" SIZE=2><P>1. Clean database by using dropAllTables command.</P>
+<P>2. Change directory to /vobs/dte/domain/sql</P>
+<P>3. Update your environment by executing ". environ"</P>
+<P>4. Recreate tables by doing "clearmake -C gnu DB_USERID=&lt;id&gt; DB_PASSWORD=&lt;pw&gt; all"</P>
+<P>5. Import test data by doing "clearmake -C gnu DB_USERID=&lt;id&gt; DB_PASSWORD=&lt;pw&gt; imp_test_data"</P>
+<P>6. Update the configuration groups by doing "clearmake -C gnu DB_USERID=&lt;id&gt; DB_PASSWORD=&lt;pw&gt; PREFIX=&lt;prefix&gt; update_config"</P>
+<P>7. Change directory to /vobs/dte/infrastructure/sql</P>
+<P>8. Login to the database by using the "loginDb" command (will use id of test environment).</P>
+<P>9. Run the script to the IFR tables by typing "@createIFR".</P>
+<P>10. Run the script to create the ID Service tables by typing "@idService".</P>
+<P>11. Change directory back to the running directory by "cd $RUN_DIR"</P>
+<P>12. Start the IFR with the "runifr.sh" command.</P>
+<P>13. Load the IFR with the "loadIFR" command (this is now checked into the infrastructure scripts directory).</P>
+<P>14. Run the command. </P>
+<P>You should now be fairly well set. If event channels have changed or you are not sure:</P>
+<P>15. Start the channel admin with the "startCA" command.</P>
+<P>16. Remove all existing event channels for the environment (no command to do this). You can use "trader -query EventChannel | grep $SBT_PREFIX" to get a list of the channels and then use the removeEC command to remove each channel.</P>
+<P>17. Create all event channels with the "createSbtEC" command.</P>
+<P>18. Create the ID service event channels with the "createIdServiceEC" command.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<FONT FACE="Arial" SIZE=2><P>&nbsp;</P>
+</FONT><FONT SIZE=2><P>&nbsp;</P></FONT></BODY>
+</HTML>

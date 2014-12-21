@@ -1,0 +1,176 @@
+//## Module: User
+
+#ifndef User_idl
+#define User_idl
+
+#include "cmiUser.idl"
+#include "cmiUtil.idl"
+#include "session.idl"
+//## Category: userService
+
+module user {
+    typedef short UserType;
+    typedef sequence <char> OriginTypeSequence;
+#pragma use_lookup_for_string ON
+    typedef string Exchange;
+#pragma use_lookup_for_string OFF
+
+    typedef sequence <user::Exchange> ExchangeSequence;
+
+    struct LoginStruct {
+        string name;
+        string password;
+        string location;
+    };
+    typedef sequence <LoginStruct> LoginStructSequence;
+
+    struct AccountDefinitionStruct {
+    cmiUser::ExchangeAcronymStruct account;                    // account acronym
+    cmiUser::ExchangeFirmStruct executingGiveupFirm;      //this is a derived attribute from the account
+    cmiUtil::DateTimeStruct lastModifiedTime;
+    boolean isActive;
+    boolean isPrimaryDpmParticipant;
+    };
+    typedef sequence <AccountDefinitionStruct> AccountDefinitionStructSequence;
+
+    struct UserDefinitionStruct {
+        long userKey;    // javagrinder assigned key
+        long firmKey;    // javagrinder assigned key of firm
+        long membershipKey; // ent uid from membership
+        UserType userType;    // type of membership application or created SBT user, there is some redundancy between this and role, but I don't know
+                                                                        // if we want to add all values to role.
+        cmiUser::UserRole role;
+        string userId;    // a unique name used for logging in
+        string fullName;
+        cmiUser::ExchangeAcronymStruct userAcronym;    // only assigned for traders
+        cmiUser::ProfileStructSequence profilesByClass;        // does not contain the default profile
+        cmiUser::ProfileStruct defaultProfile;                //The value of classKey in the defaultProfile is undefined
+        AccountDefinitionStructSequence accounts;     //accounts that the user can be assigned to
+        cmiProduct::ClassKeySequence assignedClasses;    // really only needed for query result, so could make separate getter for this.
+        boolean isActive;
+        cmiUser::ExchangeFirmStructSequence executingGiveupFirms;
+        cmiUtil::DateTimeStruct inactivationTime;    // use to record when changed.  Also for future?  Seems more like a membership function for traders.
+        cmiUtil::DateTimeStruct lastModifiedTime;
+        long versionNumber;
+        cmiUser::DpmStructSequence dpms;
+    };
+    typedef sequence< UserDefinitionStruct > UserDefinitionStructSequence;
+
+	struct UserSessionEnablementStruct {
+		session::TradingSessionName sessionName;
+		cmiProduct::ProductTypeSequence productTypeEnablements;
+	};
+	typedef sequence< UserSessionEnablementStruct > UserSessionEnablementStructSequence;
+
+	struct UserEnablementStruct {
+		string userId;
+		boolean testClassesOnly;
+		UserSessionEnablementStructSequence sessionEnablements;
+	};
+	typedef sequence< UserEnablementStruct> UserEnablementStructSequence;
+
+	struct UserStructV2 {
+		long userKey;
+		cmiUser::UserStruct userInfo;
+	};
+	typedef sequence< UserStructV2 > UserStructV2Sequence;
+
+	struct SessionClearingAcronymStruct{
+	        string sessionName;
+	        string sessionClearingAcronym;
+	};
+	typedef sequence< SessionClearingAcronymStruct > SessionClearingAcronymStructSequence;
+
+    typedef short MarketMakerClassAssignmentType;
+
+    struct MarketMakerClassAssignmentStruct
+    {
+        session::TradingSessionName sessionName;
+        cmiProduct:: ClassKey classKey;
+        MarketMakerClassAssignmentType assignmentType;
+    };
+    typedef sequence <MarketMakerClassAssignmentStruct> MarketMakerClassAssignmentStructSequence;
+
+        struct SessionProfileUserDefinitionStruct{
+		long userKey;    // javagrinder assigned key
+		long firmKey;    // javagrinder assigned key of firm
+		long membershipKey; // ent uid from membership
+		UserType userType;  // type of membership application or created SBT user, there is some redundancy between this and role, but I don't know,if we want to add all values to role.
+		cmiUser::UserRole role;
+		string userId;    // a unique name used for logging in
+		string fullName;
+		cmiUser::ExchangeAcronymStruct userAcronym;    // only assigned for traders
+		AccountDefinitionStructSequence accounts;     //accounts that the user can be assigned to
+		MarketMakerClassAssignmentStructSequence assignedClasses;    // really only needed for query result, so could make separate getter for this
+		boolean isActive;
+		cmiUser::ExchangeFirmStructSequence executingGiveupFirms;
+		cmiUtil::DateTimeStruct inactivationTime;    // use to record when changed.  Also for future?  Seems more like a membership function for traders
+		cmiUtil::DateTimeStruct lastModifiedTime;
+		long versionNumber;
+		cmiUser::DpmStructSequence dpms;
+		cmiUser::SessionProfileStructSequence sessionProfilesByClass; // exclude all profiles with default class key
+		cmiUser::SessionProfileStructSequence defaultSessionProfiles;  // session default profiles
+		cmiUser:: SessionProfileStruct defaultProfile; //generic profile for all class and all session
+		// to give broker user Clearing Acronym information by session
+	        SessionClearingAcronymStructSequence sessionClearingAcronyms;
+        };
+	typedef sequence< SessionProfileUserDefinitionStruct > SessionProfileUserDefinitionStructSequence;
+
+	struct SessionProfileUserStructV2 {
+		long userKey;
+		cmiUser:: SessionProfileUserStruct userInfo;
+	};
+	typedef sequence< SessionProfileUserStructV2 > SessionProfileUserStructV2Sequence;
+
+	// For preferred dpm
+	struct UserFirmAffiliationStruct
+	{
+		cmiUser::ExchangeAcronymStruct userAcronym; 
+		string affiliatedFirm; // a 6 character firm acronym
+	};
+	typedef sequence< UserFirmAffiliationStruct > UserFirmAffiliationStructSequence;
+
+
+    // New for Single Acronym Scrum
+    // This is lightweight version of UserDefinitionStruct to be used in method which will return large
+    // number of users. UserMaintenanceScreen will load faster.
+
+    struct UserSummaryStruct
+    {
+    	long userKey;
+    	string userId;
+    	string fullName;
+        long firmKey;
+    	cmiUser::ExchangeAcronymStruct userAcronym;
+    	cmiUser::UserRole role;
+    	UserType userType;
+    	boolean isActive;
+     };
+
+     typedef sequence<UserSummaryStruct> UserSummaryStructSequence;
+
+    struct MarketMakerClassAssignmentChangeStruct
+    {
+	cmiUser::ExchangeAcronymStruct userAcronym;    
+      string underSecSym;
+      string sessionName;
+      string actionType;
+      string assignmentType;
+      long seqId;
+    };
+    typedef sequence<MarketMakerClassAssignmentChangeStruct> MarketMakerClassAssignmentChangeStructSequence;
+
+    // For market maker class assignment change call return
+    struct ClassAssignmentResultStruct
+    {
+	  cmiUser::ExchangeAcronymStruct userAcronym;    
+        long seqId;
+        exceptions::ErrorCode errorCode;
+        string errorMessage;
+    };
+    typedef sequence <ClassAssignmentResultStruct> ClassAssignmentResultStructSequence;
+
+};
+
+#endif
+

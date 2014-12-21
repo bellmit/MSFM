@@ -1,0 +1,498 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_INTERMARKET_IDL
+#define CMI_INTERMARKET_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiCallback.idl"
+#include "cmiUtil.idl"
+#include "cmiOrder.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+#include "cmiIntermarketCallback.idl"
+#include "cmiIntermarketMessages.idl"
+#include "exceptions.idl"
+#include "cmi.idl"
+
+#pragma javaPackage "com.cboe.idl"
+module cmiIntermarket {
+
+//-----------------------------------------------------------------------------------------------------------
+// INTERMARKET QUERY
+//-----------------------------------------------------------------------------------------------------------
+    interface IntermarketQuery
+    {
+        cmiIntermarketMessages::CurrentIntermarketStruct getIntermarketByProductForSession(
+            in cmiProduct::ProductKey productKey,
+            in cmiSession::TradingSessionName session )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException
+                );
+
+        cmiIntermarketMessages::CurrentIntermarketStructSequence getIntermarketByClassForSession(
+            in cmiProduct::ClassKey classKey,
+            in cmiSession::TradingSessionName session )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException
+                );
+
+        cmiIntermarketMessages::AdminStructSequence getAdminMessage(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiAdmin::MessageKey adminMessageKey,
+            in cmiUser::Exchange sourceExchange)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException
+                );
+                
+        cmiIntermarketMessages::BookDepthDetailedStruct getDetailedOrderBook(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException, 
+                    exceptions::CommunicationException, 
+                    exceptions::AuthorizationException, 
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException, 
+                    exceptions::NotAcceptedException
+                );
+
+        //------------------------------------------------
+        // This method will get the orders on both the sell side and buy side for the given price.
+        // It will also return the buy orders greater then equal to and sell side less then equal to
+        // this price.
+        // It will also return any Market Orders that are in the OrderBook before the Opening.
+        // This call will only available to the DPM
+        //------------------------------------------------
+        cmiIntermarketMessages::BookDepthDetailedStruct showMarketableOrderBookAtPrice(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiUtil::PriceStruct openingPrice)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException,
+                    exceptions::NotAcceptedException
+                );
+
+        //------------------------------------------------
+        // This method will get the state of the OrderBook during the Product Opening state.
+        // This call will only available to the DPM
+        //------------------------------------------------
+        cmiIntermarketMessages::OrderBookStatus getOrderBookStatus(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException,
+                    exceptions::NotAcceptedException
+                );
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// INTERMARKET MANUALHANDLING
+//-----------------------------------------------------------------------------------------------------------
+    interface IntermarketManualHandling
+    {
+        void acceptSatisfactionOrderFill(
+            in cmiSession::TradingSessionName session,
+            in cmiOrder::OrderIdStruct satisfactionOrderId,
+            in cmiOrder::OrderEntryStruct nbboAgentOrder,
+            in long crowdQuantity,
+            in boolean cancelRemaining,
+            in cmiUtil::SatisfactionOrderDisposition disposition)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptSatisfactionOrderInCrowdFill(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiOrder::OrderIdStruct satisfactionOrderId,
+            in long crowdQuantity,
+            in boolean cancelRemaining,
+            in cmiUtil::SatisfactionOrderDisposition disposition)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptSatisfactionOrderReject (
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiOrder::OrderIdStruct satisfactionOrderId,
+            in cmiUtil::ActivityReason resolution)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptCustomerOrderSatisfy(
+            in cmiSession::TradingSessionName session,
+            in cmiOrder::OrderIdStruct referenceSatisfactonOrderId,
+            in cmiOrder::OrderEntryStruct nbboAgentOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptFillReject(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiIntermarketMessages::FillRejectRequestStruct fillRejectRequest)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptHeldOrderReroute(
+            in cmiOrder::OrderIdStruct heldOrderId,
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in boolean nbboProtectionFlag)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptHeldOrderByClassReroute(
+            in cmiProduct::ClassKey classKey,
+            in cmiSession::TradingSessionName session,
+            in boolean nbboProtectionFlag)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+
+        void acceptCancelResponse(
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::CboeIdStruct cancelRequestId,
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::DataValidationException
+                );
+
+        void acceptHeldOrderFill(
+            in cmiOrder::OrderIdStruct heldOrderId,
+            in cmiSession::TradingSessionName session,
+            in cmiOrder::OrderEntryStruct nbboAgentOrder)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException,
+                    exceptions::DataValidationException
+                );
+
+        cmiIntermarketMessages::HeldOrderDetailStruct getHeldOrderById(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiOrder::OrderIdStruct orderId)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+        cmiOrder::OrderStructSequence getAssociatedOrders(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey  productKey,
+            in cmiOrder::OrderIdStruct orderId)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::OrderStructSequence getOrdersByOrderTypeAndClass(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ClassKey classKey,
+            in cmiUser::ExchangeSequence exchanges,
+            in cmiOrder::OriginTypeSequence  originTypes,
+            in cmiUtil::OrderFlowDirection orderFlowDirection )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        cmiOrder::OrderStructSequence getOrdersByOrderTypeAndProduct(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in cmiUser::ExchangeSequence exchanges,
+            in cmiOrder::OriginTypeSequence originTypes,
+            in cmiUtil::OrderFlowDirection orderFlowDirection )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void acceptPreOpeningIndication(
+            in cmiSession::TradingSessionName session,
+            in cmiUser::Exchange originatingExchange,
+            in cmiProduct::ProductKey productKey,
+            in cmiIntermarketMessages::PreOpeningIndicationPriceStruct preOpenIndication)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::AuthorizationException
+                );
+
+        void acceptPreOpeningResponse(
+            in cmiSession::TradingSessionName session,
+            in cmiUser::Exchange originatingExchange,
+            in cmiUser::Exchange destinationExchange,
+            in cmiProduct::ProductKey productKey,
+            in cmiIntermarketMessages::PreOpeningResponsePriceStructSequence preOpenResponses)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::AuthorizationException
+                );
+
+        void acceptAdminMessage(
+            in cmiSession::TradingSessionName session,
+            in cmiUser::Exchange destinationExchange,
+            in cmiProduct::ProductKey productKey,
+            in cmiIntermarketMessages::AdminStruct adminMessage)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::AuthorizationException
+                );
+
+        boolean lockProduct(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException,
+                    exceptions::NotAcceptedException
+                );
+
+        boolean unlockProduct(
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException,
+                    exceptions::NotAcceptedException
+                );
+
+        boolean rerouteBookedOrderToHeldOrder(
+            in cmiOrder::OrderIdStruct bookedOrderId,
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey,
+            in boolean nbboProtectionFlag)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+            );
+
+        void acceptOpeningPriceForProduct(
+            in cmiUtil::PriceStruct openingPrice,
+            in cmiSession::TradingSessionName session,
+            in cmiProduct::ProductKey productKey)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException
+                );
+                
+     };
+
+//-----------------------------------------------------------------------------------------------------------
+// NBBO AGENT SESSION MANAGER
+//-----------------------------------------------------------------------------------------------------------
+    interface NBBOAgentSessionManager
+    {
+        IntermarketManualHandling getIntermarketManualHandling()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// NBBO AGENT
+//-----------------------------------------------------------------------------------------------------------
+    interface NBBOAgent
+    {
+        NBBOAgentSessionManager registerAgent(
+            in cmiProduct::ClassKey classKey,
+            in cmiSession::TradingSessionName session,
+            in boolean forceOverride,
+            in cmiIntermarketCallback::CMIIntermarketOrderStatusConsumer imOrderStatusListener,
+            in cmiIntermarketCallback::CMINBBOAgentSessionAdmin nbboAgentSessionAdmin)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException
+                );
+
+        void unregisterAgent(
+            in cmiProduct::ClassKey classKey,
+            in cmiSession::TradingSessionName session,
+            in cmiIntermarketCallback::CMIIntermarketOrderStatusConsumer imOrderStatusListener,
+            in cmiIntermarketCallback::CMINBBOAgentSessionAdmin nbboAgentSessionAdmin)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException
+                );
+      };
+
+//-----------------------------------------------------------------------------------------------------------
+// INTERMARKET USER SESSION MANAGER
+//-----------------------------------------------------------------------------------------------------------
+    interface IntermarketUserSessionManager
+    {
+
+        IntermarketQuery getIntermarketQuery()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        NBBOAgent getNBBOAgent()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+
+    struct IntermarketSessionManagerStruct
+    {
+        cmi::UserSessionManager sessionManager;
+        IntermarketUserSessionManager imSessionManager;
+    };
+
+//-----------------------------------------------------------------------------------------------------------
+// INTERMARKET USERACCESS SERVICE
+//-----------------------------------------------------------------------------------------------------------
+    interface IntermarketUserAccess
+    {
+        IntermarketSessionManagerStruct logon(
+            in cmiUser::UserLogonStruct logonStruct,
+            in cmiSession::LoginSessionType sessionType,
+            in cmiCallback::CMIUserSessionAdmin clientListener,
+            in boolean gmdTextMessaging )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::AuthenticationException,
+                    exceptions::DataValidationException
+                );
+
+        IntermarketUserSessionManager getIntermarketUserSessionManager(
+            in cmi::UserSessionManager sessionManager )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::NotFoundException
+                );
+     };
+
+};
+
+#endif
+
+</pre>

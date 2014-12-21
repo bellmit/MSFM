@@ -1,0 +1,25 @@
+#include "GroupService.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module internalBusinessServices
+{
+    interface GroupElementEventService : internalBusinessServices::GroupService
+    {
+        void subscribeGroupElementEvent( in consumers::GroupElementConsumer groupElementConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeGroupElementEvent( in consumers::GroupElementConsumer groupElementConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    };
+};

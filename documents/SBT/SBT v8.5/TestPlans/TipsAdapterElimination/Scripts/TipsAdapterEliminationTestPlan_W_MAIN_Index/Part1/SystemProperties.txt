@@ -1,0 +1,17 @@
+ORB.ListenHostName	_node 
+ClientProperties	SbtAdminGui.properties 
+FFPropertiesFile	SA.properties 
+FFServerName	SystemAdminServer 
+ORB.InitRefURL	ftp://infra:infra@saatg4.cboe.com:21/%2Fsbt/test/infra/run_dir/ior/initrefs.ior
+ORB.PortNum	6020
+ORB.OrbName	SUPPORT-APITESTCLIENT
+PropertyPrefix	atgtest4
+EventService.Admin.ChannelAdminServerName	atgtest4ChannelAdminServer 
+EventService.Admin.ExtentMapServerName	atgtest4ExtentMapAdminServer 
+ORB.FlowControl	none 
+ORB.LocatorDiscovery.Disable	true 
+ORB.Verbose	true 
+Security.Authenticator.ServiceType	atgtest4SecurityServerAuthenticator 
+Security.Authorizor.ServiceType	atgtest4SecurityServerAuthorize 
+Security.Logout.ServiceType	atgtest4SecurityServerLogout 
+Security.Admin.ServiceType	atgtest4SecurityAdminService 

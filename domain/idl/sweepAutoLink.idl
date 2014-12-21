@@ -1,0 +1,43 @@
+#ifndef SWEEP_AUTO_LINK_IDL
+#define SWEEP_AUTO_LINK_IDL
+
+#include "cmiUtil.idl"
+#include "cmiProduct.idl"
+
+//#pragma javaPackage "com.cboe.idl"
+
+module sweepAutoLink
+{
+	// ###############################
+	// # SweepElementStruct          #
+    	// ###############################
+	struct SweepElementStruct
+	{
+		string 			exchangeName;
+		long 			preferenceOrder;
+		cmiUtil::PriceStruct    sweepPrice;
+		long                    volume;
+		long 			routeVolume;		
+		boolean 		awayExchange;
+		boolean			cboeTradable;
+	};
+
+	typedef sequence<SweepElementStruct> SweepElementStructSequence;
+
+
+		// ###############################
+		// # AutoLinkStruct          #
+    	// ###############################
+	struct AutoLinkStruct
+	{
+		cmiProduct::ProductKeysStruct productKeys;
+		SweepElementStructSequence     autoLinkExchanges;
+		SweepElementStructSequence     secondaryAutoLinkExchanges;
+		SweepElementStructSequence     otherExchangesBBO;
+		SweepElementStructSequence     disqualifiedExchangesBBO;
+	};
+
+	typedef sequence<AutoLinkStruct> AutoLinkStructSequence;
+
+};
+#endif

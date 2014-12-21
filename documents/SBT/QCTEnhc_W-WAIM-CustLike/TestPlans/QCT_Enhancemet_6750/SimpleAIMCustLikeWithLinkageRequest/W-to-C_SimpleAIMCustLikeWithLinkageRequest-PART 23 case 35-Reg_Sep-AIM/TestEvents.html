@@ -1,0 +1,1081 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+	<title>Aim_Order_With_Autolink_Request where PO has W origin and MO is CUSTOMER</title>
+</head>
+<body getBGColor()="white">
+<h1>Aim_Order_With_Autolink_Request where PO has W origin and MO is CUSTOMER</h1>
+<hr size="5">
+<p>
+<table cellpadding="2" width=80%>
+	<tbody>
+		<tr>
+			<td style="vertical-align: top;"><big><b>Application:</big></b>
+			</td>
+			<td style="vertical-align: top;"><b>ITG API Client, version 3.0</b><br>
+			</td>
+		</tr>
+		<tr>
+			<td><b><big>Test Suite: </big></b></td>
+			<td><span style="font-weight: bold;"><b>Aim_Order_With_Autolink_Request where PO has W origin and MO is CUSTOMER</b></span><br>
+			</td>
+		</tr>
+		<tr>
+			<td><b><big>Test Suite File: </big><br></b>
+			</td>
+			<td><b>TestEvents</b><br>
+			</td>
+		</tr>
+	</tbody>
+</table><br><br>
+<table border="1" cellpadding="2" cellspacing="2" style="width: 100%;">
+<tbody>
+<tr>
+<td style="vertical-align: top;background-color: rgb(255, 255, 255);"><b><big>Testcase Name</big></b></td>
+<td style="vertical-align: top;background-color: rgb(255, 255, 255);"><b><big>Start</big></b></td>
+<td style="vertical-align: top;background-color: rgb(255, 255, 255);"><b><big>End</big></b><br>
+</td>
+<td style="vertical-align: top;background-color: rgb(255, 255, 255);"><b><big>Message</big></b><br>
+</td>
+<td style="vertical-align: top;background-color: rgb(255, 255, 255);"><b><big>Results</big></b><br>
+</td>
+</tr>
+<tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Connect to the ITG Linkage Router (RMI Server) </u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageConnectionAtomImpl - Connects to ITG Linkage Router(RMI Server)</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:16.766<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:17.11<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully Connected to Linkage ITG Router .<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Log in HD User and Perform Test Requirements</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SALoginAtomCMIImpl - Log in the HD User</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:17.157<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:27.516<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>SAUser HD6 successfully logged in.<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>ReportTradingPropertiesAtomCMIImpl - </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:27.735<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:29.391<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Reporting Trading Properties WARNING: The following 2 Trading Property value(s) have changed since the previous execution (2010-08-19 11:17:43.57) 1) "Auction Time To Live (auctiontimetolive)" - Value Today: Auction Type=-8, Lower Limit=10000, Upper Limit=10000; Auction Type=1, Lower Limit=10000, Upper Limit=10000; Auction Type=4, Lower Limit=10000, Upper Limit=10000, Value Previously: Auction Type=-8, Lower Limit=90000, Upper Limit=90000; Auction Type=1, Lower Limit=90000, Upper Limit=90000; Auction Type=4, Lower Limit=90000, Upper Limit=90000.			2) "Auction Minimum Quoters (auctionminquoters)" - Value Today: Auction Type=-8, Int Value=3; Auction Type=-4, Int Value=3; Auction Type=4, Int Value=3, Value Previously: Auction Type=-8, Int Value=1; Auction Type=1, Int Value=1; Auction Type=4, Int Value=1.			<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SelectReportingClassesAndProductsAtomCMIImpl - Select Reporting Class</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:27.532<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:29.407<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Class & Product Selection: <br>$CLASS1=69206141 (ABT/null, 7)  - [$CLASS1PRODUCT1=764594038 (ABT 8/2010 52.500000000 C); ]  (HD6);  <br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CreateUserAtomCMIImpl - Comment</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:29.438<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:42.594<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Create User [GO1] (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CreateUserAtomCMIImpl - Comment</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:42.594<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:44.563<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Create User [GO2] (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CreateUserAtomCMIImpl - Comment</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:44.563<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:46.75<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Create User [G03] (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CreateUserAtomCMIImpl - Comment</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:46.75<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:48.688<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Create User [GO4] (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CreateUserAtomCMIImpl - Comment</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:48.688<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:50.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Create User [GO5] (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CreateUserAtomCMIImpl - Comment HELP_DESK_OMT </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:50.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:53.063<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Create User [TIIP] (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Log in initial CMI test users & perform system verifications</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLoginAtomCMIImpl - Logging in</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:53.109<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:55.359<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>CMITraderUser GO1 successfully logged in - Accessed at TCP/IP Location: IP(dev4cas) Port(8003), Connection Point: dev4cas<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLoginAtomCMIImpl - Logging in</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:55.422<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:57.594<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>CMITraderUser GO2 successfully logged in - Accessed at TCP/IP Location: IP(dev4cas) Port(8003), Connection Point: dev4cas<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLoginAtomCMIImpl - Logging in</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:57.625<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:59.828<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>CMITraderUser G03 successfully logged in - Accessed at TCP/IP Location: IP(dev4cas) Port(8003), Connection Point: dev4cas<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLoginAtomCMIImpl - Logging in</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:22:59.859<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:02.031<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>CMITraderUser GO4 successfully logged in - Accessed at TCP/IP Location: IP(dev4cas) Port(8003), Connection Point: dev4cas<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLoginAtomCMIImpl - Logging in</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:02.062<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:04.219<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>CMITraderUser GO5 successfully logged in - Accessed at TCP/IP Location: IP(dev4cas) Port(8003), Connection Point: dev4cas<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OMTLoginAtomCMIImpl - Logging in</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:04.328<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:06.547<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>CMIOMTUser TIIP successfully logged in - Accessed at TCP/IP Location: IP(dev4cas) Port(8003)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Set up Subscriptions for the Class</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SubscribeCurrentMarketV4AtomCMIImpl - Subscribe for CurrentMarket</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.609<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.625<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Subscribe CurrentMarketV4 (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SubscribeRecapV4AtomCMIImpl - Subscribe for Last Sale (recap)</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.64<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.656<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Subscribe Recap (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SubscribeAuctionAtomCMIImpl - Subscribe Auction for complex orders</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.656<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.703<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Subscribe Auction (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SubscribeAuctionAtomCMIImpl - Subscribe Auction for complex orders</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.703<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.703<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Subscribe Auction (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SubscribeAuctionAtomCMIImpl - Subscribe Auction for complex orders</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.703<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.718<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Subscribe Auction (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Step 3: Verify Session State; Set/Verify Product States</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetProductStateByProductAtomCMIImpl - Set Product State to close</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:16.75<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:17.265<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Product State (by Product) 764594038 to 1 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetProductStateByProductAtomCMIImpl - Set Product State to pre open</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:17.265<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:17.781<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Product State (by Product) 764594038 to 2 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetProductStateByProductAtomCMIImpl - Set Product State to opening rotation</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:17.781<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.281<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Product State (by Product) 764594038 to 3 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetProductStateByProductAtomCMIImpl - Set Product State to open</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.281<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.797<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Product State (by Product) 764594038 to 4 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>ProductStateQueryAtomCMIImpl - Verify product is open</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.797<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.812<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Product State Query - 764594038 - 4 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Set/Verify Needed Routing Properties for Class1</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveVolumeRoutingPropertyAtomCMIImpl - Remove Firm Volume Limit</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.828<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.922<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing property for <br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveVolumeDeviationCheckAtomCMIImpl - Remove All Volume check deviation</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:18.937<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:21.797<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed All  routing property<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveFirmCorrBranchOMTDestinationRoutingAtomCMIImpl - Remove Firm Corr Branch OMT </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:21.797<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:21.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed all routing property<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveBoothDefaultDestinationRPAtomCMIImpl - Remove Booth Default Destination</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:21.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:21.906<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing all properties<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveBoothDirectRoutingAtomCMIImpl - Remove Booth Direct Routing</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:21.906<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.078<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing property <br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveParDirectRoutingAtomCMIImpl - Remove Par Direct Routingn</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.078<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.843<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing property<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveFirmClassParDestinationAtomCMIImpl - Remove Firmn Volume Limit</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.843<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed all routing property <br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveHelpDeskDefaultDestinationRPAtomCMIImpl - Remove Help Desk Default Destination</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.89<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.921<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing property  <br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveSessionClassParRPAtomCMIImpl - Remove Session Class Par Routing Parameters</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.937<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.953<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing property<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>RemoveReasonabilityEditAtomCMIImpl - Set Reasonability Edit</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.953<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.968<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully removed routing property for W_MAIN:CBOE:671:69206141:ReasonabilityEdit<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: PRE TEST CONDITIONS (RP's) for Class1</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAllowIncomingISOOrdersAtomCMIImpl - Allow Incoming ISO Orders</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:22.968<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.015<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful set Setting Allow Incoming ISO Orders Property for W_MAIN:69206141:AllowIncomingISO<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetVolumeRoutingPropertyAtomCMIImpl - Set Firm Volume Limit</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.015<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.046<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful set Firm Volume Limit routing property for W_MAIN:CBOE:671:69206141:VolumeSimple<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyVolumeRoutingPropertyAtomCMIImpl - Set Firm Volume Limit</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.062<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.171<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully verified Firm Volume Limit for W_MAIN:CBOE:671:69206141:VolumeSimple, on OHS Servers: test4OHServerHybridA<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetHelpDeskDefaultDestinationRPAtomCMIImpl - Set Helpdesk Default Destination</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.187<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.218<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful set Help Desk Default Destination routing property for W_MAIN:CBOE:671:69206141:HelpDeskDefaultDestination<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyHelpDeskDefaultDestinationRPAtomCMIImpl - Verify Helpdesk Default Destination</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.218<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.281<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully verified Help Desk Default Destination for W_MAIN:CBOE:671:69206141:HelpDeskDefaultDestination, on OHS Servers: test4OHServerHybridA<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetVolumeDeviationCheckAtomCMIImpl - Set Volume check deviation</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.281<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.312<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully set routing property for W_MAIN:CBOE:671:69206141:*:1:VolumeDevCheckSimple<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyVolumeDeviationCheckAtomCMIImpl - Verify Volume check deviation</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.328<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.406<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully verified Booth Default Destination for W_MAIN:CBOE:671:69206141:*:1:VolumeDevCheckSimple, on OHS Servers: test4OHServerHybridA<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetDisableLinkageOnParAtomCMIImpl - Remove Session Class Par Routing Parameters</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.406<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.437<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful set Setting Setting Disable Linkage On Par Property for W_MAIN:69206141:DisableLinkageOnPar<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetReasonabilityEditAtomCMIImpl - Set Reasonability Edit</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.453<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.484<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully set Reasonability Edit routing property for W_MAIN:CBOE:671:69206141:ReasonabilityEdit<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Set Linkage Property </u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetLinkageRouterVendorAssignmentAtomCMIImpl - SET LINKAGE ROUTER VENDOR ASSIGNMENT</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.484<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.515<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful set Linkage Router Vendor Assignment routing property for W_MAIN:Default:CBOE:671:69206141:LinkageRouterVendorAssignment<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetDefaultLinkageRouterAtomCMIImpl - SET DEFAULT LINKAGE ROUTER STATUS</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.531<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.562<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful set  DefaultLinkageRouter Property for W_MAIN:CITI:DefaultLinkageRouter<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageEnableAtomImpl - Linkage Enable...</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:23.562<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.703<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful enabled the following classes for Linkage ABT<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>ModifyAutoLinkExpirationTimerAtomImpl - Modify the Auto Link Expiration Timer</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.703<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.734<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully executed ar command modifyAutoLinkExpirationtimer for class: 69206141 to 40000 on OHS Servers: test4OHServerHybridA<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Set Trading Property for Option</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAllocationStrategiesAtomCMIImpl - Set Allocation Strategies</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.765<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.859<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set & Refresh Allocation Strategies for 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyAllocationStrategiesAtomCMIImpl - Verify Allocation Strategies</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.859<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Verify Allocation Strategies for 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionEnabledAtomCMIImpl - Set Auction Enabled</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:28.875<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:33.89<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Enabled 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyAuctionEnabledAtomCMIImpl - Set Auction Enabled</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:33.89<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:33.906<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Verify Auction Enabled 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAllowMarketOrderAtomCMIImpl - Set Allow Market Order</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:33.906<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:36.921<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Allow Market Order 69206141 to true(HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionMinPriceIncrementAtomCMIImpl - Set Price Increment</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:36.921<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:41.937<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Min Price Increment 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionMinQuotersAtomCMIImpl - Set Auction Minimum Quoters</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:41.937<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:46.952<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Min Quoters 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyAuctionMinQuotersAtomCMIImpl - Set Auction Minimum Quoters</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:46.952<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:46.968<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Min Quoters 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionOrderTicksAwayFromNBBOAtomCMIImpl - Set Auction Order Ticks Away from NBBO</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:46.968<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:51.984<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Order Ticks Away From NBBO 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyAuctionOrderTicksAwayFromNBBOAtomCMIImpl - Set Auction Order Ticks Away from NBBO</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:51.984<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:51.999<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Verify Auction Order Ticks Away From NBBO 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionMinMaxOrderSizeAtomCMIImpl - Set Auction Min Max OrderSize</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:23:51.999<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:07.015<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Min/Max Order Size for class ( 69206141 ) HD6<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyAuctionMinMaxOrderSizeAtomCMIImpl - Set Auction Min Max OrderSize</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:07.015<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:07.015<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Verify Auction Min/Max Order Size 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAllowedHALOriginCodeAtomCMIImpl - Set Allowed HAL orign Types</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:07.03<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:10.046<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Allowed HAL Origin Codes 69206141 for 3(HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionReceiverTypesAtomCMIImpl - Set Auction Receiver Type</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:10.046<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:15.061<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Receiver Types 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>VerifyAuctionReceiverTypesAtomCMIImpl - Verify Auction Receiver Type</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:15.061<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:15.077<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Verify Auction Receiver Types 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionTimeToLiveAtomCMIImpl - Set Auction time To live 11 - 11 sec's</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:15.077<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:20.093<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Time To Live 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAllowedHALArrayAtomCMIImpl - Set Allowed HAL Types</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:20.093<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:23.108<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Allowed HAL Type 69206141 for 3(HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetExchangePrescribedWidthAtomCMIImpl - Set Exchange Prescribed Width for Regular Option Class</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:23.108<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:25.139<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Exchange Prescribed Width for 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAutoLinkPreferredTieExchangesAtomCMIImpl -  Set Auto Link Preferred Tie Exchanges</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:25.139<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:28.171<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auto Link Preferred Tie Exchanges 69206141 for 6(HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAutoLinkDisqualifiedExchangesAtomCMIImpl - Set Auto Link Disqualified Exchanges</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:28.171<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:31.202<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auto Link Disqualified Exchanges 69206141 for 6(HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAONSolicitationMinimumQuantityAtomCMIImpl - Set UMA Split Rate</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:31.202<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:34.217<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set AON Solicitation Minimum quantity 69206141 to 500 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetInternalizationGuaranteedPercentageAtomCMIImpl - Set Internalization Guaranteed Percentage</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:34.217<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:36.249<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Internalization Guaranteed  Percentage for 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetUMASplitRateAtomCMIImpl - Set UMA Split Rate</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:36.249<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:37.264<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set UMA Split Rate 69206141 to 0.5 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: SCENARIO 35.Verify that the eligible AIM Order with Auto-Link request and CUSTOMER origins for both PO & MO must not start AIM auction</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TopOfBookVerificationAtomCMIImpl - Verify Book is Empty</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:37.28<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:37.28<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Top Of Book Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionMinQuotersAtomCMIImpl - Set Auction Minimum Quoters</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:37.28<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:42.295<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Min Quoters 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>ModifyAutoLinkExpirationTimerAtomImpl - Modify the Auto Link Expiration Timer</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:42.295<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:42.311<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully executed ar command modifyAutoLinkExpirationtimer for class: 69206141 to 40000 on OHS Servers: test4OHServerHybridA<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionTimeToLiveAtomCMIImpl - Set Auction time To live 11 - 11 sec's</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:42.327<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:47.342<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Time To Live 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>UpdateAllExchangesBBOWithNewFormatAtomCMIImpl - Set Buy BOTR</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:47.342<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:47.358<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Update BOTR 764594038 in W_MAIN<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>QuoteAtomCMIImpl - Event Comment...</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:47.374<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:47.967<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Quote Entry & Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CurrentMarketV4BestMarketQueryAtomCMIImpl - Current Market Query</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:47.967<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:48.467<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Best Mkt CurrentMarket Query  - (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>InternalizedOrderAtomCMIImpl - Enter Internalized Order</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:48.483<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:49.592<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Internalized Order Entry & Verification (CPC:7248 & CPC:7249, GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>QuoteFillVerificationAtomCMIImpl - Event Comment...</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:51.592<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:52.092<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Quote Fill Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:52.108<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:52.608<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:52.608<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:53.108<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:53.108<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:53.608<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderVerificationV2AtomImpl - MM2 enters an order from CMI</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:53.608<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:54.233<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Entry & Verification (MAM:7248 - GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderCancelReportV2AtomImpl - Linkage Cancel Report</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:54.233<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:24:54.327<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully sent a Cancel Report for an outbound Order (AAB:5 - )<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderVerificationV2AtomImpl - MM2 enters an order from CMI</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:04.326<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:04.842<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Entry & Verification (MAM:7248 - GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderCancelReportV2AtomImpl - Linkage Cancel Report</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:04.842<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:04.905<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully sent a Cancel Report for an outbound Order (AAB:6 - )<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:34.904<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:35.404<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:35.404<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:35.904<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderCancelVerificationAtomCMIImpl - Order Cancel Verification</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:35.904<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.404<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Cancel Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>BookDepthVerificationAtomCMIImpl - Verify Book Depth</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.404<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.404<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Book Depth Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>QuoteCancelAtomCMIImpl - Now cancel the quote</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.404<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.982<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Quote Cancel & Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TopOfBookVerificationAtomCMIImpl - Verify Book is Empty</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.982<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.982<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Top Of Book Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: SCENARIO 35.Verify that the eligible AIM Order with Auto-Link request and CUSTOMER origins for both PO & MO must not start AIM auction</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TopOfBookVerificationAtomCMIImpl - Verify Book is Empty</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.982<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.982<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Top Of Book Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionMinQuotersAtomCMIImpl - Set Auction Minimum Quoters</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:36.982<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:41.998<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Min Quoters 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>ModifyAutoLinkExpirationTimerAtomImpl - Modify the Auto Link Expiration Timer</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:41.998<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:42.013<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully executed ar command modifyAutoLinkExpirationtimer for class: 69206141 to 40000 on OHS Servers: test4OHServerHybridA<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SetAuctionTimeToLiveAtomCMIImpl - Set Auction time To live 11 - 11 sec's</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:42.029<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:47.045<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Set Auction Time To Live 69206141 (HD6)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>UpdateAllExchangesBBOWithNewFormatAtomCMIImpl - Set Buy BOTR</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:47.045<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:47.06<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Update BOTR 764594038 in W_MAIN<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>QuoteAtomCMIImpl - Event Comment...</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:47.06<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:47.638<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Quote Entry & Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>CurrentMarketV4BestMarketQueryAtomCMIImpl - Current Market Query</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:47.638<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:48.138<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Best Mkt CurrentMarket Query  - (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderAtomCMIImpl - MM2 enters separated Primary Order</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:48.138<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:48.654<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Entry & Verification (PPP:7248 - GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderAtomCMIImpl - Match Order</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:48.654<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:49.17<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Entry & Verification (PPP:7249 - GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>QuoteFillVerificationAtomCMIImpl - Event Comment...</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:51.17<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:51.67<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Quote Fill Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:51.67<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:52.17<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:52.17<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:52.67<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:52.67<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:53.17<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderVerificationV2AtomImpl - MM2 enters an order from CMI</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:53.17<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:53.685<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Entry & Verification (AAA:7248 - GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderCancelReportV2AtomImpl - Linkage Cancel Report</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:53.685<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:25:53.748<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully sent a Cancel Report for an outbound Order (AAB:7 - )<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderVerificationV2AtomImpl - MM2 enters an order from CMI</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:03.748<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:04.263<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Entry & Verification (AAA:7248 - GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>LinkageOrderCancelReportV2AtomImpl - Linkage Cancel Report</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:04.263<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:04.326<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successfully sent a Cancel Report for an outbound Order (AAB:8 - )<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:34.325<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:34.825<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderFillVerificationAtomCMIImpl - Order Fill Verification M2 </b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:34.825<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:35.325<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Status Query & Fill Report Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>OrderCancelVerificationAtomCMIImpl - Order Cancel Verification</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:35.325<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:35.825<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Order Cancel Verification (GO2)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>BookDepthVerificationAtomCMIImpl - Verify Book Depth</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:35.825<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:35.825<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Book Depth Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>QuoteCancelAtomCMIImpl - Now cancel the quote</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:35.825<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.388<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Quote Cancel & Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TopOfBookVerificationAtomCMIImpl - Verify Book is Empty</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.388<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.388<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>Successful Top Of Book Verification (GO1)<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr style="background-color: #33ccff;">
+			<td><div style="margin-left: 0px;"><b><big><u>Comment: Test complete - Log off users</u></big></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td style="vertical-align: top;"><div style="margin-left: 0px;"><b><br></b></div></td>
+			<td ><b><br></b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLogoutAtomCMIImpl - Valid Logout</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.388<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.435<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>TraderUser Logged out: GO1<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLogoutAtomCMIImpl - Valid Logout</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.435<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.482<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>TraderUser Logged out: GO2<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLogoutAtomCMIImpl - Valid Logout</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.482<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.528<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>TraderUser Logged out: G03<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>TraderLogoutAtomCMIImpl - Valid Logout</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.528<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.575<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>TraderUser Logged out: GO4<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+		<tr>
+			<td style="background-color: rgb(255, 255, 255);"><div style="margin-left: 0px; "><b>SALogoutAtomCMIImpl - Valid Logout</b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.575<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>2010-08-19 11:26:36.622<br></b></div></td>
+			<td style="vertical-align: top; background-color: rgb(255, 255, 255);"><div style="margin-left: 0px;"><b>SAUser Logged out: HD6<br></b></div></td>
+			<td style="background-color: rgb(0, 255, 0); text-align: center;"><b>Pass</b></td>
+		</tr>
+</tbody>
+</table>
+<br><br>
+<table cellpadding="2">
+	<tbody>
+		<tr>
+			<td><big><b>Final Client-Server Time Variances:</big></b><br>
+			</td>
+			<td><b>
+			</td>
+		</tr>
+		<tr>
+			<td>GO4<br>
+			</td>
+			<td>1310 (ms)<br>
+			</td>
+		</tr>
+		<tr>
+			<td>GO5<br>
+			</td>
+			<td>1310 (ms)<br>
+			</td>
+		</tr>
+		<tr>
+			<td>G03<br>
+			</td>
+			<td>1310 (ms)<br>
+			</td>
+		</tr>
+		<tr>
+			<td>GO1<br>
+			</td>
+			<td>1310 (ms)<br>
+			</td>
+		</tr>
+		<tr>
+			<td>GO2<br>
+			</td>
+			<td>1310 (ms)<br>
+			</td>
+		</tr>
+		<tr>
+			<td>TIIP<br>
+			</td>
+			<td>1310 (ms)<br>
+			</td>
+		</tr>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br><br>
+<table cellpadding="2">
+	<tbody>
+		<tr>
+			<td><b>Execution Start Time:</b><br>
+			</td>
+			<td><b>2010-08-19 11:22:16.75</b><br>
+			</td>
+		</tr>
+		<tr>
+			<td><b>Execution End Time:</b><br>
+			</td>
+			<td><b>2010-08-19 11:26:36.622</b><br>
+			</td>
+		</tr>
+		<tr>
+		<td><b>Execution Duration (hh:mm:ss.fff):</b><br>
+		</td>
+		<td><b>00:04:19.872</b><br>
+		</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;"><b>Events Executed:</b><br>
+			</td>
+			<td style="vertical-align: top;"><b>122</b><br>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;"><b>Events PASS:</b><br>
+			</td>
+			<td style="vertical-align: top;"><b>122</b><br>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;"><b><i>Expected Non-Pass Events:</i></b><br>
+			</td>
+			<td style="vertical-align: top;"><i><b>0</b></i><br>
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: top;"><b>Events FAIL:</b><br>
+			</td>
+			<td style="vertical-align: top;"><b>0</b><br>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

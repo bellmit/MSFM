@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+jxb:version="1.0"
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+	<xs:complexType name="GIDateTimeStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiUtil.DateTimeStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="dd" use="required"/>
+		<xs:attribute ref="mm" use="required"/>
+		<xs:attribute ref="yy" use="required"/>
+		<xs:attribute ref="hh" use="required"/>
+		<xs:attribute ref="mn" use="required"/>
+		<xs:attribute ref="ss" use="required"/>
+		<xs:attribute ref="fr" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIDateStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiUtil.DateStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="mm" use="required"/>
+		<xs:attribute ref="dd" use="required"/>
+		<xs:attribute ref="yy" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GITimeStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiUtil.TimeStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="hh" use="required"/>
+		<xs:attribute ref="mn" use="required"/>
+		<xs:attribute ref="ss" use="required"/>
+		<xs:attribute ref="fr" use="required"/>
+	</xs:complexType>
+	<xs:element name="CRTM" type="GIDateTimeStructType">
+		<xs:annotation>
+			<xs:documentation>Created Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GICreatedDateTime"/>
+				<jxb:property name="createdTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LMTM" type="GIDateTimeStructType">
+		<xs:annotation>
+			<xs:documentation>Last Modified Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GILastModifiedDateTime"/>
+				<jxb:property name="lastModifiedTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:attribute name="dd" type="xs:byte">
+		<xs:annotation>
+			<xs:documentation>Date</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="date"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="mm" type="xs:byte">
+		<xs:annotation>
+			<xs:documentation>Month</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="month"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="yy" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Year</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="year"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="hh" type="xs:byte">
+		<xs:annotation>
+			<xs:documentation>Hour</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="hour"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="mn" type="xs:byte">
+		<xs:annotation>
+			<xs:documentation>Minute</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="minute"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ss" type="xs:byte">
+		<xs:annotation>
+			<xs:documentation>Second</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="second"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="fr" type="xs:byte">
+		<xs:annotation>
+			<xs:documentation>Fraction</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="fraction"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+</xs:schema>

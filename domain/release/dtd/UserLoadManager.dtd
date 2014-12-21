@@ -1,0 +1,164 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalUserLoadManagerHome (UserLoadManagerHomeImpl* )>
+<!ATTLIST UserLoadManagerHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT UserLoadManagerHomeImpl (UserLoadManagerHomeImplProperties,UserLoadManagerHomeImplCommands?) >
+<!ATTLIST UserLoadManagerHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT UserLoadManagerHomeImplProperties (casQuoteMaximumPoolSize, casOrderEntryMaximumPoolSize, casLightOrderEntryMaximumPoolSize, poaPoolSizeGrowthFactor, baseTotalQuoteLoad, baseTotalOrderLoad, baseTotalLightOrderLoad, maximumConnectionPoolSize, minimumConnectionPoolSize, connectionPoolGowthFactor, evaluatorDelay, evaluatorCorePoolSize, fileWriterDelay, fileWriterCorePoolSize, evaluatorStartTime, fileWriterStartTime, historyFileName, historyFileLocation)>
+<!ATTLIST UserLoadManagerHomeImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT casQuoteMaximumPoolSize (#PCDATA)>
+<!ATTLIST casQuoteMaximumPoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode	      %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read casQuoteMaximumPoolSize' >
+
+<!ELEMENT casOrderEntryMaximumPoolSize (#PCDATA)>
+<!ATTLIST casOrderEntryMaximumPoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode	      %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read casOrderEntryMaximumPoolSize' >
+
+<!ELEMENT casLightOrderEntryMaximumPoolSize (#PCDATA)>
+<!ATTLIST casLightOrderEntryMaximumPoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode	      %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read casLightOrderEntryMaximumPoolSize' >
+
+<!ELEMENT poaPoolSizeGrowthFactor (#PCDATA)>
+<!ATTLIST poaPoolSizeGrowthFactor  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode	     %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read poaPoolSizeGrowthFactor' >
+
+<!ELEMENT baseTotalQuoteLoad (#PCDATA)>
+<!ATTLIST baseTotalQuoteLoad  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read baseTotalQuoteLoad' >
+
+<!ELEMENT baseTotalOrderLoad (#PCDATA)>
+<!ATTLIST baseTotalOrderLoad  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read baseTotalOrderLoad' >
+
+<!ELEMENT baseTotalLightOrderLoad (#PCDATA)>
+<!ATTLIST baseTotalLightOrderLoad  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read baseTotalLightOrderLoad' >
+
+<!ELEMENT maximumConnectionPoolSize (#PCDATA)>
+<!ATTLIST maximumConnectionPoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read maximumConnectionPoolSize' >
+
+<!ELEMENT minimumConnectionPoolSize (#PCDATA)>
+<!ATTLIST minimumConnectionPoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read minimumConnectionPoolSize' >
+
+<!ELEMENT connectionPoolGowthFactor (#PCDATA)>
+<!ATTLIST connectionPoolGowthFactor  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read connectionPoolGowthFactor' >
+
+<!ELEMENT evaluatorDelay (#PCDATA)>
+<!ATTLIST evaluatorDelay  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'evaluatorDelay in seconds' >
+
+<!ELEMENT evaluatorCorePoolSize (#PCDATA)>
+<!ATTLIST evaluatorCorePoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read evaluatorCorePoolSize' >
+
+<!ELEMENT fileWriterDelay (#PCDATA)>
+<!ATTLIST fileWriterDelay  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'fileWriterDelay in seconds' >
+
+<!ELEMENT fileWriterCorePoolSize (#PCDATA)>
+<!ATTLIST fileWriterCorePoolSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readOnly'
+	propertyType  %propertyTypes;   #FIXED 'integer'
+	description   CDATA             #FIXED 'read fileWriterCorePoolSize' >
+
+<!ELEMENT evaluatorStartTime (#PCDATA)>
+<!ATTLIST evaluatorStartTime
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+>
+
+<!ELEMENT fileWriterStartTime (#PCDATA)>
+<!ATTLIST fileWriterStartTime
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+>
+
+<!ELEMENT historyFileName (#PCDATA)>
+<!ATTLIST historyFileName
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+>
+
+<!ELEMENT historyFileLocation (#PCDATA)>
+<!ATTLIST historyFileLocation
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "string"
+>
+<!ELEMENT UserLoadManagerHomeImplCommands (refreshUserLoad,userLoadStatus,ulmFlag)>
+<!ATTLIST UserLoadManagerHomeImplCommands
+        type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT refreshUserLoad (ignored?)>
+<!ATTLIST refreshUserLoad
+        type %typeConstraints; #FIXED "ManagedCommand"
+        description CDATA #FIXED "Recalculate User Load"
+>
+<!ELEMENT ignored (#PCDATA)>
+<!ATTLIST ignored
+        type CDATA #FIXED "ManagedParameter"
+        parameterType CDATA #FIXED "string"
+        description CDATA #FIXED "value ignored"
+>
+<!ELEMENT userLoadStatus (ignored?)>
+<!ATTLIST userLoadStatus
+        type %typeConstraints; #FIXED "ManagedCommand"
+        description CDATA #FIXED "Show User Load Status"
+>
+<!ELEMENT ulmFlag (flagType,flagValue)>
+<!ATTLIST ulmFlag
+        type %typeConstraints; #FIXED "ManagedCommand"
+        description CDATA #FIXED "Setup User Load Manager Flags"
+>
+<!ELEMENT flagType (#PCDATA)>
+<!ATTLIST flagType
+        type %typeConstraints; #FIXED "ManagedCommand"
+        parameterType CDATA #FIXED "string"
+        description CDATA #FIXED "ALL"
+>
+<!ELEMENT flagValue (#PCDATA)>
+<!ATTLIST flagValue
+        type %typeConstraints; #FIXED "ManagedCommand"
+        parameterType CDATA #FIXED "string"
+        description CDATA #FIXED "ALL"
+>

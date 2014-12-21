@@ -1,0 +1,124 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_V4_IDL
+#define CMI_V4_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either Express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiV3.idl"
+#include "cmiCallbackV4.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+#include "cmiUtil.idl"
+#include "exceptions.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV4
+{
+    interface MarketQuery    {
+         void subscribeCurrentMarket(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV4::CMICurrentMarketConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+            void unsubscribeCurrentMarket(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV4::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+         void subscribeTicker(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+            void unsubscribeTicker(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+         void subscribeRecap(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+            void unsubscribeRecap(
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+    };
+
+
+    interface UserSessionManagerV4 : cmiV3::UserSessionManagerV3  {
+        cmiV4::MarketQuery   getMarketQueryV4()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+    
+    interface UserAccessV4
+    {
+        UserSessionManagerV4 logon(
+            in cmiUser::UserLogonStruct logonStruct,
+            in cmiSession::LoginSessionType sessionType,
+            in cmiCallback::CMIUserSessionAdmin clientListener,
+            in boolean gmdTextMessaging )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::AuthenticationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+     };
+};
+#endif
+
+</pre>

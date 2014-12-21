@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportToNewsWire xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="/sbt/test12/tradeeng/run_dir/log/ReportToNewsWire.xsd">
+	<reportHeader>
+		<senderName>Chicago Board Options Exchange</senderName>
+		<senderAppName>CBOE Direct</senderAppName>
+		<reportName>Half Hourly NewsWire Report</reportName>
+		<reportDateTime>2007-09-05T02:59:01-05:00</reportDateTime>
+		<version>1.0</version>
+	</reportHeader>
+	<reportDetail>
+		<category name="Equity">
+			<volumeInfo>
+				<callVolume>0</callVolume>
+				<putVolume>0</putVolume>
+				<totalVolume>0</totalVolume>
+			</volumeInfo>
+			<gainersLosersInfo>
+				<gainersLosersInfoForCall>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForCall>
+				<gainersLosersInfoForPut>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForPut>
+			</gainersLosersInfo>
+		</category>
+		<category name="Composite">
+			<volumeInfo>
+				<callVolume>0</callVolume>
+				<putVolume>0</putVolume>
+				<totalVolume>0</totalVolume>
+			</volumeInfo>
+			<gainersLosersInfo>
+				<gainersLosersInfoForCall>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForCall>
+				<gainersLosersInfoForPut>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForPut>
+			</gainersLosersInfo>
+		</category>
+		<category name="Index">
+			<volumeInfo>
+				<callVolume>0</callVolume>
+				<putVolume>0</putVolume>
+				<totalVolume>0</totalVolume>
+			</volumeInfo>
+			<gainersLosersInfo>
+				<gainersLosersInfoForCall>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForCall>
+				<gainersLosersInfoForPut>
+					<gainers>0</gainers>
+					<losers>0</losers>
+					<unchanged>0</unchanged>
+					<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+				</gainersLosersInfoForPut>
+			</gainersLosersInfo>
+		</category>
+		<totalVolumeInfo>
+			<totalCallVolume>0</totalCallVolume>
+			<totalPutVolume>0</totalPutVolume>
+			<totalVolume>0</totalVolume>
+		</totalVolumeInfo>
+		<totalGainersLosersInfo>
+			<totalGainersLosersInfoForCall>
+				<gainers>0</gainers>
+				<losers>0</losers>
+				<unchanged>0</unchanged>
+				<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+			</totalGainersLosersInfoForCall>
+			<totalGainersLosersInfoForPut>
+				<gainers>0</gainers>
+				<losers>0</losers>
+				<unchanged>0</unchanged>
+				<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+			</totalGainersLosersInfoForPut>
+		</totalGainersLosersInfo>
+	</reportDetail>
+</ReportToNewsWire>

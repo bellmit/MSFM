@@ -1,0 +1,581 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>ClearCase Task Development Procedure</TITLE>
+<META NAME="Template" CONTENT="C:\msoffice\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<H1 ALIGN="CENTER"><A NAME="top"></A>ClearCase Task Development Procedure</H1>
+<P><HR></P>
+<H2>Table of Contents</H2>
+<P><A HREF="#Introduction">Introduction</A></P>
+<P><A HREF="#Goals">Goals</A></P>
+<P><A HREF="#RequiredSkills">Required Skills</A></P>
+
+<UL>
+<LI><A HREF="#RequiredSkillsDevelopers">Developers</A> </LI>
+<LI><A HREF="#RequiredSkillsCMMgr">Configuration Manager</A> </LI>
+<LI><A HREF="#RequiredSkillsIntMgr">Integration Manager</A> </LI>
+<LI><A HREF="#RequiredSkillsProjMgr">Project Manager</A></LI></UL>
+
+<P><A HREF="#ProcessFlow">Process Flow</A></P>
+
+<UL>
+<LI><A HREF="#ProcessFlowNormal">Normal</A> </LI>
+<LI><A HREF="#ProcessFlowAlternative">Alternative</A></LI></UL>
+
+<P><A HREF="#SyncBaseline">Synchronizing to a Baseline</A></P>
+<P><A HREF="#integrationMergeProcess">Integration Merge Process</A></P>
+<P><A HREF="#StepsForNewTask">Steps for Creating a New Task</A></P>
+<P><A HREF="#ProcessExample">Process Example</A></P>
+
+<UL>
+<LI><A HREF="#ProcessExampleSBT">SBT</A> </LI>
+<LI><A HREF="#ProcessExampleSBTInfr">SBT Infrastructure</A></LI></UL>
+
+<P><A HREF="#Definitions">Definitions</A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949173"><A NAME="Introduction"></A>Introduction</A></H2>
+<FONT SIZE=2><P>This document addresses the ClearCase task development procedure for the Screen Based Trading (SBT) system. In addition to describing the process flow, the document includes examples that depict the process from the development stage through the new baseline integration. </P>
+</FONT><P><HR></P>
+<H2><A NAME="_Toc475949174"><A NAME="Goals"></A>Goals</A></H2>
+<FONT SIZE=2><P>There are two main goals for this process.</P>
+<P>1. Create an environment in which Developers can write code without being disrupted by untimely changes to the code base upon which they are dependent.</P>
+<P>2. Be able to release the minimum set of functionality requested by either system test or production users.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949175"><A NAME="RequiredSkills"></A>Required Skills</A></H2>
+<FONT SIZE=2><P>The Developers, Configuration Managers (CM), Integration Managers (IM) and Project Managers require certain skills to perform their assignments. This section lists the necessary skills for each individual involved in the process.</P>
+</FONT><H3><A NAME="_Toc475949176"><A NAME="RequiredSkillsDevelopers"></A>Developers</A></H3>
+
+<UL>
+<FONT SIZE=2><LI>check-in </LI>
+<LI>check-out </LI>
+<LI>create elements </LI>
+<LI>setting a config spec</LI></UL>
+
+</FONT><H3><A NAME="_Toc475949177"><A NAME="RequiredSkillsCMMgr"></A>Configuration Manager</A></H3>
+
+<UL>
+<FONT SIZE=2><LI>all developer skills </LI>
+<LI>creation of config specs </LI>
+<LI>creation of branch types </LI>
+<LI>creation of label types </LI>
+<LI>creation of labels</LI></UL>
+
+</FONT><H3><A NAME="_Toc475949178"><A NAME="RequiredSkillsIntMgr"></A>Integration Manager</A></H3>
+
+<UL>
+<FONT SIZE=2><LI>Requires all CM skills, however finding needed merges and file merges are frequent.</LI></UL>
+
+</FONT><H3><A NAME="_Toc475949179"><A NAME="RequiredSkillsProjMgr"></A>Project Manager</A> </H3>
+
+<UL>
+<FONT SIZE=2><LI>Ability to reasonably divide system functionality into a set of independent functions. This may of course be the result of collaboration from many people including developers, users and architect. </LI></UL>
+
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949180"><A NAME="ProcessFlow"></A>Process Flow</A></H2>
+<FONT SIZE=2><P>This section details the ClearCase task development process flow. It describes a normal flow scenario and an alternative flow scenario. </P>
+</FONT><H3><A NAME="_Toc475949181"><A NAME="ProcessFlowNormal"></A>Normal Flow</A></H3>
+<FONT SIZE=2><P>1. The Project Managers define tasks so that no incomplete dependencies exist between the tasks. This is not absolutely necessary but is highly desirable. The better the independence between tasks the more cleanly the process will work. The process does however support an imperfect planning stage. </P>
+<P>2. At the Project Managers request, the CM creates a branch type in all applicable vobs for each task. The branch type is created after work for that task is to be performed. </P>
+
+<UL>
+<LI>Branches identify the work being performed through the "name" (number), of the branch type. </LI>
+<LI>Build time problems that occur during integration are corrected directly on the branch representing the integration.</LI>
+<LI>The following are examples of the different kinds of task branches used and their naming conventions.</LI></UL>
+</FONT>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="CENTER"><B><FONT SIZE=2>Branch Naming Conventions</B></FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<B><FONT SIZE=2><P ALIGN="CENTER">Description</B></FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<B><FONT SIZE=2><P ALIGN="CENTER">Example</B></FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Dev_XYZ&#9;&#9;</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>A SBT task development branch.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>/dev_busttrade</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Integration&#9;&#9;</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>System test integration branch.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>/integration</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Sbt_X.XX</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT development branch type.</P>
+<P>This is the old current_increment.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>/sbt_5.01</P>
+
+<UL>
+<LI>The number 5 represents the increment number. </LI>
+<LI>.01 represents the first baseline version.</UL>
+</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>XXXX_bugfix&#9;</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT bug fix branch for the current system test release.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>/increment4_bugfix</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Sbt_infra_X.XX&#9;</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT infrastructure development integration branch.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>/sbt_infra_4.00.01</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Current_increment</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>The SBT infrastructure baseline branch.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>/current_increment</FONT></TD>
+</TR>
+</TABLE>
+
+<FONT SIZE=2><P>3. An IM is officially assigned to the development task. The IM will be responsible for that tasks ClearCase needs from this point forward.</P>
+<P>4. Ownership of the task is transferred to the IM.  This gives the IM the ability to lock and unlock the branch, which helps during the merge process.</P>
+<P>5. At the Project Managers request, the CM creates and publishes a config spec for each task. </P>
+<P>6. The IM validates the config spec to make sure that the baseline and the config spec are correct for the task. This includes validating that the baseline makes sense for the task. </P>
+<P>While in the development phase, if a new baseline is released during the development of a task, the Project Managers will determine when the task should be synced with the new baseline. The options here are during development or before merge. The goal here should normally be merge out the new baseline ASAP. The reason for this is that testing will need to be done with the new baseline no matter what BEFORE the merge to current_increment so the sooner the baseline is merged, the less re-testing will be required.</P>
+<P>If the task needs to merge out to a new baseline, the IM is responsible for merging the new baseline into the development branches. The IM is also responsible for updating the config specs for the task and making sure they get checked into ClearCase.</P>
+<P>7. The IM validates that the branches were created in the appropriate vobs for the task. </P>
+<P>If during development it is determined that a branch needs to be created in a vob where it doesn't exist, the IM will be responsible for making the request to the CM and informing the Project Managers. Depending on the reason for the branch request, the IM may or may not be in a position to validate that the new branch truly makes sense.</P>
+<P>8. Each Developer creates a view for each task they will work on. It is possible that more than one person may work on a task but each person works in a separate view. Never use the same view for multiple CONCURRENT OR SERIAL tasks. Each task should be done in a new, separate view to guarantee the integrity of each task.</P>
+<P>9. Once the view, branch type and config specs are created, it is business as usual. Developers check-in and check-out files as needed to complete their work. When multiple developers are working on a single task, it is advisable that the developers working on the branch coordinate changes to minimize the instability of the branch.</P>
+<P>10. When a task is complete, the Developer "submits" his/her changes for integration then notifies the appropriate managers (CM, IM, Project Managers, etc.). </P>
+<P>For the Developer to consider the task complete the following must be true.</P>
+
+<UL>
+<LI>No checkouts can exist on that task branch (in any view). </LI>
+<LI>All code must compile error and preferably warning free. </LI>
+<LI>The system’s runtime behavior should be at a level that if this were the only task completed, it could be submitted to system test as is.</LI></UL>
+
+<P>11. The Project Managers and Architect decide which completed tasks should get merged to the development integration branch. Other factors besides just the task’s completed status may determine whether that task should be integrated.</P>
+<P>12. The IM is responsible for merging task branches together based on the decisions made in step 10.  For detailed IM responsibilities see the section, 'Synchronizing to a Baseline'. </P>
+<P>Merges fall under one of three categories: trivial, automatic, or failed. Each needs a different amount of human intervention.</P>
+
+<UL>
+<LI>Trivial merges are merges that are guaranteed to work. No human intervention is ever needed and Clearcase completes the merge automatically. </LI>
+<LI>Automatic merges are merges that ClearCase was able to perform without conflict, but there is a possibility that the end result is undesirable. When using a typed language such as Java, it is rare that an automatic merge will produce a result that is ill-formed yet still compiles; therefore, it is excessive to check every automatic merge for correctness. </LI>
+<LI>Failed merges require manual intervention to resolve. These are cases where two files are changed in the same place and ClearCase cannot determine the proper result of the merge. The developers implementing the changes will be required to fix failed merges. To minimize the occurrence of this, it is imperative that developers adhere to these rules – </LI>
+<LI>NEVER make the same change on two branches. If the same change is needed by multiple tasks, make the change on an independent branch. See the Embedded Tasks flow below for a description. </LI>
+<LI>Avoid making cosmetic changes across the file. This looks like differences during the merge with no real changes.</LI></UL>
+
+<P>13. Once current_increment is successfully compiled, the IM labels the merge.</P>
+
+<UL>
+<LI>The IM labels each set of merges after they are complete. Once a label is made public to the development staff, it should never change. This label represents the new incremental change in the state of that integration branch. In this environment development integration occurs on an increment branch. This branch will incrementally be changed, incorporating more tasks each time until it is complete and that integration is ready for release to system test. Each incremental change (i.e. set of integrated tasks) will be labeled to capture the new baseline for further development. </LI>
+<LI>The following are examples of the different types of labels and their naming conventions.</LI></UL>
+</FONT>
+<TABLE BORDER CELLSPACING=1 CELLPADDING=7 WIDTH=590>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<P ALIGN="CENTER"><B><FONT SIZE=2>Label Naming Conventions</B></FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<B><FONT SIZE=2><P ALIGN="CENTER">Description</B></FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<B><FONT SIZE=2><P ALIGN="CENTER">Example</B></FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT_X.XX</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Integration checkpoint release of SBT System.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT_4.00&#9;</P>
+
+<UL>
+<LI>Increment 4.00 release of SBT which uses the INFRA_3.00 release of infrastructure</UL>
+</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT_X.XX.XX</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT development integration checkpoint of the most current development baseline.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT_4.00.01&#9;</P>
+
+<UL>
+<LI>Enhancement made to the 4.00 release of SBT, can be used as new development baseline</UL>
+</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT_INFRA_X.XX.XX</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBTinfrastructure development integration (‘current_increment’) checkpoint of the sbt infrastructure development baseline.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>SBT_INFRA_3.00.01</P>
+
+<UL>
+<LI>enhancement made by SBT to the 3.00 release of infrastructure</UL>
+</FONT></TD>
+</TR>
+<TR><TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>INFRA_X.XX</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>Integration checkpoint release of infrastructure.</FONT></TD>
+<TD WIDTH="33%" VALIGN="TOP">
+<FONT SIZE=2><P>INFRA_3.00</P>
+
+<UL>
+<LI>Infrastructure release 3.00 by the infrastructure group</UL>
+</FONT></TD>
+</TR>
+</TABLE>
+
+<B><FONT SIZE=2><P>Note:</B> Labels are differential labels on a branch. This means that the label will be applied to every thing on that branch but only things on that branch. This means if a task is integrated and a checkpoint label applied, then a second task is integrated and check-pointed, the second task’s checkpoint label will include all elements integrated as part of the first task integration. Since this label does not include a task’s integration baseline, the config spec will need to include the integration baseline checkpoint label in the config spec. For example,</P><DIR>
+<DIR>
+
+<P>element * …/sbt_4.01/SBT_4.01.01</P>
+<P>element * …/sbt_4.01/0</P>
+<P>mkbranch sbt_4.01</P>
+<P>element * …/integration/SBT_4.01</P>
+<P>element * …/integration/0</P>
+<P>end mkbranch sbt_4.01</P></DIR>
+</DIR>
+
+<P>14. The IM notifies everyone of the new available baseline and what functionality is added to it. The developers choose when to synchronize to this new baseline based on the functionality it provides and its necessity to the task being implemented.</P>
+</FONT><H3><A NAME="_Toc475949182"><A NAME="ProcessFlowAlternative"></A>Alternative Flow</A></H3>
+<FONT SIZE=2><P>The normal flow is the perfect world case and the alternative flows are only needed when a planning error occurs or a bug is found that is needed to continue work on the new functionality. Since bugs and planning errors do occur in the real world, the alternative flows address how to deal with them. All of these cases have to do with dependencies that were not known, detected, or ignored prior to the start of a task. All of these flows then deal with what happens after development begins and before it is complete. This is all within step 5 from the main flow. </P>
+</FONT><H4><A NAME="_Toc475949183"><A NAME="dependentTasks"></A>Dependent Tasks</A></H4>
+<FONT SIZE=2><P>This situation arises in several cases. First, when two tasks start with the intention of being independent but it turns out that one task needs the other task to complete the work. Second, this occurs when bugs are found after a task is started. And finally, this could occur when two tasks are started intentionally in parallel when it is known that there is a dependency. This is useful to keep stable the work on each independent branch and allow otherwise dependent tasks to occur in parallel. The process described works the same independent of the reason for the dependency.</P>
+<P>1. The Developer determines that he needs the work located on another branch.</P>
+<P>2. The Developer should complete as much work as possible without having the needed dependency.</P>
+<P><A NAME="_Ref470420209"><A NAME="dependentTasksStep3"></A>3. Once the other work on the other branch is completed and merged into the development integration branch, the IM can synchronize with the new baseline (see the section below on Synchronizing to a Baseline). This will make the work needed to be visible in his view. This is a three step process</A></P><DIR>
+<DIR>
+
+<P>3.1. Update the config spec to use the new baseline. Changing the line with the increment label does this. For example if the current baseline is SBT_5.01 and the new baseline is SBT_5.02, do the following -</P><DIR>
+
+<P>Change </P>
+<P>element * SBT_5.01 –mkbranch dev_123 </P>
+<P>to</P>
+<P>element * SBT_5.02 –mkbranch dev_123 </P></DIR>
+
+<P>3.2. A command line findmerge or the ClearCase Merge Manager must be used to determine if the new baseline has element versions that are not being accommodated within the view. See the ClearCase documentation or the CM Manager for help.</P>
+<P>3.3. For each element that needs a merge, a merge should be done from the development integration branch to the development branch. Remember to check-in all files that need merges prior to executing the merge. Then check-in the result of the merge as it’s own version.</P></DIR>
+</DIR>
+
+<P>4. Once the Developer is synchronized with the new baseline, work continues as usual.</P>
+</FONT><H4><A NAME="_Toc475949184"><A NAME="embeddedTasks"></A>Embedded Tasks</A></H4>
+<FONT SIZE=2><P>The next situations arises when a task started with the intention of being a single task turns out to be two tasks and the embedded task is needed by another task. There are multiple possibilities. </P>
+<P>1. Break out the embedded task and move it to its own task branch. </P>
+<P>2. Complete the work</P>
+<P>3. Merge the change back to the development integration branch. </P>
+<P>4. Create a new checkpoint label.</P>
+<P>5. Have Developers in need of that functionality synchronize to the new baseline as described in step 3 of the "</FONT><A HREF="#dependentTasks"><FONT SIZE=2>Dependent Tasks</FONT></A><FONT SIZE=2>" alternative flow.</P><DIR>
+<DIR>
+
+<P>or</P></DIR>
+</DIR>
+
+<P>1. Complete all the work on the branch with the embedded task.</P>
+<P>2. Merge this to the development integration branch.</P>
+<P>3. Create a new checkpoint label.</P>
+<P>4. Have Developers in need of the new functionality synchronize to the new baseline as described in step 3 of the "</FONT><A HREF="#dependentTasks"><FONT SIZE=2>Dependent Tasks</FONT></A><FONT SIZE=2>" alternative flow.</P>
+<P>5. This second alternative does not work when the embedded task is a bugfix that needs to be released independently of the new functionality being developed on the branch.</P>
+</FONT><H4><A NAME="_Toc475949185">Multiple Dependencies</A></H4>
+<FONT SIZE=2><P>In this case, a third task needs the functionality in two tasks that are complete but not able to be merged to the increment branch.  This involves the creation of an independent integration branch to satisfy the dependency.  New development will then occur relative to this auxiliary integration branch.  Pre_sbt500 is the first naming example used in this type of scenario, but a good naming standard will need to be established since there may be many of these intermediate development/merge areas.</P>
+<P>Once all the tasks have been merged and problems solved in the "pre-merge" branch, the tasks will be ready for synchronization to a baseline.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949186"><A NAME="SyncBaseline"></A>Synchronizing to a Baseline</A></H2>
+<H3><A NAME="_Toc475949187">Description</A></H3>
+<FONT SIZE=2><P>This process is followed in order to use a new baseline. This will be necessary when the functionality a development task requires exists in another baseline that is not currently used by the task. The IM will be responsible for synchronizing to a new baseline. </P>
+<P>The following are the steps the IM must perform in order to synchronize to a new baseline.</P>
+<P>1. The IM creates a new view to perform the synchronization.</P>
+<P>2. The IM updates the config specs in vobs\dte\dte_admin\config_specs\. For example, the task "update_order" is using SBT_5.01 as the baseline. There is a bugfix in SBT_5.01.01 that is needed to complete the update_order task. The following config spec will allow the update_order task to change from using the SBT_5.01 baseline to the SBT_5.01.01baseline.</P><DIR>
+<DIR>
+
+<P>element *…/sbt_5.01/SBT_5.01.01</P>
+<P>element * …/sbt_5.01/0</P>
+<P>mkbranch /sbt_5.01</P>
+<P>element * …/integration/SBT_4.00</P>
+<P>element * …/integration/0</P>
+<P>end mkbranch /sbt_5.01</P></DIR>
+</DIR>
+
+<P>3. The IM locks the branch that needs to be synchronized.</P>
+<P>4. At this point, the IM runs the "Find Merge" command or uses the "Merge Manager" tool in ClearCase to determine which files need to be merged. </P>
+<P>5. No merges can be performed on checked-out files, therefore, the IM must inspect for any checked-out files on the branch.</P>
+<P>6. If checked-out files are found, the IM unlocks the development branch that is being synchronized.</P>
+<P>7. The IM asks the Developer to check-in his/her files.</P>
+<P>8. Once the files are checked-in, the IM locks the development branch again.</P>
+<P>9. The "Find Merge" command or the "Merge Manager" tool is run again to determine if there are any checked-out files. If there are checked out files, steps 6 through 8 are repeated.</P>
+<P>10. Once all the files on the development branch to be synchronized have been checked-in, the IM performs the merge. </P>
+<P>11. The merge is represented by a distinct version. There are several reasons for this, the main one being that if a merge goes bad, it is easier to figure out what happened when each merge is captured by a version.</P>
+<P>12. The IM compiles everything that has changed for validation.</P>
+<P>13. The IM works with the developers to resolve merge and build problems.</P>
+<P>14. Once all the problems are resolved, the merged files are checked-in.</P>
+<P>15. The IM informs the team (via email) that a new config spec is available on vobs\dte\dte_admin\config_specs\.</P>
+<P>16. After the config specs are updated, the branch is unlocked.</P>
+<P>17. The IM notifies the team (via email) that the branch is unlocked.</P>
+<P>18. The IM deletes the view that was created for synchronization.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949188"><A NAME="integrationMergeProcess"></A></A>Integration Merge Process</H2>
+<H3>Description</H3>
+<FONT SIZE=2><P>This section describes the integration merge process.  The following details the IM's responsibilities throughout the process.  </P>
+<P>1. The IM validates that the entire branch builds without errors in all the vobs: client, domain, server, simulator, and sysAdminClient (GUI is a special case).</P>
+<P>2. If the baseline has changed, the IM merges the current baseline back out into the branch and compiles. Depending on the changes from the baseline merge, the determination will need to be made whether or not to bring up the entire system or just compile the entire system.</P>
+<P>3. All merge problems need to be resolved in the current development branch before any attempt to merge back to current_increment is made. Merge issues will need to be resolved by the development team for that branch and not the IMs as they are not usually in a position to know what the discrepancy means.</P>
+<P>4. When the branch is ready to merge to current_increment, the IM notifies the Project Managers via e-mail and requests to be scheduled to merge.</P>
+<P>5. Before merging back to current_increment, a Project Manager notifies the entire "IM Team" via e-mail that a particular branch is about to merge back to current_increment.</P>
+<P>6. The IM performs and compiles the merge. This should be a trivial merge at this point. If not, red flag. If it isn't, the IM will need to figure out why and how and validate that the merge is still valid.</P>
+<P>7. Once current_increment is successfully compiled, the IM labels the merge.</P>
+<P>8. The IM builds, checks in and labels all the JARs.</P>
+<P>9. The IM updates the version spreadsheet with the new label information. The spreadsheet is located on current_increment in the documents vob under "/vobs/dte/documents/dte/development_process/baselines.xls".</P>
+<P>10. The IM distributes an e-mail to the entire "IM Team" and Odalys notifying them that the baseline is stable and checked in.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P ALIGN="CENTER"><HR></P>
+<H2><A NAME="StepsForNewTask"></A>Steps for Creating a New Task</H2>
+<H3><A NAME="_Toc475949189">Description</A></H3>
+<FONT SIZE=2><P>This process will setup the environment so each developer can begin editing configuration items. It is performed once at the beginning of a task and is necessary to perform before beginning that task.</P>
+<P>1. The <B><I>Project Manager</B> </I>defines the new task.</P><DIR>
+
+<P>a. The Project Manager notifies the CM of the new task and provides the following information:</P></DIR>
+
+
+<UL>
+
+<UL>
+<LI>Task name (or identifier of some sort) </LI>
+<LI>The identifier for bugfix could be the DDTS tracking ID </LI>
+<LI>The identifier for new development could be some project plan identifier </LI>
+<LI>Baseline </LI>
+<LI>Task Type, "bugfix" or "new development"</LI></UL>
+</UL>
+
+<P>2. The <B><I>CM </B></I>creates the branch type and config spec.</P><DIR>
+
+<P>a. The CM creates the branch type in all development vobs.</P>
+<P>b. If the task type is "New Development," the branch type is:</P></DIR>
+
+
+<UL>
+
+<UL>
+<LI>Format:</LI></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>dev_&lt;task name&gt;</P></DIR>
+</DIR>
+</DIR>
+
+
+<UL>
+
+<UL>
+</FONT><FONT SIZE=2><LI>Examples:</LI></UL>
+</UL>
+<DIR>
+<DIR>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>dev_12345 </P>
+</FONT><FONT SIZE=2><P>or </P>
+</FONT><FONT FACE="Courier New" SIZE=1><P>dev_maintain_users</P></DIR>
+</DIR>
+
+</FONT><FONT SIZE=2><P>c. The CM creates NT and UNIX versions of the config spec.</P>
+<P>d. The CM checks-in the config specs in the dte_admin vob in the config_specs directory.</P>
+<P>e. The CM notifies the Project Manager that the task is ready to be started.</P></DIR>
+
+<P>3. The <B><I>Project Manager</B> </I>notifies the team that development work may begin.</P>
+<P>4. Each <B><I>Developer </B></I>working on the task creates a view and sets the config spec on either NT or UNIX</P>
+</FONT><B><U><FONT FACE="Arial" SIZE=2><P>NT </P>
+</B></U></FONT><FONT SIZE=2><P>1. Create the view</P>
+<P>2. Run the program&gt; Start-&gt; Programs -&gt; Clearcase -&gt; Create View</P>
+<P>3. Press the Dynamic button</P>
+<P>4. Enter the view name</P>
+
+<UL>
+<LI>Format:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>&lt;login name&gt;_&lt;task name&gt;_nt</P></DIR>
+
+
+<UL>
+</FONT><FONT SIZE=2><LI>Example:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>samuels_update_user_nt</P></DIR>
+
+</FONT><FONT SIZE=2><P>5. Enter the view storage location (this must be in UNC format.)</P>
+<P>6. Press Next</P>
+<P>7. Press Finish</P>
+<P>8. Choose the drive letter to which this view will be connected</P>
+<P>9. Press OK</P>
+<P>10. Set the config spec</P>
+<P>11. Open the Clearcase properties dialog for the view</P>
+<P>12. Open the config spec located m:\&lt;view name&gt;\dte_admin\config_specs\. Choose the config spec with your task name. </P>
+
+<UL>
+<LI>Format:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>&lt;task name&gt;.nt.cs</P></DIR>
+
+
+<UL>
+</FONT><FONT SIZE=2><LI>Example:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>update_user.nt.cs</P></DIR>
+
+</FONT><B><U><FONT FACE="Arial" SIZE=2><P>UNIX</P>
+</B></U></FONT><FONT SIZE=2><P>1. Create the view</P>
+<P>2. Run the program Start -&gt; Run</P>
+<P>3. Enter: </FONT><FONT FACE="Courier New" SIZE=1>telnet dte_dev</P>
+</FONT><FONT SIZE=2><P>4. Enter unix login name</P>
+<P>5. Enter unix password</P>
+<P>6. Enter the command:</P>
+
+<UL>
+<LI>Format:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>/usr/atria/bin/cleartool mkview –tag &lt;view name&gt; /net/dte_dev/tools/views/&lt;view name&gt;.vws</FONT><FONT SIZE=2> </P></DIR>
+
+
+<UL>
+<LI>Example:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>/usr/atria/bin/cleartool mkview –tag samuels_update_user_unix /net/dte_dev/tools/views/samuels_update_user_unix.vws</FONT><FONT SIZE=2> </P></DIR>
+
+<P>7. Set the view</P>
+
+<UL>
+<LI>cleartool setview &lt;view name&gt;</LI></UL>
+
+<P>8. Set the config spec</P>
+<P>9. Change to the directory /vobs/dte/dte_admin/config_specs. </P>
+<P>10. Enter the command</P>
+
+<UL>
+<LI>Format:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>/usr/atria/bin/cleartool setcs –tag &lt;view name&gt; &lt;task name&gt;.unix.cs</P></DIR>
+
+
+<UL>
+</FONT><FONT SIZE=2><LI>Example:</LI></UL>
+<DIR>
+
+</FONT><FONT FACE="Courier New" SIZE=1><P>/usr/atria/bin/cleartool setcs –tag samuels_update_user_unix update_user.unix.cs</FONT><FONT SIZE=2> </P></DIR>
+
+<P>11. Synchronize the UNIX view for use under NT</P>
+<P>12. Run the program&gt; Start -&gt; Programs -&gt; Clearcase Administration -&gt; Region Synchronizer</P>
+<P>13. Choose the view name from the list of view names presented.</P>
+<P>14. Press the import button</P>
+<P>15. A dialog appears, choose "OK"</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949190"><A NAME="ProcessExample"></A>Process Example</A></H2>
+<FONT SIZE=2><P>This section describes the process flow using a generic example. For ease of understandability, the process is illustrated using three examples. Each example builds on the previous example until the entire process is depicted.</P>
+</FONT><H3><A NAME="_Toc475949191"><A NAME="ProcessExampleSBT"></A>SBT Process Example</A></H3>
+<H5>Example 1</H5>
+<P><IMG SRC="ClearCaseTask01.gif" WIDTH=564 HEIGHT=348></P>
+<FONT SIZE=2><P>1. In this scenario, to the left of the integration branch the Developers work on the increment 4 bug fixes that did not make the integration cutoff date, system test date or production date. The increment 4 bug fix branch is named increment4_bugfix reflecting the bug fix branch naming convention. One version of bug fix changes has occurred in this illustration. </P>
+<P>2. Increment 5 development is depicted to the right of the integration branch. The branch named /sbt_5.00 represents the baseline branch. </P>
+<P>3. Three development branches have been created from /sbt_5.00: /dev_123, /dev_456 and /dev_789. These development branches correspond to development tasks (e.g. /dev_bust_trade). </P>
+<P>4. A development team is assigned to each task.</P>
+<P>5. The CM manager creates config specs for the development branches.</P>
+<P>6. The development team retrieves the new config spec from ClearCase. </P>
+<P>7. The team working on /dev_123 creates a view for the task and begins working on the branch. In this example, one version of the task has been created. </P>
+<P>8. The team must make sure that all development problems have been fixed before performing a merge to the baseline branch, /sbt_5.00. </P>
+<P>9. The IM performs the merge. The merge occurs from the latest version of the /dev_123 branch to the baseline branch, /sbt_5.00, thus creating a new version of /sbt_5.00. A new version is created in order to identify the differences from the previous version. </P>
+<P>10. The IM labels the new version, SBT_5.00.01reflecting the SBT labeling convention. </P>
+<P>11. At this point, the /dev_123 task is complete. </P>
+<P>12. Each development team that needs to incorporate the changes in SBT_5.00.01 into their code must first edit their config specs to include the new label name. The CM is responsible for this task. The developer only needs to be concerned with retrieving the config spec from ClearCase.</P>
+<P>13. Simultaneously, two other teams are working on /dev_456 and /dev_789. Both development branches have created one version of the task. In this setting, neither task is ready to be merged into the baseline branch. </P>
+</FONT><H5>Example 2</H5>
+<P><IMG SRC="ClearCaseTask02.gif" WIDTH=573 HEIGHT=478></P>
+<FONT SIZE=2><P>14. In this example, the CM created a release label, SBT_4.01, for version 1of the increment4_bugfix branch. </P>
+<P>15. Developers requiring the use of this new release will need to retrieve the config spec from ClearCase.</P>
+<P>16. A second version is created on the increment4_bugfix branch to continue work on bug fixes. </P>
+<P>17. Version 2 is thoroughly tested by the developer before merging into the integration branch.</P>
+<P>18. The IM performs the merge from the bug fix branch into the integration branch. </P>
+<P>19. A new version (version 2) is created on the integration branch. Again, a new version is created in order to differentiate between the previous version (version 1) and the new version (version 2). </P>
+<P>20. The new version is labeled SBT_4.02. </P>
+<P>21. At this state, all increment4_bugfixes are complete.</P>
+<P>22. On the baseline side, a new version is created to incorporate the bug fix changes. </P>
+<P>23. The new version is labeled /sbt_5.01 by the IM. </P>
+<P>24. The previous development integration branch (version 1), labeled SBT_5.00.01, must be merged into /sbt_5.01 in order to combine the baseline functionality with the increment 4 bug fixes. </P>
+<P>25. The IM creates a new version in order to differentiate between the previous version and the new version. </P>
+<P>26. The new version is labeled SBT_5.01.01 representing the first change on the development integration branch named /sbt_5.01. </P>
+<P>27. At this point a new development branch is created, /dev_000, from SBT_5.01.01. </P>
+<P>28. Version 1is created on development branch /dev_000 to enable differentiation between the previous version and the current version. </P>
+<P>29. Development branch /dev_456 requires the functionality from SBT_5.01.01. Therefore, it must be synchronized to the new baseline.</P>
+<P>30. SBT_5.01.01 is merged out to version 3 of the /dev_456 branch to ensure that everything works properly before merging it back to the baseline branch. </P>
+<P>31. Development branch /dev_789 is ready to be merge into the baseline branch. Before this can be accomplished, /dev_789 must test with the functionality in SBT_5.01.01 to ensure a stable environment. </P>
+<P>32. SBT_5.01.01 is merged out to version 2 of the /dev_789 branch. In this scenario, the merge was unsuccessful. Therefore, /dev_789 must stabilize the environment before merging back to the baseline branch. </P>
+<P>33. Version 3 on /dev_789 is created to work on stabilizing the environment.</P>
+</FONT><H5>Example 3</H5>
+<P><IMG SRC="ClearCaseTask03.gif" WIDTH=573 HEIGHT=678></P>
+<FONT SIZE=2><P>34. /dev_000 is merged into the baseline branch, thus creating a new version.</P>
+<P>35. The new version is labeled SBT_5.01.02 representing the second change in the baseline branch named /sbt_5.01. </P>
+<P>36. Development branch /dev_000 is now complete.</P>
+<P>37. Development branch, /dev_789 is ready to be merge into the baseline branch. Before this event takes place, SBT_5.01.02 is merged out to the development branch to ensure a stable environment. </P>
+<P>38. The merge is successful and /dev_789 is merged back into the baseline branch. </P>
+<P>39. A new version is created on the branch and it is labeled SBT_5.01.03, representing the third change in the /sbt_5.01 branch. </P>
+<P>40. Development branch /dev_789 is now complete.</P>
+<P>41. Development branch /dev_456 is ready to be merged into the baseline branch. </P>
+<P>42. SBT_5.01.03 is merged out to /dev_456 to ensure a stable environment. </P>
+<P>43. The merge is unsuccessful, therefore, version 5 is created on /dev_456 to work on stabilizing the environment. </P>
+<P>44. After the environment is stabilized, /dev_456 is merged back into the baseline branch, thus creating version 4 on the branch. </P>
+<P>45. Version 4 is labeled SBT_5.01.04 by the IM. </P>
+<P>46. Development branch /dev_456 is now complete.</P>
+<P>47. SBT_5.01.04 on the baseline branch must now be merged into the integration branch. </P>
+<P>48. The IM performs the merge and labels the integration branch SBT_5.02. </P>
+<P>49. The increment 6 development process is now ready to begin.</P>
+<P>50. Increment 6 begins with a bug fix branch labeled increment5_bugfix, an integration branch labeled SBT_5.02 and a development branch labeled /sbt_6.00. The development branch is labeled following the SBT development branch labeling convention of x + 1, x representing the previous increment number. </P>
+<P>51. At this point, the ClearCase task development process starts again with modifying config specs, assigning tasks, etc. </P>
+</FONT><H3><A NAME="_Toc475949192"><A NAME="ProcessExampleSBTInfr"></A>SBT Infrastructure Process Example</A></H3>
+<FONT SIZE=2><P>This section describes the SBT infrastructure process. The process is the same as the previous example, except for differences in the naming conventions.</P>
+</FONT><H5>Example Infra_1</H5>
+<P><IMG SRC="ClearCaseTask04.gif" WIDTH=324 HEIGHT=571></P>
+<FONT SIZE=2><P>1. In this example, the integration branch is labeled INCREMENT_3_FINAL_INFRASTRUCTURE representing the SBT Infrastructure labeling convention.</P>
+<P>2. From the integration branch, a development branch is created and named, /sbt_infra_3.00 by the integration manager. </P>
+<P>3. A new development task is created on this branch and labeled /dev_123. Work continues on this branch until version 3. </P>
+<P>4. Once, version 3 of /dev_123 is ready to be merged with the SBT infrastructure baseline, a new version is created by the integration manager to incorporate the changes. </P>
+<P>5. The new version is labeled SBT_INFRA_3.00.01 representing the first change in increment 3 infrastructure. </P>
+<P>6. On the /current_increment branch, three versions have been created. </P>
+<P>7. SBT_INFRA_3.00.01 on the baseline side is merged into version 3 on the /current_increment branch.</P>
+<P>8. /current_increment is merged into the integration branch and is labeled, INFA_4.00 following the SBT infrastructure naming convention. </P>
+<P>9. At this point, the process starts again. The CM creates labels and config specs for new development.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="_Toc475949193"><A NAME="Definitions"></A>Definitions</A></H2>
+<B><FONT SIZE=2><P>Task</P>
+</B><P>The minimal and sufficient amount of work required to add or fix a piece of system functionality and still leave the system in a consistent, usable state.</P>
+<B><P>Trivial Merge</P>
+</B><P>Trivial merges are merges that are guaranteed to work. No human intervention is ever needed and ClearCase completes the merge automatically.</P>
+<B><P>Automatic Merge</P>
+</B><P>Automatic merges are merges that ClearCase was able to perform without conflict, but there is a possibility that the end result is undesirable. When using a typed language such as Java, it is rare that an automatic merge will produce a result that is ill-formed yet still compiles; therefore, it is excessive to check every automatic merge for correctness.</P>
+<B><P>Failed Merge</P>
+</B><P>Failed merges require manual intervention to resolve. These are cases where two files are changed in the same place and ClearCase cannot determine the proper result of the merge. The developers implementing the changes will be required to fix failed merges. </P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<FONT SIZE=2><P ALIGN="CENTER">Last updated: 7/20/00</P>
+</FONT><P><HR></P>
+<FONT SIZE=2><P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P></FONT></BODY>
+</HTML>

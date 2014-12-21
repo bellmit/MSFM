@@ -1,0 +1,65 @@
+#ifndef TERMINALACTIVITY_IDL 
+#define TERMINALACTIVITY_IDL 
+
+#include "cmiProduct.idl"
+#include "cmiTraderActivity.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+//
+// ***>  Par Hisory Result Struct
+//
+
+module terminalActivity
+{
+    typedef short ActivityType;
+    typedef short ActivityFieldType;
+    typedef sequence <ActivityFieldType> ActivityFieldTypeSequence;
+    typedef sequence <ActivityType> ActivityTypeSequence;
+    
+    struct ActivityFieldStruct
+    {
+        ActivityFieldType fieldType;
+        string fieldValue;
+    };
+    typedef sequence <ActivityFieldStruct> ActivityFieldStructSequence;
+
+    struct ActivityRecordStruct
+    {
+       	long long historyUid;
+        cmiUtil::DateTimeStruct eventTime;
+        ActivityType entryType;
+        ActivityFieldStructSequence  activityFields;
+    };
+    typedef sequence <ActivityRecordStruct> ActivityRecordStructSequence;
+
+    struct HistoryResultStruct
+    {
+        ActivityRecordStructSequence activityRecords;
+    };
+    typedef sequence <HistoryResultStruct> historyResultStructSequence;
+	
+//
+// ***>  Par Hisory Request Struct
+//
+
+    struct HistoryRequestFieldStruct
+        {
+            ActivityFieldType fieldType;
+            string fieldValue;
+        };
+        typedef sequence <HistoryRequestFieldStruct> HistoryRequestFieldStructSequence;
+    
+        struct HistoryRequestStruct
+        {
+            string 								workStationId;
+            ActivityTypeSequence 				entryTypes;
+            ActivityFieldTypeSequence 			resultFields;
+            HistoryRequestFieldStructSequence  	historyRequestFields;
+        };
+       
+  
+
+};
+
+#endif

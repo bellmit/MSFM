@@ -1,0 +1,191 @@
+package com.cboe.domain.migratePersistence;
+
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.cboe.exceptions.SystemException;
+import com.cboe.infrastructureServices.foundationFramework.BOHome;
+import com.cboe.infrastructureServices.foundationFramework.HomeFactory;
+import com.cboe.infrastructureServices.foundationFramework.PersistentBObject;
+import com.cboe.infrastructureServices.foundationFramework.exceptionHandling.CBOELoggableException;
+import com.cboe.infrastructureServices.foundationFramework.utilities.Log;
+import com.cboe.interfaces.domain.migratePersistence.Migratable;
+import com.cboe.interfaces.domain.migratePersistence.MigratePersistenceHome;
+import com.cboe.interfaces.domain.migratePersistence.PersistenceStrategy;
+import com.cboe.interfaces.domain.migratePersistence.PersistenceStrategyProperties;
+import com.cboe.server.queue.ServerQueue;
+import com.cboe.server.queue.ServerQueueException;
+import com.cboe.server.queue.ServerQueueHome;
+
+public class BehindQueuePersistenceStrategyImpl implements PersistenceStrategy
+{
+	private MigratePersistenceHome home;
+
+	// queues
+	private ServerQueue<QueueElement> queue[];
+
+	// reader threads
+	private Thread queueReaderThread[];
+
+	private PersistenceStrategyProperties properties;
+
+	private ServerQueueHome serverQueueHome;
+
+	public BehindQueuePersistenceStrategyImpl()
+	{
+
+	}
+
+	public void acceptObjects(AbstractCollection<PersistentBObject> insertList, AbstractCollection<PersistentBObject> updateList)
+			throws SystemException
+	{
+		QueueElement element = createQueueElement(insertList, updateList);
+
+		enqueue(element);
+	}
+
+	private void enqueue(QueueElement element)
+	{
+		try
+		{
+			queue[element.getKey() % queue.length].enqueue(element);
+		}
+		catch (IllegalArgumentException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (ServerQueueException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private QueueElement createQueueElement(AbstractCollection<PersistentBObject> insertList,
+			AbstractCollection<PersistentBObject> updateList)
+	{
+		QueueElement element = new QueueElement();
+
+		// for each object do a deep copy
+		fillQueueList(element, insertList, updateList);
+
+		return element;
+	}
+
+	private void fillQueueList(QueueElement element, AbstractCollection<PersistentBObject> insertList,
+			AbstractCollection<PersistentBObject> updateList)
+	{
+		ArrayList<PersistentBObject> list = new ArrayList<PersistentBObject>();
+
+		int key = addToList(list, insertList, true);
+
+		addToList(list, updateList, false);
+
+		element.setList(list);
+
+		element.setKey(key);
+	}
+
+	private int addToList(ArrayList<PersistentBObject> list, AbstractCollection<PersistentBObject> insertList, boolean insert)
+	{
+		Iterator<PersistentBObject> itor = insertList.iterator();
+
+		int rval = 0;
+
+		while (itor.hasNext())
+		{
+			PersistentBObject object = itor.next();
+
+			if (object instanceof Migratable)
+			{
+				Migratable copyInterface = (Migratable) object;
+
+				PersistentBObject newObject = (PersistentBObject) copyInterface.copy();
+
+				if (rval == 0)
+				{
+					rval = copyInterface.getKey();
+				}
+
+				newObject.setRetrievedFromDatabase(!insert);
+
+				list.add(newObject);
+			}
+		}
+
+		return rval;
+	}
+
+	public void setBOHome(BOHome home)
+	{
+		this.home = (MigratePersistenceHome) home;
+	}
+
+	private void createReaderThreads()
+	{
+		for (int i = 0; i < queue.length; i++)
+		{
+			queueReaderThread[i] = new Thread(new QueueReaderThread(queue[i], getHome()));
+			queueReaderThread[i].start();
+		}
+	}
+
+	private MigratePersistenceHome getHome()
+	{
+		return home;
+	}
+
+	private void createQueues()
+	{
+		int maxNumberQueues = getProperties().getNumberQueues();
+		
+		queue = new ServerQueue [maxNumberQueues];
+		
+		for (int i = 0; i < maxNumberQueues; i++)
+		{
+			try
+			{
+				queue[i] = getServerQueueHome().createTransient(QueueElement.class, "PersistentBObject_Queue_" + i, false);
+			}
+			catch (ServerQueueException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private ServerQueueHome getServerQueueHome()
+	{
+        if (serverQueueHome == null)
+        {
+            try {
+            	serverQueueHome = (ServerQueueHome) HomeFactory.getInstance().findHome(ServerQueueHome.HOME_NAME);
+            }
+            catch (CBOELoggableException e) {
+                Log.alarm("couldn't get serverQueueHome");
+            }
+        }
+		return serverQueueHome;
+	}
+
+	private PersistenceStrategyProperties getProperties()
+	{
+		return this.properties;
+	}
+
+	public void init(PersistenceStrategyProperties properties)
+	{
+		this.properties = properties;
+		
+		// create queues
+		createQueues();
+
+		// start reader threads
+		createReaderThreads();
+	}
+
+}

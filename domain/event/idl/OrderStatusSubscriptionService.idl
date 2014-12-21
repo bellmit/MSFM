@@ -1,0 +1,130 @@
+//# Interface: OrderStatusSubscriptionService
+//# Module: businessServices
+
+#include "consumers.idl"
+#include "order.idl"
+
+module businessServices {
+
+interface OrderStatusSubscriptionService {
+    void subscribeOrderStatus( in string userId, in consumers::OrderStatusConsumer orderStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void unsubscribeOrderStatus( in string userId, in consumers::OrderStatusConsumer orderStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void subscribeOrderStatusForFirm( in cmiUser::ExchangeFirmStruct firm, in consumers::OrderStatusConsumer orderStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    void unsubscribeOrderStatusForFirm( in cmiUser::ExchangeFirmStruct firm, in consumers::OrderStatusConsumer orderStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void ackOrderStatus(in order::OrderAcknowledgeStruct orderAcknowledge)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void publishOrderStatus(in string userId)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void ackOrderStatusV3(in order::OrderAcknowledgeStructV3 orderAcknowledge)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void publishOrderStatusByClass(in string userId, in cmiProduct::ClassKey classKey)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+
+	// CSI changes -- start
+	// New subscribe/unsubscribe methods for handling the V2 consumers.
+
+	void subscribeOrderStatusV2( in string userId, in consumers::OrderStatusConsumerV2 orderStatusConsumer, in string source , in short blockSize)
+		    raises(
+			exceptions::SystemException,
+			exceptions::CommunicationException,
+			exceptions::DataValidationException,
+			exceptions::AuthorizationException
+		    );
+
+	void unsubscribeOrderStatusV2( in string userId, in consumers::OrderStatusConsumerV2 orderStatusConsumer, in string source )
+		    raises(
+			exceptions::SystemException,
+			exceptions::CommunicationException,
+			exceptions::DataValidationException,
+			exceptions::AuthorizationException
+		    );
+
+	void subscribeOrderStatusForFirmV2( in cmiUser::ExchangeFirmStruct firm, in consumers::OrderStatusConsumerV2 orderStatusConsumer, in string source, in short blockSize )
+		    raises(
+			exceptions::SystemException,
+			exceptions::CommunicationException,
+			exceptions::DataValidationException,
+			exceptions::AuthorizationException
+		    );
+
+	void unsubscribeOrderStatusForFirmV2( in cmiUser::ExchangeFirmStruct firm, in consumers::OrderStatusConsumerV2 orderStatusConsumer, in string source )
+		    raises(
+			exceptions::SystemException,
+			exceptions::CommunicationException,
+			exceptions::DataValidationException,
+			exceptions::AuthorizationException
+		    );
+	// CSI changes -- end
+	
+	// Added for Enhanced Drop Copy 
+	void subscribeOrderStatusForTradingFirmUser( in string userId, in string groupId, in consumers::OrderStatusConsumerV2 orderStatusConsumer, in string source , in short blockSize)
+		    raises(
+			exceptions::SystemException,
+			exceptions::CommunicationException,
+			exceptions::DataValidationException,
+			exceptions::AuthorizationException
+		    );
+
+	// Added for Enhanced Drop Copy
+	void unsubscribeOrderStatusForTradingFirmUser( in string userId, in string groupId, in consumers::OrderStatusConsumerV2 orderStatusConsumer, in string source )
+		    raises(
+			exceptions::SystemException,
+			exceptions::CommunicationException,
+			exceptions::DataValidationException,
+			exceptions::AuthorizationException
+		    );
+
+ }; 
+};
+

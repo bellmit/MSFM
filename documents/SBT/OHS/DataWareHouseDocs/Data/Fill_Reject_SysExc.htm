@@ -1,0 +1,2126 @@
+<table border=0 width="100%">
+  <tr>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">DATABASEIDENTIFIER</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">USERID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">USERKEY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">PRODUCTKEY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CLASSKEY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">EVENTTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">EVENTTIME</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ORDERDBID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">USERASSIGNEDID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TRANSACTIONSEQUENCENUMBER</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ORDERPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">SIDE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ORIGINALQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CONTINGENCYTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TIMEINFORCE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TRADEPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TRADEDQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">LEAVESQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TRADEDBID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CANCELREASON</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CANCELLEDQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TLCQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BUSTEDQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">REINSTATEDQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">EVENTSTATUS</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">MISMATCHEDQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">REPLACEORDERDBID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">OPTIONALDATA</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CMTA</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CMTAEXCHACR</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ACCOUNT</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOOKEDQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ORDERSTATE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NEWPRODUCTKEY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NEWORDERPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NEWQUANTITY</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">SESSION_NAME</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">EXEC_BROKER</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">HANDLINGINSTRUCTION</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">RETURNCODE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">SUBEVENTTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BULKORDERREQID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ROUTEREASON</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">LOCATION</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">LOCATIONTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BBOBIDPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BBOBIDSIZE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BBOASKPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BBOASKSIZE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOTRASKPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOTRBIDPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOTRASKEXCHANGES</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOTRBIDEXCHANGES</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NBBOASKPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NBBOBIDPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NBBOASKEXCHANGES</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">NBBOBIDEXCHANGES</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">DSMBIDPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">DSMBIDSIZE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">DSMASKPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">DSMASKSIZE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOOKBIDPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOOKBIDSIZE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOOKASKPRICE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BOOKASKSIZE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">AUCTIONTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">QUANTITYTRADEDINAUCTION</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">EARLYAUCTIONENDFLAG</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">COMPLEXORDERTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">SOURCEFIELD</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ROUTEDESCRIPTION</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">PARTITIONFLAG</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">DELTANEUTRALINDICATOR</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">SOURCEFIELDTYPE</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">BTMINDICATOR</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">TTINDICATOR</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">EXCHANGESINDICATORS</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">MARKETIBILITYINDICATOR</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ISAUTOLINKED</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">LINKEDORDERDBID</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">LINKEDORDERIDSTR</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">ACTIVITYTIME</th>
+  <th align="left" bgcolor="#C0C0C0" bordercolor="#FFFFFF">CREAT_REC_TIME</th>
+  </tr>
+  <tr>    <td>280298156791552</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>1</td>
+    <td>1189009934386</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>6</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>X12</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>9/5/2007 11:32:24.680379 AM</td>
+  </tr>
+  <tr>    <td>280298156791553</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>14</td>
+    <td>1189009944603</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>3</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.0000</td>
+    <td>1000000</td>
+    <td>1.1000</td>
+    <td>999768</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>1.1000</td>
+    <td>1.0000</td>
+    <td>CBOE:999768</td>
+    <td>CBOE:1000000</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>1000000</td>
+    <td>NONE</td>
+    <td>999768</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>X12</td>
+    <td>Direct route to  W066</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>9/5/2007 11:32:24.680379 AM</td>
+  </tr>
+  <tr>    <td>280298156791554</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>602</td>
+    <td>1189009950697</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009946000</td>
+    <td>9/5/2007 11:32:30.785728 AM</td>
+  </tr>
+  <tr>    <td>280298156791555</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009950697</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009946000</td>
+    <td>9/5/2007 11:32:30.785728 AM</td>
+  </tr>
+  <tr>    <td>280298156791556</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009950697</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:30.785728 AM</td>
+  </tr>
+  <tr>    <td>280298156791557</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009950700</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009948000</td>
+    <td>9/5/2007 11:32:30.785728 AM</td>
+  </tr>
+  <tr>    <td>280298156791558</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009950700</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:30.785728 AM</td>
+  </tr>
+  <tr>    <td>280298156791559</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>707</td>
+    <td>1189009975292</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>1.1000</td>
+    <td>345</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>1079</td>
+    <td>0</td>
+    <td>0</td>
+    <td>SVR7:JS:W066</td>
+    <td>4</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>Manual Fill Reject - Invalid Volume</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791560</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009975298</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to send to route: X10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791561</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009975302</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>4</td>
+    <td>HD4</td>
+    <td>5</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to send to route: HD4</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791562</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009975316</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>6</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to route and reached the end: X10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791563</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>602</td>
+    <td>1189009975323</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009946000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791564</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009975324</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009946000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791565</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009975324</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791566</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009975324</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009948000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791567</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009975324</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:55.369238 AM</td>
+  </tr>
+  <tr>    <td>280298156791568</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>707</td>
+    <td>1189009977085</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>1.1000</td>
+    <td>345</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>1079</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>Manual Fill Reject - System Error</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791569</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009977086</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to send to route: X10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791570</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009977087</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>4</td>
+    <td>HD4</td>
+    <td>5</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to send to route: HD4</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791571</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009977097</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>6</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to route and reached the end: X10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791572</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>602</td>
+    <td>1189009977104</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009946000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791573</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009977105</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009946000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791574</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009977105</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791575</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009977105</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.0000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009948000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791576</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>603</td>
+    <td>1189009977105</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>XXH</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>&nbsp;</td>    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.279719 AM</td>
+  </tr>
+  <tr>    <td>280298156791577</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>707</td>
+    <td>1189009977901</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>1.1000</td>
+    <td>345</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>1079</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>SVR7:JS:W066</td>
+    <td>Manual Fill Reject - System Error</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:57.902933 AM</td>
+  </tr>
+  <tr>    <td>280298156791578</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009977902</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to send to route: X10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:58.113218 AM</td>
+  </tr>
+  <tr>    <td>280298156791579</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009977904</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>4</td>
+    <td>HD4</td>
+    <td>5</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to send to route: HD4</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:58.113218 AM</td>
+  </tr>
+  <tr>    <td>280298156791580</td>
+    <td>X12</td>
+    <td>121373162</td>
+    <td>232915042</td>
+    <td>227691291</td>
+    <td>16</td>
+    <td>1189009977917</td>
+    <td>280298156691552</td>
+    <td>X12</td>
+    <td>1</td>
+    <td>1.1000</td>
+    <td>B</td>
+    <td>345</td>
+    <td>1</td>
+    <td>D</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>345</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>X12</td>
+    <td>0</td>
+    <td>-3</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>W_MAIN</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>6</td>
+    <td>X10</td>
+    <td>6</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>1.1000</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>NONE</td>
+    <td>&nbsp;</td>    <td>&nbsp;</td>    <td>0.0000</td>
+    <td>0.0000</td>
+    <td>:0</td>
+    <td>:0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>NONE</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>0.0000</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>SVR7:JS:W066</td>
+    <td>Failed to route and reached the end: X10</td>
+    <td>1</td>
+    <td>0</td>
+    <td>4</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>&nbsp;</td>    <td>1189009944000</td>
+    <td>9/5/2007 11:32:58.113218 AM</td>
+  </tr>
+</table>

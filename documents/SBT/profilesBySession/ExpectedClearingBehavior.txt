@@ -1,0 +1,271 @@
+Related Configuration:
+
+1. executingBroker in Fill Report hard code in Order.xml
+	XXH in OrderHomeHybridImpl
+	XXS in OrderHomeImpl
+
+2. anonymousTradingIfNotClearsLikeQuote, in new version in Order.xml Only, in pre-3.7, 
+in both Order.xml(Trade clearing report) and TradeSerivce.xml(for contra party)
+For bothh Contra party broker and trade report clearing broker 
+	in OrderHomeHybridImpl (ON)
+		<anonymousTradingIfNotClearsLikeQuote booleanValue= "true"/>
+		<anonymousIfNotClearsLikeQuoteBroker>XXH</anonymousIfNotClearsLikeQuoteBroker>    
+	in OrderHomeImpl (OFF)
+            <anonymousTradingIfNotClearsLikeQuote booleanValue= "false"/>
+            <anonymousIfNotClearsLikeQuoteBroker>NotApplicable</anonymousIfNotClearsLikeQuoteBroker>   
+
+3. anonymousBroker in TradeService.xml, For Contra party broker only 
+
+	in TradeServiceHomeHybridImpl (OFF)            
+            <anonymousTrading booleanValue= "false"/>
+            <anonymousBroker>NotApplicable</anonymousBroker>
+	    <anonymousBrokerExchange>NotApplicable</anonymousBrokerExchange>
+            <anonymousFirm>NotApplicable</anonymousFirm>
+	    <anonymousFirmExchange>NotApplicable</anonymousFirmExchange>
+
+	in TradeServiceHomeImpl (ON)
+           <anonymousTrading booleanValue= "true"/>
+            <anonymousBroker>XXS</anonymousBroker>
+	    <anonymousBrokerExchange>CBOE</anonymousBrokerExchange>
+            <anonymousFirm>000</anonymousFirm>
+	    <anonymousFirmExchange>CBOE</anonymousFirmExchange>
+	    
+
+4. blankAccountIfSameAsAcr 
+   a) in Quote.xml
+    true in W_MAIN
+    flase in other existing sessions
+    
+   b) in Order.xml
+    true for OrderHomeHybridImpl
+    false for OrderHomeImpl
+   
+5. account setup in profile, each user has default profile, MarketMaker could have profiles specified for session or/and class
+
+6. clearingAcr setup in user (new version only), only NON MarketMaker could have default clearing acr defined for the user.
+
+7. setContext (new version only) -DallowUseClearingAcrConfigured=false"
+
+
+Open issues/Questions:
+=====================
+
+
+A Issue of executingBorker (Order.xml), anonymousBroker (TradeService.xml) for Non Hybrid orders
+1. Why executingBroker for NON Hybrid orders is set to 'XXS', Do these order in ONE_MAIN also need TPF to pass the Non clearLikeQuote order fill report to CTM?
+2. How does/will the system clear the Future orders and CFE_MAIN orders?
+3. Why does anonymousBroker for Non Hybrid order need to set to 'XXS' with firm '000',
+4. Why the contra party of ONE_MAIN orders are always XXS? 
+5. Can we remove these hard code XXS for Non Hybrid Orders?
+
+B. when allowsClearingAcr is turned ON, clearingAcr will override contra party in fill report for NotClearsLikeQuote orders trade of with non market maker user,
+However, since anonymous Broker & firm in TradeService.xml are applied later, the contra party broker&firm will be always overridden by the anonymous broker&firm anyway if they are configured, and the flag is ON in TradeService.xml,
+all non Hybrid orders will be in this case. (using TradeServiceHomeImpl, instead of TradeServiceHomeHybridImpl)
+
+C. after A and B are resolved, then we can turn on the AllowClearingAcr flag in those TradeServer by moving the global flag to process based flag in setContext.
+
+D. Issue of clearing of ClearsLikeQuote order (but it is not an I order) in all sessions, though current system doesn't have this case yet according to the current configuration.
+
+E. Issue of clearing of I order (from session other than W_MAIN),
+no originator and market Maker role validation in OrderValidation of'I' orders in NON W_MAIN session, but neither CFE_MAIN nor ONE_MAIN allows I orders with current validation, so it should be fine with the current configuration and code base.
+
+Current Clearing Behavior (Old GS and Old TS)
+=============================================
+
+The result should be also same with NEW GS and old TS.
+
+Hybrid(W_MAIN)
+
+
+Quote - 
+	1) Fill report 
+	   use user profile for the trade class to fill
+	        clearing sub a/c,
+	   	clearing a/c,if user acr = profile a/c, then blank it
+	   	clearing firm, 
+	   Executing broker of quote is always blank in fill report,
+	   the contra party info should be user acronym and firm of the other side 
+		
+	2) Trade Report to CTM	  
+	   use user profile for the trade class to fill 
+	   	clearing sub a/c,
+	   	clearing a/c, if user acr = profile a/c, then blank it
+	   	clearing firm, 
+	   Buy/sell side broker should be always the user Acr		
+			
+
+Order - 
+	
+	#A)Normal order (not I order or clear like quote order)
+	
+	
+		1) Fill report 
+			a) If order with Not blank input a/c, 
+				-fill input a/c as clearing a/c
+				-fill input sub-a/c as clearing sub-a/c
+			
+			b) If order with blank input a/c
+				get originator profile a/c and sub a/c,
+				-fill profile a/c as clearing a/c
+				-fill profile sub-a/c as clearing sub-a/c
+			[Notes]: ??? for NON I order???  regardless the user role? populateClearingAccountInfo(..) in OrderImpl.java, and if the originator is not a market maker, it can only have default profile
+				this behavior will be fixed in 3.7 release, it won't be overriden by the profile even the input account is blank.
+		 	
+			executingBroker - always XXH (executingBroker in Order.xml)	
+		   	
+		   	executingOrGiveUpFirm - the firm entered with the order
+		   	
+		   	c) If other side is clearLikeQuote order/Quote		         
+		        	the contra party acronym -  user of the other side 		        
+		        	the contra party firm - firm of the other side 
+		        
+			d) If other side is NOT clearLikeQuote order/Quote		         
+		        	the contra party acronym -  XXH (from anonymousIfNotClearsLikeQuoteBroker and flag in TradeService.xml)
+		        	the contra party echange - user exchange of the other side
+		        	the contra party firm - firm of the other side 
+		        		        
+		
+		2) Trade Report to CTM	  	   
+		   	Buy/sell broker ACR -  XXH (from AnonymousIfNotClearsLikeQuoteBroker (XXH) flag is true for Hybrid, Order.xml)
+		   	Buy/sell Broker exchange - user exchange of the input user  
+		   	Buy/sell Broker UserKey - the Userkey of the input user
+		   	Buy/sell firm - the input firm of the order	
+		   	Buy/sell Account - the input Account of the order, regardless if the input a/c is blank or not	   	
+			Buy/sell Sub Account - the input Sub Account of the order
+			
+		
+	#B)I order (also clear like Quote order too), 
+	  Note: For I order, in order validation Strategy it validates originator is Market Maker, when the submitter user role is not Market Maker
+	  so we can gaurentee all the I orders will get it Market Maker originator's profiles.
+	  However, this is only for I order, not for clearsLikeQuote orders, though with current configuration, we don't have any clearsLikeQuote order, but not I order yet.  
+	  
+	  
+		1) Fill report (to TPF and user)
+		
+			a)with Not blank a/c in order, 
+				-fill input a/c as clearing a/c
+				-fill input sub-a/c as clearing sub-a/c
+			
+			b)with blank a/c in order  (Notes: for I order, should be OK)
+		 	
+				get originator profile a/c and sub a/c, regardless the user role?
+				-fill profile  a/c as its clearing a/c
+				-fill profile sub-a/c as its clearing sub-a/c	
+			
+			Executing broker is always XXH (From executingBroker in order.xml), 
+			
+		   	executingOrGiveUpFirm - executingGiveupFirm of the originator's profile (defined for this I order for the user and the class)	            
+		   		   			   	
+		   
+		   the contra party should be user acronym and firm of the other side, since this side is clearsLikeQuote Order 
+		   	the contra party acronym -  user of the other side 		        
+		        the contra party firm - firm of the other side 
+
+  	         Notes: since we don't care the fill report of ClearLike Quote order sent to TPF,
+		   trade match on CTM will pick up the trade info of clearLikeQuote orders sent from SBT(CTMAdapter) to CTM directly.
+		   		        
+		        
+		2) Trade Report to CTM	  
+		   
+		   Buy/sell broker - the user ACR 
+	           broker exchange and userKey are still same as the exchange and the Userkey of the input user acr exchange, 
+	           	           
+
+	           Buy/Sell  firm - executingGiveupFirm of the originator profile, for I order	           
+	           (Notes: though it will be overwrite again later by the same profile, can it be removed?)
+	           
+	           use the originator's profile for the trade class to fill
+		   	Buy/Sell sub a/c,
+		   	Buy/Sell  a/c,if user acr = profile a/c, then blank it
+		   	Buy/Sell  firm - executingGiveupFirm of the originator profile 
+	           
+	
+	#C)I order (but not configured as clear like Quote order, There're no this type of orders configured yet in the current system though)
+	   same behavior as they are in #B 
+	   
+	#D) ClearLikeQuoteOrder (But not I order)
+	   only I order is configured as ClearsLikeQuote in W_MAIN session in Order.xml
+	   but if anything else configured later, we need to verify the expected logic for them, 
+	   maybe we want to apply the current I order logic to all the clearsLikeQuote order in #B, if we agree we should clear all the clearsLikeQuote order in the same way we do for I order.
+	   	
+	
+	
+	
+
+ONE_MAIN 
+========
+
+
+Quote - 
+	1) Fill report 
+	   use user profile for the trade class to fill
+	       clearing account (no blank a/c override, blankAccountIfSameAsAcr is false for all Non W_MAIN sessions)
+	       clearing sub account
+	       clearing firm 
+	   
+	   Executing broker of quote is always blank in fill report,
+	   
+	   the contra party info should be anonymous Broker, firm, which are as below (anonymousBroker&Firm in TradeService.xml)
+             contraParties[0].user.exchange = "CBOE"
+             contraParties[0].user.acronym = "XXS"
+             contraParties[0].firm.exchange = "CBOE"
+             contraParties[0].firm.firmNumber = "000"	   
+		
+	2) Trade Report to CTM	  
+	   use user profile for the trade class to fill 
+	   Buy/sell account - account of Profiel (no blank a/c override, blankAccountIfSameAsAcr is false for all Non W_MAIN sessions)
+	   Buy/sell sub account - sub account of Profile
+	   Buy/sell firm - executingGiveupFirm of the profile 
+	   Buy/sell side broker should be always the user Acr	
+	   
+	   
+Order -	   
+	#A)Normal order (not I order or clear like quote order)	
+	
+		1) Fill report 
+			a)with Not blank a/c in order, 
+				-fill input a/c as clearing a/c
+				-fill input sub-a/c as clearing sub-a/c
+						
+			b)with blank a/c in order  
+	
+				get originator's profile a/c and sub a/c
+				-fill profile  a/c as clearing a/c
+				-fill profile  sub-a/c as clearing sub-a/c
+			[Notes]: ??? for NON I order???  regardless the user role? populateClearingAccountInfo(..) in OrderImpl.java, and if the originator is not a market maker it could only have default profile.
+			this behavior will be fixed in 3.7 release, it won't be overriden by the profile even the input account is blank.
+				
+			executingBroker - always XXS	(executingBroker in Order.xml)	
+		   	
+		   	executingOrGiveUpFirm - the firm entered with the order
+		   	
+		   	the contra party info should be anonymous Broker, firm, which are as below 
+		   	(anonymousBroker&Firm in TradeService.xml, and anonymousIfNotClearsLikeQuoteBroker flag is OFF in TradeService.xml)
+			             contraParties[0].user.exchange = "CBOE"
+			             contraParties[0].user.acronym = "XXS"
+			             contraParties[0].firm.exchange = "CBOE"
+             			     contraParties[0].firm.firmNumber = "000"	
+		        
+		        		
+		2) Trade Report to CTM	  	   
+		   	Buy/sell broker ACR -  user ACR (AnonymousIfNotClearsLikeQuoteBroker flag is false for NON Hybrid, Order.xml)
+		   	ToDo: does the anonymous Acronym XXS apply to trade report too???
+		   				   	
+		   	Buy/sell Broker exchange - user exchange of the order	   
+		   	Buy/sell Broker UserKey - the Userkey of the input user
+		   	Buy/sell firm - the input firm of the order	   	   
+			Buy/sell Account - the input Account of the order	   	
+			Buy/sell Sub Account - the input Sub Account of the order
+	
+	
+	#B) I order (though should be no I order in ONE_MAIN or other sessions yet) and I order is not clearsLikeQuote order in those session either.
+		  Notes: For I order, in OpenCry Order validation Strategy it validates originator is Market Maker, so we can gaurentee all the I orders will get it Market Maker originator's profiles.
+		  
+		  However, this is NOT validated in OrderValidationSingleStockFutureStrategy, though with current usage of the system,  I order is not allowed in ONE_MAIN by its OrderValidation.
+		  So if a user enters an I order in ONE_MAIN or other non W_MAIN session, it will get DavaValidation Exception.
+			
+	#C)no ClearsLikeQuote Order configured for ONE_MAIN or ther NON W_MAIN session yet,
+	   But if it requires any ClearLikeQuoteOrder( other than I order) for this session, we need to verify the expected logic for them.
+
+	
+

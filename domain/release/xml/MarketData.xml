@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalMarketData SYSTEM "../dtd/MarketData.dtd">
+
+
+<GlobalMarketData>
+    <MarketDataHomeImpl name="MarketDataHomeImpl">
+        <MarketDataHomeImplProperties>
+            <productCacheSize>11519</productCacheSize>
+            <activeWhenSlave booleanValue="false"/>
+            <autoCalcNBBO booleanValue="true"/>
+        </MarketDataHomeImplProperties>
+    </MarketDataHomeImpl>
+    <MarketDataHomeImpl name="MarketDataHomeStockImpl">
+        <MarketDataHomeImplProperties>
+            <productCacheSize>11519</productCacheSize>
+            <activeWhenSlave booleanValue="false"/>
+            <autoCalcNBBO booleanValue="false"/>
+        </MarketDataHomeImplProperties>
+    </MarketDataHomeImpl>
+</GlobalMarketData>
+
+
+            

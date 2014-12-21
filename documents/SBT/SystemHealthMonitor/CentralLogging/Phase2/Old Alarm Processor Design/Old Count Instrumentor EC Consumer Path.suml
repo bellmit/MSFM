@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sequencediagram>
+  <Definition>[InstrumentationEventConsumerImpl monitorCountInstrumentor
+[CountInstrumentorBlock CountInstrumentorBlock]
+[ChannelAdapter getChannelEvent]
+[ChannelAdapter dispatch]]</Definition>
+  <Links>
+    <Link Id="0" Class="com.cboe.instrumentationCollector.eventChannel.InstrumentationEventConsumerImpl" Method="monitorCountInstrumentor" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="monitorName" Type="java.lang.String" Description="" />
+        <Param Sequence="1" Name="clusterName" Type="java.lang.String" Description="" />
+        <Param Sequence="2" Name="orbName" Type="java.lang.String" Description="" />
+        <Param Sequence="3" Name="instrumentorInfos" Type="com.cboe.idl.instrumentationService.instrumentors.InstrumentorInfo[]" Description="" />
+        <Param Sequence="4" Name="countInstrumentorStructs" Type="com.cboe.idl.instrumentationService.instrumentors.CountInstrumentorStruct[]" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="1" Class="com.cboe.instrumentationCollector.common.instrumentor.CountInstrumentorBlock" Method="CountInstrumentorBlock" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments>
+        <Param Sequence="0" Name="monitorName" Type="java.lang.String" Description="" />
+        <Param Sequence="1" Name="clusterName" Type="java.lang.String" Description="" />
+        <Param Sequence="2" Name="orbName" Type="java.lang.String" Description="" />
+        <Param Sequence="3" Name="instrumentorInfos" Type="com.cboe.idl.instrumentationService.instrumentors.InstrumentorInfo[]" Description="" />
+        <Param Sequence="4" Name="countInstrumentorStructs" Type="com.cboe.idl.instrumentationService.instrumentors.CountInstrumentorStruct[]" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="2" Class="com.cboe.util.channel.ChannelAdapter" Method="dispatch" Return="true">
+      <Comment>dispatch  dispatch places a new event in the event channel queue for processing   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="the channel event to dispatch. " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="3" Class="com.cboe.util.channel.ChannelAdapter" Method="getChannelEvent" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.util.channel.ChannelEvent</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="java.lang.Object" Description="" />
+        <Param Sequence="1" Name="channel" Type="java.lang.Object" Description="" />
+        <Param Sequence="2" Name="data" Type="java.lang.Object" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="true">This class is actually extended by InstrumentedEventChannelAdapter. Uses "ChannelType.IC_COUNT_INSTRUMENTOR_BLOCK" and a key of "Integer(0)".</CallComment>
+    </Link>
+    <Link Id="4" Class="com.cboe.util.channel.ChannelAdapter" Method="dispatch" Return="true">
+      <Comment>dispatch  dispatch places a new event in the event channel queue for processing   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="the channel event to dispatch. " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="5" Class="com.cboe.util.channel.ChannelAdapter" Method="dispatch" Return="false">
+      <Comment>dispatch  dispatch places a new event in the event channel queue for processing   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="the channel event to dispatch. " />
+      </Arguments>
+      <CallComment ShowOnDiagram="true">This class is actually extended by InstrumentedEventChannelAdapter.</CallComment>
+    </Link>
+    <Link Id="6" Class="com.cboe.util.channel.ChannelAdapter" Method="dispatch" Return="true">
+      <Comment>dispatch  dispatch places a new event in the event channel queue for processing   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="the channel event to dispatch. " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="7" Class="com.cboe.util.channel.ChannelAdapter" Method="dispatch" Return="true">
+      <Comment>dispatch  dispatch places a new event in the event channel queue for processing   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="the channel event to dispatch. " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+  </Links>
+</Sequencediagram>
+

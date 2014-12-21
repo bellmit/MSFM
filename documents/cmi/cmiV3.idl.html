@@ -1,0 +1,237 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_V3_IDL
+#define CMI_V3_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiV2.idl"
+#include "cmiCallbackV3.idl"
+#include "cmiOrder.idl"
+#include "cmiQuote.idl"
+#include "cmiUser.idl"
+#include "cmiAdmin.idl"
+#include "cmiUtil.idl"
+#include "cmiSession.idl"
+#include "cmiStrategy.idl"
+#include "cmiMarketData.idl"
+#include "cmiTraderActivity.idl"
+#include "exceptions.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiV3
+{
+    interface Quote : cmiV2::Quote
+
+    {
+
+        cmiQuote::ClassQuoteResultStructV3Sequence acceptQuotesForClassV3(
+            in cmiProduct::ClassKey classKey,
+            in cmiQuote::QuoteEntryStructV3Sequence quotes )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+
+        void cancelAllQuotesV3(
+            in cmiSession::TradingSessionName sessionName)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                );
+    };
+
+    interface OrderQuery : cmiV2::OrderQuery
+    {
+        cmiOrder::AuctionSubscriptionResultStructSequence subscribeAuctionForClass(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiOrder::AuctionTypeSequence auctionTypes,
+            in cmiCallbackV3::CMIAuctionConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::DataValidationException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+
+         cmiOrder::AuctionSubscriptionResultStructSequence unsubscribeAuctionForClass (
+                in cmiSession::TradingSessionName sessionName,
+                in cmiProduct::ClassKey classKey,
+                in cmiOrder::AuctionTypeSequence auctionTypes,
+                in cmiCallbackV3::CMIAuctionConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::DataValidationException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException
+                );
+    };
+     
+    interface OrderEntry : cmi::OrderEntry
+    {
+        cmiOrder::InternalizationOrderResultStruct acceptInternalizationOrder(
+            in cmiOrder::OrderEntryStruct primaryOrder,
+            in cmiOrder::OrderEntryStruct matchOrder, 
+            in cmiOrder::MatchType matchType)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotAcceptedException,
+                    exceptions::TransactionFailedException
+                ); 
+    };
+
+    interface MarketQuery : cmiV2::MarketQuery
+
+    {
+        cmiMarketData::MarketDataHistoryDetailStruct getDetailMarketDataHistoryByTime(
+	        in cmiSession::TradingSessionName sessionName,
+	        in cmiProduct::ProductKey productKey,
+	        in cmiUtil::DateTimeStruct startTime,
+	        in cmiUtil::QueryDirection direction)
+	        raises(
+	            exceptions::SystemException,
+	            exceptions::CommunicationException,
+	            exceptions::DataValidationException,
+	            exceptions::NotFoundException,
+	            exceptions::AuthorizationException
+	        );
+
+	cmiMarketData::MarketDataHistoryDetailStruct getPriorityMarketDataHistoryByTime(
+	        in cmiSession::TradingSessionName sessionName,
+	        in cmiProduct::ProductKey productKey,
+	        in cmiUtil::DateTimeStruct startTime,
+	        in cmiUtil::QueryDirection direction)
+	        raises(
+	            exceptions::SystemException,
+	            exceptions::CommunicationException,
+	            exceptions::DataValidationException,
+	            exceptions::NotFoundException,
+	            exceptions::AuthorizationException
+	        );
+
+        void subscribeCurrentMarketForClassV3(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV3::CMICurrentMarketConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeCurrentMarketForClassV3(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ClassKey classKey,
+            in cmiCallbackV3::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void subscribeCurrentMarketForProductV3(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallbackV3::CMICurrentMarketConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+        void unsubscribeCurrentMarketForProductV3(
+            in cmiSession::TradingSessionName sessionName,
+            in cmiProduct::ProductKey productKey,
+            in cmiCallbackV3::CMICurrentMarketConsumer clientListener)
+               raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+
+     };
+
+
+    interface UserSessionManagerV3 : cmiV2::UserSessionManagerV2, cmi::UserSessionManager
+    {
+        cmiV3::MarketQuery getMarketQueryV3()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        cmiV3::Quote getQuoteV3()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        cmiV3::OrderQuery getOrderQueryV3()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+
+        cmiV3::OrderEntry getOrderEntryV3()
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::AuthorizationException
+            );
+    };
+
+
+    interface UserAccessV3
+    {
+        UserSessionManagerV3 logon(
+            in cmiUser::UserLogonStruct logonStruct,
+            in cmiSession::LoginSessionType sessionType,
+            in cmiCallback::CMIUserSessionAdmin clientListener,
+            in boolean gmdTextMessaging )
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::AuthenticationException,
+                    exceptions::DataValidationException,
+                    exceptions::NotFoundException
+                );
+
+     };
+     
+};
+#endif
+
+</pre>

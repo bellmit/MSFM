@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sequencediagram>
+  <Definition>[LogEventQueueReader run
+[LogEventQueueReader getEventHandler
+[LogEventQueueImpl getEventHandler
+[EventHandlerBaseImpl EventHandlerBaseImpl]]]
+[AlarmProcessingImpl notify
+[AlarmProcessingImpl evaluate
+[EventHandlerBaseImpl processResults]
+[EventHandlerBaseImpl evaluateResults]
+[NotifyThreadPoolFactory executeNotify
+[ExecutorService submit]]]
+[AlarmProcessingImpl run
+[AlarmProcessingImpl notifyAllClients
+[ClientNotifyThread ClientNotifyThread]
+[NotifyThreadPoolFactory executeNotify
+[ExecutorService submit]]]
+[AlarmProcessingImpl notify
+[AlarmProcessingImpl evaluate
+[ConditionContainerBaseImpl processResults]
+[LogEvaluator evaluateResults
+[ConditionComparator isMatch]]]]]]]</Definition>
+  <Links>
+    <Link Id="0" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueReader" Method="run" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="1" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueReader" Method="getEventHandler" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventHandler</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="2" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueImpl" Method="getEventHandler" Return="false">
+      <Comment>getEventHandler   </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventHandler</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="3" Class="com.cboe.instrumentationCollector.alarmProcessor.EventHandlerBaseImpl" Method="EventHandlerBaseImpl" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="4" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueReader" Method="getEventHandler" Return="true">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventHandler</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="7" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="notify" Return="false">
+      <Comment>notify  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="  " />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="8" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="evaluate" Return="false">
+      <Comment>evaluate  Evaluate a single, simply event to true/false result </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmEvaluationResults</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="9" Class="com.cboe.instrumentationCollector.alarmProcessor.EventHandlerBaseImpl" Method="processResults" Return="false">
+      <Comment>processResults  Evaluate a single, simply event to true/false result </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="11" Class="com.cboe.instrumentationCollector.alarmProcessor.EventHandlerBaseImpl" Method="evaluateResults" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmEvaluationResults</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="13" Class="com.cboe.instrumentationCollector.alarmProcessor.NotifyThreadPoolFactory" Method="executeNotify" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="client" Type="java.lang.Runnable" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="14" Class="java.util.concurrent.ExecutorService" Method="submit" Return="false">
+      <Comment></Comment>
+      <Return Description="">java.util.concurrent.Future&lt;?&gt;</Return>
+      <Arguments>
+        <Param Sequence="0" Name="task" Type="java.lang.Runnable" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="15" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="notifyAllClients" Return="true">
+      <Comment>notifyAllClients  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="  " />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="18" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="run" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="19" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="notifyAllClients" Return="false">
+      <Comment>notifyAllClients  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="  " />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="20" Class="com.cboe.instrumentationCollector.alarmProcessor.ClientNotifyThread" Method="ClientNotifyThread" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments>
+        <Param Sequence="0" Name="client" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="2" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="3" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="22" Class="com.cboe.instrumentationCollector.alarmProcessor.NotifyThreadPoolFactory" Method="executeNotify" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="client" Type="java.lang.Runnable" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="23" Class="java.util.concurrent.ExecutorService" Method="submit" Return="false">
+      <Comment></Comment>
+      <Return Description="">java.util.concurrent.Future&lt;?&gt;</Return>
+      <Arguments>
+        <Param Sequence="0" Name="task" Type="java.lang.Runnable" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="24" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="notifyAllClients" Return="true">
+      <Comment>notifyAllClients  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="  " />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="27" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="notify" Return="false">
+      <Comment>notify  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="  " />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="28" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="evaluate" Return="false">
+      <Comment>evaluate  Evaluate a single, simply event to true/false result </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmEvaluationResults</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="29" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="run" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="31" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEvaluator" Method="evaluateResults" Return="false">
+      <Comment>evaluateResults  Evaluate a single, simply event to true/false result </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmEvaluationResults</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="32" Class="com.cboe.interfaces.instrumentationCollector.ConditionComparator" Method="isMatch" Return="false">
+      <Comment></Comment>
+      <Return Description="">boolean</Return>
+      <Arguments>
+        <Param Sequence="0" Name="valueToMatch" Type="java.lang.Object" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="33" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEvaluator" Method="evaluateResults" Return="true">
+      <Comment>evaluateResults  Evaluate a single, simply event to true/false result </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmEvaluationResults</Return>
+      <Arguments>
+        <Param Sequence="0" Name="source" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="" />
+        <Param Sequence="1" Name="event" Type="com.cboe.interfaces.instrumentationCollector.EventObject" Description="" />
+        <Param Sequence="2" Name="details" Type="java.util.List" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+  </Links>
+</Sequencediagram>
+

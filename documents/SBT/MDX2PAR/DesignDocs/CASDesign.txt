@@ -1,0 +1,306 @@
+MDX to PAR - CAS Design Details
+Wayne Zhu
+------------------------------------------------------------------------------------------
+This document describes the changes made to provide MDX to PAR 
+subscription functionality through new internal IDL.
+Internal IDL change:
+1. New interface for report class query service in CAS is created in 
+client/internalIDL/floorApplication.idl under module floorApplication.
+interface  ProductQueryV2 : cmi :: ProductQuery {
+    cmiProduct::ProductStructSequence getProductsForReportingClassSymbol(
+        in cmiProduct::Symbol reportingClassSymbol,
+        in cmiProduct::ProductType type)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException, 
+                exceptions::AuthorizationException, 
+                exceptions::DataValidationException
+            );
+}
+This interface extends ProductQuery in cmi.idl.
+
+
+interface MarketQueryV5 : cmiV4:: MarketQuery   {
+         void subscribeCurrentMarketForProduct(           
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMICurrentMarketConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeCurrentMarketForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void subscribeTickerForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeTickerForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void subscribeRecapForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeRecapForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+        
+         void subscribeNBBOForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMINBBOConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeNBBOForProduct(
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                 );
+    };
+This interface extends MarketQuery in cmiV4.idl.
+
+2. New methods for subscriptions For product from CAS to MDX are added to interface 
+MarketDataCallbackConsumer in domain/event/idl/consumers.idl. 
+interface MarketDataCallbackConsumer   {
+   ...
+   
+         void subscribeCurrentMarketForProduct(    
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMICurrentMarketConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeCurrentMarketForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMICurrentMarketConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void subscribeTickerForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeTickerForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMITickerConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void subscribeRecapForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeRecapForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMIRecapConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+        
+         void subscribeNBBOForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMINBBOConsumer clientListener,
+            in cmiUtil::QueueAction actionOnQueue)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                );
+ 
+         void unsubscribeNBBOForProduct(
+            in cmiProduct::ClassKey aClassKey,   
+            in cmiProduct::ProductKey aProductKey,
+            in cmiCallbackV4::CMINBBOConsumer clientListener)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::AuthorizationException,
+                    exceptions::DataValidationException
+                 );
+    };
+}
+
+------------------------------------------------------------------------------------------
+Design overview    
+Assumption: report class symbols are unique across a product type. 
+1. All changes related to IDL.
+   Both client/internalIDL and domain/event/IDL releated changes will be done here for 
+   client and domain vob.
+2. Report class query service added in CAS. 
+   PAR client will query for products for a given report class in CAS.
+3. PAR market data For product subscription handling in CAS.
+   CAS will publish PAR user subscriptions into event channel MarketDataCallbackConsumer. 
+   User subscription mechnism will remain unchanged.
+4. Market Data Subscription For Prodyct Processing in MDX  
+   On startup, MDX will listen to the existing event channel MarketDataCallbackConsumer
+   for all classes based on its group keys. Upon receiving subscriptions, MDX will 
+   register the client callback with the proper supplier.
+------------------------------------------------------------------------------------------
+Part One - Report class query service 
+VOBLoc:		client/Java/interfaces
+Package:	com.cboe.interfaces.application
+Interface:	ProductQueryServiceAdapter 
+Extends:	com.cboe.idl.floorApplication.ReportingClassQueryOperations
+Remove extending from  ProductQueryOperations.
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.application.product.adapter
+Interface:	ProductQueryServiceAdapterImpl 
+Implements:	com.cboe.interfaces.application.ProductQueryServiceAdapter 
+Add reporting class lookup cache.
+
+VOBLoc:		client/Java/interfaces
+Package:	com.cboe.interfaces.application
+Interface:	ProductQueryManager 
+Extends:	com.cboe.idl.floorApplication.ReportingClassQueryOperations
+Remove extending from  ProductQueryOperations.
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.application.product
+Class:		ProductQueryManagerImpl 
+Implements:	com.cboe.interfaces.application.ProductQueryManager 
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.application.session
+Interface:	SessionManagerImpl
+Update getProductQuery() method with new Impl.
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.application.product.adapter
+Class:		ReportClassCacheFactory
+
+
+Part Two - Market Query V5 subscription service 
+VOBLoc:		client/Java/interfaces
+Package:	com.cboe.interfaces.floorApplication
+Interface:	MarketQueryV5 
+Extends:	com.cboe.idl.floorApplication.MarketQueryV5Operations
+
+VOBLoc:		client/Java/interfaces
+Package:	com.cboe.interfaces.expressApplication
+Interface:	ExpressMarketQuery 
+Extends:	com.cboe.idl.floorApplication.MarketQueryV5
+Remove extending from  MarketQueryV4.
+
+VOBLoc:		client/Java/interfaces
+Package:	com.cboe.interfaces.expressApplication
+Interface:	MarketQueryV4Home
+Add method MarketQueryV5 createMarketQueryV5(SessionManager sessionManager).
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.expressApplication.marketData
+Class:		MarketQueryV4HomeImpl 
+Implement:	com.cboe.interfaces.expressApplication.MarketQueryV4Home
+Add implemention for the new method.
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.expressApplication.marketData
+Class:		MarketQueryV4Impl 
+Interface:	com.cboe.interfaces.expressApplication.ExpressMarketQuery
+Add implemention for new methods.
+
+VOBLoc:		client/Java/interface
+Package:	com.cboe.interfaces.expressApplication
+Interface:	MarketDataCallbackRequestPublisher
+Add new methods for publishing For product.
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.expressApplication.marketData
+Class:		MarketDataCallbackRequestPublisherImpl
+Implement:	com.cboe.interfaces.expressApplication.MarketDataCallbackRequestPublisher
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.delegates.floorApplication
+Class:		MarketQueryV5Delegate 
+
+VOBLoc:		client/Java/impls
+Package:	com.cboe.delegates.application
+Class:		ProductQueryDelegate
+
+

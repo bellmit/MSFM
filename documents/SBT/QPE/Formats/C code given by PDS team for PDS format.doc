@@ -1,0 +1,368 @@
+This first part indicates we strip off the first 23 bytes of the message
+
+
+
+ 
+void parseHgwBcastData( appSession_t bcastSessionId, char *buffer, int len )
+{
+	int mlen = len;
+	char *mssg;
+	static unsigned long lastSeq = 0L;
+	unsigned long seq;
+	appSessionVer_t appVersion;	// Cognizant 07.23.2001
+	WORKUNIT* wu = NULL; //Cognizant - Declare work unit
+	CWorkUnit* cwu = CWorkUnit::getInstance();
+	appVersion = ut_queryAppVersion( buffer ); 
+	mssg = ut_validateAppHeader( bcastSessionId, buffer, &mlen, (char *)&seq );
+	if (mssg == NULL && mlen < 0)
+	{
+		ut_syslog(WARN, "No APP SESSION header recognized");
+		ut_errmsg(WARN, "No APP SESSION header recognized");
+		ut_hexdmp( buffer, len );
+		return;
+	}
+
+//	if ( seq != lastSeq )
+		// TPF can have up to 64 buckets, they will come out of order some time
+	if (( seq < lastSeq - 64L) || (seq > lastSeq + 64L))
+		ut_syslog(WARN, "HGW broadcast gap %ld (%ld/%ld)", seq - lastSeq, lastSeq, seq );
+
+	lastSeq = seq + 1L;
+
+	if ( mssg == NULL )
+		return;
+
+	// JES
+	short recordId;
+
+	// first two bytes should be 'OM'
+	memcpy( &recordId, mssg, sizeof( recordId ) );
+	if ( recordId != TPF_BCAST_ID && recordId != TPF_BCAST_ID_E )
+	{
+		ut_errmsg( ERROR, "Invalid recordId, expect 'OM' - got %#X", recordId );
+		ut_hexdmp( buffer, len );
+		return;
+	}
+
+	// strip off the TPF 23 byte header
+	mssg += 23;
+	mlen -= 23;
+
+	// first byte: check for start of block = 0x6E
+	if ( *mssg != SBM )
+	{
+		ut_errmsg( ERROR, "Invalid SBM, got %#X", *mssg );
+		ut_hexdmp( buffer, len );
+		return;
+	}
+	mssg++;
+	mlen--;
+
+	cwu->GetWorkUnit( &wu );
+	if ( wu == NULL )
+		return;
+
+	wu->cmd = TPF_ADD_UPD;
+	memcpy(wu->raw_message, mssg, min( sizeof(wu->raw_message), mlen) );
+	wu->appVersion = appVersion;	//Cognizant 07.23.2001
+	wu->len = mlen;
+	gblTpfSeries_pool->AddWork((void*) wu, sizeof(wu));
+	return;
+}
+
+
+The second part is the code that breaks up the individual fields in the message
+
+
+
+//**********************************************************************
+//
+// Parses HGW broadcast data by field IDs.  Sends data to PDS Server.
+//
+//**********************************************************************
+void parseHgwBcastFields( char *symbol, short numFields, short mlen, char *mssg)
+{
+	int rt;
+	int len;
+	int keylen;
+	bool nbbo;
+
+	short tshort;
+	unsigned short tunsignshort;
+	long tlong;
+	unsigned short utshort;
+	short fieldID, fieldLength;
+
+	char tsuffix = ' ';
+    	char buffer[80];
+	//char sendbuf[ 1024 ];
+	char key[ MAXKEYLEN + 1 ];
+
+	IPRICE tprice;
+	MAP_REC maprec;
+	//MSG_HDR hdr;
+
+	char scale = 0x0f;
+	long tpfSeriesOrdinal = 0L;
+
+	MESSAGE message( MSG_SERIES_UPD , 2048 );
+	message.SetUserData( 0 );
+	len = sizeof( MSG_HDR );
+
+	memset( &maprec, 0, sizeof( maprec ) );
+	
+
+	for ( int i = 0; i < numFields && 0 < mlen; i++ )
+	{
+		memcpy( &fieldID, mssg, sizeof(short));
+		mssg += sizeof(short);
+		mlen -= sizeof(short);
+		switch(fieldID)
+		{
+			case 1:				// TPF series ordinal number	
+				fieldLength = TPF_ORDINAL_LEN;
+			 	memcpy( &tpfSeriesOrdinal, mssg, fieldLength );
+
+				// multiple series ordinals in one message.
+				if ( maprec.TPFSeriesOrdinal != 0 )
+				{
+					if ( maprec.TPFSeriesOrdinal != tpfSeriesOrdinal )
+					{
+						// Send update message to server
+						//if ( hdr.numFields > 0 && maprec.tagged )
+						if ( message.NumberOfFields() > 0 && maprec.tagged )
+						{
+
+							// DL 12/99
+           					// Add ability to discard series broadcast when spooling has been disabled.
+							
+							if ( isSymbolTaggedSeries( maprec.symbol) )
+							{
+								//Update  workunit to be sent to spool thread
+								rt = sendServer( message.Buffer(), message.Length(), getDiscardSeriesHGWBcast() );
+							}
+						}
+						message.Clear();
+						memset( &maprec, 0, sizeof( maprec ) );
+					}
+				}
+
+				// Create mapping record 
+				maprec.TPFSeriesOrdinal = tpfSeriesOrdinal;
+				ut_strfill( maprec.exchange, "CO", EXCH_LEN, ' ' );
+
+				if ( message.UserData() == 0 )
+				{
+					// Now find the exact record
+					memset( key, 0, sizeof( key ) );
+					keylen = BuildKey( mapfil->tfilno + 6, (pTEXT )&maprec, key, 0L, sizeof( maprec ));
+
+					rt = FirstInSet( mapfil->tfilno+6, key, &maprec, keylen );
+					if ( rt != NO_ERROR && rt != INOT_ERR )
+					{
+						ut_syslog( FATAL, "Error reading mapping file [%s]", ctError( rt ));
+						ut_errmsg( FATAL, "Error reading mapping file [%s]", ctError( rt ));
+						ut_hexdmp( "key", key, keylen );
+						ut_hexdmp( "message", mssg, mlen );
+						appShutdown( -1 );
+					}
+
+					if ( rt == INOT_ERR )
+					{
+						ut_syslog( INFO, "Map record NOT found TPF Series Ordinal %ld [CO]", tpfSeriesOrdinal);
+						ut_errmsg( INFO, "Map record NOT found TPF Series Ordinal %ld [CO]", tpfSeriesOrdinal);
+						ut_hexdmp( "message", mssg, mlen );
+
+						if ( verbose )
+							ut_hexdmp( "maprec", &maprec, sizeof( maprec ) );
+
+						// DO NOT send same multiple class requests.
+						//alin 081401 cognizant
+						//Cognizant 08.10.2001
+						// Do not add this message to Series Queue
+						requestClass( symbol, NULL, 0L,FALSE, TRUE, FALSE );
+
+						return;
+					}
+
+					message.SetUserData( maprec.keyId );
+				}
+
+				break;
+			case 3:                        // Rotation/RAES indicator
+				fieldLength = 1;
+				message.AddField(FLD_SR_INDICATOR, mssg, sizeof( char ) );
+				memcpy(&maprec.seriesInd, mssg, sizeof(char));
+				break;
+			case 7:                        // close value
+				fieldLength = 8;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+
+				memcpy( &tsuffix, mssg + 7, sizeof(tsuffix) ); 	// closing suffix
+
+				message.AddField(FLD_SR_CSUFFIX, &tsuffix, sizeof( tsuffix ) );
+				memcpy(&maprec.closeSuffix, &tsuffix, sizeof(tsuffix)); 
+				message.AddField(FLD_SR_CLOSE, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.close, &tprice, sizeof(IPRICE));
+				break;
+			case 8:                        // last price
+				fieldLength = 8;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+
+				memcpy( &tsuffix, mssg + 7, sizeof(tsuffix) );	// last sale suffix
+
+				message.AddField(FLD_SR_LSUFFIX, &tsuffix, sizeof( tsuffix ) );
+				memcpy(&maprec.lastSuffix, &tsuffix, sizeof(tsuffix)); 
+				message.AddField(FLD_SR_LAST, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.last, &tprice, sizeof(IPRICE));
+				break;
+			case 9:                        // book bid
+				fieldLength = 8;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+
+				memcpy( &tsuffix, mssg + 7, sizeof(tsuffix) );	// suffix
+				
+				len = message.AddField(FLD_SR_BBSUFFIX, &tsuffix, sizeof( tsuffix ) );
+				memcpy(&maprec.bookBidSuffix, &tsuffix, sizeof(tsuffix)); 
+				message.AddField(FLD_SR_BBID, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.bookBid, &tprice, sizeof(IPRICE));
+				break;
+			case 12:                        // market bid  
+				fieldLength = 9;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+
+				memcpy( &tsuffix, mssg + 7, sizeof(tsuffix) );	// suffix
+				memcpy( &nbbo, mssg + 8, sizeof(nbbo) );	// nbbo indicator
+
+				message.AddField(FLD_SR_BSUFFIX, &tsuffix, sizeof( tsuffix ) );
+				memcpy(&maprec.bidSuffix, &tsuffix, sizeof(tsuffix)); 
+				message.AddField(FLD_SR_BID, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.bid, &tprice, sizeof(IPRICE));
+				message.AddField(FLD_SR_BNBBO, &nbbo, sizeof( nbbo ) );
+				maprec.bidNbboIndicator = nbbo;
+				break;
+			case 13:                        // market ask
+				fieldLength = 9;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+
+				memcpy( &tsuffix, mssg + 7, sizeof(tsuffix) );	// suffix
+				memcpy( &nbbo, mssg + 8, sizeof(nbbo) );	// nbbo indicator
+
+				message.AddField(FLD_SR_ASUFFIX, &tsuffix, sizeof( tsuffix ) );
+				memcpy(&maprec.askSuffix, &tsuffix, sizeof(tsuffix)); 
+				message.AddField(FLD_SR_ASK, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.ask, &tprice, sizeof(IPRICE));
+				message.AddField(FLD_SR_ANBBO, &nbbo, sizeof( nbbo ) );
+				maprec.askNbboIndicator = nbbo;
+				break;
+			case 14:                        // bid size, TPF is really only sending 2 bytes, but it is an UNSIGNED short
+				fieldLength = 2;
+				memcpy( &utshort, mssg, fieldLength );
+				tlong = utshort;
+				message.AddField(FLD_SR_BID_SIZE, &tlong, sizeof( tlong ) );
+				memcpy(&maprec.bidSize, &tlong, sizeof(tlong));
+				break;
+
+			case 15:                        // ask size, TPF is really only sending 2 bytes, but it is an UNSIGNED short
+				fieldLength = 2;
+				memcpy( &utshort, mssg, fieldLength );
+				tlong = utshort;
+				message.AddField(FLD_SR_ASK_SIZE, &tlong, sizeof( tlong ) );
+				memcpy(&maprec.askSize, &tlong, sizeof(tlong));
+				break;
+
+			case 16:                        // book ask
+				fieldLength = 8;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+
+				memcpy( &tsuffix, mssg + 7, sizeof(tsuffix) );
+
+				message.AddField(FLD_SR_BASUFFIX, &tsuffix, sizeof( tsuffix ) );
+				memcpy(&maprec.bookAskSuffix, &tsuffix, sizeof(tsuffix)); 
+				message.AddField(FLD_SR_BASK, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.bookAsk, &tprice, sizeof(IPRICE));
+				break;
+			case 17:                        // book bid size
+				fieldLength = 2;
+//EC1
+				//memcpy( &tshort, mssg, fieldLength );
+				//message.AddField(FLD_SR_BBSIZE, &tshort, sizeof( tshort ) );
+				//memcpy(&maprec.bookBidSize, &tshort, sizeof(tshort));
+				memcpy( &tunsignshort, mssg, fieldLength );
+				message.AddField(FLD_SR_BBSIZE, &tunsignshort, sizeof( tunsignshort ) );
+				memcpy(&maprec.bookBidSize, &tunsignshort, sizeof(tunsignshort));
+				break;
+			case 18:                        // book ask size
+				fieldLength = 2;
+//EC1
+				//memcpy( &tshort, mssg, fieldLength );
+				//message.AddField(FLD_SR_BASIZE, &tshort, sizeof( tshort ) );
+				//memcpy(&maprec.bookAskSize, &tshort, sizeof(tshort));
+				memcpy( &tunsignshort, mssg, fieldLength );
+				message.AddField(FLD_SR_BASIZE, &tunsignshort, sizeof( tunsignshort ) );
+				memcpy(&maprec.bookAskSize, &tunsignshort, sizeof(tunsignshort));
+				break;
+			//EC1
+			case 19:                      //Non-Cust Bid Size
+				fieldLength = 2;
+				memcpy( &utshort, mssg, fieldLength );
+				tlong = utshort;
+				message.AddField(FLD_SR_NONCUST_BIDSIZE, &tlong, sizeof( tlong ) );
+				memcpy(&maprec.nonCustBidSize, &tlong, sizeof(tlong));
+				break;
+			case 20:                      //Non-Cust Ask Size
+				fieldLength = 2;
+				memcpy( &utshort, mssg, fieldLength );
+				tlong = utshort;
+				message.AddField(FLD_SR_NONCUST_ASKSIZE, &tlong, sizeof( tlong ) );
+				memcpy(&maprec.nonCustAskSize, &tlong, sizeof(tlong));
+				break;
+			case 21:                      //Expected Opening Price and Size
+				fieldLength = 9;
+				memcpy( &tshort, mssg, sizeof( tshort ) );
+				memcpy( &tlong, mssg + sizeof( tshort ), sizeof( tlong ) );
+				memcpy( &scale, mssg + 6, sizeof(scale) );	// price format
+				tprice.setPrice( tshort, tlong, scale );
+				//ut_syslog(WARN, "short %hd, long %ld, scale %c", tshort, tlong, scale);
+
+				memcpy( &tunsignshort, mssg + 7, sizeof(tunsignshort) );	// EOS
+				//ut_syslog(WARN, "EOS size %hd", tunsignshort);
+
+				message.AddField(FLD_SR_EXP_OPN_PRICE, &tprice, sizeof( IPRICE ) );
+				memcpy(&maprec.expOpnPrice, &tprice, sizeof(IPRICE));
+
+				tlong = tunsignshort;
+				message.AddField(FLD_SR_EXP_OPN_SIZE, &tlong, sizeof( tlong ) );
+				memcpy(&maprec.expOpnSize, &tlong, sizeof(tlong));
+
+				break;
+			default:
+					ut_syslog( WARN, "Error processing hgw bcast version 2 packet field %d", i );
+					ut_errmsg( WARN, "Error processing hgw bcast version 2 packet field %d", i );
+					ut_hexdmp( "What's left:", mssg, mlen );
+					return;
+			}
+
+			// update indexes and pointers
+			mssg += fieldLength;
+			mlen -= fieldLength;
+	}
+

@@ -1,0 +1,451 @@
+TPF Migration - Reporting CAS/MDCAS Design Details
+Wayne Zhu
+------------------------------------------------------------------------------------------
+This document describes the changes made to provide TPF Migration/Reporting 
+functionality through new internal IDL on CAS and MDCAS.
+CMI IDL change:
+In domain/event/idl/consumer.idl, two methods are added to the existing IDL. 
+-------------------------------------------------
+|	Ticker Event Channel			|
+-------------------------------------------------
+interface TickerConsumer {
+	// two existing methods
+	void acceptTicker(in cmiUtil::LongSequence groups, 
+			  in marketData::InternalTickerStruct ticker);
+  	void acceptTickerForClass(in util::RoutingParameterStruct routingParameters, 
+				  in cmiUtil::TimeStructSequence tradeTimes, 
+				  in cmiMarketData::TickerStructSequence  tickers);
+  	// new added for VTATS
+ 	void acceptLargeTradeTickerDetailForClass(
+		in util::RoutingParameterStruct routingParameters, 
+		in marketData::InternalTickerDetailStructSequence tickerDetails );
+};
+
+-------------------------------------------------
+|	RemoteCASTicker Event Channel		|
+-------------------------------------------------
+interface RemoteCASTickerConsumer
+{
+  // two new methods added for VTATS
+  void subscribeLargeTradeLastSaleForClass(]
+	in util::RoutingParameterStruct routingParameters,
+      	in string casOrigin,
+      	in string userId,
+      	in string userSessionIOR,
+      	in TickerConsumer clientListener,
+      	in cmiUtil::QueueAction actionOnQueue);
+  
+  void unsubscribeLargeTradeLastSaleForClass(
+	in util::RoutingParameterStruct routingParameters,
+      	in string casOrigin,
+      	in string userId,
+      	in string userSessionIOR,
+      	in TickerConsumer clientListener);
+};
+
+New IDL  floorApplication.idl is created in client/internalIDL/. 
+interface LastSaleService
+{
+  void subscribeLastSaleByClass(
+	in cmiSession::TradingSessionName sessionName,
+        in cmiProduct::ClassKey classKey,
+        in consumers::TickerConsumer clientListener,
+        in cmiUtil::QueueAction actionOnQueue)
+        raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::NotFoundException,
+                exceptions::AuthorizationException
+        );
+            
+  void unsubscribeLastSaleByClass(
+	in cmiSession::TradingSessionName sessionName,
+	in cmiProduct::ClassKey classKey,
+	in consumers::TickerConsumer clientListener)
+	raises(
+	            exceptions::SystemException,
+	            exceptions::CommunicationException,
+	            exceptions::DataValidationException,
+	            exceptions::NotFoundException,
+	            exceptions::AuthorizationException
+	);
+};
+
+------------------------------------------------------------------------------------------
+Design overview    
+1. All changes related to IDL.
+   Both client/internalIDL and domain/event/IDL releated changes will be done here for 
+   client and domain vob.
+2. Large Trade Last Sale (LT/LS) Subscription Handling in CAS. 
+   Subscription from the user will be published to event channel if using MDCAS,
+   otherwise it will be hanled locally within CAS.
+3. Large Trade Last Sale (LT/LS) Subscription Processing in CAS/MDCAS  
+   On startup, MDCAS will subscribe to the existing event channel/Ticker for all classes 
+   based on its group keys. MDCAS then publishes last sales to instrumented IEC. 
+   Upon receiving subscription on LT/LS, MDCAS will register the client callback with 
+   the proper supplier.
+
+------------------------------------------------------------------------------------------
+Part One - Detailed design on event channel related changes
+VOBLoc:		CommonFacilities/Java
+Package:	com.cboe.util
+Interface:	ChannelType 
+Defines channel type constants for event channel and IEC.
+		· Add constact CB_LARGE_TRADE_LAST_SALE_BY_CLASS
+		· Add constant LARGE_TRADE_LAST_SALE_BY_CLASS
+		· Add constant SUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+		· Add constant UNSUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.EventChannel
+Class:		EventChannelFilterHelper
+Status:		Existing
+Handles adding and removing filter on event channels based on channel key.
+		· Add handling new channel types on two existing methods.
+		  ChannelType.SUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS and 
+            	  ChannelType.UNSUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS and
+		  ChannelType.LARGE_TRADE_LAST_SALE_BY_CLASS.
+		· Modify method String getMethodName (ChannelKey channelKey) that maps
+	          a channel type to a method on event channel consumer.
+		· Modify method getInterfaceRepIdForFilter (ChannelKey channelKey) that
+		  maps a channel type with interface repository ID.
+
+VOBLoc:		domain/event/Java/interfaces
+Package:	com.cboe.interfaces.callback 
+Interface:	LargeTradeLastSaleConsumer 
+Status:		New
+Extends com.cboe.idl.consumers.TickerConsumerOperations
+Subclass:  	com.cboe.application.supplier.proxy.LargeTradeLastSaleConsumerInterceptor
+Defines client callback interface on accepting large trade last sale data. 
+
+-------------------------------------------------
+|	Ticker Event Channel			|
+-------------------------------------------------
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.eventChannel
+Class:		TickerConsumerHomeEventImpl
+Status:		Existing
+Connects to Ticker event channel upon startup and handles filter addition/removal.
+		· Modify method getParmName(ChannelKey channelKey) to 
+		  add filtering on ChannelType.LARGE_TRADE_LAST_SALE_BY_CLASS
+
+VOBLoc:		domain/event/Java/interfaces
+Package:	com.cboe.interfaces.events 
+Interface:	TickerConsumer
+Status:		Existing
+Extends com.cboe.idl.consumers.TickerConsumerOperations 
+Subclass: 	com.cboe.consumers.EventChannel.TickerConsumerIECImpl
+Defines Ticker consumer interface from event channel.  
+		· No changes
+		· Carry over new method acceptLargeTradeTickerDetailForClass
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.EventChannel
+Class:		TickerEventConsumerImpl
+Status:		Existing
+Implements com.cboe.interfaces.events.TickerConsumer.
+		· Add delegate implementation for new method
+ 		  acceptLargeTradeTickerDetailForClass.
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.EventChannel
+Class:		TickerConsumerIECImpl
+Status:		Existing
+Implements com.cboe.interfaces.events.TickerConsumer.
+		· Existing methods dispatch events to Instrumented IEC based on
+		  ChannelKey.TICKER_BY_CLASS.
+		· Add IEC implementation for method acceptLargeTradeTickerDetailForClass.
+		  Upon receiving events, dispatch to Instrumented IEC based on 
+		  channel key (ChannelType.LARGE_TRADE_LAST_SALE_BY_CLASS, 
+			       SessionClassKey).
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.EventChannel
+Class:		TickerEventConsumerInterceptor
+Status:		Existing
+Implements com.cboe.interfaces.events.TickerConsumer. 
+Handles instrumentation for the methods on TickerConsumer.
+		· Add instrumentation for new method
+		  acceptLargeTradeTickerDetailForClass.
+
+-------------------------------------------------
+|	RemoteCASTicker Event Channel		|
+-------------------------------------------------
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.publishers.eventChannel
+Class:		RemoteCASTickerConsumerHomeEventImpl 
+Status:		Existing
+Connects to RemoteCASTicker event channel upon startup and handles filter addition/removal.
+		· Modify method getParmName(ChannelKey channelKey) to 
+		  add filtering on channel keys - 
+		  ChannelKey.SUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+		  ChannelKey.UNSUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+                  
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.eventChannel
+Class:		RemoteCASTickerEventConsumerImpl 
+Status:		Existing
+Implements com.cboe.interfaces.events.RemoteCASTickerConsumer.
+Defines Remote CAS Ticker consumer implementation to event channel. 
+		· Add delegate implementation for two new methods -
+ 		  subscribeLastSaleByClass and 
+                  unsubscribeLastSaleByClass.
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.eventChannel
+Class:		RemoteCASTickerConsumerIECImp
+Status:		Existing
+Implements com.cboe.interfaces.events.RemoteCASTickerConsumer.
+		· Add IEC implementation for two methods
+ 		  subscribeLastSaleByClass and unsubscribeLastSaleByClass.
+		  Dispatch events based on two new channel keys -
+		  ChannelKey.SUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+		  ChannelKey.UNSUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.consumers.EventChannel
+Class:		RemoteCASTickerEventConsumerInterceptor
+Status:		Existing
+Implements com.cboe.interfaces.events.RemoteCASTickerConsumer.
+Handles instrumentation for the methods on RemoteCASTickerConsumer.
+		· Add instrumentations for two new methods -
+		  subscribeLastSaleByClass and 
+                  unsubscribeLastSaleByClass.
+
+VOBLoc:		/vobs/dte/domain/event/Java/impls
+Package:	com.cboe.publishers.eventChannel
+Class:		RemoteCASTickerConsumerPublisherImpl
+Publishes events to RemoteCASTicker event channel.
+		· Add delegate implementation for two new methods -
+ 		  subscribeLastSaleByClass and 
+                  unsubscribeLastSaleByClass.
+
+------------------------------------------------------------------------------------------
+Part Two - Detailed design on LT/LS Subscription Handling in CAS.
+-------------------------------------------------
+|	Last Sale Service			|
+-------------------------------------------------
+Interface changes:
+Package:	com.cboe.interfaces.floorApplication
+Interface:	LastSaleService
+Extend:		LastSaleServiceOperations / IDL generated interface
+Status:		New
+
+Package:	com.cboe.interfaces.application
+Interface:	SystemMarketQuery 
+Extends:	com.cboe.interfaces.floorApplication.LastSaleService,
+		com.cboe.interfaces.application.MarketQueryV3
+Status:		New
+
+Interceptor changes:
+Package:	com.cboe.application.marketData
+Class:		SystemMarketQueryInterceptor
+Implement:	com.cboe.interfaces.application.SystemMarketQuery 
+Status:		Existing
+Handles instrumentation and ACL checks on LastSaleService.
+		· Depends on sucessfull build on /vobs/dte/client/Java/interfaces.
+		· Change /vobs/dte/client/Java/interceptors/Makefile.
+
+Delegate changes:
+Package:	com.cboe.delegates.application
+Class:		LastSaleServiceDelegate
+Status:		New
+Extends/renames from CORBA POA tie class POA_LastSaleService_tie.
+
+
+-------------------------------------------------
+|	Implementation changes			|
+-------------------------------------------------
+Package:	com.cboe.interfaces.application
+Interface:	MarketQueryHome
+Status:		Existing
+Creates two service instances instead of one for a session.
+		· Add method LastSaleService createLastSale(SessionManager sessionManager)
+		· Add method void removeSession(SessionManager sessionManager)
+
+Package:	com.cboe.interfaces.application
+Interface:	TickerCollector
+		· Add method AcceptLargeTradeLastSaleForClass (
+			com.cboe.idl.marketData.InternalTickerDetailStruct [] lastSales);
+
+Package:	com.cboe.interfaces.application.subscription
+Interface:	SubscriptionService
+		· Add method void addLargeTradeLastSaleClassInterest(
+			ChannelListener proxyListener, 
+			String sessionName, 
+			int classKey)
+		· Add method void removeLargeTradeLastSaleClassInterest(
+			ChannelListener proxyListener, 
+			String sessionName, 
+			int classKey)
+
+Package:	com.cboe.interfaces.application.subscription
+Interface:	SessionClassSubscriptionCollection 
+		· Add method Subscription getLargeTradeLastSaleSubscription();
+		
+Package:	com.cboe.application.marketData
+Class:		SystemMarketQueryHomeImpl
+Status:		Existing
+Implements com.cboe.interfaces.application.MarketQueryHome. 
+		· Create synchronized hash map (sessionManager -> SystemMarketQueryImpl)
+		· Add two new method implementations.
+
+Package:	com.cboe.application.marketData
+Class:		MarketQueryBaseImpl 
+		Implements com.cboe.interfaces.application.TickerCollector
+Status:		Existing
+		· Add LargeTradeLastSaleSupplier largeTradeLastSaleSupplier.
+		· Add Map largeTradeLastSaleClassInterests.
+		· Implements new method on TickerCollector.
+
+Package:	com.cboe.application.marketData
+Class:		SystemMarketQueryImpl 
+Status:		Existing
+		· Depends on change on class ServicesHelper.
+
+
+Package:	com.cboe.application.subscription
+Class:		SubscriptionServiceImpl 
+		Implements com.cboe.interfaces.application.subscription.SubscriptionService
+Status:		Existing
+		· Add two method implemtations.
+
+Package:	com.cboe.application.subscription.sessionClass
+Class:		SessionClassSubscriptionCollectionImpl 
+		Implements com.cboe.interfaces.application.subscription.SessionClassSubscriptionCollection
+Status:		Existing
+		· Add one new method implemtation.
+
+Package:	com.cboe.application.subscription.sessionClass
+Class:		LargeTradeLastSaleSubscriptionImpl
+Status:		New
+		· Implement method subscribeChannel to apply filter on Ticker 
+		· Implement method unsubscribeChannel to remove filter on Ticker
+
+Package:	com.cboe.application.shared.consumer
+Class:		TickerProcessor
+Status:		Existing
+		· Modify method channelUpdate to handle event with channel 
+		  key on ChannelType.LARGE_TRADE_LAST_SALE_BY_CLASS 
+
+Package:	com.cboe.application.marketData
+Class:		SystemMarketQueryHomeNullImpl
+Status:		Existing
+Implements com.cboe.interfaces.application.MarketQueryHome. 
+		· Create synchronized hash map (sessionManager -> SystemMarketQueryNullImpl)
+		· Add two new method implementations.
+
+Package:	com.cboe.application.marketData
+Class:		SystemMarketQueryNullImpl 
+Status:		Existing
+No changes is necessary.
+
+ServicesHelper changes:
+Package:	com.cboe.application.shared
+Class:		ServicesHelper
+Status:		Existing
+		· Add new method ChannelListener getLastSaleConsumerProxy (
+			com.cboe.idl.consumers.TickerConsumer consumer,
+            		BaseSessionManager sessionManager,
+            		short queuePolicy)
+
+Supplier/Proxy changes:
+Package:	com.cboe.interfaces.application
+Interface:	LargeTradeLastSaleConsumerProxyHome
+Status:		New
+		· ChannelListener create(TickerConsumer consumer,
+					 BaseSessionManager sessionManager, 
+					 short queuePolicy)
+
+Package:	com.cboe.application.supplier.proxy
+Class:		LargeTradeLastSaleConsumerProxyHomeImpl
+Status:		New
+		· Add new method implementation.
+		· Only handle QueueActions.NO_ACTION.
+
+Package:	com.cboe.application.supplier.proxy
+Class:		LargeTradeLastSaleConsumerProxy
+Status:		New
+Extends from  com.cboe.domain.supplier.proxy.CallbackSupplierProxy.InstrumentedConsumerProxy.
+		· Stubbed out for later implementation.
+
+Package:	com.cboe.application.supplier.proxy
+Class:		LargeTradeLastSaleConsumerInterceptor
+Status:		New
+		· Add instrumentations for method acceptLargeTradeTickerDetailForClass.
+		· Method acceptTicker and acceptTickerForClass do nothing
+
+Package:	com.cboe.application.supplier
+Class:		LargeTradeLastSaleSupplierFactory
+Status:		New
+		· Add method LargeTradeLastSaleSupplier create(BaseSessionManager sessionManager) 
+		· Add method LargeTradeLastSaleSupplier find(BaseSessionManager sessionManager)
+		· Add method void remove( BaseSessionManager session )
+
+Package:	com.cboe.application.supplier
+Class:		LargeTradeLastSaleSupplier
+Status:		New
+Extends from com.cboe.application.supplier.UserSessionMarketDataBaseSupplier.
+
+
+Package:	com.cboe.interfaces.application
+Interface:	MarketDataRequestPublisher
+Status:		Existing
+		· Add void publishTickerSubscription(Object source, 
+						     String userId, 
+                                                     String userIor, 
+                                                     String sessionName, 
+                                                     int classKey, 
+                                                     int productKey, 
+                                                     Object clientListener)
+		· Add void publishTickerUnSubscription(Object source, 
+						       String userId, 
+						       String userIor, 
+						       String sessionName, 
+						       int classKey, 
+						       int productKey, 
+						       Object clientListener)
+
+
+Package:	com.cboe.application.marketData
+Interface:	MarketDataRequestPublisherImpl
+Status:		Existing
+          	· Add implementations for two new methods.
+		· Add two maps of maps
+			Map largeTradeLastSaleSubscriptionsBySource
+			Map largeTradelastSaleSubscriptionsByGroup
+
+Vob:		domain/event
+Package:	com.cboe.consumers.eventChannel
+Class:		TickerConsumerHomeEventImpl
+Status:		Existing
+		· Need to be modified to apply filter 
+
+
+------------------------------------------------------------------------------------------
+Part Three - Detailed desing on LT/LS Subscription Processing in CAS/MDCAS  
+
+
+
+------------------------------------------------------------------------------------------
+Part Four - XML/ACL/Scripts changes
+XML configuration changes:
+We will add all the new Home definitions and its implementation for TMS.
+
+VOBLoc:			domain\release\xml
+File:			CAS.xml
+BOContainer:		ProxyContainer
+BOHome(added):		LargeTradeLastSaleConsumerProxyHome
+ListOfHomes(added):	LargeTradeLastSaleConsumerProxyHome
+
+VOBLoc:			domain\release\xml
+File:			BaseConsumerProxy
+Name Added:		LargeTradeLastSaleConsumerProxyHome
+		
+ACL changes:
+We will use the existing role Class Display and add new method controls for ACL. 
+
+Makefile changes:
+IDL Makefile:			client\idl\client_idl.mk
+Interceptor Makefile:		\client\Java\interceptors\Makefile

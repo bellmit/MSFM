@@ -1,0 +1,34 @@
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Alex Torres (Chicago Board Options Exchange) -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalCurrentQuotes (CurrentQuotesHomeImpl*)>
+<!ATTLIST GlobalCurrentQuotes
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CurrentQuotesHomeImpl (CurrentQuotesHomeImplProperties)>
+<!ATTLIST CurrentQuotesHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT CurrentQuotesHomeImplProperties (productCacheSize, activeWhenSlave)>
+<!ATTLIST CurrentQuotesHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT activeWhenSlave EMPTY>
+<!ATTLIST activeWhenSlave
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT productCacheSize (#PCDATA)>
+<!ATTLIST productCacheSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "Set the size of the cache to store products "
+>

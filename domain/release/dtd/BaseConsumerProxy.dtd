@@ -1,0 +1,67 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalBaseConsumerProxyHome (BaseConsumerProxyHomeImpl* )>
+<!ATTLIST GlobalBaseConsumerProxyHome  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT BaseConsumerProxyHomeImpl (BaseConsumerProxyHomeImplProperties, BaseConsumerProxyHomeImplCommands?) >
+<!ATTLIST BaseConsumerProxyHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT BaseConsumerProxyHomeImplProperties  (connectionLostFatal?, flushProxyQueueDepth?, noActionProxyQueueDepth?, IOrderSessionsNoAck?)>
+<!ATTLIST BaseConsumerProxyHomeImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT connectionLostFatal EMPTY>
+<!ATTLIST connectionLostFatal type	   %typeConstraints; #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;    #FIXED 'readOnly'
+	propertyType   %propertyTypes;      #FIXED 'enum'
+	booleanValue   (true | false )      #REQUIRED
+	propertyValue  CDATA	            #FIXED 'booleanValue' >
+
+<!ELEMENT flushProxyQueueDepth (#PCDATA)>
+<!ATTLIST flushProxyQueueDepth  
+	type %typeConstraints;  #FIXED 'ManagedProperty'
+	mode %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED 'maximum Flush Queue Depth' 
+>
+<!ELEMENT noActionProxyQueueDepth (#PCDATA)>
+<!ATTLIST noActionProxyQueueDepth  
+	type %typeConstraints;  #FIXED 'ManagedProperty'
+	mode %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED 'maximum noAction Queue Depth' 
+>
+<!ELEMENT IOrderSessionsNoAck (#PCDATA)>
+<!ATTLIST IOrderSessionsNoAck
+	type %typeConstraints;  #FIXED 'ManagedProperty'
+	mode %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'Identifies the sessions to turn on/off for no ack on I order'
+>
+<!-- -->
+<!ELEMENT BaseConsumerProxyHomeImplCommands (logcm)>
+<!ATTLIST BaseConsumerProxyHomeImplCommands
+    type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!-- Command for CurrentMarketV4ConsumerProxyHomeImpl in MDX -->
+<!ELEMENT logcm (command, arg?)>
+<!ATTLIST logcm
+    type %typeConstraints; #FIXED "ManagedCommand"
+    description CDATA #FIXED "Log CurrentMarket messages"
+>
+<!ELEMENT command (#PCDATA)>
+<!ATTLIST command
+    type CDATA #FIXED "ManagedParameter"
+    parameterType CDATA #FIXED "string"
+    description CDATA #FIXED "SHOW | OFF | duration"
+>
+<!ELEMENT arg (#PCDATA)>
+<!ATTLIST arg
+    type CDATA #FIXED "ManagedParameter"
+    parameterType CDATA #FIXED "string"
+    description CDATA #FIXED "string"
+>

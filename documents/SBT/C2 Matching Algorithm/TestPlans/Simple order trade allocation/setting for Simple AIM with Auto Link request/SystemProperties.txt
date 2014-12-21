@@ -1,0 +1,17 @@
+ORB.ListenHostName	_node 
+ClientProperties	SbtAdminGui.properties 
+FFPropertiesFile	SA.properties 
+FFServerName	SystemAdminServer 
+ORB.InitRefURL	ftp://infra:infra@dev18sa.cboe.com:21/%2Fsbt/test/infra/run_dir/ior/initrefs.ior
+ORB.PortNum	8160
+ORB.OrbName	SUPPORT-APITESTCLIENT 
+PropertyPrefix	test18
+EventService.Admin.ChannelAdminServerName	test18ChannelAdminServer 
+EventService.Admin.ExtentMapServerName	test18ExtentMapAdminServer 
+ORB.FlowControl	none 
+ORB.LocatorDiscovery.Disable	true 
+ORB.Verbose	true 
+Security.Authenticator.ServiceType	test18SecurityServerAuthenticator 
+Security.Authorizor.ServiceType	test18SecurityServerAuthorize 
+Security.Logout.ServiceType	test18SecurityServerLogout 
+Security.Admin.ServiceType	test18SecurityAdminService 

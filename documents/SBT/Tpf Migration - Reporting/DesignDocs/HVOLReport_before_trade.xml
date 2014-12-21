@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<HVOLReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="samples//ReportToNewsWire.xsd">
+<reportHeader>
+<senderName>ABCD</senderName>
+<senderAppName>CBOE Direct</senderAppName>
+<reportName>Half Hourly Volume</reportName>
+<reportDateTime>2007-08-31T00:06:39-05:00</reportDateTime>
+<version>1.0</version>
+</reportHeader>
+<reportDetail>
+	<category name="Equity">
+		<volumeInfo>
+			<callVolume>0</callVolume>
+			<putVolume>0</putVolume>
+			<totalVolume>0</totalVolume>
+		</volumeInfo>
+		<openInterest>23</openInterest>
+		<gainersLosersInfo>
+			<gainers>0</gainers>
+			<losers>0</losers>
+			<unchanged>0</unchanged>
+			<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+		</gainersLosersInfo>
+	</category>
+	<category name="Composite">
+		<volumeInfo>
+			<callVolume>0</callVolume>
+			<putVolume>0</putVolume>
+			<totalVolume>0</totalVolume>
+		</volumeInfo>
+		<openInterest>0</openInterest>
+		<gainersLosersInfo>
+			<gainers>0</gainers>
+			<losers>0</losers>
+			<unchanged>0</unchanged>
+			<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+		</gainersLosersInfo>
+	</category>
+	<category name="Index">
+		<volumeInfo>
+			<callVolume>0</callVolume>
+			<putVolume>0</putVolume>
+			<totalVolume>0</totalVolume>
+		</volumeInfo>
+		<openInterest>0</openInterest>
+		<gainersLosersInfo>
+			<gainers>5</gainers>
+			<losers>0</losers>
+			<unchanged>0</unchanged>
+			<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+		</gainersLosersInfo>
+	</category>
+	<totalVolumeInfo>
+		<totalCallVolume>0</totalCallVolume>
+		<totalPutVolume>0</totalPutVolume>
+		<totalVolume>0</totalVolume>
+	</totalVolumeInfo>
+	<totalOpenInterest>0</totalOpenInterest>
+	<totalGainersLosersInfo>
+		<gainers>0</gainers>
+		<losers>0</losers>
+		<unchanged>0</unchanged>
+		<totalGainersLosersUnchanged>0</totalGainersLosersUnchanged>
+	</totalGainersLosersInfo>
+</reportDetail>
+</HVOLReport>

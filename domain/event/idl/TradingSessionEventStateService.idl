@@ -1,0 +1,31 @@
+#ifndef TradingSessionEventService_idl
+#define TradingSessionEventService_idl
+
+#include "TradingSessionMaintenanceService.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module businessServices
+{
+    interface TradingSessionEventStateService : TradingSessionMaintenanceService
+    {
+        void subscribeTradingSessionEventState( in consumers::TradingSessionEventStateConsumer tradingSessionEventStateConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeTradingSessionEventState( in consumers::TradingSessionEventStateConsumer tradingSessionEventStateConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    };
+#pragma version TradingSessionEventStateService 2.0
+};
+
+#endif

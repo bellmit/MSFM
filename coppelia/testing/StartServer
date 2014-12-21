@@ -1,0 +1,23 @@
+#!/bin/ksh
+cls=../../lib/
+export PATH=/usr/jdk1.2.2/bin:$PATH
+echo ----------------------------------------------------------------
+java -version
+echo ----------------------------------------------------------------
+
+
+export CPATH=$cls/jmf.jar
+export CPATH=$CPATH:$cls/CoppeliaHA.jar:$cls/osji.jar:$cls/pro.jar
+
+export CPATH=$CPATH:$cls/mct3_0zip:$cls/rogue.zip:$cls/OrbixWeb31c.jar:$cls/fixometer.jar
+
+export CPATH=$CPATH:$cls/classes12.zip
+
+export ORBIX_PATCH="-Djava.compiler=NONE -Dorg.omg.CORBA.ORBClass=IE.Iona.OrbixWeb.CORBA.ORB -Dorg.omg.CORBA.ORBSingletonClass=IE.Iona.OrbixWeb.CORBA.singletonORB"
+
+export RMI_SEC="-Djava.security.policy=../../lib/policy.txt"
+
+echo java -mx512M  $ORBIX_PATCH $RMI_SEC -classpath $CPATH $1 $2 $3
+echo ----------------------------------------------------------------
+java -mx512M  $ORBIX_PATCH $RMI_SEC -classpath $CPATH $1 $2 $3
+

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+jxb:version="1.0"
+elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+
+	<xs:element name="systemConfiguration" type="GISystemConfigurationType">
+		<xs:annotation>
+			<xs:documentation>System Configuration Information</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GISystemConfiguration"/>
+				<jxb:property name="systemConfiguration"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="GISystemConfigurationType">
+		<xs:sequence>
+			<xs:element name="casConfigurations" type="GICASConfigurationsType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="casConfigurationsSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GICASConfigurationsType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GICASConfigurationSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="casConfiguration" type="GICASConfigurationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="casConfigurations"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+    <xs:element name="casNumber" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="casNumber"/>
+                <jxb:class name="GICASNumber"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="firm" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="firm"/>
+                <jxb:class name="GIFirmName"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="hwLocation" type="xs:string" >
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="hardwareLocation"/>
+                <jxb:class name="GIHardwareLocation"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="hwManufacturer" type="xs:string" >
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="hardwareManufacturer"/>
+                <jxb:class name="GIHardwareManufacturer"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="hwModel" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="hardwareModel"/>
+                <jxb:class name="GIHardwareModel"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="ipAddress" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="ipAddress"/>
+                <jxb:class name="GIIpAddress"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="networkConnectivityProvider" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="networkConnectivityProvider"/>
+                <jxb:class name="GINetworkConnectivityProvider"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="softwareProvider" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="softwareProvider"/>
+                <jxb:class name="GISoftwareProvider"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="frontEnd" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jxb:property name="frontEnd"/>
+                <jxb:class name="GIFrontEnd"/>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+
+	<xs:complexType name="GICASConfigurationType">
+		<xs:sequence>
+            <xs:element ref="casNumber"/>
+            <xs:element ref="firm"/>
+            <xs:element ref="hwLocation"/>
+            <xs:element ref="hwManufacturer"/>
+            <xs:element ref="hwModel"/>
+            <xs:element ref="ipAddress"/>
+            <xs:element ref="networkConnectivityProvider"/>
+            <xs:element ref="softwareProvider"/>
+            <xs:element ref="frontEnd" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

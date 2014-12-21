@@ -1,0 +1,58 @@
+[EMMA v2.0.5312 report, generated Thu Mar 03 11:11:30 CST 2011]
+-------------------------------------------------------------------------------
+OVERALL COVERAGE SUMMARY:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+5%   (45/973)!	1%   (146/9813)!	1%   (2468/276560)!	1%   (444/57686)!	all classes
+
+OVERALL STATS SUMMARY:
+
+total packages:	39
+total classes:	973
+total methods:	9813
+total executable files:	838
+total executable lines:	57686
+
+COVERAGE BREAKDOWN BY PACKAGE:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+0%   (0/4)!	0%   (0/61)!	0%   (0/2215)!	0%   (0/431)!	com.cboe.ohs.dataIntegrity
+0%   (0/3)!	0%   (0/111)!	0%   (0/3392)!	0%   (0/731)!	com.cboe.ohs.deprecated.oms
+0%   (0/6)!	0%   (0/91)!	0%   (0/1837)!	0%   (0/451)!	com.cboe.ohs.domain.distributedCache
+0%   (0/3)!	0%   (0/16)!	0%   (0/463)!	0%   (0/76)!	com.cboe.ohs.framework
+0%   (0/6)!	0%   (0/30)!	0%   (0/886)!	0%   (0/115)!	com.cboe.ohs.interfaces.workflow.steps
+0%   (0/2)!	0%   (0/44)!	0%   (0/1566)!	0%   (0/289)!	com.cboe.ohs.providers
+100% (1/1)	0%   (0/5)!	0%   (0/17)!	0%   (0/7)!	com.cboe.ohs.providers.product
+0%   (0/2)!	0%   (0/32)!	0%   (0/291)!	0%   (0/81)!	com.cboe.ohs.providers.products
+0%   (0/2)!	0%   (0/19)!	0%   (0/132)!	0%   (0/42)!	com.cboe.ohs.providers.prs
+0%   (0/2)!	0%   (0/31)!	0%   (0/590)!	0%   (0/137)!	com.cboe.ohs.providers.tss
+0%   (0/1)!	0%   (0/6)!	0%   (0/25)!	0%   (0/11)!	com.cboe.ohs.providers.users
+0%   (0/4)!	0%   (0/56)!	0%   (0/1518)!	0%   (0/381)!	com.cboe.ohs.publishers.dropCopy
+0%   (0/7)!	0%   (0/96)!	0%   (0/2901)!	0%   (0/614)!	com.cboe.ohs.publishers.marketMakerTradeNotification
+0%   (0/2)!	0%   (0/37)!	0%   (0/1900)!	0%   (0/405)!	com.cboe.ohs.publishers.omtMessage
+0%   (0/9)!	0%   (0/137)!	0%   (0/4103)!	0%   (0/893)!	com.cboe.ohs.publishers.tradeNotification
+0%   (0/3)!	0%   (0/53)!	0%   (0/1564)!	0%   (0/304)!	com.cboe.ohs.receivers.iosc
+0%   (0/16)!	0%   (0/272)!	0%   (0/9333)!	0%   (0/1848)!	com.cboe.ohs.receivers.ohs
+0%   (0/35)!	0%   (0/700)!	0%   (0/30010)!	0%   (0/6057)!	com.cboe.ohs.receivers.oms
+10%  (1/10)!	0%   (0/296)!	0%   (0/12015)!	0%   (0/2474)!	com.cboe.ohs.receivers.orderEntry
+20%  (1/5)!	0%   (0/76)!	0%   (0/1718)!	0%   (0/388)!	com.cboe.ohs.receivers.orderPublishing
+0%   (0/9)!	0%   (0/110)!	0%   (0/3938)!	0%   (0/763)!	com.cboe.ohs.receivers.orderQuery
+0%   (0/2)!	0%   (0/49)!	0%   (0/2374)!	0%   (0/440)!	com.cboe.ohs.receivers.orderRequest
+0%   (0/3)!	0%   (0/31)!	0%   (0/360)!	0%   (0/100)!	com.cboe.ohs.receivers.tradeNotification
+0%   (0/2)!	0%   (0/119)!	0%   (0/5947)!	0%   (0/1163)!	com.cboe.ohs.receivers.tradethrough
+0%   (0/18)!	0%   (0/446)!	0%   (0/15125)!	0%   (0/2962)!	com.cboe.ohs.receivers.validation
+0%   (0/3)!	0%   (0/56)!	0%   (0/2269)!	0%   (0/494)!	com.cboe.ohs.route
+0%   (0/4)!	0%   (0/32)!	0%   (0/939)!	0%   (0/196)!	com.cboe.ohs.senders.proxy
+0%   (0/7)!	0%   (0/129)!	0%   (0/3050)!	0%   (0/709)!	com.cboe.ohs.sms
+0%   (0/7)!	0%   (0/58)!	0%   (0/765)!	0%   (0/135)!	com.cboe.ohs.workflow
+0%   (2/401)!	0%   (0/1856)!	0%   (0/55187)!	0%   (0/11854)!	com.cboe.ohs.workflow.steps
+0%   (0/155)!	0%   (0/648)!	0%   (0/16943)!	0%   (0/3762)!	com.cboe.ohs.workflow.steps.electronic
+8%   (7/84)!	0%   (8/2614)!	0%   (116/70436)!	0%   (30/15352)!	com.cboe.ohs.domain
+10%  (8/77)!	2%   (9/464)!	1%   (53/6065)!	2%   (21/1147)!	com.cboe.ohs.channels
+6%   (1/16)!	1%   (3/360)!	1%   (92/8196)!	2%   (14.7/920)!	com.cboe.ohs.util
+3%   (1/33)!	1%   (5/457)!	20%  (1108/5630)!	7%   (98/1334)!	com.cboe.ohs.interfaces.workflow
+100% (2/2)	18%  (7/40)!	21%  (89/422)!	18%  (18.3/104)!	com.cboe.ohs.providers.pcs
+71%  (15/21)!	36%  (29/80)!	22%  (324/1503)!	27%  (75.2/280)!	com.cboe.ohs.logger
+100% (5/5)	89%  (82/92)	73%  (674/923)!	79%  (181.8/231)!	com.cboe.ohs.data
+100% (1/1)	100% (3/3)	100% (12/12)	100% (5/5)	com.cboe.ohs.providers.firms
+-------------------------------------------------------------------------------

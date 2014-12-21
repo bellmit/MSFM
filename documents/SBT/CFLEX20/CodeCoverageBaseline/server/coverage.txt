@@ -1,0 +1,128 @@
+[EMMA v2.0.5312 report, generated Thu Mar 03 13:21:58 CST 2011]
+-------------------------------------------------------------------------------
+OVERALL COVERAGE SUMMARY:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+6%   (167/2751)!	2%   (781/38661)!	2%   (16069/1066549)!	2%   (3573.2/231401)!	all classes
+
+OVERALL STATS SUMMARY:
+
+total packages:	109
+total classes:	2751
+total methods:	38661
+total executable files:	2186
+total executable lines:	231401
+
+COVERAGE BREAKDOWN BY PACKAGE:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+0%   (0/4)!	0%   (0/57)!	0%   (0/1265)!	0%   (0/315)!	com.cboe.businessServices.directedAIMService
+0%   (0/4)!	0%   (0/34)!	0%   (0/504)!	0%   (0/133)!	com.cboe.businessServices.exchangeService
+0%   (0/6)!	0%   (0/62)!	0%   (0/1247)!	0%   (0/312)!	com.cboe.businessServices.firmService
+0%   (0/19)!	0%   (0/195)!	0%   (0/2826)!	0%   (0/724)!	com.cboe.businessServices.holdbackService
+0%   (0/4)!	0%   (0/37)!	0%   (0/1224)!	0%   (0/277)!	com.cboe.businessServices.lightOrder
+0%   (0/17)!	0%   (0/211)!	0%   (0/7532)!	0%   (0/1562)!	com.cboe.businessServices.marketDataReportService
+0%   (0/4)!	0%   (0/30)!	0%   (0/1869)!	0%   (0/416)!	com.cboe.businessServices.marketDataReportService.externalReports
+0%   (0/4)!	0%   (0/47)!	0%   (0/2176)!	0%   (0/475)!	com.cboe.businessServices.marketDataReportService.reportUtil
+0%   (0/73)!	0%   (0/1012)!	0%   (0/38173)!	0%   (0/7944)!	com.cboe.businessServices.marketDataService
+0%   (0/13)!	0%   (0/172)!	0%   (0/5168)!	0%   (0/1078)!	com.cboe.businessServices.marketDataService.marketUpdate
+0%   (0/6)!	0%   (0/61)!	0%   (0/3490)!	0%   (0/616)!	com.cboe.businessServices.marketDataSummaryService
+0%   (0/9)!	0%   (0/30)!	0%   (0/432)!	0%   (0/99)!	com.cboe.businessServices.marketMakerQuoteService.qhEntries
+0%   (0/13)!	0%   (0/124)!	0%   (0/2926)!	0%   (0/649)!	com.cboe.businessServices.marketMakerQuoteService.quoteBlockValidator
+0%   (0/20)!	0%   (0/373)!	0%   (0/15177)!	0%   (0/2993)!	com.cboe.businessServices.nbboAgentService
+0%   (0/17)!	0%   (0/132)!	0%   (0/2462)!	0%   (0/580)!	com.cboe.businessServices.orderStatusService
+0%   (0/6)!	0%   (0/81)!	0%   (0/3324)!	0%   (0/593)!	com.cboe.businessServices.orderStatusSubscriptionService
+0%   (0/2)!	0%   (0/20)!	0%   (0/1153)!	0%   (0/190)!	com.cboe.businessServices.orderStatusSubscriptionService.eventChannel
+0%   (0/3)!	0%   (0/16)!	0%   (0/932)!	0%   (0/170)!	com.cboe.businessServices.orderStatusSubscriptionService.suppliers
+0%   (0/2)!	0%   (0/11)!	0%   (0/686)!	0%   (0/132)!	com.cboe.businessServices.orderStatusSubscriptionService.suppliers.proxy
+0%   (0/16)!	0%   (0/249)!	0%   (0/9038)!	0%   (0/1777)!	com.cboe.businessServices.productService
+0%   (0/17)!	0%   (0/343)!	0%   (0/20598)!	0%   (0/4467)!	com.cboe.businessServices.propertyService
+0%   (0/50)!	0%   (0/501)!	0%   (0/25283)!	0%   (0/4808)!	com.cboe.businessServices.propertyService.preLoader
+0%   (0/4)!	0%   (0/49)!	0%   (0/1424)!	0%   (0/306)!	com.cboe.businessServices.qualifiedContingentTradeService
+0%   (0/13)!	0%   (0/102)!	0%   (0/1998)!	0%   (0/456)!	com.cboe.businessServices.quoteStatusService
+0%   (0/4)!	0%   (0/77)!	0%   (0/2831)!	0%   (0/540)!	com.cboe.businessServices.quoteStatusSubscriptionService
+0%   (0/2)!	0%   (0/18)!	0%   (0/942)!	0%   (0/165)!	com.cboe.businessServices.quoteStatusSubscriptionService.eventChannel
+0%   (0/3)!	0%   (0/14)!	0%   (0/619)!	0%   (0/120)!	com.cboe.businessServices.quoteStatusSubscriptionService.suppliers
+0%   (0/2)!	0%   (0/9)!	0%   (0/471)!	0%   (0/106)!	com.cboe.businessServices.quoteStatusSubscriptionService.suppliers.proxy
+0%   (0/10)!	0%   (0/85)!	0%   (0/1950)!	0%   (0/478)!	com.cboe.businessServices.recoaService
+0%   (0/18)!	0%   (0/156)!	0%   (0/5213)!	0%   (0/1142)!	com.cboe.businessServices.textMessagingService
+0%   (0/4)!	0%   (0/41)!	0%   (0/3727)!	0%   (0/599)!	com.cboe.businessServices.tradeService.unitTest
+0%   (0/61)!	0%   (0/842)!	0%   (0/31997)!	0%   (0/6141)!	com.cboe.businessServices.tradingSessionService
+0%   (0/28)!	0%   (0/425)!	0%   (0/9817)!	0%   (0/2230)!	com.cboe.businessServices.tradingSessionService.sessionManagement
+0%   (0/7)!	0%   (0/70)!	0%   (0/4558)!	0%   (0/688)!	com.cboe.businessServices.userActivityService
+0%   (0/18)!	0%   (0/309)!	0%   (0/9278)!	0%   (0/1844)!	com.cboe.businessServices.userReportManager
+0%   (0/25)!	0%   (0/408)!	0%   (0/13812)!	0%   (0/2726)!	com.cboe.businessServices.userService
+0%   (0/2)!	0%   (0/13)!	0%   (0/415)!	0%   (0/105)!	com.cboe.businessServices.util
+0%   (0/7)!	0%   (0/65)!	0%   (0/1517)!	0%   (0/318)!	com.cboe.callbackServices.heartBeatCallbackService
+0%   (0/1)!	0%   (0/2)!	0%   (0/7)!	0%   (0/2)!	com.cboe.idl.externalIntegrationServices
+0%   (0/1)!	0%   (0/2)!	0%   (0/7)!	0%   (0/2)!	com.cboe.idl.marketData
+0%   (0/4)!	0%   (0/8)!	0%   (0/28)!	0%   (0/8)!	com.cboe.idl.product
+0%   (0/1)!	0%   (0/2)!	0%   (0/7)!	0%   (0/2)!	com.cboe.idl.session
+0%   (0/1)!	0%   (0/2)!	0%   (0/7)!	0%   (0/2)!	com.cboe.idl.trade
+0%   (0/1)!	0%   (0/2)!	0%   (0/7)!	0%   (0/2)!	com.cboe.idl.user
+0%   (0/13)!	0%   (0/183)!	0%   (0/5308)!	0%   (0/1166)!	com.cboe.internalBusinessServices.alertService
+0%   (0/36)!	0%   (0/1005)!	0%   (0/21048)!	0%   (0/4672)!	com.cboe.internalBusinessServices.auctionService
+0%   (0/5)!	0%   (0/68)!	0%   (0/2136)!	0%   (0/442)!	com.cboe.internalBusinessServices.currentMarketBridge
+0%   (0/20)!	0%   (0/199)!	0%   (0/6507)!	0%   (0/1637)!	com.cboe.internalBusinessServices.firmService
+0%   (0/7)!	0%   (0/110)!	0%   (0/4869)!	0%   (0/877)!	com.cboe.internalBusinessServices.groupService
+0%   (0/27)!	0%   (0/282)!	0%   (0/3195)!	0%   (0/929)!	com.cboe.internalBusinessServices.historyService
+0%   (0/3)!	0%   (0/40)!	0%   (0/1043)!	0%   (0/258)!	com.cboe.internalBusinessServices.linkageClassGate
+0%   (0/11)!	0%   (0/125)!	0%   (0/2748)!	0%   (0/623)!	com.cboe.internalBusinessServices.migratePersistence
+0%   (0/25)!	0%   (0/216)!	0%   (0/5912)!	0%   (0/1371)!	com.cboe.internalBusinessServices.orderMarketMonitoringService
+0%   (0/4)!	0%   (0/45)!	0%   (0/1164)!	0%   (0/265)!	com.cboe.internalBusinessServices.orderRelationshipService
+0%   (0/20)!	0%   (0/291)!	0%   (0/11523)!	0%   (0/2253)!	com.cboe.internalBusinessServices.productConfigurationService
+0%   (0/35)!	0%   (0/718)!	0%   (0/24372)!	0%   (0/4926)!	com.cboe.internalBusinessServices.productService
+0%   (0/5)!	0%   (0/30)!	0%   (0/895)!	0%   (0/225)!	com.cboe.internalBusinessServices.textMessageService
+0%   (0/7)!	0%   (0/68)!	0%   (0/1560)!	0%   (0/320)!	com.cboe.internalBusinessServices.tradableValidation
+0%   (0/3)!	0%   (0/23)!	0%   (0/487)!	0%   (0/108)!	com.cboe.internalBusinessServices.tradeMaintenanceService
+0%   (0/1)!	0%   (0/6)!	0%   (0/21)!	0%   (0/9)!	com.cboe.internalBusinessServices.tradeQueryService
+0%   (0/11)!	0%   (0/115)!	0%   (0/2637)!	0%   (0/637)!	com.cboe.internalBusinessServices.tradeThroughMonitoringService
+0%   (0/13)!	0%   (0/517)!	0%   (0/25175)!	0%   (0/5741)!	com.cboe.internalBusinessServices.tradingPropertyService
+0%   (0/56)!	0%   (0/430)!	0%   (0/4467)!	0%   (0/1077)!	com.cboe.internalBusinessServices.tradingPropertyService.persistence
+0%   (0/2)!	0%   (0/29)!	0%   (0/588)!	0%   (0/118)!	com.cboe.internalBusinessServices.tradingSessionService
+0%   (0/21)!	0%   (0/210)!	0%   (0/6651)!	0%   (0/1117)!	com.cboe.internalBusinessServices.userInputMonitor
+17%  (1/6)!	0%   (0/51)!	0%   (0/2236)!	0%   (0/418)!	com.cboe.internalBusinessServices.userService
+0%   (0/207)!	0%   (0/2942)!	0%   (0/57299)!	0%   (0/14077)!	com.cboe.proxy.businessServices
+0%   (0/3)!	0%   (0/30)!	0%   (0/862)!	0%   (0/228)!	com.cboe.proxy.callbackServices
+0%   (0/37)!	0%   (0/265)!	0%   (0/3831)!	0%   (0/930)!	com.cboe.proxy.externalIntegrationServices
+0%   (0/8)!	0%   (0/79)!	0%   (0/499)!	0%   (0/156)!	com.cboe.proxy.infrastructureServices
+0%   (0/112)!	0%   (0/1961)!	0%   (0/45211)!	0%   (0/11299)!	com.cboe.proxy.internalBusinessServices
+0%   (0/9)!	0%   (0/62)!	0%   (0/1202)!	0%   (0/283)!	com.cboe.server.adminUtil
+0%   (0/22)!	0%   (0/187)!	0%   (0/4737)!	0%   (0/1001)!	com.cboe.server.dataIntegrity
+0%   (0/12)!	0%   (0/128)!	0%   (0/1758)!	0%   (0/440)!	com.cboe.server.distributedCache
+0%   (0/184)!	0%   (0/1769)!	0%   (0/30457)!	0%   (0/7654)!	com.cboe.server.events
+0%   (0/63)!	0%   (0/518)!	0%   (0/7010)!	0%   (0/1849)!	com.cboe.server.internalEvents
+0%   (0/4)!	0%   (0/16)!	0%   (0/252)!	0%   (0/76)!	com.cboe.server.lightOrder
+0%   (0/20)!	0%   (0/197)!	0%   (0/1985)!	0%   (0/475)!	com.cboe.server.lightOrder.codec
+0%   (0/7)!	0%   (0/166)!	0%   (0/5188)!	0%   (0/1045)!	com.cboe.server.ohsEvents
+0%   (0/10)!	0%   (0/151)!	0%   (0/3615)!	0%   (0/747)!	com.cboe.server.queue
+0%   (0/69)!	0%   (0/699)!	0%   (0/26377)!	0%   (0/5988)!	com.cboe.server.routingProperties
+0%   (0/4)!	0%   (0/64)!	0%   (0/1254)!	0%   (0/255)!	com.cboe.server.users
+0%   (0/4)!	0%   (0/38)!	0%   (0/814)!	0%   (0/153)!	com.cboe.server.util.concurrent
+0%   (0/5)!	0%   (0/81)!	0%   (0/2719)!	0%   (0/545)!	com.cboe.server.util.derivedCache
+0%   (0/4)!	0%   (0/45)!	0%   (0/1916)!	0%   (0/387)!	com.cboe.server.util.pktLogger
+0%   (0/18)!	0%   (0/325)!	0%   (0/9836)!	0%   (0/2001)!	com.cboe.server.util.productData
+0%   (0/32)!	0%   (0/159)!	0%   (0/1997)!	0%   (0/221)!	com.cboe.server.workflow
+0%   (0/12)!	0%   (0/137)!	0%   (0/3714)!	0%   (0/705)!	com.cboe.server.workflow.impl
+0%   (0/8)!	0%   (0/40)!	0%   (0/2078)!	0%   (0/399)!	com.cboe.server.workflow.xml
+0%   (0/1)!	0%   (0/8)!	0%   (0/450)!	0%   (0/88)!	com.cboe.status.util
+0%   (0/3)!	0%   (0/18)!	0%   (0/271)!	0%   (0/61)!	com.cboe.util
+1%   (2/163)!	0%   (2/2466)!	0%   (47/66053)!	0%   (13.8/14339)!	com.cboe.businessServices.orderBookService
+5%   (1/22)!	1%   (1/182)!	0%   (6/3848)!	0%   (2/959)!	com.cboe.server.commandProcessing
+9%   (7/78)!	1%   (28/2213)!	0%   (388/86815)!	1%   (106/18578)!	com.cboe.businessServices.tradeService
+33%  (1/3)!	1%   (1/85)!	1%   (21/4191)!	1%   (5/884)!	com.cboe.businessServices.optionsLinkage
+20%  (5/25)!	3%   (7/210)!	2%   (138/8647)!	2%   (38/1906)!	com.cboe.businessServices.allocationService
+16%  (13/83)!	2%   (38/1810)!	2%   (1074/52490)!	2%   (253.9/10489)!	com.cboe.internalBusinessServices.productStateService
+7%   (11/166)!	3%   (47/1476)!	3%   (988/39283)!	2%   (195.4/7904)!	com.cboe.server.util
+27%  (67/247)!	4%   (127/3368)!	3%   (2454/94795)!	2%   (506/21347)!	com.cboe.businessServices.brokerService
+10%  (6/58)!	4%   (55/1460)!	3%   (914/33365)!	3%   (227/7539)!	com.cboe.businessServices.marketMakerQuoteService
+8%   (6/74)!	4%   (96/2732)!	3%   (1957/60061)!	3%   (452.3/13144)!	com.cboe.businessServices.orderRoutingDestination
+14%  (3/22)!	11%  (23/205)!	6%   (196/3348)!	8%   (55/675)!	com.cboe.server.marketBuffer
+18%  (9/49)!	13%  (73/574)!	8%   (920/11069)!	8%   (154.8/2055)!	com.cboe.server.marketBuffer.codec
+43%  (3/7)!	19%  (15/81)!	19%  (272/1456)!	21%  (69.8/333)!	com.cboe.server.transactionTiming
+92%  (11/12)!	59%  (71/121)!	29%  (1196/4137)!	37%  (284/774)!	com.cboe.server.dependencyFramework
+89%  (8/9)!	40%  (59/146)!	34%  (812/2382)!	36%  (172.6/475)!	com.cboe.server.logger
+83%  (5/6)!	70%  (67/96)!	67%  (2159/3219)!	71%  (551.3/780)!	com.cboe.businessServices.underlyingMarketDataService
+60%  (6/10)!	74%  (49/66)	73%  (2248/3089)!	69%  (387.4/565)!	com.cboe.businessServices.tradeService.spreadCalculator
+100% (2/2)	88%  (22/25)	90%  (279/310)	89%  (99/111)	com.cboe.server.domain
+-------------------------------------------------------------------------------

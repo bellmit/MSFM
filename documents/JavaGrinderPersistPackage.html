@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 2.0 for Windows">
+	<TITLE>untitled</TITLE>
+</HEAD>
+
+<BODY>
+
+<P>Persistence is the process by which an object lives beyond the life of the currently executing Virtual Machine.
+There can be many versions of persistence, a text file, a binary file containing serialized objects, or commonly,
+a relational database. There are benefits and drawbacks to almost any type of persistence implementation, however,
+this should be a secondary problem when solving a business application need. Our persistence framework isolates
+the issues associated with persistence and abstracts them from our application code. This allows us to change our
+persistence with zero impact on existing application code.
+<H2><A NAME="PersistenceMapping"></A><B>Persistence Mapping</B></H2>
+<P>To effectively add a new domain object to our system, you need to define it persistence map. This map is how
+our generic access layer can translate an object and it's relations into a relational database. It is important
+that the map be correct, or the generic access layer will not be able to store and retrieve objects from the database.</P>
+<P>There exists some rules that constrain your code once you've decided to use the generic access layer. You must
+have a field in the object that is a unique object identifier. This field should map to a column in the database
+table that represents the primary key field. You should NEVER access a local variable directly. ALWAYS use an accessor
+method. For example.<FONT COLOR="#DD0000"> <A NAME="example1"></A>Example 1</FONT>
+
+<DL>
+	<DD><CODE>public class Employee<BR>
+	{ <BR>
+	String name;<BR>
+	public String getName(){ return name; }<BR>
+	public void badMethod() { System.out.println(name == null); }<BR>
+	public void goodMethod() { System.out.println(getName() == null);<BR>
+	}</CODE>
+</DL>
+
+<P>In this example our Employee class has a 'name' attribute. The 'badMethod' directly accesses this variable.
+This would be incorrect in our application if Employee is a persistent object. The 'goodMethod' uses the accessor
+method to obtain the value for 'name', thus insuring accurate results. It is not clear in this example the importance
+of this, since this Employee is not persistent, but it illustrates my intention about directly accessing variables.</P>
+<P>Let's expand this example to include two new objects. An Phone and an Office.
+
+<DL>
+	<DD><CODE>public class Office<BR>
+	{ <BR>
+	Integer objectIdentifier;<BR>
+	String name;<BR>
+	Vector phoneList;<BR>
+	}</CODE><BR>
+	<CODE>public class Phone<BR>
+	{ <BR>
+	Integer objectIdentifier;<BR>
+	String number;<BR>
+	Office office;<BR>
+	}<BR>
+	public class Employee<BR>
+	{ <BR>
+	Integer objectIdentifier;<BR>
+	String name;<BR>
+	Office office;<BR>
+	}</CODE>
+</DL>
+
+<P>Examining the classes reveals that and Employee has an Office, an office has a list of Phones, and a Phone has
+an Office. Lets expand this to say that our Employee may or may not have an Office, while the Phone requires and
+Office. You could say that the Employee-Office relation is an association and that the Office-Phone relation is
+an aggregate collection.</P>
+<P>A Database that would represent this could have three tables, an &quot;office&quot;, &quot;phone&quot;, and
+an &quot;employee&quot; table. The &quot;phone&quot; table has a foreign key to the office table. The &quot;employee&quot;
+table has a foreign key to the office table. The Office table has no foreign keys. Every table has a primary key
+field of databaseIdentifier.</P>
+<P>How would we map our objects to the database? Any RDBPersistent object will need to implement a method called,
+getClassDefinition(). This method should return a Vector of <A HREF="AttributeTypeColumn.html">com.objectwave.persist.AttributeTypeColumn</A>(s)
+for each attribute in the business object.</P>
+<P>There are 6 types of AttributeTypeColumns. PRIMARYATT, ATTRIBUTE, TYPEATT, FOREIGN, INSTANCE, and COLLECTION.
+There can only be one, and at least one, AttributeTypeColumn of the PRIMARYATT type in the Vector. There can only
+be one or zero TYPEATT. There may be 0..n of any of the other types. <BR>
+An ATTRIBUTE type represents any scalar datatype. Strings, int, boolean, Double, etc.... Additionally, you can
+use an ATTRIBUTE type to represent a native collection of Strings or ints (String [] or int []). These native arrays
+are converted into a large string using an escape sequence to separate each entry. Note, you could easily overrun
+the length of a VARCHAR field and you should be careful when using this functionality. The method 'AttributeTypeColumn&gt;&gt;getAttributeRelation(String
+columnName, Field fd)' is used for creating new instances of these objects. <BR>
+A TYPEATT is used when a map is going to represent objects of different types. This is necessary when multiple
+objects reside in one table. The method 'AttributeTypeColumn&gt;&gt;getTypeAttributeRelation(String columnName,
+Field fd)' is used for creating new instances of these objects. <BR>
+A COLLECTION type is useful for when you have a collection of Domain Objects. This can either be a Vector or a
+native array. The method 'AttributeTypeColumn&gt;&gt;getCollectionRelation(Class c, Field fd)' is used for creating
+new instances of these objects. <BR>
+The FOREIGN type indicates a strong relation from one object to the next. This is the type you would use if the
+underlying database table had a mandatory foreign key. The method 'AttributeTypeColumn&gt;&gt;getForeignRelation(Class
+c, String columnName, Field fd)' is used for creating new instances of these objects. <BR>
+An INSTANCE type indicates more of an associative relation. It may, or may not, have any column on the underlying
+database table. Either 'AttributeTypeColumn&gt;&gt;getInstanceRelation(Class c, Field fd)' or 'AttributeTypeColumn&gt;&gt;getInstanceRelation(Class
+c, String columnName, Field fd)' can be used to create instances of this object.</P>
+<P>Lets look at the maps for our example classes.</P>
+<P>Employee
+
+<UL>
+	<LI>&quot;columnName&quot;, Employee.name , AttributeTypeColumn.ATTRIBUTE
+	<LI>&quot;databaseIdentifer&quot;, Employee.objectIdentifier , AttributeTypeColumn.PRIMARYATT
+	<LI>&quot;officeIdentifier&quot;, Employee.office , AttributeTypeColumn.INSTANCE
+</UL>
+
+<P>Office
+
+<UL>
+	<LI>&quot;columnName&quot;, Office.name , AttributeTypeColumn.ATTRIBUTE
+	<LI>&quot;databaseIdentifer&quot;, Office.objectIdentifier , AttributeTypeColumn.PRIMARYATT
+	<LI>Office.phone, AttributeTypeColumn.COLLECTION
+</UL>
+
+<P>Phone
+
+<UL>
+	<LI>&quot;columnName&quot;, Phone.number , AttributeTypeColumn.ATTRIBUTE
+	<LI>&quot;databaseIdentifer&quot;, Phone.objectIdentifier , AttributeTypeColumn.PRIMARYATT
+	<LI>&quot;officeIdentifier&quot;, Phone.office , AttributeTypeColumn.INSTANCE
+</UL>
+
+<P>Hopefully, you can look at these maps and understand each one. The &quot;string&quot; at the start of each map
+entry represents the database column name. The only map entry without a &quot;string&quot; is the collection. Why
+is that? Well, there is no entry in the office database table for the collection of phones. The collection is actually
+created by finding all of the phones with the foreign key to the Office.</P>
+<H2><A NAME="RDBFlow"></A>Persistence Execution</H2>
+<P>This section will discuss how the Persistence layer does the magic that it does. It is intended to be an overview
+the persistence process. We'll explore the collaboration between the <A HREF="RDBPersistentAdapter.html">com.objectwave.persist.RDBPersistentAdapter</A>
+, the object that implements the <A HREF="Persistence.html">com.objectwave.persist.Persistence</A> interface, the
+<A HREF="BrokerFactory.html">com.objectwave.persist.BrokerFactory</A> and the <A HREF="RDBBroker.html">com.objectwave.persist.RDBBroker</A>.</P>
+
+<P>Every persistent object needs to implement the <B>Persistence</B> interface. A persistent object is by nature
+a <A HREF="..\transactionalObject\package.html">TransactionalObject</A>. It needs to support commit and rollback
+functionality, additionally, there are five functions specific to Persistence not found in a TransactionalObject.
+The ability to save, or make persistent, the persistent object. The ability to delete, or remove from persistence,
+the persistent object. The ability to determine if an object is currently persistent, or, if it is a new object
+(not yet made persistent). The ability to get the object's unique identifier. Every persistent object must have
+some unique identifier that distinguishes it from all of the other objects found in the persistent store. Finally,
+the ability to delegate all of these functions to another persistent object. We allow this, so that most of the
+difficult functionality associated with performing these objects can placed on another object. This allowed us
+use interfaces when developing the persistence support. By supporting delegation it is not required that a persistent
+object subclass from any other specific object. Every persistent object could implement everything over and over
+again, but, the delegation model is there if you wish to use it.</P>
+
+<P>That last little bit leads me to the <B>RDBPersistentAdapter</B>. This class does most of the work necessary
+to successfully implement persistence. This class subclasses from <A HREF="..\transactionalObject\ObjectEditor.html">ObjectEditor</A>
+and can therefore acts as an ObjectEditor for any of our persistent objects. As an ObjectEditor, every accessor
+and mutator call is delegated to the RDBPersistentAdapter. As a Persistent object, the save, delete, and other
+functions necessary for persistence are also delegated the the RDBPersistentAdapter. When any of the Persistent
+related functions occur, the Persistent adapter in turn passes the call onto the current default Persistence Broker.
+This is obtained via the <CODE>BrokerFactory.getDefaultBroker()</CODE>.</P>
+<P>The <B>BrokerFactory</B> may be misnamed, but it is with this object that one would obtain a handle to the current
+Persistent broker. At the time of this writing there are two possible brokers. The RDBBroker providing support
+for a relational database and an <A HREF="#ObjectPool">ObjectPoolBroker</A> providing support for working with
+a serialized collection of persistent objects. When an application begins, it can set whatever broker is necessary.
+All brokers implement the <A HREF="Broker.html">com.objectwave.persist.Broker</A> interface.</P>
+<P>The <B>RDBBroker</B> is designed to work with a Persistent object, and in particular, an RDBPersistence interface,
+to provide persistence. The RDBPersistentAdapter implements the RDBPersistence interface and it is intended that
+you use this class, rather than roll your own, to provide persistence to your object.</P>
+
+<P>When an RDBBroker class receives a command, it will always take a persistent object (or a collection of persistent
+objects) as the argument. The RDBBroker uses the RDBPersistence object to inquire about the mappings between the
+Persistent object and the database. With knowledge provided by the RDBPersistence object, the appropriate SQL is
+generated to perform the appropriate actions. If this happens to be a query, then the process is completed by the
+RDBBroker by processing the result set and building the correct Persistent objects.</P>
+
+<P>It is necessary for a persistent object to initialize the ObjectEditor (RDBPersistentAdapter) with the map information
+the RDBPersistence object is to provide. An example:</P>
+<P><CODE>public RDBPersistentAdapter initializeObjectEditor() <BR>
+{<BR>
+0 final RDBPersistentAdapter result = super.initializeObjectEditor();<BR>
+1 if(classDescriptor == null) initDescriptor();<BR>
+2 result.setClassDescription(classDescriptor);<BR>
+3 result.setTableName(&quot;employee&quot;);<BR>
+4 return result;<BR>
+}</CODE></P>
+
+<P>The line 0 is just creating a new instance of a RDBPersistentApater.<BR>
+Line 1 is checking to see if we have already defined this persistent object's mapping. The variable 'classDescriptor'
+is java.util.Vector containing <A HREF="#Perisistence">AttributeTypeColumn</A> objects.<BR>
+Line 2 is setting the description on the RDBPersistentAdapter.<BR>
+Line 3 is telling the RDBPersistentAdapter what table name to use.<BR>
+Line 4 is returning this new initialized RDBPersistentAdapter. This new instance will be used as the ObjectEditor
+for this persistent object.
+<H2><A NAME="Queries"></A><B>Queries for Existing Persistent Objects</B></H2>
+<P>Building queries will require absolutely NO understanding of underlying persistence store. Our query is currently
+called <A HREF="SQLQuery.html">com.objectwave.persist.SQLQuery</A>, but that really is a misnomer. The best way
+to learn queries is through examples. We'll start simple and work are way up.</P>
+
+<DL>
+	<DD><CODE>{ <BR>
+	Employee search = new Employee();<BR>
+	SQLQuery q = new SQLQuery(search);<BR>
+	return q.find();<BR>
+	}</CODE>
+</DL>
+
+<P>This preceding example will return a Vector of all Employee objects found in the database. It is actually quite
+simple.</P>
+
+<DL>
+	<DD><CODE>{ <BR>
+	Employee search = new Employee();<BR>
+	SQLQuery q = new SQLQuery(search);<BR>
+	search.setName(&quot;dave&quot;);<BR>
+	return q.find();<BR>
+	}</CODE>
+</DL>
+
+<P>Similarly to the last one, this will return a Vector of employee objects. However, it will only find those whose
+name.equals(&quot;dave&quot;). If there was another attribute, say lastName, and we said 'search.setLastName(&quot;hoag&quot;)'
+we would find all Employee's whom have a first name of dave and a last name of hoag.</P>
+
+<DL>
+	<DD><CODE>{ <BR>
+	Employee search = new Employee();<BR>
+	SQLQuery q = new SQLQuery(search);<BR>
+	search.setFirstName(&quot;d%&quot;);<BR>
+	q.setAsLike(true);<BR>
+	return q.find();<BR>
+	}</CODE>
+</DL>
+
+<P>Once again our result set would consist of Employee objects. This time it has found only those employees who
+have a name starting with 'd'. The '%' is a wildcard character and the 'setAsLike' method call is telling our query
+to use the term LIKE instead of '=' for comparison.</P>
+
+<DL>
+	<DD><CODE>{ <BR>
+	Employee search = new Employee();<BR>
+	SQLQuery q = new SQLQuery(search);<BR>
+	search.setObjectIdentifier(new Integer(&quot;100&quot;));<BR>
+	q.setFieldConstraint(search, &quot;objectIdentifier&quot;, &quot;&gt;&quot;);<BR>
+	q.setIsNull(search, &quot;name&quot;);<BR>
+	return q.find();<BR>
+	}</CODE>
+</DL>
+
+<P>Surprisingly enough, this collection contains Employee objects. The selected employees are limited to those
+employee's who have an ObjectIdentifier &gt; 100 and a name == null.</P>
+
+<DL>
+	<DD><CODE>{ <BR>
+	Employee search = new Employee();<BR>
+	SQLQuery q = new SQLQuery(search);<BR>
+	search.setOffice(new Office());<BR>
+	search.getOffice().setName(&quot;ObjectWave&quot;);<BR>
+	return q.find();<BR>
+	}</CODE>
+</DL>
+
+<P>You might have guessed by now that this would return a collection of Employee objects. The only employees in
+the collection are those that have an Office and that Office name equals &quot;ObjectWave&quot;. Of course, I could
+have set additional attributes or constraints and it would probably work as you expect.</P>
+<H2><A NAME="ObjectPool"></A>Object Pool</H2>
+<P>An object pool can basically be thought of as a just a collection of Objects. In the context of our generic
+persistence support our <A HREF="ObjectPool.html">com.objectwave.persist.ObjectPool</A> object will contain all
+of the Objects that are retrieved from the database. When a subsequent request for a particular object is made,
+we first look for the object in the ObjectPool. This will create instance integrity (every instance of object 1
+will be the same exact same instance), however, this comes with significant performance overhead. In general, our
+system should execute with out any ObjectPool functionality.</P>
+
+<P>To use object pooling requires a simple method call <B>RDBBroker</B>&gt;&gt;setUsingObjectPool(boolean). If
+the value of the boolean is true, object pooling is enabled, false, it is disabled. If you already have an object
+pool that you wish to use, just call setObjectPool(ObjectPool) prior to calling the setUsingObjectPool(boolean)
+method. When object pooling is enabled, the broker first checks to see if there is an existing pool it should use.
+If there is none, a new one is created. You can always obtain the current ObjectPool via the getObjectPool() method.</P>
+
+<P>Once we have an ObjectPool, we can exploit it with an <A HREF="ObjectPoolBroker.html">com.objectwave.persist.ObjectPoolBroker</A>.
+The ObjectPoolBroker is another broker that implements the Broker interface. Hence, it to can be used in our TransactionFramework,
+our SQLQueries, and any other subsystems that use Brokers. If you have an ObjectPoolBroker, you essentially have
+another Persistent store. This time, however, the persistent store is a serialized file instead of a relational
+database.</P>
+
+<P>Using object pooling in the RDBBroker in combination with the ObjectPoolBroker can enable a database dependent
+application to run without the database! This can be done by turning on object pooling when you have a database
+connection. Any object that is 'found' during that connection will placed into the ObjectPool. When you complete
+the application, you could write the ObjectPool and an associated ObjectPoolBroker to a local serialized file.
+When next you start the application, and you fail to obtain a database connection, you can use the ObjectPoolBroker.
+Once the application begins using the ObjectPool, you can issue queries, make updates to objects, and add new objects,
+all without changing a line of application code.</P>
+<H2>Custom Collections</H2>
+<P>Out of the box ObjectWave JavaGrinder supports two collection types: Native arrays and Vectors. When defining
+an attribute as a collection it is required that the field is either a native Array or a Vector. While this may
+address ninety percent of application needs, there exists a mechanism to provide support for custom collections.</P>
+
+<P>The needs of every application are unique to that application. It is impossible for the developers of Java Grinder
+to provide support for building any possible collection a user may need. Instead Java Grinder uses an adapter class
+to create the correct collection types. The com.objectwave.persist.CollectionAdapter interface defines the methods
+necessary to integrate with Java Grinder. When retrieving data from the database, the addElement method will be
+invoked for each element that is to be added to the collection. Once the getCollection method is invoked, Java
+Grinder is done processing the collection (if you are using a single instance of a collection adapter, this would
+be the point at which you would know that the next 'addElement' request is for a new collection). </P>
+
+<P>There are two ways to use collection adapters. The first is to create an instance of a collection adapter and
+associate it with an AttributeTypeColumn. Use the setCollectionAdapter method after defining a collection attribute
+to set the instance of the collection adapter you wish to use. The single instance associated with the AttributeTypeColumn
+will be reused for every query involving the collection attribute. The getNewInstance() method will be invoked
+when creating the proxy SQLQuery object.</P>
+
+<P>Secondly you can register your custom CollectionAdapter with the list of known collection adapters. The com.objectwave.persist.SQLQuery
+contains a list of known collection adapters. To add your collection adapter to this list, use the SQLQuery.registerCollectionAdapter(Class
+collectionClass, Class adapterClass) method. When finding a collection of a type that is an instance of 'collectionClass',
+a new instance of 'adapterClass' will be created and used for the collection. This will be overridden if the AttributeTypeColumn
+technique has been used.
+
+</BODY>
+
+</HTML>

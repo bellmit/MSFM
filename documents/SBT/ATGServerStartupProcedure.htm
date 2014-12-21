@@ -1,0 +1,329 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>ATG Server System-Startup procedures</TITLE>
+<META NAME="Template" CONTENT="C:\msoffice\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<H1 ALIGN="CENTER"><A NAME="top"></A>ATG Server System Startup Procedure</H1>
+<P><HR></P>
+<H2>Table of Contents</H2>
+
+<UL>
+<LI><A HREF="#intro">Introduction</A> </LI>
+<LI><A HREF="#cheatSheet">Cheat Sheet</A> </LI>
+<LI><A HREF="#loginToServer">Login to Server</A> </LI>
+<LI><A HREF="#CheckSysStatus">Check System Status</A> </LI>
+<LI><A HREF="#cleanLogs">Clean Logs and Trade Data</A> </LI>
+<LI><A HREF="#startTradeServer">Start Fundamental Trade Server Processes</A> </LI>
+<LI><A HREF="#startExternalServices">Start the External Integration Services</A> </LI>
+<LI><A HREF="#openTradeSession">Open a Trading Session</A> </LI>
+<LI><A HREF="#openProduct">Open Products</A> </LI>
+<LI><A HREF="#shutdownServer">Shut Down a Server</A></LI>
+<LI><A HREF="#usefulCommands">Useful Commands</A></LI></UL>
+
+<P><HR></P>
+<H2><A NAME="intro"></A>Introduction</H2>
+<FONT SIZE=2><P>This document is intended to be a guide to help an operator of the SBT (CBOE direct) server start the system. The high level procedure is to follow the steps described, section by section.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="cheatSheet"></A>Cheat Sheet</H2>
+<FONT SIZE=2><P>Assuming that the infrastructure is running, the server processes are all down, and the start up will produce no errors, here is the short list to follow to bring up the server. Commands to execute are given in Italics, comments in regular font. The example assumes that the server is running under the atgtest2 login on atgsvr1, and the front-end is running with the same login on atgfe1. The session name is assumed to be W_AM1, and the products to be opened are YHOO, RUT, OEX, FDX, AOL, AA, IBM, and DJX.</P>
+<P>From a unix terminal:</P>
+<I><P>rlogin atgsvr1 –l atgtest2</I>&#9;(enter atgtest2 for password when prompted)</P>
+<P>From a Windows machine:</P>
+<P>&#9;Start a telnet client by clicking <I>Start|Programs|Accessories|Telnet</P>
+</I><P>&#9;From the telnet window, click <I><U>C</U>onnect|<U>R</U>emote System</I>. </P>
+<P>Enter <I>atgsvr1.cboe.com</I> for host name.</P>
+<P>Click <I><U>C</U>onnect</I>.</P>
+<P>Enter <I>atgtest2</I> for both username and password.</P>
+<I><P>rmlogs</P>
+<P>rmTradeData</I> &#9;&#9;(confirm with "yes" when prompted)</P>
+<I><P>startServer –s global</I>&#9;</P>
+<I><P>tail –f log/Glo*log</I>&#9;(wait 5-10min for message ending with "All initialization is complete")</P>
+<I><P>^C</P>
+<P>startServer –s sms</P>
+<P>tail –f log/SMS*log</I>&#9;(wait for message ending with "All initialization is complete")</P>
+<I><P>^C</P>
+<P>startServer –s trade</P>
+<P>tail –f log/Trade*log</I>&#9;(wait 10-15min for message ending with "All initialization is complete")</P>
+<I><P>^C</P>
+<P>rlogin atgfe1 –l atgtest2</I>&#9;(enter atgtest2 for password when prompted)</P>
+<I><P>rmlogs</P>
+<P>startServer –s frontend</I>&#9;</P>
+<I><P>tail –f log/Front*log</I>&#9;(wait for message ending with "All initialization is complete")</P>
+<I><P>^C</P>
+<P>exit</P>
+<P>startSession W_AM1</P>
+<P>tail –f log/Trade*log</I>&#9;(wait for message ending with "5/5 completed")</P>
+<I><P>^C</P>
+<P>openProducts –s W_AM1 YHOO RUT OEX FDX AOL AA IBM DJX</P>
+<P>startServer –s tpf</P>
+<P>tail –f log/TpfA*log</I>&#9;(wait for message ending with "All initialization is complete")</P>
+<I><P>^C</P>
+<P>ar TpfAdapter startAllServices</P>
+<P>tail –f log/TpfA*log</I>&#9;(look for "Client logged in" messages)</P>
+<P>&#9;&#9;&#9;(messages indicating "connection refused" are bad news; call Tpf support.)</P>
+<P>Done!&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="loginToServer"></A>Login To Server</H2>
+<FONT SIZE=2><P>Login to the server environment.</P>
+<P>(password is typically the same as the username. For some systems, you may be prompted with a numbered choice of environments; you should already know which one you want, otherwise contact server support.)</P>
+<P>Example #1: login to atgsvr1 as atgtest2 from another Unix shell:</P>
+<I><P>rlogin atgsvr1 –l atgtest2</I>&#9;(enter atgtest2 for password when prompted)</P>
+<P>Example #2: Login to atgsvr1 as atgtest2 from a Windows machine:</P>
+<P>&#9;Start a telnet client by clicking <I>Start|Programs|Accessories|Telnet</P>
+</I><P>&#9;From the telnet window, click <I><U>C</U>onnect|<U>R</U>emote System</I>. </P>
+<P>Enter <I>atgsvr1.cboe.com</I> for host name.</P>
+<P>Click <I><U>C</U>onnect</I>.</P>
+<P>Enter <I>atgtest2</I> for both username and password.&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="CheckSysStatus"></A>Check System Status</H2>
+<FONT SIZE=2><P>Run the command "chk" to get a list of SBT-related processes. You should expect to see a list of 8 or 9 processes under the "LDAP, rtserver" category, and a few for Oracle. Most interesting, though, is the list of java processes at the end. These will be a list of java processes with the login name prefix (ex, atgtest2). You should find the following infrastructure processes running:</P>
+
+<UL>
+<LI>&lt;prefix&gt;CentralRepositoryA </LI>
+<LI>&lt;prefix&gt;ChannelAdminPrimary </LI>
+<LI>&lt;prefix&gt;LocatorServerPrimary </LI>
+<LI>&lt;prefix&gt;PrimaryRepServer </LI>
+<LI>&lt;prefix&gt;SecurityServicePrimary </LI>
+<LI>&lt;prefix&gt;SysManAgentsvr1 </LI>
+<LI>&lt;prefix&gt;TraderServiceMaster</LI></UL>
+
+<P>If any of these are missing, call the infra support contact (listed on the test support page at </FONT><A HREF="http://dte_dev/testsupport.html"><FONT SIZE=2>http://dte_dev/testsupport.html</FONT></A><FONT SIZE=2>).</P>
+<P>If any of the following java processes are listed, then the server is either partially or fully running, and should be shut down before restarting the system. See section titled "shutting down", or call the server support contact (again, at </FONT><A HREF="http://dte_dev/testsupport.html"><FONT SIZE=2>http://dte_dev/testsupport.html</FONT></A><FONT SIZE=2>) if the system was expected to be fully "down".</P>
+
+<UL>
+<LI>&lt;prefix&gt;CtmAdapter </LI>
+<LI>&lt;prefix&gt;Frontend </LI>
+<LI>&lt;prefix&gt;GlobalServer </LI>
+<LI>&lt;prefix&gt;MembershipAdapter </LI>
+<LI>&lt;prefix&gt;SMSServer </LI>
+<LI>&lt;prefix&gt;TipsAdapter </LI>
+<LI>&lt;prefix&gt;TpfAdapter </LI>
+<LI>&lt;prefix&gt;TpfGlobalAdapter </LI>
+<LI>&lt;prefix&gt;TradeServer&nbsp;</LI></UL>
+
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="cleanLogs"></A>Clean Logs &amp; Trade Data</H2>
+<FONT SIZE=2><P>Clean up server-related log files by executing the command "rmlogs".</P>
+<P>Clean up the trade-related database tables with the command "rmTradeData" (when prompted, confirm this action with "yes").&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="startTradeServer"></A>Start Fundamental Trade Server Processes</H2>
+<FONT SIZE=2><P>There is a command used to start all "server" processes, called <I>startServer</I>. When each server is started using this command, the expected response is two lines of output, the first indicating that the process has been started as stand-alone, the second giving a process id number. Although the script completes very quickly, this does not mean that the process has actually been started: it simply "kicked off" the process. </P>
+<P>All processes produce multiple log files in the "./log" directory. A Unix utility called "tail" will give a live update of the log file as it gets created. The procedures that follow describe how to inspect the log files for an indication of a successful start.&nbsp;</P>
+</FONT><H3>Start the Global Server</H3>
+<FONT SIZE=2><P>Execute "startServer –s global".</P>
+<P>Execute "tail -f log/Trade*log".</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>(This process is a little sluggish starting since it provides a large number of services. Expect it to take about 5-7 minutes. It will pause for a couple of minutes at a couple of points in the startup procedure.)</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.&nbsp;</P>
+</FONT><H3>Start the User Session Management Server</H3>
+<FONT SIZE=2><P>Execute "startServer –s sms"</P>
+<P>Execute "tail –f log/SMS*log".</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>(This process starts very quickly, taking about 30 seconds)</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.&nbsp;</P>
+</FONT><H3>Start the Trade Server</H3>
+<FONT SIZE=2><P>Execute "startServer –s trade"</P>
+<P>Execute "tail –f log/Trade*log".</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>(This process is the slowest to start, and may take 5-15 minutes, depending on how many products are assigned to it. There are several lengthy pauses in the startup.)</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.&nbsp;</P>
+</FONT><H3>Starting the Front-end Process</H3>
+<FONT SIZE=2><P>The front-end process, which is the entrypoint into the system, is usually running on a separate machine than the server processes. A typical server setup would use the same login on the front-end machine as is used on the server. So if the server were running under the login "atgtest2", then the front-end login would also be "atgtest2".</P>
+<P>Login to the front end machine (ex, "<I>rlogin atgfe1 –l atgtest2</I>").</P>
+<P>Run the "chk" command to check what processes are running. Normally, this list will be almost empty. Under the category heading "running java processes for ID atgtest2", you should not see any processes listed. If you see "&lt;prefix&gt;FrontEnd", then there is a front end currently running. Either stop the front-end (see section titled "shutting down") or contact server support (</FONT><A HREF="http://dte_dev/testsupport.html"><FONT SIZE=2>http://dte_dev/testsupport.html</FONT></A><FONT SIZE=2>).&nbsp;</P>
+</FONT><H4>Start the Front-end Process</H4>
+<FONT SIZE=2><P>Execute "startServer –s frontend"</P>
+<P>Execute "tail –f log/Front*log"</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>(This process starts quickly, and should complete in about 30 seconds.)</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.</P>
+<P>Leave the front-end machine and return to the server by typing "exit".</P>
+<B><P>Note:</B> once the GlobalServer, TradeServer, SMSServer, and Frontend are all completely started, a CAS may be started to connect with this system. Users may log in, but trading will not be possible until a session is started and products are opened, as described in sections that follow.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="startExternalServices"></A>Start the External Integration Services</H2>
+<FONT SIZE=2><P>This section describes starting the various external integration services that are available.</P>
+<P>Normally, only the "TpfAdapter" process would be required. All external integration servers provide several services that need to be explicitely started after the server is running, as described in the "starting services subsections for each adapter listed below. All services below require that the processes described above (Global, Trade, SMS, and Frontend) be running.</P>
+<B><P>Note:</B> Normally, all that should be required is the following procedure. If the trading system is to be a closed system ("exchange-in-a-box"), then no external integration services need to be started.</P>
+
+<UL>
+<LI>Execute "startServer –s tpf". </LI>
+<LI>Execute "tail –f log/Tpf*log". </LI>
+<LI>Wwait for "All initialization is complete". </LI>
+<LI>Press "&lt;ctrl&gt; + C". </LI>
+<LI>Execute "ar TpfAdapter startAllServices".</LI></UL>
+
+</FONT><H3>TIPS Adapter</H3>
+<FONT SIZE=2><P>The TIPS adapter process provides a connection to three TIPS services.</P>
+<P>Execute "startServer –s tips"</P>
+<P>Execute "tail –f log/Tips*log".</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.</P>
+<P>Start all TIPS services using the command "ar TipsAdapter startAllServices".</P>
+<P>Start an individual service using any of the following commands:</P>
+
+<UL>
+<LI>ar TipsAdapter startService TipsBestOfTheRestConnection </LI>
+<LI>ar TipsAdapter startService TipsUnderlyingConnection </LI>
+<LI>ar TipsAdapter startService TipsProductDownloadConnection</LI></UL>
+
+<P>After executing a startService or startAllServices call, call "tail –f log/Tips*log" to see a "Client logged in" message. If there are repeated messages indicating "connection refused", then contact Tips support and supply them with the service, port, and machine name that the error message indicates is the problem. Press "&lt;ctrl&gt; + C" to stop the tail utility.</P>
+</FONT><H3>TPF Adapter</H3>
+<FONT SIZE=2><P>The TPF adapter provides some services from the TPF system. The TPFGlobal adapter provides another complimentary set of services.</P>
+<P>Execute "startServer –s tpf"</P>
+<P>Execute "tail –f log/TpfA*log".</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.</P>
+<P>Start all TPF services using the command "ar TpfAdapter startAllServices".</P>
+<P>Start an individual service using any of the following commands:</P>
+
+<UL>
+<LI>ar TpfAdapter startService TpfMdrServiceConnection </LI>
+<LI>ar TpfAdapter startService TpfBestQuoteServiceConnection </LI>
+<LI>ar TpfAdapter startService TpfOrderServiceConnection </LI>
+<LI>ar TpfAdapter startService TpfTagServiceConnection </LI>
+<LI>ar TpfAdapter startService TpfLastSaleServiceConnection </LI>
+<LI>ar TpfAdapter startService TpfReportsServiceConnection</LI></UL>
+
+<P>After executing a startService or startAllServices call, call "tail –f log/TpfA*log" to see a "Client logged in" message. If there are repeated messages indicating "connection refused", then contact Tpf support and supply them with the service, port, and machine name that the error message indicates is the problem. Press "&lt;ctrl&gt; + C" to stop the tail utility.&nbsp;</P>
+</FONT><H3>TPFGlobal Adapter</H3>
+<FONT SIZE=2><P>The TPF global adapter is identical to the tpf adapter except that is provides a different set of different services.</P>
+<P>Execute "startServer –s tpfGlobal"</P>
+<P>Execute "tail –f log/TpfG*log".</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.</P>
+<P>Start all TIPS services using the command "ar TpfGlobalAdapter startAllServices".</P>
+<P>Start an individual service using any of the following commands:</P>
+
+<UL>
+<LI>ar TpfGlobalAdapter startService TpfVsdlServiceConnection </LI>
+<LI>ar TpfGlobalAdapter startService TpfControlQuoteServiceConnection</LI></UL>
+
+<P>After executing a startService or startAllServices call, call "tail –f log/TpfG*log" to see a "Client logged in" message. If there are repeated messages indicating "connection refused", then contact Tpf support and supply them with the service, port, and machine name that the error message indicates is the problem. Press "&lt;ctrl&gt; + C" to stop the tail utility.&nbsp;</P>
+</FONT><H3>Membership Adapter</H3>
+<FONT SIZE=2><P>The membership adapter is a rarely used server which will automatically update the user information tables.</P>
+<P>Execute "startServer –s tpfGlobal"</P>
+<P>Execute "tail –f log/TpfG*log".</P>
+<P>(This will automatically start the membership information retrieval. You simply need to wait for a message indicating that the membership download is complete)&nbsp;</P>
+</FONT><H3>CTM Adapter</H3>
+<FONT SIZE=2><P>Forwards SBT trade reports to the trade match system.</P>
+<P>Execute "startServer –s ctm"</P>
+<P>Execute "tail –f log/Ctm*log"</P>
+<P>Wait for an output line that ends with "All initialization is complete".</P>
+<P>Press "&lt;ctrl&gt; + C" to stop the tail utility.</P>
+<P>Start all CTM services using the command "ar CtmAdapter startAllServices"</P>
+<P>Start an individual service using any of the following commands:</P>
+
+<UL>
+<LI>ar CtmAdapter startService CtmReportServiceConnection </LI>
+<LI>ar CtmAdapter startServce CtmAcknowledgementServiceConnection </LI></UL>
+
+<P>After executing a startService or startAllServices call, call "tail –f log/TpfG*log" to see a "Client logged in" message. If there are repeated messages indicating "connection refused", then contact Tpf support and supply them with the service, port, and machine name that the error message indicates is the problem. Press "&lt;ctrl&gt; + C" to stop the tail utility.&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="openTradeSession"></A>Open a Trading Session</H2>
+<FONT SIZE=2><P>Once the GlobalServer and TradeServer are started a session should be started as well. This section is using the example session name of "W_AM1", although any other valid session name could be used.</P>
+<P>Execute "startSession W_AM1"</P>
+<P>Execute "tail –f log/Trade*log"</P>
+<P>Wait for message ending with "5/5 completed".</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="openProduct"></A>Open Products</H2>
+<FONT SIZE=2><P>After a session has been opened, you need to open the products for the session. If you know the symbol list for the option products you wish to open, then there is a convenient utility that will open the matching option and strategy classes:</P>
+<P>To open, for example, YHOO, AOL, and IBM for session W_AM1, execute </P>
+<P>"openProducts –s W_AM1 YHOO AOL IBM"</P>
+<P>If you wish to open a product class that is not an option, then emulate the following example, which opens a fictional index product class XYZ:</P><DIR>
+<DIR>
+
+<P>Execute "setProductState W_AM1 XYZ index preopen"</P>
+<P>Execute "setProductState W_AM1 XYZ index open"</P></DIR>
+</DIR>
+
+<P>If you wish to open a strategy class, then emulate this example:</P><DIR>
+<DIR>
+
+<P>Execute "setProductState W_AM1 XYZ strategy preopen"</P>
+<P>Execute "setProductState W_AM1 XYZ strategy on-hold"</P></DIR>
+</DIR>
+
+<B><P>Note:</B> For a typical test system, all you should have to do is execute </P>
+<P>"openProducts –s W_AM1 YHOO RUT OEX FDX AOL AA IBM DJX"</P>
+<B><P>Note:</B> Products will fail to open (you will see a "TransactionFailedException" message) if they are already open, or if they are not assigned to an <I>open</I> session.&nbsp;</P>
+</FONT><H3>Finding class symbols for a session</H3>
+<FONT SIZE=2><P>If you do not know the symbol list for a session, it can be determined dynmically, but awkwardly, from the command line. If an admin GUI is available, this is a much simpler procedure. </P>
+<P>Execute "ar GlobalServer printTemplates". This will produce a list of templates with information about each. Find the template name you have opened in the list, and there will be a line "Class Keys for template", which is followed by a comma-separated list of class key numbers. Cut and paste this list, and pass it to the command "classKeys –k ".</P>
+<U><P>Example:</P>
+</U></FONT><FONT FACE="Courier" SIZE=1><P>$ ar GlobalServer printTemplates</P>
+<P>.</P>
+<P>.</P>
+<P>Template Name / Is Active : W_AM1.all / true</P>
+<P>Product PreOpen Time / Auto : 06:05:00 / true</P>
+<P>Product Open Time / Auto : 06:15:00 / true</P>
+<P>Product Close Time / Auto : 08:10:00 / true</P>
+<P>Sequence Number : 1</P>
+<P>Session : W_AM1</P>
+<P>Class Keys For template : W_AM1.all</P>
+<P>459160,459161,461446,461447,393232,393233,393934,393935,459956,459957,</P>
+<P>464333,464334,465846,465847,469035,469036</P>
+<P>.</P>
+<P>.</P>
+<P>$ classKeys –k "459160,459161,461446,461447,393232,</P>
+<P>393233,393934,393935,459956,459957,</P>
+<P>464333,464334,465846,465847,469035,469036"</P>
+<P>YHOO type 11: strategy</P>
+<P>YHOO type 7: option</P>
+<P>RUT type 11: strategy</P>
+<P>RUT type 7: option</P>
+<P>OEX type 11: strategy</P>
+<P>OEX type 7: option</P>
+<P>FDX type 11: strategy</P>
+<P>FDX type 7: option</P>
+<P>AOL type 11: strategy</P>
+<P>AOL type 7: option</P>
+<P>AA type 11: strategy</P>
+<P>AA type 7: option</P>
+<P>IBM type 11: strategy</P>
+<P>IBM type 7: option</P>
+<P>DJX type 11: strategy</P>
+<P>DJX type 7: option</FONT><FONT SIZE=1>&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P><HR></P>
+<H2><A NAME="shutdownServer"></A>Shut Down a Server</H2>
+<FONT SIZE=2><P>If you are <I>absolutely sure</I> that a server process should be stopped, then execute</P>
+<P>ar server_name –f "GlobalFoundationFramework.FoundationFramework(SMSServer).shutdownCommand"</P>
+<P>(where server_name is the name of the process, for example "TpfAdapter")</P>
+<P>Wait for a minute or two, then use the "chk" command described in the "Check System Status" section to verify that the process is gone. If the process appears to remain alive, then contact server support personnel.</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P ALIGN="CENTER"><HR></P>
+<H2><A NAME="usefulCommands"></A>Useful Commands</H2>
+<H3>TPF Sequence Numbers and SBT</H3>
+<FONT SIZE=2><P>Often when just commencing to test with TPF, SBT and TPF experience sequence number mismatches; This can usually be detected by looking in the TpfAdapter.log file (located in the ${RUN_DIR}/log directory.  When the problem is encountered, there are two convenience scripts (which should be executed from $RUN_DIR) that will help to diagnose, and fix the problem.</P>
+<P>They are:</P>
+<P>&#9;tpfSequencers tpf</P>
+<P>&#9;(which will show the last sequence numbers received and sent by the running TpfAdapter)</P>
+<P>Sample output would look like:</P>
+</FONT><B><FONT SIZE=2 COLOR="#008000"><P>atgsvr1:atgtest3 /apps/tradeeng/atgtest3 $ tpfSequencers tpf</P>
+<P>Sequencer status for server TpfAdapter (send#/recv#)</P>
+<P>OrderService                              1001/6</P>
+<P>ReportsService                            1102/0</P>
+<P>LastSaleService                           1102/0</P>
+<P>QuoteService                              1104/0</P>
+</B></FONT><FONT SIZE=2><P>and </P>
+<P>&#9;setTpfRecv ###</P>
+<P>&#9;(where ### is replaced by a numeric argument.  setTpfRecv resets the send and receive sequence numbers that the TpfAdapter keeps track of)</P>
+<P>Running setTpfRecv will reset all of the receive sequences to zero and will set the send sequence numbers to ###.  The idea is to make it so that any gaps in sequence numbers will be interpreted as positive by the recipient system (expecting 5 and receiving 10 is ok, and will only adjust the expectation of the next sequence number; expecting 10 and receiving 5 will not work).</P>
+<P>&nbsp;</P>
+</FONT><P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<FONT SIZE=2><P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><P>&nbsp;</P></BODY>
+</HTML>

@@ -1,0 +1,393 @@
+
+Directories :
+\vobs\dte\domain\sql\ddl for new tables
+\vobs\dte\domain\sql\rollout for modification of existing tables
+
+
+
+alterPropertyGroup.sql
+
+
+
+whenever sqlerror continue
+
+ALTER TABLE property_group MODIFY ( 
+       PROPERTYKEY varchar2(256)
+); 
+
+
+alterAlertExchangeMarket.sql
+
+
+whenever sqlerror continue
+
+ALTER TABLE sbt_alert_exchange_market add ( 
+       time                        number(24),
+    	usedForTradeThrough         char(1)
+); 
+
+
+alterAlert2.sql
+
+
+
+whenever sqlerror continue
+
+whenever sqlerror exit failure
+
+ALTER TABLE sbt_alert
+   ADD (
+   	     orsId                   varchar2(6)
+       );
+       
+       
+       
+alterProduct1.sql
+       
+whenever sqlerror continue
+
+ALTER TABLE product ADD ( 
+       restrictedIndicator    char(1)
+); 
+
+
+alterProductClass2.sql
+
+whenever sqlerror exit failure
+
+alter table prod_class
+	add ( linkage_indicator char(1) )
+;
+
+
+alterSbtOrderLegDetail3.sq
+
+
+whenever sqlerror continue
+
+whenever sqlerror exit failure
+
+ALTER TABLE SbtOrderLegDetail
+ADD (
+	totalRejectOrTimeoutQuantity number(10)
+);
+
+
+alterTradeReportEntry.sq
+
+
+whenever sqlerror continue
+whenever sqlerror exit failure
+ALTER TABLE sbt_tradereportentry
+ADD( 
+       buy_supression_reason         number(3),
+       sell_supression_reason        number(3),
+       buy_away_exchange_acronym   varchar2(5),
+       sell_away_exchange_acronym  varchar2(5),
+       buy_orderdate                 varchar2(8),
+       sell_orderdate                varchar2(8),
+       buy_orsid                     varchar2(6),
+       sell_orsid                    varchar2(6),
+       buy_auct_trade_ind char(1),
+       sell_auct_trade_ind char(1),
+	CREAT_REC_TIME         TIMESTAMP DEFAULT SYSTIMESTAMP
+       );
+       
+
+alterSbtOrderOHSReleaseOne.sql
+
+
+whenever sqlerror exit failure
+
+ALTER TABLE sbtorder
+ ADD (
+	manualSequenceNumber number(12),
+	firstTimeOnPar char(1),
+	previousLocation varchar2(64),
+    previousLocationtype number(3), 
+    totalPendingCancelQuantity number(10),
+    cancelledOrderId number(20),
+	replacedOrderId number(20),	
+	totalRejectOrTimeoutQuantity number(10),
+	autobookIndicator	char(1)	     ,
+	 stopOrderTriggered CHAR(1),
+	 orderEverNBBORejected char(1)
+     );
+
+alterSbtOrderHistory_OHSReleaseOne.sql
+
+whenever sqlerror exit failure
+
+
+ALTER TABLE sbtorderhistory ADD 
+(
+fillRejectReason number(5),
+subAccount varchar2(10),
+routeReason NUMBER(3),
+    location VARCHAR2(64),
+    locationType NUMBER(3),
+    bboBidPrice VARCHAR2(12),	
+    bboBidSize NUMBER(10),	
+    bboAskPrice VARCHAR2(12),	
+    bboAskSize NUMBER(10), 	
+    botrAskPrice VARCHAR2(12),	
+    botrBidPrice VARCHAR2(12),	
+    botrAskExchanges VARCHAR2(200),	
+    botrBidExchanges VARCHAR2(200),
+    nbboAskPrice VARCHAR2(12),	
+    nbboBidPrice VARCHAR2(12),	
+    nbboAskExchanges VARCHAR2(200),	
+    nbboBidExchanges VARCHAR2(200),
+    dsmBidPrice VARCHAR2(12),	
+    dsmBidSize NUMBER(10),	
+    dsmAskPrice VARCHAR2(12),	
+    dsmAskSize NUMBER(10),
+    bookBidPrice VARCHAR2(12),	
+    bookBidSize NUMBER(10),	
+    bookAskPrice VARCHAR2(12),	
+    bookAskSize NUMBER(10),    
+    auctionType CHAR(1),
+    quantityTradedInAuction NUMBER(10),
+    earlyAuctionEndFlag CHAR(1),
+    complexOrderType CHAR(1),
+    sourceField     VARCHAR2(32),
+    routeDescription VARCHAR(64),
+     deltaNeutralIndicator CHAR(1),
+    sourceFieldType NUMBER(3),
+    btmIndicator CHAR(1),
+    ttIndicator CHAR(1),
+    exchangesIndicators VARCHAR2(200),
+    marketibilityIndicator CHAR(1),
+    isAutoLinked CHAR(1),
+    relatedOrderDBId  NUMBER(20),
+	relatedOrderFirmNumber          VARCHAR2(5),
+	relatedOrderFirmExchange      	VARCHAR2(5),
+	relatedOrderbranch              VARCHAR2(5),
+	relatedOrderBranchSeqNumber     NUMBER(10),
+	relatedOrderCorrespondentFirm   VARCHAR2(5),
+	relatedOrderOrderDate           VARCHAR2(8),
+	relatedOrderOrsId               VARCHAR2(6),
+    routedQuantity  NUMBER(10),
+    activityTime number(24),
+    coaEligibilityIndicator CHAR(1),
+    rejectIndicator	CHAR(1),
+    CONTRABROKER                   VARCHAR2(200 BYTE), 
+    volumeMaintenanceQuantity NUMBER(10),
+    stopOrderTriggered CHAR(1)
+);
+
+
+ALTER TABLE sbtorderhistory MODIFY
+(
+	subEventType number(5)	
+);
+
+
+SbtORSIDExclusion.sql
+whenever sqlerror continue
+
+drop table SbtORSIDExclusion;
+
+whenever sqlerror exit failure
+
+create table SbtORSIDExclusion
+(
+        orsid    varchar2(6) not null,
+        classkey number(20)  not null,
+        orderdbid number(20) not null,
+        source VARCHAR2(256 BYTE)        ,
+        location VARCHAR2(256 BYTE)                
+)
+/* tablespace sbtb_me_data03 */
+;
+
+alter table SbtORSIDExclusion
+add constraint SbtORSIDExclusionpk
+primary key (orsid,source)
+
+/* using index tablespace sbtb_me_indx03 */
+;
+
+
+createSbtRoutedMessage.sql
+whenever sqlerror continue
+
+drop table SBTRoutedMessage;
+
+whenever sqlerror exit failure
+
+create table SBTRoutedMessage
+(
+    databaseIdentifier number(20) not null, 
+    messageType number(2),   
+    creat_rec_time timestamp(6) default systimestamp,
+    location varchar(64),
+    locationType number(3),
+    routeReason number(3),
+    routeDescription varchar(64),
+    routeCount number(5),
+    processedFlag char(1),
+    additionalData blob,
+    lastRouteTime number(24),
+    /* database identifier of order that is the primary subject of this message */
+    orderDbId number(20)
+)
+
+/* Message Types 
+
+
+    ORDER(1),
+    CANCEL_REQUEST(2),
+    CANCEL_REPLACE_REQUEST(3),
+    MANUAL_FILL_REJECT(4),
+    LINKAGE_FILL_REPORT(5),
+    MANUAL_ORDER_TIMEOUT(6),
+    MANUAL_FILL_TIMEOUT(7),
+    TRADE_NOTIFICATION_REPORT(8),
+    CANCEL_REPORT_DROP_COPY(9),
+    FILL_REPORT_DROP_COPY(10)
+
+*/    
+    
+    
+partition by list (messageType )
+        (partition nonorderrelated values (5,8,9,10) ,
+         partition orderrelated values (1,2,3,4,6,7)         
+        );
+/* tablespace sbtb_me_data03 */
+
+alter table SBTRoutedMessage
+add constraint SBTRoutedMessage
+primary key (databaseIdentifier)
+;
+
+create index SBTRoutedMessage_i1
+on SBTRoutedMessage(location)
+;
+
+create index SBTRoutedMessage_i2
+on SBTRoutedMessage(messageType)
+;
+
+create index SBTRoutedMessage_i3
+on SBTRoutedMessage(orderDbId)
+;
+
+createSbtTradeNotification.sql
+
+whenever sqlerror continue
+
+drop table SBTTRADENOTIFICATION;
+
+
+CREATE TABLE SBTTRADENOTIFICATION
+(
+  DATABASEIDENTIFIER        NUMBER(20)         NOT NULL,
+  TNIDENTIFIER		     	VARCHAR2(6)        NOT NULL,
+  executingBrokerAcronym    VARCHAR2(5),
+  executingBrokerExch	    VARCHAR2(5),
+  etnBrokerAcronym	    	VARCHAR2(5),
+  etnBrokerExch		     	VARCHAR2(5),
+  etnFIRM	     	     	VARCHAR2(5),
+  etnFIRMEXCH		     	VARCHAR2(5),
+  EVENTTIME		     		NUMBER(20),
+  PRODUCTKey		     	NUMBER(20),
+  PRODUCTTYPE		     	NUMBER(3),
+  CLASSKEY		     		NUMBER(20),
+  SPREADINDICATOR	     	CHAR(1),
+  SESSIONName		     	VARCHAR2(30),
+  SIDE			     		CHAR(1),
+  QUANTITY                  NUMBER(20),
+  ExecutionPRICE            VARCHAR2(12 BYTE),
+  EXECUTIONTIME		     	NUMBER(20),
+  ENDORSEMENTTIME	     	NUMBER(20),
+  STATE			     		NUMBER(3),
+  RESENDINDICATOR	     	CHAR(1),  
+  BUNDLECOUNT				NUMBER(3),
+  BUNDLERECEIVED			NUMBER(3),
+  FIRSTBUNDLESEQNUMBER		NUMBER(10),
+  WORKSTATIONID				VARCHAR2(10),
+  CREAT_REC_TIME            TIMESTAMP(6)   DEFAULT systimestamp   
+)
+/* tablespace sbtb_me_data03 */
+;
+
+alter table SBTTRADENOTIFICATION
+add constraint SBTTRADENOTIFICATION_PK
+primary key (databaseIdentifier)
+/* using index tablespace sbtb_me_indx03 */
+;
+
+alter table SBTTRADENOTIFICATION
+add constraint SBTTRADENOTIFICATION_UK
+unique (TNIDENTIFIER)
+/* using index tablespace sbtb_me_indx03 */
+;
+
+
+createSbtTradeNotificationContra.sql
+
+
+whenever sqlerror continue
+
+drop table SBTTRADENOTIFICATIONCONTRA;
+
+
+CREATE TABLE SBTTRADENOTIFICATIONCONTRA
+(
+  DATABASEIDENTIFIER        NUMBER(20)         NOT NULL,
+  TRADENOTIFICATIONDBID	    NUMBER(20)		NOT NULL,
+  ORDERDBID		     		NUMBER(20),
+  BRANCH					VARCHAR2(5),
+  BRANCHSEQUENCENUMBER      NUMBER(10),
+  CORRESPONDENTFIRM			VARCHAR2(5),
+  ORDERDATE                 VARCHAR2(8),
+  ORSID						VARCHAR2(6),
+  TRADEDBID		     		NUMBER(20),
+  EXECUTINGGIVEUPFIRM	    VARCHAR2(5),
+  EXECUTINGGIVEUPFIRMEXCH   VARCHAR2(5),
+  QUANTITY		     		NUMBER(20),
+  CREAT_REC_TIME            TIMESTAMP(6)   DEFAULT systimestamp   
+)
+/* tablespace sbtb_me_data03 */
+;
+
+alter table SBTTRADENOTIFICATIONCONTRA
+add constraint SBTTRADENOTIFICATIONCONTRA_PK
+primary key (databaseIdentifier)
+/* using index tablespace sbtb_me_indx03 */
+;
+
+create index SBTTRADENOTIFICATIONCONTRA_I1  
+on SBTTRADENOTIFICATIONCONTRA(TRADENOTIFICATIONDBID)
+/* using index tablespace sbtb_me_indx03 */
+;
+
+createLinkageOrderRelationship.sql
+whenever sqlerror continue
+
+drop table LinkageOrderRelationship;
+
+whenever sqlerror exit failure
+
+create table LinkageOrderRelationship
+(
+	databaseIdentifier	    number(20) not null,
+	oid1                    number(20) not null,
+	oid2                    number(20) not null,
+	type                    number(3) not null,
+	CREAT_REC_TIME timestamp default systimestamp   /* new field, used by CDB application.*/
+)
+/* tablespace sbtb_me_data03 */
+;
+
+alter table LinkageOrderRelationship
+add constraint sbt_lnkorderrelationship_pk
+primary key (databaseIdentifier)
+;
+
+Create index sbtlnkorderrelationship_i1  ON  LinkageOrderRelationship(CREAT_REC_TIME)
+/* using index tablespace sbtb_me_indx03 */
+;
+
+       

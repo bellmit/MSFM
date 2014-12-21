@@ -1,0 +1,116 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_SESSION_IDL
+#define CMI_SESSION_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+#include "cmiProduct.idl"
+#include "cmiStrategy.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiSession
+{
+    typedef short TradingSessionState;
+    typedef short LoginSessionType;
+    typedef string TradingSessionName;
+    typedef sequence <TradingSessionName> TradingSessionNameSequence;
+    typedef short ProductState;
+    typedef sequence <ProductState> ProductStateSequence;
+    typedef short ClassState;
+    typedef sequence <ClassState> ClassStateSequence;
+
+    struct TradingSessionStateStruct
+    {
+        cmiSession::TradingSessionName sessionName;
+        cmiSession::TradingSessionState sessionState;
+    };
+    typedef sequence <TradingSessionStateStruct> TradingSessionStateStructSequence;
+
+    struct TradingSessionStruct
+    {
+        cmiSession::TradingSessionName sessionName;
+        cmiSession::TradingSessionState state;
+        cmiUtil::TimeStruct startTime;
+        cmiUtil::TimeStruct endTime;
+        long sequenceNumber;
+    };
+    typedef sequence <TradingSessionStruct> TradingSessionStructSequence;
+
+    struct ProductStateStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        cmiSession::ProductState productState;
+        long productStateTransactionSequenceNumber;
+    };
+    typedef sequence <ProductStateStruct> ProductStateStructSequence;
+
+    struct ClassStateStruct
+    {
+        cmiProduct::ClassKey classKey;
+        cmiSession::TradingSessionName sessionName;
+        cmiSession::ClassState classState;
+        long classStateTransactionSequenceNumber;
+    };
+    typedef sequence <ClassStateStruct> ClassStateStructSequence;
+
+    struct SessionClassStruct
+    {
+        cmiSession::TradingSessionName sessionName;
+        cmiSession::TradingSessionName underlyingSessionName;
+        cmiSession::TradingSessionNameSequence eligibleSessions;
+        cmiSession::ClassState classState;
+        cmiProduct::ClassStruct classStruct;
+        long classStateTransactionSequenceNumber;
+    };
+    typedef sequence <SessionClassStruct> SessionClassStructSequence;
+
+    struct SessionProductStruct
+    {
+        cmiSession::TradingSessionName sessionName;
+        cmiSession::ProductState productState;
+        cmiProduct::ProductStruct productStruct;
+        long productStateTransactionSequenceNumber;
+    };
+    typedef sequence <SessionProductStruct> SessionProductStructSequence;
+
+    struct SessionStrategyLegStruct
+    {
+        cmiSession::TradingSessionName sessionName;
+        cmiProduct::ProductKey product;
+        long ratioQuantity;
+        cmiUtil::Side side;
+    };
+    typedef sequence <SessionStrategyLegStruct> SessionStrategyLegStructSequence;
+
+    struct SessionStrategyStruct
+    {
+        cmiStrategy::StrategyType strategyType;
+        cmiSession::SessionProductStruct sessionProductStruct;
+        cmiSession::SessionStrategyLegStructSequence sessionStrategyLegs;
+    };
+    typedef sequence <SessionStrategyStruct> SessionStrategyStructSequence;
+
+    struct SessionClassDetailStruct
+    {
+        cmiSession::SessionClassStruct classDetail;
+        cmiSession::SessionProductStructSequence products;
+    };
+    typedef sequence <SessionClassDetailStruct> SessionClassDetailStructSequence;
+
+};
+#endif
+</pre>

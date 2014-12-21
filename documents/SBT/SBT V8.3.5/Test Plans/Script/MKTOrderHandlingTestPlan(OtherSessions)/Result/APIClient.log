@@ -1,0 +1,527 @@
+2010-05-06 08:56:54.882	java.lang.Class	Test Client Starting
+2010-05-06 08:56:54.882	java.lang.Class	API TEST CLIENT: Executing from individual '.class' files: /C:/Documents%20and%20Settings/kifle/workspace/Tips/bin/com/cboe/itg/apiclient/test/TestClass.class)
+2010-05-06 08:56:54.898	java.lang.Class	API TEST CLIENT: Build Date: Tue Apr 27 11:52:30 CDT 2010
+2010-05-06 08:56:55.992	com.cboe.itg.apiclient.atoms.utility.TestSuiteNameAtom	 Begin: MKT Order Handling Test Plan (Other Sessions)
+2010-05-06 08:56:55.992	com.cboe.itg.apiclient.atoms.utility.TestSuiteNameAtom	 End.
+2010-05-06 08:56:56.054	com.cboe.itg.apiclient.atoms.utility.StartPointAtom	 Begin: 2010-05-06 08:56:56.054
+2010-05-06 08:56:56.054	com.cboe.itg.apiclient.atoms.utility.StartPointAtom	 End: 
+2010-05-06 08:56:56.101	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl	SALoginAtomCMIImpl Begin: SALoginAtomCMIImpl - HD12
+2010-05-06 08:56:56.57	com.cboe.itg.apiclient.managers.ConnectionManager	SystemAdminServer initialized...
+
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.user.SAUser	SA User Subscriptions successfully completed.
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl Execution: Success.
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl	SALoginAtomCMIImpl End.
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Cases:8
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Environment Setup
+2010-05-06 08:57:04.789	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:57:04.82	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+2010-05-06 08:57:05.257	com.cboe.itg.apiclient.managers.ConnectionManager	Accessing ProductQueryService via GC(atgtest2Global)
+2010-05-06 08:57:05.304	com.cboe.itg.apiclient.managers.ConnectionManager	Accessing ProductConfigurationService via GC(atgtest2Global)
+2010-05-06 08:57:05.304	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$MarketDataServiceProxy	Found class/product 69206035/751320692 on atgtest2BC03x1HybridTradeServer1
+2010-05-06 08:57:05.32	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+2010-05-06 08:57:06.351	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+2010-05-06 08:57:06.351	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl End.
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.managers.ConnectionManager		Looking for PCS for class 69206035
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.managers.ConnectionManager		Found it. Now looking for the BC that class 69206035 resides on.
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.managers.ConnectionManager		Found it: atgtest2BC03x1HybridTradeServer1. 
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Using Product Details for OSI
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	$CLASS1=69206035 (AAI, 7) : [$CLASS1PRODUCT1=751320692 (AAI 7/2010 2.500000000 C); ] 
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl End.
+2010-05-06 08:57:06.383	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+2010-05-06 08:57:06.664	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$MarketDataServiceProxy	Found class/product 75170016/778351682 on atgtest2BC02x1TradeServer2
+2010-05-06 08:57:06.664	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+2010-05-06 08:57:07.648	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+2010-05-06 08:57:07.648	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl End.
+2010-05-06 08:57:07.664	com.cboe.itg.apiclient.managers.ConnectionManager		Looking for PCS for class 75170016
+2010-05-06 08:57:07.664	com.cboe.itg.apiclient.managers.ConnectionManager		Found it. Now looking for the BC that class 75170016 resides on.
+2010-05-06 08:57:07.664	com.cboe.itg.apiclient.managers.ConnectionManager		Found it: atgtest2BC02x1TradeServer2. 
+2010-05-06 08:57:07.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Using Product Details for OSI
+2010-05-06 08:57:07.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	$CLASS11=75170016 (BBY, 4) : [$CLASS11PRODUCT1=778351682 (BBY1C 9/2010 0.0  ); ] 
+2010-05-06 08:57:07.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+2010-05-06 08:57:07.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl End.
+2010-05-06 08:57:07.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+2010-05-06 08:57:07.711	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$MarketDataServiceProxy	Found class/product 130031315/757370035 on atgtest2BC01x1TradeServer3
+2010-05-06 08:57:07.742	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+2010-05-06 08:57:08.664	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+2010-05-06 08:57:08.664	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl End.
+2010-05-06 08:57:08.679	com.cboe.itg.apiclient.managers.ConnectionManager		Looking for PCS for class 130031315
+2010-05-06 08:57:08.679	com.cboe.itg.apiclient.managers.ConnectionManager		Found it. Now looking for the BC that class 130031315 resides on.
+2010-05-06 08:57:08.679	com.cboe.itg.apiclient.managers.ConnectionManager		Found it: atgtest2BC01x1TradeServer3. 
+2010-05-06 08:57:08.679	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Using Product Details for OSI
+2010-05-06 08:57:08.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	$CLASS21=130031315 (BT, 4) : [$CLASS21PRODUCT1=757370035 (BT 6/2010 0.0  ); ] 
+2010-05-06 08:57:08.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+2010-05-06 08:57:08.695	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl End.
+2010-05-06 08:57:08.695	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aSELECTCLASSESANDPRODUCTS
+2010-05-06 08:57:08.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl Begin: VerifySessionStateAtomCMIImpl - HD12
+2010-05-06 08:57:08.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Verifying Session State: HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Session State Verified : HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl Execution: Success.
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl End.
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl Begin: VerifySessionStateAtomCMIImpl - HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Verifying Session State: HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Session State Verified : HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl Execution: Success.
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl End.
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl Begin: VerifySessionStateAtomCMIImpl - HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Verifying Session State: HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Session State Verified : HD12
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl Execution: Success.
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl End.
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aVERIFYSESSIONSTATE
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  User Setup
+2010-05-06 08:57:08.711	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:57:08.726	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl Begin: CreateUserAtomCMIImpl - HD12
+2010-05-06 08:57:08.773	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Re-Setting all data of pre-existing user: CC1
+2010-05-06 08:57:08.82	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:08.82 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: CC1, User Acronym: CBOE/CC1, Role: X, Name: Automated API $CUST1 User, Firm: CBOE/671
+2010-05-06 08:57:08.82	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:08.82 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: CC1, User Acronym: CBOE/CC1, Role: X, Name: Automated API $CUST1 User
+2010-05-06 08:57:08.82	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:08.82 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: CC1
+2010-05-06 08:57:21.57	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	All data of pre-existing user: CC1 reset.
+2010-05-06 08:57:21.57	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying Created User (CC1) : HD12
+2010-05-06 08:57:21.57	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Created User Verified : HD12
+2010-05-06 08:57:21.57	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user CC1 password...
+2010-05-06 08:57:21.601	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User CC1 password set.
+2010-05-06 08:57:21.601	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user CC1 enablements...
+2010-05-06 08:57:21.617	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:21.617 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: CC1, User Acronym: CBOE/CC1, Role: X, Name: Automated API $CUST1 User, Firm: CBOE/671
+2010-05-06 08:57:21.633	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:21.633 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: CC1, User Acronym: CBOE/CC1, Role: X, Name: Automated API $CUST1 User
+2010-05-06 08:57:21.633	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:21.633 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: CC1
+2010-05-06 08:57:22.07	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:22.07 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: CC1, User Acronym: CBOE/CC1, Role: X, Name: Automated API $CUST1 User, Firm: CBOE/671
+2010-05-06 08:57:22.07	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:22.07 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: CC1, User Acronym: CBOE/CC1, Role: X, Name: Automated API $CUST1 User
+2010-05-06 08:57:22.07	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:22.07 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: CC1
+2010-05-06 08:57:22.414	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User CC1 enablements set.
+2010-05-06 08:57:22.414	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUser) Create/Update Callback : HD12
+2010-05-06 08:57:22.914	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUser) Create/Update Callback Verified : HD12
+2010-05-06 08:57:22.914	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUserDefinition) Create/Update Callback : HD12
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUserDefinition) Create/Update Callback Verified: HD12
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl Execution: Success.
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl End.
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl Begin: VerifyUserExistenceAtomCMIImpl - HD12
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	Verifying User Existence: HD12
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	User Existence Verified : HD12
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl Execution: Success.
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl End.
+2010-05-06 08:57:23.414	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl Begin: CreateUserAtomCMIImpl - HD12
+2010-05-06 08:57:23.445	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Re-Setting all data of pre-existing user: KMM1
+2010-05-06 08:57:23.476	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:23.476 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KMM1, User Acronym: CBOE/KMM1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/671
+2010-05-06 08:57:23.476	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:23.476 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KMM1, User Acronym: CBOE/KMM1, Role: M, Name: Automated API $MM1 User
+2010-05-06 08:57:23.476	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:23.476 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KMM1
+2010-05-06 08:57:23.492	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	All data of pre-existing user: KMM1 reset.
+2010-05-06 08:57:23.492	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying Created User (KMM1) : HD12
+2010-05-06 08:57:23.492	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Created User Verified : HD12
+2010-05-06 08:57:23.492	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user KMM1 password...
+2010-05-06 08:57:23.508	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User KMM1 password set.
+2010-05-06 08:57:23.508	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user KMM1 enablements...
+2010-05-06 08:57:23.539	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:23.539 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KMM1, User Acronym: CBOE/KMM1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/671
+2010-05-06 08:57:23.539	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:23.539 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KMM1, User Acronym: CBOE/KMM1, Role: M, Name: Automated API $MM1 User
+2010-05-06 08:57:23.539	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:23.539 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KMM1
+2010-05-06 08:57:24.336	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:24.336 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KMM1, User Acronym: CBOE/KMM1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/671
+2010-05-06 08:57:24.336	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:24.336 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KMM1, User Acronym: CBOE/KMM1, Role: M, Name: Automated API $MM1 User
+2010-05-06 08:57:24.336	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2010-05-06 08:57:24.336 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KMM1
+2010-05-06 08:57:24.695	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User KMM1 enablements set.
+2010-05-06 08:57:24.695	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUser) Create/Update Callback : HD12
+2010-05-06 08:57:25.195	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUser) Create/Update Callback Verified : HD12
+2010-05-06 08:57:25.195	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUserDefinition) Create/Update Callback : HD12
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUserDefinition) Create/Update Callback Verified: HD12
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl Execution: Success.
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl End.
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl Begin: VerifyUserExistenceAtomCMIImpl - HD12
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	Verifying User Existence: HD12
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	User Existence Verified : HD12
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl Execution: Success.
+2010-05-06 08:57:25.695	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl End.
+2010-05-06 08:57:25.758	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl Begin: TraderLoginAtomCMIImpl - CC1
+2010-05-06 08:57:27.93	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl Execution: Success.
+2010-05-06 08:57:27.992	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl End.
+2010-05-06 08:57:27.992	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl Begin: TraderLoginAtomCMIImpl - KMM1
+2010-05-06 08:57:30.117	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl Execution: Success.
+2010-05-06 08:57:30.148	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl End.
+2010-05-06 08:57:30.148	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Trading Property Setup
+2010-05-06 08:57:30.148	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:57:30.164	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	SetRegularMarketHourValidationEnableAtomCMIImpl Begin: SetRegularMarketHourValidationEnableAtomCMIImpl - HD12
+2010-05-06 08:57:33.18	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl Execution: Success.
+2010-05-06 08:57:33.18	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	SetRegularMarketHourValidationEnableAtomCMIImpl End.
+2010-05-06 08:57:33.18	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:35.18	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:35.18	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	VerifyRegularMarketHourValidationEnableAtomCMIImpl Begin: VerifyRegularMarketHourValidationEnableAtomCMIImpl - HD12
+2010-05-06 08:57:35.18	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl Execution: Success.
+2010-05-06 08:57:35.18	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	VerifyRegularMarketHourValidationEnableAtomCMIImpl End.
+2010-05-06 08:57:35.18	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	SetRegularMarketHourValidationEnableAtomCMIImpl Begin: SetRegularMarketHourValidationEnableAtomCMIImpl - HD12
+2010-05-06 08:57:38.211	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl Execution: Success.
+2010-05-06 08:57:38.211	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	SetRegularMarketHourValidationEnableAtomCMIImpl End.
+2010-05-06 08:57:38.211	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:40.211	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:40.211	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	VerifyRegularMarketHourValidationEnableAtomCMIImpl Begin: VerifyRegularMarketHourValidationEnableAtomCMIImpl - HD12
+2010-05-06 08:57:40.211	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl Execution: Success.
+2010-05-06 08:57:40.211	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	VerifyRegularMarketHourValidationEnableAtomCMIImpl End.
+2010-05-06 08:57:40.211	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	SetRegularMarketHourValidationEnableAtomCMIImpl Begin: SetRegularMarketHourValidationEnableAtomCMIImpl - HD12
+2010-05-06 08:57:43.227	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl Execution: Success.
+2010-05-06 08:57:43.227	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHourValidationEnableAtomCMIImpl	SetRegularMarketHourValidationEnableAtomCMIImpl End.
+2010-05-06 08:57:43.227	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:45.227	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:45.227	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	VerifyRegularMarketHourValidationEnableAtomCMIImpl Begin: VerifyRegularMarketHourValidationEnableAtomCMIImpl - HD12
+2010-05-06 08:57:45.227	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl Execution: Success.
+2010-05-06 08:57:45.227	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.VerifyRegularMarketHourValidationEnableAtomCMIImpl	VerifyRegularMarketHourValidationEnableAtomCMIImpl End.
+2010-05-06 08:57:45.227	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aSETREGULARMARKETHOURVALIDATIONENABLE
+2010-05-06 08:57:45.227	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:47.227	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:47.227	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aVERIFYREGULARMARKETHOURVALIDATIONENABLE
+2010-05-06 08:57:47.227	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Routing Property Setup
+2010-05-06 08:57:47.227	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:57:47.477	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetHelpDeskDefaultDestinationRPAtomCMIImpl	SetHelpDeskDefaultDestinationRPAtomCMIImpl Begin: SetHelpDeskDefaultDestinationRPAtomCMIImpl - HD12
+2010-05-06 08:57:47.539	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetHelpDeskDefaultDestinationRPAtomCMIImpl		Setting Help Desk Default Destination Routing Property: W_MAIN:Default:Default:69206035:HelpDeskDefaultDestination
+2010-05-06 08:57:47.571	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetHelpDeskDefaultDestinationRPAtomCMIImpl		Help Desk Default Destination Routing Property W_MAIN:Default:Default:69206035:HelpDeskDefaultDestination Set.
+2010-05-06 08:57:47.571	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetHelpDeskDefaultDestinationRPAtomCMIImpl	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetHelpDeskDefaultDestinationRPAtomCMIImpl Execution: Success.
+2010-05-06 08:57:47.571	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetHelpDeskDefaultDestinationRPAtomCMIImpl	SetHelpDeskDefaultDestinationRPAtomCMIImpl End.
+2010-05-06 08:57:47.571	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:49.571	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:49.649	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyHelpDeskDefaultDestinationRPAtomCMIImpl	VerifyHelpDeskDefaultDestinationRPAtomCMIImpl Begin: VerifyHelpDeskDefaultDestinationRPAtomCMIImpl - HD12
+2010-05-06 08:57:49.649	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyHelpDeskDefaultDestinationRPAtomCMIImpl		Verifying Help Desk Default Destination Routing Property: W_MAIN:Default:Default:69206035:HelpDeskDefaultDestination
+2010-05-06 08:57:49.742	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyHelpDeskDefaultDestinationRPAtomCMIImpl		Help Desk Default Destination Routing Property W_MAIN:Default:Default:69206035:HelpDeskDefaultDestination Verified.
+2010-05-06 08:57:49.742	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyHelpDeskDefaultDestinationRPAtomCMIImpl	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyHelpDeskDefaultDestinationRPAtomCMIImpl Execution: Success.
+2010-05-06 08:57:49.742	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyHelpDeskDefaultDestinationRPAtomCMIImpl	VerifyHelpDeskDefaultDestinationRPAtomCMIImpl End.
+2010-05-06 08:57:49.758	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl	SetVolumeRoutingPropertyAtomCMIImpl Begin: SetVolumeRoutingPropertyAtomCMIImpl - HD12
+2010-05-06 08:57:49.758	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl		Setting Firm Volume Limit Routing Property: W_MAIN:Default:Default:69206035:VolumeSimple
+2010-05-06 08:57:49.774	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl	Property W_MAINDefaultDefault69206035VolumeSimple doesn't exist
+2010-05-06 08:57:49.774	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl		Firm Volume Limit Routing Property W_MAIN:Default:Default:69206035:VolumeSimple Set.
+2010-05-06 08:57:49.774	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl Execution: Success.
+2010-05-06 08:57:49.774	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeRoutingPropertyAtomCMIImpl	SetVolumeRoutingPropertyAtomCMIImpl End.
+2010-05-06 08:57:49.789	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:51.789	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:51.883	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	VerifyVolumeRoutingPropertyAtomCMIImpl Begin: VerifyVolumeRoutingPropertyAtomCMIImpl - HD12
+2010-05-06 08:57:51.883	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl		Verifying Firm Volume Limit Routing Property: W_MAIN:Default:Default:69206035:VolumeSimple
+2010-05-06 08:57:51.914	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	Found Admin Service on atgtest2BC03x1OHServerHybridA
+2010-05-06 08:57:51.914	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	Successfully executed 'getRoutingProperty' on atgtest2BC03x1OHServerHybridA
+2010-05-06 08:57:51.93	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	Found Admin Service on atgtest2BC04x1OHServerHybridA
+2010-05-06 08:57:51.93	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	Successfully executed 'getRoutingProperty' on atgtest2BC04x1OHServerHybridA
+2010-05-06 08:57:51.93	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl		Firm Volume Limit Routing Property W_MAIN:Default:Default:69206035:VolumeSimple Verified.
+2010-05-06 08:57:51.93	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl Execution: Success.
+2010-05-06 08:57:51.93	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeRoutingPropertyAtomCMIImpl	VerifyVolumeRoutingPropertyAtomCMIImpl End.
+2010-05-06 08:57:51.977	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeDeviationCheckAtomCMIImpl	SetVolumeDeviationCheckAtomCMIImpl Begin: SetVolumeDeviationCheckAtomCMIImpl - HD12
+2010-05-06 08:57:51.977	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeDeviationCheckAtomCMIImpl		Setting Booth Default Destination Routing Property: W_MAIN:Default:Default:69206035:*:1:VolumeDevCheckSimple
+2010-05-06 08:57:51.992	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeDeviationCheckAtomCMIImpl		Booth Default Destination Routing Property W_MAIN:Default:Default:69206035:*:1:VolumeDevCheckSimple Set.
+2010-05-06 08:57:51.992	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeDeviationCheckAtomCMIImpl	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeDeviationCheckAtomCMIImpl Execution: Success.
+2010-05-06 08:57:51.992	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.SetVolumeDeviationCheckAtomCMIImpl	SetVolumeDeviationCheckAtomCMIImpl End.
+2010-05-06 08:57:51.992	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:57:53.992	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:57:54.055	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeDeviationCheckAtomCMIImpl	VerifyVolumeDeviationCheckAtomCMIImpl Begin: VerifyVolumeDeviationCheckAtomCMIImpl - HD12
+2010-05-06 08:57:54.117	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeDeviationCheckAtomCMIImpl		Booth Default Destination Routing Property W_MAIN:Default:Default:69206035:*:1:VolumeDevCheckSimple Verified.
+2010-05-06 08:57:54.117	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeDeviationCheckAtomCMIImpl	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeDeviationCheckAtomCMIImpl Execution: Success.
+2010-05-06 08:57:54.117	com.cboe.itg.apiclient.atoms.routingproperties.impls.cmi.VerifyVolumeDeviationCheckAtomCMIImpl	VerifyVolumeDeviationCheckAtomCMIImpl End.
+2010-05-06 08:57:54.117	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Pre-Test Settings
+2010-05-06 08:57:54.117	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:57:54.242	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:54.68	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:54.68 acceptProductState (HD12)-> Session: W_MAIN, Product: 751320692, Type: 7, State: 1 (1)
+2010-05-06 08:57:54.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:54.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:54.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:54.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:55.18	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:55.18 acceptProductState (HD12)-> Session: W_MAIN, Product: 751320692, Type: 7, State: 2 (1)
+2010-05-06 08:57:55.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:55.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:55.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:55.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:55.696	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:55.696 acceptProductState (HD12)-> Session: W_MAIN, Product: 751320692, Type: 7, State: 3 (1)
+2010-05-06 08:57:55.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:55.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:55.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:55.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:56.196	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:56.196 acceptProductState (HD12)-> Session: W_MAIN, Product: 751320692, Type: 7, State: 4 (1)
+2010-05-06 08:57:56.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:56.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:56.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:56.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:56.711	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:56.711 acceptProductState (HD12)-> Session: ONE_MAIN, Product: 778351682, Type: 4, State: 1 (1)
+2010-05-06 08:57:56.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:56.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:56.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:56.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:57.211	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:57.211 acceptProductState (HD12)-> Session: ONE_MAIN, Product: 778351682, Type: 4, State: 2 (1)
+2010-05-06 08:57:57.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:57.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:57.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:57.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:57.743	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:57.743 acceptProductState (HD12)-> Session: ONE_MAIN, Product: 778351682, Type: 4, State: 3 (1)
+2010-05-06 08:57:57.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:57.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:57.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:57.758	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:58.243	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:58.243 acceptProductState (HD12)-> Session: ONE_MAIN, Product: 778351682, Type: 4, State: 4 (1)
+2010-05-06 08:57:58.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:58.258	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:58.274	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:58.274	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:58.696	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:58.696 acceptProductState (HD12)-> Session: CFE_MAIN, Product: 757370035, Type: 4, State: 1 (1)
+2010-05-06 08:57:58.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:58.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:58.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:58.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:59.196	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:59.196 acceptProductState (HD12)-> Session: CFE_MAIN, Product: 757370035, Type: 4, State: 2 (1)
+2010-05-06 08:57:59.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:59.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:59.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:59.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:57:59.711	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:57:59.711 acceptProductState (HD12)-> Session: CFE_MAIN, Product: 757370035, Type: 4, State: 3 (1)
+2010-05-06 08:57:59.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:57:59.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:57:59.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:57:59.789	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl Begin: SetProductStateByProductAtomCMIImpl - HD12
+2010-05-06 08:58:00.211	com.cboe.itg.apiclient.callbacks.ProductStatusCallbackConsumer	2010-05-06 08:58:00.211 acceptProductState (HD12)-> Session: CFE_MAIN, Product: 757370035, Type: 4, State: 4 (1)
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImplVerified Set Product State (by Product) Callback.
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl Execution: Success.
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SetProductStateByProductAtomCMIImpl	SetProductStateByProductAtomCMIImpl End.
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aSETPRODUCTSTATEBYPRODUCT
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aSETPRODUCTSTATEBYPRODUCT
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aSETPRODUCTSTATEBYPRODUCT
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aSETPRODUCTSTATEBYPRODUCT
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 1:Verify that Market order is ACCEPTED if received prior to the regular trading hours (W_MAIN Class)
+2010-05-06 08:58:00.289	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:58:00.368	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl Begin: SetRegularMarketHoursAtomCMIImpl - HD12
+2010-05-06 08:58:03.399	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl Execution: Success.
+2010-05-06 08:58:03.399	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl End.
+2010-05-06 08:58:03.399	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:58:05.399	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:05.524	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:05.54	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:05.54	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:05.727	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	QuoteAtomCMIImpl Begin: QuoteAtomCMIImpl - KMM1
+2010-05-06 08:58:05.758	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:05.758 acceptQuoteStatusV1(0)-> User: KMM1, Product: 751320692, Bid : 1000@1.0, Ask : 1000@1.200000000, State: 7, UAId: User Assigned Id..
+2010-05-06 08:58:06.321	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl Execution: Success.
+2010-05-06 08:58:06.321	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	QuoteAtomCMIImpl End.
+2010-05-06 08:58:06.821	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Begin: OrderAtomCMIImpl - CC1
+2010-05-06 08:58:06.883	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Verifying Submitted Order : CC1
+2010-05-06 08:58:06.883	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Submitted Order Verified : CC1
+2010-05-06 08:58:06.883	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:06.883 acceptNewOrder-> User: CC1 Branch/Seq: XTR:5692, Product: 751320692 Side: S 500@0.0
+2010-05-06 08:58:06.899	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:06.899 acceptOrderFilledReport-> User: CC1 Branch/Seq: XTR:5692, Product: 751320692, Side: S, Original: 500@0.0, Filled Qty: 500, Leaves Qty: 0 Trade Price: 1.0 State: 3
+2010-05-06 08:58:06.899	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:06.899 acceptQuoteFilledReportV1-> User: KMM1, Product: 751320692, Side: B Price: 1.0, Filled Qty: 500, Leaves Qty: 500, State: 7, Num. Contra-Parties: 1
+2010-05-06 08:58:06.899	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:06.899 acceptQuoteStatusV1(0)-> User: KMM1, Product: 751320692, Bid : 500@1.0, Ask : 1000@1.200000000, State: 3, UAId: User Assigned Id..
+2010-05-06 08:58:07.383	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImplVerified New Order Callback.
+2010-05-06 08:58:07.383	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl Execution: Success.
+2010-05-06 08:58:07.383	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl End.
+2010-05-06 08:58:07.383	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 5000 milliSeconds.
+2010-05-06 08:58:12.383	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:12.43	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl Begin: OrderFillVerificationAtomCMIImpl - CC1
+2010-05-06 08:58:12.93	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImplVerified Filled Order Callback.
+2010-05-06 08:58:12.93	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:12.93	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:12.977	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl Begin: QuoteFillVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImplVerified Filled Quote Callback.
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 2:Verify that Market order is ACCEPTED if received later than the regular trading hours (W_MAIN Class)
+2010-05-06 08:58:13.477	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:58:13.493	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl Begin: SetRegularMarketHoursAtomCMIImpl - HD12
+2010-05-06 08:58:16.508	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl Execution: Success.
+2010-05-06 08:58:16.508	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl End.
+2010-05-06 08:58:16.508	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:58:18.508	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:18.508	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:18.508	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:18.508	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:18.508	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Begin: OrderAtomCMIImpl - CC1
+2010-05-06 08:58:18.555	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:18.555 acceptNewOrder-> User: CC1 Branch/Seq: XBX:8731, Product: 751320692 Side: B 1000@0.0
+2010-05-06 08:58:18.555	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Verifying Submitted Order : CC1
+2010-05-06 08:58:18.555	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Submitted Order Verified : CC1
+2010-05-06 08:58:18.555	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:18.555 acceptOrderFilledReport-> User: CC1 Branch/Seq: XBX:8731, Product: 751320692, Side: B, Original: 1000@0.0, Filled Qty: 1000, Leaves Qty: 0 Trade Price: 1.200000000 State: 3
+2010-05-06 08:58:18.555	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:18.555 acceptQuoteFilledReportV1-> User: KMM1, Product: 751320692, Side: S Price: 1.200000000, Filled Qty: 1000, Leaves Qty: 0, State: 7, Num. Contra-Parties: 1
+2010-05-06 08:58:18.665	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:18.665 acceptQuoteStatusV1(0)-> User: KMM1, Product: 751320692, Bid : 500@1.0, Ask : 0@1.200000000, State: 3, UAId: User Assigned Id..
+2010-05-06 08:58:19.055	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImplVerified New Order Callback.
+2010-05-06 08:58:19.055	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl Execution: Success.
+2010-05-06 08:58:19.055	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl End.
+2010-05-06 08:58:19.055	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 5000 milliSeconds.
+2010-05-06 08:58:24.055	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:24.055	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl Begin: OrderFillVerificationAtomCMIImpl - CC1
+2010-05-06 08:58:24.555	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImplVerified Filled Order Callback.
+2010-05-06 08:58:24.555	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:24.555	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:24.555	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl Begin: QuoteFillVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImplVerified Filled Quote Callback.
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	QuoteCancelAtomCMIImpl Begin: QuoteCancelAtomCMIImpl - KMM1
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:25.055 acceptQuoteCancelReportV1-> Product: 751320692 Cancel Reason: 2 Status Change: 2
+2010-05-06 08:58:25.055	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:25.055 acceptQuoteStatusV1(0)-> User: KMM1, Product: 751320692, Bid : 500@1.0, Ask : 0@1.200000000, State: 2, UAId: User Assigned Id..
+2010-05-06 08:58:25.618	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImplVerified Quote Cancel Callback.
+2010-05-06 08:58:25.618	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl Execution: Success.
+2010-05-06 08:58:25.618	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	QuoteCancelAtomCMIImpl End.
+2010-05-06 08:58:25.618	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 3:Verify that Market order is ACCEPTED if received prior to the regular trading hours (ONE_MAIN Class)
+2010-05-06 08:58:25.618	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:58:25.618	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl Begin: SetRegularMarketHoursAtomCMIImpl - HD12
+2010-05-06 08:58:28.618	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl Execution: Success.
+2010-05-06 08:58:28.618	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl End.
+2010-05-06 08:58:28.618	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:58:30.618	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:30.618	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:30.618	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:30.618	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:30.618	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	QuoteAtomCMIImpl Begin: QuoteAtomCMIImpl - KMM1
+2010-05-06 08:58:30.759	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:30.759 acceptQuoteStatusV1(0)-> User: KMM1, Product: 778351682, Bid : 1000@1.0, Ask : 1000@1.200000000, State: 7, UAId: User Assigned Id..
+2010-05-06 08:58:31.321	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl Execution: Success.
+2010-05-06 08:58:31.321	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	QuoteAtomCMIImpl End.
+2010-05-06 08:58:31.321	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Begin: OrderAtomCMIImpl - CC1
+2010-05-06 08:58:31.805	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:31.805 acceptQuoteFilledReportV1-> User: KMM1, Product: 778351682, Side: B Price: 1.0, Filled Qty: 500, Leaves Qty: 500, State: 7, Num. Contra-Parties: 1
+2010-05-06 08:58:31.805	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:31.805 acceptQuoteStatusV1(0)-> User: KMM1, Product: 778351682, Bid : 500@1.0, Ask : 1000@1.200000000, State: 3, UAId: User Assigned Id..
+2010-05-06 08:58:31.805	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:31.805 acceptNewOrder-> User: CC1 Branch/Seq: TID:9543, Product: 778351682 Side: S 500@0.0
+2010-05-06 08:58:31.805	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:31.805 acceptOrderFilledReport-> User: CC1 Branch/Seq: TID:9543, Product: 778351682, Side: S, Original: 500@0.0, Filled Qty: 500, Leaves Qty: 0 Trade Price: 1.0 State: 3
+2010-05-06 08:58:31.837	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Verifying Submitted Order : CC1
+2010-05-06 08:58:31.837	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Submitted Order Verified : CC1
+2010-05-06 08:58:32.337	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImplVerified New Order Callback.
+2010-05-06 08:58:32.337	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl Execution: Success.
+2010-05-06 08:58:32.337	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl End.
+2010-05-06 08:58:32.337	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 5000 milliSeconds.
+2010-05-06 08:58:37.337	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:37.337	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl Begin: OrderFillVerificationAtomCMIImpl - CC1
+2010-05-06 08:58:37.837	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImplVerified Filled Order Callback.
+2010-05-06 08:58:37.837	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:37.837	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:37.837	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl Begin: QuoteFillVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImplVerified Filled Quote Callback.
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 4:Verify that Market order is ACCEPTED if received later than the regular trading hours (ONE_MAIN Class)
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:58:38.337	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl Begin: SetRegularMarketHoursAtomCMIImpl - HD12
+2010-05-06 08:58:41.352	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl Execution: Success.
+2010-05-06 08:58:41.352	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl End.
+2010-05-06 08:58:41.352	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:58:43.352	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:43.352	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:43.352	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:43.352	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:43.352	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Begin: OrderAtomCMIImpl - CC1
+2010-05-06 08:58:43.384	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:43.384 acceptQuoteFilledReportV1-> User: KMM1, Product: 778351682, Side: S Price: 1.200000000, Filled Qty: 1000, Leaves Qty: 0, State: 7, Num. Contra-Parties: 1
+2010-05-06 08:58:43.384	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:43.384 acceptNewOrder-> User: CC1 Branch/Seq: RHC:461, Product: 778351682 Side: B 1000@0.0
+2010-05-06 08:58:43.384	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:43.384 acceptOrderFilledReport-> User: CC1 Branch/Seq: RHC:461, Product: 778351682, Side: B, Original: 1000@0.0, Filled Qty: 1000, Leaves Qty: 0 Trade Price: 1.200000000 State: 3
+2010-05-06 08:58:43.384	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:43.384 acceptQuoteStatusV1(0)-> User: KMM1, Product: 778351682, Bid : 500@1.0, Ask : 0@1.200000000, State: 3, UAId: User Assigned Id..
+2010-05-06 08:58:43.384	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Verifying Submitted Order : CC1
+2010-05-06 08:58:43.384	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Submitted Order Verified : CC1
+2010-05-06 08:58:43.884	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImplVerified New Order Callback.
+2010-05-06 08:58:43.884	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl Execution: Success.
+2010-05-06 08:58:43.884	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl End.
+2010-05-06 08:58:43.884	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 5000 milliSeconds.
+2010-05-06 08:58:48.884	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:48.884	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl Begin: OrderFillVerificationAtomCMIImpl - CC1
+2010-05-06 08:58:49.384	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImplVerified Filled Order Callback.
+2010-05-06 08:58:49.384	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:49.384	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:49.384	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl Begin: QuoteFillVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImplVerified Filled Quote Callback.
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl End.
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	QuoteCancelAtomCMIImpl Begin: QuoteCancelAtomCMIImpl - KMM1
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:49.884 acceptQuoteCancelReportV1-> Product: 778351682 Cancel Reason: 2 Status Change: 2
+2010-05-06 08:58:49.884	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:49.884 acceptQuoteStatusV1(0)-> User: KMM1, Product: 778351682, Bid : 500@1.0, Ask : 0@1.200000000, State: 2, UAId: User Assigned Id..
+2010-05-06 08:58:50.446	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImplVerified Quote Cancel Callback.
+2010-05-06 08:58:50.446	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl Execution: Success.
+2010-05-06 08:58:50.446	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	QuoteCancelAtomCMIImpl End.
+2010-05-06 08:58:50.446	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 5:Verify that Market order is ACCEPTED if received prior to the regular trading hours (CFE_MAIN Class)
+2010-05-06 08:58:50.446	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:58:50.446	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl Begin: SetRegularMarketHoursAtomCMIImpl - HD12
+2010-05-06 08:58:53.462	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl Execution: Success.
+2010-05-06 08:58:53.462	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl End.
+2010-05-06 08:58:53.462	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:58:55.462	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:58:55.462	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:58:55.462	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:58:55.462	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:58:55.462	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	QuoteAtomCMIImpl Begin: QuoteAtomCMIImpl - KMM1
+2010-05-06 08:58:55.618	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:55.618 acceptQuoteStatusV1(0)-> User: KMM1, Product: 757370035, Bid : 1000@1.0, Ask : 1000@1.200000000, State: 7, UAId: User Assigned Id..
+2010-05-06 08:58:56.181	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl Execution: Success.
+2010-05-06 08:58:56.181	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteAtomCMIImpl	QuoteAtomCMIImpl End.
+2010-05-06 08:58:56.181	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Begin: OrderAtomCMIImpl - CC1
+2010-05-06 08:58:56.618	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:56.618 acceptNewOrder-> User: CC1 Branch/Seq: SEI:7930, Product: 757370035 Side: S 500@0.0
+2010-05-06 08:58:56.618	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:58:56.618 acceptOrderFilledReport-> User: CC1 Branch/Seq: SEI:7930, Product: 757370035, Side: S, Original: 500@0.0, Filled Qty: 500, Leaves Qty: 0 Trade Price: 1.0 State: 3
+2010-05-06 08:58:56.618	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:56.618 acceptQuoteFilledReportV1-> User: KMM1, Product: 757370035, Side: B Price: 1.0, Filled Qty: 500, Leaves Qty: 500, State: 7, Num. Contra-Parties: 1
+2010-05-06 08:58:56.618	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:58:56.618 acceptQuoteStatusV1(0)-> User: KMM1, Product: 757370035, Bid : 500@1.0, Ask : 1000@1.200000000, State: 3, UAId: User Assigned Id..
+2010-05-06 08:58:56.65	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Verifying Submitted Order : CC1
+2010-05-06 08:58:56.65	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Submitted Order Verified : CC1
+2010-05-06 08:58:57.15	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImplVerified New Order Callback.
+2010-05-06 08:58:57.15	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl Execution: Success.
+2010-05-06 08:58:57.15	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl End.
+2010-05-06 08:58:57.15	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 5000 milliSeconds.
+2010-05-06 08:59:02.15	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:59:02.15	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl Begin: OrderFillVerificationAtomCMIImpl - CC1
+2010-05-06 08:59:02.65	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImplVerified Filled Order Callback.
+2010-05-06 08:59:02.65	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:02.65	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl End.
+2010-05-06 08:59:02.65	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl Begin: QuoteFillVerificationAtomCMIImpl - KMM1
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImplVerified Filled Quote Callback.
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl End.
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 6:Verify that Market order is ACCEPTED if received later than the regular trading hours (CFE_MAIN Class)
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:59:03.15	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl Begin: SetRegularMarketHoursAtomCMIImpl - HD12
+2010-05-06 08:59:06.181	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl Execution: Success.
+2010-05-06 08:59:06.181	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.SetRegularMarketHoursAtomCMIImpl	SetRegularMarketHoursAtomCMIImpl End.
+2010-05-06 08:59:06.181	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 2000 milliSeconds.
+2010-05-06 08:59:08.181	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:59:08.181	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:59:08.181	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:08.181	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:59:08.181	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Begin: OrderAtomCMIImpl - CC1
+2010-05-06 08:59:08.212	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:59:08.212 acceptNewOrder-> User: CC1 Branch/Seq: SBO:9028, Product: 757370035 Side: B 1000@0.0
+2010-05-06 08:59:08.212	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:59:08.212 acceptQuoteFilledReportV1-> User: KMM1, Product: 757370035, Side: S Price: 1.200000000, Filled Qty: 1000, Leaves Qty: 0, State: 7, Num. Contra-Parties: 1
+2010-05-06 08:59:08.212	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:59:08.212 acceptQuoteStatusV1(0)-> User: KMM1, Product: 757370035, Bid : 500@1.0, Ask : 0@1.200000000, State: 3, UAId: User Assigned Id..
+2010-05-06 08:59:08.212	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Verifying Submitted Order : CC1
+2010-05-06 08:59:08.306	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	Submitted Order Verified : CC1
+2010-05-06 08:59:08.322	com.cboe.itg.apiclient.callbacks.OrderStatusCallbackConsumer	2010-05-06 08:59:08.322 acceptOrderFilledReport-> User: CC1 Branch/Seq: SBO:9028, Product: 757370035, Side: B, Original: 1000@0.0, Filled Qty: 1000, Leaves Qty: 0 Trade Price: 1.200000000 State: 3
+2010-05-06 08:59:08.806	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImplVerified New Order Callback.
+2010-05-06 08:59:08.806	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl Execution: Success.
+2010-05-06 08:59:08.806	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl End.
+2010-05-06 08:59:08.806	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 Begin Pause: 5000 milliSeconds.
+2010-05-06 08:59:13.806	com.cboe.itg.apiclient.atoms.utility.PauseAtom	 End Pause.
+2010-05-06 08:59:13.806	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl Begin: OrderFillVerificationAtomCMIImpl - CC1
+2010-05-06 08:59:14.306	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImplVerified Filled Order Callback.
+2010-05-06 08:59:14.306	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:14.306	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderFillVerificationAtomCMIImpl	OrderFillVerificationAtomCMIImpl End.
+2010-05-06 08:59:14.306	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl Begin: QuoteFillVerificationAtomCMIImpl - KMM1
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImplVerified Filled Quote Callback.
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteFillVerificationAtomCMIImpl	QuoteFillVerificationAtomCMIImpl End.
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl Begin: TopOfBookVerificationAtomCMIImpl - KMM1
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl Execution: Success.
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.queries.impls.cmi.TopOfBookVerificationAtomCMIImpl	TopOfBookVerificationAtomCMIImpl End.
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	QuoteCancelAtomCMIImpl Begin: QuoteCancelAtomCMIImpl - KMM1
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:59:14.806 acceptQuoteCancelReportV1-> Product: 757370035 Cancel Reason: 2 Status Change: 2
+2010-05-06 08:59:14.806	com.cboe.itg.apiclient.callbacks.QuoteStatusCallbackConsumer	2010-05-06 08:59:14.806 acceptQuoteStatusV1(0)-> User: KMM1, Product: 757370035, Bid : 500@1.0, Ask : 0@1.200000000, State: 2, UAId: User Assigned Id..
+2010-05-06 08:59:15.369	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImplVerified Quote Cancel Callback.
+2010-05-06 08:59:15.369	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl Execution: Success.
+2010-05-06 08:59:15.369	com.cboe.itg.apiclient.atoms.quote.impls.cmi.QuoteCancelAtomCMIImpl	QuoteCancelAtomCMIImpl End.
+2010-05-06 08:59:15.369	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case:Cleaning Up Task
+2010-05-06 08:59:15.369	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2010-05-06 08:59:15.462	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl Begin: TraderLogoutAtomCMIImpl - KMM1
+2010-05-06 08:59:15.494	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderUser Logged out: KMM1
+2010-05-06 08:59:15.494	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl Execution: Success.
+2010-05-06 08:59:15.494	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl End.
+2010-05-06 08:59:15.494	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl Begin: TraderLogoutAtomCMIImpl - CC1
+2010-05-06 08:59:15.509	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderUser Logged out: CC1
+2010-05-06 08:59:15.509	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl Execution: Success.
+2010-05-06 08:59:15.509	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl End.
+2010-05-06 08:59:15.619	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	SALogoutAtomCMIImpl Begin: SALogoutAtomCMIImpl - HD12
+2010-05-06 08:59:15.65	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	SAUser Logged out: HD12
+2010-05-06 08:59:15.65	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl Execution: Success.
+2010-05-06 08:59:15.65	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	SALogoutAtomCMIImpl End.
+2010-05-06 08:59:15.65	com.cboe.itg.apiclient.atoms.utility.EndPointAtom	 Begin: 2010-05-06 08:59:15.65
+2010-05-06 08:59:15.65	com.cboe.itg.apiclient.atoms.utility.EndPointAtom	 End.
+2010-05-06 08:59:15.65	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	
+*** Test Termination Request Received - Stopping Now!
+
+2010-05-06 08:59:15.697	com.cboe.itg.apiclient.common.SoundUtility	SOUNDS: 1
+2010-05-06 08:59:15.697	com.cboe.itg.apiclient.common.SoundUtility	Playing Sound
+2010-05-06 08:59:15.79	com.cboe.itg.apiclient.common.SoundUtility	I/O error creating clip: doh.wav (The system cannot find the file specified). Clip Error
+2010-05-06 08:59:15.79	com.cboe.itg.apiclient.common.SoundUtility	Done Playing Sound

@@ -1,0 +1,55 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalMarketData (MarketDataHomeImpl* )>
+<!ATTLIST GlobalMarketData  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT MarketDataHomeImpl (MarketDataHomeImplProperties, MarketDataHomeImplCommands?) >
+<!ATTLIST MarketDataHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT MarketDataHomeImplProperties  (productCacheSize,activeWhenSlave,autoCalcNBBO)>
+<!ATTLIST MarketDataHomeImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT productCacheSize (#PCDATA)>
+<!ATTLIST productCacheSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readOnly'
+	propertyType  %propertyTypes;    #FIXED 'integer'
+	description   CDATA              #FIXED 'Set the size of the cache to store products ' >
+
+<!ELEMENT activeWhenSlave EMPTY>
+<!ATTLIST activeWhenSlave
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT MarketDataHomeImplCommands (setExchangeInd)>
+<!ATTLIST MarketDataHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+
+<!ELEMENT setExchangeInd (exchangeIndicator)>
+<!ATTLIST setExchangeInd
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "set the Exchange Indicator"
+>
+
+<!ELEMENT exchangeIndicator ANY>
+<!ATTLIST exchangeIndicator
+	type %typeConstraints; #FIXED "ManagedParameter"
+	parameterType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "the user name"
+>
+<!ELEMENT autoCalcNBBO ANY>
+<!ATTLIST autoCalcNBBO
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>

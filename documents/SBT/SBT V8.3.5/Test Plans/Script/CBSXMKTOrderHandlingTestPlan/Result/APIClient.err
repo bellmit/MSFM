@@ -1,0 +1,29 @@
+2010-04-27 14:37:14.977	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aCONNECTTOITGLINKAGEROUTER
+2010-04-27 14:37:28.015	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency26
+2010-04-27 14:37:36.149	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency25
+2010-04-27 14:38:05.877	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency26
+2010-04-27 14:38:12.029	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency25
+2010-04-27 14:38:32.248	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Failed. [DataValidationException] Invalid order.  Market orders (other than valid cross types) are not accepted outside regular market hours. ; 1110 INVALID_STATE
+2010-04-27 14:38:33.763	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Failed. [DataValidationException] Invalid order.  Market orders (other than valid cross types) are not accepted outside regular market hours. ; 1110 INVALID_STATE
+2010-04-27 14:38:33.763	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency26
+2010-04-27 14:38:35.855	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Failed. [DataValidationException] Invalid order.  Market orders (other than valid cross types) are not accepted outside regular market hours. ; 1110 INVALID_STATE
+2010-04-27 14:38:35.855	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency25
+2010-04-27 14:38:46.066	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Failed. [DataValidationException] Invalid order.  Market orders (other than valid cross types) are not accepted outside regular market hours. ; 1110 INVALID_STATE
+2010-04-27 14:38:47.096	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Failed. [DataValidationException] Invalid order.  Market orders (other than valid cross types) are not accepted outside regular market hours. ; 1110 INVALID_STATE
+2010-04-27 14:38:47.096	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency26
+2010-04-27 14:38:49.673	com.cboe.itg.apiclient.atoms.order.impls.cmi.OrderAtomCMIImpl	OrderAtomCMIImpl Failed. [DataValidationException] Invalid order.  Market orders (other than valid cross types) are not accepted outside regular market hours. ; 1110 INVALID_STATE
+2010-04-27 14:38:49.673	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency25
+2010-04-27 14:38:54.372	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency29
+2010-04-27 14:38:54.903	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency29
+2010-04-27 14:38:58.416	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency29
+2010-04-27 14:39:03.444	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency30
+2010-04-27 14:39:03.975	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency30
+2010-04-27 14:39:07.503	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency30
+2010-04-27 14:39:47.645	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aORDERFILLVERIFICATION
+2010-04-27 14:40:00.292	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency25
+2010-04-27 14:40:45.477	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aORDERFILLVERIFICATION
+2010-04-27 14:40:48.99	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency26
+2010-04-27 14:40:51.004	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aORDERFILLVERIFICATION
+2010-04-27 14:40:51.004	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: aQUOTEFILLVERIFICATION
+2010-04-27 14:40:54.143	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol Contingency25
+2010-04-27 14:41:08.475	java.lang.Class	Begin Canceling All Test User Orders...

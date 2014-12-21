@@ -1,0 +1,43 @@
+package com.cboe.domain.migratePersistence;
+
+import com.cboe.interfaces.domain.migratePersistence.MigratePersistenceHome;
+import com.cboe.server.queue.ServerQueue;
+import com.cboe.server.queue.ServerQueueException;
+
+
+public class QueueReaderThread implements Runnable
+{
+	private ServerQueue<QueueElement> queue;
+
+	private MigratePersistenceHome home;
+
+	public QueueReaderThread(ServerQueue<QueueElement> queue, MigratePersistenceHome home)
+	{
+		this.queue = queue;
+		this.home = home;
+	}
+
+	public void run()
+	{
+		for (;;)
+		{
+			try
+			{
+				QueueElement element = queue.dequeue();
+
+				process(element);
+			}
+			catch (ServerQueueException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	private void process(QueueElement element)
+	{
+		home.persist(element.getList());
+	}
+}

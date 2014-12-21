@@ -1,0 +1,87 @@
+
+<project name="ant for sbt.domain.event" default="all">
+
+    <description>
+    This is the top level ant build file for the SBT domain vob
+    </description>
+
+    <!-- ant.file is the initial build file -->
+    <echo>Building ${ant.file}</echo>
+
+    <!-- top level sbt build -->
+    <import file="/vobs/dte/sbtcommon/build/sbtcommon-build.xml"/>
+
+    <!-- **************************************************************
+            Init dirs based on OS.
+    ******************************************************************* -->
+    <target name="-domain.event.Init" depends="-Init" description="set environment variables">
+
+        <condition property="sbt.domain.event.project.dir" value="../../domain/event">
+            <isset property="this.is.windows"/>
+        </condition>
+
+        <condition property="sbt.domain.event.project.dir" value="${dte.root}/domain/event">
+            <isset property="this.is.unix"/>
+        </condition>
+
+    <!-- **************************************************************
+            path name locations
+    ******************************************************************* -->
+
+        <!-- SERVER VOB SPECIFIC SOURCE LOCATIONS -->
+
+        <property name="sbt.domain.event.classes.dir"        location="${sbt.domain.event.project.dir}/classes"/>
+        <property name="sbt.domain.event.java.dir"           location="${sbt.domain.event.project.dir}/Java"/>
+        <property name="sbt.domain.event.build.dir"          location="${sbt.domain.event.project.dir}/build"/>
+        <property name="sbt.domain.event.release.dir"        location="${sbt.domain.event.project.dir}/release"/>
+        <property name="sbt.domain.event.idl.dir"            location="${sbt.domain.event.project.dir}/idl"/>
+        <property name="sbt.domain.event.event.dir"          location="${sbt.domain.event.project.dir}/event"/>
+        <property name="sbt.domain.event.event.java.dir"     location="${sbt.domain.event.event.dir}/Java"/>
+
+
+        <property name="build.info.dir"         location="${sbt.domain.event.classes.dir}/com/cboe/sbt/framework"/>
+
+        <!-- SERVER VOB SPECIFIC JAR LOCATIONS -->
+        <property name="sbt.domain.event.impls.rel.jar"               location="${sbt.domain.event.release.dir}/domain_impls.jar"/>
+        <property name="sbt.domain.event.impls.class.jar"             location="${sbt.domain.event.classes.dir}/domain_impls.jar"/>
+        <property name="sbt.domain.event.interfaces.rel.jar"          location="${sbt.domain.event.release.dir}/domain_interfaces.jar"/>
+        <property name="sbt.domain.event.interfaces.class.jar"        location="${sbt.domain.event.classes.dir}/domain_interfaces.jar"/>
+        <property name="sbt.domain.event.persist.rel.jar"             location="${sbt.domain.event.release.dir}/domain_persist.jar"/>
+        <property name="sbt.domain.event.persist.class.jar"           location="${sbt.domain.event.classes.dir}/domain_persist.jar"/>
+        <property name="sbt.domain.event.xml.rel.jar"                 location="${sbt.domain.event.release.dir}/domain_xml.jar"/>
+        <property name="sbt.domain.event.xml.class.jar"               location="${sbt.domain.event.classes.dir}/domain_xml.jar"/>
+        <property name="sbt.domain.event.idl.rel.jar"                 location="${sbt.domain.event.release.dir}/domain_idl.jar"/>
+        <property name="sbt.domain.event.idl.java.rel.jar"            location="${sbt.domain.event.release.dir}/domain_idl_java.jar"/>
+
+        <property name="sbt.domain.event.event.impls.rel.jar"         location="${sbt.domain.event.release.dir}/event_impls.jar"/>
+        <property name="sbt.domain.event.event.impls.class.jar"       location="${sbt.domain.event.classes.dir}/event_impls.jar"/>
+        <property name="sbt.domain.event.event.interfaces.rel.jar"    location="${sbt.domain.event.release.dir}/event_interfaces.jar"/>
+        <property name="sbt.domain.event.event.interfaces.class.jar"  location="${sbt.domain.event.classes.dir}/event_interfaces.jar"/>
+
+
+        <property name="build.info.file"        value="CatResource.txt"/>
+        <property name="configspec.class"       value="com.cboe.domain.event.framework.CatResource"/>
+
+        <property name="compile.debug"          value="true"/>
+        <property name="compile.verbose"        value="true"/>
+
+    </target>
+
+
+    <!-- **************************************************************
+            Compile and Build Core Jars
+    ******************************************************************* -->
+    <target name="Compile-Full"
+        description="Build production (optimized, non-debug) version of the code"
+            depends="-Init,Clean,-CompileCode,-CopyBuild">
+    </target>
+
+    <target name="Compile-Incremental"
+        description="Build production (optimized, non-debug) version of the code WITHOUT CLEANING"
+            depends="-Init,-CompileCode,-CopyBuild">
+    </target>
+
+
+</project>
+
+

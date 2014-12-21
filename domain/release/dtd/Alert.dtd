@@ -1,0 +1,21 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalAlert (AlertHomeImpl* )>
+<!ATTLIST GlobalAlert  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT AlertHomeImpl (AlertHomeImplProperties) >
+<!ATTLIST AlertHomeImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT AlertHomeImplProperties  (maxResultSize)>
+<!ATTLIST AlertHomeImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT maxResultSize (#PCDATA)>
+<!ATTLIST maxResultSize  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readOnly'
+	propertyType  %propertyTypes;    #FIXED 'integer'
+	description   CDATA              #FIXED 'Set the maximum number of returned alerts ' >

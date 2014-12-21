@@ -1,0 +1,1180 @@
+//## Module: consumers
+
+#ifndef Consumers_idl
+#define Consumers_idl
+
+//#pragma GENERATE_CODE OFF
+#include "TradingProperty.idl"
+#include "session.idl"
+#include "textMessage.idl"
+#include "trade.idl"
+#include "quote.idl"
+#include "marketData.idl"
+#include "cmiQuote.idl"
+#include "product.idl"
+#include "cmiSession.idl"
+#include "cmiStrategy.idl"
+#include "cmiProduct.idl"
+#include "cmiAdmin.idl"
+#include "cmiUtil.idl"
+#include "cmiUser.idl"
+#include "cmiTradeNotification.idl"
+#include "user.idl"
+#include "firm.idl"
+#include "cmiIntermarketMessages.idl"
+#include "Util.idl"
+#include "cmi.idl"
+#include "cmiCallback.idl"
+#include "cmiCallbackV2.idl"
+#include "cmiCallbackV3.idl"
+#include "cmiCallbackV4.idl"
+#include "internalCallback.idl"
+#include "property.idl"
+#include "groupElement.idl"
+#include "order.idl"
+
+
+
+// ==================================================================
+
+module consumers
+{
+
+interface MarketBufferConsumer {
+    // subIdentifier is for finer-grained identification of the sender,
+    // possibly for future filtering use.
+    void acceptMarketBuffer(in product::GroupKey groupKey, in long subIdentifier, in util::OctetSequence buffer);
+};
+
+interface MarketHistoryBufferConsumer {
+    // subIdentifier is for finer-grained identification of the sender,
+    // possibly for future filtering use.
+    void acceptMarketBuffer(in product::GroupKey groupKey, in long subIdentifier, in util::OctetSequence buffer);
+};
+
+interface MarketBufferAdminConsumer {
+    void acceptRefreshReqForProduct(in product::GroupKey groupKey, in long productKey, 
+        in long requestId, in short codecId);
+
+    void acceptRefreshReq(in product::GroupKey groupKey, in short channelNumber, in long requestId, in short codecId);
+
+    void acceptConsumerStatus(in product::GroupKey groupKey, in short channelNumber, in string instanceId, in string processDesc, in short status);
+};
+
+interface CacheUpdateConsumer {
+    void acceptUserUpdate(in cmiUser::UserStruct updatedUser, in user::UserDefinitionStruct updatedUserDefinition, in user::UserEnablementStruct updatedUserEnablement);
+    void acceptFirmUpdate(in firm::FirmStruct firm);
+    void acceptFirmDeletion(in firm::FirmStruct firm);
+
+    // added new method for Hybrid 1.5 session Profile
+    void acceptSessionProfileUserUpdate(in cmiUser::SessionProfileUserStruct updatedUser, in user::SessionProfileUserDefinitionStruct updatedUserDefinition, in user::UserEnablementStruct updatedUserEnablement);
+
+    // added for single acronym: published on user delete.
+    void acceptUserDeletion(in user::UserSummaryStruct deletedUser);
+
+    // added for preferred dpm
+    void acceptUserFirmAffiliationUpdate(in user::UserFirmAffiliationStruct userAffiliatedFirm);
+    void acceptUserFirmAffiliationDelete(in user::UserFirmAffiliationStruct userAffiliatedFirm);
+    
+
+};
+
+interface CancelReportConsumer {
+   void acceptCancelReport(in cmiUtil::LongSequence groups, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::OrderStruct orderStruct, in cmiOrder::CancelReportStructSequence cancelReport, in string eventInitiator);
+};
+
+interface CurrentMarketConsumer {
+   // The following interface methods will be deprecated after all CAS's which can support
+   // block current market publishing have been rolled out:
+   void acceptCurrentMarket(in cmiUtil::LongSequence groups, in cmiMarketData::CurrentMarketStruct contingentMarket, in cmiMarketData::CurrentMarketStruct nonContingentMarket );
+   void acceptNBBO(in cmiUtil::LongSequence groups, in cmiMarketData::NBBOStruct nbboStruct );
+   void acceptCurrentMarketAndNBBO(in cmiUtil::LongSequence groups, in cmiMarketData::CurrentMarketStruct contingentMarket, in cmiMarketData::CurrentMarketStruct nonContingentMarket, in cmiMarketData::NBBOStruct nbboStruct );
+   void acceptExpectedOpeningPrice(in cmiUtil::LongSequence groups, in cmiMarketData::ExpectedOpeningPriceStruct expectedOpeningPrice );
+
+    // The new acceptCurrentMarketsForClass is essentially a combination of
+    // acceptCurrentMarket, acceptNBBO, and acceptCurrentMarketAndNBBO
+    // and publishes in groups by classes. The intended usage of this method is
+    // to leave any sequence empty if it does not change when publishing. E.g.
+    // if NBBO and NonICMMarkets do not change, then leave nbbos and nonICMMarkets
+    // as empty sequences. If only NBBO changes, then leave all other three sequences as
+    // empty.
+    //
+    // CurrentMarketStructV2Sequence markets will not be used anymore. It will be
+    // always empty sequence
+    void acceptCurrentMarketsForClass(
+        in util::RoutingParameterStruct routingParameters,
+        in cmiMarketData::CurrentMarketStructSequence bestMarkets,
+        in cmiMarketData::CurrentMarketStructSequence bestLimitMarkets,
+        in cmiMarketData::NBBOStructSequence nbbos,
+        in cmiMarketData::CurrentMarketStructV2Sequence markets,
+        in cmiMarketData::CurrentMarketStructSequence bestPublicMarkets,
+        in cmiMarketData::CurrentMarketStructSequence bestPublicMarketsAtTop,
+        in util::BooleanSequence shortSaleTriggeredMode
+    );
+
+    void acceptExpectedOpeningPricesForClass(
+        in util::RoutingParameterStruct routingParameters,
+        in cmiMarketData::ExpectedOpeningPriceStructSequence expectedOpeningPrices
+    );
+
+};
+
+// Provide the expected opening price method from CurrentMarketConsumer in it's own interface.
+//
+// This is to facilitate EOP consumers who do not want (or who cannot handle) the current 
+// market message volumes and rates.  Note that events on this consumer's channel are not 
+// guaranteed to be in sync with CurrentMarket events. 
+//
+interface ExpectedOpeningPriceConsumer {
+    void acceptExpectedOpeningPrice(in cmiUtil::LongSequence groups, in cmiMarketData::ExpectedOpeningPriceStruct expectedOpeningPrice );
+    void acceptExpectedOpeningPricesForClass(
+        in util::RoutingParameterStruct routingParameters,
+        in cmiMarketData::ExpectedOpeningPriceStructSequence expectedOpeningPrices
+    );
+};
+
+interface NewOrderConsumer {
+     void acceptNewOrder(in cmiUtil::LongSequence groups, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::OrderStruct newOrder, in string eventInitiator );
+};
+
+interface OrderUpdateConsumer {
+     void acceptOrderUpdate(in cmiUtil::LongSequence groups, in cmiOrder::OrderStruct updatedOrder );
+     void acceptOrderStatusUpdate(in util::RoutingParameterStruct routingParameters,  in cmiOrder::OrderStruct order, in cmiUtil::UpdateStatusReason statusChange);
+};
+
+interface OrderFillReportConsumer {
+   void acceptOrderFillReport(in cmiUtil::LongSequence groups, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::OrderStruct orderStruct, in cmiOrder::FilledReportStructSequence filledOrder, in string eventInitiator);
+};
+
+interface OrderAcceptedByBookConsumer {
+   void acceptOrderAcceptedByBook(in cmiUtil::LongSequence groups, in cmiOrder::OrderStruct order);
+};
+
+interface OrderQueryConsumer {
+   void acceptOrders(in cmiUtil::LongSequence groups, in string userId, in cmiUser::ExchangeFirmStruct firmKey, in cmiOrder::OrderStructSequence orders);
+};
+
+interface OrderQueryExceptionConsumer {
+   void acceptException(in cmiUtil::LongSequence groups, in string userId, in long exceptionMapNumber, in string description);
+};
+
+interface OrderBustReportConsumer {
+     void acceptOrderBustReport(in cmiUtil::LongSequence groups, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::OrderStruct orderStruct, in cmiOrder::BustReportStructSequence bustedOrder, in string eventInitiator);
+};
+
+interface OrderBustReinstateReportConsumer {
+     void acceptOrderBustReinstateReport(in cmiUtil::LongSequence groups, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::OrderStruct orderStruct,
+        in cmiOrder::BustReinstateReportStruct bustReinstatedOrder, in string eventInitiator);
+};
+
+interface OrderStatusConsumer : CancelReportConsumer, OrderFillReportConsumer,
+    OrderAcceptedByBookConsumer, NewOrderConsumer,  OrderUpdateConsumer,
+    OrderQueryConsumer, OrderQueryExceptionConsumer, OrderBustReportConsumer,
+    OrderBustReinstateReportConsumer {
+};
+
+interface ProductStateConsumer {
+   void setProductStates(in cmiProduct::ClassKey classKey, in cmiSession::TradingSessionName sessionName, in cmiSession::ProductStateStructSequence productStates );
+   void setClassState( in cmiSession::ClassStateStruct newState);
+};
+
+interface ProductAdjustmentConsumer {
+   void priceAdjustmentUpdatedNotice(in cmiProduct::PendingAdjustmentStruct updatedAdjustment);
+   void priceAdjustmentAppliedNotice(in cmiProduct::PendingAdjustmentStruct appliedAdjustment);
+   void allAdjustmentsAppliedNotice();
+};
+
+interface ProductUpdateConsumer {
+   void updateProduct(in cmiProduct::ProductStruct updatedProduct, in product::ProductInformationStruct productInformation);
+   void updateReportingClass(in cmiProduct::ReportingClassStruct updatedClass);
+   void updateProductClass(in product::ProductClassStruct updatedClass);
+   void updateProductStrategy(in cmiStrategy::StrategyStruct updatedStrategy);
+   void updateQPEIndicator(in cmiProduct::ClassKey classKey, in boolean indicator);
+   void updateProductV4(in product::ProductStructV4 updatedProduct);
+   void updateProductClassV3(in product::ProductClassStructV3 updatedClass);
+   void updateProductOpenInterest(in cmiProduct::ClassKey classKey, in product::ProductOpenInterestStructSequence openInterestForProducts);
+   void updateLinkageIndicator(in product::LinkageIndicatorResultStructSequence linkageIndicatorResult);
+
+};
+
+interface ProductStatusConsumer : ProductAdjustmentConsumer, ProductUpdateConsumer {
+};
+
+interface QuoteFillReportConsumer {
+     void acceptQuoteFillReport(in cmiUtil::LongSequence groups, in quote::QuoteInfoStruct quoteInfo, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::FilledReportStructSequence filledQuote, in string eventInitiator);
+    //new method to support the classKey routing parameter.
+    void acceptQuoteFillReportV3(in util::RoutingParameterStruct routingParameters, in quote::QuoteInfoStruct quoteInfo, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::FilledReportStructSequence filledQuote, in string eventInitiator);
+};
+
+interface QuoteDeleteReportConsumer {
+     void acceptQuoteDeleteReport(in cmiUtil::LongSequence groups, in string userId, in cmiQuote::QuoteKeySequence quoteKeys, in cmiUtil::ActivityReason cancelReason, in string eventInitiator);
+     void acceptQuoteDeleteReportV2(in cmiUtil::LongSequence groups, in string userId, in cmiQuote::QuoteStructSequence quotes, in cmiUtil::ActivityReason cancelReason, in string eventInitiator);
+     //new method to support the classKey routing parameter.
+     void acceptQuoteDeleteReportV3(in util::RoutingParameterStruct routingParameters, in string userId, in cmiQuote::QuoteStructSequence quotes, in cmiUtil::ActivityReason cancelReason, in string eventInitiator);
+};
+
+interface QuoteBustReportConsumer {
+     void acceptQuoteBustReport(in cmiUtil::LongSequence groups, in quote::QuoteInfoStruct quoteInfo, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::BustReportStructSequence bustedQuote, in string eventInitiator);
+    //new method to support the classKey routing parameter.
+     void acceptQuoteBustReportV3(in util::RoutingParameterStruct routingParameters, in quote::QuoteInfoStruct quoteInfo, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::BustReportStructSequence bustedQuot, in string eventInitiator);
+};
+
+interface QuoteUpdateConsumer {
+    void acceptQuoteStatusUpdate(in util::RoutingParameterStruct routingParameters,  in cmiQuote::QuoteStruct quote,  in cmiUtil::UpdateStatusReason statusChange);
+};
+
+interface QuoteStatusConsumer : QuoteFillReportConsumer, QuoteDeleteReportConsumer,
+                                QuoteBustReportConsumer, QuoteUpdateConsumer {
+};
+
+interface RFQConsumer {
+   void acceptRFQ(in cmiQuote::RFQStruct rfq);
+};
+
+interface RecapConsumer {
+  // acceptRecap(...) will be deprecated after all CAS's support block publishing.
+  //
+  void acceptRecap(in cmiUtil::LongSequence groups, in cmiMarketData::RecapStruct recap);
+  void acceptRecapForClass( in util::RoutingParameterStruct routingParameters, in cmiMarketData::RecapStructSequence recaps);
+
+};
+
+interface OptionTickerConsumer {
+  void acceptTicker(in cmiUtil::LongSequence groups, in marketData::InternalTickerStruct ticker);
+};
+interface TickerConsumer {
+  // acceptTicker(...) will be deprecated after all CAS's support block publishing.
+  //
+  void acceptTicker(in cmiUtil::LongSequence groups, in marketData::InternalTickerStruct ticker);
+  void acceptTickerForClass( in util::RoutingParameterStruct routingParameters, in cmiUtil::TimeStructSequence tradeTimes, in cmiMarketData::TickerStructSequence  tickers);
+  void acceptLargeTradeTickerDetailForClass(in util::RoutingParameterStruct routingParameters, in marketData::InternalTickerDetailStructSequence tickerDetails );
+};
+
+interface TradingSessionConsumer : ProductStateConsumer {
+  void acceptBusinessDayEvent(in session::BusinessDayStruct currentDay);
+  void acceptTradingSessionState( in cmiSession::TradingSessionStateStruct sessionState);
+  void updateProduct(in cmiSession::SessionProductStruct updatedProduct);
+  void updateProductClass(in cmiSession::SessionClassStruct updatedClass);
+  void updateProductStrategy(in cmiSession::SessionStrategyStruct updatedStrategy);
+  void acceptTradingSessionElementUpdate( in session::TradingSessionElementStruct sessionElement);
+  void acceptTradingSessionElementUpdateV2( in session::TradingSessionElementStructV2 sessionElement);
+  };
+
+interface TradingSessionEventStateConsumer {
+  // @deprecated - replaced by acceptTradingSessionEventStateV2 in project "Hybrid Failover".
+  void acceptTradingSessionEventState( in session::TradingSessionEventHistoryStruct eventHistoryElement);
+
+  void acceptTradingSessionEventStateV2(in session::TradingSessionEventHistoryStructV2 eventHistoryElement, in boolean allServersIncluded);
+};
+
+interface TextMessageConsumer {
+   void acceptTextMessageForUser( in string userId, in textMessage::MessageTransportStruct message );
+   void acceptTextMessageForProductClass( in cmiProduct::ProductType productType, in cmiProduct::ClassKey classKey,  in textMessage::MessageTransportStruct message );
+};
+
+interface QuoteRiskManagementProfileConsumer {
+    void acceptNewProfile(in string userId, in cmiQuote::QuoteRiskManagementProfileStruct quoteRiskProfile);
+    void acceptNewGlobalStatusEnabled(in string userId, in boolean newEnabledStatus);
+    void acceptRemoveProfile(in string userId, in cmiProduct::ClassKey classkey);
+};
+
+interface TradingPropertyConsumer {
+    void acceptExchangePrescribedWidthUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in cmiProduct::EPWStructSequence epwSpread );
+    void acceptAllocationStrategyUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AllocationStrategyStruct code );
+    void acceptAllocationStrategiesUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AllocationStrategyStructV2Sequence strategies );
+    void acceptDPMParticipationPercentageUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in double participationPercentage );
+    void acceptFastMarketSpreadUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in double value );
+    void acceptContingencyTimeToLiveUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long value );
+    void acceptMinSizeForBlockTradeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size );
+    void acceptBookDepthSizeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long value );
+    void acceptRFQResponseRatioUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in double ratio );
+    void acceptPrescribedWidthRatioUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in double ratio );
+    void acceptRFQTimeoutUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long timeout );
+    void acceptOpeningPeriodTimeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in tradingProperty::TimeRangeStruct timeRange );
+    void acceptOpeningPriceDelayUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in long delay );
+    void acceptOpeningPriceRateUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in long rate );
+    void acceptPreClosingTimeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in tradingProperty::TimeRangeStruct timeRange );
+    void acceptMinQuoteCreditUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in long size );
+    void acceptContinuousQuotePeriodUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in long period );
+
+};
+
+interface TradingPropertyConsumerExt : TradingPropertyConsumer {
+    void acceptIPPMinSizeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptIPPTradeThroughFlagUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in boolean flag );
+    void acceptQuoteLockTimerUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptQuoteNotificationTimerUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size );
+    //for publishing the dpm rights scale update
+    void acceptDpmRightsScalesUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::DpmRightsScaleStructSequence scales );
+
+    //for publishing the dpm rights split rate
+    void acceptDpmRightsSplitRateUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in double splitRate );
+
+    //for publishing the UMA split rate
+    void acceptUMASplitRateUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in double splitRate );
+
+    void acceptPreferredDPMRightsRateUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in double pdpmRightsRate );
+
+  //for publishing the UMAEqualDistributionWeightForDPM
+    void acceptUMAEqualDistributionWeightForDPMUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long weightForDPM );
+    
+    void acceptQuoteLockMinimumTradeQuantityUpdate ( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+
+    void acceptQuoteTriggerTimerUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptSatisfactionAlertFlagUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in boolean flag );
+    void acceptLinkageEnabledFlagUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in boolean flag );
+    void acceptFPQSUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptFCQSUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptSOrderTimeToLiveUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptPOrderTimeToLiveUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptPAOrderTimeToLiveUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptSOrderTimeToCreateUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptSOrderTimeToCreateBeforeCloseUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptSOrderTimeToRejectFillUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+
+    void acceptLotSizeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptETFFlagUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in boolean flag );
+    void acceptIPPToleranceAmountUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in double amount );
+    void acceptNeedsDpmQuoteToOpenUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in boolean flag );
+    void acceptTradeTypeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long size);
+    void acceptProductOpenProcedureTypeUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in long productOpenProcedureType);
+
+    void acceptAuctionTimeToLiveUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionRangeSequence timeRange);
+    void acceptAuctionMinPriceIncrementUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionLongSequence increment);
+    void acceptAuctionMinQuotersUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionLongSequence quoters);
+    void acceptAuctionReceiverTypesUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionLongSequence types);
+    void acceptInternalizationGuaranteedPercentageUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::InternalizationPercentageSequence percentage);
+    void acceptAuctionOrderTicksAwayFromNBBOUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionLongSequence size);
+    void acceptAutoExEligibleStrategyTypesUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in cmiUtil::LongSequence types);
+    void acceptAuctionEnabledUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionBooleanSequence enabled);
+    void acceptAuctionMinOrderSizeForTicksAboveNBBOUpdate( in tradingProperty::PropertySequenceId seq, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in tradingProperty::AuctionOrderSizeTicksSequence sizeTicks);
+};
+
+interface CASAdminConsumer {
+    void addCASUser( in string originator, in string casPairName, in string userId);
+    void removeCASUser( in string originator, in string casPairName, in string userId);
+    void addCASFirm( in string originator, in string casPairName, in string userId, in cmiUser::ExchangeFirmStruct firm  );
+    void removeCASFirm( in string originator, in string casPairName, in string userId, in cmiUser::ExchangeFirmStruct firm);
+    void addCASClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void removeCASClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void addCASProductForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ProductKey productKey);
+    void removeCASProductForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ProductKey productKey);
+    void addCASRFQClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void removeCASRFQClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void addCASCurrentMarketClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void removeCASCurrentMarketClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void addCASOpeningPriceClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void removeCASOpeningPriceClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void addCASTickerClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void removeCASTickerClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void addCASRecapClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void removeCASRecapClassForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey);
+    void addCASBookDepthProductForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ProductKey productKey);
+    void removeCASBookDepthProductForUser( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ProductKey productKey);
+    void addCASQuoteLockedNotification( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ProductKey productKey);
+    void removeCASQuoteLockedNotification( in string originator, in string casPairName, in string userId, in cmiSession::TradingSessionName sessionName, in cmiProduct::ProductKey productKey);
+};
+
+interface BookDepthConsumer {
+    // acceptBookDepth(...) will be deprecated after all CAS's support block publishing.
+    //
+    void acceptBookDepth(in cmiUtil::LongSequence groups, in cmiMarketData::BookDepthStruct bookDepth);
+    void acceptBookDepthForClass(in util::RoutingParameterStruct routingParameters, in cmiMarketData::BookDepthStructSequence bookDepths);
+};
+interface QuoteUpdateReportConsumer {
+    void acceptQuoteUpdateReport(in cmiUtil::LongSequence groups,
+                                in quote::QuoteInfoStruct quoteInfo,
+                                in cmiUtil::UpdateStatusReason statusChange,
+                                in cmiQuote::QuoteStruct updatedQuote,
+                                in cmiUtil::ActivityReason activityReason);
+};
+
+interface QuoteStatusConsumerExt : QuoteStatusConsumer, QuoteUpdateReportConsumer {
+};
+
+
+
+interface NBBOAgentAdminConsumer {
+    void acceptForcedTakeOver(in string userId,
+                            in cmiSession::TradingSessionName sessionName,
+                            in cmiProduct::ClassKey classKey,
+                            in string reason);
+
+    void acceptReminder(in string userId,
+                in cmiSession::TradingSessionName sessionName,
+                in cmiProduct::ClassKey classKey,
+                in cmiIntermarketMessages::OrderReminderStruct reminder);
+};
+
+interface OrderFillRejectConsumer
+{
+    void acceptFillRejectReport(in cmiUtil::LongSequence groups,
+        in cmiIntermarketMessages::FillRejectStructSequence fillRejects);
+};
+
+interface HeldOrderCancelConsumer
+{
+    // the cancelStruct will have to strip the user firm information
+// this will be used for cancel replace as well
+    void acceptCancelHeldOrder(in cmiUtil::LongSequence groups,
+              in cmiProduct::ProductKeysStruct productKeys,
+              in cmiIntermarketMessages::HeldOrderCancelRequestStruct heldOrderCancelRequest);
+};
+
+interface HeldOrderConsumer
+{
+    void acceptHeldOrders(in cmiUtil::LongSequence groups,
+              in cmiSession::TradingSessionName sessionName,
+              in cmiProduct::ClassKey classKey,
+              in cmiIntermarketMessages::HeldOrderStructSequence heldOrders);
+};
+
+interface NewHeldOrderConsumer
+{
+    void acceptNewHeldOrder(in cmiUtil::LongSequence groups,
+                in cmiIntermarketMessages::HeldOrderStruct heldOrder);
+};
+
+interface HeldOrderStatusConsumer
+{
+   // these order status are for customer orders the agent is handling
+
+    void acceptHeldOrderStatus(in cmiUtil::LongSequence groups,
+                   in cmiIntermarketMessages::HeldOrderStruct order);
+};
+
+interface HeldOrderCancelReportConsumer
+{
+    void acceptHeldOrderCancelReport(in cmiUtil::LongSequence groups,
+                       in cmiIntermarketMessages::HeldOrderStruct heldOrder,
+                       in cmiUtil::CboeIdStruct cancelRequestId,
+                       in cmiOrder::CancelReportStruct cancelReport );
+};
+
+interface HeldOrderFilledReportConsumer
+{
+    void acceptHeldOrderFilledReport(in cmiUtil::LongSequence groups,
+                in cmiIntermarketMessages::HeldOrderStruct heldOrder,
+                in cmiOrder::FilledReportStructSequence filledOrder);
+
+};
+
+interface IntermarketOrderStatusConsumer : consumers::OrderFillRejectConsumer,
+    consumers::HeldOrderCancelConsumer, consumers::HeldOrderConsumer,
+    consumers::NewHeldOrderConsumer, consumers::HeldOrderStatusConsumer,
+    consumers::HeldOrderCancelReportConsumer, consumers::HeldOrderFilledReportConsumer
+{
+};
+
+interface OrderStatusConsumerExt : consumers::IntermarketOrderStatusConsumer, consumers::OrderStatusConsumer
+{
+};
+interface LinkageAdminMessageConsumer {
+   void acceptLinkageTextMessage(in string text);
+   void acceptLinkageStatusMessage(in string text);
+   void acceptLinkageRejectMessage(in string text);
+};
+
+interface QuoteNotificationConsumer
+{
+	void acceptQuoteLockedNotification(in cmiUtil::LongSequence userKeys, in cmiQuote::LockNotificationStruct notification);
+};
+
+interface RemoteCASSessionManagerConsumer
+{
+    void logout(in string casOrigin, in string userSessionIOR, in string userId);
+};
+
+interface RemoteCASCurrentMarketConsumer
+{
+
+    void subscribeCurrentMarketForClassV3(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV3::CMICurrentMarketConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeCurrentMarketForClassV3(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV3::CMICurrentMarketConsumer clientListener);
+
+    void subscribeCurrentMarketForProductV3(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV3::CMICurrentMarketConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeCurrentMarketForProductV3(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV3::CMICurrentMarketConsumer clientListener);
+
+    void subscribeCurrentMarketForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMICurrentMarketConsumer clientListener);
+
+    void subscribeCurrentMarketForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMICurrentMarketConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeCurrentMarketForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMICurrentMarketConsumer clientListener);
+
+    void unsubscribeCurrentMarketForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMICurrentMarketConsumer clientListener);
+
+    void subscribeCurrentMarketForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMICurrentMarketConsumer clientListener);
+
+    void subscribeCurrentMarketForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMICurrentMarketConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeCurrentMarketForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMICurrentMarketConsumer clientListener);
+
+    void unsubscribeCurrentMarketForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMICurrentMarketConsumer clientListener);
+};
+
+interface RemoteCASNBBOConsumer
+{
+    void subscribeNBBOForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMINBBOConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeNBBOForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMINBBOConsumer clientListener);
+
+    void unsubscribeNBBOForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMINBBOConsumer clientListener);
+
+    void unsubscribeNBBOForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMINBBOConsumer clientListener);
+
+    void subscribeNBBOForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMINBBOConsumer clientListener,
+		    in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeNBBOForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMINBBOConsumer clientListener);
+
+    void unsubscribeNBBOForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMINBBOConsumer clientListener);
+
+    void unsubscribeNBBOForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMINBBOConsumer clientListener);
+};
+
+interface RemoteCASTickerConsumer
+{
+    void subscribeTickerForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMITickerConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeTickerForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMITickerConsumer clientListener);
+
+    void subscribeTickerForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMITickerConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeTickerForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMITickerConsumer clientListener);
+
+    void unsubscribeTickerForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMITickerConsumer clientListener);
+
+    void unsubscribeTickerForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMITickerConsumer clientListener);
+    
+    void subscribeLargeTradeLastSaleForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in TickerConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeLargeTradeLastSaleForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in TickerConsumer clientListener);
+    
+};
+
+interface RemoteCASRecapConsumer
+{
+    void subscribeRecapForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIRecapConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeRecapForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMIRecapConsumer clientListener);
+
+    void unsubscribeRecapForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIRecapConsumer clientListener);
+
+    void unsubscribeRecapForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMIRecapConsumer clientListener);
+
+    void subscribeRecapForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIRecapConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeRecapForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMIRecapConsumer clientListener);
+
+    void unsubscribeRecapForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIRecapConsumer clientListener);
+
+    void unsubscribeRecapForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMIRecapConsumer clientListener);
+};
+
+interface RemoteCASExpectedOpeningPriceConsumer
+{
+    void subscribeExpectedOpeningPriceForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeExpectedOpeningPriceForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMIExpectedOpeningPriceConsumer clientListener);
+
+    void unsubscribeExpectedOpeningPriceForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener);
+
+    void unsubscribeExpectedOpeningPriceForClass(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallback::CMIExpectedOpeningPriceConsumer clientListener);
+
+    void subscribeExpectedOpeningPriceForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeExpectedOpeningPriceForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIExpectedOpeningPriceConsumer clientListener);
+};
+
+interface RemoteCASBookDepthConsumer
+{
+    void subscribeBookDepthForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIOrderBookConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeBookDepthForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIOrderBookConsumer clientListener);
+
+    void subscribeBookDepthForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIOrderBookConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeBookDepthForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMIOrderBookConsumer clientListener);
+
+    void unsubscribeBookDepthForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIOrderBookConsumer clientListener);
+
+    void unsubscribeBookDepthForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMIOrderBookConsumer clientListener);
+};
+
+interface RemoteCASBookDepthUpdateConsumer
+{
+    void subscribeBookDepthUpdateForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIOrderBookUpdateConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeBookDepthUpdateForClassV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV2::CMIOrderBookUpdateConsumer clientListener);
+
+    void subscribeBookDepthUpdateForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIOrderBookUpdateConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void subscribeBookDepthUpdateForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMIOrderBookUpdateConsumer clientListener);
+
+    void unsubscribeBookDepthUpdateForProductV2(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV2::CMIOrderBookUpdateConsumer clientListener);
+
+    void unsubscribeBookDepthUpdateForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallback::CMIOrderBookUpdateConsumer clientListener);
+};
+
+interface RemoteCASCallbackRemovalConsumer
+{
+    void acceptCallbackRemoval(in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in string reason,
+                      in exceptions::ErrorCode errorCode,
+                      in cmiUtil::CallbackInformationStruct callbackInfo);
+};
+
+interface RemoteCASRecoveryConsumer
+{
+    void acceptMarketDataRecoveryForGroup(in long mdcasGroupKey);
+    void acceptMDXRecoveryForGroup(in long mdxGroupKey);
+};
+
+interface MarketDataCallbackConsumer {
+    void subscribeCurrentMarket(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMICurrentMarketConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue,
+                      in boolean disseminateExternalMarketData);
+
+    void unsubscribeCurrentMarket(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMICurrentMarketConsumer clientListener);
+
+    void subscribeTicker(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMITickerConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue,
+                      in boolean disseminateExternalMarketData);
+
+    void unsubscribeTicker(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMITickerConsumer clientListener);
+
+    void subscribeRecap(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMIRecapConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue,
+                      in boolean disseminateExternalMarketData);
+
+    void unsubscribeRecap(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMIRecapConsumer clientListener);
+
+    void subscribeNBBO(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMINBBOConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeNBBO(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiCallbackV4::CMINBBOConsumer clientListener);
+
+    void subscribeCurrentMarketForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in internalCallback::CurrentMarketManualQuoteConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue,
+                      in boolean disseminateExternalMarketData);
+
+    void unsubscribeCurrentMarketForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in internalCallback::CurrentMarketManualQuoteConsumer clientListener);
+
+    void subscribeTickerForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV4::CMITickerConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue,
+                      in boolean disseminateExternalMarketData);
+
+    void unsubscribeTickerForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV4::CMITickerConsumer clientListener);
+
+    void subscribeRecapForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV4::CMIRecapConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue,
+                      in boolean disseminateExternalMarketData);
+
+    void unsubscribeRecapForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV4::CMIRecapConsumer clientListener);
+
+    void subscribeNBBOForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV4::CMINBBOConsumer clientListener,
+                      in cmiUtil::QueueAction actionOnQueue);
+
+    void unsubscribeNBBOForProduct(in util::RoutingParameterStruct routingParameters,
+                      in string casOrigin,
+                      in string userId,
+                      in string userSessionIOR,
+                      in cmiProduct::ProductKey productKey,
+                      in cmiCallbackV4::CMINBBOConsumer clientListener);
+};
+
+interface SystemControlConsumer {
+  void acceptServerFailure(
+	in cmiUtil::LongSequence groups,
+	in product::GroupKey groupKeyFailed,
+	in util::ServerType serverType,
+	in cmiSession::TradingSessionName sessionName,
+	in cmiProduct::ClassKeySequence classKeys,
+	in cmiUtil::ActivityReason reason,
+	in string text);
+
+  void acceptServerAsMaster(
+	in product::GroupKey processGroupKey,
+	in util::ServerType serverType,
+	in cmiUtil::ActivityReason reason,  /* (SYSTEM or FAILOVER) */
+	in octet side, /* (A or B) */
+	in string text);
+
+   void acceptGroupCancelSummary(
+	in util::SummaryStruct cancelSummary);
+
+   void acceptUserActivityTimeout(
+	in cmiUtil::LongSequence groups,
+	in string userId,
+	in cmiSession::TradingSessionName sessionName,
+	in cmiProduct::ClassKeySequence classKeys,
+	in cmiUtil::ActivityReason reason,
+	in string text);
+};
+
+interface PropertyConsumer
+{
+   void acceptPropertyUpdate(in property::PropertyGroupStruct propertyGroupStruct);
+   void acceptPropertyRemove(in property::Category category, in property::PropertyKey propertyKey);
+
+};
+
+
+interface IntermarketAdminMessageConsumer
+{
+   void acceptIntermarketAdminMessage(
+                   in cmiSession::TradingSessionName sessionName,
+                   in cmiUser::Exchange sourceExchange,
+                   in cmiProduct::ProductKeysStruct productKey,
+                   in cmiIntermarketMessages::AdminStruct adminMessage);
+
+   void acceptBroadcastIntermarketAdminMessage(
+                   in cmiSession::TradingSessionName sessionName,
+                   in cmiUser::Exchange sourceExchange,
+                   in cmiIntermarketMessages::AdminStruct adminMessage);
+};
+
+interface MarketAlertConsumer
+{
+//comment out until feature is implemented 4-22-04
+//void acceptMarketAlert(in util::RoutingParameterStruct routingParameters,in cmiQuote::MarketAlertStruct alert);
+};
+
+interface AuctionConsumer {
+        void acceptAuction(
+                in util::RoutingParameterStruct routingParameters, 
+                in cmiUtil::LongSequence activeUserKeys, 
+                in cmiOrder::AuctionStruct auctionStruct);
+
+        void acceptDirectedAIMAuction(
+                in util::RoutingParameterStruct routingParameters, 
+                in cmiUtil::LongSequence activeUserKeys, 
+                in cmiOrder::AuctionStruct auctionStruct);
+};
+
+
+interface GroupElementConsumer {
+    void acceptUpdateElement(in groupElement::ElementStruct updatedElementStruct);
+    void acceptAddElement(in groupElement::ElementKey parentGroupElementKey,
+			  in groupElement::ElementStruct newElementStruct);
+    void acceptRemoveElement(in groupElement::ElementKey parentGroupElementKey,
+			     in groupElement::ElementStruct elementStruct,
+			     in boolean isRemoveElement);
+
+}; 
+	// New interface for accepting blocked order status messages
+	interface BlockedOrderStatusConsumer 
+	{
+		void acceptOrderStatus(in order::BlockedOrderStatusSequence statusMsgs);
+	};
+
+	interface OrderStatusConsumerV2 : OrderStatusConsumer, BlockedOrderStatusConsumer 
+	{
+	};
+
+	// New interface for accepting blocked quote status messages
+	interface BlockedQuoteStatusConsumer 
+	{
+		void acceptQuoteStatus(in util::ShortSequence seqmap, 
+			in quote::GroupQuoteFillReportStructSequence fillReports, 
+			in quote::GroupQuoteFillReportV3StructSequence fillReportsV3,
+			in quote::GroupQuoteDeleteReportStructSequence deleteReports, 
+			in quote::GroupQuoteDeleteReportV2StructSequence deleteReportsV2,
+			in quote::GroupQuoteDeleteReportV3StructSequence deleteReportsV3, 
+			in quote::GroupQuoteBustReportStructSequence bustReports,
+			in quote::GroupQuoteBustReportV3StructSequence bustReportsV3, 
+			in quote::GroupQuoteStatusUpdateStructSequence statusUpdates);
+	};
+
+	interface QuoteStatusConsumerV2 : QuoteStatusConsumer, BlockedQuoteStatusConsumer 
+	{
+	};
+
+	//Changes for ETNs
+	
+	// Trade Notification Channel
+	interface TradeNotificationConsumer {
+	
+	        void acceptTradeNotification( 
+            		in util::RoutingParameterStruct routingParameters, 
+            		in string userId,
+            		in cmiTradeNotification::TradeNotificationStruct tradeNotification);
+            
+        void acceptResendTradeNotification( 
+            		in util::RoutingParameterStruct routingParameters, 
+            		in string userId,
+            		in cmiTradeNotification::TradeNotificationStructSequence tradeNotifications);
+
+        void acceptTradeNotificationRejectAck( 
+                   	in util::RoutingParameterStruct routingParameters, 
+                   	in string userId,
+                   	in string tradeNotificationId, 
+	       		in short  status,  /* Status will be Constants defined such as DELIVERED, REJECT, ACKNOWLDEGED */
+			in short reasonCode);
+	};
+	
+	// Trade Notification Admin Channel
+	interface TradeNotificationAdminConsumer {
+	
+               void acceptTradeNotificationResponse( 
+                   	in util::RoutingParameterStruct routingParameters, 
+                   	in string userId,
+                   	in string tradeNotificationId, 
+	       		in short  status,  /* Status will be Constants defined such as DELIVERED, REJECT, ACKNOWLDEGED */
+			in short reasonCode);
+       
+               void publishTradeNotificationsForClasses( 
+                   	in util::RoutingParameterStruct routingParameters,  
+                   	in string userId,
+                   	in cmiProduct::ClassKeySequence classKeys);       
+
+               void publishTradeNotificationsForFirm( 
+                   	in util::RoutingParameterStruct routingParameters,  
+                   	in string userId,
+			in cmiUser::ExchangeFirmStruct firm);
+
+               void publishAllUnackedTradeNotifications( 
+                   	in util::RoutingParameterStruct routingParameters, 
+                   	in string userId,
+                   	in cmiProduct::ClassKeySequence classKeys);
+
+               void publishAllTradeNotifications( 
+                   	in util::RoutingParameterStruct routingParameters, 
+                   	in string userId);
+       };
+	
+	
+	//End of ETN related changes.
+};
+//#pragma GENERATE_CODE ON
+#endif

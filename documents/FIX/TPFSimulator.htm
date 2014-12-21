@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>TPFSimulator </TITLE>
+<META NAME="Template" CONTENT="C:\msoffice\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<H1 ALIGN="CENTER"><A NAME="top"></A>TPF Simulator</H1>
+<P ALIGN="CENTER"><HR></P>
+<H2>Table of Contents</H2>
+<P><A HREF="#introduction">Introduction</A></P>
+<P><A HREF="#process">Process</A></P>
+
+<UL>
+<LI><A HREF="#process_orderRequest">Order Request Received</A></LI></UL>
+
+
+<UL>
+<LI> <A HREF="#process_reportGeneration">Report Generation</A></LI></UL>
+
+
+<UL>
+
+<UL>
+<LI> <A HREF="#process_reportGenerationNew">New Order</A> </LI></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<LI><A HREF="#process_reportGenerationCancel">Cancel Order</A> </LI></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<LI><A HREF="#process_reportGenerCancelRepl">Cancel/Replace</A></LI></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<LI><A HREF="#process_reportGenerNothingDone">Nothing Done</A> </LI></UL>
+</UL>
+
+
+<UL>
+
+<UL>
+<LI><A HREF="#process_reportGenerationCancelTLC">Cancel with TLC</A></LI></UL>
+</UL>
+
+
+<UL>
+<LI><A HREF="#process_sendReports">Send Reports</A></LI></UL>
+
+<P ALIGN="CENTER"><HR></P>
+<H2><A NAME="introduction"></A>Introduction</H2>
+<P>The TPF Simulator is a component designed to partially emulate the TPF system.  It has the functionality to:</P>
+
+<UL>
+<LI>Receive new, cancel, cancel/replace requests.</LI>
+<LI>Generate a fill or cancel report for the request.</LI>
+<LI>Send the reports back to the order's request source.</LI></UL>
+
+<P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P>
+<P ALIGN="CENTER"><HR></P>
+<H2><A NAME="process"></A>Process</H2>
+<H3><A NAME="process_orderRequest"></A>Order Request Received </H3>
+<P>The TPF Simulator receives an order, verifies the order type and proceeds to generate the appropriate report. The order is not validated and is stored in memory for further reference (i.e., if a cancel request is received for that order).</P>
+<H3><A NAME="process_reportGeneration"></A>Report Generation </H3>
+<P>The TPF Simulator generates the reports based on the information received in the order request or in the original order if a cancel or cancel/replace report has been generated. No validation such as cancelQty greater than originalQty or any kind takes place.</P>
+<H4><A NAME="process_reportGenerationNew"></A>New Order Request</H4>
+<P>A new order request will generate two fill reports.  The first fill report will have always two contraBroker information.  The second fill report will show only one. </P>
+<H4><A NAME="process_reportGenerationCancel"></A>Cancel Order Request</H4>
+<P>A cancel order request will generate one cancel report.  The information on the cancel request is not enough to generate the cancel report, therefore, the original order must be consulted.  It is important to make sure to send first the new order request and then the cancel request.  If a cancel request is received and no original order is found, the cancel report is not generated.</P>
+<H4><A NAME="process_reportGenerCancelRepl"></A>Cancel/Replace Request</H4>
+<P>A cancel/replace request generates one cancel report.  The same rules applied to the creation of the cancel order request report are used by this request.</P>
+<H4><A NAME="process_reportGenerNothingDone"></A>Creating a Nothing Done Report</H4>
+<P>The TPF Simulator will always responed with two fill reports when a new order request is received.  However, the simulator can be configured to send a nothing done report instead. In the TpfSimulator.properties file insert the following line:</P>
+<FONT FACE="Courier"><P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.classForNothingDoneReports = IBM</P>
+</FONT><P>This property will be use by the TPF Simulator to generate a nothing done report when a new order request for the class specified in the properties is received.</P>
+<H4><A NAME="process_reportGenerationCancelTLC"></A>Cancel with TLC Report</H4>
+<P>All cancel requests received by the TPF Simulator will generate a cancel report.  However, if a cancel report with TLC is required, the TPF Simulator can be configured to send it. In the TpfSimulator.properties file insert the following line:</P>
+<FONT FACE="Courier"><P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.classForCancelTLCReports = OEX.</P>
+</FONT><P>This property will indicate to the TPF Simulator that it has to respond with a cancel with TLC report when a cancel request with the class specified in the properties is received.</P>
+<H3><A NAME="process_sendReports"></A>Send Reports</H3>
+<P>Once the reports have been created, they are sent back to the order source.  </P>
+<P>The TPF Simulator is not intended to have all the functions of the TPF system, but to provide a report service with the capacity to create and send reports with valid information and with the same format that the TPF system provides.</P>
+<P>Current configuration (10/09/00) of the TpfSimulator.properties file.</P>
+<P># -----------------------------------------------------------------------</P>
+<P># Property file to set a TPF simulator to emulate the TPF,</P>
+<P># ORDER SERVICE, REPORT SERVICE, TAG SERVICE.</P>
+<P>#</P>
+<P># NOTE: The simulator is setup to work for the following port numbers</P>
+<P># 30030, 30033, 30032 (These are production port numbers).</P>
+<P># </P>
+<P># -----------------------------------------------------------------------</P>
+<P>&lt;prefix&gt;TPFSimulator.autoStart=true</P>
+<P># -----------------------------------------</P>
+<P># Define all the containers first</P>
+<P># -----------------------------------------</P>
+<P>&lt;prefix&gt;TPFSimulator.listOfContainers=adapters</P>
+<P># -----------------------------------------</P>
+<P># Define properties for each container.</P>
+<P># -----------------------------------------</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.containerImpl=com.cboe.infrastructureServices.foundationFramework.BOContainer</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.transactionPolicy=OBJECT_MANAGED</P>
+<P># -----------------------------------------</P>
+<P># List all homes and then defined property </P>
+<P># for each home.</P>
+<P># -----------------------------------------</P>
+<P>&lt;prefix&gt;TPFSimulator.listOfHomes=SimulatorHome</P>
+<P>&lt;prefix&gt;TPFSimulator.SimulatorHome.homeName=ConnectionServiceHome</P>
+<P>&lt;prefix&gt;TPFSimulator.SimulatorHome.containerDescName=adapters</P>
+<P>&lt;prefix&gt;TPFSimulator.SimulatorHome.homeImpl=com.cboe.connectionServer.ConnectionServiceHomeImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.SimulatorHome.logServiceComponent=TPFSimulator</P>
+<P># -----------------------------------------------------</P>
+<P># ConnectionServerHome/TPFSimulator specific properties</P>
+<P># -----------------------------------------------------</P>
+<P>*****The properties in red must be change to the name of the server that will be running the TPFSimulator</P>
+<P>&#9;hostNames = server name or IP, where the TPFSimulator will run.</P>
+<P>&#9;PortNumbers = When defining the portNumbers, be sure that are not been use by other system. </P>
+<P>*****</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.first=TPF1</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.next=TPF2</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.next=TPF3</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.serviceType=server</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.serviceImpl=com.cboe.externalIntegrationServices.applappl.ApplApplConnectionServerBridge</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.enabled=true</P>
+<FONT COLOR="#ff0000"><P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.hostNames=fix0a</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.portNumbers=30030</P>
+</FONT><P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.retryTimeout=5120</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.retryCount=1</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF1.maxSendQueueDepth=-1</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.serviceType=server</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.serviceImpl=com.cboe.externalIntegrationServices.applappl.ApplApplConnectionServerBridge</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.enabled=true</P>
+<FONT COLOR="#ff0000"><P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.hostNames=fix0a</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.portNumbers=30032</P>
+</FONT><P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.retryTimeout=5120</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.retryCount=1</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF2.maxSendQueueDepth=-1</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.serviceType=server</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.serviceImpl=com.cboe.externalIntegrationServices.applappl.ApplApplConnectionServerBridge</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.enabled=true</P>
+<FONT COLOR="#ff0000"><P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.hostNames=fix0a</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.portNumbers=30033</P>
+</FONT><P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.retryTimeout=5120</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.retryCount=1</P>
+<P>&lt;prefix&gt;TPFSimulator.adapters.ConnectionServiceHome.TPF3.maxSendQueueDepth=-1</P>
+<P># ---------------------------------------------</P>
+<P># Appl-Appl Services</P>
+<P># ---------------------------------------------</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.first=ORDERS</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.ORDERS.next=REPORTS</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.next=TAGDATA</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.ORDERS.serviceType=server</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.ORDERS.serviceImpl=com.cboe.externalIntegrationServices.tpfAdapter.fix.simulator.TPFOrderServer</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.serviceType=server</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.serviceImpl=com.cboe.externalIntegrationServices.tpfAdapter.fix.simulator.TPFReportServer</P>
+<P>*****Properties that specified special behavior to orders with the class (Symbol) set in this configuration.</P>
+<P>*****</P>
+<FONT COLOR="#ff0000"><P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.classForNothingDoneReports = IBM</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.REPORTS.classForCancelTLCReports = OEX</P>
+</FONT><P>&nbsp;</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.TAGDATA.serviceType=server</P>
+<P>&lt;prefix&gt;TPFSimulator.applService.TAGDATA.serviceImpl=com.cboe.externalIntegrationServices.applappl.ApplDefaultService</P>
+<P># -------------------------------------------------------------------------</P>
+<P># Process level properties needed.</P>
+<P># -------------------------------------------------------------------------</P>
+<P>&lt;prefix&gt;TPFSimulator.eventServiceImpl=com.cboe.infrastructureServices.eventService.EventServiceInProcessImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.orbServiceImpl=com.cboe.infrastructureServices.orbService.OrbServiceNullImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.traderServiceImpl=com.cboe.infrastructureServices.traderService.TraderServiceNullImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.adminServiceImpl=com.cboe.infrastructureServices.systemsManagementService.AdminServiceNullImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.instrumentationServiceImpl=com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceNullImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.securityServiceImpl=com.cboe.infrastructureServices.securityService.NullSecurityServiceImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.sessionManagementServiceImpl=com.cboe.infrastructureServices.sessionManagementService.SessionManagementServiceNullImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.logServiceFileName=../Server/etc/TPFSimulatorLoggingService.properties</P>
+<P>&lt;prefix&gt;TPFSimulator.logServiceImpl=com.cboe.infrastructureServices.loggingService.LogServiceImpl</P>
+<P>&lt;prefix&gt;TPFSimulator.logServiceComponent=TPFSimulator</P>
+<P>&nbsp;</P>
+<P><A HREF="#top"><IMG SRC="return7.jpg" BORDER=0 WIDTH=101 HEIGHT=38></A></P></BODY>
+</HTML>

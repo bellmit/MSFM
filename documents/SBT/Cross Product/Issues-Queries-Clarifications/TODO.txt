@@ -1,0 +1,3 @@
+Stuff to remember/revisit later:
+
+- New ProductDataCache will now reside in HyTS, TpfAdapter besides OHServer. Currently, by default, it's configured to load the universe (all products) via PCS query. In future (during Perf testing), we may want to see the impact of this on mem usage. We can optimize it by only caching thisGroup's products + equity TradeServers products. However, that would introduce a config change everytime we introduce a new equity TS process group.

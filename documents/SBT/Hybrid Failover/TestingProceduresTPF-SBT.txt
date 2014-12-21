@@ -1,0 +1,110 @@
+Hybrid Failover Testing Procedures between TPF and CBOEDirect
+
+1) Connect TpfGlobalAdapter to TPF
+   a) execute "globalExternalServices start"
+      or
+      "ar TpfGlobal startAllServices"
+
+   b) verify the connection "globalExternalServices check"
+      or
+      "connectionStatus TpfG"
+
+2) Connect TpfAdapter to TPF 
+   a) execute "businessExternalServices start"
+      or
+      "ar TpfAdapter startAllServices"
+
+   b) verify the connection "businessExternalServices check"
+      or
+      "connectionStatus TpfA"
+
+3) Verify that the product are tagged to TPF by running
+   "ar TpfAdapter showApplServiceTag Tag"
+   the line: "Connected/LogggedIn" must be "true/true"
+
+4) Choose a class symbol like IBM to work with
+
+5) Make sure the session W_MAIN is open
+   On SAGUI set class IBM to open
+
+6) Receive an order from TPF
+   The order should appear in TpfAdapter.debug file and on SAGUI BookDepth window
+   TPF may send mixture of simple and complex orders.
+   Monitor TpfAdapter.debug file
+
+7) TPF will ask to cut the connection with CBOEDirect
+
+9) Disconnect the link to TPF by running
+   "ar TpfAdapter stopAllServices"
+   "ar TpfGlobal stopAllServices"
+
+10) When TPF request that we failover do the following:
+    a) stopTradeengSystem BC Master
+    b) startTradeengSystem BC Slave (takes 30 min)
+    c) switchTradeengSystem BC Master
+
+11) When BC processes are up and running tell TPF that we are going
+    to reconnect the link to TPF (follow steps in 1) )
+
+12) On SAGUI all products will be in Halted state
+
+13) TPF may send us cancelled orders that which trace will
+    be receive in TpfAdapter.log and HybridTradeServer.log
+
+14) On SAGUI change the chosen class state from Halted to Pre-Open
+
+15) TPF should receive on Market Indicator channel ("MKTC") Market
+    Indicator character 'P'
+    In TpfGlobal.debug file we shiyld see the line:
+    TpfMktIndServiceConnection sent(42) ---> HSBT01   MRKTDATAMKTCP1457IBM 
+                                                                  ^
+                                                                  | P Indicator
+------------------------------------------------------------------------------------
+Procedures that limits sending large amount of messages to TPF
+
+1) Connect TpfGlobalAdapter to TPF
+   a) ar TpfGlobal startAllServices
+
+
+2) Connect TpfAdapter to TPF in selective way
+   a) ar TpfAdapter startAllServices "Order"
+   b) ar TpfAdapter startAllServices "Quote"
+   c) ar TpfAdapter startAllServices "Tag"
+
+3) Open one class
+   a) ar HybridTradeServer1 setProductStateByClass W_MAIN IBM 2
+       states accepted (last arg):
+       1 - closed
+       2 - pre-open
+       3 - opening-rotation
+       4 - open
+       5 - halted
+       6 - fast
+       8 - on-hold
+      10 - suspended
+
+  b) alternative command
+     setProductStateForTradeServer HybridTradeServer1 W_MAIN f -byClass IBM
+
+4) To enter a quote
+   a) injectQuote IBM 2004:7 55:00 C JIM 2.10 10 2.30 20
+
+      For example,
+      devenv3 /sbt/test9/tradeeng/run_dir $ injectQuote IBM 2004:7 55:00 C JIM 2.10 10 2.30 20
+
+      Adds a quote for JIM on the "IBM Aug 2004  $55 Call" series with a 10@$2.10 bid and 20@2.30 ask.
+------------------------------------------------------------------------------------
+Useful calls
+
+1) To set all product state for a session 
+   a) find out valid group 
+      getServersForSession forProductState W_MAIN
+
+   b) setAllProductStatesForSession W_MAIN p -forServer test7BC01HybridTradeServer1
+
+2) To find an order in the database
+    loginDb W_MAIN_H <---- Hybrid DB
+
+   select BRANCH, BRANCHSEQUENCENUMBER, STATE from sbtOrder where ORSID = 'DXO049'
+------------------------------------------------------------------------------------
+

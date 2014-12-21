@@ -1,0 +1,207 @@
+#ifndef MARKET_DATA_IDL
+#define MARKET_DATA_IDL
+
+#include "cmiUtil.idl"
+#include "cmiMarketData.idl"
+#include "quote.idl"
+#include "cmiUser.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "session.idl"
+
+//#pragma javaPackage "com.cboe.idl"
+
+module marketData
+{
+    // ###############################
+    // # InternalTickerStruct        #
+    // ###############################
+    struct InternalTickerStruct
+    {
+        cmiUtil::TimeStruct             tradeTime;
+        cmiMarketData::TickerStruct     ticker;
+    };
+    typedef sequence <InternalTickerStruct> InternalTickerStructSequence;
+    typedef char TickerSource;
+    struct InternalTickerDetailStruct
+    {
+       marketData::InternalTickerStruct lastSaleTicker;
+       cmiMarketData::MarketDataDetailStruct detailData;
+       marketData::TickerSource source;
+       cmiUtil::CboeIdStruct tradeId;
+       string generatingId;
+       boolean isDisseminated;
+       cmiMarketData::NBBOStruct botrStruct;
+    };
+    typedef sequence <InternalTickerDetailStruct> InternalTickerDetailStructSequence;
+
+    struct ClassRecapStruct {
+        cmiMarketData::RecapStruct underlyingRecap;
+        cmiMarketData::RecapStructSequence productRecaps;
+    };
+
+    struct OrderBookPriceDetailStruct
+    {
+        cmiUtil::PriceStruct price;
+        long marketMakerVolume;
+        long customerVolume;
+        long brokerDealerVolume;
+        long contingencyVolume;
+    };
+    typedef sequence <OrderBookPriceDetailStruct> OrderBookPriceDetailStructSequence;
+
+    struct BookDepthDetailStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        session::TradingSessionName sessionName;
+        marketData::OrderBookPriceDetailStructSequence buySidePrices;
+        marketData::OrderBookPriceDetailStructSequence sellSidePrices;
+    };
+    
+    struct InternalCurrentMarketStruct
+    {
+        cmiMarketData::CurrentMarketStruct bestMarket;
+        cmiMarketData::CurrentMarketStruct bestPublicMarketAtTop;
+    };
+    typedef sequence <InternalCurrentMarketStruct> InternalCurrentMarketStructSequence;
+
+    struct CurrentMarketStateChangeStruct
+    {
+        cmiMarketData::CurrentMarketStruct bestMarket;
+        cmiMarketData::CurrentMarketStruct bestPublicMarket;
+	    cmiSession::ProductState oldState;
+	    cmiSession::ProductState newState;
+        long productStateTransactionSequenceNumber;
+    };
+    typedef sequence <CurrentMarketStateChangeStruct> CurrentMarketStateChangeStructSequence;
+
+
+    struct ExchangeGateIndicatorStruct
+    {
+        string exchange;
+        short state;
+    };
+
+    typedef sequence <ExchangeGateIndicatorStruct> ExchangeGateIndicatorStructSequence;
+
+    //Added for QPE-2 Quote Query Result
+    struct QuoteQueryStruct
+    {
+    	cmiProduct::ProductKeysStruct productKeys;
+    	short errorCode;
+    	cmiMarketData::CurrentMarketStruct bestmarketCurrentMarketStruct;
+    	cmiMarketData::CurrentMarketStruct bestmarketPublicCurrentMarketStruct;
+    	cmiMarketData::NBBOStruct botrStruct;
+    	cmiMarketData::ExchangeIndicatorStructSequence exchangeIndicators;
+    	short localProductState;
+    	marketData::ExchangeGateIndicatorStructSequence linkageClassGateIndicators; //Indicates the class
+                                                                    //gate status for the exchange
+    };
+
+    typedef sequence <QuoteQueryStruct> QuoteQueryStructSequence;
+
+	struct QuoteQueryV2Struct
+    {
+	   	marketData::QuoteQueryStruct  quoteQueryStruct;
+        cmiMarketData::NBBOStruct nbboStruct;  	       
+    };
+    typedef sequence <QuoteQueryV2Struct> QuoteQueryV2StructSequence;
+
+
+    struct BOStruct
+    {
+	cmiUtil::PriceStruct                bidPrice;
+	cmiUtil::PriceStruct                askPrice;
+	long                                bidVolume;
+	long                                askVolume;
+    };
+
+    typedef char BOBIndicatorType;
+
+    struct QuoteQueryV3Struct
+    {
+	marketData::QuoteQueryV2Struct  quoteQueryV2Struct;
+        marketData::BOStruct 		cboeMarket;  	       
+        marketData::BOStruct 		derivedQuote;  	       
+        marketData::BOStruct 		topOfBook;  
+	marketData::BOBIndicatorType    BOBIndicator;     
+    };
+    typedef sequence <QuoteQueryV3Struct> QuoteQueryV3StructSequence;
+
+
+    //Added for QPE-2 Closing Quote Struct for Product
+    struct ClosingQuoteStruct
+    {
+    	cmiProduct::ProductKey productKey;
+    	cmiUtil::PriceStruct closingBidPrice;
+    	cmiUtil::PriceStruct closingAskPrice;
+    	long closingBidSize;
+    	long closingAskSize;
+    };
+    typedef sequence <ClosingQuoteStruct> ClosingQuoteStructSequence;
+
+    //Added for QPE-2 For EOD Closing Quotes Query
+    struct ClosingQuoteSummaryStruct
+   {
+    	cmiProduct::ReportingClassKey reportingClassKey;
+    	long errorCode;
+       	marketData::ClosingQuoteStructSequence closingQuoteStructs;
+    };
+    
+    typedef sequence <ClosingQuoteSummaryStruct> ClosingQuoteSummaryStructSequence;
+
+	// Added for Index hybrid project
+	struct ManualQuoteDetailInternalStruct
+	{
+		quote::ManualQuoteDetailStruct  bidSide;
+		char                            bidSideCancelReason;
+		quote::ManualQuoteDetailStruct  askSide;
+		char                            askSideCancelReason;		
+	};	
+
+	typedef sequence<ManualQuoteDetailInternalStruct> ManualQuoteDetailInternalStructSequence;
+
+
+#pragma use_lookup_for_string ON
+	typedef string SalePrefix;
+#pragma use_lookup_for_string OFF
+	typedef string CmiTradeNumber;
+	
+	struct CmiManualPriceReportEntryStruct
+	{
+		cmiProduct::ProductKeysStruct productKeys;
+		session::TradingSessionName sessionName;
+		cmiUtil::PriceStruct price;
+		long volume;
+		cmiUser::ExchangeAcronymStruct buyerBroker;
+		cmiUser::ExchangeAcronymStruct sellerBroker;
+		marketData::SalePrefix salePrefix;
+		cmiUtil::TimeStruct  tradeTime;
+		marketData::CmiTradeNumber cmiTradeNumber;
+		long  	 newVolume;
+		cmiUtil::PriceStruct newPriceUpdate;
+		cmiUser::ExchangeAcronymStruct newBuyerSellerBroker;
+	};
+	
+	typedef sequence <CmiManualPriceReportEntryStruct> CmiManualPriceReportResponseStructSequence;
+
+	
+	// Added for TPF-Migration-Manual Price Reporting
+
+	struct ManualPriceReportEntryStruct
+	{
+		cmiProduct::ProductKeysStruct productKeys;
+		session::TradingSessionName sessionName;
+		cmiUtil::PriceStruct price;
+		long volume;
+		cmiUser::ExchangeAcronymStruct buyerBroker;
+		cmiUser::ExchangeAcronymStruct sellerBroker;
+		marketData::SalePrefix salePrefix;
+		cmiUtil::TimeStruct  tradeTime;
+	};
+	
+	
+	
+	
+};
+#endif

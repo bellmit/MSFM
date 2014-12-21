@@ -1,0 +1,30 @@
+#ifndef PropertyEventService_idl
+#define PropertyEventService_idl
+
+#include "PropertyService.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module businessServices
+{
+    interface PropertyEventService : businessServices::PropertyService
+    {
+        void subscribePropertyEvent( in consumers::PropertyConsumer propertyConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+            
+        void unsubscribePropertyEvent( in consumers::PropertyConsumer propertyConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            ); 
+    };
+};
+
+#endif

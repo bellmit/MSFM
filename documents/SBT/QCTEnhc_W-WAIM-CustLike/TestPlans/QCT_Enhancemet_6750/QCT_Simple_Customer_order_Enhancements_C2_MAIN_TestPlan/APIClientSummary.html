@@ -1,0 +1,787 @@
+<html>
+<body>
+<title>QCT_Simple_Customer_order_Enhancements_C2_MAIN_ Test Plan</title>
+<b><center><big><h1>QCT_Simple_Customer_order_Enhancements_C2_MAIN_ Test Plan</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD2 (Password: HD2)</small><br>
+<br><hr><br><b>
+ Test Cases:1</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 2  Product(s) from 1 Class(es): [AAV]Class: AAV (269811761), Products: AAV 8/2008 7.500000000 P (496000648); AAV 8/2008 5.0 C (498991624); </small><br>
+&nbsp;&nbsp;<small>	Verify Session C2_MAIN is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE2:TT1, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE2:695, Give-Up Firm(s): CBOE2:695,</small><br>
+&nbsp;&nbsp;<small>	Verify User TT1 exists and is set as expected. User: CBOE2:TT1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE2:ANK1, Full Name: Automated API $CUST1 User, Role: X, Firm: CBOE2:695, Give-Up Firm(s): CBOE2:695,</small><br>
+&nbsp;&nbsp;<small>	Verify User ANK1 exists and is set as expected. User: CBOE2:ANK1, Role: X, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE2:HST1, Full Name: Automated API $HOMT1 User, Role: A, Firm: CBOE2:695, Give-Up Firm(s): CBOE2:695,</small><br>
+&nbsp;&nbsp;<small>	Verify User HST1 exists and is set as expected. User: CBOE2:HST1, Role: A, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: TT1 (Password: TT1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ANK1 (Password: ANK1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: HST1 (Password: HST1), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set Allow Market Order (Trading Property) for Class 269811761 to : true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Allow Market Order (Trading Property) for Class 'AAV' (269811761) to: true</small><br>
+&nbsp;&nbsp;<small>	Set Index Hybrid Indicator Enabled(Trading Property) for Class 'AAV' (269811761) to: false</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Index Hybrid Indicator Enabled (Trading Property) for Class 'AAV' (269811761) to: false</small><br>
+&nbsp;&nbsp;<small>	Set Exchange Prescribed Width for Class 'AAV'( 269811761) to: [0.0-3.0:0.5, 3.0-10.0:1.0, 10.0-99999.0:2.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Exchange Prescribed Width for Class 'AAV' (269811761) is set to: [0.0-3.0:0.5, 3.0-10.0:1.0, 10.0-99999.0:2.0]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAV' (269811761) to: [-8 : false, 1 : false, 5 : false]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Enabled (Trading Property) for Class 'AAV' (269811761) to: [-8 : false, 1 : false, 5 : false]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Subscribe User TT1 for Current Market (V1, V2 & V3) for Class 'AAV' (269811761) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User TT1 for Recap for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User TT1 for CurrentMarketV4  for Class 'AAV' (269811761) </small><br>
+<br><hr><br><b>
+ Test Case 1:If a QCT trade price occurs better than the TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: VML:7366</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: F, Branch/Seq: LGS:9911</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: MXM:260, Match - S 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: MXM:1287</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.100000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: MXM:260, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: MXM:1287, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: YOY:7141, Match - S 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: YOY:104</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.100000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: YOY:7141, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: YOY:104, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.140000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: NCG:6642, Match - S 500@10.120000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: NCG:5113</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.120000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: NCG:6642, Filled 500@10.120000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: NCG:5113, Filled 500@10.120000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: VML:7366, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LGS:9911, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 2:If a QCT trade price occurs equal TOB for PO and MO on Bid side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CLN:7786</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CLT:2501</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LGW:2195, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LGW:639</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.50000000] <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LGW:2195, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LGW:639, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CLN:7786, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CLT:2501, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 3:If a QCT trade price occurs equal TOB for PO and MO on Ask side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: TEL:3982</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: TQI:3937</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: JXJ:5846, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: JXJ:7152</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: JXJ:5846, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: JXJ:7152, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: TEL:3982, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: TQI:3937, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 4:If a QCT trade price occurs equal TOB for PO on Ask side and MO on Bid side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CMV:5767</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: AYX:1836</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UJG:9878, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UJG:7476</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: UJG:9878, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: UJG:7476, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CMV:5767, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: AYX:1836, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 5:If a QCT trade price occurs equal TOB only for MO on Ask side and PO is better than the TOB;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CRI:3120</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: AVQ:7646</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: XFF:4482, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: XFF:3511 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CRI:3120, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: AVQ:7646, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 6:If a QCT trade price occurs equal TOB for MO on Ask side and for PO on Bid side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: DUA:6486</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: TJE:3279</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: GSB:804, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: GSB:6727 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: DUA:6486, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: TJE:3279, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 7:If a QCT trade price occurs equal TOB only for PO on Bid side and MO is better than the TOB;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: RVA:2597</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: NQH:7651</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: YSN:7214, Match - S 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: YSN:834 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: RVA:2597, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: NQH:7651, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 8:If a QCT trade price occurs equal TOB for MO on Bid side and PO is better than TOB;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: BPF:2153</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: LEA:7242</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: HRU:7582, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: HRU:4514</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.100000000] <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: HRU:7582, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: HRU:4514, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: BPF:2153, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LEA:7242, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 9:If a QCT trade price occurs worse than TOB for PO and MO on Ask side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: UTK:6231</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: OXG:881</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: KGG:3711, Match - S 500@10.170000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: KGG:5800</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: KGG:3711, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: KGG:5800, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: UTK:6231, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: OXG:881, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 10:If a QCT trade price occurs worse than TOB for PO on Ask side and MO is equal TOB on same side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CRC:8193</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: XXN:5474</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OTB:356, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OTB:2247</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: OTB:356, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: OTB:2247, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CRC:8193, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: XXN:5474, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 11:If a QCT trade price occurs worse than TOB for PO on Ask side and MO is equal TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: ARO:679</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: KQA:8767</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UVW:243, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UVW:1117</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: UVW:243, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: UVW:1117, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: ARO:679, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: KQA:8767, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 12:If a QCT trade price occurs worse than TOB for PO on Ask side and MO is worse than TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: SRJ:2862</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: PXA:7355</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: BMT:8373, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: BMT:2425</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: BMT:8373, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: BMT:2425, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: SRJ:2862, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: PXA:7355, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 13:If a QCT trade price occurs equal TOB for PO on Ask side and MO is worse than TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CDX:1559</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: QSG:3157</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: WDN:9541, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: WDN:4106</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: WDN:9541, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: WDN:4106, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CDX:1559, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: QSG:3157, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 14:If a QCT trade price occurs better TOB for PO on Ask side and MO is worse than TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: DHW:983</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CEK:9336</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: JEI:481, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: JEI:3497</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: JEI:481, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: JEI:3497, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: DHW:983, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CEK:9336, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 15:If a QCT trade price occurs equal TOB for PO on Bid side and MO is worse than TOB on same side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: SIO:9986</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: QKR:7253</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LNJ:8322, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LNJ:1915</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LNJ:8322, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LNJ:1915, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: SIO:9986, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: QKR:7253, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 16:If a QCT trade price occurs equal TOB for PO and MO on Bid side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: SEL:2490</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: CST:9428</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: AMY:161, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: AMY:297</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: AMY:161, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: AMY:297, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: SEL:2490, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: CST:9428, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 17:If a QCT trade price occurs equal TOB for PO on Ask side and MO is worse than TOB on same side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: HOD:6410</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: LET:9752</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OPB:4397, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OPB:2661 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: HOD:6410, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: LET:9752, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 18:If a QCT trade price occurs better than TOB for PO on Ask side and MO is worse than TOB on same side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: MTX:8932</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: WTG:1154</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: ECH:3311, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: ECH:1800 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: MTX:8932, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: WTG:1154, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 19:If a QCT trade price occurs equal TOB for PO on Bid side and MO is worse than TOB on opposite side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: MLI:1196</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: NQY:2847</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LTI:7771, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LTI:6404 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: MLI:1196, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: NQY:2847, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 20:QCT trade price occurs equal TOB for PO and MO on Ask side;no resting customer orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: NLW:3603</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: F, Branch/Seq: KAM:3884</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: GQW:9407, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: GQW:2766</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: GQW:9407, Filled 500@10.150000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: GQW:2766, Filled 500@10.150000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: NLW:3603, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: KAM:3884, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 21:QCT trade price occurs equal TOB for PO and MO on Bid side;no resting customer orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: YVU:3844</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: F, Branch/Seq: MYQ:7245</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: PUG:2671, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: PUG:5399</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.50000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: PUG:2671, Filled 500@10.50000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: PUG:5399, Filled 500@10.50000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: YVU:3844, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User TT1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648), Order: MYQ:7245, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 22:QCT trade price occurs equal TOB for PO and MO on Ask side;no resting orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: BYB:8121, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: BYB:9904</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: BYB:8121, Filled 500@10.200000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: BYB:9904, Filled 500@10.200000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.0 x , Ask: 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 23:QCT trade price occurs equal TOB for PO and MO on Bid side;no resting orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAV 8/2008 7.500000000 P' (496000648) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAV 8/2008 7.500000000 P' (496000648) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAV 8/2008 7.500000000 P' (496000648) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User ANK1 for Product 'AAV 8/2008 7.500000000 P' (496000648): Primary - B 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: NQD:4856, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: NQD:7251</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [500@10.0]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: NQD:4856, Filled 500@10.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ANK1 for Order Branch/Seq: NQD:7251, Filled 500@10.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAV 8/2008 7.500000000 P' (496000648): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAV 8/2008 7.500000000 P' (496000648), Bid: 100@10.0 x , Ask: 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User TT1 for Product 'AAV 8/2008 7.500000000 P' (496000648) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User TT1 for Product 496000648, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: TT1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: HST1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ANK1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD2</small><br>

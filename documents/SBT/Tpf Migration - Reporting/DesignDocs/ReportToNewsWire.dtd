@@ -1,0 +1,53 @@
+<!ELEMENT ReportToNewsWire ( reportHeader, reportDetail ) >
+
+<!ELEMENT reportHeader ( senderName, senderAppName, reportName, reportDateTime ) >
+<!ELEMENT senderName ( #PCDATA ) >
+<!ELEMENT senderAppName ( #PCDATA ) >
+<!ELEMENT reportName ( #PCDATA ) >
+<!ELEMENT reportDateTime ( #PCDATA ) >
+
+
+
+<!ELEMENT reportDetail ( catagory+, topTenMostActiveSeries,totalVolumeInfo, totalGainersLosersInfo ) >
+
+<!ELEMENT catagory ( volumeInfo, gainersLosersInfo, mostActive) >
+<!ATTLIST catagory name CDATA #REQUIRED >
+
+<!ELEMENT volumeInfo ( callVolume, putVolume, totalVolume ) >
+<!ELEMENT callVolume ( #PCDATA ) >
+<!ELEMENT putVolume ( #PCDATA ) >
+
+<!ELEMENT gainersLosersInfo ( gainersLosersInfoForCall, gainersLosersInfoForPut ) >
+<!ELEMENT gainersLosersInfoForCall ( gainers, losers, unchanged, totalGainersLosersUnchanged ) >
+<!ELEMENT gainersLosersInfoForPut ( gainers, losers, unchanged, totalGainersLosersUnchanged ) >
+
+<!ELEMENT mostActive ( mostActiveCall, mostActivePut ) >
+<!ELEMENT mostActiveCall ( underlying ) >
+<!ELEMENT mostActivePut ( underlying ) >
+
+<!ELEMENT topTenMostActiveSeries ( mostActiveSeries+ ) >
+<!ELEMENT mostActiveSeries ( optionType, underlying ) >
+<!ELEMENT optionType ( #PCDATA ) >
+
+<!ELEMENT underlying ( expiryMonth, strikePrice, volume, lastSalePrice, netChange ) >
+<!ATTLIST underlying name CDATA #REQUIRED >
+<!ELEMENT expiryMonth ( #PCDATA ) >
+<!ELEMENT strikePrice ( #PCDATA ) >
+<!ELEMENT volume ( #PCDATA ) >
+<!ELEMENT lastSalePrice ( #PCDATA ) >
+<!ELEMENT netChange ( #PCDATA ) >
+
+
+<!ELEMENT totalVolumeInfo ( totalCallVolume, totalPutVolume, totalVolume ) >
+<!ELEMENT totalCallVolume ( #PCDATA ) >
+<!ELEMENT totalPutVolume ( #PCDATA ) >
+<!ELEMENT totalVolume ( #PCDATA ) >
+
+<!ELEMENT totalGainersLosersInfo ( totalGainersLosersInfoForCall, totalGainersLosersInfoForPut ) >
+<!ELEMENT totalGainersLosersInfoForCall ( gainers, losers, unchanged, totalGainersLosersUnchanged ) >
+<!ELEMENT totalGainersLosersInfoForPut ( gainers, losers, unchanged, totalGainersLosersUnchanged ) >
+
+<!ELEMENT gainers ( #PCDATA ) >
+<!ELEMENT losers ( #PCDATA ) >
+<!ELEMENT unchanged ( #PCDATA ) >
+<!ELEMENT totalGainersLosersUnchanged ( #PCDATA ) >

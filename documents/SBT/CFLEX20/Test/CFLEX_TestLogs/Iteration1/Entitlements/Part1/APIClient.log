@@ -1,0 +1,223 @@
+2011-04-08 03:03:49.397	java.lang.Class	Test Client Starting
+2011-04-08 03:03:49.412	java.lang.Class	API TEST CLIENT: Executing from JAR file: C:\CFLEX\APIClient.jar)
+2011-04-08 03:03:49.444	java.lang.Class	API TEST CLIENT: Build Date: Thu Apr 07 16:15:36 CDT 2011
+2011-04-08 03:03:50.6	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Using script file TestEvents.csv
+2011-04-08 03:03:50.616	com.cboe.itg.apiclient.atoms.utility.TestSuiteNameAtom	 Begin: CFLEX-Entitlements Test Plan (Iteration 1) Part1 WR:6708
+2011-04-08 03:03:50.616	com.cboe.itg.apiclient.atoms.utility.TestSuiteNameAtom	 End.
+2011-04-08 03:03:50.631	com.cboe.itg.apiclient.atoms.utility.StartPointAtom	 Begin: 2011-04-08 03:03:50.631
+2011-04-08 03:03:50.631	com.cboe.itg.apiclient.atoms.utility.StartPointAtom	 End: 
+2011-04-08 03:03:50.663	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl	SALoginAtomCMIImpl Begin: SALoginAtomCMIImpl - HD12
+2011-04-08 03:03:51.241	com.cboe.itg.apiclient.managers.ConnectionManager	null
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.user.SAUser	SA User Subscriptions successfully completed.
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl Execution: Success.
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl	SALoginAtomCMIImpl End.
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Cases:8
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Environment Setup
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: nSELECTCLASSESANDPRODUCTS
+2011-04-08 03:03:56.35	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: nVERIFYPRODUCTDESCRIPTION
+2011-04-08 03:03:56.366	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+2011-04-08 03:03:56.694	com.cboe.itg.apiclient.managers.ConnectionManager	Accessing ProductQueryService via GC(test30Global)
+2011-04-08 03:03:56.709	com.cboe.itg.apiclient.managers.ConnectionManager	Accessing ProductConfigurationService via GC(test30Global)
+2011-04-08 03:03:56.741	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$MarketDataServiceProxy	Found class/product 534780780/534780782 on test30BC04x1EquityTradeServer1
+2011-04-08 03:03:56.756	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Skipping: AAU 0/0 0.0  , Type: 3
+2011-04-08 03:03:56.772	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+2011-04-08 03:03:58.022	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Found 117 Trading Properties
+2011-04-08 03:03:58.022	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Found previous Trading Property values file 'TradingPropertyGroup.ser' dated 2011-04-08 02:56:52.579
+2011-04-08 03:03:58.022	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Unserializing previous Trading Property values
+2011-04-08 03:03:58.053	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Found 117 previous Trading Property values
+2011-04-08 03:03:58.053	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Comparing current trading property values to previous values
+2011-04-08 03:03:58.053	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Re-writing 'TradingPropertyGroup.ser' with the current TradingPropertyGroup values.
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	117 Trading Property values written to 'TradingPropertyGroup.ser'
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	No Trading Property Differences found between today and the values on 2011-04-08 02:56:52.579
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl End.
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.managers.ConnectionManager		Looking for PCS for class 534780780
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.managers.ConnectionManager		Found it. Now looking for the BC that class 534780780 resides on.
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.managers.ConnectionManager		Found it: test30BC04x1EquityTradeServer1. 
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Using Product Details for OSI
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	$CLASS11=534780780 (AAU, 3) : [$CLASS11PRODUCT1=534780782 (AAU 0/0 0.0  ); ] 
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	TradeServerProcessName :test30BC04x1EquityTradeServer1
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl End.
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: VERIFYPRODUCTDESCRIPTION
+2011-04-08 03:03:58.084	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+2011-04-08 03:03:58.178	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$MarketDataServiceProxy	Found class/product 308347260/308347262 on test30BC04x1EquityTradeServer1
+2011-04-08 03:03:58.178	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Skipping: ADRE 0/0 0.0  , Type: 5
+2011-04-08 03:03:58.178	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+2011-04-08 03:03:58.788	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Found 117 Trading Properties
+2011-04-08 03:03:58.788	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Found previous Trading Property values file 'TradingPropertyGroup.ser' dated 2011-04-08 03:03:58.069
+2011-04-08 03:03:58.788	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Unserializing previous Trading Property values
+2011-04-08 03:03:58.788	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Found 117 previous Trading Property values
+2011-04-08 03:03:58.788	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Comparing current trading property values to previous values
+2011-04-08 03:03:58.803	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	Re-writing 'TradingPropertyGroup.ser' with the current TradingPropertyGroup values.
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	117 Trading Property values written to 'TradingPropertyGroup.ser'
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	No Trading Property Differences found between today and the values on 2011-04-08 03:03:58.069
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl	ReportTradingPropertiesAtomCMIImpl End.
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.managers.ConnectionManager		Looking for PCS for class 308347260
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.managers.ConnectionManager		Found it. Now looking for the BC that class 308347260 resides on.
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.managers.ConnectionManager		Found it: test30BC04x1EquityTradeServer1. 
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	Using Product Details for OSI
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	$CLASS21=308347260 (ADRE, 5) : [$CLASS21PRODUCT1=308347262 (ADRE 0/0 0.0  ); ] 
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	TradeServerProcessName :test30BC04x1EquityTradeServer1
+2011-04-08 03:03:58.819	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+2011-04-08 03:03:58.834	com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl	SelectClassesAndProductsAtomCMIImpl End.
+2011-04-08 03:03:58.834	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: VERIFYPRODUCTDESCRIPTION
+2011-04-08 03:03:58.834	com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl	Skipping Unknown Event: nVERIFYSESSIONSTATE
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl Begin: VerifySessionStateAtomCMIImpl - HD12
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Verifying Session State: HD12
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	Session State Verified : HD12
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl Execution: Success.
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl	VerifySessionStateAtomCMIImpl End.
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  User Setup
+2011-04-08 03:03:58.85	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:03:58.866	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl Begin: CreateUserAtomCMIImpl - HD12
+2011-04-08 03:03:58.897	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Re-Setting all data of pre-existing user: KK1
+2011-04-08 03:03:58.944	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:03:58.944 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:03:58.944	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:03:58.944 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:03:58.944	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:03:58.944 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:04.241	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	All data of pre-existing user: KK1 reset.
+2011-04-08 03:04:04.241	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying Created User (KK1) : HD12
+2011-04-08 03:04:04.241	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Created User Verified : HD12
+2011-04-08 03:04:04.241	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user KK1 password...
+2011-04-08 03:04:04.256	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User KK1 password set.
+2011-04-08 03:04:04.256	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user KK1 enablements...
+2011-04-08 03:04:04.288	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:04.288 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:04.288	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:04.288 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:04.288	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:04.288 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:04.834	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:04.834 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:04.881	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:04.834 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:04.881	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:04.881 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:05.084	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User KK1 enablements set.
+2011-04-08 03:04:05.084	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUser) Create/Update Callback : HD12
+2011-04-08 03:04:05.584	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUser) Create/Update Callback Verified : HD12
+2011-04-08 03:04:05.584	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUserDefinition) Create/Update Callback : HD12
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUserDefinition) Create/Update Callback Verified: HD12
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl Execution: Success.
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl End.
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl Begin: VerifyUserExistenceAtomCMIImpl - HD12
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	Verifying User Existence: HD12
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	User Existence Verified : HD12
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl Execution: Success.
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl End.
+2011-04-08 03:04:06.084	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl Begin: CreateUserAtomCMIImpl - HD12
+2011-04-08 03:04:06.116	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Re-Setting all data of pre-existing user: KKK11
+2011-04-08 03:04:06.131	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.131 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:06.131	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.131 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:06.131	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.131 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+2011-04-08 03:04:06.163	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	All data of pre-existing user: KKK11 reset.
+2011-04-08 03:04:06.163	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying Created User (KKK11) : HD12
+2011-04-08 03:04:06.163	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Created User Verified : HD12
+2011-04-08 03:04:06.163	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user KKK11 password...
+2011-04-08 03:04:06.163	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User KKK11 password set.
+2011-04-08 03:04:06.163	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Setting user KKK11 enablements...
+2011-04-08 03:04:06.209	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.209 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:06.209	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.209 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:06.225	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.225 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+2011-04-08 03:04:06.663	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.663 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:06.663	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.663 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:06.663	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:06.663 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+2011-04-08 03:04:06.85	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User KKK11 enablements set.
+2011-04-08 03:04:06.85	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUser) Create/Update Callback : HD12
+2011-04-08 03:04:07.35	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUser) Create/Update Callback Verified : HD12
+2011-04-08 03:04:07.35	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	Verifying User (SessionProfileUserDefinition) Create/Update Callback : HD12
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	User (SessionProfileUserDefinition) Create/Update Callback Verified: HD12
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl Execution: Success.
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl	CreateUserAtomCMIImpl End.
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl Begin: VerifyUserExistenceAtomCMIImpl - HD12
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	Verifying User Existence: HD12
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	User Existence Verified : HD12
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl Execution: Success.
+2011-04-08 03:04:07.85	com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl	VerifyUserExistenceAtomCMIImpl End.
+2011-04-08 03:04:07.897	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl Begin: TraderLoginAtomCMIImpl - KK1
+2011-04-08 03:04:12.1	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl Execution: Success.
+2011-04-08 03:04:12.163	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl End.
+2011-04-08 03:04:12.163	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl Begin: TraderLoginAtomCMIImpl - KKK11
+2011-04-08 03:04:16.288	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl Execution: Success.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl	TraderLoginAtomCMIImpl End.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Strategy Setup
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Trading Property Setup
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Routing Property Setup
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Firm Property Setup
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Pre-Test Settings
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.319	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Subscriptions
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 1:To verify that FLEX_MAIN session can be added at default level using Enablement tab
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 2:To verify that FLEX_MAIN session Invert Enablements functionality
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 3:To verify that FLEX_MAIN session Enable All functionality
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	SetUserEnablementsAtomCMIImpl Begin: SetUserEnablementsAtomCMIImpl - HD12
+2011-04-08 03:04:16.335	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	Setting user KK1 enablements...
+2011-04-08 03:04:16.428	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:16.428 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:16.428	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:16.428 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:16.428	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:16.428 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:16.944	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	User KK1 enablements set.
+2011-04-08 03:04:16.944	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl Execution: Success.
+2011-04-08 03:04:16.944	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	SetUserEnablementsAtomCMIImpl End.
+2011-04-08 03:04:16.96	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol 0
+2011-04-08 03:04:16.96	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 4:To verify that FLEX_MAIN session Remove functionality
+2011-04-08 03:04:16.96	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:16.96	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl	RemoveUserEnablementsAtomCMIImpl Begin: RemoveUserEnablementsAtomCMIImpl - HD12
+2011-04-08 03:04:16.96	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl	Removing user KK1 enablements...
+2011-04-08 03:04:17.069	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:17.069 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:17.069	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:17.069 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:17.069	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:17.069 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl	User KK1 enablements removed.
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl Execution: Success.
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl	RemoveUserEnablementsAtomCMIImpl End.
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol 0
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 5:To verify that FLEX_MAIN session Edit Preference functionality
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 6:To verify that FLEX_MAIN session enablement is supported for Market Maker user role
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	SetUserEnablementsAtomCMIImpl Begin: SetUserEnablementsAtomCMIImpl - HD12
+2011-04-08 03:04:17.475	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	Setting user KK1 enablements...
+2011-04-08 03:04:17.538	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:17.538 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:17.538	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:17.538 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:17.538	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:17.538 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	User KK1 enablements set.
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl Execution: Success.
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	SetUserEnablementsAtomCMIImpl End.
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol 0
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 7:To verify that FLEX_MAIN session enablement is supported for Broker user role
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	SetUserEnablementsAtomCMIImpl Begin: SetUserEnablementsAtomCMIImpl - HD12
+2011-04-08 03:04:18.022	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	Setting user KKK11 enablements...
+2011-04-08 03:04:18.069	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:18.069 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:18.069	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:18.069 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:18.069	com.cboe.itg.apiclient.callbacks.SessionProfileUserUpdateStructs	2011-04-08 03:04:18.069 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	User KKK11 enablements set.
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl Execution: Success.
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl	SetUserEnablementsAtomCMIImpl End.
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.common.TestSuiteInfo	Cannot find text associated with symbol 0
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case 8:To verify that FLEX_MAIN session enablement is supported for HelpDesk user role
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 Begin Comment:  Test Case:Cleaning Up Task
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.utility.CommentAtom	 End Comment.
+2011-04-08 03:04:18.585	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl Begin: TraderLogoutAtomCMIImpl - KK1
+2011-04-08 03:04:18.616	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderUser Logged out: KK1
+2011-04-08 03:04:18.616	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl Execution: Success.
+2011-04-08 03:04:18.616	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl End.
+2011-04-08 03:04:18.616	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl Begin: TraderLogoutAtomCMIImpl - KKK11
+2011-04-08 03:04:18.647	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderUser Logged out: KKK11
+2011-04-08 03:04:18.647	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl Execution: Success.
+2011-04-08 03:04:18.647	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl	TraderLogoutAtomCMIImpl End.
+2011-04-08 03:04:18.647	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	SALogoutAtomCMIImpl Begin: SALogoutAtomCMIImpl - HD12
+2011-04-08 03:04:18.678	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	SAUser Logged out: HD12
+2011-04-08 03:04:18.678	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl Execution: Success.
+2011-04-08 03:04:18.678	com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl	SALogoutAtomCMIImpl End.
+2011-04-08 03:04:18.678	com.cboe.itg.apiclient.atoms.utility.EndPointAtom	 Begin: 2011-04-08 03:04:18.678
+2011-04-08 03:04:18.678	com.cboe.itg.apiclient.atoms.utility.EndPointAtom	 End.
+2011-04-08 03:04:18.772	java.lang.Class	Begin Canceling All Test User Orders...
+2011-04-08 03:04:18.803	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$OrderHandlingServiceProxy	Found class/product 534780780/534780782 on test30BC04x1EquityTradeServer1
+2011-04-08 03:04:18.835	com.cboe.itg.apiclient.managers.ConnectionManagerHelper$OrderHandlingServiceProxy	Found class/product 308347260/308347262 on test30BC04x1EquityTradeServer1
+2011-04-08 03:04:18.85	java.lang.Class	Done Canceling All Test User Orders...

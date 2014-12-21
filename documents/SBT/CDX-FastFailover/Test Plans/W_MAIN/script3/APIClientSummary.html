@@ -1,0 +1,405 @@
+<html>
+<body>
+<title>FAST FAILOVER - PART 3 - W_MAIN (3.Test cases needs to be executed partially before bouncing the processes Hybrid-3)</title>
+<b><center><big><h1>FAST FAILOVER - PART 3 - W_MAIN (3.Test cases needs to be executed partially before bouncing the processes Hybrid-3)</h1></big></center></b><br>
+<br><hr><br><b>
+Log in HD User and Perform Test Requirements</b><br>
+&nbsp;&nbsp;<small>	Log in SA User: RSHD1 (Password: RSHD1)</small><br>
+&nbsp;&nbsp;<small>	Selecting 2 Product(s) from 1 Class(es) (by Reporting Class): [AAPL]Class: AAPL (69206067), Rpt Class: AAPL (837206918), Products: AAPL 4/2011 180.0 C (909782161); AAPL 3/2011 180.0 P (960502999); </small><br>
+&nbsp;&nbsp;<small>	Selecting 10 Product(s) from 1 Class(es) (by Reporting Class): [AAP]Class: AAPL (69206067), Rpt Class: AAPL (837206918), Products: AAPL 4/2011 180.0 C (909782161); AAPL 3/2011 180.0 P (960502999); Class: AAP (69206060), Rpt Class: AAP (69206063), Products: AAP 3/2011 45.0 C (890412212); AAP 3/2011 50.0 C (890412214); AAP 3/2011 40.0 P (891091953); AAP 3/2011 30.0 C (900766976); AAP 3/2011 30.0 P (900766977); AAP 3/2011 70.0 P (900766985); AAP 6/2011 80.0 P (958453531); AAP 1/2011 55.0 C (959900253); AAP 1/2011 60.0 C (959900255); AAP 1/2011 70.0 P (959900260); </small><br>
+&nbsp;&nbsp;<small>	Selecting 10 Product(s) from 1 Class(es) (by Reporting Class): [AAPL]Class: AAPL (69206067), Rpt Class: AAPL (837206918), Products: AAPL 4/2011 180.0 C (909782161); AAPL 3/2011 180.0 P (960502999); Class: AAP (69206060), Rpt Class: AAP (69206063), Products: AAP 3/2011 45.0 C (890412212); AAP 3/2011 50.0 C (890412214); AAP 3/2011 40.0 P (891091953); AAP 3/2011 30.0 C (900766976); AAP 3/2011 30.0 P (900766977); AAP 3/2011 70.0 P (900766985); AAP 6/2011 80.0 P (958453531); AAP 1/2011 55.0 C (959900253); AAP 1/2011 60.0 C (959900255); AAP 1/2011 70.0 P (959900260); Class: AAPL (69206067), Rpt Class: AAPL (837206918), Products: AAPL 1/2012 165.0 C (830110521); AAPL 1/2011 370.0 P (842169614); AAPL 4/2011 320.0 C (909782183); AAPL 4/2011 380.0 C (909782195); AAPL 1/2013 210.0 P (919382259); AAPL 1/2013 200.0 C (922361283); AAPL 1/2012 450.0 P (938902618); AAPL 7/2011 350.0 P (948315874); AAPL 7/2011 175.0 C (951244015); AAPL 3/2011 270.0 P (960503021); </small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+<br><hr><br><b>
+Log in initial PAR test users</b><br>
+&nbsp;&nbsp;<small>	Log in PAR User: FNK (Password: CBOE), Workstation ID:  (W074) </small><br>
+&nbsp;&nbsp;<small>	Log in PAR User: ABC (Password: CBOE), Workstation ID:  (W075) </small><br>
+&nbsp;&nbsp;<small>	Connecting to PTS</small><br>
+<br><hr><br><b>
+Create users</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROMM1, Full Name: Automated API MM User, Role: M, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROMM2, Full Name: Automated API BD User, Role: M, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROCU1, Full Name: Automated API BD User, Role: X, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROBO1, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROBO2, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROBO3, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:PNB3, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROCO1, Full Name: Automated API Crowd OMT User, Role: L, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+<br><hr><br><b>
+ Trading Properties for Auction Enabled and Auction Time for Option Classes</b><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAPL' (69206067) to: [-8 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAP' (69206060) to: [-8 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAPL' (69206067) to: [-8 : true]</small><br>
+<br><hr><br><b>
+Log in Trader Users</b><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ROMM1 (Password: ROMM1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ROMM2 (Password: ROMM2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ROCU1 (Password: ROCU1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROBO1 (Password: ROBO1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROBO2 (Password: ROBO2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROBO3 (Password: ROBO3), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: PNB3 (Password: PNB3), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROCO1 (Password: ROCO1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAPL' (69206067) Defined as: B 1 'AAPL 4/2011 320.0 C' (909782183), S 1 'AAPL 4/2011 380.0 C' (909782195)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAP' (69206060) Defined as: B 1 'AAP 3/2011 45.0 C' (890412212), S 1 'AAP 3/2011 50.0 C' (890412214)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAP' (69206060) Defined as: B 1 'AAP 3/2011 40.0 P' (891091953), S 1 'AAP 3/2011 30.0 C' (900766976)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAP' (69206060) Defined as: B 1 'AAP 3/2011 30.0 P' (900766977), S 1 'AAP 3/2011 70.0 P' (900766985)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAP' (69206060) Defined as: B 1 'AAP 6/2011 80.0 P' (958453531), S 1 'AAP 1/2011 55.0 C' (959900253)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAP' (69206060) Defined as: B 1 'AAP 1/2011 60.0 C' (959900255), S 1 'AAP 1/2011 70.0 P' (959900260)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAPL' (69206067) Defined as: B 1 'AAPL 1/2012 165.0 C' (830110521), S 1 'AAPL 1/2011 370.0 P' (842169614)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAPL' (69206067) Defined as: B 1 'AAPL 1/2013 210.0 P' (919382259), S 1 'AAPL 1/2013 200.0 C' (922361283)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAPL' (69206067) Defined as: B 1 'AAPL 1/2012 450.0 P' (938902618), S 1 'AAPL 7/2011 350.0 P' (948315874)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'AAPL' (69206067) Defined as: B 1 'AAPL 7/2011 175.0 C' (951244015), S 1 'AAPL 3/2011 270.0 P' (960503021)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+<br><hr><br><b>
+Put the products into the proper state FOR W_MAIN</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP' (69206060) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP' (69206060) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP' (69206060) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP' (69206060) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAP 3/2011 45.0 C' (890412212) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL' (69206067) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL' (69206067) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL' (69206067) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL' (69206067) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAPL 1/2012 165.0 C' (830110521) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Diagonal 20120121 450.0000:1293559344463' (497842687) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Diagonal 20120121 450.0000:1293559344463' (497842687) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Diagonal 20120121 450.0000:1293559344463' (497842687) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Diagonal 20120121 450.0000:1293559344463' (497842687) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAPL: Diagonal 20120121 450.0000:1293559344463' (497842687) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20110319 270.0000:1293559344536' (497842690) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20110319 270.0000:1293559344536' (497842690) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20110319 270.0000:1293559344536' (497842690) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAPL: Unknown Spread 20110319 270.0000:1293559344536' (497842690) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAPL: Unknown Spread 20110319 270.0000:1293559344536' (497842690) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69206067) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69206060) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69206067) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69206068) , Value: 0</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69206061) , Value: 0</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69206068) , Value: 0</small><br>
+<br><hr><br><b>
+Set up Subscriptions for the Class</b><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'AAP' (69206061) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'AAP' (69206061) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'AAP' (69206061) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'AAP' (69206061) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Auction RFP's for Class 'AAP' (69206061) </small><br>
+&nbsp;&nbsp;<small>
+OHS-Enable class AAP</small><br>
+<br><hr><br><b>
+Step : Set/Verify Needed Routing Properties - Option and Strategy class</b><br>
+<br><hr><br><b>
+SESSION CLASS PAR ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Session Class Par Routing property for Session : W_MAIN Workstation (69206061) , Destinations: W074</small><br>
+<br><hr><br><b>
+ FIRM CLASS PAR DESTINATION ROUTING PROPERTY FOR COMPLEX ORDERS</b><br>
+&nbsp;&nbsp;<small>	Set Firm Corr Class PAR Destination routing property for Session : W_MAIN Firm : 501 Key ( 69206061) , Destination: W074</small><br>
+&nbsp;&nbsp;<small>	Set par direct routing property for Session : W_MAIN Firm : 501 Correspondent Firm : ABC ParWorkstation (W074) , destination: W074  </small><br>
+<br><hr><br><b>
+3 : HELPDESK DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Help Desk Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Destination: ROHO1</small><br>
+<br><hr><br><b>
+10 : FIRM CORRESPONDENT BRANCH OMT </b><br>
+<br><hr><br><b>
+2 : BOOTH DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Booth Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Destination: ROBO3  </small><br>
+<br><hr><br><b>
+3 : HELPDESK DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Help Desk Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Destination: ROHO1</small><br>
+<br><hr><br><b>
+6 : CROWD DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Crowd Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Destination: ROCO1</small><br>
+<br><hr><br><b>
+7 : ALTERNATE DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO1) , Destinations: ROBO2</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO3) , Destinations: PNB3</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (W075) , Destinations: W003</small><br>
+<br><hr><br><b>
+4 : FIRM VOLUME LIMIT ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 501 Key ( 69206061) , Volume : 1000</small><br>
+<br><hr><br><b>
+ 19 : REASONABILITY EDIT</b><br>
+&nbsp;&nbsp;<small>
+Reasonability Edit changed for :GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Reasonability Edit routing property for Session : W_MAIN Firm : 501 Class : ( 69206061) Edit Group : GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Volume: 100, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Volume: 200, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69206061) , Volume: 500, Deviation: Marketable, Workstation: W074</small><br>
+&nbsp;&nbsp;<small>
+OHS-Enable class AAPL</small><br>
+<br><hr><br><b>
+Step : Set/Verify Needed Routing Properties - Option and Strategy class</b><br>
+<br><hr><br><b>
+SESSION CLASS PAR ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Session Class Par Routing property for Session : W_MAIN Workstation (69206067) , Destinations: W074</small><br>
+<br><hr><br><b>
+ FIRM CLASS PAR DESTINATION ROUTING PROPERTY FOR COMPLEX ORDERS</b><br>
+&nbsp;&nbsp;<small>	Set Firm Corr Class PAR Destination routing property for Session : W_MAIN Firm : 501 Key ( 69206068) , Destination: W074</small><br>
+&nbsp;&nbsp;<small>	Set par direct routing property for Session : W_MAIN Firm : 501 Correspondent Firm : ABC ParWorkstation (W074) , destination: W074  </small><br>
+<br><hr><br><b>
+10 : FIRM CORRESPONDENT BRANCH OMT </b><br>
+<br><hr><br><b>
+2 : BOOTH DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Booth Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206068) , Destination: ROBO3  </small><br>
+<br><hr><br><b>
+3 : HELPDESK DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Help Desk Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206068) , Destination: ROHO1</small><br>
+<br><hr><br><b>
+6 : CROWD DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Crowd Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69206068) , Destination: ROCO1</small><br>
+<br><hr><br><b>
+7 : ALTERNATE DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO1) , Destinations: ROBO2</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO3) , Destinations: PNB3</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (W075) , Destinations: W003</small><br>
+<br><hr><br><b>
+4 : FIRM VOLUME LIMIT ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 501 Key ( 69206068) , Volume : 1000</small><br>
+<br><hr><br><b>
+19 : REASONABILITY EDIT</b><br>
+&nbsp;&nbsp;<small>
+Reasonability Edit changed for :GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Reasonability Edit routing property for Session : W_MAIN Firm : 501 Class : ( 69206068) Edit Group : GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69206068) , Volume: 100, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69206068) , Volume: 200, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69206068) , Volume: 500, Deviation: Marketable, Workstation: W074</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAP' (69206060) to: [-8 : true, -4 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAPL' (69206067) to: [-8 : true, -4 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAP' (69206061) to: [-8 : true, 2 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Firm Corr Class PAR Destination routing property for Session : W_MAIN Firm : 501 Key ( 69206061) , Destination: W074</small><br>
+&nbsp;&nbsp;<small>	Set Firm Corr Class PAR Destination routing property for Session : W_MAIN Firm : 501 Key ( 69206068) , Destination: W074</small><br>
+<br><hr><br><b>
+4 Trade on TE between quotes</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 1/2012 165.0 C' (830110521) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 1/2011 370.0 P' (842169614) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 1/2012 165.0 C' (830110521), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 1/2011 370.0 P' (842169614), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) : 100@0.-100000000 x 100@0.200000000 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Quote Query by User ROMM1 for Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672): 100@0.-100000000 x 100@0.200000000 <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ 5 Trade on TE between quote and order</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 3/2011 45.0 C' (890412212) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 3/2011 50.0 C' (890412214) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 3/2011 45.0 C' (890412212), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 3/2011 50.0 C' (890412214), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731): O 100@0.100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2906</small><br>
+&nbsp;&nbsp;<small>	Pause for 6000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731), Bid: 0@0.00 x , Ask: 100@0.100000000</small><br>
+<br><hr><br><b>
+ 6 COA Auction with RFP</b><br>
+<br><hr><br><b>
+ COA ELIGIBLE</b><br>
+&nbsp;&nbsp;<small>	Set COA Eligible routing property for Session : W_MAIN Firm : 501 Class : ( 69206061) ,Origin Code: F, COA Value: 1</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 3/2011 40.0 P' (891091953) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 3/2011 30.0 C' (900766976) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 3/2011 40.0 P' (891091953), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 3/2011 30.0 C' (900766976), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993): D 100@0.-100000000, Contingency: 'NONE' (1), Origin Code: F, Branch/Seq: XDV:2907</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993): [U 100@0.0, ]</small><br>
+<br><hr><br><b>
+7 Cancel Quote</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 3/2011 30.0 P' (900766977) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 3/2011 70.0 P' (900766985) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 3/2011 30.0 P' (900766977), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 3/2011 70.0 P' (900766985), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675) : 100@0.-100000000 x 100@0.200000000 <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+8 Cancel Order booked on TE</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 6/2011 80.0 P' (958453531) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 1/2011 55.0 C' (959900253) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 6/2011 80.0 P' (958453531), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 1/2011 55.0 C' (959900253), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225): D 100@0.-100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2909</small><br>
+&nbsp;&nbsp;<small>	Pause for 6000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP: Unknown Spread 20110122 55.0000:1293030109675' (497449225), Bid: 100@0.-100000000 x  Ask: 0@0.00</small><br>
+<br><hr><br><b>
+9 Cancel Replace Order booked on TE</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 1/2011 60.0 C' (959900255) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP 1/2011 70.0 P' (959900260) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 1/2011 60.0 C' (959900255), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP 1/2011 70.0 P' (959900260), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678): D 100@0.-100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2910</small><br>
+&nbsp;&nbsp;<small>	Pause for 4000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP: Unknown Spread 20110122 60.0000:1293559344228' (497842678), Bid: 100@0.-100000000 x  Ask: 0@0.00</small><br>
+<br><hr><br><b>
+10.PAR Cancel Report</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 4/2011 320.0 C' (909782183) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 4/2011 380.0 C' (909782195) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 4/2011 320.0 C' (909782183), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 4/2011 380.0 C' (909782195), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681): O 100@0.100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2912</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Complex Order Verification by PAR User FNK for Order : Order entry date: 20101228, Branch/Sequence numbeer: XDV/2912, Firm:     , Correspondent Firm: ABC , IsCaap: Y, Contingency type: 001, Hybrid Ind: Y, Order Auction Ind: N, CBOE Direct Product Ind: Y, Premium Price: 0000.1000000, Premium Price Ind: C , Leg [0] Side: S, Leg [0] Origional Quantity: 0000000100, Leg [0] Bid Price: 0001.0000000, Leg [0] Ask Price: 0001.2000000, Leg [0] CBOE Bid Size: 0000000100, Leg [0] CBOE Ask Size: 0000000100, Leg [0] Ratio: 0000000001, Leg [0] Origional Leg volume: 0000000100, Leg [1] Side: B, Leg [1] Origional Quantity: 0000000100, Leg [1] Bid Price: 0001.0000000, Leg [1] Ask Price: 0001.2000000, Leg [1] CBOE Bid Size: 0000000100, Leg [1] CBOE Ask Size: 0000000100, Leg [1] Ratio: 0000000001, Leg [1] Origional Leg volume: 0000000100</small><br>
+<br><hr><br><b>
+COMPLEX ORDERS</b><br>
+<br><hr><br><b>
+Scenario 11. PAR Print</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 1/2013 210.0 P' (919382259) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 1/2013 200.0 C' (922361283) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 1/2013 210.0 P' (919382259), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 1/2013 200.0 C' (922361283), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684): O 100@0.100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2913</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Complex Order Verification by PAR User FNK for Order : Order entry date: 20101228, Branch/Sequence numbeer: XDV/2913, Firm:     , Correspondent Firm: ABC , IsCaap: Y, Contingency type: 001, Hybrid Ind: Y, Order Auction Ind: N, CBOE Direct Product Ind: Y, Premium Price: 0000.1000000, Premium Price Ind: C , Leg [0] Side: S, Leg [0] Origional Quantity: 0000000100, Leg [0] Bid Price: 0001.0000000, Leg [0] Ask Price: 0001.2000000, Leg [0] CBOE Bid Size: 0000000100, Leg [0] CBOE Ask Size: 0000000100, Leg [0] Ratio: 0000000001, Leg [0] Origional Leg volume: 0000000100, Leg [1] Side: B, Leg [1] Origional Quantity: 0000000100, Leg [1] Bid Price: 0001.0000000, Leg [1] Ask Price: 0001.2000000, Leg [1] CBOE Bid Size: 0000000100, Leg [1] CBOE Ask Size: 0000000100, Leg [1] Ratio: 0000000001, Leg [1] Origional Leg volume: 0000000100</small><br>
+<br><hr><br><b>
+Scenario 12. PAR TSB Request</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 1/2012 450.0 P' (938902618) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 7/2011 350.0 P' (948315874) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 1/2012 450.0 P' (938902618), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAPL 7/2011 350.0 P' (948315874), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAPL: Diagonal 20120121 450.0000:1293559344463' (497842687): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2914</small><br>
+<br><hr><br><b>
+Scenario 20.PAR Complex Trade Report</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 7/2011 175.0 C' (951244015) : 50@1.0 x 50@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAPL 3/2011 270.0 P' (960503021) : 50@1.0 x 50@1.200000000</small><br>
+<br><hr><br><b>
+CUST1 Enters Order 'C'</b><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAPL: Unknown Spread 20110319 270.0000:1293559344536' (497842690): O 50@0.-100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2915</small><br>
+<br><hr><br><b>
+Verify Order is routed to PAR</b><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Complex Order Verification by PAR User FNK for Order : Order entry date: 20101228, Branch/Sequence numbeer: XDV/2915, Firm:     , Correspondent Firm: ABC , IsCaap: Y, Contingency type: 001, Hybrid Ind: Y, Order Auction Ind: N, CBOE Direct Product Ind: Y, Premium Price: 0000.1000000, Premium Price Ind: D , Leg [0] Side: S, Leg [0] Origional Quantity: 0000000050, Leg [0] Bid Price: 0001.0000000, Leg [0] Ask Price: 0001.2000000, Leg [0] CBOE Bid Size: 0000000050, Leg [0] CBOE Ask Size: 0000000050, Leg [0] Ratio: 0000000001, Leg [0] Origional Leg volume: 0000000050, Leg [1] Side: B, Leg [1] Origional Quantity: 0000000050, Leg [1] Bid Price: 0001.0000000, Leg [1] Ask Price: 0001.2000000, Leg [1] CBOE Bid Size: 0000000050, Leg [1] CBOE Ask Size: 0000000050, Leg [1] Ratio: 0000000001, Leg [1] Origional Leg volume: 0000000050</small><br>
+<br><hr><br><b>
+ Pre Fast failover - check counts.</b><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (null) and Slave (null) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (null) and Slave (null) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (null) and Slave (null) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAP' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAP' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAP' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAP' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAPL' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAPL' in session W_MAIN</small><br>
+<br><hr><br><b>
+ Pre Fast failover - Verify CAS and Server Groups and Classes for groups</b><br>
+<br><hr><br><b>
+ Pre Fast failover - Subscribe for Trading Class Status for Group and for Classes</b><br>
+<br><hr><br><b>
+Fast Failover</b><br>
+&nbsp;&nbsp;<small>	Successful Failover of all BC processes from original master (devenv1) to new master (devenv1) for class 'AAPL' in W_MAIN</small><br>
+<br><hr><br><b>
+4 Trade on TE between quotes</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM2 for Product 'AAPL: Vertical 20110416 320.0000:1293559344064' (497842672) : 100@0.-50000000 x 100@0.100000000 <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ 5 Trade on TE between quote and order</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'AAP: Vertical 20110319 45.0000:1291906460719' (496271731) : 100@0.-100000000 x 100@0.150000000 <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+ 6 COA Auction with RFP</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM2 for Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993) : 100@0.-50000000 x 100@0.100000000 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993): O 50@0.100000000, Contingency: 'AUCTION_RESPONSE' (14), Origin Code: C, Branch/Seq: XDV:2908 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 4000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAP: Unknown Spread 20110319 30.0000:1291749120753' (496108993), Bid: 100@0.-100000000 x  Ask: 0@0.00</small><br>
+<br><hr><br><b>
+7 Cancel Quote</b><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User ROMM1 for Product 'AAP: Vertical 20110319 30.0000:1293559344156' (497842675)  <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+8 Cancel Order booked on TE</b><br>
+<br><hr><br><b>
+Test 1: Reject the cancel request</b><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User ROCU1 for Order XDV:2909, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+<br><hr><br><b>
+9 Cancel Replace Order booked on TE</b><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order Cancel/Replace by User ROCU1 for Order XDV:2910, Cancelled Qty: 100, Cancel Type: 'CANCEL_ALL_QUANTITY' (3), Replace: D 50@0.-150000000, Contingency: 'NONE'1, Origin Code: C, Branch/Seq: XDV:2911</small><br>
+<br><hr><br><b>
+10.PAR Cancel Report</b><br>
+&nbsp;&nbsp;<small>	Order Canceled  by PAR User FNKOrder: XDV:2912, Order Entry Date: 20101228, Cancel Quantity: 0000000100, TLC Cancel Quantity: 0000000100, Total Cancel Quantity: 0000000100, Reason Code:  0</small><br>
+<br><hr><br><b>
+Scenario 11. PAR Print</b><br>
+&nbsp;&nbsp;<small>	Complex Print Request submitted by PAR User FNK for Order : Order entry date: 20101228, Firm:     , Correspondent Firm: ABC , Branch/Sequence numbeer: XDV/2913, Print quantity: 0000000100, Sequence number : 0002, Bundle Sequence number: 000001, Leg Quantity[1] :           , Leg Quantity[2] :           , Leg Quantity[3] :           , Leg Quantity[4] :           </small><br>
+<br><hr><br><b>
+Scenario 20. PAR Complex Trade Report</b><br>
+&nbsp;&nbsp;<small>	Complex Trade Fill Report submitted by PAR User FNK for Order : Order entry date: 20101228, Firm: 501, Correspondent Firm: ABC , Branch/Sequence numbeer: XDV/2915, Sequence number : 0003, Bundle Sequence number: 000002, Trade date: 20101228, Markatable Indicator : N</small><br>
+&nbsp;&nbsp;<small>, Leg Ratios[1] : 0000000001, Leg Ratios[2] : 0000000001, Leg Ratios[3] :           , Leg Ratios[4] :           , Leg Volumes[1] : 0000000050, Leg Volumes[2] : 0000000050, Leg Volumes[3] : 0000000000, Leg Volumes[4] : 0000000000</small><br>
+&nbsp;&nbsp;<small>, Leg Ratios[1] : 0000000001, Leg Ratios[2] : 0000000001, Leg Ratios[3] :           , Leg Ratios[4] :           , Leg Volumes[1] : 0000000050, Leg Volumes[2] : 0000000050, Leg Volumes[3] : 0000000000, Leg Volumes[4] : 0000000000, Contra Broker Stock Exchange [1] :    , Contra Broker  [1] : ABC, Contra Broker Firm [1] : 161 ,Contra Leg Volumes[1,1] : 0000000050,Contra Leg Volumes[1,2] : 0000000050,Contra Leg Volumes[1,3] : 0000000050,Contra Leg Volumes[1,4] : 0000000050</small><br>
+<br><hr><br><b>
+10.PAR Cancel Report</b><br>
+<br><hr><br><b>
+Cancel report is published to the user if cancel report is not stuck in the queue</b><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ROCU1 for Product 'AAPL: Unknown Spread 20120121 165.0000:1293559344288' (497842681), Order: XDV:2912, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+Scenario 11. PAR Print</b><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO3 for Product 'AAPL: Unknown Spread 20130119 200.0000:1293559344368' (497842684) : O 100@0.100000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: XDV:2913</small><br>
+<br><hr><br><b>
+Scenario 20. PAR Complex Trade Report</b><br>
+&nbsp;&nbsp;<small>	Complex Trade Fill Report submitted by PAR User FNK for Order : Order entry date: 20101228, Firm: 501, Correspondent Firm: ABC , Branch/Sequence numbeer: XDV/2915, Sequence number : 0004, Bundle Sequence number: 000003, Trade date: 20101228, Markatable Indicator : N</small><br>
+&nbsp;&nbsp;<small>, Leg Ratios[1] : 0000000001, Leg Ratios[2] : 0000000001, Leg Ratios[3] :           , Leg Ratios[4] :           , Leg Volumes[1] : 0000000050, Leg Volumes[2] : 0000000050, Leg Volumes[3] : 0000000000, Leg Volumes[4] : 0000000000</small><br>
+&nbsp;&nbsp;<small>, Leg Ratios[1] : 0000000001, Leg Ratios[2] : 0000000001, Leg Ratios[3] :           , Leg Ratios[4] :           , Leg Volumes[1] : 0000000050, Leg Volumes[2] : 0000000050, Leg Volumes[3] : 0000000000, Leg Volumes[4] : 0000000000, Contra Broker Stock Exchange [1] :    , Contra Broker  [1] : ABC, Contra Broker Firm [1] : 161 ,Contra Leg Volumes[1,1] : 0000000050,Contra Leg Volumes[1,2] : 0000000050,Contra Leg Volumes[1,3] : 0000000050,Contra Leg Volumes[1,4] : 0000000050</small><br>
+&nbsp;&nbsp;<small>	Pause for 4000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User ROCU1 for Order Branch/Seq: XDV:2915, Filled 50@0.-100000000 (Leaves: 0, Cancelled: 0) </small><br>
+<br><hr><br><b>
+Step LAST: Checkout complete - Log off users</b><br>
+&nbsp;&nbsp;<small>	Log out PAR User: FNK (Password: CBOE), Workstation ID:  (W074) </small><br>
+&nbsp;&nbsp;<small>	Log out PAR User: ABC (Password: CBOE), Workstation ID:  (W075) </small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ROMM1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ROMM2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ROCU1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROBO1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROBO2</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROBO3</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROCO1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: RSHD1</small><br>

@@ -1,0 +1,25 @@
+//## Module: internalCallback
+
+#ifndef InternalCallback_idl
+#define InternalCallback_idl
+
+#include "marketData.idl"
+#include "cmiMarketData.idl"
+#include "cmiUtil.idl"
+#include "cmiCallbackV4.idl"
+
+// ==================================================================
+
+module internalCallback
+{
+    interface CurrentMarketManualQuoteConsumer : cmiCallbackV4::CMICurrentMarketConsumer {
+        oneway void acceptCurrentMarketForManualQuote( in cmiMarketData::CurrentMarketStructV4Sequence bestMarkets,
+                                                       in cmiMarketData::CurrentMarketStructV4Sequence bestPublicMarkets,
+                                                       in cmiMarketData::CurrentMarketStructV4Sequence manualQuoteMarkets,
+                                                       in marketData::ManualQuoteDetailInternalStructSequence manualQuoteDetails,
+                                                       in long messageSequence,
+                                                       in long queueDepth,
+                                                       in cmiUtil::QueueAction queueAction);
+    };
+};
+#endif

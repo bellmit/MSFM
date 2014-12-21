@@ -1,0 +1,26 @@
+#ifndef MarketDataSummary_idl
+#define MarketDataSummary_idl
+
+#include "cmiUtil.idl"
+#include "cmiMarketData.idl"
+
+module marketDataSummary
+{
+
+    struct ProductSummaryStruct {
+        long openInterest;
+        cmiMarketData::RecapStruct recap;
+    };
+
+    typedef sequence <ProductSummaryStruct> ProductSummaryStructSequence;
+
+    struct ClassSummaryStruct {
+        ProductSummaryStructSequence summaries;
+        cmiUtil::PriceStruct underlyingStockPrice;
+    };
+
+    typedef sequence <ClassSummaryStruct> ClassSummaryStructSequence;
+};
+
+
+#endif

@@ -1,0 +1,239 @@
+<ProductConfiguration>
+	
+	
+	<AsynchPersistenceChanges>
+			   <!-- Properties for the dequeue thread -->
+			    <DequeueThreadProperties>
+				    <maxDequeueSize>40</maxDequeueSize>
+				    <maxWaitTime>200</maxWaitTime>
+				    <numQueues>7</numQueues>
+				    <blockSize>10000</blockSize>
+				    <numBlocks>10</numBlocks>
+				    <transactionalPersistQueue booleanValue= "false" />
+			     </DequeueThreadProperties>	    
+			     
+			<!-- The origin code mentioned below will be the only one persisted Asynch -->
+            		    
+            		    <sessionName>
+            		    	<name> W_AM1 </name>
+            		    	<asynchronousOrdersOriginCode>NONE</asynchronousOrdersOriginCode>
+            		    </sessionName>
+            		    
+   	            	    <sessionName>	
+   	            	    	<name> ONE_MAIN </name>
+            		    	<asynchronousOrdersOriginCode>NONE</asynchronousOrdersOriginCode>
+   	            	    </sessionName>
+   	            	    
+   	            	    <sessionName>	
+				<name> CFE_MAIN </name>
+				<asynchronousOrdersOriginCode>NONE</asynchronousOrdersOriginCode>
+   	            	    </sessionName>
+   	            	    
+   	            	    <sessionName>	
+   	            	    	<name> COF_MAIN </name>
+			        <asynchronousOrdersOriginCode>NONE</asynchronousOrdersOriginCode>
+   	            	    </sessionName>
+   	            	    
+   	            	    <sessionName>	
+			       	 <name> W_MAIN </name>
+			         <asynchronousOrdersOriginCode>I,J,K,U,Z</asynchronousOrdersOriginCode>
+   	            	    </sessionName>
+   	            	    
+   	            	    <sessionName>	
+				 <name> W_MAIN_NON </name>
+				 <asynchronousOrdersOriginCode>NONE</asynchronousOrdersOriginCode>
+   	            	    </sessionName>
+            		    
+            		    <sessionName>	
+				 <name> W_STOCK </name>
+				 <asynchronousOrdersOriginCode>I</asynchronousOrdersOriginCode>
+   	            	    </sessionName>
+   	            	    
+	</AsynchPersistenceChanges>
+	
+	
+	<TLTCProcessing>
+		<!-- The origin code mentioned below will not have TLTC, i.e these orders will not fetched from Db if not Cache -->
+		<!-- Either a DVE or NFE will be thrown-->
+	   	 	<sessionName>
+				<name> W_AM1 </name>
+				<excludeOriginCodesForTLTCProcessing>NONE</excludeOriginCodesForTLTCProcessing>
+		    	</sessionName>
+
+		    	<sessionName>	
+				<name> ONE_MAIN </name>
+				<excludeOriginCodesForTLTCProcessing>NONE</excludeOriginCodesForTLTCProcessing>
+		    	</sessionName>
+
+		    	<sessionName>	
+				<name> CFE_MAIN </name>
+				<excludeOriginCodesForTLTCProcessing>NONE</excludeOriginCodesForTLTCProcessing>
+		    	</sessionName>
+
+		    	<sessionName>	
+				<name> COF_MAIN </name>
+				<excludeOriginCodesForTLTCProcessing>NONE</excludeOriginCodesForTLTCProcessing>
+		    	</sessionName>
+
+		    	<sessionName>	
+			 	<name> W_MAIN </name>
+			 	<excludeOriginCodesForTLTCProcessing>NONE</excludeOriginCodesForTLTCProcessing>
+		    	</sessionName>
+
+		    	<sessionName>	
+			 	<name> W_MAIN_NON </name>
+			 	<excludeOriginCodesForTLTCProcessing>NONE</excludeOriginCodesForTLTCProcessing>
+		    	</sessionName>
+
+		    	<sessionName>	
+			 	<name> W_STOCK </name>
+			 	<excludeOriginCodesForTLTCProcessing>I</excludeOriginCodesForTLTCProcessing>
+   	            	</sessionName>
+	</TLTCProcessing>
+	
+	<Publishing>
+			<!-- The following property determines when a new or a cancel order will be published to Order Status channel or EOSC-->
+			<!-- This is categorized by origin type for each sessions. For example, the new I-order for Stock will not be published on OSC-->
+			<sessionName>
+				<name>	W_AM1 </name>
+				<excludePublishNewOSOriginTypes>NONE</excludePublishNewOSOriginTypes>
+				<excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+				<excludePublishCancelOSOriginTypes>NONE</excludePublishCancelOSOriginTypes>
+				<excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+			</sessionName>
+
+			<sessionName>
+				 <name>	ONE_MAIN </name>
+				 <excludePublishNewOSOriginTypes>NONE</excludePublishNewOSOriginTypes>
+				 <excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+				 <excludePublishCancelOSOriginTypes>NONE</excludePublishCancelOSOriginTypes>
+				 <excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+			</sessionName>
+
+			<sessionName>
+				 <name>	CFE_MAIN </name>
+				 <excludePublishNewOSOriginTypes>NONE</excludePublishNewOSOriginTypes>
+				 <excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+				 <excludePublishCancelOSOriginTypes>NONE</excludePublishCancelOSOriginTypes>
+				 <excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+			</sessionName>
+
+			<sessionName>
+				 <name>	COF_MAIN </name>
+				 <excludePublishNewOSOriginTypes>NONE</excludePublishNewOSOriginTypes>
+				 <excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+				 <excludePublishCancelOSOriginTypes>NONE</excludePublishCancelOSOriginTypes>
+			         <excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+			</sessionName>
+
+
+			<sessionName>
+				 <name>	W_MAIN </name>
+				 <excludePublishNewOSOriginTypes>NONE</excludePublishNewOSOriginTypes>
+				 <excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+				 <excludePublishCancelOSOriginTypes>NONE</excludePublishCancelOSOriginTypes>
+				 <excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+			</sessionName>
+
+
+			<sessionName>
+				<name>	W_MAIN_NON </name>
+			    	<excludePublishNewOSOriginTypes>NONE</excludePublishNewOSOriginTypes>
+				<excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+			     	<excludePublishCancelOSOriginTypes>NONE</excludePublishCancelOSOriginTypes>
+				<excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+			</sessionName>
+
+			<sessionName>
+				<name>	W_STOCK </name>
+				<excludePublishNewOSOriginTypes>I</excludePublishNewOSOriginTypes>
+				<excludePublishNewExternalOSOriginTypes>NONE</excludePublishNewExternalOSOriginTypes>
+				<excludePublishCancelOSOriginTypes>I</excludePublishCancelOSOriginTypes>
+				<excludePublishCancelExternalOSOriginTypes>NONE</excludePublishCancelExternalOSOriginTypes>
+						
+			</sessionName>
+	</Publishing>
+	
+	<Cache>		
+			<sessionName>
+				<name>	W_AM1 </name>
+				<OrderIDsThatWillBeDeletedAfterFullCancel>0</OrderIDsThatWillBeDeletedAfterFullCancel>
+				
+			</sessionName>
+
+			<sessionName>
+				 <name>	ONE_MAIN </name>
+				 <OrderIDsThatWillBeDeletedAfterFullCancel>0</OrderIDsThatWillBeDeletedAfterFullCancel>
+				
+			</sessionName>
+
+			<sessionName>
+				 <name>	CFE_MAIN </name>
+				 <OrderIDsThatWillBeDeletedAfterFullCancel>0</OrderIDsThatWillBeDeletedAfterFullCancel>
+				 
+			</sessionName>
+
+			<sessionName>
+				 <name>	COF_MAIN </name>
+				<OrderIDsThatWillBeDeletedAfterFullCancel>0</OrderIDsThatWillBeDeletedAfterFullCancel>
+				
+			</sessionName>
+
+
+			<sessionName>
+				 <name>	W_MAIN </name>
+				<OrderIDsThatWillBeDeletedAfterFullCancel>I,J,K,U,Z</OrderIDsThatWillBeDeletedAfterFullCancel>
+				
+			</sessionName>
+
+
+			<sessionName>
+				<name>	W_MAIN_NON </name>
+				<OrderIDsThatWillBeDeletedAfterFullCancel>I,J,K,U,Z</OrderIDsThatWillBeDeletedAfterFullCancel>
+				
+			</sessionName>
+
+			<sessionName>
+				<name>	W_STOCK </name>
+				<OrderIDsThatWillBeDeletedAfterFullCancel>I</OrderIDsThatWillBeDeletedAfterFullCancel>
+				
+			</sessionName>
+			
+	</Cache>
+	
+	
+	
+	<OrderLoading>
+		<OHS>
+			<initialTableSize>200000</initialTableSize>
+			<numberOfDBLoadThreads>17</numberOfDBLoadThreads>
+		</OHS>
+		
+		<TE>
+			 <totalNumberOfOrderLoadingThreads>11</totalNumberOfOrderLoadingThreads>
+			 <maxProductsToSendPerCallToOHS>10</maxProductsToSendPerCallToOHS>
+            		 <maxSleepTimeBeforeOHSCall>2000</maxSleepTimeBeforeOHSCall>
+		</TE>
+		
+	</OrderLoading>
+	
+	
+	
+	
+	
+	<OrderLock>
+		  <lockWaitPollingMillis>30000</lockWaitPollingMillis>
+	          <cacheSize>250000</cacheSize>
+	
+	</OrderLock>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</ProductConfiguration>

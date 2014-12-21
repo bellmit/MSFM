@@ -1,0 +1,76 @@
+Interfaces,Methods,Roles,,,,,,,,,,,Comments
+,,CTM_Firm_Options_Root,CTM_Firm_Options_ Admin,CTM_Firm_Options_Clerk,CTM_Firm_Options_ Broker,CTM_Firm_Futures_ Root,CTM_Firm_Futures_ Admin,CTM_Firm_Futures_Clerk,CTM-Firm_Futures_Broker,CTM_Root,CTM_System,CTM_Help_Desk,<DoNotRemove>Format=CTMI</DoNotRemove>
+Service Interfaces,,,,,,,,,,,,,
+CTMCTMIParmService,,,,,,,,,,,,,
+,getParm,,,,,,,,,x,x,x,
+,getParms,,,,,,,,,x,x,x,
+,getParmsSingleKey,,,,,,,,,x,x,x,
+,updateParm,,,,,,,,,x,x,x,
+,addParm,,,,,,,,,x,x,x,
+,deleteParm,,,,,,,,,x,x,x,
+,getAutobust,,,,,,,,,x,x,,
+,updateAutobust,,,,,,,,,x,x,,
+,getEndOfQuarter,,,,,,,,,x,x,,
+,updateEndOfQuarter,,,,,,,,,x,x,,
+,getMMHH,,,,,,,,,x,x,,
+,updateMMHH,,,,,,,,,x,x,,
+,getExactMatching,,,,,,,,,x,x,
+,updateExactMatching,,,,,,,,,x,x,
+,getTierMatching,,,,,,,,,x,x,
+,updateTierMatching,,,,,,,,,x,x,
+,getOneChicagoProcessing,,,,,,,,,x,x,
+,updateOneChicago-Processing,,,,,,,,,x,x,
+,getCFEProcessing,,,,,,,,,x,x,
+,updateCFEProcessing,,,,,,,,,x,x,
+,getMatchingParms,,,,,,,,,x,x,x
+,updateMatchingParms,,,,,,,,,x,x,x
+,getMatchingControlParm,,,,,,,,,x,x,x
+,updateMatchingControlParm,,,,,,,,,x,x,x
+,getMatchingTierParms,,,,,,,,,x,x,x
+,updateMatchingTierParms,,,,,,,,,x,x,x
+,getMatchingTiers,,,,,,,,,x,x,x
+,updateMatchingTiers,,,,,,,,,x,x,x
+,submitBatchMatchRequest,,,,,,,,,x,x,x
+CTMCTMIFirmMaintenanceService,,,,,,,,,,,,
+,getFirmStatistics,x,x,x,,,,,,x,x,x
+,getFirmAuthorizations,x,x,,,x,x,,,x,x,x
+,getFirmContacts,x,x,x,,,,,,x,x,x
+,getOrsCmtaCorrespondents,x,x,,,,,,,x,,x
+,addOrsCmtaConversion,x,x,,,,,,,x,,x
+,deleteOrsCmtaConversion,x,x,,,,,,,x,,x
+,getAuthorizedFirms,x,x,,,x,x,,,x,x,x
+,addFirmAuthorizations,x,x,,,x,x,,,x,x,x
+,deleteFirmAuthorization,x,x,,,x,x,,,x,x,x
+CTMCTMIRtcService,,,,,,,,,,,,
+,getFirmTcpipPasswords,x,,,,,,,,x, ,
+,addFirmTcpipPassword,x,,,,,,,,x, ,
+,deleteFirmTcpipPassword,x,,,,,,,,x, ,
+,updateFirmTcpipPassword,x,,,,,,,,x,x,
+,getRtcRecordCount,,,,,,,,,x,,x
+,resendRtcRecords,,,,,,,,,x,,x
+,getDropCopies,x,,,,,,,,x,,x
+CTMCTMITradingMessageService,,,,,,,,,,,,
+,getTradeMessages,x,x,x,,,,,,x,x,x
+,resendMessage,x,x,x,,,,,,x,x,x
+,deleteTradeMessage,x,x,x,,,,,,x,x,x
+CTMCTMIOptionsTradeService,,,,,,,,,,,,
+,getTradesByFirm,x,,x,,,,,,x,x,x
+,getTrade   ,x,x,x,,,,,,x,x,x
+,deleteTrade ,x,x,x,,,,,,x,x,x
+,addTrades,x,,x,,,,,,x,x,x
+,updateTrade,x,,x,,,,,,x,x,x
+,getTradeActivity ,,,,,,,,,x,x,x
+,allocateTrades ,x,,x,,,,,,x,x,x
+,sendRangeDelete,,,,,,,,,x,x,x
+CTMCTMIBatchUtilService,,,,,,,,,,,,,
+,getWireAuthorizations,,,,,,,,,x,,x,
+,updateWireAuthorizationChanges ,,,,,,,,,x,,x,
+,getBatchLoadInfo ,,,,,,,,,x,,x,
+,deleteBatchLoadInfo,,,,,,,,,x,,x,
+CTMUserMaintenanceService,,,,,,,,,,,,,
+,getUser,x,,,,x,,,,x,x,,
+,saveUser,x,,,,x,,,,x,x,,
+,getRoleList,x,,,,x,,,,x,x,,
+CTMCTMIFuturesTradeService,,,,,,,,,,,,,
+
+,,,,,,,,,,,,,Not yet defined

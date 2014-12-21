@@ -1,0 +1,2656 @@
+Testsuite: com.cboe.ohs.test.tools.TestSuiteBuilder
+Tests run: 141, Failures: 2, Errors: 72, Time elapsed: 1.572 sec
+------------- Standard Output ---------------
+Classpath:
+  /vobs/dte/ohs/classes/OHSTest.jar
+
+Searching for tests...
+EMMA: collecting runtime coverage data ...
+###########The framework appears to not be initialized: no default logServiceComponent. Returning a console log service.
+Message: PriceFactory: Using priceCache = false
+
+Tests from /vobs/dte/ohs/classes/OHSTest.jar:
+  com.cboe.ohs.channels.CacheUpdateTest
+    testCacheUpdateChannelRegistration
+  com.cboe.ohs.channels.OrderStatusChannelsTest
+    testOrderStatusPublisher
+    testExternalOrderStatusPublisher
+  com.cboe.ohs.channels.ProductStateAndStatusTest
+    testStatusChannelRegistration
+    testAdjustmentChannelRegistration
+    testStateChannelRegistration
+  com.cboe.ohs.channels.TradingSessionChannelTest
+    testTradingSessionChannelRegistration
+  com.cboe.ohs.domain.DataBeanTest
+    testOrderIdImpl
+    testPrice
+    testTime
+    testOrderLegDetail
+    testOrder
+  com.cboe.ohs.domain.OrderLockImplTest
+    testResetLock
+    testMultiLockUnlock
+    testUnlock
+  com.cboe.ohs.framework.FoundationFrameworkInitiializerTest
+    testAccessibilityOfNullCmdCallbackService
+    testAddHomeStringProps
+    testAddHomePropsObj
+    testAddHomes
+    testAddHomesOrdering
+    testRealServiceConfig
+  com.cboe.ohs.framework.FrameworkTest
+    testSingletonHomeRequiresFirstHome
+    testCollectionHomeRequiresFirstHome
+    testSingletonHome
+    testCollectionHome
+  com.cboe.ohs.framework.ServiceExporterTest
+    testServiceExporter
+  com.cboe.ohs.logger.LoggerTest
+    testNullLogHandler
+    testFileLogHandler
+    testFFLogHandler
+    testGetLoggers
+    testGetHandler
+    testDefaultLogLevel
+    testTraceString
+    testDebugString
+    testAuditString
+    testClientString
+    testInfoString
+    testAlarmString
+    testTraceStringThrowable
+    testDebugStringThrowable
+    testAuditStringThrowable
+    testClientStringThrowable
+    testInfoStringThrowable
+    testAlarmStringThrowable
+    testBuildTrace
+    testBuildDebug
+    testBuildAudit
+    testBuildClient
+    testBuildInfo
+    testBuildAlarm
+    testUsingDefaultLevel
+    testSetLevel
+  com.cboe.ohs.providers.firms.FirmsProxyTest
+    testFirmProxy
+  com.cboe.ohs.providers.pcs.PCSProxyTest
+    testPCSProxy
+  com.cboe.ohs.providers.products.TestProductCache
+    testProductCacheHomeInit
+    testShowProducts
+    testClassUpdate
+    testProductUpdate
+    testProductLegUpdate
+    testProductAdd
+    testProductStateUpdate
+  com.cboe.ohs.receivers.OESTest
+    testAcceptNonHybridStopOrder
+    testAcceptNonHybridOrder
+    testAcceptHybridOrder
+    testCancellingOtherUserOrder
+    testAcceptCancelOrder
+    testAcceptCancelHybridOrder
+    testAcceptCancelReplaceOrder
+    testAcceptCancelReplaceHybridOrder
+    testAcceptUpdate
+    testAcceptStrategyOrder
+    testAcceptCancelReplaceStrategyOrder
+    testCross
+    testInternalization
+  com.cboe.ohs.util.CatResourceTest
+    testCatResource
+  com.cboe.ohs.util.ConstantMapperTest
+    testGetNameInt
+    testGetNameString
+    testGetValueInt
+    testGetValueString
+    testGetUnknownName
+    testDupIntVal
+    testDupStrVal
+    testDupIntName
+    testDupStrName
+  com.cboe.ohs.util.OMSNetworkInstrumentorTest
+    testInstrumentor
+  com.cboe.ohs.util.OMSV2NetworkInstrumentorTest
+    testInstrumentor
+  com.cboe.ohs.util.OrderIdTest
+    testOrderIdWithHighLow
+    testOrderIdWithoutHighLow
+  com.cboe.ohs.workflow.EnvReplaceTest
+    testBraces
+    testBadBraces
+    testNonBraces
+    testMixedBraces
+  com.cboe.ohs.workflow.LightXMLTest
+    testBasicFile
+    testPropertiesQuery
+    testCoreServicesQuery
+    testFormatException
+    testAttributeParsing
+    testNoSuchProperty
+    testBasicQuery
+    testTagAsQuery
+  com.cboe.ohs.workflow.WorkflowConstantTest
+    testConstants
+    testConstantNameUniqueness
+  com.cboe.ohs.workflow.WorkflowTest
+    testObserver
+    testEnums
+    testStepParams
+    testBasicTest
+    testBasicTestWithoutHistory
+    testWorkflowObserver
+    testFlowDump
+    testWorkflowHome
+    testExceptionHandler1
+    testExceptionHandler2
+    testExceptionStep
+    testAddStep
+    testFlowToVisio
+  com.cboe.ohs.workflow.orders.WorkflowStepsTest
+    testCheckOrderContingency
+    testPublishNewOrder
+    testCheckPublishNewOrder
+    testSendOrderToORD
+    testSendOrderToPAR
+    testSendOrderToBART
+    testSendCancelToORD
+    testBaseContextMaybeThrow
+    testSendCancelToTPF
+    testSendCancelReToTPF
+    testSendCancelReToORD
+    testSendOrderToTPF
+    testRerouteOrderToTPF
+    testRerouteOrderAndBookDepthToTPF
+    testRerouteCancelToTPF
+    testRerouteCancelReToTPF
+    testRerouteCancelReAndBookDepthToTPF
+    testOrderRemove
+    testCheckOrderDestination
+    testCheckRoute
+    testCheckOrderSource
+    testCheckOrderLocation
+    testCheckOrderOriginator
+    testContingencyTypesEnum
+    testTransactionalStep
+    testOrderSession
+Found 141 tests.
+
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+WARNING: Options file <cboe.ssconfig.cm> not found.
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+testLogger2 - DEBUG - LockTest Entering Lock: main
+testLogger2 - AUDIT - LockTest Locked by: main
+testLogger2 - DEBUG - LockTest Entering Lock: main
+testLogger2 - AUDIT - LockTest Locked by: main
+testLogger2 - AUDIT - LockTest Unlocked by: main
+testLogger2 - AUDIT - LockTest Unlocked by: main
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
+11:11:28 | [WARN ] System property EventService.SmartSockets.GMDDir is missing, may affect FF behavior
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.ohs.logger.LoggerTest$MockFFLogService
+Innitializing the in process event service 
+testLogger6 - DEBUG - log this message
+testLogger7 - TRACE - Test TRACE message.
+testLogger8 - DEBUG - Test DEBUG message.
+testLogger9 - AUDIT - Test AUDIT message.
+testLogger10 - CLIENT - Test CLIENT message.
+testLogger11 - INFO - Test INFO message.
+testLogger12 - ALARM - Test ALARM message.
+testLogger13 - TRACE - Test TRACE message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testTraceStringThrowable(LoggerTest.java:281)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger14 - DEBUG - Test DEBUG message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testDebugStringThrowable(LoggerTest.java:286)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger15 - AUDIT - Test AUDIT message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testAuditStringThrowable(LoggerTest.java:291)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger16 - CLIENT - Test CLIENT message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testClientStringThrowable(LoggerTest.java:296)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger17 - INFO - Test INFO message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testInfoStringThrowable(LoggerTest.java:301)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger18 - ALARM - Test ALARM message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testAlarmStringThrowable(LoggerTest.java:306)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger19 - TRACE - Test TRACE message.
+==== BEGIN EXCEPTION ====
+ java.lang.RuntimeException(null)
+ com.cboe.ohs.logger.LoggerTest.testBuildTrace(LoggerTest.java:311)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+testLogger20 - DEBUG - message val1(123)
+testLogger21 - AUDIT - message val1(123)
+testLogger22 - CLIENT - message val1(123)
+testLogger23 - INFO - message val1(123)
+testLogger24 - ALARM - message val1(123)
+testLogger25 - INFO - info
+testLogger25 - ALARM - alarm
+testLogger26 - CLIENT - client
+testLogger26 - INFO - info
+testLogger26 - ALARM - alarm
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+Found 0 SMA type mappings from system properties.
+tag5=home(here).thingy(st)
+Exec: step1
+Exec: step2 (i=0)
+Exec: step1
+Exec: step2 (i=1)
+Exec: step3
+Exec: step4
+Using this xml:
+<workflows> <workflow name="aTestFlow" desc="example workflow">
+<firstStep id="s1"/> <!-- some comment -->
+      <exceptionHandler type=com.cboe.ohs.workflow.WorkflowTest$MockExHandler />
+      <step id="s1" desc="the first step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep1">
+          <param name=n1>v1</param>
+          <nextStep enum="True" desc="if true" id="s2"/>
+          <nextStep enum=False desc="example of terminal step" id=FINAL/>
+          <nextStep enum="(EXCEPTION)" desc="when Bad Things Happen" id=sErr/>
+      </step>
+      <step id="s2" desc="second step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep2">
+          <nextStep enum="Success" desc="example of looping" id="s1"/>
+          <nextStep enum="Failure" id=s3/>
+          <nextStep enum="(DEFAULT)" desc="default routing" id=s4/>
+      </step>
+      <step id="s3" desc="third step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep3">
+          <nextStep enum="(DEFAULT)" id=s4/>
+      </step>
+      <step id="s4" desc="fourth step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep4">
+          <nextStep enum="(DEFAULT)" desc=terminate_fourth_step id=FINAL/>
+      </step>
+      <step id="sErr" desc="err handing" type="com.cboe.ohs.workflow.WorkflowTest$MockStep4">
+          <nextStep enum="(DEFAULT)" desc="terminate after err" id=FINAL/>
+      </step>
+ </workflow>
+</workflows>
+Using this xml:
+<workflows> <workflow name="aTestFlow" desc="example workflow">
+<firstStep id="s1"/> <!-- some comment -->
+      <exceptionHandler type=com.cboe.ohs.workflow.WorkflowTest$MockExHandler />
+      <step id="s1" desc="the first step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep1">
+          <param name=n1>v1</param>
+          <nextStep enum="True" desc="if true" id="s2"/>
+          <nextStep enum=False desc="example of terminal step" id=FINAL/>
+          <nextStep enum="(EXCEPTION)" desc="when Bad Things Happen" id=sErr/>
+      </step>
+      <step id="s2" desc="second step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep2">
+          <nextStep enum="Success" desc="example of looping" id="s1"/>
+          <nextStep enum="Failure" id=s3/>
+          <nextStep enum="(DEFAULT)" desc="default routing" id=s4/>
+      </step>
+      <step id="s3" desc="third step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep3">
+          <nextStep enum="(DEFAULT)" id=s4/>
+      </step>
+      <step id="s4" desc="fourth step" type="com.cboe.ohs.workflow.WorkflowTest$MockStep4">
+          <nextStep enum="(DEFAULT)" desc=terminate_fourth_step id=FINAL/>
+      </step>
+      <step id="sErr" desc="err handing" type="com.cboe.ohs.workflow.WorkflowTest$MockStep4">
+          <nextStep enum="(DEFAULT)" desc="terminate after err" id=FINAL/>
+      </step>
+ </workflow>
+</workflows>
+Exec: step1
+Exec: step2 (i=0)
+Exec: step1
+Exec: step2 (i=1)
+Exec: step3
+Exec: step4
+Exec: step1
+Exec: step2 (i=0)
+Exec: step1
+Exec: step2 (i=1)
+Exec: step3
+Exec: step4
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Begin workflow(aTestFlow) for context(a mock context)
+Exec: step1
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Executed step(s1) result(True)
+Exec: step2 (i=0)
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Executed step(s2) result(Success)
+Exec: step1
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Executed step(s1) result(True)
+Exec: step2 (i=1)
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Executed step(s2) result(Failure)
+Exec: step3
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Executed step(s3) result(True)
+Exec: step4
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: Executed step(s4) result(True)
+2011-03-03 11:11:29.122 AUDIT main DEFAULT: End workflow(aTestFlow) for context(a mock context)
+TransactionTiming of FF Transaction will not be done.
+
+
+Transaction.java: Transactions clocked = false
+maxInnerListenerTime = 3000 maxCompleteListenertime = 3000 checkListenerTime = true
+ * `-> BY DEFAULT (),
+ *     STEP s1 (the first step):
+ *      
+ *       `-> IF True (if true), THEN
+ *           STEP s2 (second step):
+ *            
+ *             `-> IF Success (example of looping), THEN
+ *                 STEP s1 (the first step):
+ *                  
+ *                  [CYCLIC REFERENCE: see above for step s1 transitions]
+ *             `-> IF Failure (), THEN
+ *                 STEP s3 (third step):
+ *                  
+ *                   `-> BY DEFAULT (),
+ *                       STEP s4 (fourth step):
+ *                        
+ *                         `-> BY DEFAULT (terminate_fourth_step),
+ *                             STEP FINAL (final step):
+ *                              
+ *             `-> BY DEFAULT (default routing),
+ *                 STEP s4 (fourth step):
+ *                  
+ *                   `-> BY DEFAULT (terminate_fourth_step),
+ *                       STEP FINAL (final step):
+ *                        
+ *       `-> IF False (example of terminal step), THEN
+ *           STEP FINAL (final step):
+ *            
+ *       `-> ON EXCEPTION (when Bad Things Happen),
+ *           STEP sErr (err handing):
+ *            
+ *             `-> BY DEFAULT (terminate after err),
+ *                 STEP FINAL (final step):
+ *                  
+
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
+Exec: step1
+Exec: step4
+;----- BEGIN VISIO OUTPUT -----
+
+;
+; VISIO Diagram in .csv form generated for workflow
+;    aTestFlow: example workflow
+;
+; (In Visio, open as a text file and specify ',' as the delimiter.)
+;
+; Define the types of shape to use:
+;
+Template,"Basic Flowchart.vst"
+Master,,Process,"Basic Flowchart Shapes.vss"
+Master,Connector,"Dynamic Connector","Basic Shapes.vss"
+Master,,Decision,"Basic Flowchart Shapes.vss"
+Master,,Terminator,"Basic Flowchart Shapes.vss"
+
+
+
+; STEPS:
+Shape,BEGIN,Terminator,"Begin Flow"
+Shape,"s1",Decision,"the first step"
+Shape,"s2",Decision,"second step"
+Shape,"s3",Decision,"third step"
+Shape,"s4",Decision,"fourth step"
+Shape,"sErr",Decision,"err handing"
+
+Shape,FINAL,Terminator,"End Flow"
+
+
+; LINKS:
+Link,"s1-FINAL",Connector,"False",s1,FINAL
+Link,"s2-s1",Connector,"Success",s2,s1
+Link,"s2-s3",Connector,"Failure",s2,s3
+Link,"s2-s4",Connector,"(default)",s2,s4
+Link,"s1-s2",Connector,"True",s1,s2
+Link,"s4-FINAL",Connector,"(default)",s4,FINAL
+Link,"sErr-FINAL",Connector,"(default)",sErr,FINAL
+Link,"s1-sErr",Connector,"(exception)",s1,sErr
+Link,"s3-s4",Connector,"(default)",s3,s4
+Link,"BEGIN-s1",Connector,"begin workflow",BEGIN,s1
+
+
+;----- END VISIO OUTPUT -----
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+ +++ resetHomeFactory
++++ reset FF
++++ creating FF
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceNullImpl
+Innitializing the in process event service 
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+Mar 3, 2011 11:11:27 AM  
+INFO:  WARNING: Error while obtaining the properties for transactionTimer. Default values will be used 
+Mar 3, 2011 11:11:28 AM  
+INFO: Server Grizzly Controller is using BlockingMode ExecutorService.
+Mar 3, 2011 11:11:28 AM  
+INFO: IIOPTransport: Starting grizzly server controller.
+Mar 3, 2011 11:11:28 AM  
+INFO: IIOPTransport: Grizzly server controller startup finished, ThreadPool(IIOPTransportServerThreadPool).
+Mar 3, 2011 11:11:28 AM  
+INFO: Client Grizzly Controller is using BlockingMode ExecutorService.
+Mar 3, 2011 11:11:28 AM  
+INFO: IIOPTransport: Starting grizzly client controller.
+Mar 3, 2011 11:11:28 AM  
+INFO: IIOPTransport: Grizzly client controller startup finished, ThreadPool(IIOPTransportClientThreadPool).
+Mar 3, 2011 11:11:28 AM  
+INFO: IIOPTransport.<init>: serverHost(ccserv1), serverPort(0), altHost(), altPort(0).
+Mar 3, 2011 11:11:28 AM  
+INFO: TIOPTransportHandler.initServerSide: No client_keep_alive_timeout value specified. Using default(0.0).
+Mar 3, 2011 11:11:28 AM  
+INFO: TIOPTransportHandler.initServerSide: No client_read_timeout value specified. Using default(30.0).
+Mar 3, 2011 11:11:28 AM  
+INFO: TIOPTransportHandler.initServerSide: No client_write_timeout value specified. Using default(30.0).
+Mar 3, 2011 11:11:28 AM  
+INFO: TIOPTransportHandler.init: uniqueName(//ccserv1/260c86b6:12e7cb3e621:-8000), globalConnKeepAliveTimeout(0.0), globalConnReadTimeout(30.0), globalConnWriteTimeout(30.0), grepForKeepAlives().
+Mar 3, 2011 11:11:28 AM  
+INFO: TAPoolPerPOA: created thread pool with size(5) using queue(UnboundedPOAQueue(RootPOA)), prestartingThreads(true), for POA(RootPOA).
+java.lang.NoClassDefFoundError: javax/jms/JMSException
+	at com.cboe.ORBInfra.PortableServer.POA_i.createCommandConsole(POA_i.java:133)
+	at com.cboe.ORBInfra.PortableServer.POA_i.createRootPOA(POA_i.java:108)
+	at com.cboe.ORBInfra.ORB.Orb.initOrb(Orb.java:1373)
+	at com.cboe.ORBInfra.ORB.Orb.init(Orb.java:1135)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.initOrb(RegistrarClient.java:132)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.initRemoteRegistrar(RegistrarClient.java:143)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.<init>(RegistrarClient.java:311)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.getInstance(RegistrarClient.java:36)
+	at com.cboe.instrumentationService.transactionTiming.TransactionTimerBaseImpl.staticInitialize(TransactionTimerBaseImpl.java:49)
+	at com.cboe.instrumentationService.transactionTiming.TransactionTimerBaseImpl.getLocalInstance(TransactionTimerBaseImpl.java:120)
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerLocalImpl.initialize(TransactionTimerLocalImpl.java:7)
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerFactoryImpl.createInstance(TransactionTimerFactoryImpl.java:42)
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerFactoryImpl.getLocalTransactionTimer(TransactionTimerFactoryImpl.java:57)
+	at com.objectwave.persist.RDBBroker.<clinit>(RDBBroker.java:51)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.CacheUpdateTest.setUp(CacheUpdateTest.java:67)
+	at junit.framework.TestCase.runBare(TestCase.java:128)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:120)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+Caused by: java.lang.ClassNotFoundException: javax.jms.JMSException
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:307)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:252)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:320)
+	... 40 more
+Mar 3, 2011 11:11:28 AM  
+INFO: com.cboe.instrumentationService.transactionTiming.RegistrarClient ORB Could not be initialized. The registrar client is not initialized 
+Mar 3, 2011 11:11:28 AM  
+INFO: TransactionTimerBaseImpl Failed to initialize the Registration Service
+java.lang.RuntimeException: Resource not found in classpath: "MockResource.resourceFile"
+	at com.cboe.server.util.CatResource.catResource(CatResource.java:53)
+	at com.cboe.server.util.CatResource.execute(CatResource.java:38)
+	at com.cboe.ohs.util.CatResourceTest.testCatResource(CatResourceTest.java:18)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at junit.framework.TestCase.runTest(TestCase.java:164)
+	at junit.framework.TestCase.runBare(TestCase.java:130)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:120)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+tag1 in <tag1>
+tag2 in <tag2 name="hi" hi="">
+Mar 3, 2011 11:11:29 AM  
+INFO: InstrumentorHome.setupDefaultInstrumentorMonitorRegistrars: Exception creating InstrumentorMonitorRegistrar(com.cboe.instrumentationService.distribution.InstrumentorMonitorECRegistrar).
+java.lang.NoClassDefFoundError: javax/jms/JMSException
+	at com.cboe.NotificationService.Transport.NotifTransportLoader.getTransportBase(NotifTransportLoader.java:14)
+	at com.cboe.ORBInfra.ORB.Orb.resolve_initial_references(Orb.java:600)
+	at com.cboe.eventServiceUtilities.EventChannelUtility.startEventService(EventChannelUtility.java:87)
+	at com.cboe.instrumentationService.distribution.InstrumentorMonitorECRegistrar.startConsumer(InstrumentorMonitorECRegistrar.java:333)
+	at com.cboe.instrumentationService.distribution.InstrumentorMonitorECRegistrar.<init>(InstrumentorMonitorECRegistrar.java:60)
+	at com.cboe.instrumentationService.distribution.InstrumentorMonitorECRegistrar.<init>(InstrumentorMonitorECRegistrar.java:49)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at java.lang.Class.newInstance0(Class.java:355)
+	at java.lang.Class.newInstance(Class.java:308)
+	at com.cboe.instrumentationService.InstrumentorHome.setupDefaultInstrumentorMonitorRegistrars(InstrumentorHome.java:159)
+	at com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceImpl.<init>(InstrumentationServiceImpl.java:88)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+	at java.lang.Class.newInstance0(Class.java:355)
+	at java.lang.Class.newInstance(Class.java:308)
+	at com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceBaseImpl.getInstance(InstrumentationServiceBaseImpl.java:80)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.getInstrumentationService(FoundationFramework.java:258)
+	at com.cboe.infrastructureServices.foundationFramework.utilities.TransactionBaseImpl.<init>(TransactionBaseImpl.java:89)
+	at com.cboe.infrastructureServices.foundationFramework.utilities.Transaction.<clinit>(Transaction.java:7)
+	at com.cboe.server.workflow.BaseContext.commitRootTransaction(BaseContext.java:176)
+	at com.cboe.server.workflow.WorkflowObserver.workflowEnd(WorkflowObserver.java:120)
+	at com.cboe.server.workflow.WorkflowObserver.workflowEnd(WorkflowObserver.java:15)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.executeStep(WorkflowExecutorImpl.java:360)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.instrumentedExecuteStep(WorkflowExecutorImpl.java:209)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.executeStep(WorkflowExecutorImpl.java:203)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.autoExecute(WorkflowExecutorImpl.java:108)
+	at com.cboe.ohs.workflow.WorkflowTest.testWorkflowObserver(WorkflowTest.java:312)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at junit.framework.TestCase.runTest(TestCase.java:164)
+	at junit.framework.TestCase.runBare(TestCase.java:130)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:120)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+Caused by: java.lang.ClassNotFoundException: javax.jms.JMSException
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:307)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:301)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:252)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:320)
+	... 51 more
+Corba System Exception: TradingService
+org.omg.CORBA.ORBPackage.InvalidName: TradingService
+	at com.cboe.ORBInfra.ORB.Orb.resolve_initial_references(Orb.java:641)
+	at com.cboe.infrastructureUtility.TradingBinder.<init>(TradingBinder.java:50)
+	at com.cboe.infrastructureUtility.CBOETradingBinder.<init>(CBOETradingBinder.java:32)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.initRemoteRegistrar(RegistrarClient.java:150)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.<init>(RegistrarClient.java:311)
+	at com.cboe.instrumentationService.transactionTiming.RegistrarClient.getInstance(RegistrarClient.java:36)
+	at com.cboe.instrumentationService.transactionTiming.TransactionTimerBaseImpl.staticInitialize(TransactionTimerBaseImpl.java:49)
+	at com.cboe.instrumentationService.transactionTiming.TransactionTimerBaseImpl.getLocalInstance(TransactionTimerBaseImpl.java:120)
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerLocalImpl.initialize(TransactionTimerLocalImpl.java:7)
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerFactoryImpl.createInstance(TransactionTimerFactoryImpl.java:42)
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerFactoryImpl.getLocalTransactionTimer(TransactionTimerFactoryImpl.java:57)
+	at com.cboe.infrastructureServices.foundationFramework.utilities.TransactionBaseImpl.<init>(TransactionBaseImpl.java:89)
+	at com.cboe.infrastructureServices.foundationFramework.utilities.Transaction.<clinit>(Transaction.java:7)
+	at com.cboe.server.workflow.BaseContext.commitRootTransaction(BaseContext.java:176)
+	at com.cboe.server.workflow.WorkflowObserver.workflowEnd(WorkflowObserver.java:120)
+	at com.cboe.server.workflow.WorkflowObserver.workflowEnd(WorkflowObserver.java:15)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.executeStep(WorkflowExecutorImpl.java:360)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.instrumentedExecuteStep(WorkflowExecutorImpl.java:209)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.executeStep(WorkflowExecutorImpl.java:203)
+	at com.cboe.server.workflow.impl.WorkflowExecutorImpl.autoExecute(WorkflowExecutorImpl.java:108)
+	at com.cboe.ohs.workflow.WorkflowTest.testWorkflowObserver(WorkflowTest.java:312)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at junit.framework.TestCase.runTest(TestCase.java:164)
+	at junit.framework.TestCase.runBare(TestCase.java:130)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:120)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at junit.framework.TestSuite.runTest(TestSuite.java:228)
+	at junit.framework.TestSuite.run(TestSuite.java:223)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+------------- ---------------- ---------------
+
+Testcase: testCacheUpdateChannelRegistration took 0.621 sec
+	Caused an ERROR
+TransactionTimer not initialized.
+java.lang.InternalError: TransactionTimer not initialized.
+	at com.cboe.infrastructureServices.instrumentationService.TransactionTimerBaseImpl.registerTransactionIdentifier(TransactionTimerBaseImpl.java:61)
+	at com.objectwave.persist.RDBBroker.<clinit>(RDBBroker.java:52)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.CacheUpdateTest.setUp(CacheUpdateTest.java:67)
+
+Testcase: testOrderStatusPublisher took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.OrderStatusChannelsTest.setUp(OrderStatusChannelsTest.java:33)
+
+Testcase: testExternalOrderStatusPublisher took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.OrderStatusChannelsTest.setUp(OrderStatusChannelsTest.java:33)
+
+Testcase: testStatusChannelRegistration took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.ProductStateAndStatusTest.setUp(ProductStateAndStatusTest.java:76)
+
+Testcase: testAdjustmentChannelRegistration took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.ProductStateAndStatusTest.setUp(ProductStateAndStatusTest.java:76)
+
+Testcase: testStateChannelRegistration took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.ProductStateAndStatusTest.setUp(ProductStateAndStatusTest.java:76)
+
+Testcase: testTradingSessionChannelRegistration took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.channels.TradingSessionChannelTest.setUp(TradingSessionChannelTest.java:58)
+
+Testcase: testOrderIdImpl took 0.002 sec
+Testcase: testPrice took 0 sec
+Testcase: testTime took 0.005 sec
+Testcase: testOrderLegDetail took 0.002 sec
+Testcase: testOrder took 0.004 sec
+Testcase: testResetLock took 0.001 sec
+Testcase: testMultiLockUnlock took 0.005 sec
+Testcase: testUnlock took 0 sec
+Testcase: testAccessibilityOfNullCmdCallbackService took 0 sec
+	Caused an ERROR
+Cannot override services after initialization
+java.lang.RuntimeException: Cannot override services after initialization
+	at com.cboe.server.util.FoundationFrameworkInitializer.verifyNotInitialized(FoundationFrameworkInitializer.java:643)
+	at com.cboe.server.util.FoundationFrameworkInitializer.setNullCommandCallbackService(FoundationFrameworkInitializer.java:249)
+	at com.cboe.ohs.framework.FoundationFrameworkInitiializerTest.testAccessibilityOfNullCmdCallbackService(FoundationFrameworkInitiializerTest.java:40)
+
+Testcase: testAddHomeStringProps took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.FoundationFrameworkInitiializerTest.testAddHomeStringProps(FoundationFrameworkInitiializerTest.java:82)
+
+Testcase: testAddHomePropsObj took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.FoundationFrameworkInitiializerTest.testAddHomePropsObj(FoundationFrameworkInitiializerTest.java:92)
+
+Testcase: testAddHomes took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.FoundationFrameworkInitiializerTest.testAddHomes(FoundationFrameworkInitiializerTest.java:125)
+
+Testcase: testAddHomesOrdering took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.FoundationFrameworkInitiializerTest.testAddHomesOrdering(FoundationFrameworkInitiializerTest.java:150)
+
+Testcase: testRealServiceConfig took 0.009 sec
+Testcase: testSingletonHomeRequiresFirstHome took 0.001 sec
+Testcase: testCollectionHomeRequiresFirstHome took 0 sec
+Testcase: testSingletonHome took 0.004 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.FrameworkTest.testSingletonHome(FrameworkTest.java:194)
+
+Testcase: testCollectionHome took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.FrameworkTest.testCollectionHome(FrameworkTest.java:209)
+
+Testcase: testServiceExporter took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.framework.ServiceExporterTest.testServiceExporter(ServiceExporterTest.java:409)
+
+Testcase: testNullLogHandler took 0.001 sec
+Testcase: testFileLogHandler took 0.007 sec
+Testcase: testFFLogHandler took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.logger.LoggerTest.testFFLogHandler(LoggerTest.java:146)
+
+Testcase: testGetLoggers took 0.001 sec
+Testcase: testGetHandler took 0 sec
+Testcase: testDefaultLogLevel took 0 sec
+Testcase: testTraceString took 0 sec
+Testcase: testDebugString took 0.001 sec
+Testcase: testAuditString took 0 sec
+Testcase: testClientString took 0 sec
+Testcase: testInfoString took 0 sec
+Testcase: testAlarmString took 0.001 sec
+Testcase: testTraceStringThrowable took 0.001 sec
+Testcase: testDebugStringThrowable took 0 sec
+Testcase: testAuditStringThrowable took 0 sec
+Testcase: testClientStringThrowable took 0 sec
+Testcase: testInfoStringThrowable took 0.001 sec
+Testcase: testAlarmStringThrowable took 0.001 sec
+Testcase: testBuildTrace took 0 sec
+Testcase: testBuildDebug took 0 sec
+Testcase: testBuildAudit took 0 sec
+Testcase: testBuildClient took 0 sec
+Testcase: testBuildInfo took 0.001 sec
+Testcase: testBuildAlarm took 0 sec
+Testcase: testUsingDefaultLevel took 0 sec
+Testcase: testSetLevel took 0 sec
+Testcase: testFirmProxy took 0 sec
+Testcase: testPCSProxy took 0.006 sec
+	Caused an ERROR
+null
+java.lang.NullPointerException
+	at com.cboe.ohs.providers.pcs.ProductConfigurationServiceProxy.buildGroupKeysMap(ProductConfigurationServiceProxy.java:257)
+	at com.cboe.ohs.providers.pcs.ProductConfigurationServiceProxy.postInitialize(ProductConfigurationServiceProxy.java:65)
+	at com.cboe.ohs.providers.pcs.PCSProxyTest.testPCSProxy(PCSProxyTest.java:31)
+
+Testcase: testProductCacheHomeInit took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testShowProducts took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testClassUpdate took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testProductUpdate took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testProductLegUpdate took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testProductAdd took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testProductStateUpdate took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.providers.products.TestProductCache.setUp(TestProductCache.java:84)
+
+Testcase: testAcceptNonHybridStopOrder took 0.006 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptNonHybridOrder took 0.004 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptHybridOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testCancellingOtherUserOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptCancelOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptCancelHybridOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptCancelReplaceOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptCancelReplaceHybridOrder took 0.002 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptUpdate took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptStrategyOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testAcceptCancelReplaceStrategyOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testCross took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testInternalization took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.receivers.OESTest.setUp(OESTest.java:115)
+
+Testcase: testCatResource took 0.003 sec
+	FAILED
+No std output
+junit.framework.AssertionFailedError: No std output
+	at com.cboe.ohs.util.CatResourceTest.testCatResource(CatResourceTest.java:23)
+
+Testcase: testGetNameInt took 0.002 sec
+	Caused an ERROR
+Failed to get value for field public static final int com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantIntMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+ sun.reflect.Reflection.ensureMemberAccess(Reflection.java:65)
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.getInt(Field.java:499)
+com.cboe.server.util.ConstantIntMapper.getFieldValue(ConstantIntMapper.java:44)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+com.cboe.ohs.util.ConstantMapperTest.testGetNameInt(ConstantMapperTest.java:95)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+java.lang.RuntimeException: Failed to get value for field public static final int com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantIntMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.getInt(Field.java:499)
+com.cboe.server.util.ConstantIntMapper.getFieldValue(ConstantIntMapper.java:44)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+com.cboe.ohs.util.ConstantMapperTest.testGetNameInt(ConstantMapperTest.java:95)
+
+===== END EXCEPTION =====
+
+	at com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:121)
+	at com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+	at com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+	at com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+	at com.cboe.ohs.util.ConstantMapperTest.testGetNameInt(ConstantMapperTest.java:95)
+
+Testcase: testGetNameString took 0.002 sec
+	Caused an ERROR
+Failed to get value for field public static final java.lang.String com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_STR1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantStringMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+ sun.reflect.Reflection.ensureMemberAccess(Reflection.java:65)
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.get(Field.java:358)
+com.cboe.server.util.ConstantStringMapper.getFieldValue(ConstantStringMapper.java:36)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantStringMapper.<init>(ConstantStringMapper.java:20)
+com.cboe.server.util.ConstantStringMapper.getMapper(ConstantStringMapper.java:28)
+com.cboe.ohs.util.ConstantMapperTest.testGetNameString(ConstantMapperTest.java:124)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+java.lang.RuntimeException: Failed to get value for field public static final java.lang.String com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_STR1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantStringMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.get(Field.java:358)
+com.cboe.server.util.ConstantStringMapper.getFieldValue(ConstantStringMapper.java:36)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantStringMapper.<init>(ConstantStringMapper.java:20)
+com.cboe.server.util.ConstantStringMapper.getMapper(ConstantStringMapper.java:28)
+com.cboe.ohs.util.ConstantMapperTest.testGetNameString(ConstantMapperTest.java:124)
+
+===== END EXCEPTION =====
+
+	at com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:121)
+	at com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+	at com.cboe.server.util.ConstantStringMapper.<init>(ConstantStringMapper.java:20)
+	at com.cboe.server.util.ConstantStringMapper.getMapper(ConstantStringMapper.java:28)
+	at com.cboe.ohs.util.ConstantMapperTest.testGetNameString(ConstantMapperTest.java:124)
+
+Testcase: testGetValueInt took 0.001 sec
+	Caused an ERROR
+Failed to get value for field public static final int com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantIntMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+ sun.reflect.Reflection.ensureMemberAccess(Reflection.java:65)
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.getInt(Field.java:499)
+com.cboe.server.util.ConstantIntMapper.getFieldValue(ConstantIntMapper.java:44)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+com.cboe.ohs.util.ConstantMapperTest.testGetValueInt(ConstantMapperTest.java:155)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+java.lang.RuntimeException: Failed to get value for field public static final int com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantIntMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.getInt(Field.java:499)
+com.cboe.server.util.ConstantIntMapper.getFieldValue(ConstantIntMapper.java:44)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+com.cboe.ohs.util.ConstantMapperTest.testGetValueInt(ConstantMapperTest.java:155)
+
+===== END EXCEPTION =====
+
+	at com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:121)
+	at com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+	at com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+	at com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+	at com.cboe.ohs.util.ConstantMapperTest.testGetValueInt(ConstantMapperTest.java:155)
+
+Testcase: testGetValueString took 0.001 sec
+	Caused an ERROR
+Failed to get value for field public static final java.lang.String com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_STR1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantStringMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+ sun.reflect.Reflection.ensureMemberAccess(Reflection.java:65)
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.get(Field.java:358)
+com.cboe.server.util.ConstantStringMapper.getFieldValue(ConstantStringMapper.java:36)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantStringMapper.<init>(ConstantStringMapper.java:20)
+com.cboe.server.util.ConstantStringMapper.getMapper(ConstantStringMapper.java:28)
+com.cboe.ohs.util.ConstantMapperTest.testGetValueString(ConstantMapperTest.java:176)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+java.lang.RuntimeException: Failed to get value for field public static final java.lang.String com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_STR1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantStringMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.get(Field.java:358)
+com.cboe.server.util.ConstantStringMapper.getFieldValue(ConstantStringMapper.java:36)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantStringMapper.<init>(ConstantStringMapper.java:20)
+com.cboe.server.util.ConstantStringMapper.getMapper(ConstantStringMapper.java:28)
+com.cboe.ohs.util.ConstantMapperTest.testGetValueString(ConstantMapperTest.java:176)
+
+===== END EXCEPTION =====
+
+	at com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:121)
+	at com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+	at com.cboe.server.util.ConstantStringMapper.<init>(ConstantStringMapper.java:20)
+	at com.cboe.server.util.ConstantStringMapper.getMapper(ConstantStringMapper.java:28)
+	at com.cboe.ohs.util.ConstantMapperTest.testGetValueString(ConstantMapperTest.java:176)
+
+Testcase: testGetUnknownName took 0.001 sec
+	Caused an ERROR
+Failed to get value for field public static final int com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantIntMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+ sun.reflect.Reflection.ensureMemberAccess(Reflection.java:65)
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.getInt(Field.java:499)
+com.cboe.server.util.ConstantIntMapper.getFieldValue(ConstantIntMapper.java:44)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+com.cboe.ohs.util.ConstantMapperTest.testGetUnknownName(ConstantMapperTest.java:210)
+sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+java.lang.reflect.Method.invoke(Method.java:597)
+junit.framework.TestCase.runTest(TestCase.java:164)
+junit.framework.TestCase.runBare(TestCase.java:130)
+junit.framework.TestResult$1.protect(TestResult.java:110)
+junit.framework.TestResult.runProtected(TestResult.java:128)
+junit.framework.TestResult.run(TestResult.java:113)
+junit.framework.TestCase.run(TestCase.java:120)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+junit.framework.TestSuite.runTest(TestSuite.java:228)
+junit.framework.TestSuite.run(TestSuite.java:223)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:422)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.launch(JUnitTestRunner.java:931)
+org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.main(JUnitTestRunner.java:785)
+
+===== END EXCEPTION =====
+
+java.lang.RuntimeException: Failed to get value for field public static final int com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations.OPS_1 for constant class class com.cboe.ohs.util.ConstantMapperTest$MockConstants: 
+==== BEGIN EXCEPTION ====
+ java.lang.IllegalAccessException(Class com.cboe.server.util.ConstantIntMapper can not access a member of class com.cboe.ohs.util.ConstantMapperTest$MockIntConstantsOperations with modifiers "public static final")
+java.lang.reflect.Field.doSecurityCheck(Field.java:960)
+java.lang.reflect.Field.getFieldAccessor(Field.java:896)
+java.lang.reflect.Field.getInt(Field.java:499)
+com.cboe.server.util.ConstantIntMapper.getFieldValue(ConstantIntMapper.java:44)
+com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:117)
+com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+com.cboe.ohs.util.ConstantMapperTest.testGetUnknownName(ConstantMapperTest.java:210)
+
+===== END EXCEPTION =====
+
+	at com.cboe.server.util.ConstantMapper.processFields(ConstantMapper.java:121)
+	at com.cboe.server.util.ConstantMapper.<init>(ConstantMapper.java:49)
+	at com.cboe.server.util.ConstantIntMapper.<init>(ConstantIntMapper.java:20)
+	at com.cboe.server.util.ConstantIntMapper.getMapper(ConstantIntMapper.java:29)
+	at com.cboe.ohs.util.ConstantMapperTest.testGetUnknownName(ConstantMapperTest.java:210)
+
+Testcase: testDupIntVal took 0 sec
+Testcase: testDupStrVal took 0.001 sec
+Testcase: testDupIntName took 0.001 sec
+Testcase: testDupStrName took 0 sec
+Testcase: testInstrumentor took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.util.OMSNetworkInstrumentorTest.setUp(OMSNetworkInstrumentorTest.java:25)
+
+Testcase: testInstrumentor took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.util.OMSV2NetworkInstrumentorTest.setUp(OMSV2NetworkInstrumentorTest.java:23)
+
+Testcase: testOrderIdWithHighLow took 0.002 sec
+Testcase: testOrderIdWithoutHighLow took 0 sec
+Testcase: testBraces took 0 sec
+Testcase: testBadBraces took 0 sec
+Testcase: testNonBraces took 0 sec
+Testcase: testMixedBraces took 0.001 sec
+Testcase: testBasicFile took 0.005 sec
+Testcase: testPropertiesQuery took 0 sec
+Testcase: testCoreServicesQuery took 0.001 sec
+Testcase: testFormatException took 0 sec
+Testcase: testAttributeParsing took 0 sec
+Testcase: testNoSuchProperty took 0.001 sec
+Testcase: testBasicQuery took 0.001 sec
+Testcase: testTagAsQuery took 0 sec
+Testcase: testConstants took 0.027 sec
+Testcase: testConstantNameUniqueness took 0.003 sec
+Testcase: testObserver took 0.012 sec
+Testcase: testEnums took 0 sec
+Testcase: testStepParams took 0.003 sec
+Testcase: testBasicTest took 0.003 sec
+Testcase: testBasicTestWithoutHistory took 0.002 sec
+Testcase: testWorkflowObserver took 0.072 sec
+Testcase: testFlowDump took 0.005 sec
+Testcase: testWorkflowHome took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.WorkflowTest.testWorkflowHome(WorkflowTest.java:333)
+
+Testcase: testExceptionHandler1 took 0.002 sec
+Testcase: testExceptionHandler2 took 0.003 sec
+	FAILED
+Expected exception in handler expected same:<java.lang.Exception: Throw me! Wheee!> was not:<null>
+junit.framework.AssertionFailedError: Expected exception in handler expected same:<java.lang.Exception: Throw me! Wheee!> was not:<null>
+	at com.cboe.ohs.workflow.WorkflowTest.testExceptionHandler2(WorkflowTest.java:378)
+
+Testcase: testExceptionStep took 0.002 sec
+Testcase: testAddStep took 0.002 sec
+	Caused an ERROR
+null
+java.lang.NullPointerException
+	at com.cboe.server.workflow.BaseWorkflowStep.setId(BaseWorkflowStep.java:66)
+	at com.cboe.ohs.workflow.WorkflowTest.testAddStep(WorkflowTest.java:406)
+
+Testcase: testFlowToVisio took 0.005 sec
+Testcase: testCheckOrderContingency took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testPublishNewOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testCheckPublishNewOrder took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendOrderToORD took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendOrderToPAR took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendOrderToBART took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendCancelToORD took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testBaseContextMaybeThrow took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendCancelToTPF took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendCancelReToTPF took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendCancelReToORD took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testSendOrderToTPF took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testRerouteOrderToTPF took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testRerouteOrderAndBookDepthToTPF took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testRerouteCancelToTPF took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testRerouteCancelReToTPF took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testRerouteCancelReAndBookDepthToTPF took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testOrderRemove took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testCheckOrderDestination took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testCheckRoute took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testCheckOrderSource took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testCheckOrderLocation took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testCheckOrderOriginator took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testContingencyTypesEnum took 0 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testTransactionalStep took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+
+Testcase: testOrderSession took 0.001 sec
+	Caused an ERROR
+Could not initialize class com.objectwave.persist.OracleBroker
+java.lang.NoClassDefFoundError: Could not initialize class com.objectwave.persist.OracleBroker
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at com.objectwave.persist.BrokerFactory.getDatabaseBroker(BrokerFactory.java:152)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:210)
+	at com.objectwave.persist.BrokerFactory.useDatabase(BrokerFactory.java:201)
+	at com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl.initialize(PersistenceServiceImpl.java:173)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initPersistenceService(FrameworkSetup.java:288)
+	at com.cboe.infrastructureServices.foundationFramework.FrameworkSetup.initializeCoreServices(FrameworkSetup.java:558)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:531)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:496)
+	at com.cboe.server.util.FoundationFrameworkInitializer.initInstance(FoundationFrameworkInitializer.java:557)
+	at com.cboe.ohs.workflow.orders.WorkflowStepsTest.setUp(WorkflowStepsTest.java:100)
+

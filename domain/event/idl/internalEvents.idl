@@ -1,0 +1,61 @@
+//## Module: internalEvents
+
+#ifndef InternalEvents_idl
+#define InternalEvents_idl
+
+//#pragma GENERATE_CODE OFF
+#include "events.idl"
+#include "InternalConsumers.idl"
+#include "CalendarEvents.idl"
+
+// ==================================================================
+
+module internalEvents
+{
+    interface BBBOEventConsumer : internalConsumers::BBBOConsumer, events::EventChannelConsumer {
+    };
+
+    interface BestOfTheRestEventConsumer : internalConsumers::BestOfTheRestConsumer, events::EventChannelConsumer {
+    };
+
+    interface UnderlyingNBBODataEventConsumer : internalConsumers::UnderlyingNBBODataConsumer, events::EventChannelConsumer {
+    };
+
+    interface CurrentMarketStateChangeEventConsumer : internalConsumers::CurrentMarketStateChangeConsumer, events::EventChannelConsumer {
+    };
+
+    interface EOSSummaryEventConsumer : internalConsumers::EOSSummaryConsumer, events::EventChannelConsumer {
+    };
+
+    interface ProductConfigurationStatusEventConsumer : internalConsumers::ProductConfigurationStatusConsumer, events::EventChannelConsumer {
+    };
+
+    interface TradeReportEventConsumer : internalConsumers::TradeReportConsumer, events::EventChannelConsumer {
+    };
+
+    interface OrderStatusAdminEventConsumer : internalConsumers::OrderStatusAdminConsumer, events::EventChannelConsumer {
+    };
+
+    interface QuoteStatusAdminEventConsumer : internalConsumers::QuoteStatusAdminConsumer, events::EventChannelConsumer {
+    };
+    
+    interface TradeReportAdminEventConsumer : internalConsumers::TradeReportAdminConsumer, events::EventChannelConsumer {
+    };
+    
+    interface AlertEventConsumer:internalConsumers::AlertConsumer, events::EventChannelConsumer
+    {
+    };
+    
+    interface CalendarUpdateEventConsumer : calendar::CalendarUpdateEventConsumer, events::EventChannelConsumer
+    {
+    };
+    interface TickerDetailEventConsumer : internalConsumers::TickerDetailConsumer, events::EventChannelConsumer {
+    };
+
+    interface PersistentBObjectsEventConsumer :  internalConsumers::PersistentBObjectsConsumer, events::EventChannelConsumer
+    {
+    };
+};
+
+//#pragma GENERATE_CODE ON
+#endif

@@ -1,0 +1,108 @@
+//
+// -----------------------------------------------------------------------------------
+// Source file: AllowedHALOTypesImpl.java
+//
+// PACKAGE: com.cboe.domain.tradingProperty
+//
+// -----------------------------------------------------------------------------------
+// Copyright (c) 2000-2004 The Chicago Board Options Exchange. All Rights Reserved.
+// -----------------------------------------------------------------------------------
+package com.cboe.domain.tradingProperty;
+
+import com.cboe.exceptions.DataValidationException;
+
+import com.cboe.interfaces.domain.property.Property;
+import com.cboe.interfaces.domain.tradingProperty.AllowedHALOTypes;
+import com.cboe.interfaces.domain.tradingProperty.TradingPropertyType;
+
+/**
+ * Represents a TradingProperty for an individual allowed HALO Type.
+ */
+public class AllowedHALOTypesImpl extends AbstractTradingProperty implements AllowedHALOTypes, Comparable
+{
+    /**
+     * Constructor that initializes with the immutable trading session name and class key.
+     * @param sessionName that this TradingProperty is for
+     * @param classKey that this TradingProperty is for
+     */
+    public AllowedHALOTypesImpl(String sessionName, int classKey)
+    {
+        super(AllowedHALOTypesGroup.TRADING_PROPERTY_TYPE.getName(), sessionName, classKey);
+    }
+
+    /**
+     * Constructor that initializes with the immutable trading session name, class key and the Property to initialize
+     * the trading property data with.
+     * @param sessionName that this TradingProperty is for
+     * @param classKey that this TradingProperty is for
+     * @param property to initialize with
+     */
+    public AllowedHALOTypesImpl(String sessionName, int classKey, Property property)
+            throws DataValidationException
+    {
+        super(sessionName, classKey, property);
+    }
+
+    /**
+     * Constructor that separately initializes each data attribute.
+     * @param sessionName that this TradingProperty is for
+     * @param classKey that this TradingProperty is for
+     * @param allowedHALType The allowed type
+     */
+    public AllowedHALOTypesImpl(String sessionName, int classKey, short allowedHALType)
+    {
+        this(sessionName, classKey);
+        setAllowedHALOType(allowedHALType);
+    }
+
+    /**
+     * Constructs with the field values being parsed from the passed value
+     * @param sessionName that this TradingProperty is for
+     * @param classKey that this TradingProperty is for
+     * @param value String to parse field values from
+     */
+    public AllowedHALOTypesImpl(String sessionName, int classKey, String value)
+    {
+        super(AllowedHALOTypesGroup.TRADING_PROPERTY_TYPE.getName(), sessionName, classKey, value);
+    }
+
+    /**
+     * Overridden to return the auction type.
+     */
+    public int hashCode()
+    {
+        return getAllowedHALOType();
+    }
+
+    public int compareTo(Object object)
+    {
+        int result;
+        int myValue = getAllowedHALOType();
+        int theirValue = ((AllowedHALOTypes) object).getAllowedHALOType();
+        result = (myValue < theirValue ? -1 : (myValue == theirValue ? 0 : 1));
+        return result;
+    }
+
+    /**
+     * Overridden to return the HAL type.
+     */
+    public String getPropertyName()
+    {
+        return Short.toString(getAllowedHALOType());
+    }
+
+    public short getAllowedHALOType()
+    {
+        return(short) getInteger1();
+    }
+
+    public void setAllowedHALOType(short allowedHALOType)
+    {
+        setInteger1(allowedHALOType);
+    }
+
+    public TradingPropertyType getTradingPropertyType()
+    {
+        return AllowedHALOTypesGroup.TRADING_PROPERTY_TYPE;
+    }
+}

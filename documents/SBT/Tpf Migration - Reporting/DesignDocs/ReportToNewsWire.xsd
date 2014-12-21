@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="ReportToNewsWire">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="reportHeader" />
+				<xs:element ref="reportDetail" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="reportHeader">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="senderName" />
+				<xs:element ref="senderAppName" />
+				<xs:element ref="reportName" />
+				<xs:element ref="reportDateTime" />
+				<xs:element ref="version" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="senderName" type="xs:string" />
+	<xs:element name="senderAppName" type="xs:string" />
+	<xs:element name="reportName" type="xs:string" />
+	<xs:element name="reportDateTime" type="xs:dateTime" />
+	<xs:element name="version" type="xs:decimal" />
+
+	<xs:element name="reportDetail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="category" maxOccurs="3" />
+				<xs:element ref="topTenMostActiveSeries" minOccurs="0"
+					maxOccurs="1" />
+				<xs:element ref="totalVolumeInfo" />
+				<xs:element ref="totalGainersLosersInfo" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="category">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="volumeInfo" />
+				<xs:element ref="gainersLosersInfo" />
+				<xs:element ref="topTenMostActiveCallSeries" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="topTenMostActivePutSeries" minOccurs="0" maxOccurs="1"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="volumeInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="callVolume" />
+				<xs:element ref="putVolume" />
+				<xs:element ref="totalVolume" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="callVolume">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+				<xs:maxInclusive value="2147483648" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="putVolume">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+				<xs:maxInclusive value="2147483648" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="totalVolume">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+				<xs:maxInclusive value="2147483648" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="gainersLosersInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gainersLosersInfoForCall" />
+				<xs:element ref="gainersLosersInfoForPut" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="gainersLosersInfoForCall">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gainers" />
+				<xs:element ref="losers" />
+				<xs:element ref="unchanged" />
+				<xs:element ref="totalGainersLosersUnchanged" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="gainersLosersInfoForPut">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gainers" />
+				<xs:element ref="losers" />
+				<xs:element ref="unchanged" />
+				<xs:element ref="totalGainersLosersUnchanged" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="gainers">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="losers">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="unchanged">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="totalGainersLosersUnchanged">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	
+	<xs:element name="topTenMostActiveCallSeries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="mostActiveSeries"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="topTenMostActivePutSeries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="mostActiveSeries"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+
+	<xs:element name="underlying">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="expiryMonth" />
+				<xs:element ref="strikePrice" />
+				<xs:element ref="volume" />
+				<xs:element ref="lastSalePrice" />
+				<xs:element ref="netChange" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="expiryMonth">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="1" />
+				<xs:maxInclusive value="12" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="strikePrice">
+		<xs:simpleType>
+			<xs:restriction base='xs:decimal'>
+				<xs:fractionDigits value='4' />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="volume">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+				<xs:maxInclusive value="2147483648" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="lastSalePrice">
+		<xs:simpleType>
+			<xs:restriction base='xs:decimal'>
+				<xs:fractionDigits value='4' />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="netChange">
+		<xs:simpleType>
+			<xs:restriction base='xs:decimal'>
+				<xs:fractionDigits value='4' />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="topTenMostActiveSeries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="mostActiveSeries" maxOccurs="10" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="mostActiveSeries">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="optionType" minOccurs="0" maxOccurs="1"/>
+				<xs:element ref="underlying" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="optionType">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="PUT" />
+				<xs:enumeration value="CALL" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="totalVolumeInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="totalCallVolume" />
+				<xs:element ref="totalPutVolume" />
+				<xs:element ref="totalVolume" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="totalCallVolume">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+				<xs:maxInclusive value="2147483648" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="totalPutVolume">
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0" />
+				<xs:maxInclusive value="2147483648" />
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="totalGainersLosersInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="totalGainersLosersInfoForCall" />
+				<xs:element ref="totalGainersLosersInfoForPut" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="totalGainersLosersInfoForCall">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gainers" />
+				<xs:element ref="losers" />
+				<xs:element ref="unchanged" />
+				<xs:element ref="totalGainersLosersUnchanged" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="totalGainersLosersInfoForPut">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gainers" />
+				<xs:element ref="losers" />
+				<xs:element ref="unchanged" />
+				<xs:element ref="totalGainersLosersUnchanged" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

@@ -1,0 +1,181 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_PRODUCT_IDL
+#define CMI_PRODUCT_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiUtil.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiProduct
+{
+
+    typedef char OptionType;
+    typedef char ExpirationStyle;
+    typedef long ProductKey;
+    typedef sequence <ProductKey> ProductKeySequence;
+    typedef long ReportingClassKey;
+    typedef sequence <ReportingClassKey> ReportingClassKeySequence;
+    typedef long ClassKey;
+    typedef sequence <ClassKey> ClassKeySequence;
+    typedef short ProductType;
+    typedef sequence <ProductType> ProductTypeSequence;
+    typedef string Symbol;
+    typedef sequence <Symbol> SymbolSequence;
+    typedef double CommodityQuantity;
+    typedef short ListingState;
+    typedef sequence <ListingState> ListingStateSequence;
+    typedef short PriceAdjustmentType;
+    typedef short PriceAdjustmentAction;
+    typedef short PriceDisplayType;
+    typedef string ProductDescriptionName;
+    typedef long ProductDescriptionKey;
+
+    struct ProductDescriptionStruct
+    {
+      cmiProduct::ProductDescriptionName  name;
+      cmiProduct::ProductDescriptionName  baseDescriptionName;
+      cmiUtil::PriceStruct  minimumStrikePriceFraction;
+      cmiUtil::PriceStruct  maxStrikePrice;
+      cmiUtil::PriceStruct  premiumBreakPoint;
+      cmiUtil::PriceStruct  minimumAbovePremiumFraction;
+      cmiUtil::PriceStruct  minimumBelowPremiumFraction;
+      cmiProduct::PriceDisplayType priceDisplayType;
+      cmiProduct::PriceDisplayType premiumPriceFormat;
+      cmiProduct::PriceDisplayType strikePriceFormat;
+      cmiProduct::PriceDisplayType underlyingPriceFormat;
+    };
+    typedef sequence <ProductDescriptionStruct> ProductDescriptionStructSequence;
+
+    struct ProductNameStruct
+    {
+      cmiProduct::Symbol reportingClass;
+      cmiUtil::PriceStruct exercisePrice;
+      cmiUtil::DateStruct expirationDate;
+      cmiProduct::OptionType optionType;
+      cmiProduct::Symbol productSymbol;
+    };
+
+    typedef sequence <ProductNameStruct> ProductNameStructSequence;
+
+    struct ProductKeysStruct {
+      cmiProduct::ProductKey productKey;
+      cmiProduct::ClassKey classKey;
+      cmiProduct::ProductType productType;
+      cmiProduct::ReportingClassKey reportingClass;
+    };
+
+    struct ListingStateStruct
+    {
+      cmiProduct::ProductKeysStruct productKeys;
+      cmiProduct::ListingState productState;
+    };
+    typedef sequence <ListingStateStruct> ListingStateStructSequence;
+
+    struct ProductStruct
+    {
+      cmiProduct::ProductKeysStruct productKeys;
+      cmiProduct::ProductNameStruct productName;
+      cmiProduct::ListingState listingState;
+      string description;
+      string companyName;
+      string unitMeasure;
+      cmiProduct::CommodityQuantity standardQuantity;
+      cmiUtil::DateStruct maturityDate;
+      cmiUtil::DateStruct activationDate;
+      cmiUtil::DateStruct inactivationDate;
+      cmiUtil::DateTimeStruct createdTime;
+      cmiUtil::DateTimeStruct lastModifiedTime;
+      char opraMonthCode;
+      char opraPriceCode;
+    };
+    typedef sequence <ProductStruct> ProductStructSequence;
+
+    struct EPWStruct {
+        double minimumBidRange;
+        double maximumBidRange;
+        double maximumAllowableSpread;
+    };
+    typedef sequence <EPWStruct> EPWStructSequence;
+
+    struct ReportingClassStruct
+    {
+      cmiProduct::ReportingClassKey classKey;
+      cmiProduct::ProductType productType;
+      cmiProduct::Symbol reportingClassSymbol;
+      cmiProduct::Symbol productClassSymbol;
+      cmiProduct::ClassKey productClassKey;
+      cmiProduct::ListingState listingState;
+      long contractSize;
+      string transactionFeeCode;
+      cmiUtil::DateStruct activationDate;
+      cmiUtil::DateStruct inactivationDate;
+      cmiUtil::DateTimeStruct createdTime;
+      cmiUtil::DateTimeStruct lastModifiedTime;
+    };
+    typedef sequence <ReportingClassStruct> ReportingClassStructSequence;
+
+    struct ClassStruct
+    {
+      cmiProduct::ClassKey classKey;
+      cmiProduct::ProductType productType;
+      cmiProduct::ListingState listingState;
+      cmiProduct::Symbol classSymbol;
+      cmiProduct::ProductStruct underlyingProduct;
+      cmiProduct::Symbol primaryExchange;
+      cmiUtil::DateStruct activationDate;
+      cmiUtil::DateStruct inactivationDate;
+      cmiUtil::DateTimeStruct createdTime;
+      cmiUtil::DateTimeStruct lastModifiedTime;
+      cmiProduct::EPWStructSequence epwValues;
+      double epwFastMarketMultiplier;
+      cmiProduct::ProductDescriptionStruct productDescription;
+      boolean testClass;
+      cmiProduct::ReportingClassStructSequence reportingClasses;
+    };
+
+    typedef sequence <ClassStruct> ClassStructSequence;
+
+    struct ProductTypeStruct {
+      cmiProduct::ProductType type;
+      string name;
+      string description;
+      cmiUtil::DateTimeStruct createdTime;
+      cmiUtil::DateTimeStruct lastModifiedTime;
+    };
+
+    typedef sequence <ProductTypeStruct> ProductTypeStructSequence;
+
+    struct PendingNameStruct
+    {
+      cmiProduct::PriceAdjustmentAction action;
+      cmiProduct::ProductStruct productStruct;
+      cmiProduct::ProductNameStruct pendingProductName;
+    };
+    typedef sequence <PendingNameStruct> PendingNameStructSequence;
+
+    struct PendingAdjustmentStruct
+    {
+      cmiProduct::ClassKey classKey;
+      cmiUtil::DateStruct effectiveDate;
+      cmiUtil::DateStruct submittedDate;
+      cmiProduct::PriceAdjustmentType type;
+      boolean active;
+      cmiProduct::PendingNameStructSequence productsPending;
+    };
+    typedef sequence <PendingAdjustmentStruct> PendingAdjustmentStructSequence;
+};
+#endif
+</pre>

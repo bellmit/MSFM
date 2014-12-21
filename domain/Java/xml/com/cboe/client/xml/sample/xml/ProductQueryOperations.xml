@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Luis Torres (CBOE) -->
+<PQO xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\..\schemas\ProductQueryOperations.xsd">
+	<TSS>
+		<TS sn="one_main" sst="0" tsn="0">
+			<STTM hh="12" mn="20" ss="30" fr="0"/>
+			<ENTM hh="12" mn="21" ss="00" fr="100"/>
+		</TS>
+	</TSS>
+	<PTS>
+		<PTY pt="0" nm="Name" dsc="&lt;xml&gt;&quot;data&quot;&lt;/xml&gt;">
+			<CRTM mm="10" dd="31" yy="2003" hh="12" mn="20" ss="30" fr="0"/>
+			<LMTM mm="10" dd="31" yy="2003" hh="12" mn="21" ss="00" fr="100"/>
+		</PTY>
+	</PTS>
+	<SCS>
+		<SC sn="one_main" usn="underlying" cst="0" tsn="0">
+			<ESS>
+				<ES>one_main</ES>
+			</ESS>
+			<CS ck="333444" pt="0" lst="1" csym="CSYM" pex="CBOE" efm="0.0" tc="false">
+				<UP lst="1" dsc="undrl desc" cnm="CSYM" um="UM" sq="0.0" omc="0.0" opc="0.0">
+					<PKS pk="78911" ck="333444" pt="0" rck="0"/>
+					<PN rcs="RPTCLSSYM" ot="MM" psym="PSYM">
+						<EXRP ty="0" wh="1" frc="0"/>
+						<EXPD mm="12" dd="31" yy="2004"/>
+					</PN>
+					<MAT mm="11" dd="30" yy="2003"/>
+					<ACT mm="10" dd="31" yy="2003"/>
+					<NCT mm="1" dd="31" yy="2004"/>
+					<CRTM mm="10" dd="31" yy="2003" hh="12" mn="20" ss="30" fr="0"/>
+					<LMTM mm="10" dd="31" yy="2003" hh="12" mn="21" ss="00" fr="100"/>
+				</UP>
+				<ACT mm="10" dd="31" yy="2003"/>
+				<NCT mm="1" dd="31" yy="2004"/>
+				<CRTM mm="10" dd="31" yy="2003" hh="12" mn="20" ss="30" fr="0"/>
+				<LMTM mm="10" dd="31" yy="2003" hh="12" mn="21" ss="00" fr="100"/>
+				<EPWS>
+					<EPW nbr="0.1" xbr="100.0" mas="1.5"/>
+				</EPWS>
+				<PRD nm="PrdName" bdn="base" pdt="1" pf="2" sf="3" uf="4">
+					<NSP ty="0" wh="1" frc="0"/>
+					<XSP ty="0" wh="10" frc="500000"/>
+					<PBB ty="0" wh="5" frc="250000"/>
+					<NAP ty="0" wh="0" frc="250000"/>
+					<NBP ty="0" wh="0" frc="100000"/>
+				</PRD>
+				<RPCS>
+					<RPC ck="1234" pt="7" rcs="RPTCLSYM" pcs="CLSYM" pck="456" lst="1" csz="1" tfc="2">
+						<ACT mm="10" dd="31" yy="2003"/>
+						<NCT mm="1" dd="31" yy="2004"/>
+						<CRTM mm="10" dd="31" yy="2003" hh="12" mn="20" ss="30" fr="0"/>
+						<LMTM mm="10" dd="31" yy="2003" hh="12" mn="21" ss="00" fr="100"/>
+					</RPC>
+				</RPCS>
+			</CS>
+		</SC>
+	</SCS>
+	<SSS>
+		<SS sty="5">
+			<SP sn="one_main" pst="1" tsn="99991">
+				<PS lst="2" dsc="DSCF" cnm="LT_CN" um="K" sq="0" omc="" opc="">
+					<PKS pk="78911" ck="333444" pt="0" rck="0"/>
+					<PN rcs="RPTCLSYM" ot="7" psym="PSYM">
+						<EXRP ty="0" wh="5" frc="500000"/>
+						<EXPD mm="12" dd="13" yy="2003"/>
+					</PN>
+					<MAT mm="11" dd="30" yy="2003"/>
+					<ACT mm="10" dd="31" yy="2003"/>
+					<NCT mm="1" dd="31" yy="2004"/>
+					<CRTM mm="10" dd="31" yy="2003" hh="12" mn="20" ss="30" fr="0"/>
+					<LMTM mm="10" dd="31" yy="2003" hh="12" mn="21" ss="00" fr="100"/>
+				</PS>
+			</SP>
+			<SSLS>
+				<SSL sn="one_main" pk="78911" rq="3" sd="B"/>
+				<SSL sn="one_main" pk="78912" rq="7" sd="S"/>
+			</SSLS>
+		</SS>
+	</SSS>
+<!-- exceptions details only product query operation throws an exception -->
+	<EX c="com.cboe.exceptions.DataValidationException" k="stacktrace...." m="reasonMessage">
+		<ed d="dateTime" e="1" m="messageDetail" s="0"/>
+	</EX>
+</PQO>

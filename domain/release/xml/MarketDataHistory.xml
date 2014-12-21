@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalMarketDataHistory SYSTEM "../dtd/MarketDataHistory.dtd">
+
+<!-- 
+	There are 3 id generation strategies:
+	
+	1. com.cboe.domain.util.HistoryServiceIdGeneratorConstantIdImpl
+	Generates a constant ID on each call, a long with value of 1.
+	
+	2. com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl
+	Generates ID using the new Id service method which is more efficient than the existing method.
+	
+	3. com.cboe.domain.util.HistoryServiceIdGeneratorOldImpl
+	Generates ID using the old Id service method; the one used in production today (3/22/06)
+-->
+
+
+<GlobalMarketDataHistory>
+	<MarketDataHistoryHomeImpl name="MarketDataHistoryHomeImpl">
+		<MarketDataHistoryHomeImplProperties>
+			<idgenerationstrategy>com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl</idgenerationstrategy>
+			<maxResultSize>20</maxResultSize>
+			<lastPrefixSearchDurationInSeconds>90</lastPrefixSearchDurationInSeconds>
+			<dbIdBlockSize>100000</dbIdBlockSize>
+		</MarketDataHistoryHomeImplProperties>
+	</MarketDataHistoryHomeImpl>
+	<MarketDataHistoryHomeImpl name="MarketDataHistoryHomeQueueImpl">
+		<MarketDataHistoryHomeImplProperties>
+			<idgenerationstrategy>com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl</idgenerationstrategy>
+			<maxResultSize>20</maxResultSize>
+			<lastPrefixSearchDurationInSeconds>90</lastPrefixSearchDurationInSeconds>
+			<marketDataHistoryPersistenceBatchSize>200</marketDataHistoryPersistenceBatchSize>
+			<marketDataHistoryDequeueBatchSize>200</marketDataHistoryDequeueBatchSize>
+			<marketDataHistoryBatchTime>200</marketDataHistoryBatchTime>
+			<numberProcessingThreads>17</numberProcessingThreads>
+			<maxQueueDepth>200000</maxQueueDepth>
+			<dbIdBlockSize>4000000</dbIdBlockSize>
+			<useMarketBufferPublishing>false</useMarketBufferPublishing>
+			<instanceId>&lt;config_instanceId&gt;</instanceId>
+			<numberMarketDataHistoryProcessingThreads>11</numberMarketDataHistoryProcessingThreads>
+			<serverInstanceNumber>&lt;prefixServerInstance&gt;</serverInstanceNumber>
+		</MarketDataHistoryHomeImplProperties>
+	</MarketDataHistoryHomeImpl>
+	<MarketDataHistoryHomeImpl name="MarketDataHistoryHomeInternalImpl">
+		<MarketDataHistoryHomeImplProperties>
+			<idgenerationstrategy>com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl</idgenerationstrategy>
+			<maxResultSize>20</maxResultSize>
+			<lastPrefixSearchDurationInSeconds>90</lastPrefixSearchDurationInSeconds>
+			<marketDataHistoryPersistenceBatchSize>200</marketDataHistoryPersistenceBatchSize>
+			<marketDataHistoryDequeueBatchSize>200</marketDataHistoryDequeueBatchSize>
+			<marketDataHistoryBatchTime>200</marketDataHistoryBatchTime>
+			<numberProcessingThreads>17</numberProcessingThreads>
+			<maxQueueDepth>200000</maxQueueDepth>
+			<dbIdBlockSize>4000000</dbIdBlockSize>
+			<useMarketBufferPublishing>true</useMarketBufferPublishing>
+			<instanceId>&lt;config_instanceId&gt;</instanceId>
+			<numberMarketDataHistoryProcessingThreads>11</numberMarketDataHistoryProcessingThreads>
+			<serverInstanceNumber>&lt;prefixServerInstance&gt;</serverInstanceNumber>
+		</MarketDataHistoryHomeImplProperties>
+	</MarketDataHistoryHomeImpl>
+	<MarketDataHistoryHomeImpl name="MarketDataHistoryHomeQueueStockImpl">
+		<MarketDataHistoryHomeImplProperties>
+			<idgenerationstrategy>com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl</idgenerationstrategy>
+			<maxResultSize>20</maxResultSize>
+			<lastPrefixSearchDurationInSeconds>90</lastPrefixSearchDurationInSeconds>
+			<marketDataHistoryPersistenceBatchSize>200</marketDataHistoryPersistenceBatchSize>
+			<marketDataHistoryDequeueBatchSize>200</marketDataHistoryDequeueBatchSize>
+			<marketDataHistoryBatchTime>200</marketDataHistoryBatchTime>
+			<numberProcessingThreads>5</numberProcessingThreads>
+			<maxQueueDepth>200000</maxQueueDepth>
+			<dbIdBlockSize>4000000</dbIdBlockSize>
+			<useMarketBufferPublishing>false</useMarketBufferPublishing>
+			<instanceId>&lt;config_instanceId&gt;</instanceId>
+			<numberMarketDataHistoryProcessingThreads>11</numberMarketDataHistoryProcessingThreads>
+			<serverInstanceNumber>&lt;prefixServerInstance&gt;</serverInstanceNumber>
+		</MarketDataHistoryHomeImplProperties>
+	</MarketDataHistoryHomeImpl>
+	<MarketDataHistoryHomeImpl name="MarketDataHistoryHomeQueueImplHistoryServer">
+		<MarketDataHistoryHomeImplProperties>
+			<idgenerationstrategy>com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl</idgenerationstrategy>
+			<maxResultSize>20</maxResultSize>
+			<lastPrefixSearchDurationInSeconds>90</lastPrefixSearchDurationInSeconds>
+			<marketDataHistoryPersistenceBatchSize>200</marketDataHistoryPersistenceBatchSize>
+			<marketDataHistoryDequeueBatchSize>200</marketDataHistoryDequeueBatchSize>
+			<marketDataHistoryBatchTime>200</marketDataHistoryBatchTime>
+			<numberProcessingThreads>11</numberProcessingThreads>
+			<maxQueueDepth>200000</maxQueueDepth>
+			<dbIdBlockSize>100000</dbIdBlockSize>
+		</MarketDataHistoryHomeImplProperties>
+	</MarketDataHistoryHomeImpl>
+	<MarketDataHistoryHomeImpl name="MarketDataHistoryHomeBufferConsumerImpl">
+		<MarketDataHistoryHomeImplProperties>
+			<idgenerationstrategy>com.cboe.domain.util.HistoryServiceIdGeneratorNewImpl</idgenerationstrategy>
+			<maxResultSize>20</maxResultSize>
+			<lastPrefixSearchDurationInSeconds>90</lastPrefixSearchDurationInSeconds>
+			<marketDataHistoryPersistenceBatchSize>200</marketDataHistoryPersistenceBatchSize>
+			<marketDataHistoryDequeueBatchSize>200</marketDataHistoryDequeueBatchSize>
+			<marketDataHistoryBatchTime>200</marketDataHistoryBatchTime>
+			<numberProcessingThreads>17</numberProcessingThreads>
+			<maxQueueDepth>200000</maxQueueDepth>
+			<dbIdBlockSize>100000</dbIdBlockSize>
+			<useMarketBufferPublishing>false</useMarketBufferPublishing>
+			<instanceId>&lt;config_instanceId&gt;</instanceId>
+			<numberMarketDataHistoryProcessingThreads>11</numberMarketDataHistoryProcessingThreads>
+			<clusterName>&lt;prefix&gt;&lt;prefixCluster&gt;</clusterName>
+			<serverInstanceNumber>&lt;prefixServerInstance&gt;</serverInstanceNumber>
+		</MarketDataHistoryHomeImplProperties>
+	</MarketDataHistoryHomeImpl>
+</GlobalMarketDataHistory>
+
+
+

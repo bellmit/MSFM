@@ -1,0 +1,329 @@
+TESTSUITENAME,Product Creation Test Plan (copy) Fixed Simple WR:6708
+PRINTOUTPUTHEADING,
+STARTPOINT,
+SALOGIN,$SA1,$SA1,TRUE,TRUE,Comment
+
+
+COMMENT, Test Cases:53
+
+COMMENT, Test Environment Setup
+SELECTCLASSESANDPRODUCTS,$SA1,$SESSION6,13,1,CLASS,1,PRODUCT,$FLEX_MAINCLASSLIST,TRUE,TRUE,Comment
+SELECTCLASSESANDPRODUCTS,$SA1,$SESSION6,13,1,CLASS1,1,PRODUCT,$FLEX_MAINCLASSLIST1,TRUE,TRUE,Comment
+VERIFYSESSIONSTATE,$SA1,$SESSION6,2,TRUE,TRUE,Comment
+
+COMMENT, User Setup
+nCREATEUSER,$SA1,$MM1,$MM1EXCHANGE,$MM1EXECFIRM,M,1,Automated API $MM1 User,FALSE,TRUE,TRUE,New User for Clearing Firm "551" and Exchange "CBOE" !
+nVERIFYUSEREXISTENCE,$SA1,$MM1EXCHANGE,$MM1,M,TRUE,TRUE,TRUE,Comment
+nCREATEUSER,$SA1,$BD1,$BD1EXCHANGE,$BD1EXECFIRM,B,1,Automated API $BD1 User,FALSE,TRUE,TRUE,New User for Clearing Firm "551" and Exchange "CBOE" !
+nVERIFYUSEREXISTENCE,$SA1,$BD1EXCHANGE,$BD1,B,TRUE,TRUE,TRUE,Comment
+FIXTRADERLOGIN,$FIXCONNECTNAME,$FIXENGINEMODE,$MM1,$MM1,$FIXHEARTBEAT,TRUE,TRUE,Logging in DPM to enter Opening Quotes,
+FIXTRADERLOGIN,$FIXCONNECTNAME,$FIXENGINEMODE,$BD1,$BD1,$FIXHEARTBEAT,TRUE,TRUE,Logging in DPM to enter Opening Quotes,
+nTRADERLOGIN,$MM1,$MM1,$CASANDPORT,TRUE,TRUE,Comment
+nTRADERLOGIN,$BD1,$BD1,$CASANDPORT,TRUE,TRUE,Comment
+
+
+COMMENT, Strategy Setup
+
+COMMENT, Trading Property Setup
+SETAUCTIONENABLED,$SA1,$SESSION6,$CLASS1,9:true,TRUE,TRUE,Comment
+SETAUCTIONTIMETOLIVE,$SA1,$SESSION6,$CLASS1,9:60000-60000,TRUE,TRUE,Comment
+SETAUCTIONENABLED,$SA1,$SESSION6,$CLASS11,9:true,TRUE,TRUE,Comment
+SETAUCTIONTIMETOLIVE,$SA1,$SESSION6,$CLASS11,9:60000-60000,TRUE,TRUE,Comment
+SETFLEXAUCTIONMINMAXRESPONSETIME,$SA1,$SESSION6,$CLASS1,9:60000-60000,TRUE,TRUE,Comment
+SETFLEXAUCTIONMINMAXRESPONSETIME,$SA1,$SESSION6,$CLASS11,9:60000-60000,TRUE,TRUE,Comment
+
+COMMENT, Routing Property Setup
+
+COMMENT, Firm Property Setup
+
+COMMENT, Pre-Test Settings
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,1,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,2,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,3,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,4,TRUE,TRUE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,4,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS11,1,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS11,2,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS11,3,TRUE,TRUE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS11,4,TRUE,TRUE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS11,4,TRUE,TRUE,Comment
+
+COMMENT, Subscriptions
+SUBSCRIBEAUCTIONFORFLEX,$MM1,$SESSION6,9,TRUE,TRUE,Comment
+SUBSCRIBEAUCTIONFORFLEX,$BD1,$SESSION6,9,TRUE,TRUE,Comment
+
+
+
+
+COMMENT, Test Case 1:Market Maker creates Equity FLEX Product using Create New Product window with FLEX Auction
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT1,13,$CLASS1SYM,-,2,1,01,*,0,C,1,9,2,1,00,10,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT1,$AUCTION1,10,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT1,TRUE,FALSE,Comment
+
+
+
+COMMENT, Test Case 2:Broker Dealer creates Equity FLEX Product using Create New Product window with FLEX Auction
+CREATEFLEXPRODUCTANDSTARTAUCTION,$BD1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT2,13,$CLASS1SYM,-,2,1,02,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$BD1,$SESSION6,$CLASS1NEWFLEXPRODUCT2,$AUCTION2,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT2,TRUE,FALSE,Comment
+
+COMMENT, Test Case 3:Market Maker creates Index FLEX Product using Create New Product window with FLEX Auction
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS11,$CLASS11NEWFLEXPRODUCT3,13,$CLASS11SYM,-,2,1,03,*,0,P,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS11NEWFLEXPRODUCT3,$AUCTION3,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS11NEWFLEXPRODUCT3,TRUE,FALSE,Comment
+
+COMMENT, Test Case 4:Broker Dealer creates Index FLEX Product using Create New Product window with FLEX Auction
+CREATEFLEXPRODUCTANDSTARTAUCTION,$BD1,$SESSION6,$CLASS11,$CLASS11NEWFLEXPRODUCT4,13,$CLASS11SYM,-,2,1,04,*,0,P,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$BD1,$SESSION6,$CLASS11NEWFLEXPRODUCT4,$AUCTION4,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS11NEWFLEXPRODUCT4,TRUE,FALSE,Comment
+
+COMMENT, Test Case 5:Helpdesk user creates FLEX product using Product Definition window
+CREATEPRODUCT,$SA1,$SESSION6,$CLASS1,$CLASS1NEWPRODUCT1,13,$CLASS1SYM,-,2,1,07,*,250,C,1,My Company,*,*,*,*,-,TRUE,FALSE,Comment
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWPRODUCT1,TRUE,FALSE,Comment
+
+COMMENT, Test Case 6:Market Maker creates New product using FLEX auction window
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT5,13,$CLASS1SYM,-,2,1,10,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT5,$AUCTION5,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT5,TRUE,FALSE,Comment
+
+COMMENT, Test Case 7:Verify that a FLEX product with more than 15 years of expiration cannot be created
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT6,13,$CLASS1SYM,-,2,1,61,*,5485,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 8:Verify that a FLEX product with exact 15 years of expiration can be created
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT7,13,$CLASS1SYM,-,2,1,62,*,5479,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT7,$AUCTION7,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT7,TRUE,FALSE,Comment
+
+COMMENT, Test Case 9:Verify that a FLEX product with less than 15 years of expiration can be created
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT8,13,$CLASS1SYM,-,2,1,63,*,5470,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT8,$AUCTION8,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT8,TRUE,FALSE,Comment
+
+COMMENT, Test Case 10:Verify that product with expiration date as a holiday can be created
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT9,13,$CLASS1SYM,-,2,1,64,5/24/2015,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT9,$AUCTION5,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT9,TRUE,FALSE,Comment
+
+COMMENT, Test Case 11:Verify that product can be created when expiration date is valid Business Day
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT10,13,$CLASS1SYM,-,2,1,66,5/20/2015,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT10,$AUCTION10,0,1,0,00,9,12,TRUE,FALSE,Comment
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT10,TRUE,FALSE,Comment
+
+COMMENT, Test Case 12:Verify that product state of newly created Equity Fixed Simple product is Open
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT11,13,$CLASS1SYM,-,2,1,65,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT11,$AUCTION11,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT11,TRUE,FALSE,Comment
+PRODUCTSTATEQUERY,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT11,4,TRUE,FALSE,Comment
+
+COMMENT, Test Case 13:Verify that product state of newly created Index Fixed Simple product is Open
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS11,$CLASS11NEWFLEXPRODUCT12,13,$CLASS11SYM,-,2,1,66,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS11NEWFLEXPRODUCT12,$AUCTION12,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS11NEWFLEXPRODUCT12,TRUE,FALSE,Comment
+PRODUCTSTATEQUERY,$SA1,$SESSION6,$CLASS11NEWFLEXPRODUCT12,4,TRUE,FALSE,Comment
+
+COMMENT, Test Case 14:Verify that fixed simple product can be created when the state of the product class is open
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,4,TRUE,FALSE,Comment
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT13,13,$CLASS1SYM,-,2,1,67,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT13,$AUCTION13,0,1,0,00,9,12,TRUE,FALSE,Comment
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT13,TRUE,FALSE,Comment
+
+COMMENT, Test Case 15:Verify Fixed Simple product cannot be created when the state of the product class is Halt
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,5,TRUE,FALSE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,5,TRUE,FALSE,Comment
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT14,13,$CLASS1SYM,-,2,1,71,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 16:Verify that fixed simple product can be created when the state of the product class is fast
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,1,TRUE,FALSE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,2,TRUE,FALSE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,3,TRUE,FALSE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,6,TRUE,FALSE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,6,TRUE,FALSE,Comment
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT15,13,$CLASS1SYM,-,2,1,68,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT15,$AUCTION14,0,1,0,00,9,12,TRUE,FALSE,Comment
+PAUSE,2000
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT15,TRUE,FALSE,Comment
+
+COMMENT, Test Case 17:Verify Fixed Simple product cannot be created when the state of the product class is Suspend
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,10,TRUE,FALSE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,11,TRUE,FALSE,Comment
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT16,13,$CLASS1SYM,-,2,1,72,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 18:Verify Fixed Simple product cannot be created when the state of the product class is pre-open
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,1,TRUE,FALSE,Comment
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,2,TRUE,FALSE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,2,TRUE,FALSE,Comment
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT17,13,$CLASS1SYM,-,2,1,69,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 19:Verify Fixed Simple product can be created when the state of the product class is Opening-Rotation
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+SETPRODUCTSTATEBYCLASS,$SA1,$SESSION6,$CLASS1,3,TRUE,FALSE,Comment
+VERIFYCLASSSTATE,$SA1,$SESSION6,$CLASS1,3,TRUE,FALSE,Comment
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS1,$CLASS1NEWFLEXPRODUCT18,13,$CLASS1SYM,-,2,1,70,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,TRUE,FALSE,Comment
+RFPQUERYFORFLEX,$MM1,$SESSION6,$CLASS1NEWFLEXPRODUCT18,$AUCTION14,0,1,0,00,9,12,TRUE,FALSE,Comment
+VERIFYPRODUCTEXISTENCE,$SA1,$SESSION6,$CLASS1NEWFLEXPRODUCT18,TRUE,FALSE,Comment
+
+COMMENT, Test Case 20:FLEX Product can not be created with invalid value Price
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS11,$CLASS11NEWFLEXPRODUCT19,13,$CLASS11SYM,-,1,0,00,*,0,C,1,9,2,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 21:FLEX product can not be created for invalid value T1 Timer
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS11,$CLASS11NEWFLEXPRODUCT20,13,$CLASS11SYM,-,2,1,66,*,0,C,1,9,2,0,00,0,00:00:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 22:FLEX Product can not be created for invalid value Auction Type
+CLEARALLCALLBACKS,$MM1,
+CLEARALLCALLBACKS,$BD1,
+CREATEFLEXPRODUCTANDSTARTAUCTION,$MM1,$SESSION6,$CLASS11,$CLASS11NEWFLEXPRODUCT21,13,$CLASS11SYM,-,2,1,85,*,0,C,1,0,1,0,00,0,00:01:00.0,-,0,1,0,00,1,0,00,0,FALSE,FALSE,Comment
+
+COMMENT, Test Case 23:Verify Product Description available for CFLEX
+
+COMMENT, Verification of of available options. Not applicable to Automation. Verify Manually
+
+COMMENT, Test Case 24:Verify that a new product can be created using Copy existing product
+
+COMMENT, Copy functionality is specific to the GUI CANNOT BE AUTOMATED. Verify Manually
+
+COMMENT, Test Case 25:Verify the allowed number of decimal places for strike price entry when the Minimum Strike Price fraction is set to 0
+
+COMMENT, CLFEX Index Product Description should have Minimum Strike Price Fraction set to 0. Manual Test Case
+
+COMMENT, Test Case 26:Verify the allowed number of decimal places for strike price entry when the Minimum Strike Price fraction is set to 1
+
+COMMENT, CLFEX Index Product Description should have Minimum Strike Price Fraction set to 0.1. Manual Test Case
+
+COMMENT, Test Case 27:Verify the allowed number of decimal places for strike price entry when the Minimum Strike Price fraction is set to 2
+
+COMMENT, CLFEX Index Product Description should have Minimum Strike Price Fraction set to 0.01. Manual Test Case
+
+COMMENT, Test Case 28:Verify the allowed number of decimal places for strike price entry when the Minimum Strike Price fraction is set to 3
+
+COMMENT, CLFEX Equity Product Description should have Minimum Strike Price Fraction set to 0.001. Manual Test Case
+
+COMMENT, Test Case 29:Verify the allowed number of decimal places for strike price entry when the Minimum Strike Price fraction is set to 4
+
+COMMENT, CLFEX Equity Product Description should have Minimum Strike Price Fraction set to 0.0001
+
+COMMENT, Test Case 30:Verify that is a mandatory field for FLEX Product creation Underlying
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 31:Verify that is a mandatory field for FLEX Product creation Price type 
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 32:Verify that is a mandatory field for FLEX Product creation Option type
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 33:Verify that is a mandatory field for FLEX Product creation Expiration Date
+
+COMMENT, Manual Test Case
+
+COMMENT, Test Case 34:Verify that is a mandatory field for FLEX Product creation Settlement Type 
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 35:Verify that is a mandatory field for FLEX Product creation Exercise Style
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 36:Verify that is ineditable for Simple Product Creation Ratio
+
+COMMENT, This can be done manually
+
+COMMENT, Test Case 37:Verify that for Simple Product Creation can be only selected as Side None
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 38:Verify that only One leg is displayed as default for Simple Product Creation
+
+COMMENT, GUI Verification Test Case. Verify Manually
+
+COMMENT, Test Case 39:Verify that the lead character of an Index FLEX product with exercise style as American and Settlement Type asAM is 1
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 40:Verify that the lead character of an Index FLEX product with exercise style as European and Settlement Type asAM is 2
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 41:Verify that the lead character of an Index FLEX product with exercise style as American and Settlement Type asPM is 3
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 42:Verify that the lead character of an Index FLEX product with exercise style as European and Settlement Type asPM is 4
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 43:Verify that the lead character of an Equity FLEX product with exercise style as American and Settlement Type asPM is 1
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 44:Verify that the lead character of an Equity FLEX product with exercise style as European and Settlement Type asPM is 2
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 45:Verify that American style Equity Product withAM Settlement Type cannot be created
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 46:Verify that European style Equity Product withAM Settlement Type cannot be created
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 47:Verify that FLEX product creation(using trader gui) will be rejected if same Standard product exists
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 48:Verify that FLEX product creation (using trader gui) will be rejected if same inactive FLEX product exists
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 49:Verify that FLEX product creation(using Product definition window) will be rejected if same Standard product exists
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 50:Verify that FLEX product creation (using Product definition window) will be rejected if same inactive FLEX product exists
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 51:Verify that FLEX series become restricted if a standard product with the same terms are created
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 52:Verify that new product (created using trader GUI) is routed to existing FLEX product if it matches with an active FLEX product
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case 53:Verify that new product (created using Product definition window) is routed to existing FLEX product if it matches with an active FLEX product
+
+COMMENT, Cannot be automated. Verify Manually
+
+COMMENT, Test Case:Cleaning Up Task
+TRADERLOGOUT,$MM1,TRUE,TRUE,Comment
+TRADERLOGOUT,$BD1,TRUE,TRUE,Comment
+
+SALOGOUT,$SA1,TRUE,TRUE,Comment
+ENDPOINT,
+PRINTOUTPUTSUMMARY,

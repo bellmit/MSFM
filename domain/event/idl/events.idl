@@ -1,0 +1,210 @@
+//## Module: events
+
+#ifndef Events_idl
+#define Events_idl
+
+//#pragma GENERATE_CODE OFF
+#include "CosEventComm.idl"
+#include "CosTypedEventComm.idl"
+#include "consumers.idl"
+
+// ==================================================================
+
+module events
+{
+interface EventChannelConsumer : CosTypedEventComm::TypedPushConsumer {
+};
+
+interface MarketBufferEventConsumer : consumers::MarketBufferConsumer, events::EventChannelConsumer {
+};
+
+interface MarketHistoryBufferEventConsumer : consumers::MarketHistoryBufferConsumer, events::EventChannelConsumer {
+};
+
+interface MarketBufferAdminEventConsumer : consumers::MarketBufferAdminConsumer, events::EventChannelConsumer {
+};
+
+interface CacheUpdateEventConsumer : consumers::CacheUpdateConsumer, events::EventChannelConsumer {
+};
+
+interface CurrentMarketEventConsumer : consumers::CurrentMarketConsumer, EventChannelConsumer {
+};
+
+interface ExpectedOpeningPriceEventConsumer : consumers::ExpectedOpeningPriceConsumer, EventChannelConsumer {
+};
+
+interface NewOrderEventConsumer: consumers::NewOrderConsumer, EventChannelConsumer {
+};
+
+interface OrderUpdateEventConsumer: consumers::OrderUpdateConsumer, EventChannelConsumer {
+};
+
+interface CancelReportEventConsumer : consumers::CancelReportConsumer, EventChannelConsumer {
+};
+
+interface OrderFillReportEventConsumer : consumers::OrderFillReportConsumer, EventChannelConsumer {
+};
+
+interface OrderAcceptedByBookEventConsumer : consumers::OrderAcceptedByBookConsumer, EventChannelConsumer {
+};
+
+interface OrderQueryEventConsumer : consumers::OrderQueryConsumer, EventChannelConsumer {
+};
+
+interface OrderQueryExceptionEventConsumer : consumers::OrderQueryExceptionConsumer, EventChannelConsumer {
+};
+
+interface QuoteFillReportEventConsumer : consumers::QuoteFillReportConsumer, EventChannelConsumer {
+};
+
+interface QuoteDeleteReportEventConsumer : consumers::QuoteDeleteReportConsumer, EventChannelConsumer {
+};
+
+interface RFQEventConsumer : consumers::RFQConsumer, EventChannelConsumer {
+};
+
+interface ProductStateEventConsumer : consumers::ProductStateConsumer, EventChannelConsumer {
+};
+
+interface ProductAdjustmentEventConsumer : consumers::ProductAdjustmentConsumer, EventChannelConsumer {
+};
+
+interface ProductUpdateEventConsumer : consumers::ProductUpdateConsumer, EventChannelConsumer {
+};
+
+interface ProductStatusEventConsumer : ProductAdjustmentEventConsumer, ProductUpdateEventConsumer {
+};
+
+interface RecapEventConsumer : consumers::RecapConsumer, EventChannelConsumer {
+};
+
+interface TickerEventConsumer : consumers::TickerConsumer, EventChannelConsumer {
+};
+
+interface OptionTickerEventConsumer : consumers::OptionTickerConsumer, EventChannelConsumer {
+};
+
+interface TradingSessionEventConsumer : consumers::TradingSessionConsumer, EventChannelConsumer {
+};
+
+interface TradingSessionEventStateEventConsumer : consumers::TradingSessionEventStateConsumer, EventChannelConsumer {
+};
+
+interface TextMessageEventConsumer : consumers::TextMessageConsumer, EventChannelConsumer {
+};
+
+interface QuoteRiskManagementProfileEventConsumer: consumers::QuoteRiskManagementProfileConsumer, EventChannelConsumer {
+};
+
+interface OrderBustReportEventConsumer : consumers::OrderBustReportConsumer, EventChannelConsumer {
+};
+
+interface OrderBustReinstateReportEventConsumer : consumers::OrderBustReinstateReportConsumer,
+    EventChannelConsumer {
+};
+
+interface OrderStatusEventConsumer : CancelReportEventConsumer, OrderFillReportEventConsumer,
+    OrderAcceptedByBookEventConsumer, NewOrderEventConsumer, OrderUpdateEventConsumer,
+    OrderQueryEventConsumer, OrderQueryExceptionEventConsumer,
+    OrderBustReportEventConsumer, OrderBustReinstateReportEventConsumer {
+};
+
+interface QuoteBustReportEventConsumer : consumers::QuoteBustReportConsumer, EventChannelConsumer {
+};
+
+interface QuoteUpdateEventConsumer : consumers::QuoteUpdateConsumer, EventChannelConsumer {
+};
+
+interface QuoteStatusEventConsumer : QuoteFillReportEventConsumer,
+    QuoteDeleteReportEventConsumer, QuoteBustReportEventConsumer, QuoteUpdateEventConsumer {
+
+};
+interface TradingPropertyEventConsumer : consumers::TradingPropertyConsumer, EventChannelConsumer {
+};
+
+interface TradingPropertyEventConsumerExt : consumers::TradingPropertyConsumerExt, EventChannelConsumer {
+};
+
+interface CASAdminEventConsumer : consumers::CASAdminConsumer, EventChannelConsumer {
+};
+
+interface BookDepthEventConsumer : consumers::BookDepthConsumer, EventChannelConsumer {
+};
+
+interface QuoteStatusEventConsumerExt : consumers::QuoteStatusConsumerExt, EventChannelConsumer {
+};
+
+interface IntermarketOrderStatusEventConsumer: consumers::IntermarketOrderStatusConsumer, EventChannelConsumer  {
+};
+
+interface OrderStatusEventConsumerExt : consumers::OrderStatusConsumerExt, EventChannelConsumer
+{
+};
+
+interface NBBOAgentAdminEventConsumer: consumers::NBBOAgentAdminConsumer, EventChannelConsumer {
+};
+
+interface LinkageAdminMessageEventConsumer: consumers::LinkageAdminMessageConsumer, EventChannelConsumer {
+};
+
+interface QuoteNotificationEventConsumer: consumers::QuoteNotificationConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASSessionManagerEventConsumer : consumers::RemoteCASSessionManagerConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASCurrentMarketEventConsumer : consumers::RemoteCASCurrentMarketConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASNBBOEventConsumer : consumers::RemoteCASNBBOConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASTickerEventConsumer : consumers::RemoteCASTickerConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASRecapEventConsumer : consumers::RemoteCASRecapConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASExpectedOpeningPriceEventConsumer : consumers::RemoteCASExpectedOpeningPriceConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASBookDepthEventConsumer : consumers::RemoteCASBookDepthConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASBookDepthUpdateEventConsumer : consumers::RemoteCASBookDepthUpdateConsumer, EventChannelConsumer {
+};
+
+interface RemoteCASCallbackRemovalEventConsumer : consumers::RemoteCASCallbackRemovalConsumer, EventChannelConsumer {
+};
+
+interface IntermarketAdminMessageEventConsumer : consumers::IntermarketAdminMessageConsumer, EventChannelConsumer {
+};
+
+
+interface RemoteCASRecoveryEventConsumer : consumers::RemoteCASRecoveryConsumer, EventChannelConsumer {
+};
+interface MarketDataCallbackEventConsumer : consumers::MarketDataCallbackConsumer, EventChannelConsumer {
+};
+interface SystemControlEventConsumer :  consumers::SystemControlConsumer , EventChannelConsumer {
+};
+interface PropertyEventConsumer : consumers:: PropertyConsumer, events::EventChannelConsumer {};
+
+interface MarketAlertEventConsumer : consumers::MarketAlertConsumer {};
+
+interface AuctionEventConsumer : consumers::AuctionConsumer, EventChannelConsumer {};
+
+interface GroupElementEventConsumer : consumers::GroupElementConsumer, events::EventChannelConsumer {
+};
+
+interface TradeNotificationEventConsumer : consumers::TradeNotificationConsumer, events::EventChannelConsumer {
+};
+
+interface TradeNotificationAdminEventConsumer : consumers::TradeNotificationAdminConsumer, events::EventChannelConsumer {
+};
+
+
+};
+
+//#pragma GENERATE_CODE ON
+#endif
+

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+jxb:version="1.0"
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+
+	<xs:complexType name="GIExceptionDetailType">
+		<xs:annotation>
+			<xs:documentation>Exception Detail</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIExceptionDetail"/>
+				<jxb:property name="exceptionDetail"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:attribute name="m" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Message</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="message"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+		<xs:attribute name="d" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Date Time</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="dateTime"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+		<xs:attribute name="s" type="xs:short">
+			<xs:annotation>
+				<xs:documentation>Severity</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="severity"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+		<xs:attribute name="e" type="xs:int">
+			<xs:annotation>
+				<xs:documentation>Error</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="error"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+	</xs:complexType>
+
+	<xs:complexType name="GIUserExceptionType">
+		<xs:annotation>
+			<xs:documentation>User Exception</xs:documentation>
+			<xs:appinfo>
+<!--				<jxb:class name="GIUserException"/> -->
+				<jxb:property name="userException"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ed" type="GIExceptionDetailType" >
+				<xs:annotation>
+					<xs:documentation>Exception Details</xs:documentation>
+						<xs:appinfo>
+							<jxb:property name="detail"/>
+						</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="c" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Class Name</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="className"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+		<xs:attribute name="k" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Class Name</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="stackTraceText"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+		<xs:attribute name="m" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Message</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="message"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>		
+	</xs:complexType>
+
+	<xs:element name="UE" type="GIUserExceptionType">
+		<xs:annotation>
+			<xs:documentation>User Exception</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIUserException"/>
+				<jxb:property name="userException"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+</xs:schema>

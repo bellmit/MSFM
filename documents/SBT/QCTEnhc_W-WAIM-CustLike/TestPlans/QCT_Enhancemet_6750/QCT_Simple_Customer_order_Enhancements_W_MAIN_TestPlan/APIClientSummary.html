@@ -1,0 +1,802 @@
+<html>
+<body>
+<title>QCT_Simple_Customer_order_Enhancements_W_MAIN_ Test Plan</title>
+<b><center><big><h1>QCT_Simple_Customer_order_Enhancements_W_MAIN_ Test Plan</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD9 (Password: HD9)</small><br>
+<br><hr><br><b>
+ Test Cases:23</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 2  Product(s) from 1 Class(es): [AAN]Class: AAN (510263749), Products: AAN 5/2010 35.0 C (749633422); AAN 5/2010 35.0 P (749633423); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:DM1, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE:695, Give-Up Firm(s): CBOE:695,</small><br>
+&nbsp;&nbsp;<small>	Verify User DM1 exists and is set as expected. User: CBOE:DM1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:MDK1, Full Name: Automated API $CUST1 User, Role: X, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User MDK1 exists and is set as expected. User: CBOE:MDK1, Role: X, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:HST1, Full Name: Automated API $HOMT1 User, Role: A, Firm: CBOE:235, Give-Up Firm(s): CBOE:235,</small><br>
+&nbsp;&nbsp;<small>	Verify User HST1 exists and is set as expected. User: CBOE:HST1, Role: A, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: DM1 (Password: DM1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: MDK1 (Password: MDK1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: HST1 (Password: HST1), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set Allow Market Order (Trading Property) for Class 510263749 to : true</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Allow Market Order (Trading Property) for Class 'AAN' (510263749) to: true</small><br>
+&nbsp;&nbsp;<small>	Set Index Hybrid Indicator Enabled(Trading Property) for Class 'AAN' (510263749) to: false</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Index Hybrid Indicator Enabled (Trading Property) for Class 'AAN' (510263749) to: false</small><br>
+&nbsp;&nbsp;<small>	Set Exchange Prescribed Width for Class 'AAN'( 510263749) to: [0.0-3.0:0.5, 3.0-10.0:1.0, 10.0-99999.0:2.0]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Exchange Prescribed Width for Class 'AAN' (510263749) is set to: [0.0-3.0:0.5, 3.0-10.0:1.0, 10.0-99999.0:2.0]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAN' (510263749) to: [-8 : false, 1 : false, 5 : false]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Enabled (Trading Property) for Class 'AAN' (510263749) to: [-8 : false, 1 : false, 5 : false]</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 695 Key ( 510263749) , Volume : 49999</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify volume routing property for Session : W_MAIN Key ( 510263749) , Volumes: 49999</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 695 Class ( 510263749) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 695 Class ( 510263749) , Volume: 49999, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Help Desk Default Destination routing property for Session : W_MAIN Firm : 695 Class ( 510263749) , Destination: HST1</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Par Default Destination routing property for Session : W_MAIN Firm : 695 Key ( 510263749) , Destination: HST1:7</small><br>
+&nbsp;&nbsp;<small>	Set COA Eligible routing property for Session : W_MAIN Firm : 695 Class : ( 510263749) ,Origin Code: *, COA Value: 1</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify COA Eligible routing property for Session : W_MAIN Firm : 695 Class : ( 510263749) ,Origin Code: *, COA Value: 1</small><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Subscribe User DM1 for Current Market (V1, V2 & V3) for Class 'AAN' (510263749) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User DM1 for Recap for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User DM1 for Auction RFP's for Class 'AAN' (510263749) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User DM1 for Auction RFP's for Class 'AAN' (510263749) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User DM1 for Auction RFP's for Class 'AAN' (510263749) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User DM1 for CurrentMarketV4  for Class 'AAN' (510263749) </small><br>
+<br><hr><br><b>
+ Test Case 1:If a QCT trade price occurs better than the TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: YLF:5681</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: F, Branch/Seq: TXC:9122</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: JYK:1877, Match - S 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: JYK:672</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.100000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: JYK:1877, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: JYK:672, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: QYD:2156, Match - S 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: QYD:3462</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.100000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: QYD:2156, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: QYD:3462, Filled 500@10.100000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.140000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: REG:3308, Match - S 500@10.120000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: REG:4983</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.120000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: REG:3308, Filled 500@10.120000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: REG:4983, Filled 500@10.120000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: YLF:5681, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: TXC:9122, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 2:If a QCT trade price occurs equal TOB for PO and MO on Bid side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: VRR:1911</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: TDQ:9409</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: MLN:3294, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: MLN:4843</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.50000000] <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: MLN:3294, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: MLN:4843, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: VRR:1911, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: TDQ:9409, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 3:If a QCT trade price occurs equal TOB for PO and MO on Ask side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: XPY:5247</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: ABC:6258</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: ANV:8729, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: ANV:9198</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: ANV:8729, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: ANV:9198, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: XPY:5247, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: ABC:6258, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 4:If a QCT trade price occurs equal TOB for PO on Ask side and MO on Bid side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: QUN:1852</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: HIA:2152</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: BSQ:3402, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: BSQ:5923</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: BSQ:3402, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: BSQ:5923, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: QUN:1852, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: HIA:2152, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 5:If a QCT trade price occurs equal TOB only for MO on Ask side and PO is better than the TOB;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: APY:5909</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: OHB:2838</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: VXS:4289, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: VXS:4794 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: APY:5909, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: OHB:2838, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 6:If a QCT trade price occurs equal TOB for MO on Ask side and for PO on Bid side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: PWC:662</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: QHD:9535</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: HWY:859, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: HWY:491 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: PWC:662, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: QHD:9535, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 7:If a QCT trade price occurs equal TOB only for PO on Bid side and MO is better than the TOB;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: IPV:6750</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: PRD:7994</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: WFO:4750, Match - S 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: WFO:9404 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: IPV:6750, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: PRD:7994, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 8:If a QCT trade price occurs equal TOB for MO on Bid side and PO is better than TOB;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: LFO:4273</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: SJL:8650</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: YQW:2488, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: YQW:6782</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.100000000] <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: YQW:2488, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: YQW:6782, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: LFO:4273, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: SJL:8650, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 9:If a QCT trade price occurs worse than TOB for PO and MO on Ask side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: ANJ:7017</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: GRY:4930</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UFP:997, Match - S 500@10.170000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UFP:1871</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UFP:997, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UFP:1871, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: ANJ:7017, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: GRY:4930, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 10:If a QCT trade price occurs worse than TOB for PO on Ask side and MO is equal TOB on same side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: QVF:8470</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: KYK:1974</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UOS:3024, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UOS:2143</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UOS:3024, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UOS:2143, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: QVF:8470, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: KYK:1974, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 11:If a QCT trade price occurs worse than TOB for PO on Ask side and MO is equal TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: AIA:650</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: HKT:3561</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: NFA:7342, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: NFA:5327</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: NFA:7342, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: NFA:5327, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: AIA:650, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: HKT:3561, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 12:If a QCT trade price occurs worse than TOB for PO on Ask side and MO is worse than TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: AWY:8579</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: IPW:836</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UNA:6566, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: UNA:7566</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UNA:6566, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UNA:7566, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: AWY:8579, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: IPW:836, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 13:If a QCT trade price occurs equal TOB for PO on Ask side and MO is worse than TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: VYU:5315</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: XJH:2605</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OHP:3782, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OHP:9723</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: OHP:3782, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: OHP:9723, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: VYU:5315, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: XJH:2605, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 14:If a QCT trade price occurs better TOB for PO on Ask side and MO is worse than TOB on opposit side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: XGF:4803</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: HXD:3398</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OUE:7829, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: OUE:198</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: OUE:7829, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: OUE:198, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: XGF:4803, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: HXD:3398, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 15:If a QCT trade price occurs equal TOB for PO on Bid side and MO is worse than TOB on same side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: JTF:2577</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: KJG:2281</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: FUB:6012, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: FUB:2026</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: FUB:6012, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: FUB:2026, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: JTF:2577, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: KJG:2281, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 16:If a QCT trade price occurs equal TOB for PO and MO on Bid side;QCT order is canceled</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: NCX:7311</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: VLQ:2474</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: VDJ:2288, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: VDJ:4782</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: VDJ:2288, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: VDJ:4782, Cancel Quantity: 500, Cancel Reason: 'SYSTEM' (3)</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: NCX:7311, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: VLQ:2474, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 17:If a QCT trade price occurs equal TOB for PO on Ask side and MO is worse than TOB on same side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: PXM:9561</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: UJX:9219</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LYH:8594, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LYH:7848 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: PXM:9561, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: UJX:9219, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 18:If a QCT trade price occurs better than TOB for PO on Ask side and MO is worse than TOB on same side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: SSD:7697</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: YJX:1063</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.100000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: RQX:6808, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: RQX:9986 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: SSD:7697, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: YJX:1063, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 19:If a QCT trade price occurs equal TOB for PO on Bid side and MO is worse than TOB on opposite side;QCT order is rejected</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: HKU:4963</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: C, Branch/Seq: WQP:7700</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LIF:9098, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: LIF:2889 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: HKU:4963, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: WQP:7700, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 20:QCT trade price occurs equal TOB for PO and MO on Ask side;no resting customer orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: JVE:5875</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: F, Branch/Seq: OFO:5927</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: ISU:4894, Match - S 500@10.150000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: ISU:845</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: ISU:4894, Filled 500@10.150000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: ISU:845, Filled 500@10.150000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: JVE:5875, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: OFO:5927, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 21:QCT trade price occurs equal TOB for PO and MO on Bid side;no resting customer orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : B 100@10.50000000, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: INE:4751</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : S 100@10.150000000, Contingency: 'NONE' (1) , Origin Code: F, Branch/Seq: HIQ:3793</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: GWM:3582, Match - S 500@10.50000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: GWM:7723</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.50000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: GWM:3582, Filled 500@10.50000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: GWM:7723, Filled 500@10.50000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.50000000 x 100@10.150000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.50000000 x , Ask: 100@10.150000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: INE:4751, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User DM1 for Order null:0, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422), Order: HIQ:3793, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 22:QCT trade price occurs equal TOB for PO and MO on Ask side;no resting orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: SOX:9253, Match - S 500@10.200000000, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: SOX:4439</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: SOX:9253, Filled 500@10.200000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: SOX:4439, Filled 500@10.200000000 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.0 x , Ask: 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 23:QCT trade price occurs equal TOB for PO and MO on Bid side;no resting orders on TOB;QCT order is traded</b><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'CLOSED'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'PREOPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPENING ROTATION'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'AAN 5/2010 35.0 C' (749633422) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'AAN 5/2010 35.0 C' (749633422) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (B) 9.90, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'AAN 5/2010 35.0 C' (749633422) (S) 10.30, Exchange Volumes: NYSE=100</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) : 100@10.0 x 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Order by User MDK1 for Product 'AAN 5/2010 35.0 C' (749633422): Primary - B 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: RAX:6375, Match - S 500@10.0, Contingency: 'NONE' (1), Origin Code: M, Branch/Seq: RAX:5656</small><br>
+&nbsp;&nbsp;<small>	Pause for 1000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Last Sale Values for Product 'AAN 5/2010 35.0 C' (749633422): [500@10.0]</small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: RAX:6375, Filled 500@10.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Order Fill Verification for User MDK1 for Order Branch/Seq: RAX:5656, Filled 500@10.0 (Leaves: 0, Cancelled: 0) </small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'AAN 5/2010 35.0 C' (749633422): [100@10.0 x 100@10.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'AAN 5/2010 35.0 C' (749633422), Bid: 100@10.0 x , Ask: 100@10.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User DM1 for Product 'AAN 5/2010 35.0 C' (749633422) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User DM1 for Product 749633422, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: DM1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: HST1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: MDK1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD9</small><br>

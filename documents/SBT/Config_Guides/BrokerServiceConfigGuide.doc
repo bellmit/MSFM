@@ -1,0 +1,728 @@
+{\rtf1\ansi\ansicpg1252\uc1 \deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial;}
+{\f2\fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New;}{\f3\froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol;}{\f4\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times;}
+{\f5\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Helvetica;}{\f6\fmodern\fcharset0\fprq1{\*\panose 00000000000000000000}Courier;}{\f7\fswiss\fcharset0\fprq2{\*\panose 00000000000000000000}Geneva;}
+{\f8\froman\fcharset0\fprq2{\*\panose 00000000000000000000}Tms Rmn;}{\f9\fswiss\fcharset0\fprq2{\*\panose 00000000000000000000}Helv;}{\f10\froman\fcharset0\fprq2{\*\panose 00000000000000000000}MS Serif;}
+{\f11\fswiss\fcharset0\fprq2{\*\panose 00000000000000000000}MS Sans Serif;}{\f12\froman\fcharset0\fprq2{\*\panose 00000000000000000000}New York;}{\f13\fswiss\fcharset0\fprq2{\*\panose 00000000000000000000}System;}
+{\f14\fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}{\f15\fswiss\fcharset0\fprq3{\*\panose 020b0604030504040204}Tahoma;}{\f16\froman\fcharset238\fprq2 Times New Roman CE;}{\f17\froman\fcharset204\fprq2 Times New Roman Cyr;}
+{\f19\froman\fcharset161\fprq2 Times New Roman Greek;}{\f20\froman\fcharset162\fprq2 Times New Roman Tur;}{\f21\froman\fcharset186\fprq2 Times New Roman Baltic;}{\f22\fswiss\fcharset238\fprq2 Arial CE;}{\f23\fswiss\fcharset204\fprq2 Arial Cyr;}
+{\f25\fswiss\fcharset161\fprq2 Arial Greek;}{\f26\fswiss\fcharset162\fprq2 Arial Tur;}{\f27\fswiss\fcharset186\fprq2 Arial Baltic;}{\f28\fmodern\fcharset238\fprq1 Courier New CE;}{\f29\fmodern\fcharset204\fprq1 Courier New Cyr;}
+{\f31\fmodern\fcharset161\fprq1 Courier New Greek;}{\f32\fmodern\fcharset162\fprq1 Courier New Tur;}{\f33\fmodern\fcharset186\fprq1 Courier New Baltic;}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;
+\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;
+\red192\green192\blue192;}{\stylesheet{\nowidctlpar\widctlpar\adjustright \fs20\cgrid \snext0 Normal;}{\s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\adjustright \b\f1\fs28\kerning28\cgrid \sbasedon0 \snext0 heading 1;}{
+\s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\adjustright \b\i\f1\cgrid \sbasedon0 \snext0 heading 2;}{\s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720\adjustright \f1\cgrid \sbasedon0 \snext0 heading 3;}{
+\s4\fi-864\li864\sb240\sa60\keepn\nowidctlpar\widctlpar\tx864\adjustright \b\f1\cgrid \sbasedon0 \snext0 heading 4;}{\s5\fi-1008\li1008\sb240\sa60\nowidctlpar\widctlpar\tx1008\adjustright \f1\fs22\cgrid \sbasedon0 \snext0 heading 5;}{
+\s6\fi-1152\li1152\sb240\sa60\nowidctlpar\widctlpar\tx1152\adjustright \i\fs22\cgrid \sbasedon0 \snext0 heading 6;}{\s7\fi-1296\li1296\sb240\sa60\nowidctlpar\widctlpar\tx1296\adjustright \f1\fs20\cgrid \sbasedon0 \snext0 heading 7;}{
+\s8\fi-1440\li1440\sb240\sa60\nowidctlpar\widctlpar\tx1440\adjustright \i\f1\fs20\cgrid \sbasedon0 \snext0 heading 8;}{\s9\fi-1584\li1584\sb240\sa60\nowidctlpar\widctlpar\tx1584\adjustright \b\i\f1\fs18\cgrid \sbasedon0 \snext0 heading 9;}{\*\cs10 
+\additive Default Paragraph Font;}{\s15\nowidctlpar\widctlpar\tqc\tx4320\tqr\tx8640\adjustright \fs20\cgrid \sbasedon0 \snext15 footer;}{\*\cs16 \additive \sbasedon10 page number;}{\s17\nowidctlpar\widctlpar\tqc\tx4320\tqr\tx8640\adjustright \fs20\cgrid 
+\sbasedon0 \snext17 header;}{\s18\li1440\nowidctlpar\widctlpar\adjustright \f2\fs16\cgrid \sbasedon0 \snext18 Body Text 2;}{\s19\sb120\sa120\nowidctlpar\widctlpar\adjustright \b\caps\fs20\cgrid \sbasedon0 \snext0 \sautoupd toc 1;}{
+\s20\li200\nowidctlpar\widctlpar\adjustright \scaps\fs20\cgrid \sbasedon0 \snext0 \sautoupd toc 2;}{\s21\li400\nowidctlpar\widctlpar\adjustright \i\fs20\cgrid \sbasedon0 \snext0 \sautoupd toc 3;}{\s22\li600\nowidctlpar\widctlpar\adjustright \fs18\cgrid 
+\sbasedon0 \snext0 \sautoupd toc 4;}{\s23\li800\nowidctlpar\widctlpar\adjustright \fs18\cgrid \sbasedon0 \snext0 \sautoupd toc 5;}{\s24\li1000\nowidctlpar\widctlpar\adjustright \fs18\cgrid \sbasedon0 \snext0 \sautoupd toc 6;}{
+\s25\li1200\nowidctlpar\widctlpar\adjustright \fs18\cgrid \sbasedon0 \snext0 \sautoupd toc 7;}{\s26\li1400\nowidctlpar\widctlpar\adjustright \fs18\cgrid \sbasedon0 \snext0 \sautoupd toc 8;}{\s27\li1600\nowidctlpar\widctlpar\adjustright \fs18\cgrid 
+\sbasedon0 \snext0 \sautoupd toc 9;}}{\*\listtable{\list\listtemplateid-1\listsimple{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'01*;}{\levelnumbers;}}{\listname ;}\listid-2}
+{\list\listtemplateid-1835750422{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat6\levelspace0\levelindent0{\leveltext\'01\'00;}{\levelnumbers\'01;}\fbias0 \fi-576\li576\jclisttab\tx576 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat4
+\levelspace0\levelindent0{\leveltext\'03\'00.\'01;}{\levelnumbers\'01\'03;}\fbias0 \fi-576\li576\jclisttab\tx576 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'05\'00.\'01.\'02;}{\levelnumbers\'01\'03\'05;}
+\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'07\'00.\'01.\'02.\'03;}{\levelnumbers\'01\'03\'05\'07;}\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0
+\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'09\'00.\'01.\'02.\'03.\'04;}{\levelnumbers\'01\'03\'05\'07\'09;}\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0
+\levelindent0{\leveltext\'0b\'00.\'01.\'02.\'03.\'04.\'05;}{\levelnumbers\'01\'03\'05\'07\'09\'0b;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'0d\'00.\'01.\'02.\'03.\'04.\'05.\'06;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'0f\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f;}\fbias0 \fi-1440\li1440\jclisttab\tx1440 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'11\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07.\'08;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f\'11;}\fbias0 \fi-1440\li1440\jclisttab\tx1440 }{\listname ;}\listid138571641}{\list\listtemplateid-1\listsimple{\listlevel\levelnfc23\leveljc0\levelfollow0
+\levelstartat1\levelold\levelspace0\levelindent360{\leveltext\'01\u-3913 ?;}{\levelnumbers;}\f3\fbias0 \fi-360\li1800 }{\listname ;}\listid718162394}{\list\listtemplateid236761944\listsimple{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat11
+\levelold\levelspace0\levelindent720{\leveltext\'02\'00.;}{\levelnumbers\'01;}\fi-720\li720 }{\listname ;}\listid837311146}{\list\listtemplateid-1265369066{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat9\levelspace0\levelindent0{\leveltext
+\'01\'00;}{\levelnumbers\'01;}\fbias0 \fi-360\li360\jclisttab\tx360 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat4\levelspace0\levelindent0{\leveltext\'03\'00.\'01;}{\levelnumbers\'01\'03;}\fbias0 \fi-360\li360\jclisttab\tx360 }{\listlevel
+\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'05\'00.\'01.\'02;}{\levelnumbers\'01\'03\'05;}\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0
+{\leveltext\'07\'00.\'01.\'02.\'03;}{\levelnumbers\'01\'03\'05\'07;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'09\'00.\'01.\'02.\'03.\'04;}{\levelnumbers
+\'01\'03\'05\'07\'09;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0b\'00.\'01.\'02.\'03.\'04.\'05;}{\levelnumbers\'01\'03\'05\'07\'09\'0b;}\fbias0 \fi-1440\li1440
+\jclisttab\tx1440 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0d\'00.\'01.\'02.\'03.\'04.\'05.\'06;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d;}\fbias0 \fi-1440\li1440\jclisttab\tx1440 }{\listlevel
+\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0f\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f;}\fbias0 \fi-1800\li1800\jclisttab\tx1800 }{\listlevel\levelnfc0\leveljc0
+\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'11\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07.\'08;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f\'11;}\fbias0 \fi-1800\li1800\jclisttab\tx1800 }{\listname ;}\listid895508942}
+{\list\listtemplateid1247022092\listsimple{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat4\levelold\levelspace0\levelindent435{\leveltext\'02\'00.;}{\levelnumbers\'01;}\fi-435\li435 }{\listname ;}\listid998312727}{\list\listtemplateid67698689
+\listsimple{\listlevel\levelnfc23\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'01\u-3913 ?;}{\levelnumbers;}\f3\fbias0 \fi-360\li360\jclisttab\tx360 }{\listname ;}\listid1009648156}{\list\listtemplateid-2060142852\listsimple
+{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat10\levelold\levelspace0\levelindent720{\leveltext\'02\'00.;}{\levelnumbers\'01;}\fi-720\li720 }{\listname ;}\listid1292900911}{\list\listtemplateid-158456278\listsimple{\listlevel\levelnfc0\leveljc0
+\levelfollow0\levelstartat17\levelspace0\levelindent0{\leveltext\'02\'00.;}{\levelnumbers\'01;}\fbias0 \fi-405\li405\jclisttab\tx405 }{\listname ;}\listid1558275878}{\list\listtemplateid-1999722708{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat11
+\levelspace0\levelindent0{\leveltext\'01\'00;}{\levelnumbers\'01;}\fbias0 \fi-465\li465\jclisttab\tx465 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat4\levelspace0\levelindent0{\leveltext\'03\'00.\'01;}{\levelnumbers\'01\'03;}\fbias0 
+\fi-465\li465\jclisttab\tx465 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'05\'00.\'01.\'02;}{\levelnumbers\'01\'03\'05;}\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0\leveljc0\levelfollow0
+\levelstartat1\levelspace0\levelindent0{\leveltext\'07\'00.\'01.\'02.\'03;}{\levelnumbers\'01\'03\'05\'07;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'09\'00.\'01.\'02.\'03.\'04;}{\levelnumbers\'01\'03\'05\'07\'09;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0b\'00.\'01.\'02.\'03.\'04.\'05;}{\levelnumbers
+\'01\'03\'05\'07\'09\'0b;}\fbias0 \fi-1440\li1440\jclisttab\tx1440 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0d\'00.\'01.\'02.\'03.\'04.\'05.\'06;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d;}\fbias0 
+\fi-1440\li1440\jclisttab\tx1440 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0f\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f;}\fbias0 \fi-1800\li1800
+\jclisttab\tx1800 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'11\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07.\'08;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f\'11;}\fbias0 \fi-1800\li1800\jclisttab\tx1800 
+}{\listname ;}\listid1672104906}{\list\listtemplateid648965436{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat6\levelspace0\levelindent0{\leveltext\'01\'00;}{\levelnumbers\'01;}\fbias0 \fi-576\li576\jclisttab\tx576 }{\listlevel\levelnfc0\leveljc0
+\levelfollow0\levelstartat4\levelspace0\levelindent0{\leveltext\'03\'00.\'01;}{\levelnumbers\'01\'03;}\fbias0 \fi-576\li576\jclisttab\tx576 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'05\'00.\'01.\'02;}{\levelnumbers\'01\'03\'05;}\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'07\'00.\'01.\'02.\'03;}{\levelnumbers\'01\'03\'05\'07;}\fbias0 
+\fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'09\'00.\'01.\'02.\'03.\'04;}{\levelnumbers\'01\'03\'05\'07\'09;}\fbias0 \fi-720\li720\jclisttab\tx720 }{\listlevel\levelnfc0
+\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'0b\'00.\'01.\'02.\'03.\'04.\'05;}{\levelnumbers\'01\'03\'05\'07\'09\'0b;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1
+\levelspace0\levelindent0{\leveltext\'0d\'00.\'01.\'02.\'03.\'04.\'05.\'06;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d;}\fbias0 \fi-1080\li1080\jclisttab\tx1080 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'0f\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f;}\fbias0 \fi-1440\li1440\jclisttab\tx1440 }{\listlevel\levelnfc0\leveljc0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'11\'00.\'01.\'02.\'03.\'04.\'05.\'06.\'07.\'08;}{\levelnumbers\'01\'03\'05\'07\'09\'0b\'0d\'0f\'11;}\fbias0 \fi-1440\li1440\jclisttab\tx1440 }{\listname ;}\listid1943947745}}{\*\listoverridetable{\listoverride\listid998312727\listoverridecount0\ls1}
+{\listoverride\listid-2\listoverridecount1{\lfolevel\listoverrideformat{\listlevel\levelnfc23\leveljc0\levelfollow0\levelstartat1\levelold\levelspace0\levelindent360{\leveltext\'01\u-3913 ?;}{\levelnumbers;}\f3\fbias0 \fi-360\li1800 }}\ls2}
+{\listoverride\listid1292900911\listoverridecount0\ls3}{\listoverride\listid837311146\listoverridecount0\ls4}{\listoverride\listid1943947745\listoverridecount0\ls5}{\listoverride\listid138571641\listoverridecount0\ls6}{\listoverride\listid895508942
+\listoverridecount0\ls7}{\listoverride\listid1672104906\listoverridecount0\ls8}{\listoverride\listid1558275878\listoverridecount0\ls9}{\listoverride\listid1009648156\listoverridecount0\ls10}{\listoverride\listid718162394\listoverridecount0\ls11}}{\info
+{\title Systems Documentation Standards}{\author Odalys Castro}{\operator David Wegener}{\creatim\yr1999\mo4\dy28\hr20\min27}{\revtim\yr1999\mo10\dy27\hr15\min29}{\printim\yr1999\mo3\dy11\hr14\min22}{\version6}{\edmins46}{\nofpages13}{\nofwords2905}
+{\nofchars16563}{\*\company Chicago Board Options Exchange}{\nofcharsws20340}{\vern71}}\widowctrl\ftnbj\aenddoc\lytprtmet\hyphcaps0\formshade\viewkind4\viewscale100\pgbrdrhead\pgbrdrfoot \fet0\sectd \psz1\linex0\endnhere\sectdefaultcl {\footer 
+\pard\plain \s15\nowidctlpar\widctlpar\brdrt\brdrs\brdrw15\brsp20 \tqc\tx4320\tqr\tx8640\adjustright \fs20\cgrid {\f1 Broker Service Configuration Guide\tab \tab }{\field{\*\fldinst {\cs16\f1  PAGE }}{\fldrslt {\cs16\f1\lang1024 13}}}{\f1 
+\par }}{\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl2\pnucltr\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang{\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang{\pntxta )}}
+{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl6\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl8
+\pnlcltr\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang{\pntxtb (}{\pntxta )}}\trowd \trgaph108\trleft-108 \clvertalt\clbrdrt\brdrs\brdrw15 \clbrdrl\brdrs\brdrw15 \clbrdrr\brdrs\brdrw15 
+\clshdng10000\cltxlrtb \cellx8748\pard\plain \qc\sb120\sa120\nowidctlpar\widctlpar\intbl\adjustright \fs20\cgrid {\b\f1\fs32 Broker Service\cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\b\f1\fs32 \row }\trowd \trgaph108\trleft-108 \clvertalt
+\clbrdrl\brdrs\brdrw15 \clbrdrb\brdrs\brdrw15 \clbrdrr\brdrs\brdrw15 \clshdng1250\cltxlrtb \cellx8748\pard \qc\nowidctlpar\widctlpar\intbl\adjustright {\b\f1\fs32 
+\par }{\b\fs56 System Configuration Guide}{\b\f1\fs32 
+\par }\pard \nowidctlpar\widctlpar\intbl\adjustright {\b\f1\fs32 \cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\b\f1\fs32 \row }\trowd \trgaph108\trleft-108 \clvertalt\clbrdrt\brdrs\brdrw15 \clbrdrl\brdrs\brdrw15 \clbrdrb\brdrs\brdrw15 \clbrdrr
+\brdrs\brdrw15 \cltxlrtb \cellx8748\pard \qc\sb120\nowidctlpar\widctlpar\intbl\adjustright {\b\f1 This document was last updated Thursday, July 29, 1999}{\f1 
+\par }\pard \qc\sa120\nowidctlpar\widctlpar\intbl\adjustright {\f1\fs16 Copyright \'a9 Chicago Board Options Exchange, 1999.  All rights reserved.\cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1\fs16 \row }\pard \nowidctlpar\widctlpar\adjustright {
+\b\f1\fs32 
+\par Table of Contents
+\par 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx400\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\field\fldedit{\*\fldinst {\caps0\f1\fs32  TOC \\o "1-3" }}{\fldrslt {\lang1024 1.\tab Purpose\tab }{\field{\*\fldinst {\lang1024 
+ PAGEREF _Toc457873874 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380037003400000000}}}{\fldrslt {\lang1024 4}}}{\lang1024 
+\par 2.\tab Introduction\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873875 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380037003500000000}}}{\fldrslt {\lang1024 4}}}{
+\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 2.1\tab  Prerequisites\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873876 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380037003600000000}}}{\fldrslt {\lang1024 4}}}{\lang1024 
+\par 2.2\tab Related Documents\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873877 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380037003700000000}}}{\fldrslt {\lang1024 4
+}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx400\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 3.\tab Configuration Diagram\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873878 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380037003800000000}}}{\fldrslt {\lang1024 4}}}{\lang1024 
+\par 4.\tab Property File Location\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873879 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380037003900000000}}}{\fldrslt {
+\lang1024 4}}}{\lang1024 
+\par 5.\tab Usage\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873880 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003000000000}}}{\fldrslt {\lang1024 4}}}{
+\lang1024 
+\par 6.\tab <prefix>.currentMarketEventChannelName\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873881 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003100000000}}
+}{\fldrslt {\lang1024 4}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 6.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873882 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003200000000}}}{\fldrslt {\lang1024 4}}}{\lang1024 
+\par 6.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873883 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003300000000}}}{\fldrslt {\lang1024 4}}}
+{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 6.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873884 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003400000000}}}{\fldrslt {\lang1024 4}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 6.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873885 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003500000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par 6.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873886 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003600000000}}}{\fldrslt {
+\lang1024 5}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx400\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 7.\tab <prefix>.initialOpeningTimeout\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873887 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003700000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 7.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873888 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003800000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par 7.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873889 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380038003900000000}}}{\fldrslt {\lang1024 5}}}
+{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 7.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873890 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003000000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 7.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873891 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003100000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par 7.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873892 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003200000000}}}{\fldrslt {
+\lang1024 5}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx400\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 8.\tab <prefix>.maxOpeningTimeout\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873893 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003300000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 8.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873894 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003400000000}}}{\fldrslt {\lang1024 5}}}{\lang1024 
+\par 8.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873895 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003500000000}}}{\fldrslt {\lang1024 5}}}
+{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 8.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873896 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003600000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 8.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873897 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003700000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx400\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 9.\tab <prefix>.openingCalculationInterval\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873898 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003800000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 9.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873899 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300380039003900000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par 9.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873900 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003000000000}}}{\fldrslt {\lang1024 6}}}
+{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 9.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873901 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003100000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 9.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873902 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003200000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par 9.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873903 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003300000000}}}{\fldrslt {
+\lang1024 6}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx600\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 10.\tab <prefix>.imbalanceRFQTimeout\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873904 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003400000000}}}{\fldrslt {\lang1024 6}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 10.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873905 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003500000000}}}{\fldrslt {\lang1024 7}}}{\lang1024 
+\par 10.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873906 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003600000000}}}{\fldrslt {\lang1024 7}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 10.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873907 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003700000000}}}{\fldrslt {\lang1024 7}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 10.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873908 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003800000000}}}{\fldrslt {\lang1024 7}}}{\lang1024 
+\par 10.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873909 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390030003900000000}}}{\fldrslt {
+\lang1024 7}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx600\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 11.\tab <prefix>.BrokerStrategy.brokerStates\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873910 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003000000000}}}{\fldrslt {\lang1024 7}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 11.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873911 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003100000000}}}{\fldrslt {\lang1024 7}}}{\lang1024 
+\par 11.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873912 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003200000000}}}{\fldrslt {\lang1024 7}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 11.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873913 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003300000000}}}{\fldrslt {\lang1024 8}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 11.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873914 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003400000000}}}{\fldrslt {\lang1024 8}}}{\lang1024 
+\par 11.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873915 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003500000000}}}{\fldrslt {
+\lang1024 8}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 12.<prefix>.BrokerStrategy.brokerStates.default_<stateName>_Strategy\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873916 \\h }{\lang1024 
+{\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003600000000}}}{\fldrslt {\lang1024 8}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 12.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873917 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003700000000}}}{\fldrslt {\lang1024 8}}}{\lang1024 
+\par 12.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873918 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003800000000}}}{\fldrslt {\lang1024 8}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 12.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873919 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390031003900000000}}}{\fldrslt {\lang1024 8}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 12.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873920 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003000000000}}}{\fldrslt {\lang1024 8}}}{\lang1024 
+\par 12.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873921 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003100000000}}}{\fldrslt {
+\lang1024 8}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx600\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 13.\tab <prefix>.BrokerStrategy.brokerStrategies\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873922 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003200000000}}}{\fldrslt {\lang1024 9}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 13.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873923 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003300000000}}}{\fldrslt {\lang1024 9}}}{\lang1024 
+\par 13.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873924 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003400000000}}}{\fldrslt {\lang1024 9}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 13.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873925 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003500000000}}}{\fldrslt {\lang1024 9}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 13.3\tab     Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873926 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003600000000}}}{\fldrslt {\lang1024 9}}}{\lang1024 
+\par 13.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873927 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003700000000}}}{\fldrslt {
+\lang1024 9}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 14<prefix>.BrokerStrategy.brokerStrategies.<state>_<strategy_name>\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873928 \\h }{\lang1024 
+{\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003800000000}}}{\fldrslt {\lang1024 9}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 14.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873929 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390032003900000000}}}{\fldrslt {\lang1024 9}}}{\lang1024 
+\par 14.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873930 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003000000000}}}{\fldrslt {\lang1024 10}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 14.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873931 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003100000000}}}{\fldrslt {\lang1024 10}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 14.3\tab Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873932 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003200000000}}}{\fldrslt {\lang1024 10}}}{\lang1024 
+\par 14.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873933 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003300000000}}}{\fldrslt {
+\lang1024 10}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx600\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 15.\tab MaxQuoteWidth\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873934 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003400000000}}}{\fldrslt {\lang1024 10}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 15.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873935 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003500000000}}}{\fldrslt {\lang1024 10}}}{\lang1024 
+\par 15.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873936 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003600000000}}}{\fldrslt {\lang1024 11}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 15.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873937 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003700000000}}}{\fldrslt {\lang1024 11}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 15.3\tab Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873938 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003800000000}}}{\fldrslt {\lang1024 11}}}{\lang1024 
+\par 15.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873939 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390033003900000000}}}{\fldrslt {
+\lang1024 11}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx600\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 16.\tab BrokerService.threadCount\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873940 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003000000000}}}{\fldrslt {\lang1024 11}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 16.1\tab Property Description\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873941 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003100000000}}}{\fldrslt {\lang1024 11}}}{\lang1024 
+\par 16.2\tab Property Value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873942 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003200000000}}}{\fldrslt {\lang1024 11}
+}}{\lang1024 
+\par }\pard\plain \s21\li400\nowidctlpar\widctlpar\tx1200\tqr\tldot\tx8630\adjustright \i\fs20\cgrid {\lang1024 16.2.1\tab Default value\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873943 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003300000000}}}{\fldrslt {\lang1024 11}}}{\lang1024 
+\par }\pard\plain \s20\li200\nowidctlpar\widctlpar\tx800\tqr\tldot\tx8630\adjustright \scaps\fs20\cgrid {\lang1024 16.3\tab Property Example\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873944 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003400000000}}}{\fldrslt {\lang1024 11}}}{\lang1024 
+\par 16.4\tab Property Restrictions\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873945 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003500000000}}}{\fldrslt {
+\lang1024 12}}}{\lang1024 
+\par }\pard\plain \s19\sb120\sa120\nowidctlpar\widctlpar\tx600\tqr\tldot\tx8630\adjustright \b\caps\fs20\cgrid {\lang1024 17.\tab Effects of other properties\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873946 \\h }{\lang1024 {\*\datafield 
+08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003600000000}}}{\fldrslt {\lang1024 12}}}{\lang1024 
+\par 18.\tab Appendix\tab }{\field{\*\fldinst {\lang1024  PAGEREF _Toc457873947 \\h }{\lang1024 {\*\datafield 08d0c9ea79f9bace118c8200aa004ba90b02000000080000000e0000005f0054006f006300340035003700380037003300390034003700000000}}}{\fldrslt {\lang1024 12}}}{
+\lang1024 
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid }}\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {\b\f1\fs32 
+\par 
+\par \sect }\sectd \psz1\linex0\endnhere\sectdefaultcl \pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {\b\f1\fs32 
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873874}1.\tab Purpose{\*\bkmkend _Toc457873874}
+\par }\pard\plain \fi720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {This document outlines the configuration properties and usage available for the Broker Service
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873875}2.\tab Introduction{\*\bkmkend _Toc457873875}
+\par }\pard\plain \li720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {BrokerService has properties to configure the service implementation class for the home and other control values.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873876}2.1\tab \tab Prerequisites{\*\bkmkend _Toc457873876}
+\par }\pard\plain \fi720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {This guide requires understanding of the Foundation Framework configuration.
+\par }\pard\plain \s2\sb240\sa60\keepn\nowidctlpar\widctlpar\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873877}2.2\tab Related Documents{\*\bkmkend _Toc457873877}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {\tab The Foundation Framework configuration guide.
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873878}3.\tab Configuration Diagram{\*\bkmkend _Toc457873878}
+\par }\pard\plain \fi720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {<Depict how application properties will work together>
+\par {\*\bkmkstart _Toc457873879}{\pntext\pard\plain\s1 \b\f1\fs28\kerning28\cgrid \hich\af1\dbch\af0\loch\f1 4.\tab}}\pard\plain \s1\fi-435\li435\sb240\sa60\keepn\nowidctlpar\widctlpar\tx435{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec\pnstart4\pnindent435\pnhang
+{\pntxta .}}\ls1\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Property File Location{\*\bkmkend _Toc457873879}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {This property will be defined in the process specific configuration file or repository for the instance of BrokerService that is to 
+be configured.
+\par {\*\bkmkstart _Toc457873880}{\pntext\pard\plain\s1 \b\f1\fs28\kerning28\cgrid \hich\af1\dbch\af0\loch\f1 5.\tab}}\pard\plain \s1\fi-435\li435\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec\pnstart4\pnindent435\pnhang
+{\pntxta .}}\ls1\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Usage{\*\bkmkend _Toc457873880}
+\par }\pard \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright {{\*\bkmkstart _Toc457873881}6.\tab <prefix>.currentMarketEventChannelName{\*\bkmkend _Toc457873881}
+\par }\pard\plain \li720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {The property is used to define the name of the event channel to use to publish the expected opening price on.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873882}6.1\tab Property Description{\*\bkmkend _Toc457873882} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property is the name of the market event channel used to publish expected opening prices 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerImpl
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873883}6.2\tab Property Value{\*\bkmkend _Toc457873883}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is the name of the event channel
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 CurrentMarket}{\f1\fs18 \cell This is the event channel name\cell }{<prefix>.currentMarketEventChannelName}{\f1 =CurrentMarket}{\f1\fs18 \cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873884}6.2.1\tab Default value{\*\bkmkend _Toc457873884}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the property is not defined is CurrentMarket.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873885}6.3\tab     Property Example{\*\bkmkend _Toc457873885}
+
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {<prefix>.currentMarketEventChannelName=CurrentMarket
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873886}6.4\tab Property Restrictions{\*\bkmkend _Toc457873886} 
+
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873887}7.\tab <prefix>.initialOpeningTimeout
+{\*\bkmkend _Toc457873887}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {Th
+e property is used to define the time limit for the initial opening phase.  At the end of this phase, the first expected opening price is disseminated.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873888}7.1\tab Property Description{\*\bkmkend _Toc457873888} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property is the time limit of the initial opening phase.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The class that u
+ses the property is the com.cboe.businessServices.brokerService.BrokerImpl
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873889}7.2\tab Property Value{\*\bkmkend _Toc457873889}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is  an integer
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 15}{\f1\fs18 \cell This is the initial opening time\cell }{<prefix>.initialOpeningTimeout}{\f1  =15}{\f1\fs18 \cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873890}7.2.1\tab Default value{\*\bkmkend _Toc457873890}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the property is not defined is 15.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873891}7.3\tab     Property Example{\*\bkmkend _Toc457873891}
+
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {<prefix>.initialOpeningTimeout =15
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873892}7.4\tab Property Restrictions{\*\bkmkend _Toc457873892} 
+
+\par }\pard\plain \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873893}8.\tab <prefix>.maxOpeningTimeout
+{\*\bkmkend _Toc457873893}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {The property is used to define the maximum amount of time that the opening phase can take to complete.  The opening trade will be att
+empted at a random time between the initial opening time and the max opening time..
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873894}8.1\tab Property Description{\*\bkmkend _Toc457873894} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property is the time limit of the opening phase.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerImpl
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873895}8.2\tab Property Value{\*\bkmkend _Toc457873895}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is  an integer
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 30}{\f1\fs18 \cell This is the initial opening time\cell }{<prefix>.maxOpeningTimeout}{\f1 =30}{\f1\fs18 \cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873896}8.2.1\tab Default value{\*\bkmkend _Toc457873896}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the property is not defined is 30.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {To change the 
+default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873897}8.3\tab     Property Example{\*\bkmkend _Toc457873897}
+
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {<prefix>.maxOpeningTimeout=30
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873898}9.\tab <prefix>.openingCalculationInterval
+{\*\bkmkend _Toc457873898}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {The property is used to define the interval between disseminations of the expected opening price.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873899}9.1\tab Property Description{\*\bkmkend _Toc457873899} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property is the interval between disseminations of the expected opening price..
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The class that uses the prope
+rty is the com.cboe.businessServices.brokerService.BrokerImpl
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873900}9.2\tab Property Value{\*\bkmkend _Toc457873900}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is  an integer
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 3}{\f1\fs18 \cell This is the initial opening time\cell }{<prefix>.openingCalculationInterval}{\f1  =3}{\f1\fs18 \cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873901}9.2.1\tab Default value{\*\bkmkend _Toc457873901}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {The ini
+tial default value if the property is not defined is 3.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873902}9.3\tab     Property Example{\*\bkmkend _Toc457873902}
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar\ilvl12\adjustright \fs20\cgrid {<prefix>.openingCalculationInterval =3
+\par }\pard \nowidctlpar\widctlpar\ilvl12\adjustright {
+\par {\listtext\pard\plain\s2 \b\i\f1\cgrid \hich\af1\dbch\af0\loch\f1 9.4\tab}}\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\jclisttab\tx360\ls7\ilvl1\outlinelevel1\adjustright \b\i\f1\cgrid {  {\*\bkmkstart _Toc457873903}
+Property Restrictions{\*\bkmkend _Toc457873903} 
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873904}10.\tab <prefix>.imbalanceRFQTimeout{\*\bkmkend _Toc457873904}
+\par }\pard\plain \li720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {The property is used to define the rfq time out interval for a market order imbalance at the opening.  The product will attempt to re-open following this time
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873905}10.1\tab Property Description{\*\bkmkend _Toc457873905} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property is the imbalance rfq timeout
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerImpl
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873906}10.2\tab Property Value{\*\bkmkend _Toc457873906}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is  an integer
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 30}{\f1\fs18 \cell This is the initial opening time\cell }{<prefix>.imbalanceRFQTimeout}{\f1 =3}{\f1\fs18 \cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873907}10.2.1\tab Default value{\*\bkmkend _Toc457873907}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the property is not defined is 30.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873908}10.3\tab     Property Example{\*\bkmkend _Toc457873908
+}
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {<prefix>.imbalanceRFQTimeout=30
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873909}10.4\tab Property Restrictions{\*\bkmkend _Toc457873909} 
+
+\par }\pard\plain \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873910}11.\tab <prefix>.BrokerStrategy.brokerStates
+{\*\bkmkend _Toc457873910}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {The property used to define the list of states that will be available to the Broker. 
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873911}11.1\tab Property Description{\*\bkmkend _Toc457873911} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property lists the states the broker operates in
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerStrategyFactory
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873912}11.2\tab Property Value{\*\bkmkend _Toc457873912}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a list of unique strategy names.  The names will be used as sub properties to look up the implementation classes. 
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 CLOSED,PRE_OPEN,OPENING_ROTATION,OPEN,HALTED,OPEN_OUTCRY}{\f1\fs18 \cell This is the list of strategies\cell }{<previx..BrokerStrategy.brokerStates}{\f1 
+=CLOSED,PRE_OPEN,OPENING_ROTATION,OPEN,HALTED,OPEN_OUTCRY}{\f1\fs18 \cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0
+\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873913}11.2.1\tab Default value{\*\bkmkend _Toc457873913}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the property is not defined is }{\f1 CLOSED,PRE_OPEN,OPENING_ROTATION,OPEN,HALTED,OPEN_OUTCRY}{.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The default value is the standard configuration of the limit order strategy name.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873914}11.3\tab     Property Example{\*\bkmkend _Toc457873914}
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar\ilvl12\adjustright \fs20\cgrid {\f1 <prefix>.BrokerStrategy.brokerStates=CLOSED,PRE_OPEN,OPENING_ROTATION,OPEN,HALTED,OPEN_OUTCRY}{ 
+\par {\*\bkmkstart _Toc457873915}{\listtext\pard\plain\s2 \b\i\f1\cgrid \hich\af1\dbch\af0\loch\f1 11.4\tab}}\pard\plain \s2\fi-465\li465\sb240\sa60\keepn\nowidctlpar\widctlpar\jclisttab\tx465\ls8\ilvl1\outlinelevel1\adjustright \b\i\f1\cgrid {
+Property Restrictions{\*\bkmkend _Toc457873915} 
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873916}12.<prefix>.BrokerStrategy.brokerStates.default_<stateName>_Strategy{\*\bkmkend _Toc457873916}
+
+\par }\pard\plain \li720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {The name of the default strategy class for the property.  If a strategy is not defined for a state/order type combination, the default strategy for the state will be used.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873917}12.1\tab Property Description{\*\bkmkend _Toc457873917} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property lists the default strategy for a state
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The class that uses the 
+property is the com.cboe.businessServices.brokerService.BrokerStrategyFactory
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873918}12.2\tab Property Value{\*\bkmkend _Toc457873918}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a list of unique strategy names.  The names will be used as sub properties to look up the implementation classes. 
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 com.cboe.businessServices.brokerService.BrokerBookAllStrategy}{\f1\fs18 \cell This is the strategy class name\cell }{<}{\f1 
+prefix>.BrokerStrategy.brokerStates}{.default_<stateName>_Strategy=com.cboe.businessServices.brokerService.BrokerBookAllStrategy}{\f1\fs18 \cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873919}12.2.1\tab Default value{\*\bkmkend _Toc457873919}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+There is no default for all states..
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873920}12.3\tab     Property Example{\*\bkmkend _Toc457873920
+}
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {<}{\f1 prefix>.BrokerStrategy.brokerStates}{
+.default_<stateName>_Strategy=com.cboe.businessServices.brokerService.BrokerBookAllStrategy
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873921}12.4\tab Property Restrictions{\*\bkmkend _Toc457873921} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+A BrokerStrategies.<strategy_name> must be defined for each name in the list.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The strategy names must be unique
+
+\par }\pard \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873922}13.\tab <prefix>.BrokerStrategy.brokerStrategies
+{\*\bkmkend _Toc457873922}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {The property to define the list of strategies that will be available to the Broker for handling different types of orders. 
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873923}13.1\tab Property Description{\*\bkmkend _Toc457873923} 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property lists the names of the strategies that will be available to the Broker for handling different types of orders.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerStrategyFactory
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873924}13.2\tab Property Value{\*\bkmkend _Toc457873924}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a list of unique strategy names.  The names will be used as sub properties to look up the implementation classes. 
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1800\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3420\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6084\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx8748\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 Limit,Market,IOC,FOK,AON,Quote}{\f1\fs18 \cell This is the list of strategies\cell }{<prefix>.BrokerStrategy.brokerStrategies}{\f1 
+=Limit,Market,IOC,FOK,AON,Quote}{\f1\fs18 \cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873925}13.2.1\tab Default value{\*\bkmkend _Toc457873925}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the property is not defined is Limit.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The default value is the standard configuration of the limit order strategy name.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-360\li360\sb240\sa60\keepn\nowidctlpar\widctlpar\tx360\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873926}13.3\tab     Property Example{\*\bkmkend _Toc457873926
+}
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {<prefix>.BrokerStrategy.brokerStrategies=Limit,Market,IOC,FOK,AON,Quote 
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873927}13.4\tab Property Restrictions{\*\bkmkend _Toc457873927} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+A BrokerStrategies.<strategy_name> must be defined for each name in the list.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The strategy names must be unique
+
+\par }\pard \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873928}
+14<prefix>.BrokerStrategy.brokerStrategies.<state>_<strategy_name>{\*\bkmkend _Toc457873928}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {The property to define the Br
+okerStrategy implementation for a specific state and strategy name.  The <strategy_name> should be replaced by one of the names specified in the BrokerStrategies property.
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873929}14.1\tab Property Description{\*\bkmkend _Toc457873929} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property defines the implementation of the BrokerStrategy for the strategy name.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerStrategyFactory
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873930}14.2\tab Property Value{\*\bkmkend _Toc457873930}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a complete class path of a class that implements the com.cboe.interfaces.businessServices.brokerService.BrokerStrategy interface.
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par 
+\par }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 com.cboe.businessServices.brokerService.BrokerMarketOrderStrategy\cell }{\f1\fs18 This is the strategy that handles market orders.\cell }{\f1 
+BrokerStrategies.Market=com.cboe.businessServices.brokerService.BrokerMarketOrderStrategy\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 com.cboe.businessServices.brokerService.BrokerLimitOrderStrategy}{\f1\fs18 \cell This is the strategy that handles limit orders.\cell }{\f1 
+BrokerStrategies.Limit=com.cboe.businessServices.brokerService.BrokerLimitOrderStrategy}{\f1\fs18 \cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 com.cboe.businessServices.brokerService.BrokerIOCOrderStrategy}{\f1\fs18 \cell This is the strategy that handles IOC orders.\cell }{\f1 
+BrokerStrategies.IOC=com.cboe.businessServices.brokerService.BrokerIOCOrderStrategy}{\f1\fs18 \cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\trowd \trgaph108\trleft1260\trbrdrt
+\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 
+\clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 
+com.cboe.businessServices.brokerService.BrokerFOKOrderStrategy}{\f1\fs18 \cell This is the strategy that handles FOC orders..\cell }{\f1 BrokerStrategies.FOK=com.cboe.businessServices.brokerService.BrokerFOKOrderStrategy}{\f1\fs18 \cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873931}14.2.1\tab Default value{\*\bkmkend _Toc457873931}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the BrokerStrategies property has not been defined is com.cboe.businessServices.brokerService.BrokerMarketOrderStrategy.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The default value is the standard configuration of the limit order strategy.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {Remove the property setting 
+in the configuration to use the default value.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873932}14.3\tab Property Example{\*\bkmkend _Toc457873932} 
+\par }\pard\plain \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {\f2\fs16 BrokerStrategies.Limit=com.cboe.businessServices.brokerService.BrokerLimitOrderStrategy
+\par }\pard\plain \s18\li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \f2\fs16\cgrid {BrokerStrategies.Market=com.cboe.businessServices.brokerService.BrokerMarketOrderStrategy
+\par }\pard\plain \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {\f2\fs16 BrokerStrategies.IOC=com.cboe.businessServices.brokerService.BrokerIOCOrderStrategy
+\par BrokerStrategies.FOK=com.cboe.businessServices.brokerService.BrokerFOKOrderStrategy
+\par BrokerStrategies.AON=com.cboe.businessServices.brokerService.BrokerFOKOrderStrategy
+\par BrokerStrategies.Quote=com.cboe.businessServices.brokerService.BrokerLimitOrderStrategy
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873933}14.4\tab Property Restrictions{\*\bkmkend _Toc457873933} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The class specified by the property must implement the BrokerStrategy interface.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class must be loadable to the process.
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873934}15.\tab MaxQuoteWidth{\*\bkmkend _Toc457873934}
+
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {The property to define the maximum quote width that is acceptable to trade a market order.
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873935}15.1\tab Property Description{\*\bkmkend _Toc457873935} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property defines the value of the maximum quote width
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerMarketOrderStrategy
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873936}15.2\tab Property Value{\*\bkmkend _Toc457873936}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a decimal value that specifies the maximum quote width.
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par 
+\par }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 0.5\cell }{\f1\fs18 This makes the width 0.5.\cell }{\f1 MaxQuoteWidth=0.5\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }
+\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873937}15.2.1\tab Default value{\*\bkmkend _Toc457873937}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the MaxQuoteWidth property has not been defined is 0.5
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The default value is 0.5
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873938}15.3\tab Property Example{\*\bkmkend _Toc457873938} 
+\par }\pard\plain \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {\f2\fs16 MaxQuoteWidth=0.5
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873939}15.4\tab Property Restrictions{\*\bkmkend _Toc457873939} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value must be a decimal value.
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873940}16.\tab BrokerService.threadCount
+{\*\bkmkend _Toc457873940}
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {The property to define the maximum number of threads that will be allowed for the broker service
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873941}16.1\tab Property Description{\*\bkmkend _Toc457873941} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property defines the maximum number of threads that will be allowed for the broker service
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerServiceImpl
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873942}16.2\tab Property Value{\*\bkmkend _Toc457873942}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {The value for this pro
+perty is an integer
+\par }\pard \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par 
+\par }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard 
+\qc\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row 
+}\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f1 1\cell }{\f1\fs18 This sets the maximum number of threads to 1\cell }{\f1 BrokerService.threadCount=1\cell }\pard 
+\nowidctlpar\widctlpar\intbl{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel2\adjustright \f1\cgrid {{\*\bkmkstart _Toc457873943}16.2.1\tab Default value{\*\bkmkend _Toc457873943}
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The initial default value if the BrokerService.threadCount property is 1.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {To change the default value, the p
+roperty must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873944}16.3\tab Property Example{\*\bkmkend _Toc457873944} 
+\par }\pard\plain \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {\f2\fs16 BrokerService.threadCount=1
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {{\*\bkmkstart _Toc457873945}16.4\tab Property Restrictions{\*\bkmkend _Toc457873945} 
+
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {The value must be
+ an integer
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {{\*\bkmkstart _Toc457873946}16.\tab brokerStateSessionNames
+\par }\pard\plain \li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright \fs20\cgrid {
+\par The property to define the various session names that the broker will maintain products for.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.1\tab Property Description 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+This property defines the session names that the broker will maintain products for.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {The class t
+hat uses the property is the com.cboe.businessServices.brokerService.BrokerProductState
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.2\tab Property Value
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a list of session names
+\par }\pard \nowidctlpar\widctlpar\ilvl12\adjustright {
+\par 
+\par }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard \qc\nowidctlpar\widctlpar\intbl\ilvl12\adjustright {
+\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1\fs18 \row }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr
+\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt
+\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1 SBTDay,SBTEvening,OpenOutcryDay,OpenOutcryEvening
+\par }\pard \nowidctlpar\widctlpar\intbl\ilvl12\adjustright {\f1 \cell }{\f1\fs18 This sets the session names to the coded names\cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1 brokerStateSessionNames=SBTDay,SBTEvening,OpenOutcryDay,OpenOutcryEvening
+
+\par }\pard \nowidctlpar\widctlpar\intbl\ilvl12\adjustright {\f1 \cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720\ilvl12\outlinelevel2\adjustright \f1\cgrid {16.2.1\tab Default value
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\jclisttab\tx1800{\*\pn \pnlvlblt\ilvl0\ls10\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls10\adjustright \fs20\cgrid {
+The initial default value if the brokerStateSessionNames property is SBTDay.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+To change the default value, the property must be set using the valid property values defined in the previous section.
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+Remove the property setting in the configuration to use the default value.
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.3\tab Property Example 
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {\f2\fs16 brokerStateSessionNames=SBTDay,SBTEvening,OpenOutcryDay,OpenOutcryEvening
+\par }\pard \li1440\nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\adjustright {\f2\fs16 
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.4\tab Property Restrictions 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value must be a valid session name.
+\par }\pard\plain \s1\fi-432\li432\sb240\sa60\keepn\nowidctlpar\widctlpar\tx432\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {16.\tab brokerStateSessionDefaultState.<session_name>
+\par }\pard\plain \li720\nowidctlpar\widctlpar\ilvl12\adjustright \fs20\cgrid {
+\par The property to define the default product state of products defined for the specific session
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.1\tab Property Description 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls11\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls11\adjustright \fs20\cgrid {
+This property defines the default product state of products defined for the specific session
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright {
+The class that uses the property is the com.cboe.businessServices.brokerService.BrokerProductState
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576{\*\pn \pnlvlcont\ilvl12\ls0\pnrnot0\pndec }\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.2\tab Property Value
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value for this property is a class name
+\par }\pard \nowidctlpar\widctlpar\ilvl12\adjustright {
+\par 
+\par }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt
+\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard \qc\nowidctlpar\widctlpar\intbl\ilvl12\adjustright {
+\f1\fs18 Values\cell Description\cell Example\cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1\fs18 \row }\trowd \trgaph108\trleft1260\trbrdrt\brdrs\brdrw15\brdrcf1 \trbrdrl\brdrs\brdrw15\brdrcf1 \trbrdrb\brdrs\brdrw15\brdrcf1 \trbrdrr
+\brdrs\brdrw15\brdrcf1 \trbrdrh\brdrs\brdrw15\brdrcf1 \trbrdrv\brdrs\brdrw15\brdrcf1 \clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx3780\clvertalt
+\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx6300\clvertalt\clbrdrt\brdrs\brdrw15\brdrcf1 \clbrdrl\brdrs\brdrw15\brdrcf1 \clbrdrb\brdrs\brdrw15\brdrcf1 \clbrdrr
+\brdrs\brdrw15\brdrcf1 \cltxlrtb \cellx9900\pard \nowidctlpar\widctlpar\intbl\ilvl12\adjustright {com.cboe.businessServices.brokerService.BrokerProductClosed}{\f1 \cell }{\f1\fs18 This sets the state to BrokerProductClosed\cell }{\f1 B
+rokerStateSessionDefaultState.<session_name>= com.cboe.businessServices.brokerService.BrokerProductClosed\cell }\pard \nowidctlpar\widctlpar\intbl\adjustright {\f1\fs18 \row }\pard \li1440\nowidctlpar\widctlpar\ilvl12\adjustright {
+\par }\pard\plain \s3\fi-720\li720\sb240\sa60\keepn\nowidctlpar\widctlpar\tx720\ilvl12\outlinelevel2\adjustright \f1\cgrid {16.2.1\tab Default value
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\jclisttab\tx1800{\*\pn \pnlvlblt\ilvl0\ls10\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls10\adjustright \fs20\cgrid {The
+re is no default value
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.3\tab Property Example 
+\par }\pard\plain \fi720\li720\nowidctlpar\widctlpar\adjustright \fs20\cgrid {\f2\fs16 brokerStateDefaultState.SBTDay=com.cboe.businessServices.brokerService.BrokerProductClosed
+\par }\pard \li1440\nowidctlpar\widctlpar\ilvl12\adjustright {\f2\fs16 
+\par }\pard\plain \s2\fi-576\li576\sb240\sa60\keepn\nowidctlpar\widctlpar\tx576\ilvl12\outlinelevel1\adjustright \b\i\f1\cgrid {16.4\tab Property Restrictions 
+\par {\pntext\pard\plain\f3\fs20\cgrid \loch\af3\dbch\af0\hich\f3 \'b7\tab}}\pard\plain \fi-360\li1800\nowidctlpar\widctlpar\tx1800{\*\pn \pnlvlblt\ilvl0\ls2\pnrnot0\pnf3\pnstart1\pnindent360\pnhang{\pntxtb \'b7}}\ls2\adjustright \fs20\cgrid {
+The value must be a valid class name of a class that subclasses BrokerProductState
+\par {\pntext\pard\plain\s1 \b\f1\fs28\kerning28\cgrid \hich\af1\dbch\af0\loch\f1 17.\tab}}\pard\plain \s1\fi-405\li405\sb240\sa60\keepn\nowidctlpar\widctlpar\jclisttab\tx405\tx432\tx720{\*\pn \pnlvlbody\ilvl0\ls9\pnrnot0\pndec\pnstart17\pnindent405\pnhang
+{\pntxta .}}\ls9\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Effects of other properties{\*\bkmkend _Toc457873946}
+\par }\pard\plain \nowidctlpar\widctlpar{\*\pn \pnlvlcont\ilvl0\ls0\pnrnot0\pndec }\adjustright \fs20\cgrid {
+\par {\*\bkmkstart _Toc457873947}{\pntext\pard\plain\s1 \b\f1\fs28\kerning28\cgrid \hich\af1\dbch\af0\loch\f1 18.\tab}}\pard\plain \s1\fi-405\li405\sb240\sa60\keepn\nowidctlpar\widctlpar\jclisttab\tx405\tx432\tx720{\*\pn \pnlvlbody\ilvl0\ls9\pnrnot0
+\pndec\pnstart17\pnindent405\pnhang{\pntxta .}}\ls9\outlinelevel0\adjustright \b\f1\fs28\kerning28\cgrid {Appendix{\*\bkmkend _Toc457873947}
+\par }\pard\plain \nowidctlpar\widctlpar\adjustright \fs20\cgrid {
+\par }\pard \sb120\nowidctlpar\widctlpar\adjustright {\f1\fs16 This document resides online in Clear Case at:  \\\\documents\\sbt\\Config_Guides\\BrokerServiceConfigGuide
+\par }\pard \nowidctlpar\widctlpar\adjustright {\f1 
+\par }}

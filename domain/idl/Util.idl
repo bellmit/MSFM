@@ -1,0 +1,161 @@
+#ifndef SRV_UTIL_IDL
+#define SRV_UTIL_IDL
+
+#include "product.idl"
+#include "cmiProduct.idl"
+#include "cmiSession.idl"
+#include "exceptions.idl"
+#include "cmiUtil.idl"
+#include "cmiUser.idl"
+#include "cmiOrder.idl"
+#include "session.idl"
+#pragma javaPackage "com.cboe.idl"
+
+module util
+{
+    typedef short SystemInterface;
+    typedef short ServerType;
+    typedef sequence<cmiUtil::CboeIdStruct> CboeIdStructSequence;
+    typedef short OrderLocationType;
+    typedef sequence<OrderLocationType> OrderLocationTypeSequence;
+    typedef sequence<octet> OctetSequence;
+    typedef sequence<boolean> BooleanSequence;
+    
+
+    typedef sequence<octet> InOctetSequence;
+
+    typedef sequence<octet> OutOctetSequence;
+
+
+
+
+#pragma use_lookup_for_string ON
+    typedef string Value;
+    typedef string KeyName;
+#pragma use_lookup_for_string OFF
+ 
+#pragma use_factory_for_struct ON
+    struct NameValueStruct
+    {
+    	util::KeyName keyName;
+    	util::Value value;
+    };
+#pragma use_factory_for_struct OFF
+    
+#pragma use_array_factory_for_1_dimension ON
+typedef sequence< NameValueStruct > NameValueStructSequence;
+#pragma use_array_factory_for_1_dimension OFF
+    
+    struct RoutingParameterStruct
+    {
+        product::GroupKeySequence    groups;
+        session::TradingSessionName  sessionName;
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductType productType;
+    };
+
+    typedef  short TransactionClockPoint;
+
+    struct TransactionClockPointStruct
+   	{
+		TransactionClockPoint clockPoint;
+		cmiUtil::DateTimeStruct timestamp;
+    };
+
+	typedef sequence<TransactionClockPointStruct> TransactionClockPointStructSequence;
+
+    struct ErrorStruct
+    {
+        long key;
+        exceptions::ErrorCode errorCode;
+        string errorMessage;
+    };
+
+    typedef sequence <ErrorStruct> ErrorStructSequence;
+
+    
+    typedef short ServerResponseCode;
+    
+    struct ServerResponseStruct
+    {
+        string serverId;
+        ServerResponseCode errorCode;
+        string description;
+    };
+
+    typedef sequence<ServerResponseStruct> ServerResponseStructSequence; 
+
+    struct ServerResponseStructV2
+    {
+        string serverId;
+        ServerResponseCode errorCode;
+        exceptions::ExceptionDetails exceptionDetails;
+    };
+
+    typedef sequence<ServerResponseStructV2> ServerResponseStructV2Sequence;
+
+    struct ServerTransactionIdStruct
+    {
+        string serverId;
+        string transactionId;
+        string userId;
+    };
+
+    typedef short SummaryStructOperationTypeField;
+
+    struct SummaryStruct
+    {
+        string transactionId;
+        string serverId;
+        SummaryStructOperationTypeField operationType;
+        long long groupKey;
+        long successfull;
+        long activeQuantity; 	
+        long failed;
+    };
+
+
+	// interface defines all the order status message types that can be present in a block
+
+	typedef short OrderStatusType;
+
+	typedef sequence <short> ShortSequence;
+
+        typedef short QuoteStatusType;
+	
+    struct LocationStruct
+    {
+        short locationType;
+        string location;
+    };
+    typedef sequence <LocationStruct> LocationStructSequence;
+    
+    struct RoutingParameterV2Struct
+    {
+        short sourceType;
+        string source;
+        sequence<string> destinations;
+    };
+    typedef sequence <RoutingParameterV2Struct> RoutingParameterV2StructSequence;
+
+    struct RouteReasonStruct
+    {
+        short routeReason;
+        string routeDescription;
+	cmiUtil::Identifier messageId;
+        cmiUtil::DateTimeStruct routeTime;
+    };
+
+    typedef short FilterType;
+
+    interface FilterTypes {
+        const FilterType HISTORY = 1;
+        const FilterType CURRENT = 2;
+    };
+
+    typedef sequence<FilterType> FilterTypeSequence;
+};
+
+#endif
+
+

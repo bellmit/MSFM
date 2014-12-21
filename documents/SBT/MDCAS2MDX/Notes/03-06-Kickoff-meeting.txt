@@ -1,0 +1,27 @@
+
+-----------------------------------------------------------------------------
+Meeting: Initial Kickoff
+Attendees: Tom, Emily, Arun and Wayne
+Issues and concerns:
+1. Should we combine the functionality into the existing MDX process or have two separate processes? 
+We will have only one process to reduce INFRA work load in configurations.
+
+2. During rollout, how could we handle double publishing from MDCAS and MDX?
+The concern is based on the assumption that MDCAS and MDX could have many-to-many relationship in configuration. Tom pointed out that in production MDCAS has one-to-many mapping with MDX, so we could turn one MDCAS OFF and many MDX boxes ON at once during the rollout.
+
+3. Could the firms subscribing EOP/EOS from MDCAS have issues to access MDX through firewalls?
+We need to inform these firms if they have not subscribed data from MDX.
+
+4. Code changes:
+MDCAS subscribes market data based on class keys. MDX subscribes with its group 
+keys. We need to have code modification on MDX to subscribe eop/eos/ltls on its group keys.
+
+Action items:
+1. We need to verify the production configuration between MDCAS and MDX to see if there is any overwrites - Wayne.
+
+2. We need to find the firms subscribing eop/eos data from MDCAS but no subscribing to MDX - Wayne.
+
+3. Test 7 will be the development environment. We need to install CAS with v6.8 and MDX with latest par2mdx label - Arun.
+
+4. We will have design/code review on par2mdx code - Arun and Wayne.
+ 

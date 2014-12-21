@@ -1,0 +1,6 @@
+<!-- Define the reusable entities. Theses may be included in imported DTDs.  -->
+<!ENTITY % typeConstraints "( ManagedResource | ManagedProperties | ManagedProperty | ManagedCommands | ManagedCommand | ManagedEvents | ManagedEvent | ManagedParameter) ">
+<!ENTITY % modeConstraints "( readOnly | readWrite | writeOnly )">
+<!ENTITY % propertyTypes "(string | integer | float | enum ) " >
+
+

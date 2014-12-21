@@ -1,0 +1,196 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_QUOTE_IDL
+#define CMI_QUOTE_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiOrder.idl"
+#include "exceptions.idl"
+#include "cmiMarketData.idl"
+#include "cmiSession.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiQuote
+{
+    typedef short RFQType;
+    typedef long QuoteKey;
+    typedef sequence <QuoteKey> QuoteKeySequence;
+    typedef short QuoteUpdateControl;
+
+
+    struct QuoteEntryStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName sessionName;
+        cmiUtil::PriceStruct bidPrice;
+        long bidQuantity;
+        cmiUtil::PriceStruct askPrice;
+        long askQuantity;
+        string userAssignedId;
+    };
+    typedef sequence <QuoteEntryStruct> QuoteEntryStructSequence;
+
+    struct QuoteEntryStructV3
+    {
+        cmiQuote::QuoteEntryStruct quoteEntry;
+        cmiQuote::QuoteUpdateControl quoteUpdateControlId;
+    };
+
+    typedef sequence <QuoteEntryStructV3> QuoteEntryStructV3Sequence;
+
+    struct QuoteStruct
+    {
+        cmiQuote::QuoteKey quoteKey;
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName sessionName;
+        string userId;
+        cmiUtil::PriceStruct bidPrice;
+        long bidQuantity;
+        cmiUtil::PriceStruct askPrice;
+        long askQuantity;
+        long transactionSequenceNumber;
+        string userAssignedId;
+    };
+
+    typedef sequence <QuoteStruct> QuoteStructSequence;
+
+    struct QuoteStructV3
+    {
+        cmiQuote::QuoteStruct quote;
+        cmiQuote::QuoteUpdateControl quoteUpdateControlId;
+    };
+
+    typedef sequence <QuoteStructV3> QuoteStructV3Sequence;
+
+    struct QuoteDetailStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiProduct::ProductNameStruct productName;
+        cmiUtil::UpdateStatusReason statusChange;
+        cmiQuote::QuoteStruct quote;
+    };
+    typedef sequence <QuoteDetailStruct> QuoteDetailStructSequence;
+
+    struct RFQEntryStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiSession::TradingSessionName sessionName;
+        long quantity;
+    };
+
+    struct RFQStruct
+    {
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiSession::TradingSessionName sessionName;
+        long quantity;
+        long timeToLive;
+        cmiQuote::RFQType rfqType;
+        cmiUtil::TimeStruct entryTime;
+    };
+    typedef sequence <RFQStruct> RFQStructSequence;
+
+    struct QuoteFilledReportStruct
+    {
+        cmiQuote::QuoteKey quoteKey;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiProduct::ProductNameStruct productName;
+        cmiOrder::FilledReportStructSequence filledReport;
+        cmiUtil::UpdateStatusReason statusChange;
+    };
+    typedef sequence <QuoteFilledReportStruct> QuoteFilledReportStructSequence;
+
+    struct ClassQuoteResultStruct
+    {
+        cmiProduct::ProductKey productKey;
+        exceptions::ErrorCode errorCode;
+    };
+    typedef sequence <ClassQuoteResultStruct> ClassQuoteResultStructSequence;
+
+    struct ClassQuoteResultStructV2
+    {
+        cmiQuote::QuoteKey quoteKey;
+        cmiProduct::ProductKey productKey;
+        exceptions::ErrorCode errorCode;
+    };
+    typedef sequence <ClassQuoteResultStructV2> ClassQuoteResultStructV2Sequence;
+
+    struct ClassQuoteResultStructV3
+    {
+        cmiQuote::ClassQuoteResultStructV2 quoteResult;
+        cmiQuote::QuoteUpdateControl quoteUpdateControlId;
+    };
+    typedef sequence <ClassQuoteResultStructV3> ClassQuoteResultStructV3Sequence;
+
+
+    struct QuoteRiskManagementProfileStruct
+    {
+        cmiProduct::ClassKey classKey;
+        long volumeThreshold;
+        long timeWindow;
+        boolean quoteRiskManagementEnabled;
+    };
+    typedef sequence <QuoteRiskManagementProfileStruct> QuoteRiskManagementProfileStructSequence;
+
+    struct UserQuoteRiskManagementProfileStruct
+    {
+        boolean globalQuoteRiskManagementEnabled;
+        cmiQuote::QuoteRiskManagementProfileStruct defaultQuoteRiskProfile;
+        cmiQuote::QuoteRiskManagementProfileStructSequence quoteRiskProfiles;
+    };
+    struct QuoteBustReportStruct
+    {
+        cmiQuote::QuoteKey quoteKey;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiProduct::ProductNameStruct productName;
+        cmiOrder::BustReportStructSequence bustedReport;
+        cmiUtil::UpdateStatusReason statusChange;
+    };
+    typedef sequence <QuoteBustReportStruct> QuoteBustReportStructSequence;
+
+    struct QuoteCancelReportStruct
+    {
+        cmiQuote::QuoteKey quoteKey;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiProduct::ProductNameStruct productName;
+        cmiUtil::ActivityReason cancelReason;
+        cmiUtil::UpdateStatusReason statusChange;
+    };
+    typedef sequence <QuoteCancelReportStruct> QuoteCancelReportStructSequence;
+
+
+    struct QuoteDeleteReportStruct {
+        cmiQuote::QuoteDetailStruct quote;
+        cmiUtil::ActivityReason deleteReason;
+    };
+    typedef sequence <QuoteDeleteReportStruct> QuoteDeleteReportStructSequence;
+
+    struct LockNotificationStruct {
+        cmiSession::TradingSessionName sessionName;
+        cmiProduct::ProductType productType;
+        cmiProduct::ClassKey classKey;
+        cmiProduct::ProductKey productKey;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        long quantity;
+        string extensions;
+        cmiUser::ExchangeAcronymStructSequence buySideUserAcronyms;
+        cmiUser::ExchangeAcronymStructSequence sellSideUserAcronyms;
+    };
+    typedef sequence <LockNotificationStruct> LockNotificationStructSequence;
+
+
+};
+#endif
+</pre>

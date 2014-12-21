@@ -1,0 +1,228 @@
+Subscription Processing
+-----------------------------------------------------------------------------------
+Event-Channel-Name	RemoteCASExpectedOpeningPrice
+--------------------------------------------------
+IEC			EventChannelAdapterFactory
+Channel-Key		ChannelKey.SUBSCRIBE_EXPECTED_OPENING_PRICE_BY_CLASS_V2
+    			ChannelKey.SUBSCRIBE_EXPECTED_OPENING_PRICE_BY_PRODUCT_V2
+   			ChannelKey.UNSUBSCRIBE_EXPECTED_OPENING_PRICE_BY_CLASS_V2
+    			ChannelKey.UNSUBSCRIBE_EXPECTED_OPENING_PRICE_BY_PRODUCT_V2
+    			ChannelKey.SUBSCRIBE_EXPECTED_OPENING_PRICE_BY_CLASS
+    			ChannelKey.UNSUBSCRIBE_EXPECTED_OPENING_PRICE_BY_CLASS	
+Publisher/MDCAS		RemoteCASExpectedOpeningPriceConsumerIECImpl
+Subscriber/MDCAS	ExpectedOpeningPriceRequestManager
+--------------------------------------------------
+IEC			EventChannelAdapterFactory
+Channel-Key		ChannelType.CB_EXPECTED_OPENING_PRICE
+			ChannelType.CB_OPENING_PRICE_BY_PRODUCT_V2
+    			ChannelType.CB_OPENING_PRICE_BY_CLASS_V2
+Publisher/MDCAS		ExpectedOpeningPriceRequestManager
+Subscriber/MDCAS	RemoteCASMarketDataServiceImpl
+
+
+Event-Channel-Name	RemoteCASTicker	
+--------------------------------------------------
+IEC			EventChannelAdapterFactory
+Channel-Key		ChannelKey.SUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS
+			ChannelKey.UNSUBSCRIBE_LARGE_TRADE_LAST_SALE_BY_CLASS	
+Publisher/MDCAS		RemoteCASTickerConsumerIECImpl 
+Subscriber/MDCAS	TickerRequestManager	
+--------------------------------------------------
+IEC			EventChannelAdapterFactory
+Channel-Key		ChannelType.CB_LARGE_TRADE_LAST_SALE_BY_CLASS
+Publisher/MDCAS		TickerRequestManager
+Subscriber/MDCAS	RemoteCASMarketDataServiceImpl
+
+Current MDX subscription processing:
+Event-Channel-Name	MarketDataCallback	
+--------------------------------------------------
+IEC			InstrumentedEventChannelAdapterFactory
+Publisher/MDX		MarketDataCallbackConsumerIECImpl 
+Subscriber/MDX		MarketDataRequestManager/UserSubscriptionProcessor
+--------------------------------------------------
+IEC			EventChannelAdapterFactory
+Publisher/MDCAS		MarketDataRequestManager/UserSubscriptionProcessor
+Subscriber/MDCAS	MarketDataSubscriptionServiceImpl
+
+Market Data Processing
+-----------------------------------------------------------------------------------
+Event-Channel-Name	CurrentMarket
+IEC			InstrumentedEventChannelAdapterFactory
+Channel-Key		ChannelKey.OPENING_PRICE_BY_CLASS
+Publisher/MDCAS		CurrentMarketConsumerIECImpl
+Subscriber/MDCAS	RemoteCASMarketDataServiceImpl (Parent)
+			ExpectedOpeningPriceProcessor  (Child)
+
+Event-Channel-Name	Ticker	
+IEC			InstrumentedEventChannelAdapterFactory
+Channel-Key		ChannelKey.LARGE_TRADE_LAST_SALE_BY_CLASS
+Publisher/MDCAS		TickerConsumerIECImpl 
+Subscriber/MDCAS	RemoteCASMarketDataServiceImpl  (Parent)
+			TickerProcessor			(Child)
+			
+Design and Implementation
+-----------------------------------------------------------------------------------
+1. Subscription and market data configuration 
+MDCAS adds filters for subscriptions and market data on group keys in group 
+configuration specified in /sbt/test/infra/config/bin/setContext.v2mdcas01:
+MDCAS_GROUP=MDCASSET01
+See the details at RemoteCASConfigurationServiceImpl and 
+	ExpectedOpeningPriceRequestManager and
+	TickerRequestManager.
+
+MDX adds filters for subscriptions on sub-group keys in group configuration specified 
+in /sbt/test/infra/config/bin/setContext, using group keys for market data:
+export MDX_GROUP=MDXSET01
+export MDX_SUBGROUP=MDXSET01
+See the details at MDXConfigurationHomeImpl.
+
+MDX will add filters for subscriptions on sub-group keys and market data on group keys 
+for eop/eos and ltls.
+
+Class:	MDXConfigurationHomeImpl
+Add eop/eos and ltls subscription handling in method configureMDX().
+Add two -D parameters to enable eop/eos and ltls processing.
+
+
+
+
+
+
+MDX XML configuration also needs to add configuration for the following:
+BOHome:		CurrentMarketConsumerHome
+homeImpl:	com.cboe.consumers.eventChannel.CurrentMarketConsumerHomeEventImpl
+BOHome:		TickerConsumerHome
+homeImpl:	com.cboe.consumers.eventChannel.TickerConsumerHomeEventImpl
+BOHome:		RemoteCASCurrentMarketConsumerHome
+homeImpl:	com.cboe.consumers.eventChannel.RemoteCASCurrentMarketConsumerHomeEventImpl
+BOHome:		RemoteCASTickerConsumerHome
+homeImpl:	com.cboe.consumers.eventChannel.RemoteCASTickerConsumerHomeEventImpl
+
+2. Subscription processing 
+In MDX, MarketDataRequestManager/UserSubscriptionProcessor processes all subscription types
+for cmiV4. For eopp/eos and ltls, instead of integrating with the existing MarketDataRequestManager, 
+we will reuse ExpectedOpeningPriceRequestManager and TickerRequestManager. New class 
+LargeTradeLastSaleRequesManager will extend TickerRequestManager to disable non-ltls filtering.
+ 
+Class:		LargeTradeLastSaleRequesManager 
+Package: 	com.cboe.mdx.remoteApplication.marketData
+Extend:		TickerRequesManager
+Overwrites method subscribeForEvents() to subscribe to ltls event only.
+Overwrites method   subscribeLargeTradeLastSaleByClass and 
+		  unsubscribeLargeTradeLastSaleByClass to get MDXSessionManagerHome
+intead of RemoteSessionManagerHome.
+
+Class:	LargeTradeLastSaleManagerFactory
+Extend:	TickerRequestManagerFactory
+Overwrites methods create() and remove().
+
+Class:	TickerRequestManager
+Change methiod/variable visibility.
+
+Class:	TickerRequestManagerFactory
+Change variable visibility.
+
+
+
+
+
+
+
+
+
+
+3. MDX Session Management Change 
+Interface:	MDXSessionManager
+Package:	com.cboe.interfaces.mdx.application
+Extends:	RemoteCASSessionManager
+
+Class:		MDXSessionManagerImpl
+Package:	com.cboe.mdx.application.session
+Implement:	MDXSessionManager		
+Add implementation for RemoteCASSessionManager.
+
+Class:		RemoteCASMarketDataServiceHomeImpl
+Package:	com.cboe.remoteApplication.marketData
+Change variable visibility.
+
+Class:		RemoteCASMarketDataServiceForMDXHomeImpl
+Package:	com.cboe.mdx.remoteApplication.marketData
+Extends:	RemoteCASMarketDataServiceHomeImpl
+Overwrite method create() to return an instance of RemoteCASMarketDataServiceForMDXImpl.
+Add RemoteCASMarketDataServiceHome to LocalContainer in MDX.xml.
+Add RemoteCASMarketDataServiceHome.xml as a new file and add an entry on mdx.SBTCatalog.xml.
+	
+Class:		RemoteCASMarketDataServiceImpl
+Package:	com.cboe.mdx.remoteApplication.marketData
+Extends:	RemoteCASMarketDataServiceImpl
+Overwrite method initialize() and acceptUserSessionLogout().
+
+4.
+
+Class:		ChannelType
+Package:	com.cboe.util
+Add two new channel keys:
+    		int OPENING_PRICE_BY_CLASS_FOR_MDX = 2008;
+    		int OPENING_PRICE_BY_CLASS_SEQ_FOR_MDX = 2009;
+
+Class:		EventChannelFilterHelper
+Package:	com.cboe.consumers.eventChannel
+Add mapping in method getInterfaceRepIdForFilter() and getMethodName related to 
+two new keys OPENING_PRICE_BY_CLASS_FOR_MDX and OPENING_PRICE_BY_CLASS_SEQ_FOR_MDX.
+
+
+
+Add the following Proxy Homes to MDX.xml and check the settings in BaseConsumerProxy.xml:
+LargeTradeLastSaleConsumerProxyHome
+ExpectedOpeningPriceConsumerProxyHome
+ExpectedOpeningPriceV2ConsumerProxyHome
+
+Interface:	ExpectedOpeningPriceConsumer
+Package:	com.cboe.interfaces.events
+Extends:	com.cboe.idl.consumers.ExpectedOpeningPriceConsumerOperations 
+
+Interface:	ExpectedOpeningPriceConsumerHome
+Package:	com.cboe.interfaces.events
+Similar to CurrentMarketConsumerHome.
+
+Interface:	IECExpectedOpeningPriceConsumerHome
+Package:	com.cboe.interfaces.events
+Extends:	ExpectedOpeningPriceConsumerHome, EventChannelConsumerManager 
+
+
+XML and Script changes:
+1. Update two files in /infra/config/.
+   add a line to bin/setContext
+   configureMDX.ksh 
+   
+2. Update in /v2run_dir/bin/.
+startmdxprocess
+
+3. Update 
+MDX.xml:
+	SubscriptionServiceHome
+	SubscriptionCollectionServiceHome
+	LargeTradeLastSaleConsumerProxyHome
+	
+EventChannelHome.xml
+mdx.SBTCatalog.xml
+
+4. Create soft link for the following:
+RemoteCASMarketDataServiceHome.xml
+RemoteCASMarketDataServiceHome.xml
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+

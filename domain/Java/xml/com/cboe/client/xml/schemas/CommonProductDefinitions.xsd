@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+jxb:version="1.0"
+elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CommonTimeDefinitions.xsd"/>
+	<xs:complexType name="GISessionClassStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionClassStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ESS" type="GIEligibleSessionsType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="eligibleSessionSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CS" type="GIClassStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="classStruct"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="usn" use="required"/>
+		<xs:attribute ref="cst" use="required"/>
+		<xs:attribute ref="tsn" use="required">
+			<xs:annotation>
+				<xs:documentation>Class State Transaction Sequence Number</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="classStateTransactionSequenceNumber"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GIClassStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ClassStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UP" type="GIProductStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="underlyingProduct"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ACT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="activationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NCT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="inactivationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CRTM"/>
+			<xs:element ref="LMTM"/>
+			<xs:element name="EPWS" type="GIEpwValuesType">
+				<xs:annotation>
+					<xs:documentation>EPW Structs</xs:documentation>
+					<xs:appinfo>
+						<jxb:property name="epwValueSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PRD" type="GIProductDescriptionStructType">
+				<xs:annotation>
+					<xs:documentation>Product Description</xs:documentation>
+					<xs:appinfo>
+						<jxb:property name="productDescription"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RPCS" type="GIReportingClassesType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="reportingClassesSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="ck" use="required"/>
+		<xs:attribute ref="pt" use="required"/>
+		<xs:attribute ref="lst" use="required"/>
+		<xs:attribute ref="csym" use="required"/>
+		<xs:attribute ref="pex" use="required"/>
+		<xs:attribute ref="efm" use="required"/>
+		<xs:attribute ref="tc" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIReportingClassesType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ReportingClassStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIReportingClassSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RPC" type="GIReportingClassStructType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="reportingClasses"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIReportingClassStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ReportingClassStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ACT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="activationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NCT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="inactivationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CRTM"/>
+			<xs:element ref="LMTM"/>
+		</xs:sequence>
+		<xs:attribute ref="ck" use="required"/>
+		<xs:attribute ref="pt" use="required"/>
+		<xs:attribute ref="rcs" use="required"/>
+		<xs:attribute ref="pcs" use="required"/>
+		<xs:attribute ref="pck" use="required"/>
+		<xs:attribute ref="lst" use="required"/>
+		<xs:attribute ref="csz" use="required"/>
+		<xs:attribute ref="tfc" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GISessionProductStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiSession.SessionProductStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PS" type="GIProductStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productStruct"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="pst" use="required"/>
+		<xs:attribute ref="tsn" use="required">
+			<xs:annotation>
+				<xs:documentation>Product State Transaction Sequence Number</xs:documentation>
+				<xs:appinfo>
+					<jxb:property name="productStateTransactionSequenceNumber"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GIProductStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ProductStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PKS" type="GIProductKeysStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productKeys"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PN" type="GIProductNameStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="productName"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MAT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="maturityDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ACT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="activationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NCT" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="inactivationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CRTM"/>
+			<xs:element ref="LMTM"/>
+		</xs:sequence>
+		<xs:attribute ref="lst" use="required"/>
+		<xs:attribute ref="dsc" use="required"/>
+		<xs:attribute ref="cnm" use="required"/>
+		<xs:attribute ref="um" use="required"/>
+		<xs:attribute ref="sq" use="required"/>
+		<xs:attribute ref="omc" use="required"/>
+		<xs:attribute ref="opc" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIProductDescriptionStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ProductDescriptionStruct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NSP" type="GIPriceStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="minimumStrikePriceFraction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="XSP" type="GIPriceStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="maxStrikePrice"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PBB" type="GIPriceStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="premiumBreakPoint"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NAP" type="GIPriceStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="minimumAbovePremiumFraction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NBP" type="GIPriceStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="minimumBelowPremiumFraction"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="nm" use="required"/>
+		<xs:attribute ref="bdn" use="required"/>
+		<xs:attribute ref="pdt" use="required"/>
+		<xs:attribute ref="pf" use="required"/>
+		<xs:attribute ref="sf" use="required"/>
+		<xs:attribute ref="uf" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIProductKeysStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.ProductKeysStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="pk" use="required"/>
+		<xs:attribute ref="ck" use="required"/>
+		<xs:attribute ref="pt" use="required"/>
+		<xs:attribute ref="rck" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIProductNameStructType">
+		<xs:sequence>
+			<xs:element name="EXRP" type="GIPriceStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="exercisePrice"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EXPD" type="GIDateStructType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="expirationDate"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="rcs" use="required"/>
+		<xs:attribute ref="ot" use="required"/>
+		<xs:attribute ref="psym" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIPriceStructType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiUtil.PriceStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="ty" use="required"/>
+		<xs:attribute ref="wh" use="required"/>
+		<xs:attribute ref="frc" use="required"/>
+	</xs:complexType>
+	<!-- global element definitions -->
+	<xs:element name="ES" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>java.lang.String</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIEligibleSession"/>
+				<jxb:property name="eligibleSession"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GIEpwValuesType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.EPWStruct[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIEpwValuesSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EPW" type="GIEpwValueType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="epwValues"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIEligibleSessionsType">
+		<xs:annotation>
+			<xs:documentation>java.lang.String[]</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIEligibleSessionsSequence"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ES" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="eligibleSessions"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIEpwValueType">
+		<xs:annotation>
+			<xs:documentation>com.cboe.idl.cmiProduct.EPWStruct</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="nbr" use="required"/>
+		<xs:attribute ref="xbr" use="required"/>
+		<xs:attribute ref="mas" use="required"/>
+	</xs:complexType>
+	<!-- global attribute definitions -->
+	<xs:attribute name="pt" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Product Type</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="productType"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ck" default="0">
+		<xs:annotation>
+			<xs:documentation>Class Key</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="classKey"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="pck" default="0">
+		<xs:annotation>
+			<xs:documentation>Product Class Key</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="productClassKey"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="csym" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Class Symbol</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="classSymbol"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pcs" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Product Class Symbol</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="productClassSymbol"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="rck" default="0">
+		<xs:annotation>
+			<xs:documentation>Reporting Class Key</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="reportingClass"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="rcs" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Reporting Class Symbol</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="reportingClassSymbol"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pk" default="0">
+		<xs:annotation>
+			<xs:documentation>Product Key</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="productKey"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="psym" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Product Symbol</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="productSymbol"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="lst" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Listing State</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="listingState"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pex" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Primary Exchange</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="primaryExchange"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="efm" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>EPW Fast Market Multiplier</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="epwFastMarketMultiplier"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="tc" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Test Class</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="testClass"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="dsc" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Description</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="description"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="cnm" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Company Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="companyName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="um" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Unit Measure</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="unitMeasure"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sq" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Standard Quantity</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="standardQuantity"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="omc" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>OPRA Month Code</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="opraMonthCode">
+					<jxb:baseType>
+						<jxb:javaType name="char" hasNsContext="false" parseMethod="com.cboe.xmlParser.XmlBindingDataConversionUtility.getFirstChar" printMethod="java.lang.Character.toString"/>
+					</jxb:baseType>
+				</jxb:property>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="opc" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>OPRA PriceCode Code</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="opraPriceCode">
+					<jxb:baseType>
+						<jxb:javaType name="char" hasNsContext="false" parseMethod="com.cboe.xmlParser.XmlBindingDataConversionUtility.getFirstChar" printMethod="java.lang.Character.toString"/>
+					</jxb:baseType>
+				</jxb:property>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sn" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Session Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="sessionName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="usn" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Underlying Session Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="underlyingSessionName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="cst">
+		<xs:annotation>
+			<xs:documentation>Class State</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="classState"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:short">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="tsn" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Sequence Number</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="sequenceNumber"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pst" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Product State</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="productState"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="nm" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="name"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="bdn" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Base Description Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="baseDescriptionName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pdt" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Price Display Type</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="priceDisplayType"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pf" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Premium Price Format</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="premiumPriceFormat"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sf" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Strike Price Format</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="strikePriceFormat"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="uf" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Underlying Price Format</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="underlyingPriceFormat"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="csz" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Contract Size</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="contractSize"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="tfc" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Transaction Fee Code</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="transactionFeeCode"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ty" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Price Type</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="type"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="wh" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Whole</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="whole"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="frc" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Fraction</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="fraction"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ot" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Option Type</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="optionType">
+					<jxb:baseType>
+						<jxb:javaType name="char" hasNsContext="false" parseMethod="com.cboe.xmlParser.XmlBindingDataConversionUtility.getFirstChar" printMethod="java.lang.Character.toString"/>
+					</jxb:baseType>
+				</jxb:property>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="mas" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Maximum Allowable Spread</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="maximumAllowableSpread"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="xbr" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Maximum Bid Range</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="maximumBidRange"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="nbr" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Minimum Bid Range</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="minimumBidRange"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+</xs:schema>

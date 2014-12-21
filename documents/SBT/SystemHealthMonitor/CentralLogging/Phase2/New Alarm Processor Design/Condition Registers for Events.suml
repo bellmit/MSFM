@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sequencediagram>
+  <Definition>[ICSAlarmProcessingImpl acceptNewActivation
+[ICSAlarmProcessingImpl buildFullContainer
+[ICSAlarmProcessingImpl buildFullContainer
+[ICSAlarmProcessingImpl buildFullContainer
+[LogEvaluator LogEvaluator]
+[EventCenter getLogEventHandler
+[LogEventQueueImpl getEventHandler
+[EventHandlerBaseImpl EventHandlerBaseImpl]]]]
+[ConditionContainerFactory registerWithEventHandler
+[ConditionContainerBaseImpl registerWithEventHandler
+[ConditionContainerBaseImpl getAlarmProcessingKey
+[AlarmProcessingImpl register
+[Hashtable put]]]]]]]]</Definition>
+  <Links>
+    <Link Id="0" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="acceptNewActivation" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="requestId" Type="long" Description="" />
+        <Param Sequence="1" Name="activation" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="1" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="buildFullContainer" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ActivationContainer</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activation" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="2" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="buildFullContainer" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ActivationContainer</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activation" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="3" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="buildFullContainer" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ActivationContainer</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activation" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="4" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEvaluator" Method="LogEvaluator" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments>
+        <Param Sequence="0" Name="alarmCondition" Type="com.cboe.idl.alarm.AlarmConditionStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="6" Class="com.cboe.interfaces.instrumentationCollector.EventCenter" Method="getLogEventHandler" Return="false">
+      <Comment>getLogEventHandler   </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventHandler</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="7" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueImpl" Method="getEventHandler" Return="false">
+      <Comment>getEventHandler   </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventHandler</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="8" Class="com.cboe.instrumentationCollector.alarmProcessor.EventHandlerBaseImpl" Method="EventHandlerBaseImpl" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="9" Class="com.cboe.instrumentationCollector.alarmProcessor.EventCenterImpl" Method="getLogEventHandler" Return="true">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventHandler</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="10" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="buildFullContainer" Return="true">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ConditionContainer</Return>
+      <Arguments>
+        <Param Sequence="0" Name="condition" Type="com.cboe.idl.alarm.AlarmConditionStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="13" Class="com.cboe.instrumentationCollector.alarmProcessor.ConditionContainerFactory" Method="registerWithEventHandler" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="condition" Type="com.cboe.interfaces.instrumentationCollector.ConditionContainer" Description="" />
+        <Param Sequence="1" Name="handler" Type="com.cboe.interfaces.instrumentationCollector.EventHandler" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="14" Class="com.cboe.instrumentationCollector.alarmProcessor.ConditionContainerBaseImpl" Method="registerWithEventHandler" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="handler" Type="com.cboe.interfaces.instrumentationCollector.EventHandler" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="15" Class="com.cboe.instrumentationCollector.alarmProcessor.ConditionContainerBaseImpl" Method="getAlarmProcessingKey" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmProcessingKey</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="16" Class="com.cboe.instrumentationCollector.alarmProcessor.AlarmProcessingImpl" Method="register" Return="false">
+      <Comment>register  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="client" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessing" Description="  " />
+        <Param Sequence="1" Name="key" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessingKey" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="true">In this sequence, this class type is extended by EventHandlerBaseImpl.</CallComment>
+    </Link>
+    <Link Id="17" Class="java.util.Hashtable" Method="put" Return="false">
+      <Comment></Comment>
+      <Return Description="">V</Return>
+      <Arguments>
+        <Param Sequence="0" Name="key" Type="K" Description="" />
+        <Param Sequence="1" Name="value" Type="V" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+  </Links>
+</Sequencediagram>
+

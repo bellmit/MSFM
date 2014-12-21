@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sequencediagram>
+  <Definition>[ICAlarmProcessorImpl channelUpdate
+[ICAlarmProcessorImpl processActivationUpdate
+[AlarmProcessorCache updateActivation
+[AlarmProcessorCache getAlarmProcessor
+[AlarmProcessorCache checkAndCleanDuplicateConditions
+[AlarmProcessorCache checkAndCleanDuplicateConditions
+[AlarmProcessorCache addActivation
+[AlarmProcessorFactory createAlarmProcessor
+[AlarmProcessorImpl AlarmProcessorImpl]]]
+[AlarmProcessorCache addProcessorToMaps
+[Map put]
+[AlarmProcessorCache addAlarmConditionProcessor]]]]]]]]</Definition>
+  <Links>
+    <Link Id="0" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="channelUpdate" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="1" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="2" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="updateActivation" Return="false">
+      <Comment>updateActivation  Update an Activation in the Cache.  First check for the activation.  If one does not exist, just update.  If one does exist, figure the  differences and update.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="struct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="3" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="getAlarmProcessor" Return="false">
+      <Comment>getAlarmProcessor  Get an AlarmProcessor based on the alarmActivationID.  There should only be one AlarmProcessor  per AlarmActivationID  </Comment>
+      <Return Description="the AlarmProcessor or null if one does not exist ">com.cboe.interfaces.instrumentationCollector.AlarmProcessor</Return>
+      <Arguments>
+        <Param Sequence="0" Name="alarmActivationID" Type="java.lang.Integer" Description="  " />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="4" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="checkAndCleanDuplicateConditions" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.idl.alarm.AlarmActivationStruct</Return>
+      <Arguments>
+        <Param Sequence="0" Name="actiStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="5" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="checkAndCleanDuplicateConditions" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.idl.alarm.AlarmActivationStruct</Return>
+      <Arguments>
+        <Param Sequence="0" Name="actiStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="6" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="addActivation" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="struct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="7" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorFactory" Method="createAlarmProcessor" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.AlarmProcessor</Return>
+      <Arguments>
+        <Param Sequence="0" Name="struct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="8" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorImpl" Method="AlarmProcessorImpl" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="9" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="10" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="11" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="12" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="addProcessorToMaps" Return="false">
+      <Comment>addProcessorToMaps  Add an alarm processor to the appropriate maps. </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="alarmProcessor" Type="com.cboe.interfaces.instrumentationCollector.AlarmProcessor" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="13" Class="java.util.Map" Method="put" Return="false">
+      <Comment></Comment>
+      <Return Description="">V</Return>
+      <Arguments>
+        <Param Sequence="0" Name="key" Type="K" Description="" />
+        <Param Sequence="1" Name="value" Type="V" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="14" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="15" Class="com.cboe.instrumentationCollector.alarms.processor.AlarmProcessorCache" Method="addAlarmConditionProcessor" Return="false">
+      <Comment>addAlarmConditionProcessor  Add a new Alarm Condition Processor  </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="condition" Type="com.cboe.interfaces.instrumentationCollector.AlarmConditionProcessor" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="16" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="17" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="18" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="19" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="20" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="processActivationUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="activationStruct" Type="com.cboe.idl.alarm.AlarmActivationStruct" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="21" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="22" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="23" Class="com.cboe.instrumentationCollector.alarms.processor.ICAlarmProcessorImpl" Method="channelUpdate" Return="true">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="event" Type="com.cboe.util.channel.ChannelEvent" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+  </Links>
+</Sequencediagram>
+

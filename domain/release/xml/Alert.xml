@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalAlert SYSTEM "../dtd/Alert.dtd">
+
+
+<GlobalAlert>
+    <AlertHomeImpl name="AlertHomeImpl">
+        <AlertHomeImplProperties>
+            <maxResultSize>20</maxResultSize>
+        </AlertHomeImplProperties>
+    </AlertHomeImpl>
+</GlobalAlert>

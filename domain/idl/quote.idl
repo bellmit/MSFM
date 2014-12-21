@@ -1,0 +1,191 @@
+#ifndef QUOTE_IDL
+#define QUOTE_IDL
+
+#include "cmiUtil.idl"
+#include "cmiQuote.idl"
+#include "cmiProduct.idl"
+#include "cmiUser.idl"
+#include "cmiMarketData.idl"
+#include "cmiIntermarketMessages.idl"
+#include "session.idl"
+#include "cmiQuote.idl" // QuoteStruct definition
+#include "Util.idl"
+
+//#pragma javaPackage "com.cboe.idl"
+
+module quote
+{
+    typedef string ManualQuoteDetails;
+
+    // ###############################
+    // # ExternalQuoteStruct         #
+    // ###############################
+    struct ExternalQuoteStruct
+    {
+       session::TradingSessionName sessionName;
+       cmiProduct::ProductKey productKey;
+       string bidExchange;
+       cmiUtil::PriceStruct bidPrice;
+       long bidSize;
+       string askExchange;
+       cmiUtil::PriceStruct askPrice;
+       long askSize;
+       cmiUtil::TimeStruct sentTime;
+    };
+    typedef sequence <ExternalQuoteStruct> ExternalQuoteStructSequence;
+
+    struct ExternalQuoteSideStruct
+    {
+        session::TradingSessionName sessionName;
+        cmiProduct::ProductKeysStruct productKeys;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        cmiMarketData::ExchangeVolumeStructSequence exchangeVolume;
+        cmiUtil::TimeStruct sentTime;
+    };
+    typedef sequence <ExternalQuoteSideStruct> ExternalQuoteSideStructSequence;
+
+    struct UserAdminQuoteRiskManagementProfileStruct
+    {
+       string userId;
+       cmiQuote::UserQuoteRiskManagementProfileStruct userQuoteRiskProfile;
+    };
+    typedef sequence <UserAdminQuoteRiskManagementProfileStruct> UserAdminQuoteRiskManagementProfileStructSequence;
+    // #######################
+    // # InternalQuoteStruct #
+    // #######################
+    struct InternalQuoteStruct
+    {
+       cmiUtil::CboeIdStruct      cboeId;
+       cmiQuote::QuoteStruct   quoteStruct;
+    };
+
+    struct QuoteAcknowledgeStruct
+    {
+       string acknowledgingUserId;
+       string submittingUserId;
+       cmiQuote::QuoteKey quoteKey;
+       cmiProduct::ProductKey productKey;
+       cmiProduct::ClassKey classKey;
+       long transactionSequenceNumber;
+    };
+
+    struct QuoteInfoStruct
+    {
+        string userId;
+        cmiUser::ExchangeFirmStruct firm;
+        cmiProduct::ProductKey productKey;
+        cmiQuote::QuoteKey quoteKey;
+        long transactionSequenceNumber;
+    };
+
+    struct QuoteAcknowledgeStructV3
+    {
+        string acknowledgingUserId;
+        string submittingUserId;
+        cmiQuote::QuoteKey quoteKey;
+        cmiProduct::ProductKey productKey;
+        cmiProduct::ClassKey classKey;
+        long transactionSequenceNumber;
+        util::TransactionClockPointStructSequence clockPoints;
+    };
+
+    struct ManualQuoteDetailStruct
+    {
+        string locationId; 
+        string parId;
+        string ipAddress;
+    };
+
+    struct ManualQuoteStruct
+    {
+        session::TradingSessionName sessionName;
+	    cmiProduct::ProductKeysStruct productKeys;
+        cmiUtil::Side side;
+        cmiUtil::PriceStruct price;
+        long size;
+        boolean overrideIndicator;
+        ManualQuoteDetailStruct details;
+        cmiUtil::KeyValueStructSequence extensions;
+    };
+
+	struct GroupQuoteFillReportStruct
+	{
+		cmiUtil::LongSequence groups;
+		quote::QuoteInfoStruct quoteInfo;
+		cmiUtil::UpdateStatusReason statusChange;
+		cmiOrder::FilledReportStructSequence filledQuote;
+		boolean isFirmUser;
+	};
+        typedef sequence <GroupQuoteFillReportStruct> GroupQuoteFillReportStructSequence;
+
+	struct GroupQuoteFillReportV3Struct
+	{
+		util::RoutingParameterStruct routingParameters; 
+		quote::QuoteInfoStruct quoteInfo;
+		cmiUtil::UpdateStatusReason statusChange;
+		cmiOrder::FilledReportStructSequence filledQuote;
+		boolean isFirmUser;
+	};
+        typedef sequence <GroupQuoteFillReportV3Struct> GroupQuoteFillReportV3StructSequence;
+
+	struct GroupQuoteDeleteReportStruct
+	{
+		cmiUtil::LongSequence groups;
+		string userId;
+		cmiUtil::LongSequence quoteKeys;
+		cmiUtil::ActivityReason cancelReason;
+	};
+        typedef sequence <GroupQuoteDeleteReportStruct> GroupQuoteDeleteReportStructSequence;
+
+	struct GroupQuoteDeleteReportV2Struct
+	{
+		cmiUtil::LongSequence groups;
+		string userId;
+		cmiQuote::QuoteStructSequence quotes;
+		cmiUtil::ActivityReason cancelReason;
+	};
+        typedef sequence <GroupQuoteDeleteReportV2Struct> GroupQuoteDeleteReportV2StructSequence;
+
+	struct GroupQuoteDeleteReportV3Struct
+	{
+		util::RoutingParameterStruct routingParameters;
+		string userId;
+		cmiQuote::QuoteStructSequence quotes;
+		cmiUtil::ActivityReason cancelReason;
+	};
+        typedef sequence <GroupQuoteDeleteReportV3Struct> GroupQuoteDeleteReportV3StructSequence;
+
+	struct GroupQuoteBustReportStruct
+	{
+		cmiUtil::LongSequence groups;
+		quote::QuoteInfoStruct quoteInfo;
+		cmiUtil::UpdateStatusReason statusChange;
+		cmiOrder::BustReportStructSequence bustedQuote;
+		boolean isFirmUser;
+	};
+        typedef sequence <GroupQuoteBustReportStruct> GroupQuoteBustReportStructSequence;
+
+	struct GroupQuoteBustReportV3Struct
+	{
+		util::RoutingParameterStruct routingParameters;
+		quote::QuoteInfoStruct quoteInfo;
+		cmiUtil::UpdateStatusReason statusChange;
+		cmiOrder::BustReportStructSequence bustedQuote;
+		boolean isFirmUser;
+	};
+        typedef sequence <GroupQuoteBustReportV3Struct> GroupQuoteBustReportV3StructSequence;
+
+	struct GroupQuoteStatusUpdateStruct
+	{
+		util::RoutingParameterStruct routingParameters;
+		cmiQuote::QuoteStruct quote;
+		cmiUtil::UpdateStatusReason statusChange;
+	};
+        typedef sequence <GroupQuoteStatusUpdateStruct> GroupQuoteStatusUpdateStructSequence;
+
+
+
+};
+
+#endif

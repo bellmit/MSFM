@@ -1,0 +1,38 @@
+package com.cboe.domain.migratePersistence;
+
+import java.util.AbstractCollection;
+
+import com.cboe.infrastructureServices.foundationFramework.PersistentBObject;
+
+public class QueueElement
+{
+	private AbstractCollection<PersistentBObject> list;
+
+	private int key;
+
+	public QueueElement()
+	{
+
+	}
+
+	public AbstractCollection<PersistentBObject> getList()
+	{
+		return list;
+	}
+
+	public void setList(AbstractCollection<PersistentBObject> list)
+	{
+		this.list = list;
+	}
+
+	public int getKey()
+	{
+		return key;
+	}
+
+	public void setKey(int key)
+	{
+		this.key = key;
+	}
+
+}

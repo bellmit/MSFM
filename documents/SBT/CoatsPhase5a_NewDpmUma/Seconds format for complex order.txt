@@ -1,0 +1,390 @@
+¤                                                                                                                                  
+                                         High Level Assembler Option Summary                   (PTF UQ37157)   Page    1          
+                                                                                            HLASM R3.0  2003/10/15 15.42          
+  No Overriding Parameters                                                                                                        
+  No Process Statements                                                                                                           
+                                                                                                                                  
+                                                                                                                                  
+  Options for this Assembly                                                                                                       
+   NOADATA                                                                                                                        
+     ALIGN                                                                                                                        
+   NOASA                                                                                                                          
+     BATCH                                                                                                                        
+   NOCOMPAT                                                                                                                       
+   NODBCS                                                                                                                         
+   NODECK                                                                                                                         
+     DXREF                                                                                                                        
+     ESD                                                                                                                          
+   NOEXIT                                                                                                                         
+     FLAG(0,ALIGN,CONT,NOIMPLEN,NOPAGE0,PUSH,RECORD,NOSUBSTR)                                                                     
+   NOFOLD                                                                                                                         
+   NOINFO                                                                                                                         
+     LANGUAGE(EN)                                                                                                                 
+   NOLIBMAC                                                                                                                       
+     LINECOUNT(60)                                                                                                                
+     LIST(121)                                                                                                                    
+     MXREF(SOURCE)                                                                                                                
+     OBJECT                                                                                                                       
+     OPTABLE(UNI)                                                                                                                 
+   NOPCONTROL                                                                                                                     
+   NOPESTOP                                                                                                                       
+   NOPROFILE                                                                                                                      
+   NORA2                                                                                                                          
+   NORENT                                                                                                                         
+     RLD                                                                                                                          
+     RXREF                                                                                                                        
+     SIZE(MAX)                                                                                                                    
+     SYSPARM()                                                                                                                    
+   NOTERM                                                                                                                         
+   NOTEST                                                                                                                         
+   NOTRANSLATE                                                                                                                    
+     USING(NOLIMIT,MAP,WARN(15))                                                                                                  
+   NOXOBJECT                                                                                                                      
+     XREF(SHORT,UNREFS)                                                                                                           
+                                                                                                                                  
+  No Overriding DD Names                                                                                                          
+¤                                                                                                                                  
+                                              External Symbol Dictionary                                       Page    2          
+Symbol   Type   Id     Address  Length     LD ID  Flags Alias-of                            HLASM R3.0  2003/10/15 15.42          
+          PC 00000001 00000000 00000000             00                                                                            
+$IS$      SD 00000002 00000000 00000000             00                                                                            
+¤                                                                                                                                  
+                                                                                                               Page    3          
+  Active Usings: None                                                                                                             
+  Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R3.0  2003/10/15 15.42          
+                      00007           1 RG7      EQU   7                                                                          
+                      00009           2 R9       EQU   9                                                                          
+                                      3          PRINT GEN                                                                        
+                                      4          OR0EX REG=RG7                                                                    
+                                      5+*,                           VERSION 17, 08/11/00                       01-OR0EX          
+                                      6+*                                                                                         
+                                      7+**********************************************************************                    
+                                      8+*                                                                    *                    
+                                      9+*              SBT COMPLEX ORDER OUTBOUND MESSAGE                    *                    
+                                     10+*              __________________________________                    *                    
+                                     11+*                                                                    *                    
+                                     12+*                                                                    *                    
+                                     13+*                                                                    *                    
+                                     14+**********************************************************************                    
+000000                00000 00316    15+OR0EX       DSECT              SBT COMPLEX ORDER REPORT                 01-OR0EX          
+                                     16+*                                                                                         
+000000                               17+EXMSGTP     DS CL4             MESSAGE TYPE                             01-OR0EX          
+                                     18+* COMPLEX ORDER MESSAGE TYPES - JUST ADD CO TO THE SIMPLE ONE                             
+                                     19+*                              C'FRCO' - COMPLEX FILL REPORT                              
+                                     20+*                              C'CRCO' - COMPLEX CANCEL REPORT                            
+                                     21+*                                                                                         
+000004                               22+EX0SBTB     DS CL1                       SBT EXTRA BYTE                 01-OR0EX          
+000005                               23+EXTIMER     DS CL8                       TIME MESSAGE RECEIVED/HH:MM:SS 01-OR0EX          
+                                     24+*                                                                                         
+00000D                               25+EXFRMA      DS CL4                       FIRM ACRONYM                   01-OR0EX          
+000011                               26+EXBRSEQ     DS 0CL7                      BRANCH & SEQUENCE NUMBER       01-OR0EX          
+000011                               27+EXBRNCH     DS CL3                       FIRM BRANCH                    01-OR0EX          
+000014                               28+EXSEQNM     DS CL4                       FIRM SEQUENCE NUMBER           01-OR0EX          
+000018                               29+EXORSKY     DS 0CL6                      SECONDARY INDEX KEY            01-OR0EX          
+000018                               30+EXORSID     DS CL5                       ORSID IN ORS SYSTEM            01-OR0EX          
+00001D                               31+EXCKDIG     DS CL1                       CHECK DIGIT                    01-OR0EX          
+                                     32+*                                                                                         
+00001E                               33+EXPID       DS CL8                       PRODUCT TYPE (STRATEGY)        01-OR0EX          
+                                     34+*                                        MAY NOT BE CHARACTER DATA                        
+                                     35+*                                                                                         
+000026                               36+EXSTYP      DS CL8                       SPREAD TYPE (E.G. STRANGLE)    01-OR0EX          
+                                     37+*                                                                                         
+00002E                               38+EXBSDT      DS 0CL8                      ORDER ENTRY DATE - YYYYMMDD    01-OR0EX          
+00002E                               39+EXOYEAR     DS CL4                       ORDER YEAR                     01-OR0EX          
+000032                               40+EXOMNTH     DS CL2                       ORDER MONTH                    01-OR0EX          
+000034                               41+EXODAY      DS CL2                       ORDER DAY                      01-OR0EX          
+                                     42+*                                                                                         
+000036                               43+EXCORFM     DS CL4                       CORRESPONDENT FIRM ACRONYM     01-OR0EX          
+00003A                               44+EXALTD      DS CL3                       ALTERNATE DESTINATION          01-OR0EX          
+                                     45+*                                        FOR CORR FIRM                                    
+                                     46+*                                                                                         
+00003D                               47+EXCMTA      DS CL7                       CLEARING MEMBER TRADE          01-OR0EX          
+                                     48+*                                        AGREEMENT NUMBER                                 
+                                     49+*                                                                                         
+000044                               50+EXGIVUP     DS CL4                       GIVE-UP FIRM                   01-OR0EX          
+                                     51+*                                                                                         
+000048                               52+EXSRCE      DS CL4                       ENTERED BY - SOURCE            01-OR0EX          
+                                     53+*                                                                                         
+00004C                               54+EXFLNID     DS CL4                       FIX LINE ID                    01-OR0EX          
+i                                     55+*                                        COMPASS ORIGIN LINE ID JLS                       
+                                                                                                               Page    4          
+  Active Usings: None                                                                                                             
+D-Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R3.0  2003/10/15 15.42          
+                                     56+*                                                                                         
+000050                               57+EXTIF       DS CL1                       TIME IN FORCE                  01-OR0EX          
+                                     58+*                                        DAY EQU C'D'                                     
+                                     59+*                                        GTC EQU C'G' (GOOD TILL CXLD)                    
+                                     60+*                                        DAA EQU C'A' (AM SESSION) JLS                    
+                                     61+*                                                                                         
+000051                               62+EXCUST      DS CL1                       CUST OR FIRM  (ORDER OWNER)    01-OR0EX          
+                                     63+*                                        CUST EQU C'C'                                    
+                                     64+*                                        FIRM EQU C'F'                                    
+                                     65+*                                        B-D  EQU C'B'                                    
+                                     66+*                                        CUS BD EQU C'X'                                  
+                                     67+*                                                                                         
+000052                               68+EXTLCSW     DS CL1                       TOO LATE CANCEL                01-OR0EX          
+                                     69+*                                        C'T' FOR 'TLC'                                   
+                                     70+*                                                                                         
+                                     71+*                                                                                         
+000053                               72+EXTLCVL     DS CL5                       ORDER VOLUME TOO LATE TO CXL   01-OR0EX          
+000058                               73+EXORVO      DS CL5                       ORDER ORIGINAL VOLUME          01-OR0EX          
+00005D                               74+EXMMHHT     DS CL1                       MMHH TAT INDICATOR             01-OR0EX          
+                                     75+*---------------------------------------------------------------------*                   
+                                     76+* ORDER LEVEL CONTINGENCY VALUES                                      *                   
+                                     77+*---------------------------------------------------------------------*                   
+00005E                               78+EXCTNB      DS CL3                       CONTINGENCY TYPE NUMBER        01-OR0EX          
+000061                               79+EXCVOL      DS CL5                       CONTINGENCY VOLUME             01-OR0EX          
+000066                               80+EXCPRC      DS 0CL12                     CONTINGENCY PRICE              01-OR0EX          
+000066                               81+EXCINT      DS CL4                       CONTINGENCY PRICE INT          01-OR0EX          
+00006A                               82+EXCIND      DS CL1                       DECIMAL POINT                  01-OR0EX          
+00006B                               83+EXCFRA      DS CL7                       CONTINGENCY PRICE FRACTION     01-OR0EX          
+                                     84+*                                                                                         
+000072                               85+EXBILLF     DS CL1                       BILLING FLAG                   01-OR0EX          
+                                     86+*FEE_WAIVER_1&SUF EQU C'A'               VALUE SET IF FEE IS WAIVED                       
+                                     87+*                                        (SEE OOFH/OOFL/RXFA)                             
+000073                               88+EXACCT      DS CL15                      ORDER ACCOUNT NO               01-OR0EX          
+                                     89+*                                                                                         
+000082                               90+EXOPTD1     DS CL16                      OPTIONAL DATA AREA 1           01-OR0EX          
+                                     91+*                                                                                         
+000092                               92+EXOPTD2     DS CL16                      OPTIONAL DATA AREA 2           01-OR0EX          
+                                     93+*                                                                                         
+0000A2                               94+EXOLMP       DS CL12                     LIMIT PRICE ON THE ORDER       01-OR0EX          
+0000AE                               95+EXOLPI       DS CL2                      LIMIT PRICE INDICATOR          01-OR0EX          
+0000B0                               96+EXOEXP       DS CL12                     EXECUTION PRICE FOR ORDER      01-OR0EX          
+0000BC                               97+EXOEXI       DS CL2                      EXECUTION PRICE INDICATOR      01-OR0EX          
+                                     98+*                                                                                         
+                                     99+*                                        PRICE INDICATOR CODES                            
+                                    100+*                                        E  - EVEN                                        
+                                    101+*                                        D  - DEBIT                                       
+                                    102+*                                        C  - CREDIT                                      
+                                    103+*                                        HE - CASH EVEN                                   
+                                    104+*                                        HC - CASH CREDIT                                 
+                                    105+*                                        HD - CASH DEBIT                                  
+                                    106+*                                        M  - MARKET                                      
+                                    107+*                                                                                         
+                                    108+*---------------------------------------------------------------------*                   
+                                    109+* LEG INFORMATION SPECIFIC TO STOCK LEGS                              *                   
+i                                    110+*---------------------------------------------------------------------*                   
+                                                                                                               Page    5          
+  Active Usings: None                                                                                                             
+D-Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R3.0  2003/10/15 15.42          
+0000BE                              111+EXLMEET     DS    CL4                    MEET LOCATION                  01-OR0EX          
+0000C2                              112+EXNMEET     DS    CL25                   NAME OF FIRM TO MEET           01-OR0EX          
+                                    113+**********************************************************************                    
+                                    114+*       CANCEL REPORT                                                *                    
+                                    115+**********************************************************************                    
+0000DB                              116+EXCORS       DS 0CL6                     ORSID AND CHECK DIGIT          01-OR0EX          
+0000DB                              117+EXCOSID      DS CL5                      ORSID                          01-OR0EX          
+0000E0                              118+EXCOSCD      DS CL1                      ORS CHECK DIGIT                01-OR0EX          
+                                    119+*                                                                                         
+0000E1                              120+EXCODID      DS 0CL13                    ORDER ID                       01-OR0EX          
+0000E1                              121+EXCBOC       DS CL3                      BRANCH OFFICE CODE (ALPHA)     01-OR0EX          
+0000E4                              122+EXCSEQ       DS CL4                      BRANCH SEQUENCE NUMBER         01-OR0EX          
+0000E8                              123+EXCDAT       DS CL6                      ORDER ENTRY DATE               01-OR0EX          
+                                    124+*                                                                                         
+0000EE                              125+EXCLMP       DS CL12                     LIMIT PRICE ON THE ORDER       01-OR0EX          
+0000FA                              126+EXLMDC       DS CL2                      LIMIT PRICE INDICATOR          01-OR0EX          
+                                    127+*                                        E  - EVEN                                        
+                                    128+*                                        D  - DEBIT                                       
+                                    129+*                                        C  - CREDIT                                      
+                                    130+*                                        HE - CASH EVEN                                   
+                                    131+*                                        HC - CASH CREDIT                                 
+                                    132+*                                        HD - CASH DEBIT                                  
+                                    133+*                                        M  - MARKET                                      
+                                    134+*                                                                                         
+0000FC                              135+EXCXDAT      DS 0CL8                     CXLD ORDER DATE - MMDDYYYY     01-OR0EX          
+0000FC                              136+EXCXMO       DS CL2                      CXLD ORDER MONTH               01-OR0EX          
+0000FE                              137+EXCXDAY      DS CL2                      CXLD ORDER DAY                 01-OR0EX          
+000100                              138+EXCXYR       DS CL4                      CXLD ORDER YEAR                01-OR0EX          
+i                      00104         139+EXHDRLG     EQU *-EXMSGTP                HEADER LENGTH                  01-OR0EX          
+                                                                                                               Page    6          
+  Active Usings: None                                                                                                             
+D-Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R3.0  2003/10/15 15.42          
+                                    141+***********************************************************************                   
+                                    142+* LEG INFORMATION                                                     *                   
+                                    143+*                                                                     *                   
+                                    144+* NOTE: 1) FOR A CANCEL REPORT THERE IS NO FILL REPORT DATA.          *                   
+                                    145+*          THERE MAY BE UP TO 8 CANCELED LEGS WORTH OF DATA.          *                   
+                                    146+*                                                                     *                   
+                                    147+*       2) THE LEG DESCRIPTION AND FILL REPORT DESCRIPTIONS MUST      *                   
+                                    148+*          BE KEPT IN SYNCH WITH THOSE IN THE COMPASS BLOCK.          *                   
+                                    149+***********************************************************************                   
+000104                              150+EXNOL       DS CL2                       NUMBER OF LEGS IN ORDER        01-OR0EX          
+000106                              151+EXLGTBL     DS CL78                      LEG INFO                       01-OR0EX          
+                                    152+*                                                                                         
+                                    153+*                                        FOR CANCEL REPORT THE LEG                        
+                                    154+*                                        TABLE IS 8 X 78.  THE                            
+                                    155+*                                        FILL REPORT DATA IS OVER-                        
+                                    156+*                                        WRITTEN FOR LEGS 2 - 8.                          
+                                    157+*                                        FOR COMPASS CANCEL REPORT                        
+                                    158+*                                        THE TABLE IS 4 X 78.      JLS                    
+                                    159+*---------------------------------------------------------------------*                   
+                                    160+*            INFORMATION EXCLUSIVE TO FILL REPORT                     *                   
+                                    161+*---------------------------------------------------------------------*                   
+000154                              162+EXEXBRK       DS   CL4                   EXECUTING BROKER               01-OR0EX          
+000158                              163+EXCNTBL       DS   CL416                 (16 X 26) CONTRA SLOTS      JK 01-OR0EX        +2 RN  
+                                    164+*                                                                                         
+                                    165+*                                                                                         
+0002F8                              166+EXSPMQ        DS   0CL30                 SPREAD MARKET QUOTES           01-OR0EX          
+0002F8                              167+EXSBMQ        DS   CL12                  SPREAD BID MARKET QUOTE        01-OR0EX          
+000304                              168+EXBMQI        DS   CL3                   BID MARKET QUOTE INDICATOR     01-OR0EX          
+000307                              169+EXSAMQ        DS   CL12                  SPREAD ASK MARKET QUOTE        01-OR0EX          
+000313                              170+EXAMQI        DS   CL3                   ASK MARKET QUOTE INDICATOR     01-OR0EX          
+                                    171+*                                                                                         
+                      00316         172+EXEOMSG     EQU *                        END OF MESSAGE                 01-OR0EX          
+                      00316         173+EXMSGLN     EQU *-EXMSGTP                LENGTH OF MESSAGE              01-OR0EX          
+                                    174+*                                                                                         
+                                    175+*---------------------------------------------------------------------*                   
+                                    176+*AREA TO DESCRIBE ONE CONTRA PARTY - KEEP IN SYNCH WITH OROCO         *                   
+                                    177+*---------------------------------------------------------------------*                   
+000316                00316 00158   178+            ORG EXCNTBL                                                 01-OR0EX          
+000158                              179+EXCPFR      DS   CL4                     CONTRA FIRM ACR OR #           01-OR0EX          
+00015C                              180+EXCPQT      DS   CL6                     QUANTITY                       01-OR0EX          
+000162                              181+EXCPBR      DS   CL4                     CONTRA BROKER                  01-OR0EX          
+000166                              182+EXCEXC      DS   CL3                     STOCK EXCHANGE                 01-OR0EX          
+000169                              183+EXCSPR      DS   CL3                     SPARE                          01-OR0EX          
+00016C                              184+EXCPTM      DS   CL6                     TIME (HHMMSS) REQUIRED      JK 01-OR0EX       +2 RN   
+                                    185+*                                                                                         
+                                    186+*---------------------------------------------------------------------*                   
+                                    187+*AREA TO DESCRIBE ONE LEG - KEEP IN SYNCH WITH COMPASS LEG DESCRIPTION*                   
+                                    188+*---------------------------------------------------------------------*                   
+000172                00172 00106   189+            ORG EXLGTBL                                                 01-OR0EX          
+000106                              190+EXLNUM      DS CL1                       LEG NUMBER                     01-OR0EX          
+000107                              191+EXCLASS     DS CL5                       CLASS SYMBOL                   01-OR0EX          
+00010C                              192+EXCLST      DS CL1                       CLASS TYPE                     01-OR0EX          
+                                    193+*                                              S - STOCK                                  
+                                    194+*                                              O - OPTION                                 
+i                                    195+*                                              F - FUTURE                                 
+                                                                                                               Page    7          
+  Active Usings: None                                                                                                             
+D-Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R3.0  2003/10/15 15.42          
+                                    196+*                                                                                         
+00010D                              197+EXPOST      DS CL2                       CLASS POST                     01-OR0EX          
+00010F                              198+EXSTATN     DS CL2                       CLASS STATION                  01-OR0EX          
+000111                              199+EXEXPYR     DS CL2                       SERIES EXPIRATION YEAR         01-OR0EX          
+000113                              200+EXEXPMO     DS CL3                       EXPIRATION MONTH (ALPHA)       01-OR0EX          
+                                    201+*                                        C'JAN' THRU  C'DEC'                              
+                                    202+*                                                                                         
+000116                              203+EXSTPRC     DS 0CL7                      STRIKE INTEGER & FRACTION      01-OR0EX          
+000116                              204+EXSTINT     DS CL4                       STRIKE INTEGER                 01-OR0EX          
+00011A                              205+EXSTFRA     DS CL3                       STRIKE FRACTION                01-OR0EX          
+                                    206+*                                                                                         
+00011D                              207+EXEXPRC     DS CL12                      EXECUTION PRICE                01-OR0EX          
+                                    208+*                                                                                         
+000129                              209+EXVOLUM     DS CL6                       ORIGINAL LEG VOLUME            01-OR0EX          
+00012F                              210+EXLVSVL     DS CL6                       VOLUME LEFT AFTER TRANSACTION  01-OR0EX          
+                                    211+*                                                                                         
+000135                              212+EXCXVOL     DS CL6                       VOLUME CANCELLED               01-OR0EX          
+00013B                              213+EXLRTIO     DS CL3                       RATIO BY LEG                   01-OR0EX          
+00013E                              214+EXLSPR1     DS CL2                       SPARE                          01-OR0EX          
+                                    215+*                                                                                         
+000140                              216+EXCLPUT     DS CL1                       CALL OR PUT                    01-OR0EX          
+                                    217+*                                        PUT  EQU C'P'                                    
+                                    218+*                                        CALL EQU C'C'                                    
+                                    219+*                                                                                         
+000141                              220+EXBUYSL     DS CL1                       BUY OR SELL                    01-OR0EX          
+                                    221+*                                           B - BUY                                       
+                                    222+*                                           S - SELL                                      
+                                    223+*                                           H - SELL STOCK SHORT                          
+                                    224+*                                                                                         
+000142                              225+EXOPCLS     DS CL1                       OPEN/CLOSED INDICATOR          01-OR0EX          
+                                    226+*                                        OPEN   EQU C'O'                                  
+                                    227+*                                        CLOSED EQU C'C'                                  
+                                    228+*                                                                                         
+000143                              229+EXCOVRD     DS CL1                       COVERED/UNCOVERED IND          01-OR0EX          
+                                    230+*                                        CVRD   EQU C'C'                                  
+                                    231+*                                        UNCVRD EQU C'U'                                  
+                                    232+*---------------------------------------------------------------------*                   
+                                    233+* QUOTES                                                              *                   
+                                    234+*---------------------------------------------------------------------*                   
+000144                              235+EXMKTQT     DS   0CL14                   BID AND ASK MARKET QUOTES      01-OR0EX          
+000144                              236+EXBIDQT     DS   0CL7                    BID MARKET QUOTES              01-OR0EX          
+000144                              237+EXBIDI      DS    CL4                    BID INTEGER                    01-OR0EX          
+000148                              238+EXBIDF      DS    CL3                    BID FRACTION                   01-OR0EX          
+00014B                              239+EXASKQT     DS   0CL7                    ASK MARKET QUOTES              01-OR0EX          
+00014B                              240+EXASKI      DS    CL4                    ASK INTEGER                    01-OR0EX          
+00014F                              241+EXASKF      DS    CL3                    ASK FRACTION                   01-OR0EX          
+                                    242+*                                                                                         
+000152                              243+EXLSPR2     DS    CL2                    SPARE                          01-OR0EX          
+                                    244+*                                                                                         
+                      0004E         245+EXLGLEN     EQU  *-EXLNUM                LENGTH OF ONE LEG              01-OR0EX          
+                                    246+*                                                                                         
+                                    247+* CANCEL REPORT MESSAGE LENGTH                                                            
+                      00376         248+EXCRLEN     EQU  (EXLGTBL-EXMSGTP)+8*EXLGLEN                            01-OR0EX          
+                                    249+**********************************************************************                    
+i                                    250+*       END OF COMPLEX OUTPUT MESSAGE RECORD                         *                    
+                                                                                                               Page    8          
+  Active Usings: None                                                                                                             
+D-Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R3.0  2003/10/15 15.42          
+                                    251+**********************************************************************                    
+                                    252+*                                                                                         
+000000                00000 00000   253+$IS$        CSECT                                                       01-OR0EX          
+                 R:7  00000         254+            USING OR0EX,RG7                                             01-OR0EX          
+                                    255          END                                                                              
+¤                                                                                                                                  
+                               Ordinary Symbol and Literal Cross Reference                                     Page    9          
+Symbol   Length   Value     Id    R Type   Defn References                                  HLASM R3.0  2003/10/15 15.42          
+EXCNTBL     416 00000158 FFFFFFFF     C     163  178                                                                              
+EXLGLEN       1 0000004E FFFFFFFF A   U     245  248                                                                              
+EXLGTBL      78 00000106 FFFFFFFF     C     151  189   248                                                                        
+EXLNUM        1 00000106 FFFFFFFF     C     190  245                                                                              
+EXMSGTP       4 00000000 FFFFFFFF     C      17  139   173   248                                                                  
+OR0EX         1 00000000 FFFFFFFF     J      15  254U                                                                             
+RG7           1 00000007 00000001 A   U       1  254U                                                                             
+¤                                                                                                                                  
+                                  Unreferenced Symbols Defined in CSECTs                                       Page   10          
+  Defn  Symbol                                                                              HLASM R3.0  2003/10/15 15.42          
+   253  $IS$                                                                                                                      
+     2  R9                                                                                                                        
+¤                                                                                                                                  
+                                          Macro and Copy Code Source Summary                                   Page   11          
+ Con Source                                        Volume    Members                        HLASM R3.0  2003/10/15 15.42          
+  L1 TPF.WR2254.MACC                               CHANGE    OR0EX                                                                
+¤                                                                                                                                  
+                                                Dsect Cross Reference                                          Page   12          
+Dsect     Length      Id       Defn                                                         HLASM R3.0  2003/10/15 15.42          
+OR0EX    00000316  FFFFFFFF      15                                                                                               
+¤                                                                                                                                  
+                                                      Using Map                                                Page   13          
+                                                                                            HLASM R3.0  2003/10/15 15.42          
+  Stmt  -----Location----- Action ----------------Using----------------- Reg Max    Last  Label and Using Text                    
+          Count      Id           Type          Value    Range     Id        Disp   Stmt                                          
+   254  00000000  00000002 USING  ORDINARY    00000000 00001000 FFFFFFFF   7 000          OR0EX,RG7                               
+¤                                                                                                                                  
+                                   General Purpose Register Cross Reference                                    Page   14          
+ Register  References (M=modified, B=branch, U=USING, D=DROP, N=index)                      HLASM R3.0  2003/10/15 15.42          
+    0(0)    (no references identified)                                                                                            
+    1(1)    (no references identified)                                                                                            
+    2(2)    (no references identified)                                                                                            
+    3(3)    (no references identified)                                                                                            
+    4(4)    (no references identified)                                                                                            
+    5(5)    (no references identified)                                                                                            
+    6(6)    (no references identified)                                                                                            
+    7(7)     254U                                                                                                                 
+    8(8)    (no references identified)                                                                                            
+    9(9)    (no references identified)                                                                                            
+   10(A)    (no references identified)                                                                                            
+   11(B)    (no references identified)                                                                                            
+   12(C)    (no references identified)                                                                                            
+   13(D)    (no references identified)                                                                                            
+   14(E)    (no references identified)                                                                                            
+   15(F)    (no references identified)                                                                                            
+¤                                                                                                                                  
+                                  Diagnostic Cross Reference and Assembler Summary                             Page   15          
+                                                                                            HLASM R3.0  2003/10/15 15.42          
+     No Statements Flagged in this Assembly                                                                                       
+HIGH LEVEL ASSEMBLER, 5696-234, RELEASE 3.0, PTF UQ37157                                                                          
+SYSTEM: OS/390 02.08.00            JOBNAME: TS315DS     STEPNAME: LOGTSO     PROCSTEP: LOGTSO                                     
+Datasets Allocated for this Assembly                                                                                              
+ Con DDname   Dataset Name                                 Volume  Member                                                         
+  P1 SYSIN    TS315DS.SYSIN                                WORKX6                                                                 
+  L1 SYSLIB   TPF.WR2254.MACC                              CHANGE                                                                 
+     SYSLIN   NULLFILE                                                                                                            
+     SYSPRINT TS315DS.SYSPRINT.T56564                      WORKX1                                                                 
+                                                                                                                                  
+   3492K allocated to Buffer Pool,          200K would be required for this to be an In-Storage Assembly                          
+      5 Primary Input Records Read          317 Library Records Read          0 Work File Reads                                   
+    390 Primary Print Records Written         2 Punch Records Written         0 Work File Writes                                  
+      0 ADATA Records Written                                                                                                     
+Assembly Start Time: 15.42.45 Stop Time: 15.42.45 Processor Time: 00.00.00.0146                                                   
+Return Code 000                                                                                                                   

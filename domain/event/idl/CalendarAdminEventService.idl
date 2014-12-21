@@ -1,0 +1,32 @@
+#ifndef CalendarAdminEventService_idl
+#define CalendarAdminEventService_idl
+
+#include "CalendarAdminService.idl"
+#include "InternalConsumers.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module infrastructureServices
+{
+    interface CalendarAdminEventService :
+        infrastructureServices::CalendarAdminService
+    {
+        void subscribeCalendarUpdateEvent(in internalConsumers::CalendarUpdateConsumer calendarUpdateConsumer)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeCalendarUpdateEvent(in internalConsumers::CalendarUpdateConsumer calendarUpdateConsumer)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    };
+};
+
+#endif

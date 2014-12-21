@@ -1,0 +1,1155 @@
+C:\CFLEX
+Using CBOEdirect Jars From Location: C:\CFLEX\lib
+Using Java Location: C:\CFLEX\jdk1.6.0_05
+ECHO is off.
+Added: ******************************** - Session & Class Setup
+Added: $RUNMODE - SUMMARY
+Added: $PUBLISHMONITORDATA - FALSE
+Added: $HYBRIDCLASSLIST1 - AAP
+Added: $STOCKCLASSLIST - DF
+Added: $HYBRIDCLASSLIST-EDP - A
+Added: $HYBRIDCLASSLIST-REV - CAM
+Added: $HYBRIDBQCLASSLIST - SEE
+Added: $HYBRIDSTRATEGYLIST - KDN;ACN
+Added: $PRODCALLPUT - PCP
+Added: $HYBRIDCLASSLIST2 - PCS
+Added: $HYBRIDCLASSLIST3 - PDS
+Added: $HYBRIDCLASSLIST4 - PEP
+Added: $HYBRIDCLASSLIST5 - PFG
+Added: $W_STOCKCLASSLIST - AAP
+Added: $W_STOCKCLASSLIST1 - ADRE
+Added: $FLEX_MAINCLASSLIST - 1A
+Added: $MYCLASS - CLF;AKS;TOA;ARO;CMG;TRGL
+**** Overriding Property $W_STOCKCLASSLIST:AAP with $W_STOCKCLASSLIST:AAU
+Added: $W_STOCKCLASSLIST - AAU
+Added: $ONE_MAINCLASSLIST - AAT
+Added: $ONE_MAINBQCLASSLIST - IBM;DELL;BBY
+Added: $CFE_MAINCLASSLIST - CH
+Added: $COF_MAINCLASSLIST - CHTST4
+Added: $CFE_MAINBQCLASSLIST - CH
+Added: $STOCKCLASSLIST-EDP - CAT
+Added: $STOCKCLASSLIST-REV - CAM
+Added: $W_BADBLOCKSIZE - 4
+Added: $W_MAINBLOCKSIZE - 40
+Added: $W_STOCKBLOCKSIZE - 1
+Added: $ONE_MAINBLOCKSIZE - 4
+Added: $CFE_MAINBLOCKSIZE - 4
+Added: $COF_MAINBLOCKSIZE - 4
+Added: $BADFIRM - -200
+Added: $BADPRODUCT - 10101010
+Added: $BADEXCHANGE - CBOO
+Added: $BADUSER - OZO
+Added: $BADDATA - 12345678
+**** Overriding Property ********************************:Session & Class Setup with ********************************:Configuration & Environment Setup
+Added: ******************************** - Configuration & Environment Setup
+Added: $CASANDPORT - dev30cas:8003
+Added: $FEROUTENAME - test30FE01v20Frontend,test30FE02v20Frontend
+Added: $TE - TE
+Added: $OHS - OHS
+Added: $PROPERTYLOGFILE - APIClient_TrdProp
+Added: $IGNORE1 - IGNORE
+Added: $EMAILADDRESSES - none
+Added: $EXTERNALLOADER - com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl
+Added: $EXTERNALOUTPUT - com.cboe.itg.apiclient.output.FormattedOutputHTMLImpl
+Added: $MAILHOSTNAME - MSMAIL.cboent.cboe.com
+Added: $IDLVERSION - 2.5
+Added: $LOGINSESSIONMODE - 2
+Added: $FILEBASE - TestEvents
+Added: $ARCHIVEDIR - ITGClientResultsArchive
+Added: $ERRORBASE - ErrorEvents
+Added: $REPORTFAILONLY - FALSE
+Added: $UPTICK - 0.1
+Added: $TIMEOUT - 15
+Added: $FIELD - originalQty
+Added: $EXCEPTIONTYPE - SE
+Added: $CLASSLISTTYPE - symbols
+Added: $INVALIDDIRECTROUTE - 1
+Added: $INVALIDROUTE - W90
+Added: $SESSION1 - W_MAIN
+Added: $SESSION2 - ONE_MAIN
+Added: $SESSION3 - CFE_MAIN
+Added: $SESSION4 - W_STOCK
+Added: $SESSION5 - COF_MAIN
+Added: $SESSION6 - FLEX_MAIN
+Added: $SESSIONBAD - W_BAD
+Added: $REALFIRM - 411
+Added: $DEFAULT - Default
+Added: $DEFAULTKEY - 0
+Added: $DEFAULTPOSTDEFAULTSTATION - Post_0.Station_0
+Added: $DEFAULTPOSTSTATION1 - Post_0.Station_1
+Added: $ORDERCLEANUP - HD1
+Added: $DEFAULTSESSION - Default
+Added: $USMDCAS - FALSE
+**** Overriding Property ********************************:Configuration & Environment Setup with ********************************:User Setup
+Added: ******************************** - User Setup
+**** Overriding Property ********************************:User Setup with ********************************:HD User
+Added: ******************************** - HD User
+Added: $SA1 - HD12
+**** Overriding Property ********************************:HD User with ********************************:MM Users (M)
+Added: ******************************** - MM Users (M)
+Added: $MM1 - KK1
+Added: $MM1AFFILIATE - ALL
+Added: $MM1AFFILIATE2 - ABC
+Added: $MM1AFFILIATE3 - XYZ
+Added: $MM1AFFILIATE4 - blank
+Added: $MM1AFFILIATE5 - space
+Added: $MM1CORRFIRM - ABC
+Added: $MM1EXCHANGE - CBOE
+Added: $MM1EXECFIRM - 551
+Added: $MM2 - JA2
+Added: $MM2AFFILIATE - ALL
+Added: $MM2EXCHANGE - CBOE
+Added: $MM2EXECFIRM - 551
+Added: $MM3 - JA3
+Added: $MM3AFFILIATE - DEM
+Added: $MM3EXCHANGE - CBOE
+Added: $MM3EXECFIRM - 695
+Added: $MM4 - JA4
+Added: $MM4AFFILIATE - GAF
+Added: $MM4EXCHANGE - CBOE
+Added: $MM4EXECFIRM - 551
+Added: $MM5 - JA5
+Added: $MM5AFFILIATE - YOU
+Added: $MM5EXCHANGE - CBOE
+Added: $MM5EXECFIRM - 551
+Added: $MM6 - JA6
+Added: $MM6AFFILIATE - PEG
+Added: $MM6EXCHANGE - CBOE
+Added: $MM6EXECFIRM - 551
+Added: $MM7 - IKX7
+Added: $MM7AFFILIATE - TER
+Added: $MM7EXCHANGE - CBOE
+Added: $MM7EXECFIRM - 551
+Added: $MM8 - IKX8
+Added: $MM8AFFILIATE - WAG
+Added: $MM8EXCHANGE - CBOE
+Added: $MM8EXECFIRM - 551
+Added: $MM9 - IKX9
+Added: $MM9AFFILIATE - IFF
+Added: $MM9EXCHANGE - CBOE
+Added: $MM9EXECFIRM - 551
+**** Overriding Property ********************************:MM Users (M) with ********************************:BD Users (B)
+Added: ******************************** - BD Users (B)
+Added: $BD1 - KKK11
+Added: $BD1EXCHANGE - CBOE
+Added: $BD1EXECFIRM - 235
+Added: $BD2 - ABM22
+Added: $BD2EXCHANGE - CBOE
+Added: $BD2EXECFIRM - 235
+Added: $BD3 - XBD3
+Added: $BD3EXCHANGE - CBOE
+Added: $BD3EXECFIRM - 235
+Added: $BD4 - XBD4
+Added: $BD4EXCHANGE - CBOE
+Added: $BD4EXECFIRM - 235
+Added: $BD5 - XBD5
+Added: $BD5EXCHANGE - CBOE
+Added: $BD5EXECFIRM - 235
+Added: $BD6 - XBD6
+Added: $BD6EXCHANGE - CBOE
+Added: $BD6EXECFIRM - 235
+Added: $BD7 - XBD7
+Added: $BD7EXCHANGE - CBOE
+Added: $BD7EXECFIRM - 235
+Added: $BD8 - XBD8
+Added: $BD8EXCHANGE - CBOE
+Added: $BD8EXECFIRM - 235
+Added: $BD9 - XBD9
+Added: $BD9EXCHANGE - CBOE
+Added: $BD9EXECFIRM - 235
+**** Overriding Property ********************************:BD Users (B) with ********************************:CBD Users (X)
+Added: ******************************** - CBD Users (X)
+Added: $CUST1 - ANJ1
+Added: $CUST1EXCHANGE - CBOE
+Added: $CUST1EXECFIRM - 551
+Added: $CUST2 - ANJ2
+Added: $CUST2EXCHANGE - CBOE
+Added: $CUST2EXECFIRM - 551
+Added: $CUST3 - ANJ3
+Added: $CUST3EXCHANGE - CBOE
+Added: $CUST3EXECFIRM - 235
+Added: $CUST4 - ANJ4
+Added: $CUST4EXCHANGE - CBOE
+Added: $CUST4EXECFIRM - 235
+Added: $CUST5 - ANK5
+Added: $CUST5EXCHANGE - CBOE
+Added: $CUST5EXECFIRM - 235
+Added: $CUST6 - XBD6
+Added: $CUST6EXCHANGE - CBOE
+Added: $CUST6EXECFIRM - 235
+Added: $CUST7 - XCD7
+Added: $CUST7EXCHANGE - CBOE
+Added: $CUST7EXECFIRM - 235
+Added: $CUST8 - XCD8
+Added: $CUST8EXCHANGE - CBOE
+Added: $CUST8EXECFIRM - 235
+Added: $CUST9 - XCD9
+Added: $CUST9EXCHANGE - CBOE
+Added: $CUST9EXECFIRM - 235
+**** Overriding Property ********************************:CBD Users (X) with ********************************:FD Users (R)
+Added: ******************************** - FD Users (R)
+Added: $FD1 - XFR1
+Added: $FD1EXCHANGE - CBOE
+Added: $FD1EXECFIRM - 235
+Added: $FD2 - XFR2
+Added: $FD2EXCHANGE - CBOE
+Added: $FD2EXECFIRM - 235
+Added: $FD3 - XFR3
+Added: $FD3EXCHANGE - CBOE
+Added: $FD3EXECFIRM - 235
+Added: $FD4 - XFR4
+Added: $FD4EXCHANGE - CBOE
+Added: $FD4EXECFIRM - 235
+Added: $FD5 - XFR5
+Added: $FD5EXCHANGE - CBOE
+Added: $FD5EXECFIRM - 235
+Added: $FD6 - XFR6
+Added: $FD6EXCHANGE - CBOE
+Added: $FD6EXECFIRM - 235
+Added: $FD7 - XFR7
+Added: $FD7EXCHANGE - CBOE
+Added: $FD7EXECFIRM - 235
+Added: $FD8 - XFR8
+Added: $FD8EXCHANGE - CBOE
+Added: $FD8EXECFIRM - 235
+Added: $FD9 - XFR9
+Added: $FD9EXCHANGE - CBOE
+Added: $FD9EXECFIRM - 235
+**** Overriding Property ********************************:FD Users (R) with ********************************:FR Users (F)
+Added: ******************************** - FR Users (F)
+Added: $FR1 - XFU1
+Added: $FR1EXCHANGE - CBOE
+Added: $FR1EXECFIRM - 551
+Added: $FR2 - XFU2
+Added: $FR2EXCHANGE - CBOE
+Added: $FR2EXECFIRM - 235
+Added: $FR3 - XFU3
+Added: $FR3EXCHANGE - CBOE
+Added: $FR3EXECFIRM - 235
+Added: $FR4 - XFU4
+Added: $FR4EXCHANGE - CBOE
+Added: $FR4EXECFIRM - 235
+Added: $FR5 - XFU5
+Added: $FR5EXCHANGE - CBOE
+Added: $FR5EXECFIRM - 235
+Added: $FR6 - XFU6
+Added: $FR6EXCHANGE - CBOE
+Added: $FR6EXECFIRM - 235
+**** Overriding Property ********************************:FR Users (F) with ********************************:Booth OMTs
+Added: ******************************** - Booth OMTs
+Added: $BOMT - BSM
+Added: $BOMTEXCHANGE - CBOE
+Added: $BOMTEXECFIRM - 551
+Added: $BOMT1 - GSMT1
+Added: $BOMT1EXCHANGE - CBOE
+Added: $BOMT1EXECFIRM - 551
+Added: $BOMT2 - GSMT2
+Added: $BOMT2EXCHANGE - CBOE
+Added: $BOMT2EXECFIRM - 551
+Added: $BOMT3 - GSMT3
+Added: $BOMT3EXCHANGE - CBOE
+Added: $BOMT3EXECFIRM - 235
+Added: $BOMT4 - GXMT4
+Added: $BOMT4EXCHANGE - CBOE
+Added: $BOMT4EXECFIRM - 235
+Added: $BOMT5 - GXMT5
+Added: $BOMT5EXCHANGE - CBOE
+Added: $BOMT5EXECFIRM - 235
+Added: $BOMT6 - GXMT6
+Added: $BOMT6EXCHANGE - CBOE
+Added: $BOMT6EXECFIRM - 235
+Added: $BOMT7 - GXMT7
+Added: $BOMT7EXCHANGE - CBOE
+Added: $BOMT7EXECFIRM - 235
+Added: $BOMT8 - GXMT8
+Added: $BOMT8EXCHANGE - CBOE
+Added: $BOMT8EXECFIRM - 235
+Added: $BOMT9 - GXMT9
+Added: $BOMT9EXCHANGE - CBOE
+Added: $BOMT9EXECFIRM - 235
+**** Overriding Property ********************************:Booth OMTs with ********************************:Default OMTs
+Added: ******************************** - Default OMTs
+Added: $DOMT1 - DXMT1
+Added: $DOMT1EXCHANGE - CBOE
+Added: $DOMT1EXECFIRM - 235
+Added: $DOMT2 - DXMT2
+Added: $DOMT2EXCHANGE - CBOE
+Added: $DOMT2EXECFIRM - 235
+Added: $DOMT3 - DXMT3
+Added: $DOMT3EXCHANGE - CBOE
+Added: $DOMT3EXECFIRM - 235
+Added: $DOMT4 - DXMT4
+Added: $DOMT4EXCHANGE - CBOE
+Added: $DOMT4EXECFIRM - 235
+**** Overriding Property ********************************:Default OMTs with ********************************:Help Desk OMTs
+Added: ******************************** - Help Desk OMTs
+Added: $HOMT1 - HST1
+Added: $HOMT1EXCHANGE - CBOE
+Added: $HOMT1EXECFIRM - 551
+Added: $HOMT2 - HST2
+Added: $HOMT2EXCHANGE - CBOE
+Added: $HOMT2EXECFIRM - 235
+Added: $HOMT3 - HSMT3
+Added: $HOMT3EXCHANGE - CBOE
+Added: $HOMT3EXECFIRM - 235
+Added: $HOMT4 - HXMT4
+Added: $HOMT4EXCHANGE - CBOE
+Added: $HOMT4EXECFIRM - 235
+Added: $HOMT5 - HXMT5
+Added: $HOMT5EXCHANGE - CBOE
+Added: $HOMT5EXECFIRM - 235
+Added: $HOMT6 - HXMT6
+Added: $HOMT6EXCHANGE - CBOE
+Added: $HOMT6EXECFIRM - 235
+Added: $HOMT7 - HXMT7
+Added: $HOMT7EXCHANGE - CBOE
+Added: $HOMT7EXECFIRM - 235
+Added: $HOMT8 - HXMT8
+Added: $HOMT8EXCHANGE - CBOE
+Added: $HOMT8EXECFIRM - 235
+**** Overriding Property ********************************:Help Desk OMTs with ********************************:Crowd  OMTs
+Added: ******************************** - Crowd  OMTs
+Added: $COMT1 - CXMT1
+Added: $COMT1EXCHANGE - CBOE
+Added: $COMT1EXECFIRM - 235
+Added: $COMT2 - CXMT2
+Added: $COMT2EXCHANGE - CBOE
+Added: $COMT2EXECFIRM - 235
+Added: $COMT3 - CXMT3
+Added: $COMT3EXCHANGE - CBOE
+Added: $COMT3EXECFIRM - 235
+Added: $COMT4 - CXMT4
+Added: $COMT4EXCHANGE - CBOE
+Added: $COMT4EXECFIRM - 235
+**** Overriding Property ********************************:Crowd  OMTs with ********************************:PAR Configuration
+Added: ******************************** - PAR Configuration
+Added: $PARADAPTER_PWD - pas0a
+Added: $PAR1 - ABC
+Added: $PAR_PWD1 - CBOE
+Added: $PAR_FIRM1 - 015
+Added: $WORKSTATION1 - W109
+Added: $PAR2 - JS
+Added: $PAR_PWD2 - SUPER
+Added: $WORKSTATION2 - W034
+Added: $PAR3 - MRN
+Added: $PAR_PWD3 - CBOE
+Added: $WORKSTATION3 - W035
+Added: $PAR4 - AAM
+Added: $PAR_PWD4 - CBOE
+Added: $WORKSTATION4 - W036
+Added: $PAR5 - ACL
+Added: $PAR_PWD5 - CBOE
+Added: $WORKSTATION5 - W905
+Added: $PAR6 - ALO
+Added: $PAR_PWD6 - CBOE
+Added: $WORKSTATION6 - W906
+Added: $PAR7 - XYZ
+Added: $PAR_PWD7 - CBOE
+Added: $WORKSTATION7 - W907
+Added: $PAR8 - FCM
+Added: $PAR_PWD8 - CBOE
+Added: $WORKSTATION8 - W908
+Added: $PARLOCATION - SVR8:ABC:W904
+Added: $PARIP - pds15a
+Added: $PARPORT - 7676
+Added: $PARCONN1 - CONN1
+Added: $PARCONN2 - CONN2
+Added: $PARCONN3 - CONN3
+Added: $PARCONN4 - CONN4
+Added: $PARTIMEOUT - 40
+Added: $PAR - PAR
+Added: $CROWD - CROWD
+Added: $PARWORKSTATION - A
+Added: $PARWORKSTATION1 - Y
+Added: $PARWORKSTATION2 - Z
+Added: $PARWORKSTATION3 - XYZ
+Added: $PARWORKSTATION4 - P
+Added: $PARWORKSTATION5 - U
+Added: $PTSIP - dev20pas
+Added: $PTSPORT - 31730
+Added: $PTSFIRM - 235
+**** Overriding Property ********************************:PAR Configuration with ********************************:Sounds
+Added: ******************************** - Sounds
+Added: $CRASHSOUND - crash.wav
+Added: $ERRORSOUND - ohno.wav
+Added: $POPFILESOUND - clang.wav
+Added: $PROPERTYERRORSOUND - compute.wav
+Added: $SUCCESSSOUND - excellent.wav
+Added: $TERMINATESOUND - doh.wav
+Added: $WARNINGSOUND - warning.wav
+**** Overriding Property ********************************:Sounds with ********************************:Linkage
+Added: ******************************** - Linkage
+Added: $TRADESERVER - test14BC04x1HybridTradeServer1
+Added: $LINKAGECONSUMER - itgatgtest5consumer
+Added: $LINKAGESERVER - //dev14lc/test14/ITGLinkageClient
+Added: $LINKAGETIMEOUT - 40
+Added: $LINKAGEUSER - ABC
+Added: $LINKAGEROUTERVENDORNAME - CITI
+Added: $BOOTHWORKSTATION - 0
+Added: $BOOTHWORKSTATION1 - 1
+Added: $BOOTHWORKSTATION2 - 2
+Added: $BOOTHWORKSTATION9 - 9
+Added: $ALTERNATEOMTWORKSTATION - HD072
+Added: $ALTERNATPARWORKSTATION - W111
+Added: $CORRFIRM1 - ABC
+Added: $MMHHALIAS - SNEZNCC7
+Added: $MMHHTIMEOUT - 20
+Added: $MMHHWAIT - 10
+Added: $UDPTIMEOUT - 30
+Added: $MM3BROKER - BBB
+Added: $MM3FIRM - 015
+Added: $MMHHBROKER1 - AUZ
+Added: $BROKER1FIRM - 391
+Added: $BROKER1EXG - CBOE
+Added: $MMHHBROKER2 - AUE
+Added: $BROKER2FIRM - 551
+Added: $BROKER2EXG - CBOE
+Added: $UDPPORT - 15003
+Added: $MMHHIP1 - pds25a
+Added: $MMHHPORT1 - 13000
+Added: $TEMPCLASS - 11
+Added: $USEMDCAS - FALSE
+Added: $INVALIDEXCHANGE - BOBOB
+Added: $INVALIDACCOUNT - ABCDEFGHIJKLMNOPQRSTU
+Added: $INVALIDEXECFIRM - 111
+**** Overriding Property $PRODCALLPUT:PCP with $PRODCALLPUT:CPCP
+Added: $PRODCALLPUT - CPCP
+Added: $RESETCOUNTERORDER - order
+Added: $RESETCOUNTERCANCEL - cancel
+Added: $HDMAILSENDER - CBOEDirect
+Added: $HDMAILSUBJECT - Reject Order Too Many Routes
+Added: $HDMAILSUBCANCELREPLACEREJECT - Reject Cancel Replace Too Many Routes
+Added: $ALTERNATEWORKSTATION - W999
+Added: $ALLWORKSTATION - All
+**** Overriding Property $INVALIDDIRECTROUTE:1 with $INVALIDDIRECTROUTE:01
+Added: $INVALIDDIRECTROUTE - 01
+**** Overriding Property $INVALIDROUTE:W90 with $INVALIDROUTE:W90
+Added: $INVALIDROUTE - W90
+Added: $FIELD2 - remainingQty
+Added: $CORRFIRM2 - AAA
+**** Overriding Property $MM1CORRFIRM:ABC with $MM1CORRFIRM:ABC
+Added: $MM1CORRFIRM - ABC
+Added: $BOOTHWORKSTATION3 - 3
+**** Overriding Property $PARWORKSTATION:A with $PARWORKSTATION:A
+Added: $PARWORKSTATION - A
+**** Overriding Property $PARWORKSTATION1:Y with $PARWORKSTATION1:Y
+Added: $PARWORKSTATION1 - Y
+**** Overriding Property $PARWORKSTATION2:Z with $PARWORKSTATION2:Z
+Added: $PARWORKSTATION2 - Z
+**** Overriding Property $PARWORKSTATION3:XYZ with $PARWORKSTATION3:X
+Added: $PARWORKSTATION3 - X
+**** Overriding Property $PARWORKSTATION4:P with $PARWORKSTATION4:P
+Added: $PARWORKSTATION4 - P
+**** Overriding Property $PARWORKSTATION5:U with $PARWORKSTATION5:U
+Added: $PARWORKSTATION5 - U
+Added: $PARWORKSTATION6 - Y
+Added: $OSIENABLE - TRUE
+Added: $EXPANDEDORDERSIZEENABLE - TRUE
+Added: $BDX - atg5bdxmda
+Added: $BDXHOSTNAME - atg5bdx
+Added: $BDXUSERANDPASS - mda
+Added: $STRATEGYVALIDATION - FALSE
+Test Client Starting
+API TEST CLIENT: Executing from JAR file: C:\CFLEX\APIClient.jar)
+API TEST CLIENT: Build Date: Thu Apr 07 16:15:36 CDT 2011
+Initializing ORB with OrbName: SUPPORT-APITESTCLIENT_8160_HD12 and PortNum: 8160
+Apr 8, 2011 3:03:50 AM  
+INFO: Server Grizzly Controller is using DirectThread ExecutorService with 64 threads
+Apr 8, 2011 3:03:50 AM  
+INFO: IIOPTransport: Starting grizzly server controller.
+Apr 8, 2011 3:03:50 AM  
+INFO: IIOPTransport: Grizzly server controller startup finished, ThreadPool(IIOPTransportServerThreadPool).
+Apr 8, 2011 3:03:50 AM  
+INFO: Client Grizzly Controller is using DirectThread ExecutorService with 64 threads
+Apr 8, 2011 3:03:50 AM  
+INFO: IIOPTransport: Starting grizzly client controller.
+Apr 8, 2011 3:03:50 AM  
+INFO: IIOPTransport: Grizzly client controller startup finished, ThreadPool(IIOPTransportClientThreadPool).
+Apr 8, 2011 3:03:50 AM  
+INFO: IIOPTransport.<init>: serverHost(XPVDEV-CORP-21), serverPort(0), altHost(), altPort(0).
+WARNING: Options file <cboe.ssconfig.cm> not found.
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPTransportHandler.initServerSide: No client_keep_alive_timeout value specified. Using default(0.0).
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPTransportHandler.initServerSide: No client_read_timeout value specified. Using default(30.0).
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPTransportHandler.initServerSide: No client_write_timeout value specified. Using default(30.0).
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPTransportHandler.init: uniqueName(/SUPPORT-APITESTCLIENT_8160_HD12), globalConnKeepAliveTimeout(0.0), globalConnReadTimeout(30.0), globalConnWriteTimeout(30.0), grepForKeepAlives().
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPTransportHandler.initServerSide: connectStr(tcp:_node:8160), numListenThreads(3).
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPAccepterThread(Thread[TIOPListenThread0,5,main]): running.
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPAccepterThread(Thread[TIOPListenThread1,5,main]): running.
+Apr 8, 2011 3:03:50 AM  
+INFO: TIOPAccepterThread(Thread[TIOPListenThread2,5,main]): running.
+Apr 8, 2011 3:03:50 AM  
+INFO: TAPoolPerPOA: created thread pool with size(5) using queue(UnboundedPOAQueue(RootPOA)), prestartingThreads(true), for POA(RootPOA).
+Apr 8, 2011 3:03:50 AM  
+INFO: TAPoolPerPOA: created thread pool with size(5) using queue(UnboundedPOAQueue(RootPOA:CommandConsole)), prestartingThreads(true), for POA(RootPOA:CommandConsole).
+Using script file TestEvents.csv
+ Begin: CFLEX-Entitlements Test Plan (Iteration 1) Part1 WR:6708
+ End.
+1
+ Begin: 2011-04-08 03:03:50.631
+ End: 
+SALoginAtomCMIImpl Begin: SALoginAtomCMIImpl - HD12
+The client logging properties file name specified as SystemAdminServer.logServiceFileName= , was omitted.
+Will assume to use defaults.
+high systemAlarm 2011/4/8 3:03:50.74 SBTGUI SUPPORT-APITESTCLIENT_8160_HD12  "The logging component name specified as LogServiceConsoleCaptureComponent= , is invalid. Will not capture console." 0 
+Loading property file C:\CFLEX\SA.properties
+Changing all values of <prefix> in properties to: test30
+Beginning initialization of core services.
+Starting log service com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl
+Message: Log Service initialized.
+Message: No commandCallbackServiceImpl property specified.
+Message: Starting OrbService : com.cboe.infrastructureServices.orbService.OrbServicePOAImpl
+Message: Initializing the ORBInfra.ORB.Orb instance.
+Message: Creating RootPOA instances.
+Apr 8, 2011 3:03:50 AM  
+INFO: TAPoolPerPOA: created thread pool with size(5) using queue(UnboundedPOAQueue(RootPOA:AMIHandlerPOA)), prestartingThreads(true), for POA(RootPOA:AMIHandlerPOA).
+Message: Creating configured POA instances.
+Message: Orb Service initialized.
+Message: Starting Event Service : com.cboe.infrastructureServices.eventService.EventServiceNullImpl
+Message: Event Service initialized.
+Message: Starting Trader Service : com.cboe.infrastructureServices.traderService.TraderServiceImpl
+Apr 8, 2011 3:03:51 AM  
+INFO: IIOPClientConnectionPool.<cinit>: grepForConnectionPools(null).
+Apr 8, 2011 3:03:51 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30gc2a:18126) using pooledConnName(dev30gc2a:18126:0).
+Apr 8, 2011 3:03:51 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30gc2a:18126) using pooledConnName(dev30gc2a:18126:0).
+Apr 8, 2011 3:03:51 AM  
+INFO: SocketProxy.connectSocket: Connected socket(Socket[addr=dev30gc2a/10.137.244.198,port=18126,localport=2114]), orbName(test30TraderServiceA), storedConnectedID(1), tcpNoDelay(true), sendBufferSize(65536), receiveBufferSize(65536).
+Message: Trader Service initialized.
+Message: Using Security Service com.cboe.infrastructureServices.securityService.SecurityServiceImpl
+Message: 	Security Service com.cboe.infrastructureServices.securityService.SecurityServiceImpl@1f08ed8
+Message: Security Service initialized.
+Message: No adminServiceImpl property specified.
+Message: Starting PersistenceService : com.cboe.infrastructureServices.persistenceService.PersistenceServiceNullImpl
+Message: Persistence Service initialized.
+Message: Starting InstrumentationService : com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceNullImpl
+Message: Instrumentation Service initialized.
+Message: No timerServiceImpl property specified. Using default service.
+Message: Timer Service initialized.
+Message: Starting SessionManagementService : com.cboe.infrastructureServices.sessionManagementService.SessionManagementServiceNullImpl
+Message: SessionManagement Service initialized.
+Message: No calendarServiceImpl property specified. Using default service.
+Message: Calendar Service indicated a failure to initialize.
+Message: Starting uuidService : com.cboe.infrastructureServices.uuidService.IdServiceSimpleImpl
+Message: UUID Service initialized.
+Message: No jcacheServiceImpl property specified. Using default service.
+Message: Cache Service initialized.
+Message: No lifeLineServiceImpl property specified. Service will not be initialized.
+Message: No processWatcherServiceImpl property specified. Service will not be initialized.
+Message: Completed the initialization of core services.
+Message: Status of FF is: Initializing
+Message: FoundationFramework starting transition to slave.
+Message: Status of FF is: Slave
+Message: FoundationFramework goSlave completed.
+Message: Using standard FrameworkSetup to build Homes and Containers
+Message: No listOfContainers. Trying the initialize/next pattern.
+Message: ProcessDescriptor:Initial Container Name:LocalContainer
+Message: Creating container descriptor: LocalContainer
+Message: Creating home descriptor: UserAccessProxy
+Message: Home descriptor UserAccessProxy has no logServiceComponent.
+Message: Building container LocalContainer
+Message: Defining home SystemAdminUserAccessHome
+Message: All the homes have been defined and initialized.
+Message: Providing command callback control to BOHome SystemAdminServer.LocalContainer.SystemAdminUserAccessHome
+Message: FoundationFramework starting transition to master.
+Message: PersistenceService to master.
+Message: IdService to master.
+Message: FoundationFramework goMaster completed.
+Message: About to auto start the foundation framework.
+Message: Starting BOHome SystemAdminUserAccessHome
+Message: BOHome SystemAdminUserAccessHome.goSlave()
+Message: Completed startup of FoundationFramework.
+Message: BOHome SystemAdminUserAccessHome goMaster(false)
+Message: BOHome SystemAdminUserAccessHome goMaster(false) completed
+Message: Notification of all of the homes to goMaster is complete.
+Apr 8, 2011 3:03:51 AM  
+INFO: TAPoolPerPOA: created thread pool with size(5) using queue(UnboundedPOAQueue(RootPOA:UserPOA)), prestartingThreads(true), for POA(RootPOA:UserPOA).
+Message: OrbService to master.
+Message: Status of FF in init is > Master
+null
+java.lang.NullPointerException
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.getProcessName(FoundationFramework.java:654)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.registerWithProcessWatcher(FoundationFramework.java:617)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.init(FoundationFramework.java:561)
+	at com.cboe.infrastructureServices.foundationFramework.FoundationFramework.initialize(FoundationFramework.java:480)
+	at com.cboe.itg.apiclient.managers.ConnectionManager.setupSA(ConnectionManager.java:179)
+	at com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl.execute(SALoginAtomCMIImpl.java:93)
+	at com.cboe.itg.apiclient.test.TestClass.summarizeScript(TestClass.java:169)
+	at com.cboe.itg.apiclient.test.TestClass.main(TestClass.java:68)
+TestCASCallback::logoffListener constructor
+Apr 8, 2011 3:03:51 AM  
+INFO: DelegateImpl.isRttCoEnabled: RTT-ClientOnly enabled with timeout(30000), for IOR(
+BEGIN IOR TO STRING (Type Id = IDL:org/omg/securityLevel2/PrincipalAuthenticator:1.0)
+LocalProfile ------------------------------------------begin--
+tag: [281677824]
+host:[dev30gc2a]
+identity:[-2252773]
+LocalProfile ------------------------------------------end----
+
+IIOP Profile ------------------------------------------begin--
+Version: [1.2]
+Host:[dev30gc2a] Port:[18130]
+ObjectKey: 000000010000001c536563757269747953657276657241757468656e74696361746f7200f62ccd610000001b536563757269747953657276657241757468656e74696361746f720000000000
+--ORB Type Component(Id = 0)--
+          ORB Type = cb0e0001
+
+--Policies Component(Id = 2)--
+          BindOrderPolicy----begin
+OrderValue: BindType:[SWUL]
+IOR of Primary Locator: 
+BEGIN IOR TO STRING (Type Id = IDL:com/cboe/ImplementationRepository/Locator:1.0)
+LocalProfile ------------------------------------------begin--
+tag: [281677824]
+host:[dev30gc2a]
+identity:[-1325790153]
+LocalProfile ------------------------------------------end----
+
+IIOP Profile ------------------------------------------begin--
+Version: [1.2]
+Host:[dev30gc2a] Port:[18128]
+ObjectKey: 000000010000000b4c6f6361746f72504f4100b5fb47f3000000074c6f6361746f720000000000
+--ORB Type Component(Id = 0)--
+          ORB Type = cb0e0001
+
+--Policies Component(Id = 2)--
+          
+IIOP Profile ------------------------------------------end----
+
+TIOP Profile (id =cb0e0010)-----------------begin--
+Version: [1.0]
+Host:[dev30gc2a] Port:[18028]
+ObjectKey: 000000010000000b4c6f6361746f72504f4100b5fb47f3000000074c6f6361746f720000000000
+NumberOfTaggedComponents not including object key: [5]
+--Alternate Target Component (id=cb0e0014)--
+          Host:[]
+          Port:[4000]
+          OrbName:[]
+--Alternate Address Component (id = cb0e0011)--
+          Host:[]
+          Port:[4000]
+--Locator Subjects Component (id = cb0e0012)--
+          LocatorAdvertisement:[DeadLetterBox]
+          LocatorReply:[DeadLetterBox]
+--Unique Name Component (id = cb0e0013)--
+          UniqueName: [test30LocatorServerA]
+--Policy Value Component (id = 2)--
+          <empty component>
+TIOP Profile ------------------------------------------end----
+Multiple Component Profile (Id = 1)----------------------begin---
+--Orb Name Component (id = cb0e0013)--
+          OrbName: [test30LocatorServerA]
+Multiple Component Profile-----------------------------------------end----
+END IOR TO STRING
+BindOrderPolicy----end
+
+IIOP Profile ------------------------------------------end----
+
+TIOP Profile (id =cb0e0010)-----------------begin--
+Version: [1.0]
+Host:[dev30gc2a] Port:[18030]
+ObjectKey: 000000010000001c536563757269747953657276657241757468656e74696361746f7200f62ccd610000001b536563757269747953657276657241757468656e74696361746f720000000000
+NumberOfTaggedComponents not including object key: [5]
+--Alternate Target Component (id=cb0e0014)--
+          Host:[]
+          Port:[18030]
+          OrbName:[test30SecurityServiceB]
+--Alternate Address Component (id = cb0e0011)--
+          Host:[]
+          Port:[4000]
+--Locator Subjects Component (id = cb0e0012)--
+          LocatorAdvertisement:[DeadLetterBox]
+          LocatorReply:[DeadLetterBox]
+--Unique Name Component (id = cb0e0013)--
+          UniqueName: [test30SecurityServiceA]
+--Policy Value Component (id = 2)--
+          BindOrderPolicy----begin
+OrderValue: BindType:[SWUL]
+IOR of Primary Locator: 
+BEGIN IOR TO STRING (Type Id = IDL:com/cboe/ImplementationRepository/Locator:1.0)
+LocalProfile ------------------------------------------begin--
+tag: [281677824]
+host:[dev30gc2a]
+identity:[-1325790153]
+LocalProfile ------------------------------------------end----
+
+IIOP Profile ------------------------------------------begin--
+Version: [1.2]
+Host:[dev30gc2a] Port:[18128]
+ObjectKey: 000000010000000b4c6f6361746f72504f4100b5fb47f3000000074c6f6361746f720000000000
+--ORB Type Component(Id = 0)--
+          ORB Type = cb0e0001
+
+--Policies Component(Id = 2)--
+          
+IIOP Profile ------------------------------------------end----
+
+TIOP Profile (id =cb0e0010)-----------------begin--
+Version: [1.0]
+Host:[dev30gc2a] Port:[18028]
+ObjectKey: 000000010000000b4c6f6361746f72504f4100b5fb47f3000000074c6f6361746f720000000000
+NumberOfTaggedComponents not including object key: [5]
+--Alternate Target Component (id=cb0e0014)--
+          Host:[]
+          Port:[4000]
+          OrbName:[]
+--Alternate Address Component (id = cb0e0011)--
+          Host:[]
+          Port:[4000]
+--Locator Subjects Component (id = cb0e0012)--
+          LocatorAdvertisement:[DeadLetterBox]
+          LocatorReply:[DeadLetterBox]
+--Unique Name Component (id = cb0e0013)--
+          UniqueName: [test30LocatorServerA]
+--Policy Value Component (id = 2)--
+          <empty component>
+TIOP Profile ------------------------------------------end----
+Multiple Component Profile (Id = 1)----------------------begin---
+--Orb Name Component (id = cb0e0013)--
+          OrbName: [test30LocatorServerA]
+Multiple Component Profile-----------------------------------------end----
+END IOR TO STRING
+BindOrderPolicy----end
+
+          InitialReferencePOAImpl(initref_value = true)
+
+TIOP Profile ------------------------------------------end----
+Multiple Component Profile (Id = 1)----------------------begin---
+--Orb Name Component (id = cb0e0013)--
+          OrbName: [test30SecurityServiceA]
+Multiple Component Profile-----------------------------------------end----
+END IOR TO STRING).
+Apr 8, 2011 3:03:51 AM  
+INFO: IIOPClientConnectionPool.<cinit>: grepForConnectionPools(null).
+Apr 8, 2011 3:03:51 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30gc2a:18130) using pooledConnName(dev30gc2a:18130:0).
+Apr 8, 2011 3:03:51 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30gc2a:18130) using pooledConnName(dev30gc2a:18130:0).
+Apr 8, 2011 3:03:51 AM  
+INFO: SocketProxy.connectSocket: Connected socket(Socket[addr=dev30gc2a/10.137.244.198,port=18130,localport=2115]), orbName(test30SecurityServiceA), storedConnectedID(1), tcpNoDelay(true), sendBufferSize(65536), receiveBufferSize(65536).
+Message: SecurityService >> Authentication (pwd) is successful: HD12
+com.cboe.util.ThreadCommandQueue@15fb38threadPool nameclass com.cboe.util.event.EventChannelAdapter-WorkerThread
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIUserSessionAdmin_tie@1d9e2c7 to POA: UserPOA
+Message: SystemAdminUserAccessHome>>> Finding remote interface....
+Message: Value of ApplicationDebugOn = false
+Apr 8, 2011 3:03:51 AM  
+INFO: TIOPTransportHandler.resolveSender: Set keep-alive on connection(test30sacas01v2dev30sa,tcp:dev30sa:8204), matchName(test30sacas01v2dev30sa).  keepAliveTimeout(0.0), readTimeout(30.0), writeTimeout(30.0).
+Apr 8, 2011 3:03:51 AM  
+INFO: TIOPReceiverThread: running for conn(test30sacas01v2dev30sa), target(/test30sacas01v2dev30sa).
+Apr 8, 2011 3:03:51 AM  
+WARNING: TIOPAccepterThread(Thread[TIOPListenThread0,5,main]): Exception during accept.  TalarianTransportException::com.smartsockets.TipcIOException: reading CONN_INIT struct: connection dropped.
+Apr 8, 2011 3:03:51 AM  
+INFO: TIOPReceiverThread: running for conn(/test30sacas01v2dev30sa), target(/test30sacas01v2dev30sa).
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIProductStatusConsumer_tie@fa5ff3 to POA: UserPOA
+Message: Connecting com.cboe.delegates.internalCallback.AdminProductStatusConsumerDelegate@16f70a4 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIClassStatusConsumer_tie@36d047 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMITradingSessionStatusConsumer_tie@12d8ecd to POA: UserPOA
+Message: Connecting com.cboe.delegates.internalCallback.CacheUpdateConsumerDelegate@1c67248 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIStrategyStatusConsumer_tie@29ea31 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIRFQConsumer_tie@1c63e8c to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIQuoteStatusConsumer_tie@cef6f1 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIExpectedOpeningPriceConsumer_tie@1758cd1 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIOrderStatusConsumer_tie@40ece0 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMIStrategyStatusConsumer_tie@16f5261 to POA: UserPOA
+Message: Connecting com.cboe.idl.cmiCallback.POA_CMITickerConsumer_tie@d0d12e to POA: UserPOA
+Message: Connecting com.cboe.delegates.internalCallback.TradingSessionEventStateConsumerDelegate@1a9876e to POA: UserPOA
+Message: Connecting com.cboe.idl.consumers.POA_PropertyConsumer_tie@1d709a5 to POA: UserPOA
+Message: Connecting com.cboe.delegates.internalCallback.AlertConsumerDelegate@1e16483 to POA: UserPOA
+Message: Connecting com.cboe.idl.internalConsumers.POA_CalendarUpdateConsumer_tie@ec436 to POA: UserPOA
+Message: Connecting com.cboe.consumers.eventChannel.IntermarketAdminMessageEventConsumerImpl@79801c to POA: UserPOA
+Message: Connecting com.cboe.delegates.internalCallback.GroupElementConsumerDelegate@14b9a74 to POA: UserPOA
+Message: Connecting com.cboe.delegates.internalCallback.SystemControlConsumerDelegate@e8606c to POA: UserPOA
+Message: Connecting com.cboe.consumers.internalPresentation.LinkageStateConsumerImpl@4788d5 to POA: UserPOA
+Message: PriceFactory: Using priceCache = false
+SA User Subscriptions successfully completed.
+com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALoginAtomCMIImpl Execution: Success.
+SALoginAtomCMIImpl End.
+ Begin Comment:  Test Cases:8
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Test Environment Setup
+TestEvents.csv
+ End Comment.
+Skipping Unknown Event: nSELECTCLASSESANDPRODUCTS
+Skipping Unknown Event: nSELECTCLASSESANDPRODUCTS
+Skipping Unknown Event: nVERIFYPRODUCTDESCRIPTION
+Skipping Unknown Event: nVERIFYPRODUCTDESCRIPTION
+SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+Accessing ProductQueryService via GC(test30Global)
+Apr 8, 2011 3:03:56 AM  
+INFO: IIOPClientConnectionPool.<cinit>: grepForConnectionPools(null).
+Apr 8, 2011 3:03:56 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30gc1a:18334) using pooledConnName(dev30gc1a:18334:0).
+Apr 8, 2011 3:03:56 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30gc1a:18334) using pooledConnName(dev30gc1a:18334:0).
+Apr 8, 2011 3:03:56 AM  
+INFO: SocketProxy.connectSocket: Connected socket(Socket[addr=dev30gc1a/10.137.244.196,port=18334,localport=2118]), orbName(test30GlobalGlobalServerdev30gc1a), storedConnectedID(1), tcpNoDelay(true), sendBufferSize(65536), receiveBufferSize(65536).
+Accessing ProductConfigurationService via GC(test30Global)
+Found class/product 534780780/534780782 on test30BC04x1EquityTradeServer1
+Apr 8, 2011 3:03:56 AM  
+INFO: IIOPClientConnectionPool.<cinit>: grepForConnectionPools(null).
+Apr 8, 2011 3:03:56 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30bc4a:18306) using pooledConnName(dev30bc4a:18306:0).
+Apr 8, 2011 3:03:56 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30bc4a:18306) using pooledConnName(dev30bc4a:18306:0).
+Apr 8, 2011 3:03:56 AM  
+INFO: SocketProxy.connectSocket: Connected socket(Socket[addr=dev30bc4a/10.137.244.243,port=18306,localport=2119]), orbName(test30BC04x1EquityTradeServer1dev30bc4a), storedConnectedID(1), tcpNoDelay(true), sendBufferSize(65536), receiveBufferSize(65536).
+Skipping: AAU 0/0 0.0  , Type: 3
+534780782 0/0 0.0  
+ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+Logging Trading Properties...
+Found 117 Trading Properties
+Found previous Trading Property values file 'TradingPropertyGroup.ser' dated 2011-04-08 02:56:52.579
+Unserializing previous Trading Property values
+Found 117 previous Trading Property values
+Comparing current trading property values to previous values
+Re-writing 'TradingPropertyGroup.ser' with the current TradingPropertyGroup values.
+117 Trading Property values written to 'TradingPropertyGroup.ser'
+No Trading Property Differences found between today and the values on 2011-04-08 02:56:52.579
+Trading Properties Logged: APIClient_TrdProp
+com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+ReportTradingPropertiesAtomCMIImpl End.
+Added: $UNDERLYINGCLASS11 - 0
+Added: $UNDERLYINGCLASS11PRODUCT1 - 0
+Added: $UNDERLYINGCLASS11PRODUCT1TYPE - 0
+Added: $UNDERLYINGRPTCLASS11 - 0
+Added: $UNDERLYINGSESSIONCLASS11 - Stock_MD
+Added: $STRATEGYCLASS11 - 0
+Added: $CLASS11 - 534780780
+Added: $CLASS11SYM - AAU
+Added: $CLASS11TYPE - 3
+$CLASS11: AAU
+Added: $CLASS11BC - UNSPECIFIED
+	Looking for PCS for class 534780780
+	Found it. Now looking for the BC that class 534780780 resides on.
+	Found it: test30BC04x1EquityTradeServer1. 
+**** Overriding Property $TRADESERVER:test14BC04x1HybridTradeServer1 with $TRADESERVER:test30BC04x1EquityTradeServer1
+Added: $TRADESERVER - test30BC04x1EquityTradeServer1
+Added: $CLASS11PRODUCT1 - 534780782
+Added: $CLASS11PRODUCT1RPTCLASS - 534780781
+Added: 534780780 - AAU
+Added: $CLASS11PRODUCT1RPTCLASSSYM - AAU
+Added: $CLASS11PRODUCT1TYPE - 3
+Added: $CLASS11PRODUCT1SYM - AAU
+Added: $CLASS11PRODUCT1EXERCISEPRICE - 0.0
+Added: $CLASS11PRODUCT1EXPIRYDATE - 0/0/0
+Added: $CLASS11PRODUCT1OPTIONTYPE -  
+Using Product Details for OSI
+$CLASS11=534780780 (AAU, 3) : [$CLASS11PRODUCT1=534780782 (AAU 0/0 0.0  ); ] 
+TradeServerProcessName :test30BC04x1EquityTradeServer1
+Conatins or notfalse
+>>>>hashedCorrFirmAEA
+Added: $UNIQUE_CORR_FIRM - AEA
+com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+SelectClassesAndProductsAtomCMIImpl End.
+Skipping Unknown Event: VERIFYPRODUCTDESCRIPTION
+Skipping Unknown Event: VERIFYPRODUCTDESCRIPTION
+SelectClassesAndProductsAtomCMIImpl Begin: SelectClassesAndProductsAtomCMIImpl - HD12
+Found class/product 308347260/308347262 on test30BC04x1EquityTradeServer1
+Skipping: ADRE 0/0 0.0  , Type: 5
+308347262 0/0 0.0  
+ReportTradingPropertiesAtomCMIImpl Begin: ReportTradingPropertiesAtomCMIImpl - HD12
+Logging Trading Properties...
+Found 117 Trading Properties
+Found previous Trading Property values file 'TradingPropertyGroup.ser' dated 2011-04-08 03:03:58.069
+Unserializing previous Trading Property values
+Found 117 previous Trading Property values
+Comparing current trading property values to previous values
+Re-writing 'TradingPropertyGroup.ser' with the current TradingPropertyGroup values.
+117 Trading Property values written to 'TradingPropertyGroup.ser'
+No Trading Property Differences found between today and the values on 2011-04-08 03:03:58.069
+Trading Properties Logged: APIClient_TrdProp
+com.cboe.itg.apiclient.atoms.tradingproperties.impls.cmi.ReportTradingPropertiesAtomCMIImpl Execution: Success.
+ReportTradingPropertiesAtomCMIImpl End.
+Added: $UNDERLYINGCLASS21 - 0
+Added: $UNDERLYINGCLASS21PRODUCT1 - 0
+Added: $UNDERLYINGCLASS21PRODUCT1TYPE - 0
+Added: $UNDERLYINGRPTCLASS21 - 0
+Added: $UNDERLYINGSESSIONCLASS21 - Stock_MD
+Added: $STRATEGYCLASS21 - 0
+Added: $CLASS21 - 308347260
+Added: $CLASS21SYM - ADRE
+Added: $CLASS21TYPE - 5
+$CLASS21: ADRE
+Added: $CLASS21BC - UNSPECIFIED
+	Looking for PCS for class 308347260
+	Found it. Now looking for the BC that class 308347260 resides on.
+	Found it: test30BC04x1EquityTradeServer1. 
+**** Overriding Property $TRADESERVER:test30BC04x1EquityTradeServer1 with $TRADESERVER:test30BC04x1EquityTradeServer1
+Added: $TRADESERVER - test30BC04x1EquityTradeServer1
+Added: $CLASS21PRODUCT1 - 308347262
+Added: $CLASS21PRODUCT1RPTCLASS - 308347261
+Added: 308347260 - ADRE
+Added: $CLASS21PRODUCT1RPTCLASSSYM - ADRE
+Added: $CLASS21PRODUCT1TYPE - 5
+Added: $CLASS21PRODUCT1SYM - ADRE
+Added: $CLASS21PRODUCT1EXERCISEPRICE - 0.0
+Added: $CLASS21PRODUCT1EXPIRYDATE - 0/0/0
+Added: $CLASS21PRODUCT1OPTIONTYPE -  
+Using Product Details for OSI
+$CLASS21=308347260 (ADRE, 5) : [$CLASS21PRODUCT1=308347262 (ADRE 0/0 0.0  ); ] 
+TradeServerProcessName :test30BC04x1EquityTradeServer1
+Conatins or nottrue
+Can't generate Corr Firm
+test30BC04x1EquityTradeServer1
+>>>>hashedCorrFirmAEA
+**** Overriding Property $UNIQUE_CORR_FIRM:AEA with $UNIQUE_CORR_FIRM:AEA
+Added: $UNIQUE_CORR_FIRM - AEA
+com.cboe.itg.apiclient.atoms.classandproduct.impls.cmi.SelectClassesAndProductsAtomCMIImpl Execution: Success.
+SelectClassesAndProductsAtomCMIImpl End.
+Skipping Unknown Event: VERIFYPRODUCTDESCRIPTION
+Skipping Unknown Event: VERIFYPRODUCTDESCRIPTION
+Skipping Unknown Event: nVERIFYSESSIONSTATE
+Skipping Unknown Event: nVERIFYSESSIONSTATE
+VerifySessionStateAtomCMIImpl Begin: VerifySessionStateAtomCMIImpl - HD12
+Verifying Session State: HD12
+Session State Verified : HD12
+com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifySessionStateAtomCMIImpl Execution: Success.
+VerifySessionStateAtomCMIImpl End.
+ Begin Comment:  User Setup
+TestEvents.csv
+ End Comment.
+CreateUserAtomCMIImpl Begin: CreateUserAtomCMIImpl - HD12
+Re-Setting all data of pre-existing user: KK1
+2011-04-08 03:03:58.944 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:03:58.944 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:03:58.944 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+All data of pre-existing user: KK1 reset.
+Verifying Created User (KK1) : HD12
+Created User Verified : HD12
+Setting user KK1 password...
+User KK1 password set.
+Setting user KK1 enablements...
+2011-04-08 03:04:04.288 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:04.288 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:04.288 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+2011-04-08 03:04:04.834 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:04.834 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:04.881 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+User KK1 enablements set.
+Verifying User (SessionProfileUser) Create/Update Callback : HD12
+User (SessionProfileUser) Create/Update Callback Verified : HD12
+Verifying User (SessionProfileUserDefinition) Create/Update Callback : HD12
+User (SessionProfileUserDefinition) Create/Update Callback Verified: HD12
+com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl Execution: Success.
+CreateUserAtomCMIImpl End.
+VerifyUserExistenceAtomCMIImpl Begin: VerifyUserExistenceAtomCMIImpl - HD12
+Verifying User Existence: HD12
+User Existence Verified : HD12
+com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl Execution: Success.
+VerifyUserExistenceAtomCMIImpl End.
+CreateUserAtomCMIImpl Begin: CreateUserAtomCMIImpl - HD12
+Re-Setting all data of pre-existing user: KKK11
+2011-04-08 03:04:06.131 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:06.131 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:06.131 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+All data of pre-existing user: KKK11 reset.
+Verifying Created User (KKK11) : HD12
+Created User Verified : HD12
+Setting user KKK11 password...
+User KKK11 password set.
+Setting user KKK11 enablements...
+2011-04-08 03:04:06.209 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:06.209 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:06.225 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+2011-04-08 03:04:06.663 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:06.663 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:06.663 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+User KKK11 enablements set.
+Verifying User (SessionProfileUser) Create/Update Callback : HD12
+User (SessionProfileUser) Create/Update Callback Verified : HD12
+Verifying User (SessionProfileUserDefinition) Create/Update Callback : HD12
+User (SessionProfileUserDefinition) Create/Update Callback Verified: HD12
+com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.CreateUserAtomCMIImpl Execution: Success.
+CreateUserAtomCMIImpl End.
+VerifyUserExistenceAtomCMIImpl Begin: VerifyUserExistenceAtomCMIImpl - HD12
+Verifying User Existence: HD12
+User Existence Verified : HD12
+com.cboe.itg.apiclient.atoms.queries.impls.cmi.VerifyUserExistenceAtomCMIImpl Execution: Success.
+VerifyUserExistenceAtomCMIImpl End.
+TraderLoginAtomCMIImpl Begin: TraderLoginAtomCMIImpl - KK1
+Apr 8, 2011 3:04:07 AM  
+INFO: IIOPClientConnectionPool.<cinit>: grepForConnectionPools(null).
+Apr 8, 2011 3:04:07 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30cas:8102) using pooledConnName(dev30cas:8102:0).
+Apr 8, 2011 3:04:07 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30cas:8102) using pooledConnName(dev30cas:8102:0).
+Apr 8, 2011 3:04:07 AM  
+INFO: SocketProxy.connectSocket: Connected socket(Socket[addr=dev30cas/10.137.244.108,port=8102,localport=2121]), orbName(test30cas01v2dev30cas), storedConnectedID(1), tcpNoDelay(true), sendBufferSize(65536), receiveBufferSize(65536).
+Apr 8, 2011 3:04:07 AM  
+WARNING: TIOPAccepterThread(Thread[TIOPListenThread1,5,main]): Exception during accept.  TalarianTransportException::com.smartsockets.TipcIOException: reading CONN_INIT struct: connection dropped.
+Apr 8, 2011 3:04:07 AM  
+INFO: TIOPReceiverThread: running for conn(/test30cas01v2dev30cas), target(/test30cas01v2dev30cas).
+com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl Execution: Success.
+TraderLoginAtomCMIImpl End.
+TraderLoginAtomCMIImpl Begin: TraderLoginAtomCMIImpl - KKK11
+com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLoginAtomCMIImpl Execution: Success.
+TraderLoginAtomCMIImpl End.
+ Begin Comment:  Strategy Setup
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Trading Property Setup
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Routing Property Setup
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Firm Property Setup
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Pre-Test Settings
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Subscriptions
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Test Case 1:To verify that FLEX_MAIN session can be added at default level using Enablement tab
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Test Case 2:To verify that FLEX_MAIN session Invert Enablements functionality
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Test Case 3:To verify that FLEX_MAIN session Enable All functionality
+TestEvents.csv
+ End Comment.
+Property: $CLASS1 is not loaded and has no value. Check Property Files for Property: $CLASS1
+com.cboe.itg.apiclient.exceptions.CannotFindException: Element Not Found: com.cboe.itg.apiclient.managers.PropertyManager.getPropertyS(String):  : $CLASS1
+	at com.cboe.itg.apiclient.managers.PropertyManager.getPropertyI(PropertyManager.java:111)
+	at com.cboe.itg.apiclient.input.CSVUserMaintenanceEventProcessor.createSetUserEnablementsAtom(CSVUserMaintenanceEventProcessor.java:717)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.processEvent(ExternalLoaderCSVImpl.java:2557)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.loadNextEvent(ExternalLoaderCSVImpl.java:232)
+	at com.cboe.itg.apiclient.managers.InputManager.loadNextEvent(InputManager.java:64)
+	at com.cboe.itg.apiclient.test.TestClass.summarizeScript(TestClass.java:167)
+	at com.cboe.itg.apiclient.test.TestClass.main(TestClass.java:68)
+SetUserEnablementsAtomCMIImpl Begin: SetUserEnablementsAtomCMIImpl - HD12
+Setting user KK1 enablements...
+2011-04-08 03:04:16.428 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:16.428 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:16.428 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+User KK1 enablements set.
+com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl Execution: Success.
+SetUserEnablementsAtomCMIImpl End.
+Cannot find text associated with symbol 0
+Cannot find text associated with symbol 0
+ Begin Comment:  Test Case 4:To verify that FLEX_MAIN session Remove functionality
+TestEvents.csv
+ End Comment.
+Property: $CLASS1 is not loaded and has no value. Check Property Files for Property: $CLASS1
+com.cboe.itg.apiclient.exceptions.CannotFindException: Element Not Found: com.cboe.itg.apiclient.managers.PropertyManager.getPropertyS(String):  : $CLASS1
+	at com.cboe.itg.apiclient.managers.PropertyManager.getPropertyI(PropertyManager.java:111)
+	at com.cboe.itg.apiclient.input.CSVUserMaintenanceEventProcessor.createRemoveUserEnablementsAtom(CSVUserMaintenanceEventProcessor.java:812)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.processEvent(ExternalLoaderCSVImpl.java:3043)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.loadNextEvent(ExternalLoaderCSVImpl.java:232)
+	at com.cboe.itg.apiclient.managers.InputManager.loadNextEvent(InputManager.java:64)
+	at com.cboe.itg.apiclient.test.TestClass.summarizeScript(TestClass.java:167)
+	at com.cboe.itg.apiclient.test.TestClass.main(TestClass.java:68)
+RemoveUserEnablementsAtomCMIImpl Begin: RemoveUserEnablementsAtomCMIImpl - HD12
+Removing user KK1 enablements...
+2011-04-08 03:04:17.069 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:17.069 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:17.069 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+User KK1 enablements removed.
+com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.RemoveUserEnablementsAtomCMIImpl Execution: Success.
+RemoveUserEnablementsAtomCMIImpl End.
+Cannot find text associated with symbol 0
+Cannot find text associated with symbol 0
+ Begin Comment:  Test Case 5:To verify that FLEX_MAIN session Edit Preference functionality
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Test Case 6:To verify that FLEX_MAIN session enablement is supported for Market Maker user role
+TestEvents.csv
+ End Comment.
+Property: $CLASS1 is not loaded and has no value. Check Property Files for Property: $CLASS1
+com.cboe.itg.apiclient.exceptions.CannotFindException: Element Not Found: com.cboe.itg.apiclient.managers.PropertyManager.getPropertyS(String):  : $CLASS1
+	at com.cboe.itg.apiclient.managers.PropertyManager.getPropertyI(PropertyManager.java:111)
+	at com.cboe.itg.apiclient.input.CSVUserMaintenanceEventProcessor.createSetUserEnablementsAtom(CSVUserMaintenanceEventProcessor.java:717)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.processEvent(ExternalLoaderCSVImpl.java:2557)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.loadNextEvent(ExternalLoaderCSVImpl.java:232)
+	at com.cboe.itg.apiclient.managers.InputManager.loadNextEvent(InputManager.java:64)
+	at com.cboe.itg.apiclient.test.TestClass.summarizeScript(TestClass.java:167)
+	at com.cboe.itg.apiclient.test.TestClass.main(TestClass.java:68)
+SetUserEnablementsAtomCMIImpl Begin: SetUserEnablementsAtomCMIImpl - HD12
+Setting user KK1 enablements...
+2011-04-08 03:04:17.538 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User, Firm: CBOE/551
+2011-04-08 03:04:17.538 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KK1, User Acronym: CBOE/KK1, Role: M, Name: Automated API $MM1 User
+2011-04-08 03:04:17.538 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KK1
+User KK1 enablements set.
+com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl Execution: Success.
+SetUserEnablementsAtomCMIImpl End.
+Cannot find text associated with symbol 0
+Cannot find text associated with symbol 0
+ Begin Comment:  Test Case 7:To verify that FLEX_MAIN session enablement is supported for Broker user role
+TestEvents.csv
+ End Comment.
+Property: $CLASS1 is not loaded and has no value. Check Property Files for Property: $CLASS1
+com.cboe.itg.apiclient.exceptions.CannotFindException: Element Not Found: com.cboe.itg.apiclient.managers.PropertyManager.getPropertyS(String):  : $CLASS1
+	at com.cboe.itg.apiclient.managers.PropertyManager.getPropertyI(PropertyManager.java:111)
+	at com.cboe.itg.apiclient.input.CSVUserMaintenanceEventProcessor.createSetUserEnablementsAtom(CSVUserMaintenanceEventProcessor.java:717)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.processEvent(ExternalLoaderCSVImpl.java:2557)
+	at com.cboe.itg.apiclient.input.ExternalLoaderCSVImpl.loadNextEvent(ExternalLoaderCSVImpl.java:232)
+	at com.cboe.itg.apiclient.managers.InputManager.loadNextEvent(InputManager.java:64)
+	at com.cboe.itg.apiclient.test.TestClass.summarizeScript(TestClass.java:167)
+	at com.cboe.itg.apiclient.test.TestClass.main(TestClass.java:68)
+SetUserEnablementsAtomCMIImpl Begin: SetUserEnablementsAtomCMIImpl - HD12
+Setting user KKK11 enablements...
+2011-04-08 03:04:18.069 acceptSessionProfileUserUpdate(SessionProfileUserStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User, Firm: CBOE/235
+2011-04-08 03:04:18.069 acceptSessionProfileUserUpdate(SessionProfileUserDefinitionStruct)->  UserId: KKK11, User Acronym: CBOE/KKK11, Role: B, Name: Automated API $BD1 User
+2011-04-08 03:04:18.069 acceptSessionProfileUserUpdate(UserEnablementStruct)-> User Id: KKK11
+User KKK11 enablements set.
+com.cboe.itg.apiclient.atoms.usermaintenance.impls.cmi.SetUserEnablementsAtomCMIImpl Execution: Success.
+SetUserEnablementsAtomCMIImpl End.
+Cannot find text associated with symbol 0
+Cannot find text associated with symbol 0
+ Begin Comment:  Test Case 8:To verify that FLEX_MAIN session enablement is supported for HelpDesk user role
+TestEvents.csv
+ End Comment.
+ Begin Comment:  Test Case:Cleaning Up Task
+TestEvents.csv
+ End Comment.
+TraderLogoutAtomCMIImpl Begin: TraderLogoutAtomCMIImpl - KK1
+TraderUser Logged out: KK1
+com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl Execution: Success.
+TraderLogoutAtomCMIImpl End.
+TraderLogoutAtomCMIImpl Begin: TraderLogoutAtomCMIImpl - KKK11
+TraderUser Logged out: KKK11
+com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.TraderLogoutAtomCMIImpl Execution: Success.
+TraderLogoutAtomCMIImpl End.
+SALogoutAtomCMIImpl Begin: SALogoutAtomCMIImpl - HD12
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIExpectedOpeningPriceConsumer_tie@1758cd1 from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIOrderStatusConsumer_tie@40ece0 from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIClassStatusConsumer_tie@36d047 from POA: UserPOA
+Message: Disconnecting com.cboe.delegates.internalCallback.AdminProductStatusConsumerDelegate@16f70a4 from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIStrategyStatusConsumer_tie@16f5261 from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMITradingSessionStatusConsumer_tie@12d8ecd from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMITickerConsumer_tie@d0d12e from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIQuoteStatusConsumer_tie@cef6f1 from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIRFQConsumer_tie@1c63e8c from POA: UserPOA
+Message: Disconnecting com.cboe.idl.cmiCallback.POA_CMIUserSessionAdmin_tie@1d9e2c7 from POA: UserPOA
+Message: Disconnecting com.cboe.delegates.internalCallback.AlertConsumerDelegate@1e16483 from POA: UserPOA
+Message: Disconnecting com.cboe.consumers.internalPresentation.LinkageStateConsumerImpl@4788d5 from POA: UserPOA
+SAUser Logged out: HD12
+com.cboe.itg.apiclient.atoms.loginlogout.impls.cmi.SALogoutAtomCMIImpl Execution: Success.
+SALogoutAtomCMIImpl End.
+ Begin: 2011-04-08 03:04:18.678
+ End.
+Begin Canceling All Test User Orders...
+Begin Canceling All Test User Orders...
+Message: SecurityService >> Authentication (pwd) is successful: HD1
+Found class/product 534780780/534780782 on test30BC04x1EquityTradeServer1
+Apr 8, 2011 3:04:18 AM  
+INFO: IIOPClientConnectionPool.<cinit>: grepForConnectionPools(null).
+Apr 8, 2011 3:04:18 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30bc4a:18311) using pooledConnName(dev30bc4a:18311:0).
+Apr 8, 2011 3:04:18 AM  
+INFO: IIOPTransport.getConnectionName: For connection(dev30bc4a:18311) using pooledConnName(dev30bc4a:18311:0).
+Apr 8, 2011 3:04:18 AM  
+INFO: SocketProxy.connectSocket: Connected socket(Socket[addr=dev30bc4a/10.137.244.243,port=18311,localport=2123]), orbName(test30BC04x1OHServerEquitydev30bc4a), storedConnectedID(1), tcpNoDelay(true), sendBufferSize(65536), receiveBufferSize(65536).
+Found class/product 308347260/308347262 on test30BC04x1EquityTradeServer1
+Done Canceling All Test User Orders...
+Done Canceling All Test User Orders...

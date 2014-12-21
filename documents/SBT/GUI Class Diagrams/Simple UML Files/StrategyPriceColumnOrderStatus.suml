@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Classdiagram>
+  <settings>
+    <option name="layoutOnChanges" value="false" />
+    <option name="paintDepends" value="true" />
+    <option name="paintExtends" value="true" />
+    <option name="paintInner" value="true" />
+    <option name="paintUses" value="true" />
+    <option name="paintImplements" value="true" />
+  </settings>
+  <classes>
+    <class name="com.cboe.presentation.renderers.ProductContainerTableCellRenderer" x="463" y="333">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.spread.StrategyDetailTable" x="540" y="671">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.spread.table.StrategyProductTableCellRenderer" x="227" y="760">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.spread.table.StrategyDetailPriceTable" x="1295" y="667">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.custom.ProductDisplayToolTipFactory" x="557" y="438">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.PriceTableCellRenderer" x="1531" y="751">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.spread.table.StrategyLegDetailPriceTableModel" x="1114" y="753">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.OrderPriceTableCellRenderer" x="1243" y="333">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.custom.StrategyToolTip" x="550" y="537">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.spread.StrategyPriceToolTip" x="1327" y="482">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.renderers.spread.table.StrategyDetailTableModel" x="657" y="761">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.orderStatus.table.OrderStatusOrderTableRow" x="882" y="137">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+  </classes>
+  <stickycomponents />
+  <textcomponents>
+    <textcomponent key="6513005" x="1357" y="251" width="138" height="55" type="plain">
+      <option name="pinned" value="false" />
+      <title><![CDATA[creation+sequence+for]]></title>
+      <content><![CDATA[PRICE_FIELD+]]></content>
+    </textcomponent>
+    <textcomponent key="21230730" x="570" y="245" width="170" height="59" type="plain">
+      <option name="pinned" value="false" />
+      <title><![CDATA[creation+sequence+for]]></title>
+      <content><![CDATA[PRODUCT_NAME_FIELD+]]></content>
+    </textcomponent>
+    <textcomponent key="4158994" x="1038" y="645" width="62" height="36" type="plain">
+      <option name="pinned" value="false" />
+      <title></title>
+      <content><![CDATA[extends]]></content>
+    </textcomponent>
+    <textcomponent key="15259396" x="936" y="247" width="70" height="41" type="plain">
+      <option name="pinned" value="false" />
+      <title></title>
+      <content><![CDATA[depends]]></content>
+    </textcomponent>
+  </textcomponents>
+  <connectors>
+    <connector from="com.cboe.presentation.renderers.OrderPriceTableCellRenderer" to="com.cboe.presentation.renderers.PriceTableCellRenderer">
+      <anchor constraint="1" type="2" x="1460" y="400" />
+      <anchor constraint="1" type="2" x="1691" y="751" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.OrderPriceTableCellRenderer" to="com.cboe.presentation.renderers.PriceTableCellRenderer">
+      <anchor constraint="1" type="2" x="1435" y="400" />
+      <anchor constraint="1" type="2" x="1665" y="751" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.custom.StrategyToolTip" to="com.cboe.presentation.renderers.spread.StrategyDetailTable">
+      <anchor constraint="1" type="2" x="659" y="622" />
+      <anchor constraint="1" type="2" x="657" y="671" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.custom.StrategyToolTip" to="com.cboe.presentation.renderers.spread.StrategyDetailTable">
+      <anchor constraint="1" type="2" x="643" y="622" />
+      <anchor constraint="1" type="2" x="642" y="671" />
+      <decorator type="4" description="#  table" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.StrategyDetailTable" to="com.cboe.presentation.renderers.spread.table.StrategyProductTableCellRenderer">
+      <anchor constraint="1" type="2" x="567" y="738" />
+      <anchor constraint="1" type="2" x="514" y="760" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.custom.ProductDisplayToolTipFactory" to="com.cboe.presentation.custom.ProductDisplayToolTipFactory">
+      <anchor constraint="1" type="2" x="715" y="505" />
+      <anchor constraint="1" type="1" x="715" y="530" />
+      <anchor constraint="1" type="1" x="759" y="530" />
+      <anchor constraint="1" type="1" x="759" y="471" />
+      <anchor constraint="1" type="2" x="749" y="471" />
+      <decorator type="4" description="-  instance" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.table.StrategyDetailPriceTable" to="com.cboe.presentation.renderers.spread.StrategyDetailTable">
+      <anchor constraint="1" type="2" x="1295" y="693" />
+      <anchor constraint="1" type="2" x="758" y="695" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.table.StrategyDetailPriceTable" to="com.cboe.presentation.renderers.spread.StrategyDetailTable">
+      <anchor constraint="1" type="2" x="1295" y="708" />
+      <anchor constraint="1" type="2" x="758" y="711" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.StrategyPriceToolTip" to="com.cboe.presentation.renderers.spread.table.StrategyDetailPriceTable">
+      <anchor constraint="1" type="2" x="1454" y="549" />
+      <anchor constraint="1" type="2" x="1459" y="667" />
+      <decorator type="4" description="#  table" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.StrategyPriceToolTip" to="com.cboe.presentation.renderers.spread.table.StrategyDetailPriceTable">
+      <anchor constraint="1" type="2" x="1438" y="549" />
+      <anchor constraint="1" type="2" x="1443" y="667" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.table.StrategyLegDetailPriceTableModel" to="com.cboe.presentation.renderers.spread.table.StrategyDetailTableModel">
+      <anchor constraint="1" type="2" x="1114" y="781" />
+      <anchor constraint="1" type="2" x="979" y="783" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.spread.table.StrategyLegDetailPriceTableModel" to="com.cboe.presentation.renderers.spread.table.StrategyDetailTableModel">
+      <anchor constraint="1" type="2" x="1114" y="797" />
+      <anchor constraint="1" type="2" x="979" y="799" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.orderStatus.table.OrderStatusOrderTableRow" to="com.cboe.presentation.renderers.ProductContainerTableCellRenderer">
+      <anchor constraint="1" type="2" x="993" y="204" />
+      <anchor constraint="1" type="2" x="734" y="333" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.orderStatus.table.OrderStatusOrderTableRow" to="com.cboe.presentation.renderers.PriceTableCellRenderer">
+      <anchor constraint="1" type="2" x="1097" y="204" />
+      <anchor constraint="1" type="2" x="1665" y="751" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.OrderPriceTableCellRenderer" to="com.cboe.presentation.renderers.spread.StrategyPriceToolTip">
+      <anchor constraint="1" type="2" x="1430" y="400" />
+      <anchor constraint="1" type="2" x="1440" y="482" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.renderers.ProductContainerTableCellRenderer" to="com.cboe.presentation.custom.ProductDisplayToolTipFactory">
+      <anchor constraint="1" type="2" x="663" y="400" />
+      <anchor constraint="1" type="2" x="657" y="438" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.custom.ProductDisplayToolTipFactory" to="com.cboe.presentation.custom.StrategyToolTip">
+      <anchor constraint="1" type="2" x="653" y="505" />
+      <anchor constraint="1" type="2" x="653" y="537" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.orderStatus.table.OrderStatusOrderTableRow" to="com.cboe.presentation.renderers.OrderPriceTableCellRenderer">
+      <anchor constraint="1" type="2" x="1125" y="204" />
+      <anchor constraint="1" type="2" x="1364" y="333" />
+      <decorator type="16" description="" />
+    </connector>
+  </connectors>
+</Classdiagram>
+

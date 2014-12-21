@@ -1,0 +1,18 @@
+
+#ifndef OHSEVENTS_IDL
+#define OHSEVENTS_IDL
+
+#include "ohsConsumers.idl"
+#include "events.idl"
+
+module ohsEvents {
+
+    interface InternalOrderStatusEventConsumer : ohsConsumers::InternalOrderStatusConsumer, events::EventChannelConsumer {
+    };
+    
+    interface OrderRoutingEventConsumer : ohsConsumers::OrderRoutingConsumer, events::EventChannelConsumer {
+    };
+
+};
+
+#endif

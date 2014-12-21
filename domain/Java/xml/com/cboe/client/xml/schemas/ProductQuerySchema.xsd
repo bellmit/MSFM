@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+jxb:version="1.0"
+elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CommonProductDefinitions.xsd"/>
+
+
+	<xs:attributeGroup name="SessionClassKeyRequestGroup">
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="ck" use="required"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="SessionProductKeyRequestGroup">
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="pk" use="required"/>
+	</xs:attributeGroup>
+
+	<xs:attributeGroup name="SessionProductTypeRequestGroup">
+		<xs:attribute ref="sn" use="required"/>
+		<xs:attribute ref="pt" use="required"/>
+	</xs:attributeGroup>
+
+
+
+	<xs:attribute name="m">
+		<xs:annotation>
+			<xs:documentation>Method Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="methodName"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:annotation>
+		     <xs:appinfo>
+		        		<jxb:typesafeEnumClass name="GIPQSMethodName"/>
+		     </xs:appinfo>
+		 	</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="getClassBySessionForKey"/>
+				<xs:enumeration value="getClassesForSession"/>
+				<xs:enumeration value="getCurrentTradingSessions"/>
+				<xs:enumeration value="getProductBySessionForKey"/>
+				<xs:enumeration value="getProductTypesForSession"/>
+				<xs:enumeration value="getClassByKey"/>
+				<xs:enumeration value="getProductByKey"/>
+				<xs:enumeration value="getProductClasses"/>
+				<xs:enumeration value="getProductTypes"/>
+				<xs:enumeration value="getProductsByClass"/>
+				<xs:enumeration value="getStrategiesForSessionByClass"/>
+				<xs:enumeration value="getStrategiesByClass"/>
+				<xs:enumeration value="getStrategyByKey"/>
+<!-- new methods begin -->
+				<xs:enumeration value="getStrategyBySessionForKey"/>
+                <xs:enumeration value="getProductsForSession"/>
+<!-- new methods end -->
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+
+
+	<xs:complexType name="GIProductQueryRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GIProductQueryRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:attribute ref="m" use="required">
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="SessionClassKeyRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GISessionClassKeyRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attributeGroup ref="SessionClassKeyRequestGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SessionProductTypeRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GISessionProductTypeRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attributeGroup ref="SessionProductTypeRequestGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SessionProductKeyRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GISessionProductKeyRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attributeGroup ref="SessionProductKeyRequestGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SessionRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GISessionRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attribute ref="sn" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ClassKeyRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GIClassKeyRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attribute ref="ck" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ProductKeyRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GIProductKeyRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attribute ref="pk" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ProductTypeRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GIProductTypeRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+				<xs:attribute ref="pt" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ProductTypesRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GIProductTypesRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CurrentTradingSessionsRequestType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jxb:class name="GICurrentTradingSessionsRequestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GIProductQueryRequestType">
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<!-- Requests -->
+
+	<xs:element name="PR" type="GIProductQueryOperationsRequestType">
+		<xs:annotation>
+			<xs:documentation>ProductQueryRequest</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIProductQueryOperationsRequest"/>
+				<jxb:property name="productQueryOperationsRequest" />
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="GIProductQueryOperationsRequestType">
+		<xs:sequence>
+            <xs:annotation>
+                <xs:documentation>ProductQueryRequest</xs:documentation>
+                <xs:appinfo>
+                    <jxb:property name="productQueryRequest"  generateIsSetMethod="false"/>
+                </xs:appinfo>
+            </xs:annotation>
+            <xs:choice>
+                <!-- Only one of the following elements is allowed -->
+                <xs:element name="CSK" type="SessionClassKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getClassBySessionForKey</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIClassBySessionForKeyRequest"/>
+                            <jxb:property name="classBySessionForKeyRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CS" type="SessionProductTypeRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getClassesForSession</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIClassesForSessionRequest"/>
+                            <jxb:property name="classesForSessionRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CTS" type="CurrentTradingSessionsRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getCurrentTradingSessions</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GICurrentTradingSessionsRequest"/>
+                            <jxb:property name="currentTradingSessionsRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PSK" type="SessionProductKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductBySessionForKey</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductBySessionForKeyRequest"/>
+                            <jxb:property name="productBySessionForKeyRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PTS" type="SessionRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductTypesForSession</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductTypesForSessionRequest"/>
+                            <jxb:property name="productTypesForSessionRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PS" type="SessionClassKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductsForSession</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductsForSessionRequest"/>
+                            <jxb:property name="productsForSessionRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SSK" type="SessionProductKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getStrategyBySessionForKey</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIStrategyBySessionForKeyRequest"/>
+                            <jxb:property name="strategyBySessionForKeyRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="CK" type="ClassKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getClassByKey</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIClassByKeyRequest"/>
+                            <jxb:property name="classByKeyRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PK" type="ProductKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductByKey</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductByKeyRequest"/>
+                            <jxb:property name="productByKeyRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PC" type="ProductTypeRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductClasses</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductClassesRequest"/>
+                            <jxb:property name="productClassesRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PT" type="ProductTypesRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductTypes</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductTypesRequest"/>
+                            <jxb:property name="productTypesRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="PBC" type="ClassKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getProductsByClass</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIProductsByClassRequest"/>
+                            <jxb:property name="productsByClassRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SSC" type="SessionClassKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getStrategiesForSessionByClass</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIStrategiesForSessionByClassRequest"/>
+                            <jxb:property name="strategiesForSessionByClassRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SC" type="ClassKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getStrategiesByClass</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIStrategiesByClassRequest"/>
+                            <jxb:property name="strategiesByClassRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="SK" type="ProductKeyRequestType" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>getStrategyByKey</xs:documentation>
+                        <xs:appinfo>
+                            <jxb:class name="GIStrategyByKeyRequest"/>
+                            <jxb:property name="strategyByKeyRequest"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

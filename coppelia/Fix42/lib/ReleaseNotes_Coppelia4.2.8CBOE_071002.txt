@@ -1,0 +1,172 @@
+Release Notes for Coppelia 4.2.8 (7/10/02)
+================================================ 
+
+This build supports negative AvgPx and AllocAvgPx, as per the CBOE requirement.  Otherwise this build is identical to the 7/08/02 release.
+
+
+Release Notes for Coppelia 4.2.8 (7/08/02)
+================================================ 
+
+This build supports negative LastPx, as per the CBOE requirement.  Otherwise this build is identical to the 6/26/02 release.
+
+
+Release Notes for Coppelia 4.2.8 (6/26/02)
+================================================ 
+
+This build addresses the following CBOE open items:
+
+#39:	Invalid ResendRequests are now persisted properly and the SequentialProcessor no longer gets stuck in the infinite "could not find X, restoring to X-1" loop.  What happens instead is the following:  If for any reason there is a MsgSeqNum offset at a firm site greater than what Coppelia expects, for the time that the connection is disconnected, Coppelia will repeatedly produce "cannot find X, restoring to X" to stdout.  As soon as the connection is established, however, a ResendRequest will trigger automatically and the sequential processor will get back on track.  Note:  This fix should also take care of the related problem with Logon messages not getting passed back to the application during these circumstances.
+
+
+Release Notes for Coppelia 4.2.8 (5/17/02)
+================================================ 
+
+This build addresses the following CBOE open items:
+
+#3.8:	FIXometer now prompts user to confirm running EOD when connection is both connected AND disconnected. Only w/ SUSPEND_EOD_ON.
+
+#35:	The SequentialQueueProcessor has been fixed, and now keeps state correctly.  Subsequent connections after Hold/Suspend/ServiceDown have been lifted now execute properly.
+
+#36:	The spurious Reject was removed.
+
+
+Release Notes for Coppelia 4.2.8 (4/3/02)
+================================================
+
+This build addresses the following CBOE open items:
+
+#23:  CoppeliaAdmin was modified to correctly report all events.
+
+#26:  CxlQty is now available in the ExecutionReport object in the base FIX 4.2 protocol definition.  See #30 for complete list.
+
+#27:  In FIXometer, Num Queued In now properly upticks for every inbound queued message.
+
+#28:  Unused members of repeating groups are now properly initialized to the value of DO_NOT_SEND_VALUE.
+
+#29:  "MLEG" has been added to the list of valid values for SecurityType (tag 167).  See #30 for complete list.
+
+#30:  +  The following field extensions have been rolled into the base FIX 4.2 protocol definition:
+
+		MarketDataRequest message (35=V) - verified tag 286 (OpenCloseSettleFlag)
+		QuoteStatusRequest message (35=a) - added tag 263 (SubscriptionRequestType)
+		ExecutionReport message (35=8) - added tag 84 (CxlQty)
+	
+      +  For the fields listed, the following enumerated values are now supported within the base FIX 4.2 definition:
+      
+		SecurityType (tag 167) - added value "MLEG"
+		Side (tag 54) - added values "B" & "C"
+		SecurityTradingStatus - verified values "21" "22" "23"
+		OrdType - verified value "J"
+		CustomerOrFirm - verified values "2" "3" "4" "5"
+
+Known Issues
+-------------
+
++ The following fields within Quote Message are represented internally as Arrays (of respective type):
+
+	SecurityDesc		String
+	OrdType			String
+	Issuer			String
+	SecurityExchange	String
+	OptAttribute		String
+	MaturityDay		String
+	MaturityMonthYear	String
+	SecurityType		String
+	IDSource		String
+	SecurityID		String
+	SymbolSfx		String
+	Symbol			String
+	StrikePrice		double
+	OrderQty2		double
+	PutOrCall		int
+	FutSettDate		date
+	FutSettDate2		date
+
+
+
+Release Notes for Coppelia 4.2.8 (2/28/02)
+================================================
+
+This build is identical to the 2/19/02 release, with the following modifications:
+
+(1) - nonnegative bounds restriction has been lifted for ALL OCCURRENCES of the following fields:
+
+CashOrderQty (tag 152)
+OrderQty (tag 38)
+PrevClosePx (tag 140)
+Price (tag 44)
+StrikePrice (tag 202)
+StopPx (tag 99)
+MinQty (tag 110)
+
+Bounds were changed from "nonnegative" to "none" across all occurrences of all fields in all messages in the FIX 4.2 protocol definition.
+
+CBOE may therefore continue testing with negative prices without having to suspend VALIDATION on any connections.
+
+(2) - it was reported in the body of the 2/19/02 4.2.8 email release notification that "In FIXometer, when a server goes offline and comes back up, the display does not update to reflect this."
+
+This problem has been corrected.
+
+
+
+
+(Partial) Release Notes for Coppelia 4.2.8 (2/19/02)
+=====================================================
+
+Usage Notes: Negative value support
+------------------------------------
+
+Historically, the value -2 has been the default for all numeric fields inside Coppelia FIX Message Objects.  When a Message Object is constructed, all numeric fields are set to -2 (or -2.0, depending on the type).  As such, -2 signifies that the field has not been set by the user, and instructs Coppelia to leave that field out of the resulting outbound FIX message.
+
+In order to support negative values (such as -2) in numeric fields, a new feature has been added to the Coppelia Message Objects.  All Message Objects now have a new constructor that takes a "do not send" value.  This value can be any valid integer.  Using this constructor will cause all numeric fields within the Message Objects to  default to the specified value.  Coppelia will recognize that value as the "do not send" value by reading it out of the configuration file from the [MAIN] block attribute DO_NOT_SEND_VALUE.  It is important to note that the DO_NOT_SEND_VALUE and the one passed into the constructor of the Message Object must match in order for this feature to work correctly.  
+
+It is recommended that you choose a value that is unlikely to be required in a FIX message (for instance, a very low, negative number); the default, if not specified explicitly, will always be -2.  
+
+The changes you need to make to your configuration files and your application code are therefore as follows:
+
+** .ini file:
+
+	+ add DO_NOT_SEND_VALUE to the [MAIN] block, and assign it an appropriate value.
+
+** application code:
+
+	+ Whenever you create a new message object in your application code (regardless of whether or not you plan to use negative values), as per the instructions above it is now necessary to call the overloaded constructor, and pass it the same value you specified to the DO_NOT_SEND_VALUE attribute in your .ini file.
+	
+	For example, say you defined DO_NOT_SEND_VALUE = -9999.  In your code when you instantiate a new Execution Report, you will construct it like this:
+		
+		ExecutionReport e = new ExecutionReport(-9999);
+		
+	Likewise, you will do the same thing when you create any other Coppelia FIX Message Object, regardless of whether or not you plan to use negative values in the message.  For example, your LogonMsg will now look like this:
+	
+		LogonMsg logon = new LogonMsg(-9999);
+		
+
+Usage Notes: FIXometer
+-----------------------
+	
+In addition to the traditional FIXometer view, which gave the details of FIX Connections, FIXometer now has 3 additional tabs: Middleware, Queues, and Threads.
+
+Detailed documentation on these new features are pending, but a quick description of what you can now see and do with them follow:
+
+On startup, you will notice that the left portion of the main page now contains multiple panes.  The default pane--Sessions--provides all the external connection information traditionally available, with all previous 42b/41f CBOE enhancement requests rolled in (see "CBOE Issues_FIX42Service.xls" spreadsheet in conjunction with "CBOE FIXOMETER ISSUES 12_13_20011.doc", both distributed previously, for the complete list).
+
+New to the view are the "Middleware", "Queues", and "Threads" panes, which provide views for monitoring details of all Middleware connections, as well as the state of Coppelia's internal Queues, and Threads. The latter two panes are provided for the purpose of diagnostics.
+
+The Middleware view shows the state of the inbound queues to the interface broken down by FIX connection. The heirarchical view on the left is similar to the Sessions view--expanding the primary server yields a list of all configured interfaces (in your case you should only see one, "INPROC Interface").  Expanding the interface node will yield a child node for each FIX connection. Highlighting one of them will isolate the middleware detail for that connection.  Highlighting the parent itself will cause the view on the right to display middleware detail for all configured connections.
+
+In the view on the right, the first two columns give the Server Group and the ID assigned to the interface (it'll be "INPROC Interface"); the next three columns give the QueueID (one for each configured connection), Queue Size (which gives the size of the inbound message queue), and Next Expected Seq Num (which gives the next expected sequence number from the counterparty).
+
+The Queues view gives the breakdown of all blocking queues and sequence queues internal to the Coppelia engine.
+
+The Threads view gives the breakdown of all the threads internal to the Coppelia engine.
+
+
+Usage Notes: Drop-Copy and DBServer
+------------------------------------
+
+Since CBOE will be using neither Drop Copy functionality nor DBServer in their FIX 4.2 production environment, they are not officially supported in this release.  Both will be supported in a later release nearer to the time the FIX-ORS group migrates from 41f01 onto the latest software.
+
+
+	
+	
+	

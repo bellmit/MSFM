@@ -1,0 +1,2755 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<META NAME="description" CONTENT="Disaster Recovery Site – What SBT Client Team Members Need to Know">
+<link rel=File-List href="./DisasterRecoverySite_files/filelist.xml">
+<link rel=Edit-Time-Data href="./DisasterRecoverySite_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Disaster Recovery Site – What You Need To Know – SBT Client Group</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>CBOE USER</o:Author>
+  <o:LastAuthor>CBOE USER</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>3</o:TotalTime>
+  <o:LastPrinted>2005-11-22T00:51:00Z</o:LastPrinted>
+  <o:Created>2005-11-29T17:43:00Z</o:Created>
+  <o:LastSaved>2005-11-29T17:43:00Z</o:LastSaved>
+  <o:Pages>8</o:Pages>
+  <o:Words>2832</o:Words>
+  <o:Characters>16143</o:Characters>
+  <o:Company>CBOE</o:Company>
+  <o:Lines>134</o:Lines>
+  <o:Paragraphs>32</o:Paragraphs>
+  <o:CharactersWithSpaces>19824</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:modern;
+	mso-font-pitch:fixed;
+	mso-font-signature:-2147482993 6144 0 0 31 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	font-size:16.0pt;
+	font-family:Arial;
+	mso-font-kerning:16.0pt;}
+h2
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	font-size:14.0pt;
+	font-family:Arial;
+	font-style:italic;}
+h3
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	font-size:13.0pt;
+	font-family:Arial;}
+h4
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:14.0pt;
+	font-family:"Times New Roman";}
+h5
+	{mso-style-next:Normal;
+	margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:5;
+	font-size:12.0pt;
+	font-family:Arial;
+	color:white;
+	font-style:italic;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	line-height:200%;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent3, li.MsoBodyTextIndent3, div.MsoBodyTextIndent3
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.75in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-layout-grid-align:none;
+	text-autospace:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+code
+	{mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"Courier New";
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:"Courier New";}
+span.SystemName
+	{mso-style-name:"System Name";
+	mso-ascii-font-family:"Lucida Console";
+	mso-hansi-font-family:"Lucida Console";
+	mso-bidi-font-family:"Courier New";}
+p.Topics, li.Topics, div.Topics
+	{mso-style-name:Topics;
+	mso-style-parent:"Heading 4";
+	mso-style-next:"Body Text Indent 2";
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:.75in;
+	mso-pagination:widow-orphan;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	font-size:12.0pt;
+	mso-bidi-font-size:14.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;}
+span.bodytext
+	{mso-style-name:bodytext;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:.8in .8in .8in .8in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-title-page:yes;
+	mso-header:url("./DisasterRecoverySite_files/header.htm") h1;
+	mso-footer:url("./DisasterRecoverySite_files/header.htm") f1;
+	mso-first-footer:url("./DisasterRecoverySite_files/header.htm") ff1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:89130287;
+	mso-list-type:hybrid;
+	mso-list-template-ids:493932202 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:145317531;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1831872496 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:152646484;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-816557094 1862564454 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l2:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:132.0pt;
+	mso-level-number-position:left;
+	margin-left:132.0pt;
+	text-indent:-.25in;}
+@list l2:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:1.75in;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;}
+@list l2:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:2.25in;
+	mso-level-number-position:right;
+	margin-left:2.25in;
+	text-indent:-9.0pt;}
+@list l3
+	{mso-list-id:230501687;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1887686760 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:99.0pt;
+	mso-level-number-position:left;
+	margin-left:99.0pt;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:315451947;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1611329810 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	margin-left:2.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5
+	{mso-list-id:395978031;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1521527958 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l6
+	{mso-list-id:482503092;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-519770262 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	margin-left:2.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7
+	{mso-list-id:724333961;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-58063176 -1009983362 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l7:level1
+	{mso-level-tab-stop:81.0pt;
+	mso-level-number-position:left;
+	margin-left:81.0pt;
+	text-indent:-.25in;}
+@list l7:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:117.0pt;
+	mso-level-number-position:left;
+	margin-left:117.0pt;
+	text-indent:-.25in;}
+@list l8
+	{mso-list-id:790246955;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1437196356 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:861240091;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1018058818 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	margin-left:2.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l10
+	{mso-list-id:931208218;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1893951572 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l10:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.75in;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l11
+	{mso-list-id:1239823357;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1219412620 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:99.0pt;
+	mso-level-number-position:left;
+	margin-left:99.0pt;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l12
+	{mso-list-id:1297250216;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1961153304 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l13
+	{mso-list-id:1429161075;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1077946992 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l13:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	margin-left:1.5in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l14
+	{mso-list-id:1529903099;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1815143022 67698703 -1009983362 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l14:level1
+	{mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l14:level2
+	{mso-level-tab-stop:1.75in;
+	mso-level-number-position:left;
+	margin-left:1.75in;
+	text-indent:-.25in;}
+@list l15
+	{mso-list-id:1554728085;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1437196356 1368265528 67698693 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l15:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l15:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l16
+	{mso-list-id:1567766207;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1437196356 67698691 67698693 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l16:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	margin-left:1.5in;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l16:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l17
+	{mso-list-id:1608074421;
+	mso-list-type:hybrid;
+	mso-list-template-ids:943347364 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l17:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	margin-left:1.5in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l18
+	{mso-list-id:1621451278;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1296972080 67698693 860400896 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l18:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l18:level2
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	margin-left:2.5in;
+	text-indent:-.25in;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";}
+@list l19
+	{mso-list-id:1766614305;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1173920006 -34178514 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l19:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:111.0pt;
+	mso-level-number-position:left;
+	margin-left:111.0pt;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l20
+	{mso-list-id:1778677276;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-519770262 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l20:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.15in;
+	mso-level-number-position:left;
+	margin-left:1.15in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l20:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.65in;
+	mso-level-number-position:left;
+	margin-left:1.65in;
+	text-indent:-.25in;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l21
+	{mso-list-id:1801918518;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1437196356 67698703 67698693 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l21:level1
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	margin-left:1.5in;
+	text-indent:-.25in;}
+@list l21:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	margin-left:2.0in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l22
+	{mso-list-id:2051564376;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1019459600 67698693 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l22:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l23
+	{mso-list-id:2092434200;
+	mso-list-type:hybrid;
+	mso-list-template-ids:678955728 1862564454 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l23:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:78.0pt;
+	mso-level-number-position:left;
+	margin-left:78.0pt;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.9in'>
+
+<div class=Section1>
+
+<h1 align=center style='text-align:center'>Disaster Recovery Site – What You
+Need to Know</h1>
+
+<h1 align=center style='text-align:center'>SBT Client Group</h1>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h2>GUI Topics</h2>
+
+<h3 style='margin-left:.5in'><a name="_Overview"></a>Overview</h3>
+
+<p class=MsoBodyTextIndent>The Disaster Recovery Site is a set of production
+systems that will be used if any disaster causes the current CBOE production
+system to become non-functional.<span style="mso-spacerun: yes">  </span>This
+guide is meant as a reference for SBT GUI developers who are familiar with the
+CBOE SBT Production system to learn the differences necessary to effectively
+support the DR site.</p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent>An overview of the systems comprising the SBT
+Disaster Recovery site can be found at:</p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.5in'><span style='font-family:Arial'><a
+href="http://ccserv1/documents/SBT/SBTTestEnvironments.html#dr">http://ccserv1/documents/SBT/SBTTestEnvironments.html#dr</a><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent>Notice that these systems’ names start with
+“dr.”<span style="mso-spacerun: yes">  </span>Whereas one production front end
+system is called <span class=SystemName><span style='font-family:"Lucida Console"'>prdfe01</span></span>,
+a corresponding <span class=SystemName><span style='font-family:"Lucida Console"'>drfe01</span></span>
+exists at the disaster recovery site.<span style="mso-spacerun: yes"> 
+</span>There is not, however, always a one-to-one correspondence for every
+production system, but there is for many of them.<span style="mso-spacerun:
+yes">  </span>The usernames and passwords used to support these systems are
+generally the same as they are for production, except for the GUI boxes.</p>
+
+<p class=MsoBodyTextIndent><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent>The <a href="#DR_GUI_PCs">PC systems used to run
+various SBT GUI’s</a> are named differently than they are in production and
+consist of three different groups:</p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:110.9pt;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l19 level1 lfo2;
+tab-stops:list 111.0pt'><![if !supportLists]><span style='font-family:Wingdings;
+mso-bidi-font-family:Arial'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'>14 <a
+href="#Trade_Ops_PCs">Trade Ops</a> systems named </span><span
+class=SystemName><span style='font-family:"Lucida Console"'>drto-21</span></span><span
+style='font-family:Arial'> through </span><span class=SystemName><span
+style='font-family:"Lucida Console"'>drto-37</span></span><span
+style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:111.0pt;text-indent:-.25in;mso-list:l19 level1 lfo2;
+tab-stops:list 111.0pt'><![if !supportLists]><span style='font-family:Wingdings;
+mso-bidi-font-family:Arial'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'>4 <a
+href="#System_Ops_PCs">System Ops</a> systems named </span><span
+class=SystemName><span style='font-family:"Lucida Console"'>dropsmgmt-01, -02,
+-04</span></span><span style='font-family:"Courier New"'>,</span><span
+style='font-family:Arial'>and</span><span style='font-family:"Courier New"'> </span><span
+class=SystemName><span style='font-family:"Lucida Console"'>–10</span></span><span
+style='font-family:Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:111.0pt;text-indent:-.25in;mso-list:l19 level1 lfo2;
+tab-stops:list 111.0pt'><![if !supportLists]><span style='font-family:Wingdings;
+mso-bidi-font-family:Arial'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'>3 <a href="#MDC_Ops_PCs">MDC
+Ops</a> systems named </span><span class=SystemName><span style='font-family:
+"Lucida Console"'>drmdcops-01 and -06</span></span><span style='font-family:"Courier New"'></span><span
+style='font-family:Arial'> </span><span class=SystemName><span
+style='font-family:"Lucida Console"'></span></span><span style='font-family:
+Arial'><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'>Whenever
+we do a GUI rollout, now we must also include the appropriate Disaster Recovery
+PC’s in the rollout plan.<span style="mso-spacerun: yes">  </span>Just as QA
+performs the GUI installations for production, they will also install GUI’s on
+the Disaster Recovery PC’s.<span style="mso-spacerun: yes">  </span><u>However
+they will use a <a
+href="file://view/joy_sbt_4.8_gui_fix_conversion/scripts/GUIrollout/DRInstall/">separate
+set of scripts</a></u>, which exist because there are <a
+href="#Script_Differences">differences in the disaster recovery system
+configuration</a> as compared to production.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;margin-bottom:.0001pt'><span style='font-family:Arial'>Important
+differences between the Disaster Recovery site and our SBT production systems
+are:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:1.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l13 level1 lfo5;
+tab-stops:list 1.5in'><![if !supportLists]><span style='font-family:Wingdings;
+mso-bidi-font-family:Arial'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span style='font-family:Arial'>location of
+firewalls and how client support tasks are affected:</span></b><span
+style='font-family:Arial'> for example, currently there is a firewall between
+the 14 Trade Ops PC’s and their CAS systems; network support has opened certain
+ports in the firewall so that the GUIs can communicate with their CAS or
+SACAS.<span style="mso-spacerun: yes">  </span>If these ports do not stay open,
+for some reason, the GUI’s will not operate correctly.<span
+style="mso-spacerun: yes">  </span>See also <a href="#FTP_GUI_PCs">How to FTP
+files to GUI PC’s</a> and How to use REXEC with PC’s behind a firewall.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:1.5in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l13 level1 lfo5;
+tab-stops:list 1.5in'><![if !supportLists]><span style='font-family:Wingdings;
+mso-bidi-font-family:Arial'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><b><span style='font-family:Arial'>configuration
+changes and evolution:</span></b><span style='font-family:Arial'> currently the
+DR site is in phase 1 of its evolutionary plan; new hardware and software, such
+as ICS, will be added; also, once enough PC’s are added for Trade Ops
+personnel, each help desk employee will have two pc’s at his/her desk, as they
+do now for production, and the GUI boxes will then be put behind the firewall
+where they belong.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:1.0in;margin-bottom:.0001pt'><span style='font-family:Arial'>WR
+number for DR is 3227.<o:p></o:p></span></p>
+
+<h3 style='margin-left:.5in'>Topical Index</h3>
+
+<p class=Topics><a href="#_Overview">Overview</a></p>
+
+<p class=Topics><a href="#DR_GUI_PCs">GUI Rollout for Disaster Recovery PC’s</a></p>
+
+<p class=Topics><a href="#Script_Differences">GUI Rollout Scripts Differences
+Because of the DR System Configuration</a></p>
+
+<p class=Topics><a href="#Login_GUI_PCs">How to Log into GUI PC’s</a></p>
+
+<p class=Topics><a href="#Port_Nums">Port Numbers Used by GUI’s</a></p>
+
+<p class=Topics><a href="#Using_rexec_with_firewall">How to use REXEC with PC’s
+behind a firewall</a></p>
+
+<p class=Topics><a href="#Use_REXEC_Copy_Files">How to use REXEC to copy files
+to a DR PC</a></p>
+
+<p class=Topics><a href="#FTP_GUI_PCs">How to FTP files to GUI PC’s</a></p>
+
+<p class=Topics><a href="#Troubleshooting">Troubleshooting</a></p>
+
+<h3 style='margin-left:.5in'>Topics</h3>
+
+<p class=Topics style='margin-bottom:0in;margin-bottom:.0001pt'><a
+name="DR_GUI_PCs">GUI Rollout for Disaster Recovery PC’</a>s</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:12.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.0pt;line-height:normal'><a
+name="Trade_Ops_PCs"><b><span style='font-family:Arial'>Trade Ops PC’s</span></b></a><b><span
+style='font-family:Arial'>: <o:p></o:p></span></b></p>
+
+<table border=1 cellspacing=0 cellpadding=0 width=543 style='width:407.4pt;
+ margin-left:1.0in;border-collapse:collapse;border:none;mso-border-top-alt:
+ 1.5pt;mso-border-left-alt:.75pt;mso-border-bottom-alt:1.5pt;mso-border-right-alt:
+ .75pt;mso-border-color-alt:black;mso-border-style-alt:solid;mso-padding-alt:
+ 0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:black 1.5pt;border-left:black .75pt;
+  border-bottom:black .75pt;border-right:windowtext .5pt;border-style:solid;
+  background:#B4B4CA;mso-shading:white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <h5>PC name</h5>
+  </td>
+  <td width=139 style='width:103.9pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>ip address<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=178 style='width:133.55pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>username</span></i></b><b><i><span style='font-family:
+  "Courier New";color:white'>/</span></i></b><b><i><span style='font-family:
+  Arial;color:white'>password<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=135 style='width:101.5pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid black .75pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>GUI’s to install<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-21<o:p></o:p></span></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.64<o:p></o:p></span></p>
+  </td>
+  <td width=178 rowspan=17 style='width:133.55pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:150%'><span style='font-size:14.0pt;
+  mso-bidi-font-size:12.0pt;font-family:"Courier New";letter-spacing:-1.0pt'>ops/ops<o:p></o:p></span></p>
+  </td>
+  <td width=135 rowspan=17 style='width:101.5pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:150%'><span style='font-family:Arial'>Trader,
+  SA<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-22</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.65</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-23</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.66</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-24</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.67</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-25</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.68</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr><tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-26</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.69</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-27</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.70</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-28</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.71</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-29</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.72</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr><tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-30</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.73</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-31</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.74</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-32</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.75</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-33</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.76</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-34</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.77</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-35</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.78</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+<tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-36</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.79</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr> <tr>
+  <td width=91 style='width:68.45pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:solid black 1.5pt;border-right:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drto-37</span><o:p></o:p></b></p>
+  </td>
+  <td width=139 style='width:103.9pt;border-top:none;border-left:none;
+  border-bottom:solid black 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.80</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyTextIndent2 style='margin-top:12.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.0pt;line-height:normal'><span
+style='font-family:Arial'>Currently, these Trading Ops PC’s are outside of the
+DR site production firewall; i.e. there is a firewall between the 14 Trade Ops
+PC’s and their CAS systems. Network support has opened certain ports in the
+firewall and needs to maintain these so that the GUIs can communicate with
+their CAS or SACAS.<span style="mso-spacerun: yes">  </span>If these ports do
+not stay open, for whatever reason, the GUI’s will not operate correctly.<span
+style="mso-spacerun: yes">  </span>Examples of errors that <i>might</i> mean a
+firewall port is not open include: <o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:99.35pt;text-indent:-.25in;line-height:normal;
+mso-list:l11 level1 lfo6;tab-stops:list 99.0pt'><![if !supportLists]><span
+style='font-family:Wingdings;mso-bidi-font-family:Arial'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'>Could not communicate
+with supplied callback<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:99.35pt;text-indent:-.25in;line-height:normal;
+mso-list:l11 level1 lfo6;tab-stops:list 99.0pt'><![if !supportLists]><span
+style='font-family:Wingdings;mso-bidi-font-family:Arial'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>Could not bind NBBOAgentAdminService</span><span style='font-family:
+Arial'><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:12.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.0pt;line-height:normal'><span
+style='font-family:Arial'>See also: <a href="#Using_rexec_with_firewall">How to
+use REXEC with PC’s behind a firewall</a><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:.25in;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.35pt;line-height:normal'><a
+name="System_Ops_PCs"><b><span style='font-family:Arial'>System Ops PC’s</span></b></a><b><span
+style='font-family:Arial'>:<o:p></o:p></span></b></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:56.8pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:1.5pt;mso-border-left-alt:
+ .75pt;mso-border-bottom-alt:1.5pt;mso-border-right-alt:.75pt;mso-border-color-alt:
+ black;mso-border-style-alt:solid;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=138 style='width:103.2pt;border-top:black 1.5pt;border-left:black .75pt;
+  border-bottom:black .75pt;border-right:windowtext .5pt;border-style:solid;
+  background:#B4B4CA;mso-shading:white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <h5>PC name</h5>
+  </td>
+  <td width=124 style='width:93.3pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>ip address<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=190 style='width:142.3pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>username</span></i></b><b><i><span style='font-family:
+  "Courier New";color:white'>/</span></i></b><b><i><span style='font-family:
+  Arial;color:white'>password<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=132 style='width:99.0pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid black .75pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>GUI’s to install<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.2pt;border-top:none;border-left:solid black .75pt;
+  border-bottom:none;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>dropsmgmt-01<o:p></o:p></span></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.32<o:p></o:p></span></p>
+  </td>
+  <td width=190 rowspan=4 style='width:142.3pt;border-top:none;border-left:
+  none;border-bottom:solid black .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:150%'><span style='font-size:14.0pt;
+  mso-bidi-font-size:12.0pt;font-family:"Courier New";letter-spacing:-1.0pt'>ops/ops<o:p></o:p></span></p>
+  </td>
+  <td width=132 rowspan=3 style='width:99.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid black .75pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:Arial'>Trader,
+  SA,<o:p></o:p></span></p>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:Arial'>IMM,
+  SHM<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.2pt;border-top:none;border-left:solid black .75pt;
+  border-bottom:none;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>dropsmgmt-02</span><o:p></o:p></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.33</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.2pt;border-top:none;border-left:solid black .75pt;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>dropsmgmt-04</span><o:p></o:p></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.35</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=138 style='width:103.2pt;border:solid windowtext .5pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>dropsmgmt-10</span><o:p></o:p></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.41</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+  <td width=132 style='width:99.0pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:Arial'>FIX-O-meter<o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyTextIndent2 style='margin-top:12.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.0pt;line-height:normal'><a name="MDC_Ops_PCs"><b><span
+style='font-family:Arial'>MDC Ops PC’s</span></b></a><b><span style='font-family:
+Arial'>:<o:p></o:p></span></b></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:65.8pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:1.5pt;mso-border-left-alt:
+ .75pt;mso-border-bottom-alt:1.5pt;mso-border-right-alt:.75pt;mso-border-color-alt:
+ black;mso-border-style-alt:solid;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=126 style='width:94.2pt;border-top:black 1.5pt;border-left:windowtext .5pt;
+  border-bottom:black .75pt;border-right:windowtext .5pt;border-style:solid;
+  background:#B4B4CA;mso-shading:white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <h5>PC name</h5>
+  </td>
+  <td width=124 style='width:93.3pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>ip address<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=174 style='width:130.8pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>username</span></i></b><b><i><span style='font-family:
+  "Courier New";color:white'>/</span></i></b><b><i><span style='font-family:
+  Arial;color:white'>password<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=132 style='width:99.0pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid black .75pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>GUI’s to install<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.2pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drmdcops-01<o:p></o:p></span></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>170.137.6.2<o:p></o:p></span></p>
+  </td>
+  <td width=174 rowspan=2 style='width:130.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:150%'><span style='font-size:14.0pt;
+  mso-bidi-font-size:12.0pt;font-family:"Courier New";letter-spacing:-1.0pt'>ops/ops<o:p></o:p></span></p>
+  </td>
+  <td width=132 rowspan=2 style='width:99.0pt;border:none;border-right:solid black .75pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;border-bottom:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:Arial'>Trader,
+  SA,<o:p></o:p></span></p>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:Arial'>IMM,
+  SHM <o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.2pt;border-top:none;border-left:solid black .75pt;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drmdcops-06</span><o:p></o:p></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border:none;border-right:solid windowtext .5pt;border-bottom:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>170.137.6.7</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyTextIndent2 style='margin-top:12.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.0pt;line-height:normal'><span
+style='font-family:Arial'>DR-CONS-W2K is a PC at the DR site.<span
+style="mso-spacerun: yes">  </span>It currently has the Trader and SA GUI’s
+installed.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:12.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:63.0pt;line-height:normal'><span
+style='font-family:Arial'>See also:<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:99.35pt;text-indent:-.25in;line-height:normal;
+mso-list:l3 level1 lfo13;tab-stops:list 99.0pt'><![if !supportLists]><span
+style='font-family:Wingdings;mso-bidi-font-family:Arial'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'><a href="#FTP_GUI_PCs">How
+to FTP files to GUI PC’s</a> <o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:99.35pt;text-indent:-.25in;line-height:normal;
+mso-list:l3 level1 lfo13;tab-stops:list 99.0pt'><![if !supportLists]><span
+style='font-family:Wingdings;mso-bidi-font-family:Arial'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'><a
+href="#Using_rexec_with_firewall">How to use REXEC with PC’s behind a firewall</a><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:3.0pt;margin-left:99.35pt;text-indent:-.25in;line-height:normal;
+mso-list:l3 level1 lfo13;tab-stops:list 99.0pt'><![if !supportLists]><span
+style='font-family:Wingdings;mso-bidi-font-family:Arial'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-family:Arial'><a href="#Login_GUI_PCs">How
+to Login to DR site PC’s</a><o:p></o:p></span></p>
+
+<p class=Topics style='margin-top:12.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.75in'><a name="Script_Differences">GUI Rollout Scripts Differences
+Because of the DR System Configuration</a></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='font-family:Arial'>The <a
+href="file://view/joy_sbt_4.8_gui_fix_conversion/scripts/GUIrollout/DRInstall/">GUI
+rollout scripts</a> are located in the ClearCase </span><span style='font-family:
+"Courier New"'>scripts</span><span style='font-family:Arial'> vob under the </span><span
+style='font-family:"Courier New"'>GUIrollout</span><span style='font-family:
+Arial'> directory:<span style="mso-spacerun: yes">  </span>Currently, there are
+three types of scripts: Production, IPD, and Disaster Recovery.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 align=center style='margin-top:6.0pt;margin-right:
+0in;margin-bottom:0in;margin-left:.25in;margin-bottom:.0001pt;text-align:center'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:496.5pt;
+ height:234pt'>
+ <v:imagedata src="./DisasterRecoverySite_files/image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=662 height=312
+src="./DisasterRecoverySite_files/image002.jpg" v:shapes="_x0000_i1025"><![endif]></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:77.75pt;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l23 level1 lfo10;
+tab-stops:list 78.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>1)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>REXEC is used three times per installation.<span style="mso-spacerun:
+yes">  </span>Each REXEC must use the -s switch because of the firewall.<span
+style="mso-spacerun: yes">  </span>The -s tells REXEC to use the same port for
+writing as for reading instead of trying to use two ports.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:78.0pt;text-indent:-.25in;mso-list:l23 level1 lfo10;
+tab-stops:list 78.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>2)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>Because the DR site hostnames are different from production, all
+references to hostnames in the GUI installation scripts are different. The
+differences are more extensive than just the first two or three letters of the
+hostname. The number of hostnames referenced varies, depending on the GUI, and
+ranges from only one (the CAS) in the Trader GUI to three or more in the IMM
+and SHM.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:78.0pt;text-indent:-.25in;mso-list:l23 level1 lfo10;
+tab-stops:list 78.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>At various times, the ftp strings used in the SAGUI and SHM were
+different.<span style="mso-spacerun: yes">  </span>Sometimes the FTP connection
+did not work with the %%2F and the complete file path. No explanation
+completely satisfied the observances of the problem, which may have been
+intermittent.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:78.0pt;text-indent:-.25in;mso-list:l23 level1 lfo10;
+tab-stops:list 78.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>4)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>The korn scripts copy a DOS script to the local machine.<span
+style="mso-spacerun: yes">  </span>Because of the above differences, the name
+of that DOS .bat script is different in each .ksh script<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.25in;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-size:10.0pt;font-family:Arial;
+color:blue'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=Topics><a name="Login_GUI_PCs">How to Log into GUI PC’s</a></p>
+
+<p class=MsoBodyTextIndent3>There are 3 different ways to access the DR PC’s:
+two using devsup from a Unix system such as ccserv2, and a third that uses
+Remote Desktop connection software running on your PC.<span
+style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l22 level1 lfo22;tab-stops:list 1.25in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><a href="#devsup">Log into devsup</a>.<span
+style="mso-spacerun: yes">  </span>You need to have an account already set up
+on <a href="#devsup">devsup</a> and the RSA SecurID device given to you when
+you set up your account.<span style="mso-spacerun: yes">  </span>If you only
+have an account on devsupport, and not devsup, then use REXEC to accomplish
+what you need to do on the DR PC.<span style="mso-spacerun: yes">  </span>Then
+as soon as you can, <a
+href="mailto:furneyt@cboe.com?subject=Need%20devsup%20account"
+title="Request devsup account from Todd Furney">request an account on devsup</a>.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.5in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l16 level1 lfo24;tab-stops:list 1.5in'><![if !supportLists]><span
+style='font-family:"Courier New";mso-bidi-font-family:Arial'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]><a
+href="#Using_rexec_with_firewall">REXEC</a> – lets you execute a program on a
+PC.<span style="mso-spacerun: yes">  </span>Often used to run “cmd” which gives
+you some of the same capabilities you have on a PC when using a DOS
+window.<span style="mso-spacerun: yes">  </span>Its advantage is that using
+REXEC takes only two more steps: sudo ssh to prdfe01 and the REXEC itself.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.5in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l16 level1 lfo24;tab-stops:list 1.5in'><![if !supportLists]><span
+style='font-family:"Courier New";mso-bidi-font-family:Arial'>o<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]>Use
+<u>VNC on devsup</u>.<span style="mso-spacerun: yes">  </span>If doing this
+from your PC, you will need an X-Windows software product, like <a
+href="http://mimage.hummingbird.com/alt_content/binary/pdf/collateral/ds/connectivity/exceed06.pdf">Exceed</a>,
+for the Linux devsup system to create windows on your PC (Hummingbird lets you <a
+href="http://connectivity.hummingbird.com/products/nc/resources.html">try
+Exceed free</a> for 30 days).<span style="mso-spacerun: yes">  </span>If,
+instead, the system you’re sitting in front of is Unix-based already, this may
+be your best choice.<span style="mso-spacerun: yes">  </span>You’ll have to set
+the DISPLAY variable to your X-Windows screen, then run VNC and supply the “drletmein”
+password to the PC.<span style="mso-spacerun: yes">  </span>(The password for
+DR-CONS-W2K is “letmeindr.”)</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l15 level1 lfo23;tab-stops:list 1.25in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Use <a href="#Remote_Desktop">Remote Desktop connection</a>
+software from your PC.<span style="mso-spacerun: yes">  </span>This
+multiple-step process will finally get you a window that acts just like you’re
+sitting in front of the DR site PC’s desktop.<span style="mso-spacerun: yes"> 
+</span>You will have all the capabilities that the PC’s desktop gives you with
+decent responsiveness and performance.</p>
+
+<p class=Topics style='margin-top:12.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:.75in'><a name="Port_Nums">Port Numbers Used by GUI’s</a></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:57.0pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid black .75pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td rowspan=3 style='border:double windowtext 1.5pt;border-right:solid black .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'><b>Trader GUI<o:p></o:p></b></p>
+  </td>
+  <td style='border-top:double windowtext 1.5pt;border-left:none;border-bottom:
+  solid black .75pt;border-right:solid black .75pt;mso-border-left-alt:solid black .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>8003</p>
+  </td>
+  <td rowspan=2 style='border-top:double windowtext 1.5pt;border-left:none;
+  border-bottom:solid black .75pt;border-right:double windowtext 1.5pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal style='margin-top:3.0pt;mso-layout-grid-align:none;
+  text-autospace:none'><span style='font-family:Arial'>GUI &#9644;&#9658;</span>
+  <span style='font-family:Arial'>CAS</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>8101</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>random port picked
+  by the ORB</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>CAS &#9644;&#9658;
+  GUI</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=3 style='border-top:none;border-left:double windowtext 1.5pt;
+  border-bottom:double windowtext 1.5pt;border-right:solid black .75pt;
+  mso-border-top-alt:double windowtext 1.5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'><b>SA GUI<o:p></o:p></b></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:solid black .75pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>6013</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>GUI &#9644;&#9658;
+  SACAS</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>random port picked
+  by the ORB</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>SACAS &#9644;&#9658;
+  GUI</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>21, 22 (FTP ports)</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>GUI &#9644;&#9658;
+  SACAS</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:double windowtext 1.5pt;border-bottom:
+  double windowtext 1.5pt;border-right:solid black .75pt;mso-border-top-alt:
+  double windowtext 1.5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'><b>REXEC<o:p></o:p></b></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:solid black .75pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>512</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>used to push install
+  each GUI to a PC</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=2 style='border-top:none;border-left:double windowtext 1.5pt;
+  border-bottom:double windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:double windowtext 1.5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'><b>SHM<o:p></o:p></b></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:solid black .75pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>6014</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid black .75pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>GUI &#9644;&#9658;</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:solid black .75pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>21, 22 (FTP ports)</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:solid black .75pt;
+  mso-border-left-alt:solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>GUI &#9644;&#9658;
+  GC, GC &#9644;&#9658;GUI</p>
+  </td>
+ </tr>
+ <tr>
+  <td rowspan=3 style='border-top:none;border-left:double windowtext 1.5pt;
+  border-bottom:double windowtext 1.5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:double windowtext 1.5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'><b>IMM<o:p></o:p></b></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>17993</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:double windowtext 1.5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>Log Listener</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>7007</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>GUI &#9644;&#9658;</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>21, 22 (FTP ports)</p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:double windowtext 1.5pt;
+  border-right:double windowtext 1.5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+  margin-bottom:0in;margin-left:0in;margin-bottom:.0001pt'>GUI &#9644;&#9658;
+  GC, GC &#9644;&#9658;GUI</p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyTextIndent3><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=Topics><a name="Using_rexec_with_firewall">How to use REXEC with PC’s
+behind a firewall</a></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>The port that REXEC uses,
+which is 512, should be opened in the firewall.<span style="mso-spacerun:
+yes">  </span>Contact Network support services to do this if it is not already
+open.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>Use the -s switch in the
+REXEC command so that it will use the same port for writing as for reading
+instead of trying to use a second port.<span style="mso-spacerun: yes"> 
+</span>For example:<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.0in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt;font-family:"Courier New";mso-bidi-font-family:
+Arial'>rexec –s 172.28.72.1 cmd</span><span style='font-family:"Courier New";
+mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+
+<p class=Topics style='margin-top:12.0pt'><a name="Use_REXEC_Copy_Files">How to
+use REXEC to copy files <u>to</u> a DR PC</a></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:8.0pt;margin-right:3.75pt;
+margin-bottom:6.0pt;margin-left:1.0in'><span style='font-size:11.0pt;
+mso-bidi-font-size:10.0pt;font-family:"Courier New";letter-spacing:-1.0pt'>rexec</span><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New";
+mso-bidi-font-family:Arial;letter-spacing:-1.0pt'> –s 172.28.72.1 C:/installation/elbow
+C:/to_PC_filename &lt; from_local_file</span><span style='font-size:11.0pt;
+mso-bidi-font-size:12.0pt;letter-spacing:-1.0pt'><o:p></o:p></span></p>
+
+<p class=Topics><a name="FTP_GUI_PCs">How to FTP files to DR Site GUI PC’s</a></p>
+
+<p class=MsoBodyTextIndent3>It is more difficult to get files over to the GUI
+boxes if they do not have REXEC running.<span style="mso-spacerun: yes"> 
+</span>The non-intuitive, multiple-step process is:</p>
+
+<p class=MsoNormal style='margin-left:.25in;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-size:10.0pt;font-family:Arial;
+color:blue'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:81.0pt;text-indent:-.25in;mso-list:l7 level1 lfo12;
+tab-stops:list 81.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>put the files onto deepfrzd from ccserv2 or own PC, etc.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:81.35pt;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l7 level1 lfo12;
+tab-stops:list 81.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>login to prdgc2a <o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:81.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'>cd
+tmp<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:81.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'>ftp
+to deepfrz and get files<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:81.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'>ftp
+to drgc02a and put files<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:81.35pt;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l7 level1 lfo12;
+tab-stops:list 81.0pt;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Arial'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt;font-family:
+Arial'>login to the gui pc you want files to go to<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:81.0pt;mso-layout-grid-align:none;
+text-autospace:none'><span style='mso-bidi-font-size:10.0pt;font-family:Arial'>ftp
+to drgc02a and get files<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.25in;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-size:10.0pt;font-family:Arial;
+color:blue'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent3>The ftp step that crosses the firewall takes a
+significantly longer time to complete than the other ones.<span
+style="mso-spacerun: yes">  </span>Besides drgc02a, the only other system
+enabled for ftp access from the DR PC’s is drsacas01.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:3.0pt'>Reverse the above steps to
+copy files from a PC to ccserv2 or your own PC.</p>
+
+<p class=MsoBodyTextIndent3><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=Topics><a name=Troubleshooting>Troubleshooting</a></p>
+
+<p class=Topics style='margin-left:1.0in'><a name="Troubleshooting_rexec">REXEC</a>:</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:1.5in;margin-bottom:.0001pt;line-height:normal'><b>Cannot REXEC
+into PC System:<o:p></o:p></b></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;line-height:
+normal;mso-list:l4 level1 lfo7;tab-stops:list 2.0in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Can you ping the PC from prdfe01 (or wherever you’re
+running REXEC)?<span style="mso-spacerun: yes">  </span>Can you ping prdfe01
+from the PC?</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;
+line-height:normal;mso-list:l4 level1 lfo7;tab-stops:list 2.0in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Is REXEC running as a service on the PC?<span
+style="mso-spacerun: yes">  </span>This can<u>not</u> be verified by looking at
+the PC’s admin tool for looking at running services.<span style="mso-spacerun:
+yes">  </span>Instead:</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:189.35pt;margin-bottom:.0001pt;text-indent:-27.35pt;
+line-height:normal'>Log into the PC</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;line-height:
+normal'>cd C:\installation<span style="mso-spacerun: yes">  </span>(if
+installation directory is not there, REXEC was not installed on the PC.<span
+style="mso-spacerun: yes">  </span><a
+href="http://ccserv1/gui/InstallRExecOnNT.html">Get REXEC</a>.)</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;line-height:
+normal'><span style='mso-bidi-font-size:10.0pt'>Is Java (SDK or JRE) installed
+on the PC and its bin directory in the system path?<span style="mso-spacerun:
+yes">  </span>Test this by typing: </span><code><span style='font-size:10.0pt;
+font-family:"Courier New"'>java -version</span></code></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;line-height:
+normal'>Run <span style='font-size:10.0pt;font-family:"Courier New"'>install.bat
+</span><span style='mso-bidi-font-size:10.0pt'>(this installs REXEC)</span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;line-height:
+normal'>Run <span style='font-size:10.0pt;font-family:"Courier New"'>startrexec.bat
+</span><span style='mso-bidi-font-size:10.0pt'>(this runs REXEC as a service)</span><span
+style='font-size:10.0pt;font-family:"Courier New"'> </span><span
+style='mso-bidi-font-size:10.0pt'>If you get</span><span style='font-size:10.0pt;
+font-family:"Courier New"'>: &quot;java.net.BindException: Address already in
+use: JVM_Bind,&quot; </span><span style='mso-bidi-font-size:10.0pt'>then REXEC
+was already running as a service.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;
+line-height:normal;mso-list:l10 level1 lfo15;tab-stops:list 2.0in'><![if !supportLists]><span
+style='mso-bidi-font-size:10.0pt;font-family:Wingdings'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt'>If you are
+trying to REXEC through a firewall, use the -s switch in the REXEC command so
+that it will use the same port for writing as for reading instead of trying to
+use a second port.<span style="mso-spacerun: yes">  </span>For example:<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.25in;margin-bottom:.0001pt;line-height:normal'><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New";
+mso-bidi-font-family:Arial'>rexec –s 172.28.72.1 cmd</span><span
+style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:"Courier New";
+mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.5in;margin-bottom:.0001pt;line-height:normal'><b>The
+PC asks for username and password:<o:p></o:p></b></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;
+line-height:normal;mso-list:l18 level1 lfo8;tab-stops:list 2.0in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt'>The username
+and password that is sometimes requested by REXEC are not actually used for
+authentication.<span style="mso-spacerun: yes">  </span>If you’re running CBOE’s
+REXEC, this is not the reason why REXEC is not working.</span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.5in;margin-bottom:.0001pt;line-height:normal'><b>The
+REXEC is still not working:<o:p></o:p></b></p>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;mso-list:l18 level1 lfo8;
+tab-stops:list 2.0in;mso-layout-grid-align:none;text-autospace:none'><![if !supportLists]><span
+style='font-size:10.0pt;font-family:Wingdings;mso-bidi-font-family:"Courier New"'>§<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='font-size:10.0pt;font-family:"Courier New"'>If
+REXEC is running, one last thing you can try is to telnet from prdfe01 to the
+REXEC port on the PC, which is 512.<span style="mso-spacerun: yes">  </span>You
+should see something like this if the REXEC process is running and reachable
+from prdfe01:<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.0pt;margin-right:0in;margin-bottom:0in;
+margin-left:2.0in;margin-bottom:.0001pt;mso-layout-grid-align:none;text-autospace:
+none'><span style='font-size:10.0pt;font-family:"Courier New"'><span
+style='mso-tab-count:1'>        </span>Prdfe01 $ telnet dtro-01 512<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:2.0in;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'><span
+style='mso-tab-count:1'>        </span>Trying 172.28.72.1...<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:2.0in;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'><span
+style='mso-tab-count:1'>        </span>Connected to dtro-01.cboe.com.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:2.0in;mso-layout-grid-align:none;
+text-autospace:none'><span style='font-size:10.0pt;font-family:"Courier New"'><span
+style='mso-tab-count:1'>        </span>Escape character is '^]'.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.0in;margin-bottom:.0001pt;line-height:normal'>If
+now you retry the REXEC, an error message may be printed that could give you a
+clue of why it isn’t working (for example, no space on disk, etc.)</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;
+line-height:normal;mso-list:l18 level1 lfo8;tab-stops:list 2.0in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>You can also ask Network Support to use tcpdump or some
+listening program to help troubleshoot what is actually happening on the
+network when you try the REXEC.</p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.5in;margin-bottom:.0001pt;line-height:normal'><b>Specifying
+the port number of the error port:<o:p></o:p></b></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.0in;margin-bottom:.0001pt;text-indent:-.25in;
+line-height:normal;mso-list:l18 level1 lfo8;tab-stops:list 2.0in'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]><span style='mso-bidi-font-size:10.0pt'>When production
+needs to set a fixed port for the error port used by REXEC, they use port
+number 1025:</span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:2.25in;margin-bottom:.0001pt;line-height:normal'><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:"Courier New";
+mso-bidi-font-family:Arial'>rexec –e 1025 172.28.72.1 cmd</span><span
+style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:"Courier New";
+mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.5in;margin-bottom:.0001pt;line-height:normal'><b>REXEC
+Help - Usage and Switches:<o:p></o:p></b></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt'>usage: rexec [-?] [-h ] [-n] [-p port] [-e]
+host command arg1 arg2 ...<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:1.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt'>purpose: to execute a command on a remote
+host<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:1.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt'>switches:<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:2.0in;margin-bottom:.0001pt;line-height:normal'><span
+style='mso-bidi-font-size:10.0pt'>-? or -h<span style="mso-spacerun: yes"> 
+</span>= print out these instructions and exit.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-45.0pt;line-height:
+normal'><span style='mso-bidi-font-size:10.0pt'>-n = ask the user for a user
+name and a password. The default action is to retrieve these from .netrc if
+possible.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-45.0pt;line-height:
+normal'><span style='mso-bidi-font-size:10.0pt'>-p port = specify the port
+number of the server. The default is to look up the service by name.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-45.0pt;line-height:
+normal'><span style='mso-bidi-font-size:10.0pt'>-e port = use the specified
+port for the stderr connection. This is useful for getting past firewalls,
+while keeping the separate channels.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:189.0pt;margin-bottom:.0001pt;text-indent:-45.0pt;line-height:
+normal'><span style='mso-bidi-font-size:10.0pt'>-s = use a single connection
+for both stdout and stderr. This is useful for getting past firewalls.</span><o:p></o:p></p>
+
+<h2>CAS Topics</h2>
+
+<h3 style='margin-left:27.0pt'>Overview</h3>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>The Disaster Recovery Site
+is a set of production systems that will be used if any disaster causes the
+current CBOE production system to become non-functional.<span
+style="mso-spacerun: yes">  </span>This guide is meant as a reference for SBT
+Client developers who are familiar with the CBOE SBT Production system to learn
+the differences necessary to effectively support the DR site.</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>An overview of the systems
+comprising the SBT Disaster Recovery site can be found at:</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'><a
+href="http://ccserv1/documents/SBT/SBTTestEnvironments.html#dr">http://ccserv1/documents/SBT/SBTTestEnvironments.html#dr</a><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent3>Notice that these systems’ names start with “dr.”</p>
+
+<p class=MsoBodyTextIndent3><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:.75in;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td rowspan=5 style='border:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>CAS (hybrid)<o:p></o:p></p>
+  </td>
+  <td style='border:solid windowtext .5pt;border-left:none;mso-border-left-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drcas0001<o:p></o:p></span></p>
+  </td>
+  <td rowspan=10 style='border:solid windowtext .5pt;border-left:none;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>infrap / infrap<o:p></o:p></p>
+  </td>
+  <td style='border:solid windowtext .5pt;border-left:none;mso-border-left-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>8003<o:p></o:p></p>
+  </td>
+  <td style='border:solid windowtext .5pt;border-left:none;mso-border-left-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>Internal CAS<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drcas0002<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>8003<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drcas0003<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>8003<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drcas0004<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>8003<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span
+  style="mso-spacerun: yes">               </span>There will eventually be 15
+  CAS’s<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drcas0<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>8003<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>Testing CAS
+  (underpowered)<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border:solid windowtext .5pt;border-top:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>MD CAS (hybrid)<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drmdcas01<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>Also used for Stock MDCAS
+  and CFIX<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border:solid windowtext .5pt;border-top:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>ICS CAS<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drics01a<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border:solid windowtext .5pt;border-top:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>IPDCAS<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>dripdcas01<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>8003<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>IPDCAS is infra_6 based.
+  Infra-7 based is still in the works as of 10/24/05<o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border:solid windowtext .5pt;border-top:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>MD CAS (Stock)<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drmdcas01<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border:solid windowtext .5pt;border-top:none;mso-border-top-alt:
+  solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'>SACAS<o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><span style='font-family:
+  "Courier New"'>drsacas01<o:p></o:p></span></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td style='border-top:none;border-left:none;border-bottom:solid windowtext .5pt;
+  border-right:solid windowtext .5pt;mso-border-top-alt:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent3 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoBodyTextIndent3><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3>Currently there is no QA build for <span
+style='font-family:"Courier New"'>pargs</span> for a Solaris Opteron, and so
+there are two versions of <span style='font-family:"Courier New"'>pargs</span>
+on the DR CAS’s, the CBOE one and Sun’s.<span style="mso-spacerun: yes"> 
+</span></p>
+
+<h2>Fix Topics</h2>
+
+<h3 style='margin-left:27.0pt'>Overview</h3>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>The Disaster Recovery Site
+is a set of production systems that will be used if any disaster causes the
+current CBOE production system to become non-functional.<span
+style="mso-spacerun: yes">  </span>This guide is meant as a reference for SBT
+Client developers who are familiar with the CBOE SBT Production system to learn
+the differences necessary to effectively support the DR site.</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>An overview of the systems
+comprising the SBT Disaster Recovery site can be found at:</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:1.0in'><span style='font-family:Arial'><a
+href="http://ccserv1/documents/SBT/SBTTestEnvironments.html#dr">http://ccserv1/documents/SBT/SBTTestEnvironments.html#dr</a><o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent style='margin-left:.75in'>Notice that these systems’
+names start with “dr.”<span style="mso-spacerun: yes">  </span>The fix engine’s
+hostname is <span style='font-family:"Courier New"'>drfix01</span>.<span
+style="mso-spacerun: yes">  </span>There are fewer systems in the DR site than
+there are in production, especially now in its first phase.</p>
+
+<p class=MsoBodyTextIndent><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:71.25pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:1.5pt;mso-border-left-alt:
+ .75pt;mso-border-bottom-alt:1.5pt;mso-border-right-alt:.75pt;mso-border-color-alt:
+ black;mso-border-style-alt:solid;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr style='height:.2in'>
+  <td width=106 style='width:79.55pt;border:solid windowtext .5pt;background:
+  #B4B4CA;mso-shading:white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'><![if !supportEmptyParas]>&nbsp;<![endif]><b><i><span
+  style='font-size:11.0pt;mso-bidi-font-size:12.0pt;color:white'><o:p></o:p></span></i></b></p>
+  </td>
+  <td width=94 style='width:70.15pt;border:solid windowtext .5pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal><b><i><span style='font-family:Arial;color:white'>hostname<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=90 style='width:67.8pt;border:solid windowtext .5pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'><b><i><span
+  style='font-family:Arial;color:white'>username<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=88 style='width:66.3pt;border:solid windowtext .5pt;border-left:
+  none;mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'><b><i><span
+  style='font-family:Arial;color:white'>password<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr style='height:.2in'>
+  <td width=106 style='width:79.55pt;border:solid windowtext .5pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt'>FIX
+  (hybrid)</span></b><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></b></p>
+  </td>
+  <td width=94 style='width:70.15pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal>drfix01<span style='font-family:Arial;mso-bidi-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=90 style='width:67.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap <span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=88 style='width:66.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap <span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:.2in'>
+  <td width=106 style='width:79.55pt;border:solid windowtext .5pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt'>FIX
+  (hybrid)</span></b><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></b></p>
+  </td>
+  <td width=94 valign=top style='width:70.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal>drfix01<span style='font-family:Arial;mso-bidi-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=90 style='width:67.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap<span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=88 style='width:66.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap<span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:.2in'>
+  <td width=106 style='width:79.55pt;border:solid windowtext .5pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt'>FIX
+  (futures)</span></b><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></b></p>
+  </td>
+  <td width=94 valign=top style='width:70.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal>drfix01<span style='font-family:Arial;mso-bidi-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=90 style='width:67.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap<span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=88 style='width:66.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap<span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:.2in'>
+  <td width=106 style='width:79.55pt;border:solid windowtext .5pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt'>FIX
+  (futures)</span></b><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;
+  font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></b></p>
+  </td>
+  <td width=94 valign=top style='width:70.15pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal>drfix01<span style='font-family:Arial;mso-bidi-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=90 style='width:67.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap<span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=88 style='width:66.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap<span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr style='height:.2in'>
+  <td width=106 style='width:79.55pt;border:solid windowtext .5pt;border-top:
+  none;mso-border-top-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal><b><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt'>CFIX</span></b><b><span
+  style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Arial;
+  mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></b></p>
+  </td>
+  <td width=94 style='width:70.15pt;border-top:none;border-left:none;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt;height:.2in'>
+  <p class=MsoNormal>drmdcas01<span style='font-family:Arial;mso-bidi-font-family:
+  "Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=90 style='width:67.8pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap <span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+  <td width=88 style='width:66.3pt;border-top:none;border-left:none;border-bottom:
+  solid windowtext .5pt;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt;
+  height:.2in'>
+  <p class=MsoNormal align=center style='text-align:center'>infrap <span
+  style='font-family:Arial;mso-bidi-font-family:"Times New Roman"'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-left:1.0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:0in;margin-right:0in;margin-bottom:
+0in;margin-left:.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='font-family:Arial'>Ports 22501 - 22507 are available for the fix engines
+on drfix01 and are open to the outside world.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='font-family:Arial'>drfix01 will have 15 engines.<span
+style="mso-spacerun: yes">  </span>It currently has 7 configured.<span
+style="mso-spacerun: yes">  </span>The directory setup is different from that
+in production.<o:p></o:p></span></p>
+<p> </p>
+<p class=MsoBodyTextIndent2 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:.75in;margin-bottom:.0001pt;line-height:normal'><span
+style='font-family:Arial'>There are two FIX-O-METER's:<o:p></o:p></span></p>
+<p> </p>
+<table border=1 cellspacing=0 cellpadding=0 style='margin-left:65.8pt;
+ border-collapse:collapse;border:none;mso-border-top-alt:1.5pt;mso-border-left-alt:
+ .75pt;mso-border-bottom-alt:1.5pt;mso-border-right-alt:.75pt;mso-border-color-alt:
+ black;mso-border-style-alt:solid;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=126 style='width:94.2pt;border-top:black 1.5pt;border-left:windowtext .5pt;
+  border-bottom:black .75pt;border-right:windowtext .5pt;border-style:solid;
+  background:#B4B4CA;mso-shading:white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>PC name<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>ip address<o:p></o:p></span></i></b></p>
+  </td>
+  <td width=174 style='width:130.8pt;border-top:solid black 1.5pt;border-left:
+  none;border-bottom:solid black .75pt;border-right:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;background:#B4B4CA;mso-shading:
+  white;mso-pattern:gray-50 navy;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><b><i><span style='font-family:
+  Arial;color:white'>username</span></i></b><b><i><span style='font-family:
+  "Courier New";color:white'>/</span></i></b><b><i><span style='font-family:
+  Arial;color:white'>password<o:p></o:p></span></i></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.2pt;border-top:none;border-left:solid windowtext .5pt;
+  border-bottom:none;border-right:solid windowtext .5pt;mso-border-top-alt:
+  solid black .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>dropsmgmt-10<o:p></o:p></span></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border:none;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>172.28.4.41<o:p></o:p></span></p>
+  </td>
+  <td width=174 rowspan=2 style='width:130.8pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid black .75pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:150%'><span style='font-size:14.0pt;
+  mso-bidi-font-size:12.0pt;font-family:"Courier New";letter-spacing:-1.0pt'>ops/ops<o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=126 style='width:94.2pt;border-top:none;border-left:solid black .75pt;
+  border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNormal align=center style='mso-margin-top-alt:auto;mso-margin-bottom-alt:
+  auto;text-align:center'><b><span style='font-family:"Courier New"'>drmdcops-08</span><o:p></o:p></b></p>
+  </td>
+  <td width=124 style='width:93.3pt;border:none;border-right:solid windowtext .5pt;border-bottom:solid windowtext .5pt;
+  mso-border-left-alt:solid windowtext .5pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoBodyTextIndent2 align=center style='margin:0in;margin-bottom:
+  .0001pt;text-align:center;line-height:normal'><span style='font-family:"Courier New"'>170.137.6.9</span><span
+  style='font-family:Arial'><o:p></o:p></span></p>
+  </td>
+ </tr>
+</table>
+
+<h2>General Topics</h2>
+
+<h3 style='margin-left:27.0pt'><a name=devsup>devsup Instructions</a></h3>
+
+<p class=MsoBodyTextIndent3>devsup is a Linux box that has been configured to
+allow SBT developers to access the SBT servers.<span style="mso-spacerun:
+yes">  </span>The production SBT servers must be accessed only after you've
+notified Operations or you have been called by Operations.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt'>Once your account is
+enabled and you have an RSA SecurID device: </p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:81.35pt;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l18 level1 lfo8;tab-stops:list 81.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>SSH to devsup (170.137.248.89).<span
+style="mso-spacerun: yes">  </span>For an SSH client, you can either use a
+development UNIX box or Putty, an excellent SSH client for Windows (and free).<span
+style="mso-spacerun: yes">  </span>Access to devsup is given only with your
+CBOE username, so use the<span style='font-family:"Courier New"'> –l username </span>switch
+with SSH, if necessary, to specify your username if you are not currently
+logged in with your own username.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt;text-indent:-19.8pt;
+mso-list:l20 level1 lfo20;tab-stops:list 81.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>If devsup asks for your username, then supply it.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt;text-indent:-19.8pt;
+mso-list:l20 level1 lfo20;tab-stops:list 81.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>For password, enter your SecurID passcode (your devsup
+PIN + 6 digits on RSA SecurID) </p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt;text-indent:-19.8pt;
+mso-list:l20 level1 lfo20;tab-stops:list 81.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>You will now be able to use ssh (for shell access) or sftp
+(for file transfers) to access the production SBT servers through sudo</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt'>Shell access
+example: signing on to prdfe01 as the infrap user</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt'><span
+style='mso-tab-count:1'>                </span>$ sudo ssh -l infrap prdfe01</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt'>File transfer
+example: signing on to prdbc01b as the infrap user to transfer files</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:3.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.15in;margin-bottom:.0001pt'><span
+style='mso-tab-count:1'>                </span>$ sudo sftp infrap@prdbc01b</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt'>Please note that an e-mail
+will be sent to Operations management whenever you invoke sudo.</p>
+
+<h3 style='margin-left:27.0pt'><a name="Remote_Desktop">Remote Desktop Client
+Instructions</a></h3>
+
+<p class=MsoBodyTextIndent3><span class=bodytext>Remote desktop connection
+software provides a fast, secure means of remotely accessing the DR site
+PC’s.<span style="mso-spacerun: yes">  </span>If you happen to have Windows XP
+on your PC, you will already have the Remote Desktop client software on your
+machine.<span style="mso-spacerun: yes">  </span>Otherwise, read the
+instructions and download the client software from:<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:6.0pt;margin-left:81.35pt'><span class=bodytext><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:"Lucida Console"'><a
+href="http://intranet/departments/InformationSecurity/RemoteAccess.html"><span
+style='mso-bidi-font-size:12.0pt;mso-bidi-font-family:"Times New Roman"'>http://intranet/departments/InformationSecurity/RemoteAccess.html</span></a><o:p></o:p></span></span></p>
+
+<p class=MsoBodyTextIndent3>To use Remote Desktop and host mstsdv.cboe.com to
+access the DR site:</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l14 level1 lfo19;tab-stops:list 1.25in'><![if !supportLists]>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Start
+the Remote Desktop connection client on your PC.<span style="mso-spacerun:
+yes">  </span>It can often be found from the start menu at: </p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0in;margin-bottom:6.0pt;
+margin-left:1.5in;mso-layout-grid-align:none;text-autospace:none'><b><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Start</span></b>
+<span style='font-family:Arial'>&#9644;&#9658;</span> <b><span
+style='font-size:10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Programs</span></b><span
+style='font-family:Arial'> &#9644;&#9658;</span> <b><span style='font-size:
+10.0pt;mso-bidi-font-size:12.0pt;font-family:Arial'>Accessories</span></b> <span
+style='font-family:Arial'>&#9644;&#9658;</span> <b><span style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;font-family:Arial'>Communications</span></b> <span
+style='font-family:Arial'>&#9644;&#9658;</span> <b><span style='font-size:10.0pt;
+mso-bidi-font-size:12.0pt;font-family:Arial'>Remote Desktop Connection</span></b><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-left:1.25in'>The “Remote Desktop
+Connection” window should pop up.<span style="mso-spacerun: yes">  </span>If
+you don’t see it, you may have to click on the new window’s icon if the window
+is occluded.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Enter <span
+style='font-family:"Courier New"'>mstsdv.cboe.com </span><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>If you do not see a
+<span style='font-family:"Courier New"'>General</span> tab, click on the<span
+style='font-family:"Courier New"'> Options&gt;&gt; </span>button.<o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>On the <span
+style='font-family:"Courier New"'>General</span> tab, enter your workstation ID
+(your ID on your CBOE PC) in the User name field.<span style="mso-spacerun:
+yes">  </span></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Enter your PC’s
+domain password.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Check the domain,
+and if necessary change it to the domain you use to login to your CBOE PC.
+(Many people are on ICLAN, but others are on <span style='font-family:"Courier New"'>DSDL.CORP.CBOE</span>).
+</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Click on <span
+style='font-family:"Courier New"'>Connect.</span><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l14 level1 lfo19;tab-stops:list 1.25in'><![if !supportLists]>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>On
+&quot;mstsdv.cboe.com - Remote Desktop” window that pops up, click OK on the
+Warning window that asserts that system use is only for authorized business purposes.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Log into the Novell
+Client window that pops up: <span style="mso-spacerun: yes"> </span><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:135.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;
+mso-list:l18 level1 lfo8;tab-stops:center 1.5in list 135.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Click on the <span style='font-family:"Courier New"'>Advanced&gt;&gt;</span>
+button to check, and if necessary correct, the Context (the same domain entered
+above).<span style="mso-spacerun: yes">  </span><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:135.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;
+mso-list:l18 level1 lfo8;tab-stops:center 1.5in list 135.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Enter your <span style='font-family:"Courier New"'>Username</span>
+and <span style='font-family:"Courier New"'>Password</span>.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:135.0pt;margin-bottom:.0001pt;text-indent:-27.0pt;
+mso-list:l18 level1 lfo8;tab-stops:center 1.5in list 135.0pt'><![if !supportLists]><span
+style='font-family:Wingdings'>§<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Click <span style='font-family:"Courier New"'>OK</span>.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Scroll down until
+you see the start menu, if necessary, and select:</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:6.0pt;margin-left:1.5in'><b><span style='font-size:10.0pt'>Start</span></b>
+&#9644;&#9658; <b><span style='font-size:10.0pt'>Programs</span></b>
+&#9644;&#9658; <b><span style='font-size:10.0pt'>VNC Viewer</span></b>
+&#9644;&#9658; <b><span style='font-size:10.0pt'>VNC Viewer</span></b><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l14 level1 lfo19;tab-stops:list 1.25in'><![if !supportLists]>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>In
+the <span style='font-family:"Courier New"'>Connection</span> window, enter the
+IP address of the DR PC you want.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l14 level1 lfo19;tab-stops:list 1.25in'><![if !supportLists]>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>In
+the “VNC Authentication” window, enter password: <span style='font-family:"Courier New"'>drletmein</span>
+and click <span style='font-family:"Courier New"'>Log On.<span
+style="mso-spacerun: yes">  </span></span>(The password for DR-CONS-W2K is <span
+style='font-family:"Courier New"'>letmeindr</span>.)</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt;text-indent:-.25in;
+mso-list:l14 level1 lfo19;tab-stops:list 1.25in'><![if !supportLists]>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>In
+the Novell login window, you will login to the PC as “Workstation Only,” i.e.
+local context to the DR PC.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.8in;margin-bottom:.0001pt'><b>NOTE:</b><span
+style="mso-spacerun: yes">  </span>For some reason, at this point, you have to
+login successfully <u>the first time you try</u> or you will never get past
+this point.<span style="mso-spacerun: yes">  </span>So, if you are not able to
+login successfully the first time you try, go back to the <span
+style='font-family:"Courier New"'>mstsdv</span> window, and re-run the VNC
+Viewer.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>Carefully enter the
+local login for DR PC.<span style="mso-spacerun: yes">  </span>Most of them
+have username and password: ops / ops.<span style="mso-spacerun: yes"> 
+</span>Click on the OK button.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-top:6.0pt;margin-right:0in;
+margin-bottom:0in;margin-left:1.25in;margin-bottom:.0001pt'>If the login works,
+you will be looking at the desktop screen of the PC, which should at least have
+the toolbar with the Start menu on it, and may have desktop icons and windows
+of other running programs as well.<span style="mso-spacerun: yes">  </span>If
+you only have a completely blank window before you, go back to the <span
+style='font-family:"Courier New"'>mstsdv</span> window, and re-run the VNC
+Viewer.</p>
+
+<p class=MsoBodyTextIndent3 style='margin-left:1.25in'><span style='font-size:
+8.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

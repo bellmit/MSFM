@@ -1,0 +1,145 @@
+                          Coppelia 41F01 Release Notes
+                          ============================  
+
+
+Please insert new comments below this line
+===============================================================================
+    
+
+    Title: FIXometer enhancements
+Developer: Stuart Goldberg
+     Date: April 27, 2001
+     
+Statement
+---------
+Many small enhancements have been made to FIXometer.
+
+Description Of Changes
+----------------------
+1) Message Printing
+   A) Multiple messages are printed per page
+	 B) Only fields that have values are printed
+	 C) Field Values are displayed with textual representation
+	    rather than the raw FIX codes
+2) Refresh Button Added 
+   You can redo the current search with the click of a button.
+3) You can now search DBServer message based on Exec Broker.
+4) Messages are sorted by time.
+5) Formatted message view can be exported to a comma delimited file.
+6) Formatted message view now shows many more fields.
+7) DBServer messages can now be searched even when FIX engines are down.
+8) FIXometer grid settings (sort column, sort order, column widths, and
+   column order) are saved between FIXometer sessions.
+9) Message Area in bottom of FIXometer screen now has only black text. The
+   severity of messages is indicated by the color of a "bullet" placed to the
+	 left of the message.
+
+Resolution
+----------
+
+Example
+-------
+
+-------------------------------------------------------------------------------
+
+    Title:  Socket disconnect problem
+Developer:  Benjamin Lai 
+     Date:  19th April 2001
+     
+Statement
+---------
+SocketDisconnect now takes ConnectionData instead of just socket this will make it 
+more reliable since it won't have to lookup the cd.  This avoids the problem of the 
+socket being set to null in CD before it is in the disconnect state which results in
+a permanent loop.
+
+This was why the backup server also had problem on failover.  Becuase the state was
+UP but the socket was set to null so when SocketDisconnect was called it never found
+the CD and therefore could never mark it down.
+
+
+Description Of Changes
+----------------------
+
+CommStuff:SocketDisconnect now takes ConnectionData
+
+Resolution
+----------
+
+Example
+-------
+
+-------------------------------------------------------------------------------
+
+
+    Title: Empry tag in fix messages causes a reject
+Developer: Benjamin Lai
+     Date:  17th April 2001
+     
+Statement
+---------
+
+Fixed a bug in Coppelia where messages with empty tags were being swallowed they
+now force a reject message.
+
+
+Description Of Changes
+----------------------
+
+Resolution
+----------
+
+Example
+-------
+
+-------------------------------------------------------------------------------
+
+
+    Title: HeartBeat retry for HA Server
+Developer: Benjamin Lai
+     Date: 17th April 2001
+     
+Statement
+---------
+
+added the HEARTBEAT_RETRIES which defines the number of time a backup server 
+will try to HB the primary before it fails over
+
+Description Of Changes
+----------------------
+
+Resolution
+----------
+
+Example
+-------
+
+-------------------------------------------------------------------------------
+
+
+
+    Title:  DBServer resync all records on connection to a new server
+Developer:  Benjamin Lai
+     Date:  3rd April 2001
+     
+Statement
+---------
+
+DBserver would get duplicate messages whenever it disconnected from one primary server
+and reconnected.  This was due to the fact the the syncEndSeqNumber_ was only updated
+on startup.  Before the DBServer reconnects to a server it updates the syncEndSeqNumber_
+
+
+Description Of Changes
+----------------------
+
+added a new message UPDATE_SYNC_DATA and a new method updateSyncData in
+PersistentStats
+
+Resolution
+----------
+
+Example
+-------
+
+-------------------------------------------------------------------------------

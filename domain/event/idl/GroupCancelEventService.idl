@@ -1,0 +1,24 @@
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module businessServices
+{
+    interface GroupCancelEventService
+    {
+        void subscribeGroupCancelSummaryEvents( in consumers::SystemControlConsumer systemControlConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeGroupCancelSummaryEvents( in consumers::SystemControlConsumer systemControlConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    };
+};

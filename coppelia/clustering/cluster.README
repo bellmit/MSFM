@@ -1,0 +1,69 @@
+
+cluster.README
+==============
+
+contents
+--------------
+./etc/init.d/cluster
+./etc/init.d/nicfailover
+./etc/rc2.d/S98nicfailover     (symbol link to ../init.d/nicfailover)
+./etc/rc2.d/S99cluster         (symbol link to ../init.d/cluster)
+./usr/bin/CoppeliaCluster
+./usr/bin/NicFailOver
+
+extracting
+--------------
+
+To extract the contents into the current
+directory use the following command
+
+  tar xvf cluster.tar
+
+To extract the contents as root use the
+following comand
+
+  tar xovf cluster.tar
+
+
+setup
+-------------
+In order for the scripts to run properly, you have to do
+the following:
+
+1) The scripts has to be modified with the correct parameters
+   before they can be run.
+
+   ./etc/init.d/nicfailover is used for failing over
+   a primary nic card with a standby nic card.
+
+   The scripts currently comes with these parameters
+
+   MASTER_NIC=hme0
+   SECONDARDY_NIC=hme1
+   LOGICAL_IP=192.168.129.30
+   WELL_KNOWN_IP=192.168.129.27 
+
+
+   ./etc/init.d/cluster does the same as nicfailover. In addition,
+2) it will setup the correct logical IP for Coppelia HA on the FIX
+   side of the connection.
+
+   The script currently comes with these parameters
+
+   NIC_DEV1=hme0
+   NIC_DEV2=hme1
+   NIC_LOGICAL_IP=192.168.129.30
+   WELL_KNOWN_IP=192.168.129.27
+   LOGICAL_IP=192.168.129.213
+   COPPELIA_FIX_PORT=10055        
+
+
+3) You then have to move or copy the files so that that the
+   reside off the root directory.
+
+   By default these scripts will running automatically when booting.
+   If you want to disable them, just remove the symbolic link from
+   the /etc/rc2.d directory. To reenable them, recreate the symbolic
+   link in the /etc/rc2.d directory.
+
+

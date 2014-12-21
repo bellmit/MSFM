@@ -1,0 +1,30 @@
+#ifndef AlertEventService_idl
+#define AlertEventService_idl
+
+#include "alertService.idl"
+#include "exceptions.idl"
+#include "InternalConsumers.idl"
+
+module internalBusinessServices
+{
+    interface AlertEventService : internalBusinessServices::AlertService
+    {
+        void subscribeAlertEvent( in internalConsumers::AlertConsumer alertConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeAlertEvent( in internalConsumers::AlertConsumer alertConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    };
+};
+
+#endif

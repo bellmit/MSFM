@@ -1,0 +1,437 @@
+Properties Snapshot of Test System: test1 - 2010-04-27 14:35:54.178
+
+Properties for:  W_STOCK:69206138 - 2010-04-27 14:35:54.178
+---------------
+
+Number Of Attempts For ReCOA (NumberOfAttemptsForReCOA): Integer Value=0
+
+---------------
+
+Sleep Timer For ReCOA (SleepTimerForReCOA): Integer Value=200000
+
+---------------
+
+Price Protect Percentage (PriceProtectPercentage): Double Value=0.0
+
+---------------
+
+HALO Trigger Timer (HALOTriggerTimer): Integer Value=1500
+
+---------------
+
+Auto Link Preferred Tie Exchanges (AutoLinkPreferredTieExchanges): Auto Link Tie Exchange Id=0, Auto Link Tie Exchange Preferred Seq=1
+
+---------------
+
+NBBO Cross Minumum Dollar Amount (NBBOCrossMinDollarAmount): Integer Value=100
+
+---------------
+
+Allowed HALTypes (AllowedHALTypes): Allowed HALType=-1
+
+---------------
+
+Number Of Attempts For CPS ReCOA (NumberOfAttemptsForCPSReCOA): Integer Value=0
+
+---------------
+
+EOP PreOpen Calculation Start Time (EOPStartTime): Time=7:50:20 AM
+
+---------------
+
+Auto Link Origin Codes (AutoLinkOriginCodes): Auto Link Origin Code=3, Auto Link Origin Code Enabled Flag=false; Auto Link Origin Code=6, Auto Link Origin Code Enabled Flag=false; Auto Link Origin Code=13, Auto Link Origin Code Enabled Flag=false
+
+---------------
+
+Manual Quote Cancel Timer For Non PAR (ManualQuoteCancelTimerForNonPar): Integer Value=30000
+
+---------------
+
+Opening Max Quote Inversion (OpeningMaxQuoteInversion): Minimum Bid Range=0.0, Maximum Bid Range=3.0, Maximum Allowable Spread=0.15; Minimum Bid Range=3.0, Maximum Bid Range=10000.0, Maximum Allowable Spread=0.3
+
+---------------
+
+ITS Commitment Auto Cancel Threshold (ITSCommitmentAutoCancelThreshold): Integer Value=3500
+
+---------------
+
+Allowed HAL Origin Codes (AllowedHalOriginCodes): Allowed Hal Origin Code=3, Allowed Hal Origin Code Enabled Flag=false; Allowed Hal Origin Code=6, Allowed Hal Origin Code Enabled Flag=false; Allowed Hal Origin Code=13, Allowed Hal Origin Code Enabled Flag=false
+
+---------------
+
+CPS ReCOA Interval (CPSReCOAInterval): Integer Value=15000
+
+---------------
+
+Extremely Wide Quote Width (ExtremelyWideQuoteWidth): Minimum Bid Range=0.0, Maximum Bid Range=0.3, Maximum Allowable Spread=0.06; Minimum Bid Range=0.31, Maximum Bid Range=1.49, Maximum Allowable Spread=0.12; Minimum Bid Range=1.5, Maximum Bid Range=2.99, Maximum Allowable Spread=0.25; Minimum Bid Range=3.0, Maximum Bid Range=5.99, Maximum Allowable Spread=0.37; Minimum Bid Range=6.0, Maximum Bid Range=9.99, Maximum Allowable Spread=0.52; Minimum Bid Range=10.0, Maximum Bid Range=99999.0, Maximum Allowable Spread=1.0
+
+---------------
+
+Percent Within BOTR-By Range (BOTRRangeScales): Lower Range=0, Upper Range=10, Percentage=0.5; Lower Range=10, Upper Range=50, Percentage=0.4; Lower Range=50, Upper Range=1000, Percentage=0.2; Lower Range=1000, Upper Range=10000, Percentage=0.1
+
+---------------
+
+Hold Back Timer (HoldBackTimer): Integer Value=0
+
+---------------
+
+MOC Order Activation Interval Before Close in seconds (MOCIntervalSeconds): Integer Value=0
+
+---------------
+
+Sleep Timer For CPS ReCOA (SleepTimerForCPSReCOA): Integer Value=3600000
+
+---------------
+
+Allow Market Order (AllowMarketOrder): Boolean Value=false
+
+---------------
+
+Cross Minumum Order Size (CrossMinOrderSize): Integer Value=100
+
+---------------
+
+HAL Trigger Timer (HALTriggerTimer): Integer Value=0
+
+---------------
+
+Ticks Away For CPS ReCOA (TicksAwayForCPSReCOA): Integer Value=2
+
+---------------
+
+Opening Max Retries Waiting For Quote (OpeningMaxRetriesWaitingForQuote): Integer Value=5
+
+---------------
+
+Market Turner Percentage (MarketTurnerPercentage): Double Value=1.0
+
+---------------
+
+Ticks Away For ReCOA (TicksAwayForReCOA): Integer Value=3
+
+---------------
+
+UIM Active (UIMActive): Boolean Value=false
+
+---------------
+
+Manual Quote Cancel Timer For PAR (ManualQuoteCancelTimerForPar): Integer Value=30000
+
+---------------
+
+Cross Minumum Dollar Amount (CrossMinDollarAmount): Integer Value=100
+
+---------------
+
+UIM Timeout (UIMTimeoutMS): Integer Value=60000
+
+---------------
+
+Allocate all to opposite side rights participant (AllocateAllToRightsParticipant): Integer Value=0
+
+---------------
+
+Enable Auto Link (AutoLinkEnabled): Boolean Value=true
+
+---------------
+
+Regular Market Hour Validation Enable (EnableRegularMarketTimeValidation): Boolean Value=true
+
+---------------
+
+Enable BOTR Calculation (BOTREnabled): Boolean Value=false
+
+---------------
+
+AON Solicitation Minimum Quantity (AONSolicitationMinimumQuantity): Integer Value=0
+
+---------------
+
+Max Products Per BookDepth Class Refresh Command (maxProductsPerBookDepthClassRefreshCommand): Integer Value=100
+
+---------------
+
+ReCOA Interval (ReCOAInterval): Integer Value=5000
+
+---------------
+
+Reporting Price Adjustment (ReportingPriceAdjustment): Integer Value=1
+
+---------------
+
+QCC Min Value (QCCMinValue): Integer Value=0
+
+---------------
+
+Enable CPS Booking (EnableCPSBooking): Boolean Value=false
+
+---------------
+
+Opening Price Validation Method (OpeningPriceValidation): Validation Type=2
+
+---------------
+
+Auction Minimum and Maximum Order Size (AuctionMinMaxOrderSize): Auction Type=1, Min Order Size=1, Max Order Size=1000
+
+---------------
+
+MKT Order Drill Through Amount (MKTOrderDrillThroughPennies): Minimum NBBORange=0.0, Maximum NBBORange=0.75, No Of Pennies=0.15; Minimum NBBORange=0.75, Maximum NBBORange=2.0, No Of Pennies=0.3; Minimum NBBORange=2.0, Maximum NBBORange=5.0, No Of Pennies=0.5; Minimum NBBORange=5.0, Maximum NBBORange=10.0, No Of Pennies=0.8; Minimum NBBORange=10.0, Maximum NBBORange=20.0, No Of Pennies=1.5; Minimum NBBORange=20.0, Maximum NBBORange=999.0, No Of Pennies=2.5
+
+---------------
+
+BBO Allocation Percentage for SAL (BBOAllocationPercentage): Double Value=0.0
+
+---------------
+
+Opening EPW for LEAPS (LeapsOepw): Minimum Bid Range=0.0, Maximum Bid Range=2.0, Maximum Allowable Spread=0.5; Minimum Bid Range=2.0, Maximum Bid Range=5.0, Maximum Allowable Spread=1.0; Minimum Bid Range=5.0, Maximum Bid Range=10.0, Maximum Allowable Spread=2.0; Minimum Bid Range=10.0, Maximum Bid Range=20.0, Maximum Allowable Spread=10.0; Minimum Bid Range=20.0, Maximum Bid Range=10000.0, Maximum Allowable Spread=20.0
+
+---------------
+
+Opening EPW (OpeningExchangePrescribedWidth): Minimum Bid Range=0.0, Maximum Bid Range=100.0, Maximum Allowable Spread=1.0; Minimum Bid Range=100.0, Maximum Bid Range=200.0, Maximum Allowable Spread=1.0; Minimum Bid Range=200.0, Maximum Bid Range=10000.0, Maximum Allowable Spread=1.0
+
+---------------
+
+Regular Market Hours (RegularMarketHours): Open Time=2:32:24 PM, Close Time=9:32:24 PM
+
+---------------
+
+NBBO Cross Minumum Order Size (NBBOCrossMinOrderSize): Integer Value=100
+
+---------------
+
+Index Hybrid Indicator (IndexHybridIndicator): Boolean Value=false
+
+---------------
+
+Directed AIM Timer (DirectedAIMTimer): Integer Value=0
+
+---------------
+
+EOP PreOpen Calculation Interval (EOPInterval): Integer Value=30
+
+---------------
+
+Auto Link Disqualified Exchanges (AutoLinkDisqualifiedExchanges): Auto Link Disqualified Exchanges=UNKNWN, Auto Link Disqualified Exchanges Flag=false
+
+---------------
+
+Size Increase Percentage For New RFP (SizeIncreasePercentageForNewRfp): Double Value=0.0
+
+---------------
+
+Auto Ex Size Against Non Customer (AutoExSizeAgainstNonCustomer): Integer Value=999999999
+
+---------------
+
+PDPM Rights Scales (PDPMRightsScales): Low Nbr Participants=0, High Nbr Participants=1, Scale Percentage=1.0; Low Nbr Participants=1, High Nbr Participants=2, Scale Percentage=0.5; Low Nbr Participants=2, High Nbr Participants=3, Scale Percentage=0.4; Low Nbr Participants=3, High Nbr Participants=99999, Scale Percentage=0.3
+
+---------------
+
+Strategy EPW (StrategyEPW): Minimum Bid Range=0.0, Maximum Bid Range=100.0, Maximum Allowable Spread=1000000.0; Minimum Bid Range=100.0, Maximum Bid Range=200.0, Maximum Allowable Spread=1000000.0; Minimum Bid Range=200.0, Maximum Bid Range=10000.0, Maximum Allowable Spread=1000000.0
+
+---------------
+
+Auction Receiver Types (auctionreceivertypes): Auction Type=1, Int Value=1; Auction Type=4, Int Value=1; Auction Type=6, Int Value=1; Auction Type=7, Int Value=1
+
+---------------
+
+Auction Order Ticks Away From NBBO (auctionorderticksawayfromnbbo): Auction Type=1, Int Value=0; Auction Type=4, Int Value=0
+
+---------------
+
+ETF Flag (etfflag): Boolean Value=true
+
+---------------
+
+Pre-Closing Time Period (preclosingtimeperiod): Lower Limit=120, Upper Limit=240
+
+---------------
+
+IPP Minimum Size (ippminsize): Integer Value=1
+
+---------------
+
+Opening Price Delay (openingpricedelay): Integer Value=0
+
+---------------
+
+Linkage Enabled Flag (linkageenabledflag): Boolean Value=true
+
+---------------
+
+Minimum Quote Credit Default Size (minquotecreditdefaultsize): Integer Value=100
+
+---------------
+
+RFQ Timeout (rfqtimeout): Integer Value=0
+
+---------------
+
+Quote Trigger Timer (quotetriggertimer): Integer Value=0
+
+---------------
+
+Internalization Guaranteed Percentage (internalizationguaranteedpercentage): Auction Type=1, Lower Range=0, Upper Range=2, Percentage=0.5; Auction Type=1, Lower Range=2, Upper Range=99999, Percentage=0.4
+
+---------------
+
+Satisfaction Alert Flag (satisfactionalertflag): Boolean Value=false
+
+---------------
+
+Firm Principal Quote Size (firmprincipalquotesize): Integer Value=1
+
+---------------
+
+Allocation Strategy (allocationstrategy): Allocation Trade Type=0, Default Strategy Code=1, Prioritized Strategy Codes=()
+
+---------------
+
+Auto Execute Eligible Strategy Types (autoexeligiblestrategytypes): Integer Value=2; Integer Value=3; Integer Value=4; Integer Value=5; Integer Value=6; Integer Value=7; Integer Value=8; Integer Value=9
+
+---------------
+
+Satisfaction Order Time to Create Before Close (sordertimetocreatebeforeclose): Integer Value=60000
+
+---------------
+
+Auction Minimum Price Increment (auctionminpriceincrement): Auction Type=1, Int Value=1
+
+---------------
+
+Quote Lock Notification Timer (quotelocknotificationtimer): Integer Value=-1
+
+---------------
+
+Needs DPM Quote to Open (needsdpmquotetoopen): Boolean Value=true
+
+---------------
+
+DPM Rights Scales (dpmrightsscales): Low Nbr Participants=0, High Nbr Participants=1, Scale Percentage=1.0; Low Nbr Participants=1, High Nbr Participants=2, Scale Percentage=0.5; Low Nbr Participants=2, High Nbr Participants=3, Scale Percentage=0.4; Low Nbr Participants=3, High Nbr Participants=99999, Scale Percentage=0.3
+
+---------------
+
+Satisfaction Order Time to Reject Fill (sordertimetorejectfill): Integer Value=20000
+
+---------------
+
+Contingency Time to Live (contingencytimetolive): Integer Value=0
+
+---------------
+
+Book Depth Size (bookdepthsize): Integer Value=10
+
+---------------
+
+Minimum Size for Block Trade (minsizeforblocktrade): Integer Value=10000
+
+---------------
+
+PA Order Time to Live (paordertimetolive): Integer Value=60000
+
+---------------
+
+Product Open Procedure Type (productopenproceduretype): Integer Value=1
+
+---------------
+
+Opening Time Period Range (openingtimeperiodrange): Lower Limit=0, Upper Limit=1
+
+---------------
+
+IPP Tolerance Amount (ipptoleranceamount): Double Value=0.0
+
+---------------
+
+Trade Type (tradetype): Integer Value=3
+
+---------------
+
+RFQ Response Ratio (rfqresponseratio): Double Value=0.5
+
+---------------
+
+Auction Minimum Order Size For Ticks Above NBBO (auctionminordersizeforticksabovenbbo): Auction Type=1, Order Size=50, Ticks Above NBBO=1
+
+---------------
+
+DPM Rights Split Rate (dmprightssplitrate): Double Value=0.5
+
+---------------
+
+Opening Price Rate (openingpricerate): Integer Value=2
+
+---------------
+
+Auction Minimum Quoters (auctionminquoters): Auction Type=1, Int Value=1; Auction Type=4, Int Value=1; Auction Type=6, Int Value=0; Auction Type=7, Int Value=0
+
+---------------
+
+UMA Equal Distribution Weight for DPM (umaequaldistributionweightfordpm): Integer Value=1
+
+---------------
+
+Satisfaction Order Time to Create (sordertimetocreate): Integer Value=180000
+
+---------------
+
+Fast Market Spread Multiplier (fastmarketspreadmultiplier): Double Value=1.0
+
+---------------
+
+Auction Time To Live (auctiontimetolive): Auction Type=7, Lower Limit=15000, Upper Limit=15000
+
+---------------
+
+Quote Lock Minimum Trade Quantity (quotelockmintradeqty): Integer Value=0
+
+---------------
+
+Lot Size (lotsize): Integer Value=100
+
+---------------
+
+Firm Customer Quote Size (firmcustomerquotesize): Integer Value=1
+
+---------------
+
+Satisfaction Order Time to Live (sordertimetolive): Integer Value=18000
+
+---------------
+
+IPP Trade Through Flag (ipptradethroughflag): Boolean Value=true
+
+---------------
+
+Quote Lock Timer (quotelocktimer): Integer Value=0
+
+---------------
+
+Prescribed Width Ratio (prescribedwidthratio): Double Value=0.75
+
+---------------
+
+P Order Time to Live (pordertimetolive): Integer Value=60000
+
+---------------
+
+UMA Split Rate (umasplitrate): Double Value=0.5
+
+---------------
+
+Exchange Prescribed Width (epwstruct): Minimum Bid Range=0.0, Maximum Bid Range=100.0, Maximum Allowable Spread=100.0; Minimum Bid Range=100.0, Maximum Bid Range=200.0, Maximum Allowable Spread=100.0; Minimum Bid Range=200.0, Maximum Bid Range=10000.0, Maximum Allowable Spread=100.0
+
+---------------
+
+Continuous Quote Period for Credit (continuousquoteperiodforcredit): Integer Value=30
+
+---------------
+
+Auction Enabled (auctionenabled): Auction Type=6, Enabled=true; Auction Type=7, Enabled=true
+
+---------------
+
+DPM Participation Percentage (dpmparticipationpercentage): Double Value=0.3
+
+---------------
+

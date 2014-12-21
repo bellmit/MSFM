@@ -1,0 +1,63 @@
+#ifndef ProductMaintenanceEventService_idl
+#define ProductMaintenanceEventService_idl
+
+#include "ProductMaintenanceService.idl"
+#include "exceptions.idl"
+#include "consumers.idl"
+
+module internalBusinessServices
+{
+    interface ProductMaintenanceEventService : ProductMaintenanceService
+    {
+        void subscribeProductStatusByKey( in long classKey, in consumers::ProductStatusConsumer productStatusConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+            
+        void subscribeClassStatus( in cmiProduct::ProductType productType, in consumers::ProductStatusConsumer classStatusConsumer )
+	    raises(
+	        exceptions::SystemException,
+	        exceptions::CommunicationException,
+	        exceptions::DataValidationException,
+	        exceptions::AuthorizationException
+            );
+
+        void subscribeLinkageStatus(in consumers::ProductStatusConsumer clientListener)
+        raises(
+	        exceptions::SystemException,
+	        exceptions::CommunicationException,
+	        exceptions::DataValidationException,
+	        exceptions::AuthorizationException
+            );
+
+        void unsubscribeClassStatus( in cmiProduct::ProductType productType, in consumers::ProductStatusConsumer classStatusConsumer )
+	    raises(
+	        exceptions::SystemException,
+	        exceptions::CommunicationException,
+	        exceptions::DataValidationException,
+	        exceptions::AuthorizationException
+            );
+            
+        void unsubscribeProductStatusByKey( in long classKey, in consumers::ProductStatusConsumer productStatusConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeLinkageStatus(in consumers::ProductStatusConsumer clientListener)
+        raises(
+	        exceptions::SystemException,
+	        exceptions::CommunicationException,
+	        exceptions::DataValidationException,
+	        exceptions::AuthorizationException
+            );
+
+    };
+};
+
+#endif

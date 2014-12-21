@@ -1,0 +1,123 @@
+//# Interface: QuoteStatusSubscriptionService
+//# Module: businessServices
+
+#include "consumers.idl"
+
+module businessServices {
+    interface QuoteStatusSubscriptionService {
+        void subscribeQuoteStatus( in string userId, in consumers::QuoteStatusConsumer quoteStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void subscribeQuoteStatusForFirm( in cmiUser::ExchangeFirmStruct firm, in consumers::QuoteStatusConsumer quoteStatusConsumer, in string source)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeQuoteStatus( in string userId, in consumers::QuoteStatusConsumer quoteStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeQuoteStatusForFirm( in cmiUser::ExchangeFirmStruct firm, in consumers::QuoteStatusConsumer quoteStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void ackQuoteStatus(in quote::QuoteAcknowledgeStruct quoteAcknowledge)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void publishQuoteStatus(in string userId)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void ackQuoteStatusV3(in quote::QuoteAcknowledgeStructV3 quoteAcknowledge)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void publishQuoteStatusByClass(in string userId, in cmiProduct::ClassKey classKey)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void subscribeQuoteStatusV2( in string userId, in consumers::QuoteStatusConsumerV2 quoteStatusConsumer, in string source, in short blockSize )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void subscribeQuoteStatusForFirmV2( in cmiUser::ExchangeFirmStruct firm, in consumers::QuoteStatusConsumerV2 quoteStatusConsumer, in string source, in short blockSize)
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeQuoteStatusV2( in string userId, in consumers::QuoteStatusConsumerV2 quoteStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        void unsubscribeQuoteStatusForFirmV2( in cmiUser::ExchangeFirmStruct firm, in consumers::QuoteStatusConsumerV2 quoteStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+        // Added for Enhanced Drop Copy
+	void subscribeQuoteStatusForTradingFirmUser( in string userId, in string groupId, in consumers::QuoteStatusConsumerV2 quoteStatusConsumer, in string source, in short blockSize )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+	
+	// Added for Enhanced Drop Copy
+	void unsubscribeQuoteStatusForTradingFirmUser( in string userId, in string groupId, in consumers::QuoteStatusConsumerV2 quoteStatusConsumer, in string source )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    };
+};

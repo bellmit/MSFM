@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+jxb:version="1.0"
+elementFormDefault="qualified" 
+attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jxb:globalBindings 
+				collectionType="indexed" 
+				enableJavaNamingConventions="true"
+				typesafeEnumBase="xs:NCName"
+				typesafeEnumMemberName="generateError"
+				choiceContentProperty="true">
+				<jxb:javaType name="long" xmlType="xs:long"/>
+				<jxb:javaType name="double" xmlType="xs:double"/>
+			</jxb:globalBindings>
+			<jxb:schemaBindings>
+				<jxb:package name="com.cboe.client.xml.bind"/>
+			</jxb:schemaBindings>
+		</xs:appinfo>
+	</xs:annotation>
+</xs:schema>
+

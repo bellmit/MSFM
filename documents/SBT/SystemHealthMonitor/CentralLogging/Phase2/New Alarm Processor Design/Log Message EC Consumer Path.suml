@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sequencediagram>
+  <Definition>[CentralLoggingConsumerImpl log
+[ICServicesHelper getAlarmProcessing
+[ICServicesHelper getAlarmProcessingHome
+[HomeFactory getInstance]
+[HomeFactory findHome]
+[ICSAlarmProcessingHome find]]]
+[ICSAlarmProcessingImpl enqueueLogEvent
+[ICSAlarmProcessingImpl getEventCenter
+[EventCenterImpl enqueueLogEvent
+[LogMessageContainer LogMessageContainer]
+[LogEventQueueImpl enqueue
+[LogEventQueueImpl getQueueServer
+[EventQueueServer getQueue]
+[Queue enqueue]]]]]]]</Definition>
+  <Links>
+    <Link Id="0" Class="com.cboe.instrumentationCollector.eventChannel.CentralLoggingConsumerImpl" Method="log" Return="false">
+      <Comment></Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="message" Type="com.cboe.idl.infrastructureServices.loggingService.corba.Message" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="1" Class="com.cboe.instrumentationCollector.common.ICServicesHelper" Method="getAlarmProcessing" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ICSAlarmProcessing</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="2" Class="com.cboe.instrumentationCollector.common.ICServicesHelper" Method="getAlarmProcessingHome" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ICSAlarmProcessingHome</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="3" Class="com.cboe.infrastructureServices.foundationFramework.HomeFactory" Method="getInstance" Return="false">
+      <Comment>getInstance  Get the one and only instance of the home factory.   </Comment>
+      <Return Description="HomeFactor the singleton instance.   ">com.cboe.infrastructureServices.foundationFramework.HomeFactory</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="4" Class="com.cboe.infrastructureServices.queue.Queue" Method="enqueue" Return="true">
+      <Comment>enqueue  Add the given &lt;code&gt;dataObject&lt;/code&gt; to the rear of the queue.   If the queue is in wait mode and the operation cannot complete in the specified (DEFAULT VALAUE)  amount of time an exception is thrown.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="dataObject" Type="java.lang.Object" Description="- the object to enqueue.   " />
+      </Arguments>
+      <Throws Name="QueueException" Description="serious errors. " />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="5" Class="com.cboe.infrastructureServices.foundationFramework.HomeFactory" Method="findHome" Return="false">
+      <Comment>findHome  Find the home defined with the provided name. If the home can not be found,  lazily initialize the home.   </Comment>
+      <Return Description="com.cboe.infrastructureServices.foundationFramework.BOHome   ">com.cboe.infrastructureServices.foundationFramework.BOHome</Return>
+      <Arguments>
+        <Param Sequence="0" Name="homeName" Type="java.lang.String" Description="java.lang.String The name of a previously defined home. " />
+      </Arguments>
+      <Throws Name="CBOELoggableException" Description="" />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="6" Class="com.cboe.infrastructureServices.queue.Queue" Method="enqueue" Return="true">
+      <Comment>enqueue  Add the given &lt;code&gt;dataObject&lt;/code&gt; to the rear of the queue.   If the queue is in wait mode and the operation cannot complete in the specified (DEFAULT VALAUE)  amount of time an exception is thrown.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="dataObject" Type="java.lang.Object" Description="- the object to enqueue.   " />
+      </Arguments>
+      <Throws Name="QueueException" Description="serious errors. " />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="7" Class="com.cboe.interfaces.instrumentationCollector.ICSAlarmProcessingHome" Method="find" Return="false">
+      <Comment></Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.ICSAlarmProcessing</Return>
+      <Arguments />
+      <Throws Name="Exception" Description="" />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="8" Class="com.cboe.infrastructureServices.queue.Queue" Method="enqueue" Return="true">
+      <Comment>enqueue  Add the given &lt;code&gt;dataObject&lt;/code&gt; to the rear of the queue.   If the queue is in wait mode and the operation cannot complete in the specified (DEFAULT VALAUE)  amount of time an exception is thrown.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="dataObject" Type="java.lang.Object" Description="- the object to enqueue.   " />
+      </Arguments>
+      <Throws Name="QueueException" Description="serious errors. " />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="9" Class="com.cboe.infrastructureServices.queue.Queue" Method="enqueue" Return="true">
+      <Comment>enqueue  Add the given &lt;code&gt;dataObject&lt;/code&gt; to the rear of the queue.   If the queue is in wait mode and the operation cannot complete in the specified (DEFAULT VALAUE)  amount of time an exception is thrown.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="dataObject" Type="java.lang.Object" Description="- the object to enqueue.   " />
+      </Arguments>
+      <Throws Name="QueueException" Description="serious errors. " />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="11" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="enqueueLogEvent" Return="false">
+      <Comment>enqueueLogEvent  enqueue an EC log message to the main, event center </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="logMessage" Type="com.cboe.idl.infrastructureServices.loggingService.corba.Message" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="12" Class="com.cboe.instrumentationCollector.alarmProcessor.ICSAlarmProcessingImpl" Method="getEventCenter" Return="false">
+      <Comment>getEventCenter  CRUD EVENT HANDLING </Comment>
+      <Return Description="">com.cboe.interfaces.instrumentationCollector.EventCenter</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="13" Class="com.cboe.instrumentationCollector.alarmProcessor.EventCenterImpl" Method="enqueueLogEvent" Return="false">
+      <Comment>enqueueLogEvent   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="logMessage" Type="com.cboe.idl.infrastructureServices.loggingService.corba.Message" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="14" Class="com.cboe.domain.util.LogMessageContainer" Method="LogMessageContainer" Return="false">
+      <Comment></Comment>
+      <Return />
+      <Arguments>
+        <Param Sequence="0" Name="msgStruct" Type="com.cboe.idl.infrastructureServices.loggingService.corba.Message" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="16" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueImpl" Method="enqueue" Return="false">
+      <Comment>enqueue   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="logMessage" Type="com.cboe.domain.util.LogMessageContainer" Description="" />
+      </Arguments>
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="17" Class="com.cboe.instrumentationCollector.alarmProcessor.LogEventQueueImpl" Method="getQueueServer" Return="false">
+      <Comment>getQueueServer   </Comment>
+      <Return Description="">com.cboe.instrumentationCollector.alarmProcessor.EventQueueServer</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="18" Class="com.cboe.instrumentationCollector.alarmProcessor.EventQueueServer" Method="getQueue" Return="false">
+      <Comment>getQueue  Return the instance or null.  </Comment>
+      <Return Description="com.cboe.infrastructureServices.queue.Queue ">com.cboe.infrastructureServices.queue.Queue</Return>
+      <Arguments />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+    <Link Id="20" Class="com.cboe.infrastructureServices.queue.Queue" Method="enqueue" Return="false">
+      <Comment>enqueue  Add the given &lt;code&gt;dataObject&lt;/code&gt; to the rear of the queue.   If the queue is in wait mode and the operation cannot complete in the specified (DEFAULT VALAUE)  amount of time an exception is thrown.   </Comment>
+      <Return Description="">void</Return>
+      <Arguments>
+        <Param Sequence="0" Name="dataObject" Type="java.lang.Object" Description="- the object to enqueue.   " />
+      </Arguments>
+      <Throws Name="QueueException" Description="serious errors. " />
+      <CallComment ShowOnDiagram="false"></CallComment>
+    </Link>
+  </Links>
+</Sequencediagram>
+

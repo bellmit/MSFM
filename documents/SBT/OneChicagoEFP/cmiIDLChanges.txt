@@ -1,0 +1,87 @@
+module cmiUtil
+{ 
+    struct DateStruct
+    {
+        octet month;
+        octet day;
+        short year;
+    };
+    typedef sequence< DateStruct > DateStructSequence;
+
+    struct TimeStruct
+    {
+        octet hour;
+        octet minute;
+        octet second;
+        octet fraction;
+    };
+    typedef sequence< TimeStruct > TimeStructSequence;
+
+    struct DateTimeStruct
+    {
+        cmiUtil::DateStruct date;
+        cmiUtil::TimeStruct time;
+    };
+    typedef sequence< DateTimeStruct > DateTimeStructSequence;
+
+    struct PriceStruct
+    {
+        cmiUtil::PriceType type;
+        long whole;
+        long fraction;
+    };
+    typedef sequence< PriceStruct > PriceStructSequence;
+
+    struct CboeIdStruct
+    {
+        long highCboeId;
+        long lowCboeId;
+    };
+}
+
+module cmiSession
+{
+    typedef string TradingSessionName;
+    typedef sequence <TradingSessionName> TradingSessionNameSequence;
+}
+
+module cmiUser
+{
+    struct ExchangeFirmStruct
+    {
+        cmiUser::Exchange exchange;
+        string firmNumber;
+    };
+    typedef sequence <ExchangeFirmStruct> ExchangeFirmStructSequence;
+
+    struct ExchangeAcronymStruct
+    {
+        cmiUser::Exchange exchange;
+        string acronym;
+    };
+    typedef sequence <ExchangeAcronymStruct> ExchangeAcronymStructSequence;
+}
+
+module cmiConstants
+{
+   interface TradeReportHandlingInstructions
+    {	        
+	const cmiTrade::TradeReportHandlingInstructionType REGULAR 	            = 0;
+        const cmiTrade::TradeReportHandlingInstructionType NO_TRADEREPORT  	    = 1;
+        const cmiTrade::TradeReportHandlingInstructionType NO_TICKER                = 2;
+        const cmiTrade::TradeReportHandlingInstructionType NO_TRADEREPORT_NO_TICKER = 3;
+    };
+    
+};
+
+module cmiErrorCodes
+{
+    interface DataValidationCodes  {
+	...
+        const exceptions::ErrorCode INVALID_INSTRUCTION = 1464;
+		
+    };
+};
+
+
+

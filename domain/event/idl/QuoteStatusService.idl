@@ -1,0 +1,24 @@
+//# Interface: QuoteStatusService
+//# Module: businessServices
+
+#include "Util.idl"
+#include "quote.idl"
+#include "cmiUtil.idl"
+#include "cmiOrder.idl"
+
+module businessServices {
+    interface QuoteStatusService {
+
+        void acceptDirectQuoteFillReport(in util::RoutingParameterStruct routingParameters, in quote::QuoteInfoStruct quoteInfo, in cmiUtil::UpdateStatusReason statusChange, in cmiOrder::FilledReportStructSequence filledQuote, in string eventInitiator)
+            raises(
+		    exceptions::SystemException,
+		    exceptions::CommunicationException,
+		    exceptions::DataValidationException,
+		    exceptions::TransactionFailedException,
+		    exceptions::NotAcceptedException,
+		    exceptions::AuthorizationException
+            ); 
+            
+            
+    };
+};

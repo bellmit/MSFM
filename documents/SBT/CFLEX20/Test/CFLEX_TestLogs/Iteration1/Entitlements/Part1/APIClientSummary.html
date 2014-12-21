@@ -1,0 +1,57 @@
+<html>
+<body>
+<title>CFLEX-Entitlements Test Plan (Iteration 1) Part1 WR:6708</title>
+<b><center><big><h1>CFLEX-Entitlements Test Plan (Iteration 1) Part1 WR:6708</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD12 (Password: HD12)</small><br>
+<br><hr><br><b>
+ Test Cases:8</b><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [AAU]Class: AAU (534780780), Products: AAU 0/0 0.0   (534780782); </small><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [ADRE]Class: AAU (534780780), Products: AAU 0/0 0.0   (534780782); Class: ADRE (308347260), Products: ADRE 0/0 0.0   (308347262); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_STOCK is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:KK1, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE:551, Give-Up Firm(s): CBOE:551,</small><br>
+&nbsp;&nbsp;<small>	Verify User KK1 exists and is set as expected. User: CBOE:KK1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:KKK11, Full Name: Automated API $BD1 User, Role: B, Firm: CBOE:235, Give-Up Firm(s): CBOE:235,</small><br>
+&nbsp;&nbsp;<small>	Verify User KKK11 exists and is set as expected. User: CBOE:KKK11, Role: B, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: KK1 (Password: KK1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: KKK11 (Password: KKK11), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+ Strategy Setup</b><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Firm Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+<br><hr><br><b>
+ Subscriptions</b><br>
+<br><hr><br><b>
+ Test Case 1:To verify that FLEX_MAIN session can be added at default level using Enablement tab</b><br>
+<br><hr><br><b>
+ Test Case 2:To verify that FLEX_MAIN session Invert Enablements functionality</b><br>
+<br><hr><br><b>
+ Test Case 3:To verify that FLEX_MAIN session Enable All functionality</b><br>
+&nbsp;&nbsp;<small>	Set User Enablements for CBOE:KK1 for Session FLEX_MAIN and Class  and Class 'null':<br><ul>1: 'DEFAULT_OPERATION' : true<br>2: 'MARKETQUERY_RECAP' : true<br>3: 'MARKETQUERY_CURRENTMARKET' : true<br>4: 'MARKETQUERY_NBBO' : true<br>5: 'MARKETQUERY_TICKER' : true<br>6: 'MARKETQUERY_MARKETDATAHISTORY' : true<br>7: 'MARKETQUERY_EXPECTEDOPENINGPRICE' : true<br>8: 'MARKETQUERY_BOOKDEPTH' : true<br>9: 'QUOTE_RFQ' : true<br>10: 'QUOTE_QUOTESTATUS' : true<br>11: 'QUOTE_QUOTEENTRY' : true<br>12: 'ORDERQUERY' : true<br>13: 'PRODUCTQUERY' : true<br>14: 'PRODUCTDEFINITION' : true<br>15: 'USERPREFERENCEQUERY' : true<br>16: 'ADMINISTRATOR' : true<br>17: 'TRADINGSESSION' : true<br>18: 'USERHISTORY' : true<br>19: 'USERTRADINGPARAMETERS' : true<br>20: 'ORDERENTRY_ORDER' : true<br>21: 'ORDERENTRY_RFQ' : true<br>22: 'INTERMARKETQUERY' : true<br>23: 'INTERMARKET_MANUALHANDLING' : true<br>24: 'DYNAMIC_BOOKDEPTH' : true<br>25: 'MARKETQUERY_DETAILMDHISTORY' : true<br>26: 'MARKETQUERY_PRIORITYMDHISTORY' : true<br>27: 'AUCTION' : true<br>28: 'EFPBLOCKTRADE' : true</ul></small><br>
+<br><hr><br><b>
+ Test Case 4:To verify that FLEX_MAIN session Remove functionality</b><br>
+&nbsp;&nbsp;<small>	Remove All User Enablements for CBOE:KK1 for Session FLEX_MAIN and Class  and Class 'null'</small><br>
+<br><hr><br><b>
+ Test Case 5:To verify that FLEX_MAIN session Edit Preference functionality</b><br>
+<br><hr><br><b>
+ Test Case 6:To verify that FLEX_MAIN session enablement is supported for Market Maker user role</b><br>
+&nbsp;&nbsp;<small>	Set User Enablements for CBOE:KK1 for Session FLEX_MAIN and Class  and Class 'null':<br><ul>1: 'DEFAULT_OPERATION' : true<br>2: 'MARKETQUERY_RECAP' : true<br>3: 'MARKETQUERY_CURRENTMARKET' : true<br>4: 'MARKETQUERY_NBBO' : true<br>5: 'MARKETQUERY_TICKER' : true<br>6: 'MARKETQUERY_MARKETDATAHISTORY' : true<br>7: 'MARKETQUERY_EXPECTEDOPENINGPRICE' : true<br>8: 'MARKETQUERY_BOOKDEPTH' : true<br>9: 'QUOTE_RFQ' : true<br>10: 'QUOTE_QUOTESTATUS' : true<br>11: 'QUOTE_QUOTEENTRY' : true<br>12: 'ORDERQUERY' : true<br>13: 'PRODUCTQUERY' : true<br>14: 'PRODUCTDEFINITION' : true<br>15: 'USERPREFERENCEQUERY' : true<br>16: 'ADMINISTRATOR' : true<br>17: 'TRADINGSESSION' : true<br>18: 'USERHISTORY' : true<br>19: 'USERTRADINGPARAMETERS' : true<br>20: 'ORDERENTRY_ORDER' : true<br>21: 'ORDERENTRY_RFQ' : true<br>22: 'INTERMARKETQUERY' : true<br>23: 'INTERMARKET_MANUALHANDLING' : true<br>24: 'DYNAMIC_BOOKDEPTH' : true<br>25: 'MARKETQUERY_DETAILMDHISTORY' : true<br>26: 'MARKETQUERY_PRIORITYMDHISTORY' : true<br>27: 'AUCTION' : true<br>28: 'EFPBLOCKTRADE' : true</ul></small><br>
+<br><hr><br><b>
+ Test Case 7:To verify that FLEX_MAIN session enablement is supported for Broker user role</b><br>
+&nbsp;&nbsp;<small>	Set User Enablements for CBOE:KKK11 for Session FLEX_MAIN and Class  and Class 'null':<br><ul>1: 'DEFAULT_OPERATION' : true<br>2: 'MARKETQUERY_RECAP' : true<br>3: 'MARKETQUERY_CURRENTMARKET' : true<br>4: 'MARKETQUERY_NBBO' : true<br>5: 'MARKETQUERY_TICKER' : true<br>6: 'MARKETQUERY_MARKETDATAHISTORY' : true<br>7: 'MARKETQUERY_EXPECTEDOPENINGPRICE' : true<br>8: 'MARKETQUERY_BOOKDEPTH' : true<br>9: 'QUOTE_RFQ' : true<br>10: 'QUOTE_QUOTESTATUS' : true<br>11: 'QUOTE_QUOTEENTRY' : true<br>12: 'ORDERQUERY' : true<br>13: 'PRODUCTQUERY' : true<br>14: 'PRODUCTDEFINITION' : true<br>15: 'USERPREFERENCEQUERY' : true<br>16: 'ADMINISTRATOR' : true<br>17: 'TRADINGSESSION' : true<br>18: 'USERHISTORY' : true<br>19: 'USERTRADINGPARAMETERS' : true<br>20: 'ORDERENTRY_ORDER' : true<br>21: 'ORDERENTRY_RFQ' : true<br>22: 'INTERMARKETQUERY' : true<br>23: 'INTERMARKET_MANUALHANDLING' : true<br>24: 'DYNAMIC_BOOKDEPTH' : true<br>25: 'MARKETQUERY_DETAILMDHISTORY' : true<br>26: 'MARKETQUERY_PRIORITYMDHISTORY' : true<br>27: 'AUCTION' : true<br>28: 'EFPBLOCKTRADE' : true</ul></small><br>
+<br><hr><br><b>
+ Test Case 8:To verify that FLEX_MAIN session enablement is supported for HelpDesk user role</b><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: KK1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: KKK11</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD12</small><br>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Classdiagram>
+  <settings>
+    <option name="layoutOnChanges" value="false" />
+    <option name="paintDepends" value="true" />
+    <option name="paintExtends" value="true" />
+    <option name="paintInner" value="true" />
+    <option name="paintUses" value="true" />
+    <option name="paintImplements" value="true" />
+  </settings>
+  <classes>
+    <class name="com.cboe.interfaces.presentation.order.MutableStrategyOrder" x="1304" y="182">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.idl.cmiStrategy.StrategyLegStruct" x="150" y="150">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="true" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.product.SessionProduct" x="1035" y="299">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.orderQuote.SetStrategyLegPricesPanel" x="1690" y="38">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.order.MutableOrder" x="1434" y="39">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.order.LegOrderDetailImpl" x="881" y="596">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="true" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.product.StrategyLeg" x="807" y="20">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.order.MutableLegOrderDetail" x="1010" y="486">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.order.LegOrderDetail" x="858" y="403">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.order.StrategyOrderImpl" x="1612" y="416">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="true" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.product.SessionStrategy" x="1250" y="460">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.product.SessionStrategyLegImpl" x="381" y="361">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="true" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.order.StrategyOrder" x="973" y="22">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.product.StrategyLegImpl" x="394" y="13">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="true" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.product.Strategy" x="1478" y="370">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.interfaces.presentation.product.SessionStrategyLeg" x="765" y="204">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="true" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.idl.cmiOrder.OrderStruct" x="188" y="440">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.presentation.order.OrderImpl" x="1743" y="173">
+      <option name="fieldsExpanded" value="false" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="false" />
+    </class>
+    <class name="com.cboe.idl.cmiOrder.LegOrderDetailStruct" x="246" y="594">
+      <option name="fieldsExpanded" value="true" />
+      <option name="methodsExpanded" value="false" />
+      <option name="pinned" value="false" />
+      <option name="constructorsExpanded" value="true" />
+    </class>
+  </classes>
+  <stickycomponents />
+  <textcomponents />
+  <connectors>
+    <connector from="com.cboe.interfaces.presentation.product.SessionStrategy" to="com.cboe.interfaces.presentation.product.Strategy">
+      <anchor constraint="1" type="2" x="1487" y="460" />
+      <anchor constraint="1" type="2" x="1505" y="440" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.idl.cmiOrder.OrderStruct" to="com.cboe.idl.cmiOrder.LegOrderDetailStruct">
+      <anchor constraint="1" type="2" x="302" y="525" />
+      <anchor constraint="1" type="2" x="371" y="594" />
+      <decorator type="4" description="+  legOrderDetails" />
+    </connector>
+    <connector from="com.cboe.presentation.product.StrategyLegImpl" to="com.cboe.idl.cmiStrategy.StrategyLegStruct">
+      <anchor constraint="1" type="2" x="394" y="232" />
+      <anchor constraint="1" type="2" x="352" y="241" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.StrategyLegImpl" to="com.cboe.idl.cmiStrategy.StrategyLegStruct">
+      <anchor constraint="1" type="2" x="394" y="183" />
+      <anchor constraint="1" type="2" x="352" y="192" />
+      <decorator type="4" description="-  strategyLegStruct" />
+    </connector>
+    <connector from="com.cboe.presentation.order.LegOrderDetailImpl" to="com.cboe.interfaces.presentation.order.MutableLegOrderDetail">
+      <anchor constraint="1" type="2" x="1096" y="596" />
+      <anchor constraint="1" type="2" x="1100" y="574" />
+      <decorator type="1" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.MutableStrategyOrder" to="com.cboe.interfaces.presentation.order.MutableLegOrderDetail">
+      <anchor constraint="1" type="2" x="1388" y="342" />
+      <anchor constraint="1" type="2" x="1175" y="486" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.SessionStrategyLegImpl" to="com.cboe.interfaces.presentation.product.SessionProduct">
+      <anchor constraint="1" type="2" x="826" y="386" />
+      <anchor constraint="1" type="2" x="1035" y="338" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.SessionStrategyLegImpl" to="com.cboe.interfaces.presentation.product.SessionProduct">
+      <anchor constraint="1" type="2" x="826" y="406" />
+      <anchor constraint="1" type="2" x="1035" y="358" />
+      <decorator type="4" description="-  sessionProduct" />
+    </connector>
+    <connector from="com.cboe.presentation.orderQuote.SetStrategyLegPricesPanel" to="com.cboe.interfaces.presentation.order.MutableStrategyOrder">
+      <anchor constraint="1" type="2" x="1760" y="123" />
+      <anchor constraint="1" type="2" x="1653" y="182" />
+      <decorator type="4" description="~  strategy" />
+    </connector>
+    <connector from="com.cboe.presentation.order.LegOrderDetailImpl" to="com.cboe.interfaces.presentation.order.LegOrderDetail">
+      <anchor constraint="1" type="2" x="999" y="596" />
+      <anchor constraint="1" type="2" x="950" y="473" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.MutableLegOrderDetail" to="com.cboe.interfaces.presentation.order.LegOrderDetail">
+      <anchor constraint="1" type="2" x="1025" y="486" />
+      <anchor constraint="1" type="2" x="1001" y="473" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.order.StrategyOrderImpl" to="com.cboe.interfaces.presentation.order.MutableStrategyOrder">
+      <anchor constraint="1" type="2" x="1647" y="416" />
+      <anchor constraint="1" type="2" x="1579" y="342" />
+      <decorator type="1" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.StrategyOrder" to="com.cboe.interfaces.presentation.product.SessionStrategy">
+      <anchor constraint="1" type="2" x="1179" y="164" />
+      <anchor constraint="1" type="2" x="1375" y="460" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.product.SessionStrategy" to="com.cboe.interfaces.presentation.product.SessionProduct">
+      <anchor constraint="1" type="2" x="1303" y="460" />
+      <anchor constraint="1" type="2" x="1151" y="368" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.order.LegOrderDetailImpl" to="com.cboe.idl.cmiOrder.LegOrderDetailStruct">
+      <anchor constraint="1" type="2" x="881" y="751" />
+      <anchor constraint="1" type="2" x="796" y="749" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.product.SessionStrategyLeg" to="com.cboe.interfaces.presentation.product.StrategyLeg">
+      <anchor constraint="1" type="2" x="877" y="204" />
+      <anchor constraint="1" type="2" x="877" y="162" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.SessionStrategyLegImpl" to="com.cboe.interfaces.presentation.product.SessionStrategyLeg">
+      <anchor constraint="1" type="2" x="723" y="361" />
+      <anchor constraint="1" type="2" x="817" y="292" />
+      <decorator type="1" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.MutableStrategyOrder" to="com.cboe.interfaces.presentation.product.SessionStrategy">
+      <anchor constraint="1" type="2" x="1481" y="342" />
+      <anchor constraint="1" type="2" x="1445" y="460" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.MutableStrategyOrder" to="com.cboe.interfaces.presentation.order.MutableOrder">
+      <anchor constraint="1" type="2" x="1518" y="182" />
+      <anchor constraint="1" type="2" x="1526" y="127" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.SessionStrategyLegImpl" to="com.cboe.presentation.product.StrategyLegImpl">
+      <anchor constraint="1" type="2" x="571" y="361" />
+      <anchor constraint="1" type="2" x="567" y="332" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.SessionStrategyLegImpl" to="com.cboe.presentation.product.StrategyLegImpl">
+      <anchor constraint="1" type="2" x="616" y="361" />
+      <anchor constraint="1" type="2" x="612" y="332" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.product.StrategyLegImpl" to="com.cboe.interfaces.presentation.product.StrategyLeg">
+      <anchor constraint="1" type="2" x="753" y="124" />
+      <anchor constraint="1" type="2" x="807" y="109" />
+      <decorator type="1" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.MutableStrategyOrder" to="com.cboe.interfaces.presentation.product.SessionStrategyLeg">
+      <anchor constraint="1" type="2" x="1304" y="257" />
+      <anchor constraint="1" type="2" x="989" y="250" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.StrategyOrder" to="com.cboe.interfaces.presentation.product.SessionStrategyLeg">
+      <anchor constraint="1" type="2" x="1016" y="164" />
+      <anchor constraint="1" type="2" x="950" y="204" />
+      <decorator type="16" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.order.StrategyOrderImpl" to="com.cboe.presentation.order.OrderImpl">
+      <anchor constraint="1" type="2" x="1843" y="416" />
+      <anchor constraint="1" type="2" x="1843" y="258" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.presentation.order.OrderImpl" to="com.cboe.interfaces.presentation.order.MutableOrder">
+      <anchor constraint="1" type="2" x="1743" y="173" />
+      <anchor constraint="1" type="2" x="1633" y="125" />
+      <decorator type="1" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.MutableStrategyOrder" to="com.cboe.interfaces.presentation.order.StrategyOrder">
+      <anchor constraint="1" type="2" x="1328" y="182" />
+      <anchor constraint="1" type="2" x="1288" y="164" />
+      <decorator type="2" description="" />
+    </connector>
+    <connector from="com.cboe.interfaces.presentation.order.StrategyOrder" to="com.cboe.interfaces.presentation.order.LegOrderDetail">
+      <anchor constraint="1" type="2" x="1092" y="164" />
+      <anchor constraint="1" type="2" x="956" y="403" />
+      <decorator type="16" description="" />
+    </connector>
+  </connectors>
+</Classdiagram>
+

@@ -1,0 +1,17 @@
+ORB.ListenHostName	_node 
+ClientProperties	SbtAdminGui.properties 
+FFPropertiesFile	SA.properties 
+FFServerName	SystemAdminServer 
+ORB.InitRefURL	ftp://infra:infra@dev4sa.cboe.com:21/%2Fsbt/test/infra/run_dir/ior/initrefs.ior
+ORB.PortNum	6110
+ORB.OrbName	SUPPORT-APITESTCLIENT 
+PropertyPrefix	test4
+EventService.Admin.ChannelAdminServerName	test4ChannelAdminServer 
+EventService.Admin.ExtentMapServerName	test4ExtentMapAdminServer 
+ORB.FlowControl	none 
+ORB.LocatorDiscovery.Disable	true 
+ORB.Verbose	true 
+Security.Authenticator.ServiceType	test4SecurityServerAuthenticator 
+Security.Authorizor.ServiceType	test4SecurityServerAuthorize 
+Security.Logout.ServiceType	test4SecurityServerLogout 
+Security.Admin.ServiceType	test4SecurityAdminService

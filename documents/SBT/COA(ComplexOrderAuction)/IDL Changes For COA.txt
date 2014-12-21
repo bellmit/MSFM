@@ -1,0 +1,94 @@
+IDL Changes For COA
+
+1. /vobs/dte/domain/constants.idl
+
+
+    interface TradingRestrictions
+    {
+	//
+        const order::TradingRestriction NONE = 1;
+        const order::TradingRestriction NON_Q_ONLY = 2;
+
+	//The following constants are added to handle strategy order
+	//And constants will start with 1001
+	const order::TradingRestriction AUCTION= 1001;
+	const order::TradingRestriction BOOK= 1002;
+	const order::TradignRestriction AUTO_EX = 1003;
+	const order::TradingRestriction PAR_AUCTION = 1004
+	const order::TradingRestriction TOP_SPREAD_BOOK = 1005;
+    };
+
+2. /vobs/dte/domain/idl/constants.idl
+
+
+    interface RemainderHandlingModes
+    {
+	//added to handle situation where no remainder handling is specified.
+	const order::ReaminderHandlingMode NOT_SPECIFIED = 0;
+
+        const order::RemainderHandlingMode BOOK_REMAINDER = 1;
+        const order::RemainderHandlingMode RETURN_REMAINDER = 2;
+        const order::RemainderHandlingMode AUCTION_AND_RETURN_REMAINDER = 3;
+    };
+
+3. /vobs/dte/server/idl/OrderMaintenanceService.idl
+
+Add following new methods to OrderMaintenanceServiceV2 interface
+
+interface OrderMaintenanceServiceV2:: OrderMaintenanceService {
+
+        //Following method is used for passing the strategy order and instruction
+	//to HyTS. 	 
+        cmiOrder::OrderIdStruct acceptStrategyOrderWithInstruction(
+                in cmiOrder::OrderStruct anOrder,
+                in cmiOrder::LegOrderEntryStructSequence legEntryDetails,
+		in order::OrderHandlingInstructionStruct handlingInstruction)
+                raises(
+                    exceptions::SystemException,
+                    exceptions::CommunicationException,
+                    exceptions::DataValidationException,
+                    exceptions::TransactionFailedException,
+                    exceptions::NotAcceptedException,
+                    exceptions::AuthorizationException
+                );
+
+}
+
+4. /vobs/dte/server/idl/OrderRoutingService.idl
+
+interface OrderRoutingServiceV2: OrderRoutingService {
+
+	//The following method is added for returning order to TPf with a reason code. At 
+	//the same time, always including the current top of spread order information. 
+        void acceptOrderAndBookDepthWithReason( 
+                in cmiOrder::OrderStruct anOrder,
+		in cmiMarketData::BookDepthStruct bookDepth,
+                in order::OrderRoutingReason reason ) 
+                        raises(
+                                exceptions::SystemException,
+                                exceptions::CommunicationException,
+                                exceptions::DataValidationException,
+                                exceptions::TransactionFailedException,
+                                exceptions::NotAcceptedException,
+                                exceptions::AuthorizationException
+                        );
+
+
+        //The following method is added for returning strategy cancel/replace to TPF. The topOfStrateyBook
+	//will be always included in the message.
+        void acceptCancelReplaceAndBookDepthWithReason(
+                in cmiOrder::CancelRequestStruct cancelRequest, 
+                in cmiOrder::OrderStruct originalOrder,
+                in cmiOrder::OrderStruct replacementOrder,
+		in cmiMarketData::BookDepthStruct bookDepth,
+                in order::OrderRoutingReason reason )
+                         raises(
+                                exceptions::SystemException,
+                                exceptions::CommunicationException,
+                                exceptions::DataValidationException,
+                                exceptions::TransactionFailedException,
+                                exceptions::NotAcceptedException,
+                                exceptions::AuthorizationException
+                        );
+
+}

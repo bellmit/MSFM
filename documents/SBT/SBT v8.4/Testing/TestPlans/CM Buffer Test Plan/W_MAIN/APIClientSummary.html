@@ -1,0 +1,227 @@
+<html>
+<body>
+<title>CM Buffer Testing. W_MAIN Test Plan</title>
+<b><center><big><h1>CM Buffer Testing. W_MAIN Test Plan</h1></big></center></b><br>
+&nbsp;&nbsp;<small>	Log in SA User: HD7 (Password: HD7)</small><br>
+<br><hr><br><b>
+ User Setup</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:NITC1, Full Name: Automated API $CUST1 User, Role: X, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User NITC1 exists and is set as expected. User: CBOE:NITC1, Role: X, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:PUNT1, Full Name: Automated API $HOMT1 User, Role: A, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User PUNT1 exists and is set as expected. User: CBOE:PUNT1, Role: A, Active: true</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:RMM2, Full Name: Automated API $MM1 User, Role: M, Firm: CBOE:671, Give-Up Firm(s): CBOE:671,</small><br>
+&nbsp;&nbsp;<small>	Verify User RMM2 exists and is set as expected. User: CBOE:RMM2, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: NITC1 (Password: NITC1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: PUNT1 (Password: PUNT1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: RMM2 (Password: RMM2), Login Type: 'PRIMARY' (1) </small><br>
+<br><hr><br><b>
+ Test Environment Setup</b><br>
+&nbsp;&nbsp;<small>	Selecting 1  Product(s) from 1 Class(es): [ABH]Class: ABH (471073081), Products: LJS 1/2010 25.0 P (471075076); </small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+<br><hr><br><b>
+ Trading Property Setup</b><br>
+<br><hr><br><b>
+ Routing Property Setup</b><br>
+<br><hr><br><b>
+ Pre-Test Settings</b><br>
+&nbsp;&nbsp;<small>	Set Product 'LJS 1/2010 25.0 P' (471075076) State by Product to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'LJS 1/2010 25.0 P' (471075076) State by Product to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'LJS 1/2010 25.0 P' (471075076) State by Product to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'LJS 1/2010 25.0 P' (471075076) State by Product to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for Current Market (V1, V2 & V3) for Class 'ABH' (471073081) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User RMM2 for CurrentMarketV4  for Class 'ABH' (471073081) </small><br>
+<br><hr><br><b>
+ Test Case 1:All types at top of book</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 3@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: GJX:35</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [103@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [3@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 5@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: AEN:6935</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [108@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [8@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 7@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: UNO:160</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [115@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [15@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 11@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: IUR:4182</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [126@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [26@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 3, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: GJX:35, Cancel Quantity: 3, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 5, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: AEN:6935, Cancel Quantity: 5, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 7, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: UNO:160, Cancel Quantity: 7, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 11, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: IUR:4182, Cancel Quantity: 11, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 2:Quotes only</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+<br><hr><br><b>
+ Test Case 3:Customer only</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 3@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: NRI:62</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 7@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: KAK:4234</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [10@1.0 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [10@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 3, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: NRI:62, Cancel Quantity: 3, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 7, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: KAK:4234, Cancel Quantity: 7, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 4:Quotes only at top of Book</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 100@1.100000000 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.100000000 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 3@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: RXE:5893</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.100000000 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 5@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: JWO:301</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.100000000 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 7@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: XVM:7408</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.100000000 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 11@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: CVQ:5847</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.100000000 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 3, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: RXE:5893, Cancel Quantity: 3, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 5, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: JWO:301, Cancel Quantity: 5, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 7, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: XVM:7408, Cancel Quantity: 7, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 11, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: CVQ:5847, Cancel Quantity: 11, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 5:AON only in BOOK</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 50@1.100000000, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: TRE:5029</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [50@1.100000000 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [50@1.100000000 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 40@1.100000000, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: IAF:7982</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [90@1.100000000 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [90@1.100000000 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 50, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: TRE:5029, Cancel Quantity: 50, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 40, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: IAF:7982, Cancel Quantity: 40, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 6:AON only at top of Book</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 50@1.100000000, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: NJO:1043</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [50@1.100000000 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [50@1.100000000 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 40@1.100000000, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: KYK:7547</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [90@1.100000000 x 0@0.0]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [90@1.100000000 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 3@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: ECA:1836</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 5@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: QEV:3369</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 7@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: UHL:588</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 11@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: OEH:8236</small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 50, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: NJO:1043, Cancel Quantity: 50, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 40, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: KYK:7547, Cancel Quantity: 40, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 3, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: ECA:1836, Cancel Quantity: 3, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 5, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: QEV:3369, Cancel Quantity: 5, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 7, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: UHL:588, Cancel Quantity: 7, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 11, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: OEH:8236, Cancel Quantity: 11, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 7:No AON</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [100@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 7@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: HSW:2328</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [107@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [7@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 11@1.0, Contingency: 'NONE' (1) , Origin Code: M, Branch/Seq: HSW:1647</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [118@1.0 x 100@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [18@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 7, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: HSW:2328, Cancel Quantity: 7, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 11, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: HSW:1647, Cancel Quantity: 11, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 8:Cust prof reserve order (50 75 of 400 500)</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1000@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 400@1.0, Contingency: 'RESERVE' (16) , Origin Code: M, Branch/Seq: YWT:7649</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1050@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [50@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 500@1.0, Contingency: 'RESERVE' (16) , Origin Code: M, Branch/Seq: MIY:4974</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1125@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [125@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 400, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: YWT:7649, Cancel Quantity: 400, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 500, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: MIY:4974, Cancel Quantity: 500, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 9:Cust prof reserve order (50 75 of 400 500) plus AON</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1000@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076) : B 10@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: LFC:8894</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1010@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [10@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 20@1.0, Contingency: 'AON' (2) , Origin Code: M, Branch/Seq: PTX:7228</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1030@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [30@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 400@1.0, Contingency: 'RESERVE' (16) , Origin Code: M, Branch/Seq: IMB:9383</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1080@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [80@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 500@1.0, Contingency: 'RESERVE' (16) , Origin Code: M, Branch/Seq: CXP:2081</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1155@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [155@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User NITC1 for Order null:0, Cancelled Qty: 10, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User NITC1 for Product 'LJS 1/2010 25.0 P' (471075076), Order: LFC:8894, Cancel Quantity: 10, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 20, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: PTX:7228, Cancel Quantity: 20, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 400, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: IMB:9383, Cancel Quantity: 400, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 500, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: CXP:2081, Cancel Quantity: 500, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 10:Cust prof reserve order (50 75 of 400 500) plus 25 30 limit</b><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'LJS 1/2010 25.0 P' (471075076), Bid: 0@0.00 x  Ask: 0@0.00</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : 1000@1.0 x 1000@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1000@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 400@1.0, Contingency: 'RESERVE' (16) , Origin Code: M, Branch/Seq: KVX:900</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1075@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [75@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Order by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) : B 500@1.0, Contingency: 'RESERVE' (16) , Origin Code: M, Branch/Seq: YYT:9291</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [1180@1.0 x 1000@1.200000000]</small><br>
+&nbsp;&nbsp;<small>	Verify Current Market V4 (Best Public Market) Values for Product 'LJS 1/2010 25.0 P' (471075076): [180@1.0 x 0@0.0] </small><br>
+&nbsp;&nbsp;<small>	Submit Quote Cancel by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076) </small><br>
+&nbsp;&nbsp;<small>	Quote Cancel Verification by User RMM2 for Product 471075076, Cancel Reason: 2</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 400, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: KVX:900, Cancel Quantity: 400, Cancel Reason: 'USER' (2)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User RMM2 for Order null:0, Cancelled Qty: 500, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User RMM2 for Product 'LJS 1/2010 25.0 P' (471075076), Order: YYT:9291, Cancel Quantity: 500, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+ Test Case 11:next test case</b><br>
+<br><hr><br><b>
+ Test Case:Cleaning Up Task</b><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: RMM2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: PUNT1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: NITC1</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: HD7</small><br>

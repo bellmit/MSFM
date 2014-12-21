@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<HVOLReport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="samples//ReportToNewsWire.xsd">
+<reportHeader>
+<senderName>ABCD</senderName>
+<senderAppName>CBOE Direct</senderAppName>
+<reportName>Half Hourly Volume</reportName>
+<reportDateTime>2007-08-31T00:06:39-05:00</reportDateTime>
+<version>1.0</version>
+</reportHeader>
+<reportDetail>
+	<category name="Equity">
+		<volumeInfo>
+			<callVolume>0</callVolume>
+			<putVolume>1</putVolume>
+			<totalVolume>1</totalVolume>
+		</volumeInfo>
+		<openInterest>23</openInterest>
+		<gainersLosersInfo>
+			<gainers>0</gainers>
+			<losers>5</losers>
+			<unchanged>9999</unchanged>
+			<totalGainersLosersUnchanged>10004</totalGainersLosersUnchanged>
+		</gainersLosersInfo>
+		<mostActive>
+			<mostActivePut>
+				<underlying name="MFST">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActivePut>
+		</mostActive>
+		<topTenMostActivePutSeries>
+			<mostActiveSeries>
+				<underlying name="GVIT">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GOBS">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="ORCL">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="IBM">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GAEX">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GOOG">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="CTSH">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GE">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="MFST">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="ADC">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+		</topTenMostActivePutSeries>
+	</category>
+	<category name="Composite">
+		<volumeInfo>
+			<callVolume>0</callVolume>
+			<putVolume>5</putVolume>
+			<totalVolume>5</totalVolume>
+		</volumeInfo>
+		<openInterest>23</openInterest>
+		<gainersLosersInfo>
+			<gainers>1000</gainers>
+			<losers>666</losers>
+			<unchanged>0</unchanged>
+			<totalGainersLosersUnchanged>1666</totalGainersLosersUnchanged>
+		</gainersLosersInfo>
+		<mostActive>
+			<mostActivePut>
+				<underlying name="IRX">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>4</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActivePut>
+		</mostActive>
+		<topTenMostActivePutSeries>
+			<mostActiveSeries>
+				<underlying name="GVIT">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GOBS">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="ORCL">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="IBM">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GAEX">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GOOG">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="CTSH">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GE">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="MFST">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="ADC">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+		</topTenMostActivePutSeries>
+	</category>
+	<category name="Index">
+		<volumeInfo>
+			<callVolume>0</callVolume>
+			<putVolume>98</putVolume>
+			<totalVolume>98</totalVolume>
+		</volumeInfo>
+		<openInterest>23</openInterest>
+		<gainersLosersInfo>
+			<gainers>5</gainers>
+			<losers>50</losers>
+			<unchanged>10</unchanged>
+			<totalGainersLosersUnchanged>65</totalGainersLosersUnchanged>
+		</gainersLosersInfo>
+		<mostActive>
+			<mostActivePut>
+				<underlying name="OEX">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActivePut>
+		</mostActive>
+		<topTenMostActivePutSeries>
+			<mostActiveSeries>
+				<underlying name="GVIT">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GOBS">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="ORCL">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="IBM">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GAEX">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GOOG">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="CTSH">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="GE">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="MFST">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+			<mostActiveSeries>
+				<underlying name="ADC">
+					<classVolume>50</classVolume>
+					<expiryMonth>1</expiryMonth>
+					<strikePrice>3</strikePrice>
+					<volume>10001</volume>
+					<lastSalePrice>1.5</lastSalePrice>
+					<netChange>0.5</netChange>
+				</underlying>
+			</mostActiveSeries>
+		</topTenMostActivePutSeries>
+	</category>
+	<totalVolumeInfo>
+		<totalCallVolume>1124</totalCallVolume>
+		<totalPutVolume>103</totalPutVolume>
+		<totalVolume>1227</totalVolume>
+	</totalVolumeInfo>
+	<totalOpenInterest>23</totalOpenInterest>
+	<totalGainersLosersInfo>
+		<gainers>1005</gainers>
+		<losers>721</losers>
+		<unchanged>10009</unchanged>
+		<totalGainersLosersUnchanged>11735</totalGainersLosersUnchanged>
+	</totalGainersLosersInfo>
+</reportDetail>
+</HVOLReport>

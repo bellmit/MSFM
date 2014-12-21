@@ -1,0 +1,51 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef CMI_STRATEGY_IDL
+#define CMI_STRATEGY_IDL
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiProduct.idl"
+#include "cmiUtil.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiStrategy
+{
+    typedef short StrategyType;
+    typedef short MonthIncrement;
+
+    struct StrategyLegStruct
+    {
+        cmiProduct::ProductKey product;
+        long ratioQuantity;
+        cmiUtil::Side side;
+    };
+    typedef sequence <StrategyLegStruct> StrategyLegStructSequence;
+
+   struct StrategyStruct
+    {
+        cmiProduct::ProductStruct product;
+        cmiStrategy::StrategyType strategyType;
+        StrategyLegStructSequence strategyLegs;
+    };
+    typedef sequence <StrategyStruct> StrategyStructSequence;
+
+    struct StrategyRequestStruct
+    {
+        cmiStrategy::StrategyLegStructSequence strategyLegs;
+    };
+    typedef sequence <StrategyRequestStruct> StrategyRequestStructSequence;
+};
+#endif
+</pre>

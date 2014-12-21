@@ -1,0 +1,3702 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.0.9420.17"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"3F1FEDC6003F"
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	16
+	gridY      	16
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	3
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"3ED4DE30016A"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"3ED4DE320310"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"3ED4DE300169"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"3ED4DE30016B"
+	logical_models 	(list unit_reference_list
+	    (object Mechanism @1
+		logical_models 	(list unit_reference_list
+		    (object Object "BrokerImpl"
+			quid       	"3ED4DE5B0373"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3ED4DEB003BB"
+				supplier   	"BrokerImpl"
+				quidu      	"3ED4DE5B0373"
+				messages   	(list Messages
+				    (object Message "getOrderBook(Integer productKey, new Object[])"
+					quid       	"3EE74686019F"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1.1.1"
+					ordinal    	5
+					Operation  	"getOrderBook()")
+				    (object Message "publishExpectedOpeningPrice(OpeningPriceIndication openingPrice)"
+					quid       	"3EE748A9003D"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"3"
+					ordinal    	12)
+				    (object Message "getMyHome()"
+					quid       	"3EE749050158"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"4"
+					ordinal    	13)))
+			    (object Link
+				quid       	"3ED4E00500F4"
+				supplier   	"OrderBookImpl"
+				quidu      	"3ED4DFF7019E"
+				messages   	(list Messages
+				    (object Message "calculateExpectedOpeningPrice()"
+					quid       	"3ED4E00500F5"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2"
+					ordinal    	6)))
+			    (object Link
+				quid       	"3EE74530012F"
+				supplier   	"BrokerOpenProductTimer"
+				quidu      	"3EE7452A02E9"
+				messages   	(list Messages
+				    (object Message ""
+					quid       	"3EE745300130"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1.1"
+					ordinal    	3)
+				    (object Message "handleOpeningTimer(BrokerOpenProductTimer x)"
+					quid       	"3EE7457601EE"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"ToClientFromSupplier"
+					sequence   	"1.1.1.1.1"
+					ordinal    	4))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookImpl"
+			quid       	"3ED4DFF7019E"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3ED4E0AC0004"
+				supplier   	"OrderBookImpl"
+				quidu      	"3ED4DFF7019E"
+				messages   	(list Messages
+				    (object Message "getOrderBookEditor()"
+					quid       	"3ED4E0AC0005"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2.1"
+					ordinal    	7)))
+			    (object Link
+				quid       	"3ED4E0DB03E1"
+				supplier   	"OrderBookRegularEditor"
+				quidu      	"3ED4E0CE007B"
+				messages   	(list Messages
+				    (object Message "calculateExpectedOpeningPrice()"
+					quid       	"3ED4E0DB03E2"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2.1.1"
+					ordinal    	8)
+				    (object Message "getOpeningReporter(OrderBookImpl)"
+					quid       	"3ED4E2000342"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"ToClientFromSupplier"
+					sequence   	"2.1.1.2"
+					ordinal    	10
+					Operation  	"getOpeningReporter()"))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookRegularEditor"
+			quid       	"3ED4E0CE007B"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3ED4E2410075"
+				supplier   	"OpeningReporter"
+				quidu      	"3ED4E1DA0149"
+				messages   	(list Messages
+				    (object Message "OpeningReporter()"
+					quid       	"3ED4E2410076"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2.1.1.1"
+					ordinal    	9)
+				    (object Message "findMarketBalance()"
+					quid       	"3ED4E2D40379"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2.1.1.3"
+					ordinal    	11))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OpeningReporter"
+			quid       	"3ED4E1DA0149"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "BrokerServiceImpl"
+			quid       	"3EE740D10270"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EE7419301A7"
+				supplier   	"BrokerImpl"
+				quidu      	"3ED4DE5B0373")
+			    (object Link
+				quid       	"3EE7420902BF"
+				supplier   	"BrokerHomeImpl"
+				quidu      	"3EE741FE025F"
+				messages   	(list Messages
+				    (object Message "findByProduct(Integer productKey)"
+					quid       	"3EE7420902C0"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1"
+					ordinal    	1
+					Operation  	"findByProduct(...)"))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "CLIENT"
+			quid       	"3EE740EB020A"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EE740F70351"
+				supplier   	"BrokerServiceImpl"
+				quidu      	"3EE740D10270"
+				messages   	(list Messages
+				    (object Message "STATE CHANGE EVENT"
+					quid       	"3EE740F70352"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "BrokerHomeImpl"
+			quid       	"3EE741FE025F"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EE742E501FD"
+				supplier   	"BrokerImpl"
+				quidu      	"3ED4DE5B0373"
+				messages   	(list Messages
+				    (object Message "acceptOpeningRotation(Integer productKey)"
+					quid       	"3EE742E501FE"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1.1"
+					ordinal    	2))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "BrokerOpenProductTimer"
+			quid       	"3EE7452A02E9"
+			persistence 	"Transient"
+			multi      	FALSE)))
+	    (object Mechanism @2
+		logical_models 	(list unit_reference_list
+		    (object Object "NBBOAgentService"
+			quid       	"3EFC5262006D"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EFC52E3031B"
+				supplier   	"OrderBookService"
+				quidu      	"3EFC52DA005B"
+				messages   	(list Messages
+				    (object Message "getDetailedOrderBook(String sessionName,int productKey)"
+					quid       	"3EFC52E3031C"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3"
+					ordinal    	3)))
+			    (object Link
+				quid       	"3EFC542202A2"
+				supplier   	"NBBOAgentService"
+				quidu      	"3EFC5262006D"
+				messages   	(list Messages
+				    (object Message "findOrderBookServiceHome()"
+					quid       	"3EFC542202A3"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.1"
+					ordinal    	1)))
+			    (object Link
+				quid       	"3EFC54C70317"
+				supplier   	"OrderBookServiceHome"
+				quidu      	"3EFC54B00011"
+				messages   	(list Messages
+				    (object Message "find()"
+					quid       	"3EFC54C70318"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.2"
+					ordinal    	2))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "Client"
+			quid       	"3EFC527601B6"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EFC5285009F"
+				supplier   	"NBBOAgentService"
+				quidu      	"3EFC5262006D"
+				messages   	(list Messages
+				    (object Message "getDetailedOrderBook(String sessionName,int productKey)"
+					quid       	"3EFC528500A0"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookService"
+			quid       	"3EFC52DA005B"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EFC55DF01EE"
+				supplier   	"OrderBookHome"
+				quidu      	"3EFC55CF0140"
+				messages   	(list Messages
+				    (object Message "find(productKey)"
+					quid       	"3EFC55DF01EF"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.2"
+					ordinal    	5)))
+			    (object Link
+				quid       	"3EFC55E600FD"
+				supplier   	"OrderBookService"
+				quidu      	"3EFC52DA005B"
+				messages   	(list Messages
+				    (object Message "getOrderBookHome()"
+					quid       	"3EFC55E600FE"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.1"
+					ordinal    	4)))
+			    (object Link
+				quid       	"3EFC59E00089"
+				supplier   	"OrderBook"
+				quidu      	"3EFC55D50366"
+				messages   	(list Messages
+				    (object Message "getDetailedOrderBook(String sessionName, int productKey)"
+					quid       	"3F0ED25D0059"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.3"
+					ordinal    	6)))
+			    (object Link
+				quid       	"3EFC82A8010D"
+				supplier   	"OrderBookSideITem"
+				quidu      	"3EFC825C032B")
+			    (object Link
+				quid       	"3EFC85100055"
+				supplier   	"OrderBookPriceItem"
+				quidu      	"3EFC84E802BA"))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookServiceHome"
+			quid       	"3EFC54B00011"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookHome"
+			quid       	"3EFC55CF0140"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBook"
+			quid       	"3EFC55D50366"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"3EFC5A590354"
+				supplier   	"OrderBook"
+				quidu      	"3EFC55D50366"
+				messages   	(list Messages
+				    (object Message "getSideItem(Side)"
+					quid       	"3EFC5A590355"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2"
+					ordinal    	7)
+				    (object Message "getOrderBookEditor(Side)"
+					quid       	"3EFC5AC50331"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2.1"
+					ordinal    	8)
+				    (object Message "getOrderBookDetailPriceStructSequence(OrderBookSideItem)"
+					quid       	"3F1FF8B7010F"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.3.2"
+					ordinal    	12
+					Operation  	"getOrderBookDetailPriceStructSequence(Enummeration,Side)")))
+			    (object Link
+				quid       	"3EFC5C7F0214"
+				supplier   	"OrderBookRegularEditor"
+				quidu      	"3EFC5AEE0113"
+				messages   	(list Messages
+				    (object Message "getOrderBookSideItem(Side)"
+					quid       	"3EFC5C7F0215"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2.1.1"
+					ordinal    	9)
+				    (object Message "getBuySideItem()"
+					quid       	"3EFC61E601F5"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"ToClientFromSupplier"
+					sequence   	"2.1.1.1"
+					ordinal    	10)))
+			    (object Link
+				quid       	"3EFC5D5301DD"
+				supplier   	"SideTradableIterator"
+				quidu      	"3EFC5D45036E"
+				messages   	(list Messages
+				    (object Message "SideTradableIterator(OrderBookSideItem)"
+					quid       	"3EFC5D5301DE"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.3.1"
+					ordinal    	11)))
+			    (object Link
+				quid       	"3F1FF9380074"
+				supplier   	"OrderBookSideITem"
+				quidu      	"3EFC825C032B"
+				messages   	(list Messages
+				    (object Message "getLimitPriceItems()"
+					quid       	"3F1FF9380075"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.3.2.1"
+					ordinal    	13)))
+			    (object Link
+				quid       	"3F1FF9840381"
+				supplier   	"OrderBookPriceItem"
+				quidu      	"3EFC84E802BA"
+				messages   	(list Messages
+				    (object Message "getPriceDetails()"
+					quid       	"3F1FFB410268"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.3.2.2"
+					ordinal    	14)))
+			    (object Link
+				quid       	"3F1FFAFB02A4"
+				supplier   	"OrderBookPriceDetailItem"
+				quidu      	"3F1FFA1500AE"
+				messages   	(list Messages
+				    (object Message "getTradables()"
+					quid       	"3F1FFB8801FC"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.3.3.2.3"
+					ordinal    	15))))
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookRegularEditor"
+			quid       	"3EFC5AEE0113"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "SideTradableIterator"
+			quid       	"3EFC5D45036E"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookSideITem"
+			quid       	"3EFC825C032B"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookPriceItem"
+			quid       	"3EFC84E802BA"
+			persistence 	"Transient"
+			multi      	FALSE)
+		    (object Object "OrderBookPriceDetailItem"
+			quid       	"3F1FFA1500AE"
+			persistence 	"Transient"
+			multi      	FALSE))))
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main"
+		quid       	"3ED4DE32032E"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))
+	    (object InteractionDiagram "Market Opening"
+		mechanism_ref 	@1
+		quid       	"3ED4DE47012F"
+		title      	"Market Opening"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	125
+		items      	(list diagram_item_list
+		    (object InterObjView "BrokerImpl" @3
+			location   	(1552, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@3
+			    location   	(1552, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"BrokerImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3ED4DE5B0373"
+			width      	300
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @4
+			    location   	(1552, 576)
+			    line_color 	3342489
+			    InterObjView 	@3
+			    height     	1682
+			    y_coord    	1622
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @5
+			    location   	(1552, 720)
+			    line_color 	3342489
+			    InterObjView 	@3
+			    height     	1532
+			    y_coord    	1472
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @6
+			    location   	(1552, 832)
+			    line_color 	3342489
+			    InterObjView 	@3
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @7
+			    location   	(1552, 944)
+			    line_color 	3342489
+			    InterObjView 	@3
+			    height     	1448
+			    y_coord    	1388
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @8
+			    location   	(1552, 2160)
+			    line_color 	3342489
+			    InterObjView 	@3
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @9
+			    location   	(1552, 2272)
+			    line_color 	3342489
+			    InterObjView 	@3
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "OrderBookImpl" @10
+			location   	(2256, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@10
+			    location   	(2256, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3ED4DFF7019E"
+			width      	300
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @11
+			    location   	(2256, 1008)
+			    line_color 	3342489
+			    InterObjView 	@10
+			    height     	1180
+			    y_coord    	1120
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @12
+			    location   	(2256, 1136)
+			    line_color 	3342489
+			    InterObjView 	@10
+			    height     	742
+			    y_coord    	682
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @13
+			    location   	(2256, 1504)
+			    line_color 	3342489
+			    InterObjView 	@10
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "OrderBookRegularEditor" @14
+			location   	(2640, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@14
+			    location   	(2640, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	395
+			    justify    	0
+			    label      	"OrderBookRegularEditor")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3ED4E0CE007B"
+			width      	413
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @15
+			    location   	(2640, 1264)
+			    line_color 	3342489
+			    InterObjView 	@14
+			    height     	408
+			    y_coord    	348
+			    Nested     	FALSE))
+		    (object InterObjView "OpeningReporter" @16
+			location   	(3040, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(3040, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	332
+			    justify    	0
+			    label      	"OpeningReporter")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3ED4E1DA0149"
+			width      	350
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @17
+			    location   	(3040, 1328)
+			    line_color 	3342489
+			    InterObjView 	@16
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @18
+			    location   	(3040, 1552)
+			    line_color 	3342489
+			    InterObjView 	@16
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "BrokerOpenProductTimer" @19
+			location   	(1904, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1904, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"BrokerOpenProductTimer")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EE7452A02E9"
+			width      	300
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @20
+			    location   	(1904, 624)
+			    line_color 	3342489
+			    InterObjView 	@19
+			    height     	1688
+			    y_coord    	1628
+			    Nested     	FALSE))
+		    (object InterObjView "BrokerHomeImpl" @21
+			location   	(1152, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@21
+			    location   	(1152, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"BrokerHomeImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EE741FE025F"
+			width      	300
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @22
+			    location   	(1152, 496)
+			    line_color 	3342489
+			    InterObjView 	@21
+			    height     	1822
+			    y_coord    	1762
+			    Nested     	FALSE))
+		    (object InterObjView "CLIENT" @23
+			location   	(320, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@23
+			    location   	(320, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"CLIENT")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EE740EB020A"
+			width      	300
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @24
+			    location   	(320, 416)
+			    line_color 	3342489
+			    InterObjView 	@23
+			    height     	2022
+			    y_coord    	1962
+			    Nested     	FALSE))
+		    (object InterObjView "BrokerServiceImpl" @25
+			location   	(800, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@25
+			    location   	(800, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"BrokerServiceImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EE740D10270"
+			width      	300
+			height     	2303
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @26
+			    location   	(800, 416)
+			    line_color 	3342489
+			    InterObjView 	@25
+			    height     	1962
+			    y_coord    	1902
+			    Nested     	FALSE))
+		    (object InterMessView "" @27
+			location   	(960, 1008)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @28
+			    Parent_View 	@27
+			    location   	(1918, 964)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3ED4E00500F5"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	650
+			    justify    	0
+			    label      	"calculateExpectedOpeningPrice()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@3
+			supplier   	@10
+			Focus_Src  	@7
+			Focus_Entry 	@11
+			origin     	(1567, 1008)
+			terminus   	(2240, 1008)
+			ordinal    	6)
+		    (object SelfMessView "" @29
+			location   	(16, 1136)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @30
+			    Parent_View 	@29
+			    location   	(2362, 1092)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3ED4E0AC0005"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	463
+			    justify    	0
+			    label      	"getOrderBookEditor()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@10
+			supplier   	@10
+			Focus_Src  	@11
+			Focus_Entry 	@12
+			origin     	(2287, 1136)
+			terminus   	(2437, 1136)
+			ordinal    	7)
+		    (object InterMessView "" @31
+			location   	(1296, 1264)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @32
+			    Parent_View 	@31
+			    location   	(2455, 1220)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3ED4E0DB03E2"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	719
+			    justify    	0
+			    label      	"calculateExpectedOpeningPrice()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@10
+			supplier   	@14
+			Focus_Src  	@12
+			Focus_Entry 	@15
+			origin     	(2286, 1264)
+			terminus   	(2624, 1264)
+			ordinal    	8)
+		    (object NoteView @33
+			location   	(2736, 640)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@33
+			    location   	(2392, 371)
+			    fill_color 	13434879
+			    nlines     	10
+			    max_width  	652
+			    label      	
+|Depending on whether the "OpeningPriceIndication" is null or not, we either create a OpeningReporter and set it in the OrderBook followed by the method call "findMarketBalance()"
+|
+|But in case the OpeningReporter is not null, then we find the market balance and update the Order Book.
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	712
+			height     	550)
+		    (object AttachView "" @34
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@33
+			supplier   	@31
+			line_style 	0)
+		    (object InterMessView "" @35
+			location   	(1296, 1504)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @36
+			    Parent_View 	@35
+			    location   	(2463, 1461)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3ED4E2000342"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	813
+			    justify    	0
+			    label      	"getOpeningReporter(OrderBookImpl)"
+			    pctDist    	0.500000
+			    height     	44
+			    orientation 	1)
+			line_color 	3342489
+			client     	@14
+			supplier   	@10
+			Focus_Src  	@15
+			Focus_Entry 	@13
+			origin     	(2624, 1504)
+			terminus   	(2302, 1504)
+			ordinal    	10)
+		    (object InterMessView "" @37
+			location   	(16, 1328)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @38
+			    Parent_View 	@37
+			    location   	(2839, 1284)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3ED4E2410076"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	478
+			    justify    	0
+			    label      	"OpeningReporter()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@14
+			supplier   	@16
+			Focus_Src  	@15
+			Focus_Entry 	@17
+			origin     	(2655, 1328)
+			terminus   	(3024, 1328)
+			ordinal    	9)
+		    (object InterMessView "" @39
+			location   	(16, 1552)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @40
+			    Parent_View 	@39
+			    location   	(2839, 1508)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3ED4E2D40379"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	509
+			    justify    	0
+			    label      	"findMarketBalance()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@14
+			supplier   	@16
+			Focus_Src  	@15
+			Focus_Entry 	@18
+			origin     	(2655, 1552)
+			terminus   	(3024, 1552)
+			ordinal    	11)
+		    (object NoteView @41
+			location   	(720, 1600)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@41
+			    location   	(63, 897)
+			    fill_color 	13434879
+			    nlines     	28
+			    max_width  	1278
+			    label      	
+|* Updates the instance of this class by adding the tradables
+|* one price level at a time on either side of the book to
+|* determine the opening price at which most quantity may be traded.
+|*
+|* The tradables will be added in priority sequence.  Buys will 
+|* be added from the highest price to the lowest.  Sells will be
+|* added from the lowest to highest in sequence.
+|* By default, market orders are added first on either side of
+|* the book.
+|*
+|
+|* The tradables at a price level from the side with less accumulated
+|* quantity will be added until its accumulated quantity exceeds the
+|* accumulated quantity of the other side.  At this point, the
+|* tradables at a price level from the other side are added.
+|* This continues until either all tradables on one side is depleted
+|* or a price equilibrium is met.  Price equilibrium is said to be
+|* met when the book is no longer crossed.
+|*
+|* Upon completion, the following instance variables will be updated
+|* to reflect the current balance point of the book:
+|*<code>bestBuyPriceLevel,	openingBuySize,previousBuySize</code>
+|*<code>bestSellPriceLevel,	openingSellSize,	previousSellSize</code>
+|*
+|* @param buySideItem 	buy side of this order book
+|* @param sellSideItem	sell side of this order book
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	1338
+			height     	1418)
+		    (object InterMessView "" @42
+			location   	(16, 416)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @43
+			    Parent_View 	@42
+			    location   	(559, 372)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE740F70352"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	506
+			    justify    	0
+			    label      	"STATE CHANGE EVENT"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@23
+			supplier   	@25
+			Focus_Src  	@24
+			Focus_Entry 	@26
+			origin     	(335, 416)
+			terminus   	(784, 416)
+			ordinal    	0)
+		    (object InterMessView "" @44
+			location   	(976, 496)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @45
+			    Parent_View 	@44
+			    location   	(1156, 439)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE7420902C0"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	700
+			    justify    	0
+			    label      	"findByProduct(Integer productKey)"
+			    pctDist    	1.065041
+			    height     	58
+			    orientation 	0)
+			line_color 	3342489
+			client     	@25
+			supplier   	@21
+			Focus_Src  	@26
+			Focus_Entry 	@22
+			origin     	(815, 496)
+			terminus   	(1136, 496)
+			ordinal    	1)
+		    (object NoteView @46
+			location   	(880, 752)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@46
+			    location   	(514, 693)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	697
+			    label      	"Get a BrokerHome and then get a corresponding Broker for the product")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	757
+			height     	131)
+		    (object AttachView "" @47
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@46
+			supplier   	@44
+			line_style 	0)
+		    (object InterMessView "" @48
+			location   	(1360, 576)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @49
+			    Parent_View 	@48
+			    location   	(1701, 532)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE742E501FE"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	903
+			    justify    	0
+			    label      	"acceptOpeningRotation(Integer productKey)"
+			    pctDist    	1.448071
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@21
+			supplier   	@3
+			Focus_Src  	@22
+			Focus_Entry 	@4
+			origin     	(1167, 576)
+			terminus   	(1536, 576)
+			ordinal    	2)
+		    (object NoteView @50
+			location   	(384, 592)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@50
+			    location   	(34, 508)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	665
+			    label      	"If the new State of the Product is  OPENING_ROTATION and the product is not a strategy.")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	725
+			height     	181)
+		    (object AttachView "" @51
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@50
+			supplier   	@42
+			line_style 	0)
+		    (object InterMessView "" @52
+			location   	(16, 624)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @53
+			    Parent_View 	@52
+			    location   	(1727, 580)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE745300130"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	150
+			    justify    	0
+			    label      	""
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@3
+			supplier   	@19
+			Focus_Src  	@4
+			Focus_Entry 	@20
+			origin     	(1567, 624)
+			terminus   	(1888, 624)
+			ordinal    	3)
+		    (object NoteView @54
+			location   	(1872, 400)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@54
+			    location   	(1609, 334)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	490
+			    label      	"Register with the timer and enque the request.")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	550
+			height     	144)
+		    (object AttachView "" @55
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@52
+			supplier   	@54
+			line_style 	0)
+		    (object InterMessView "" @56
+			location   	(1728, 720)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @57
+			    Parent_View 	@56
+			    location   	(1785, 676)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE7457601EE"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1079
+			    justify    	0
+			    label      	"handleOpeningTimer(BrokerOpenProductTimer x)"
+			    pctDist    	0.339100
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@19
+			supplier   	@3
+			Focus_Src  	@20
+			Focus_Entry 	@5
+			origin     	(1888, 720)
+			terminus   	(1583, 720)
+			ordinal    	4)
+		    (object SelfMessView "" @58
+			location   	(16, 832)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @59
+			    Parent_View 	@58
+			    location   	(1816, 789)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE74686019F"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1087
+			    justify    	0
+			    label      	"getOrderBook(Integer productKey, new Object[])"
+			    pctDist    	1.453333
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@3
+			supplier   	@3
+			Focus_Src  	@5
+			Focus_Entry 	@6
+			origin     	(1598, 832)
+			terminus   	(1748, 832)
+			ordinal    	5)
+		    (object NoteView @60
+			location   	(1808, 1152)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@60
+			    location   	(1530, 1077)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	521
+			    label      	"This call returns an OpeningPriceIndication object.")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	581
+			height     	163)
+		    (object AttachView "" @61
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@60
+			supplier   	@27
+			line_style 	0)
+		    (object SelfMessView "" @62
+			location   	(16, 2160)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @63
+			    Parent_View 	@62
+			    location   	(2263, 2097)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE748A9003D"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1278
+			    justify    	0
+			    label      	"publishExpectedOpeningPrice(OpeningPriceIndication openingPrice)"
+			    pctDist    	4.333333
+			    height     	63
+			    orientation 	0)
+			line_color 	3342489
+			client     	@3
+			supplier   	@3
+			Focus_Src  	@7
+			Focus_Entry 	@8
+			origin     	(1583, 2160)
+			terminus   	(1733, 2160)
+			ordinal    	12)
+		    (object SelfMessView "" @64
+			location   	(16, 2272)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @65
+			    Parent_View 	@64
+			    location   	(1755, 2229)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EE749050158"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	291
+			    justify    	0
+			    label      	"getMyHome()"
+			    pctDist    	1.146667
+			    height     	43
+			    orientation 	0)
+			line_color 	3342489
+			client     	@3
+			supplier   	@3
+			Focus_Src  	@7
+			Focus_Entry 	@9
+			origin     	(1583, 2272)
+			terminus   	(1733, 2272)
+			ordinal    	13)
+		    (object NoteView @66
+			location   	(2128, 2288)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@66
+			    location   	(1946, 2225)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	328
+			    label      	"Returns a BrokerHomeImpl")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	388
+			height     	138)
+		    (object AttachView "" @67
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@66
+			supplier   	@64
+			line_style 	0)))
+	    (object InteractionDiagram "Book Depth"
+		mechanism_ref 	@2
+		quid       	"3EFC513E0230"
+		title      	"Book Depth"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	826
+		items      	(list diagram_item_list
+		    (object InterObjView "NBBOAgentService" @68
+			location   	(512, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@68
+			    location   	(512, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"NBBOAgentService")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC5262006D"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @69
+			    location   	(512, 384)
+			    line_color 	3342489
+			    InterObjView 	@68
+			    height     	504
+			    y_coord    	444
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @70
+			    location   	(512, 496)
+			    line_color 	3342489
+			    InterObjView 	@68
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "Client" @71
+			location   	(192, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@71
+			    location   	(192, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"Client")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC527601B6"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @72
+			    location   	(192, 384)
+			    line_color 	3342489
+			    InterObjView 	@71
+			    height     	564
+			    y_coord    	504
+			    Nested     	FALSE))
+		    (object InterMessView "" @73
+			location   	(16, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @74
+			    Parent_View 	@73
+			    location   	(639, 342)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC528500A0"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1119
+			    justify    	0
+			    label      	"getDetailedOrderBook(String sessionName,int productKey)"
+			    pctDist    	1.494810
+			    height     	43
+			    orientation 	0)
+			line_color 	3342489
+			client     	@71
+			supplier   	@68
+			Focus_Src  	@72
+			Focus_Entry 	@69
+			origin     	(207, 384)
+			terminus   	(496, 384)
+			ordinal    	0)
+		    (object InterObjView "OrderBookService" @75
+			location   	(1152, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@75
+			    location   	(1152, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookService")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC52DA005B"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @76
+			    location   	(1200, 768)
+			    line_color 	3342489
+			    InterObjView 	@75
+			    height     	2300
+			    y_coord    	2240
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @77
+			    location   	(1200, 880)
+			    line_color 	3342489
+			    InterObjView 	@75
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "OrderBookHome" @78
+			location   	(1472, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@78
+			    location   	(1472, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookHome")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC55CF0140"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @79
+			    location   	(1536, 1040)
+			    line_color 	3342489
+			    InterObjView 	@78
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "OrderBook" @80
+			location   	(1792, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@80
+			    location   	(1792, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBook")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC55D50366"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @81
+			    location   	(1920, 1184)
+			    line_color 	3342489
+			    InterObjView 	@80
+			    height     	1557
+			    y_coord    	1497
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @82
+			    location   	(1920, 1264)
+			    line_color 	3342489
+			    InterObjView 	@80
+			    height     	688
+			    y_coord    	628
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @83
+			    location   	(1920, 1392)
+			    line_color 	3342489
+			    InterObjView 	@80
+			    height     	438
+			    y_coord    	378
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @84
+			    location   	(1920, 1632)
+			    line_color 	3342489
+			    InterObjView 	@80
+			    height     	60
+			    y_coord    	0
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @85
+			    location   	(1920, 2224)
+			    line_color 	3342489
+			    InterObjView 	@80
+			    height     	475
+			    y_coord    	415
+			    Nested     	TRUE))
+		    (object InterObjView "OrderBookRegularEditor" @86
+			location   	(2096, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@86
+			    location   	(2096, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookRegularEditor")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC5AEE0113"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @87
+			    location   	(2224, 1536)
+			    line_color 	3342489
+			    InterObjView 	@86
+			    height     	216
+			    y_coord    	156
+			    Nested     	FALSE))
+		    (object InterObjView "SideTradableIterator" @88
+			location   	(2400, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@88
+			    location   	(2400, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"SideTradableIterator")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC5D45036E"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @89
+			    location   	(2560, 2016)
+			    line_color 	3342489
+			    InterObjView 	@88
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "OrderBookSideITem" @90
+			location   	(2704, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@90
+			    location   	(2704, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookSideITem")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC825C032B"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @91
+			    location   	(2896, 2336)
+			    line_color 	3342489
+			    InterObjView 	@90
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "OrderBookPriceItem" @92
+			location   	(3008, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@92
+			    location   	(3008, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookPriceItem")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC84E802BA"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @93
+			    location   	(3568, 2496)
+			    line_color 	3342489
+			    InterObjView 	@92
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "OrderBookPriceDetailItem" @94
+			location   	(3328, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@94
+			    location   	(3328, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookPriceDetailItem")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3F1FFA1500AE"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @95
+			    location   	(3568, 2608)
+			    line_color 	3342489
+			    InterObjView 	@94
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "OrderBookServiceHome" @96
+			location   	(832, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@96
+			    location   	(832, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"OrderBookServiceHome")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EFC54B00011"
+			width      	300
+			height     	2933
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @97
+			    location   	(864, 624)
+			    line_color 	3342489
+			    InterObjView 	@96
+			    height     	60
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterMessView "" @98
+			location   	(688, 768)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @99
+			    Parent_View 	@98
+			    location   	(1567, 727)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC52E3031C"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1145
+			    justify    	0
+			    label      	"getDetailedOrderBook(String sessionName,int productKey)"
+			    pctDist    	1.708197
+			    height     	42
+			    orientation 	0)
+			line_color 	3342489
+			client     	@68
+			supplier   	@75
+			Focus_Src  	@69
+			Focus_Entry 	@76
+			origin     	(527, 768)
+			terminus   	(1136, 768)
+			ordinal    	3)
+		    (object SelfMessView "" @100
+			location   	(16, 496)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @101
+			    Parent_View 	@100
+			    location   	(904, 452)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC542202A3"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	614
+			    justify    	0
+			    label      	"findOrderBookServiceHome()"
+			    pctDist    	2.406667
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@68
+			supplier   	@68
+			Focus_Src  	@69
+			Focus_Entry 	@70
+			origin     	(543, 496)
+			terminus   	(693, 496)
+			ordinal    	1)
+		    (object InterMessView "" @102
+			location   	(688, 624)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @103
+			    Parent_View 	@102
+			    location   	(673, 582)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC54C70318"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	179
+			    justify    	0
+			    label      	"find()"
+			    pctDist    	0.507788
+			    height     	43
+			    orientation 	0)
+			line_color 	3342489
+			client     	@68
+			supplier   	@96
+			Focus_Src  	@69
+			Focus_Entry 	@97
+			origin     	(527, 624)
+			terminus   	(816, 624)
+			ordinal    	2)
+		    (object NoteView @104
+			location   	(240, 528)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@104
+			    location   	(34, 443)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	377
+			    label      	"We have the local vesion of the find as well.")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	437
+			height     	182)
+		    (object AttachView "" @105
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@104
+			supplier   	@102
+			line_style 	0)
+		    (object InterMessView "" @106
+			location   	(1360, 1040)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @107
+			    Parent_View 	@106
+			    location   	(1311, 998)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC55DF01EF"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	410
+			    justify    	0
+			    label      	"find(productKey)"
+			    pctDist    	0.498361
+			    height     	43
+			    orientation 	0)
+			line_color 	3342489
+			client     	@75
+			supplier   	@78
+			Focus_Src  	@76
+			Focus_Entry 	@79
+			origin     	(1167, 1040)
+			terminus   	(1456, 1040)
+			ordinal    	5)
+		    (object SelfMessView "" @108
+			location   	(16, 880)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @109
+			    Parent_View 	@108
+			    location   	(1304, 826)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC55E600FE"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	503
+			    justify    	0
+			    label      	"getOrderBookHome()"
+			    pctDist    	0.813333
+			    height     	55
+			    orientation 	0)
+			line_color 	3342489
+			client     	@75
+			supplier   	@75
+			Focus_Src  	@76
+			Focus_Entry 	@77
+			origin     	(1183, 880)
+			terminus   	(1333, 880)
+			ordinal    	4)
+		    (object NoteView @110
+			location   	(992, 1568)
+			font       	(object Font
+			    size       	8
+			    face       	"Arial"
+			    bold       	TRUE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@110
+			    location   	(426, 1218)
+			    fill_color 	13434879
+			    nlines     	18
+			    max_width  	1097
+			    label      	
+|Do it for both the Sides.
+|
+|>>. Obtain All the OrderBookPriceItems for the OrderBookSideItem
+|>>. For each OrderBookPriceItem obtain the OrderBookPriceDetail object. 
+|>>. From the OrderBookPriceDetail object obtain the corresponding tradable.
+|>>. Note that the tradable can be either an order or quote.
+|>>. Convert the tradable to cmiIntermarketMessages::OrderBookStruct by calling
+|>>. toOrderBookStruct on each Tradable.
+|>>. Create a new array list of OrderBookStruct
+|>>. Create a new OrderBookDetailPriceStruct with the corresponding prices and the OrderBookStruct Array List
+|>>. Create a new Array List of OrderbookDetailPriceStruct.
+|>> Return the cmiIntermarketMessages::OrderBookDetailPriceStructArray
+			    )
+			line_color 	3342489
+			fill_color 	13434879
+			width      	1157
+			height     	712)
+		    (object NoteView @111
+			location   	(2720, 1664)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@111
+			    location   	(2501, 1561)
+			    fill_color 	13434879
+			    nlines     	4
+			    max_width  	403
+			    label      	"Depending on the Side call either getBuySideItem pr getSellSideItem()")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	463
+			height     	219)
+		    (object NoteView @112
+			location   	(3136, 1872)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@112
+			    location   	(2954, 1813)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	328
+			    label      	"returns an enum")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	388
+			height     	131)
+		    (object NoteView @113
+			location   	(976, 2176)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@113
+			    location   	(598, 2095)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	721
+			    label      	"Returns OrderBookPriceItem. I am not sure if the getLimitPriceItems() gets everything from the book or not.")
+			line_color 	3342489
+			fill_color 	16777088
+			width      	781
+			height     	175)
+		    (object NoteView @114
+			location   	(1360, 2560)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@114
+			    location   	(994, 2494)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	696
+			    label      	"Get all the Tradables for the OrderBookPriceDetailItem.")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	756
+			height     	144)
+		    (object SelfMessView "" @115
+			location   	(16, 1264)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @116
+			    Parent_View 	@115
+			    location   	(2026, 1222)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC5A590355"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	472
+			    justify    	0
+			    label      	"getSideItem(Side)"
+			    pctDist    	1.353333
+			    height     	42
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@80
+			Focus_Src  	@81
+			Focus_Entry 	@82
+			origin     	(1823, 1264)
+			terminus   	(1973, 1264)
+			ordinal    	7)
+		    (object SelfMessView "" @117
+			location   	(16, 1392)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @118
+			    Parent_View 	@117
+			    location   	(2103, 1347)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC5AC50331"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	649
+			    justify    	0
+			    label      	"getOrderBookEditor(Side)"
+			    pctDist    	1.766667
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@80
+			Focus_Src  	@82
+			Focus_Entry 	@83
+			origin     	(1838, 1392)
+			terminus   	(1988, 1392)
+			ordinal    	8)
+		    (object InterMessView "" @119
+			location   	(16, 1536)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @120
+			    Parent_View 	@119
+			    location   	(2133, 1478)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC5C7F0215"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	737
+			    justify    	0
+			    label      	"getOrderBookSideItem(Side)"
+			    pctDist    	1.218107
+			    height     	58
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@86
+			Focus_Src  	@83
+			Focus_Entry 	@87
+			origin     	(1837, 1536)
+			terminus   	(2080, 1536)
+			ordinal    	9)
+		    (object InterMessView "" @121
+			location   	(16, 1632)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @122
+			    Parent_View 	@121
+			    location   	(1985, 1588)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC61E601F5"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	566
+			    justify    	0
+			    label      	"getBuySideItem()"
+			    pctDist    	0.418502
+			    height     	44
+			    orientation 	1)
+			line_color 	3342489
+			client     	@86
+			supplier   	@80
+			Focus_Src  	@87
+			Focus_Entry 	@84
+			origin     	(2080, 1632)
+			terminus   	(1853, 1632)
+			ordinal    	10)
+		    (object AttachView "" @123
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@111
+			supplier   	@119
+			line_style 	0)
+		    (object InterMessView "" @124
+			location   	(1536, 1184)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @125
+			    Parent_View 	@124
+			    location   	(1719, 1142)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3F0ED25D0059"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1192
+			    justify    	0
+			    label      	"getDetailedOrderBook(String sessionName, int productKey)"
+			    pctDist    	0.907875
+			    height     	43
+			    orientation 	0)
+			line_color 	3342489
+			client     	@75
+			supplier   	@80
+			Focus_Src  	@76
+			Focus_Entry 	@81
+			origin     	(1167, 1184)
+			terminus   	(1776, 1184)
+			ordinal    	6)
+		    (object InterMessView "" @126
+			location   	(2240, 2016)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @127
+			    Parent_View 	@126
+			    location   	(2269, 1972)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3EFC5D5301DE"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	957
+			    justify    	0
+			    label      	"SideTradableIterator(OrderBookSideItem)"
+			    pctDist    	0.801872
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@88
+			Focus_Src  	@81
+			Focus_Entry 	@89
+			origin     	(1807, 2016)
+			terminus   	(2384, 2016)
+			ordinal    	11)
+		    (object SelfMessView "" @128
+			location   	(16, 2224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @129
+			    Parent_View 	@128
+			    location   	(2314, 2161)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3F1FF8B7010F"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	1267
+			    justify    	0
+			    label      	"getOrderBookDetailPriceStructSequence(OrderBookSideItem)"
+			    pctDist    	3.273333
+			    height     	63
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@80
+			Focus_Src  	@81
+			Focus_Entry 	@85
+			origin     	(1823, 2224)
+			terminus   	(1973, 2224)
+			ordinal    	12)
+		    (object InterMessView "" @130
+			location   	(2416, 2336)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @131
+			    Parent_View 	@130
+			    location   	(2255, 2292)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3F1FF9380075"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	547
+			    justify    	0
+			    label      	"getLimitPriceItems()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@90
+			Focus_Src  	@85
+			Focus_Entry 	@91
+			origin     	(1822, 2336)
+			terminus   	(2688, 2336)
+			ordinal    	13)
+		    (object AttachView "" @132
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@112
+			supplier   	@130
+			line_style 	0)
+		    (object InterMessView "" @133
+			location   	(16, 2496)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @134
+			    Parent_View 	@133
+			    location   	(2407, 2452)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3F1FFB410268"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	485
+			    justify    	0
+			    label      	"getPriceDetails()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@92
+			Focus_Src  	@85
+			Focus_Entry 	@93
+			origin     	(1822, 2496)
+			terminus   	(2992, 2496)
+			ordinal    	14)
+		    (object InterMessView "" @135
+			location   	(2752, 2608)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @136
+			    Parent_View 	@135
+			    location   	(2567, 2564)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"3F1FFB8801FC"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	441
+			    justify    	0
+			    label      	"getTradables()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@80
+			supplier   	@94
+			Focus_Src  	@85
+			Focus_Entry 	@95
+			origin     	(1822, 2608)
+			terminus   	(3312, 2608)
+			ordinal    	15)
+		    (object AttachView "" @137
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@114
+			supplier   	@135
+			line_style 	0)
+		    (object NoteView @138
+			location   	(1360, 2400)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@138
+			    location   	(1007, 2338)
+			    fill_color 	13434879
+			    nlines     	2
+			    max_width  	671
+			    label      	"Returns an enum of OrderBookPriceDetailItems")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	731
+			height     	137)
+		    (object AttachView "" @139
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@138
+			supplier   	@133
+			line_style 	0)
+		    (object AttachView "" @140
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@110
+			supplier   	@128
+			line_style 	0)
+		    (object AttachView "" @141
+			stereotype 	TRUE
+			line_color 	3342489
+			client     	@113
+			supplier   	@130
+			line_style 	0)))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"3ED4DE30016B"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"3ED4DE32030F"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    process_structure 	(object Processes
+	quid       	"3ED4DE30016C"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"3ED4DE30016E"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CreateMissingDirectories"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Editor"
+			value      	("EditorType" 100))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"IncludePath"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"StopOnError"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"EditorType"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"BuiltIn"
+				value      	100)
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"WindowsShell"
+				value      	101)))))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ArrayDimensions"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ConstValue"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ImplementationType"
+			value      	"")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Module-Spec"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"AdditionalIncludes"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CmIdentification"
+			value      	(value Text "  %X% %Q% %Z% %W%"))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"InclusionProtectionSymbol"
+			value      	"AUTO GENERATE")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Module-Body"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"AdditionalIncludes"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CmIdentification"
+			value      	(value Text "  %X% %Q% %Z% %W%"))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"InclusionProtectionSymbol"
+			value      	"AUTO GENERATE")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Context"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"OperationIsOneWay"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ArrayDimensions"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CaseSpecifier"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"IsReadOnly"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Order"
+			value      	"")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Role"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ArrayDimensions"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CaseSpecifier"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"GenerateForwardReference"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"IsReadOnly"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Order"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"BoundedRoleType"
+			value      	("AssocTypeSet" 47))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"AssocTypeSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"Array"
+				value      	24)
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"Sequence"
+				value      	47)))))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Uses"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"GenerateForwardReference"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"ClearCase"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"DDL"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"DDL"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"DDL"
+			name       	"Directory"
+			value      	"AUTO GENERATE")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DataBase"
+			value      	("DataBaseSet" 800))
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DataBaseSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"DDL"
+				name       	"ANSI"
+				value      	800)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"Oracle"
+				value      	801)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"SQLServer"
+				value      	802)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"Sybase"
+				value      	803)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"Watcom"
+				value      	804)))
+		    (object Attribute
+			tool       	"DDL"
+			name       	"PrimaryKeyColumnName"
+			value      	"Id")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"PrimaryKeyColumnType"
+			value      	"NUMBER(5)")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"ViewName"
+			value      	"V_")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"TableName"
+			value      	"T_")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"InheritSuffix"
+			value      	"_V")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DropClause"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"BaseViews"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DDLScriptFilename"
+			value      	"DDL1.SQL")))
+	    (object Attribute
+		tool       	"DDL"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"DDL"
+			name       	"ColumnType"
+			value      	"VARCHAR")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"Length"
+			value      	"")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"NullsOK"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"PrimaryKey"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"Unique"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"CompositeUnique"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"CheckConstraint"
+			value      	"")))
+	    (object Attribute
+		tool       	"DDL"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"framework"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Java"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"RootDir"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"CreateMissingDirectories"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"StopOnError"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"UsePrefixes"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"AutoSync"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Editor"
+			value      	("EditorType" 100))
+		    (object Attribute
+			tool       	"Java"
+			name       	"VM"
+			value      	("VMType" 200))
+		    (object Attribute
+			tool       	"Java"
+			name       	"ClassPath"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"EditorType"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"BuiltIn"
+				value      	100)
+			    (object Attribute
+				tool       	"Java"
+				name       	"WindowsShell"
+				value      	101)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"VMType"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Sun"
+				value      	200)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Microsoft"
+				value      	201)
+			    (object Attribute
+				tool       	"Java"
+				name       	"IBM"
+				value      	202)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"InstanceVariablePrefix"
+			value      	"m_")
+		    (object Attribute
+			tool       	"Java"
+			name       	"ClassVariablePrefix"
+			value      	"s_")
+		    (object Attribute
+			tool       	"Java"
+			name       	"DefaultAttributeDataType"
+			value      	"int")
+		    (object Attribute
+			tool       	"Java"
+			name       	"DefaultOperationReturnType"
+			value      	"void")
+		    (object Attribute
+			tool       	"Java"
+			name       	"NoClassCustomDlg"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GlobalImports"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Java"
+			name       	"OpenBraceClassStyle"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"OpenBraceMethodStyle"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"UseTabs"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"UseSpaces"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"SpacingItems"
+			value      	3)
+		    (object Attribute
+			tool       	"Java"
+			name       	"RoseDefaultCommentStyle"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"AsteriskCommentStyle"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavaCommentStyle"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocAuthor"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocDeprecated"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocException"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocParam"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocReturn"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSee"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSerial"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSerialdata"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSerialfield"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSince"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocVersion"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocLink"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Static"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateDefaultConstructor"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"ConstructorIs"
+			value      	("Ctor_Set" 62))
+		    (object Attribute
+			tool       	"Java"
+			name       	"Ctor_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"public"
+				value      	62)
+			    (object Attribute
+				tool       	"Java"
+				name       	"protected"
+				value      	63)
+			    (object Attribute
+				tool       	"Java"
+				name       	"private"
+				value      	64)
+			    (object Attribute
+				tool       	"Java"
+				name       	"package"
+				value      	65)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateFinalizer"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateStaticInitializer"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateInstanceInitializer"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateCode"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"DisableAutoSync"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Module-Spec"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"CmIdentification"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Java"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Module-Body"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"CmIdentification"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Java"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Abstract"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Static"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Native"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Synchronized"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Transient"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Volatile"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"PropertyType"
+			value      	("BeanProperty_Set" 71))
+		    (object Attribute
+			tool       	"Java"
+			name       	"BeanProperty_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Not A Property"
+				value      	71)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Simple"
+				value      	72)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Bound"
+				value      	73)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Constrained"
+				value      	74)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"IndividualChangeMgt"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write"
+			value      	("Read/Write_Set" 81))
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read & Write"
+				value      	81)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read Only"
+				value      	82)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Write Only"
+				value      	83)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateFullyQualifiedTypes"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Role"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"ContainerClass"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"InitialValue"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Transient"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Volatile"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"PropertyType"
+			value      	("BeanProperty_Set" 71))
+		    (object Attribute
+			tool       	"Java"
+			name       	"BeanProperty_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Not A Property"
+				value      	71)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Simple"
+				value      	72)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Bound"
+				value      	73)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Constrained"
+				value      	74)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"IndividualChangeMgt"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write"
+			value      	("Read/Write_Set" 81))
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read & Write"
+				value      	81)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read Only"
+				value      	82)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Write Only"
+				value      	83)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateFullyQualifiedTypes"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"IsNavigable"
+			value      	TRUE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Rose Model Integrator"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Rose Web Publisher"
+		name       	"HiddenTool"
+		value      	FALSE))
+	quid       	"3ED4DE30016D"))

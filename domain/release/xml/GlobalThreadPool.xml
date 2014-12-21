@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalGlobalThreadPoolHome SYSTEM "../dtd/GlobalThreadPool.dtd">
+
+
+<GlobalGlobalThreadPoolHome>
+    <GlobalThreadPoolHomeImpl name="GlobalThreadPool">
+        <GlobalThreadPoolHomeImplProperties>
+            <globalThreadPoolSize>200</globalThreadPoolSize>
+        </GlobalThreadPoolHomeImplProperties>
+    </GlobalThreadPoolHomeImpl>
+</GlobalGlobalThreadPoolHome>

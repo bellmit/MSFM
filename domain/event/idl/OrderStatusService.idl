@@ -1,0 +1,42 @@
+//# Interface: OrderStatusService
+//# Module: businessServices
+
+#include "consumers.idl"
+#include "cmiUser.idl"
+
+module businessServices {
+
+interface OrderStatusService {
+    void subscribeOrderStatus( in string userId, in consumers::OrderStatusConsumer orderStatusConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void unsubscribeOrderStatus( in string userId, in consumers::OrderStatusConsumer orderStatusConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+
+    void subscribeOrderStatusForFirm( in cmiUser::ExchangeFirmStruct firm, in consumers::OrderStatusConsumer orderStatusConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+    void unsubscribeOrderStatusForFirm( in cmiUser::ExchangeFirmStruct firm, in consumers::OrderStatusConsumer orderStatusConsumer )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::AuthorizationException
+            );
+};
+
+};

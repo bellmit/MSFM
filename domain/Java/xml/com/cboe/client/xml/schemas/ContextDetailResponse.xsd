@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+jxb:version="1.0"
+elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CommonProductDefinitions.xsd"/>
+
+	<xs:element name="CNR" type="GIContextNameResponseType">
+		<xs:annotation>
+			<xs:documentation>Context Name Response</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIContextNameResponse"/>
+				<jxb:property name="contextNameResponse"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CNL" type="GIContextNameLookupType">
+		<xs:annotation>
+			<xs:documentation>Context Name Lookup</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIContextNameLookup"/>
+				<jxb:property name="contextNameLookup"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CFRP" type="GIConfigurationResponseType">
+		<xs:annotation>
+			<xs:documentation>Configuration Response</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIConfigurationResponse"/>
+				<jxb:property name="configurationResponse"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CFRQ" type="GIConfigurationRequestType">
+		<xs:annotation>
+			<xs:documentation>Configuration Request</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIConfigurationRequest"/>
+				<jxb:property name="configurationRequest"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CDQ" type="GIContextDetailRequestType">
+		<xs:annotation>
+			<xs:documentation>Configuration Request</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIContextDetailRequest"/>
+				<jxb:property name="contextDetailRequest"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CDR" type="GIContextDetailResponseType">
+		<xs:annotation>
+			<xs:documentation>Context Detail Response</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIContextDetailResponse"/>
+				<jxb:property name="contextDetailResponse"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CD" type="GIContextDetailType">
+		<xs:annotation>
+			<xs:documentation>Context Detail</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIContextDetail"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CL" type="GICommandLineArgumentType">
+		<xs:annotation>
+			<xs:documentation>Command Line Argument</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GICommandLineArgument"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="QI" type="GIQueueInstrumentorType">
+		<xs:annotation>
+			<xs:documentation>Queue Instrumentor</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIQueueInstrumentor"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TI" type="GIThreadInstrumentorType">
+		<xs:annotation>
+			<xs:documentation>Thread Instrumentor</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIThreadInstrumentor"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MI" type="GIMethodInstrumentorType">
+		<xs:annotation>
+			<xs:documentation>Method Instrumentor</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIMethodInstrumentor"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AC" type="GIAssociatedContextType">
+		<xs:annotation>
+			<xs:documentation>Associated Context</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIAssociatedContext"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CI" type="GIClassInfoType">
+		<xs:annotation>
+			<xs:documentation>Class Info</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIClassInfo"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NM" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GINameData"/>
+				<jxb:property name="name"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FN" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Full Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIFullNameData"/>
+				<jxb:property name="fullName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IN" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Instrumentor</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIInstrumentor"/>
+				<jxb:property name="instrumentor"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<!-- define RequestType with an enumeration -->
+
+	<xs:element name="RT">
+		<xs:annotation>
+			<xs:documentation>Request Type</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIRequestType"/>
+				<jxb:property name="requestType"/>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:annotation>
+		     <xs:appinfo>
+		        		<jxb:typesafeEnumClass name="GIRequestTypeName"/>
+		     </xs:appinfo>
+		 	</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="CF">
+					<xs:annotation>
+						<xs:appinfo>
+							<jxb:typesafeEnumMember name="CAS_CONFIGURATION"/>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+
+	<xs:element name="KY" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Key</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIKeyData"/>
+				<jxb:property name="key"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="VL" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Value</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIValueData"/>
+				<jxb:property name="value"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ON" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Orb Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIOrbName"/>
+				<jxb:property name="orbName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CN" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Cluster Name</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIClusterName"/>
+				<jxb:property name="clusterName"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="UD" type="GIUserDataType">
+		<xs:annotation>
+			<xs:documentation>User Data</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIUserData"/>
+				<jxb:property name="userData"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="D" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Data</xs:documentation>
+			<xs:appinfo>
+				<jxb:class name="GIData"/>
+				<jxb:property name="data"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="GIUserDataType">
+		<xs:annotation>
+			<xs:documentation>User Data</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="D" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="dataElements"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIContextNameResponseType">
+		<xs:annotation>
+			<xs:documentation>Context Name Response Type</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="NM"/>
+			<xs:element ref="KY"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIContextNameLookupType">
+		<xs:annotation>
+			<xs:documentation>Context Name Lookup Type</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="KY"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:attribute name="rx" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Raw XML</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="rawXml"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:complexType name="GIConfigurationResponseType">
+		<xs:sequence>
+			<xs:element ref="ON"/>
+			<xs:element ref="CN"/>
+			<xs:element ref="RT"/>
+			<xs:element ref="CL" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="commandLineArguments"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="rx" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="GIConfigurationRequestType">
+		<xs:sequence>
+			<xs:element ref="ON"/>
+			<xs:element ref="RT"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIContextDetailResponseType">
+		<xs:sequence>
+			<xs:element ref="ON"/>
+			<xs:element ref="CN"/>
+			<xs:element ref="CD" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="contextDetails"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIContextDetailRequestType">
+		<xs:sequence>
+			<xs:element ref="ON"/>
+			<xs:element ref="NM" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GICommandLineArgumentType">
+		<xs:sequence>
+			<xs:element ref="KY"/>
+			<xs:element ref="VL"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GIContextDetailType">
+		<xs:sequence>
+			<xs:element ref="NM"/>
+			<xs:element ref="FN"/>
+			<xs:element ref="QI" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="queueInstrumentors"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="TI" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="threadInstrumentors"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="MI" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="methodInstrumentors"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="AC" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="associatedContexts"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="CI" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="classInfoSequence"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+	Attributes for Queue Instrumentor
+	 long getEnqueued();
+    long getDequeued();
+    long getFlushed();
+    long getOverlaid();
+    long getHighWaterMark();
+    long getCurrentSize();
+    short getStatus();
+	-->
+	<xs:attribute name="ne" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Num Enqueued</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="enqueued"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="nd" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Num Dequeued</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="dequeued"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="nf" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Num Flushed</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="flushed"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="no" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Num Overlaid</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="overlaid"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ps" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Peak Size (High Water Mark)</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="highWaterMark"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="cs" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Current Size</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="currentSize"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="st" type="xs:short">
+		<xs:annotation>
+			<xs:documentation>Status</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="Status"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:complexType name="GIQueueInstrumentorType">
+		<xs:sequence>
+			<xs:element ref="UD" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="ne" use="required"/>
+		<xs:attribute ref="nd" use="required"/>
+		<xs:attribute ref="nf" use="required"/>
+		<xs:attribute ref="no" use="required"/>
+		<xs:attribute ref="ps" use="required"/>
+		<xs:attribute ref="cs" use="required"/>
+		<xs:attribute ref="st" use="required"/>
+	</xs:complexType>
+	<!--
+	Attributes for Thread Instrumentor
+    int getCurrentlyExecutingThreads();
+    int getStartedThreads();
+    int getPendingThreads();
+    int getStartedThreadsHighWaterMark();
+    int getPendingTaskCount();
+    int getPendingTaskCountHighWaterMark();
+	-->
+	<xs:attribute name="ce" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Currently Executing</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="currentlyExecutingThreads"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sr" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Started</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="startedThreads"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pe" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Pending</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="pendingThreads"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sh" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Started Thread High Water Mark</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="startedThreadsHighWaterMark"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ptc" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Pending Task Count</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="pendingTaskCount"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="pth" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Pending Task High Water Mark</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="pendingTaskCountHighWaterMark"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:complexType name="GIThreadInstrumentorType">
+		<xs:sequence>
+			<xs:element ref="UD" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="ce" use="required"/>
+		<xs:attribute ref="sr" use="required"/>
+		<xs:attribute ref="pe" use="required"/>
+		<xs:attribute ref="sh" use="required"/>
+		<xs:attribute ref="ptc" use="required"/>
+		<xs:attribute ref="pth" use="required"/>
+	</xs:complexType>
+	<!--
+	Attributes for Method Instrumentor
+    long getCalls();
+    long getExceptions();
+    double getMethodTime();
+    double getSumOfSquareMethodTime();
+    long getMaxMethodTime();
+	-->
+	<xs:attribute name="ca" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Calls</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="calls"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="ex" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Exceptions</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="exceptions"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="mt" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Method Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="methodTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="sm" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Sum Of Square Method Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="sumOfSquareMethodTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="xm" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Max Method Time</xs:documentation>
+			<xs:appinfo>
+				<jxb:property name="maxMethodTime"/>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:complexType name="GIMethodInstrumentorType">
+		<xs:sequence>
+			<xs:element ref="UD" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="ca" use="required"/>
+		<xs:attribute ref="mt" use="required"/>
+		<xs:attribute ref="sm" use="required"/>
+		<xs:attribute ref="xm" use="required"/>
+		<xs:attribute ref="ex" use="required"/>
+	</xs:complexType>
+	<!-- Attributes for Class Info -->
+	<xs:complexType name="GIClassInfoType">
+		<xs:attribute ref="sn" use="optional"/>
+		<xs:attribute ref="ck" use="optional"/>
+		<xs:attribute ref="pk" use="optional"/>
+		<xs:attribute ref="pt" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GIAssociatedContextType">
+		<xs:sequence>
+			<xs:element ref="NM"/>
+			<xs:element ref="FN"/>
+			<xs:element ref="IN">
+				<xs:annotation>
+					<xs:appinfo>
+						<jxb:property name="instrumentor"/>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,8 @@
+1. Increased memory to 6000M.
+2. Added -d64 parameter for 64 bit VM.
+3. Changed VM in .setenv to 1.5.0_08.
+4. Added ActiveMQ jar to classpath.
+5. Kevin adjusted JMS.properties settings to enable AMQ.
+6. Changed NewSize from 400m to 800m.
+7. Added -XX:CMSInitiatingOccupancyFraction=60 & -XX:+CMSParallelRemarkEnabled.
+

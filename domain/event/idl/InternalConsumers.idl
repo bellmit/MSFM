@@ -1,0 +1,116 @@
+//## Module: internalServices
+//## Service: InternalUserService
+#ifndef INTERNALCONSUMER_IDL
+#define INTERNALCONSUMER_IDL
+
+#include "cmiOrder.idl"
+#include "cmiSession.idl"
+#include "cmiIntermarketMessages.idl"
+#include "order.idl"
+#include "quote.idl"
+#include "orderBook.idl"
+#include "product.idl"
+#include "trade.idl"
+#include "consumers.idl"
+#include "alert.idl"
+#include "CalendarEvents.idl"
+#include "exchange.idl"
+#include "marketData.idl"
+
+
+module internalConsumers {
+
+
+    interface BBBOConsumer {
+        void acceptBookBest(in cmiUtil::LongSequence groups, in cmiProduct::ProductKeysStruct filter, in orderBook::BestBookStruct contingentBestBook, in orderBook::BestBookStruct nonContingentBestBook );
+    };
+
+    interface BestOfTheRestConsumer {
+         void acceptBestOfTheRest(in cmiUtil::LongSequence groups, in quote::ExternalQuoteSideStructSequence bestOfRestQuote );
+         void acceptExchangeIndicators(in util::RoutingParameterStruct routingParameters, in exchange::ExchangeClassIndicatorStructSequence exchangeIndicator);
+         void acceptMarketDataBuffer(in product::GroupKey groupKey, in long subIdentifier, in util::OctetSequence buffer);
+    };
+
+    interface UnderlyingNBBODataConsumer {
+         void acceptUnderlyingNBBODataBuffer(in product::GroupKey groupKey, in long subIdentifier, in util::OctetSequence buffer);
+    };
+
+    interface TickerDetailConsumer {
+         void acceptTickerDetail(in util::RoutingParameterStruct routingParameters, in marketData::InternalTickerDetailStruct tickerDetail );
+         void acceptTickerDetailForClass( in util::RoutingParameterStruct routingParameters, in cmiUtil::TimeStructSequence tradeTimes, in marketData::InternalTickerDetailStructSequence tickerDetails);
+    };
+
+    interface CurrentMarketStateChangeConsumer : consumers::CurrentMarketConsumer {
+        void acceptCurrentMarketStateChange(in cmiUtil::LongSequence groups, in cmiMarketData::CurrentMarketStruct nonContingentMarket, in cmiSession::ProductState oldState, in cmiSession::ProductStateStruct newState );
+        void acceptCurrentMarketStateChangeV2(in cmiUtil::LongSequence groups, in cmiMarketData::CurrentMarketStruct nonContingentMarket, in cmiMarketData::CurrentMarketStructV2Sequence nonQmarket, in cmiSession::ProductState oldState, in cmiSession::ProductStateStruct newState );
+        void acceptCurrentMarketStateChangeForClass(in util::RoutingParameterStruct routingParameter,  in marketData::CurrentMarketStateChangeStructSequence stateChange);
+        void acceptCurrentMarketsForManualQuote(
+            in util::RoutingParameterStruct routingParameters,
+            in cmiMarketData::CurrentMarketStructSequence bestMarkets,
+            in cmiMarketData::CurrentMarketStructSequence bestLimitMarkets,
+            in cmiMarketData::NBBOStructSequence nbbos,
+            in cmiMarketData::CurrentMarketStructV2Sequence markets,
+            in cmiMarketData::CurrentMarketStructSequence bestPublicMarkets,
+            in cmiMarketData::CurrentMarketStructSequence bestPublicMarketsAtTop,
+            in cmiMarketData::CurrentMarketStructSequence manualQuoteMarkets,
+            in marketData::ManualQuoteDetailInternalStructSequence manualQuoteDetails
+            );
+    };
+
+    interface EOSSummaryConsumer {
+         void acceptSaleSummaryForClass(in cmiSession::TradingSessionName sessionName, in cmiProduct::ClassKey classKey, in cmiMarketData::RecapStructSequence recapSummary);
+    };
+
+    interface ProductConfigurationStatusConsumer {
+      void acceptCacheReset();
+    };
+
+    /* CBSX Billing Enhancements, added TradeReportBillingStruct in the end of the method args. */ 
+    interface TradeReportConsumer {
+       void acceptTradeReport(in cmiUtil::LongSequence groups, in long sourceGroup, in cmiProduct::ProductKeysStruct filter, in trade::TradeReportStruct tradeReport, in trade::TradeReportSettlementStruct settlementTradeReport,in trade::TradeReportBillingStruct tradeReportBilling);
+       void acceptTradeBustReport(in cmiUtil::LongSequence groups, in long sourceGroup, in cmiProduct::ProductKeysStruct filter, in trade::TradeReportStruct currentTradeReport,in trade::AtomicTradeStructSequence updates, in trade::TradeReportSettlementStruct settlementTradeReport,in trade::TradeReportBillingStruct tradeReportBilling);
+       void acceptResendTradeReport(in cmiUtil::LongSequence groups, in long sourceGroup, in cmiProduct::ProductKeysStruct filter, in trade::TradeReportStruct currentTradeReports, in trade::AtomicTradeStructSequence updates, in trade::TradeReportSettlementStruct settlementTradeReport,in trade::TradeReportBillingStruct tradeReportBilling);
+       void acceptTradeUpdateReport(in util::RoutingParameterStruct routingParams, in long sourceGroup, in trade::TradeReportStruct currentTradeReport,in trade::AtomicTradeStructSequence updates, in trade::TradeReportSettlementStruct settlementTradeReport,in trade::TradeReportBillingStruct tradeReportBilling);
+    };
+
+    interface OrderStatusAdminConsumer {
+        void subscribeOrderStatus(in string userId);
+        void ackOrderStatus(in cmiUtil::LongSequence groups, in order::OrderAcknowledgeStruct orderAcknowledge);
+       //new methods to support subscription by class and ack with timestamp points
+        void publishUnackedOrderStatus(in util::RoutingParameterStruct routingParameters, in string userid);
+        void ackOrderStatusV3(in util::RoutingParameterStruct routingParameters, in order::OrderAcknowledgeStructV3 orderAcknowledge);
+    };
+
+    interface QuoteStatusAdminConsumer {
+        void subscribeQuoteStatus(in string userId);
+        void ackQuoteStatus(in cmiUtil::LongSequence groups, in quote::QuoteAcknowledgeStruct structAcknowledge);
+        //new methods to support subscription by class and ack with timestamp points
+        void publishUnackedQuoteStatus(in util::RoutingParameterStruct routingParameters, in string userid);
+        void ackQuoteStatusV3(in util::RoutingParameterStruct routingParameters, in quote::QuoteAcknowledgeStructV3 structAcknowledge);
+    };
+
+    interface TradeReportAdminConsumer {
+        void ackAtomicTrades(in cmiUtil::LongSequence groups, in trade::AtomicTradeAcknowledgmentStructSequence acks);
+        void sendUnackedTrades(in util::RoutingParameterStruct routingParameters);
+    };
+
+    interface AlertConsumer
+    {
+        void acceptAlert(in cmiIntermarketMessages::AlertStruct alert);
+        void acceptAlertUpdate(in cmiIntermarketMessages::AlertStruct alertUpdated);
+        void acceptSatisfactionAlert(in cmiIntermarketMessages::SatisfactionAlertStruct alert);
+
+    };
+
+    interface CalendarUpdateConsumer : calendar::CalendarUpdateConsumer
+    {
+    };
+
+	interface PersistentBObjectsConsumer
+	{
+		void acceptPersistentBObjects (in trade::PersistentBObjectStructSequence structsequence);
+	};
+};
+
+#endif
+

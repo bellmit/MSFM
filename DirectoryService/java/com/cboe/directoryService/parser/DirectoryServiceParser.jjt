@@ -1,0 +1,201 @@
+options {
+  MULTI=true;
+  VISITOR=true;
+  VISITOR_EXCEPTION="Exception";
+  NODE_DEFAULT_VOID=true;
+  STATIC=false;
+  IGNORE_CASE=true;
+}
+
+PARSER_BEGIN(DirectoryServiceParser)
+
+package com.cboe.directoryService.parser;
+
+public abstract class DirectoryServiceParser  {
+}
+
+PARSER_END(DirectoryServiceParser)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+}
+
+TOKEN :
+{ 
+ <NE : "!=">
+|
+ <EQ : "==">
+|
+ <LT : "<">
+|
+ <LE : "<=">
+|
+ <GT : ">">
+|
+ <GE : ">=">
+|
+ <IN : "in">
+|
+ <OR : "or">
+|
+ <AND : "and">
+|
+ <NOT : "not">
+|
+ <TRUE : "TRUE">
+|
+ <FALSE : "FALSE">
+|
+ <EXIST : "exist">
+|
+ <PLUS : "+">
+|
+ <MINUS : "-">
+|
+ <MULT : "*">
+|
+ <DIV : "/">
+|
+ <TWIDDLE : "~">
+|
+ <LPAREN : "(">
+|
+ <RPAREN : ")">
+|
+ <DOT : ".">
+| 
+ <BACKSLASH : "\\">
+|
+ <LENGTH : "_length">
+|
+ <DTYPE : "_d">
+|
+ <TYPEID : "_type_id">
+|
+ <REPOSID : "_repos_id">
+|
+ <SUBSCRIPT : "[" <DIGITS> "]">
+|
+ <ID : ["a"-"z","A"-"Z", "_"] (["a"-"z","A"-"Z","0"-"9","_"])*>
+|
+ <INTEGER : <DIGITS>>
+|
+ <FLOAT : <MANTISSA> | <MANTISSA> <EXPONENT>>
+|
+ <#MANTISSA : <DIGITS> "." | "." <DIGITS> | <DIGITS> "." <DIGITS>>
+|
+ <#EXPONENT : ["E", "e"] ["+", "-"] <DIGITS>>
+|
+ <STRING : "'"(<DIGITS> | <ALPHA> | <SPECIAL> | <OTHER>)*"'"> 
+|
+ <#SPECIAL : ("\\\\"| "\\\'")>
+|
+ <#OTHER : ~["\\","\'","A"-"Z", "a"-"z", "0"-"9"]>
+|  
+ <#ALPHA : ["A"-"Z","a"-"z"] >
+|
+ <#DIGITS : ["0"-"9"](["0"-"9"])*>
+
+}
+
+ASTconstraint constraint() #constraint: {}
+{
+  <EOF>{return jjtThis;} | bool()<EOF>
+  {  return jjtThis; }
+}
+
+void bool() #bool : {Token x;}
+{
+bool_compare() ((x = <OR>|x = <AND>) bool_compare(){
+    jjtThis.setValue(x.image);
+    jjtThis.addOperator(x.kind);})*
+}
+
+void bool_compare() #bool_compare : {Token x;}
+{
+LOOKAHEAD(expr_in()(<NE>|<EQ>|<LT>|<LE>|<GT>|<GE>))
+expr_in() (x = <NE>|x = <EQ>|x = <LT>|x = <LE>|x = <GT>|x = <GE>) expr_in() 
+    { jjtThis.setValue(x.image);
+      jjtThis.setOperator(x.kind);}
+|
+expr_in()
+}
+
+void expr_in() #expr_in : {}
+{
+ LOOKAHEAD(expr() <IN>) expr()<IN> Ident() | expr()
+}
+
+void expr() #expr : {Token x;}
+{
+term() ((x = <PLUS>|x = <MINUS>) term() {jjtThis.setValue(x.image);
+                                         jjtThis.addOperator(x.kind);})*
+}
+
+void term() #term : {Token x;}
+{
+factor_not() ((x = <MULT>|x = <DIV>)factor_not() {jjtThis.setValue(x.image);
+                                                  jjtThis.addOperator(x.kind);})*
+}
+
+void factor_not() #factor_not : {}
+{
+(<NOT>  {jjtThis.incrementNotCount();})* factor()
+}
+
+void factor() #factor : {}
+{
+ LOOKAHEAD(2) <EXIST> Ident(){jjtThis.setFlag(DirectoryServiceParserConstants.EXIST);} 
+| Ident() 
+| Float()
+| Integer() 
+| <MINUS> {jjtThis.setFlag(DirectoryServiceParserConstants.MINUS);}(Float()|Integer())
+| <PLUS> {jjtThis.setFlag(DirectoryServiceParserConstants.PLUS);}(Float()|Integer()) 
+| <BACKSLASH> {jjtThis.setFlag(DirectoryServiceParserConstants.BACKSLASH);} Ident() 
+| String() 
+| <TRUE> {jjtThis.setFlag(DirectoryServiceParserConstants.TRUE);} 
+| <FALSE> {jjtThis.setFlag(DirectoryServiceParserConstants.FALSE);}
+| <LPAREN> bool() <RPAREN>
+}
+
+void Ident() #Ident : {Token x;}
+{
+x=<ID>
+{
+    jjtThis.setValue(x.image);
+  }
+}
+
+void Float() #Float : {Token x;}
+{
+x=<FLOAT>
+{
+    jjtThis.setValue(x.image);
+  }
+}
+
+void Integer() #Integer : {Token x;}
+{
+x=<INTEGER>
+{
+    jjtThis.setValue(x.image);
+  }
+}
+
+void String() #String : {Token x;}
+{
+x=<STRING>
+{
+	jjtThis.setValue(x.image);
+}
+}
+
+
+
+
+
+

@@ -1,0 +1,244 @@
+#ifndef TradingProperty_idl
+#define TradingProperty_idl
+
+#include "cmiProduct.idl"
+#include "cmiUtil.idl"
+
+module tradingProperty
+{
+    struct ClassSpreadStruct {
+        cmiProduct::ClassKey classKey;
+        cmiProduct::EPWStructSequence spreads;
+    };
+    typedef sequence <ClassSpreadStruct> ClassSpreadSequence;
+
+    struct TimeRangeStruct {
+        long upperLimit;
+        long lowerLimit;
+    };
+
+    typedef long PropertySequenceId;
+    typedef short AllocationTradeType;
+    typedef short AllocationStrategyCode;
+    typedef sequence <AllocationStrategyCode> AllocationStrategyCodeSequence;
+
+    struct AllocationStrategyStruct {
+        AllocationStrategyCode          defaultStrategyCode;
+        AllocationStrategyCodeSequence  prioritizedStrategyCodes;
+    };
+    typedef sequence <AllocationStrategyStruct> AllocationStrategyStructSequence;
+    
+    typedef long ProductOpenProcedureTypeCode;    
+
+    struct AllocationStrategyStructV2 {
+        AllocationTradeType             allocationTradeType;
+        AllocationStrategyCode          defaultStrategyCode;
+        AllocationStrategyCodeSequence  prioritizedStrategyCodes;
+    };
+    typedef sequence <AllocationStrategyStructV2> AllocationStrategyStructV2Sequence;
+
+    // this struct defines the scale to be used for DPM allocation when number
+    // of participants in the range lowNbrParticipants <= nbrParticipants < highNbrParticipants
+    // note: it is inclusive on lowNbrParticipants and exclusive on highNbrParticipants
+    // The first lowNbrParticipants in the sequence will have to start with 1.  There should be no gap 
+    // between each struct in the sequence.
+
+    struct DpmRightsScaleStruct {
+        long lowNbrParticipants; //inclusive
+        long highNbrParticipants; //exclusive
+        double scalePercentage;
+    };
+    typedef sequence <DpmRightsScaleStruct> DpmRightsScaleStructSequence;    
+    struct LongStruct {
+        cmiProduct::ClassKey classKey;
+        long longValue;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < LongStruct > LongSequence;
+
+    struct DoubleStruct {
+		cmiProduct::ClassKey classKey;
+        double doubleValue;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < DoubleStruct > DoubleSequence;
+
+    struct BooleanStruct {
+		cmiProduct::ClassKey classKey;
+        boolean boolValue;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < BooleanStruct > BooleanSequence;
+
+    struct TimeRangeClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty ::TimeRangeStruct timeRange;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < TimeRangeClassStruct > TimeRangeClassSequence;
+
+	struct AllocationStrategyClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty::AllocationStrategyStruct allocationStrategy;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < AllocationStrategyClassStruct > AllocationStrategyClassSequence;
+
+    struct SpreadClassStruct {
+        cmiProduct::ClassKey classKey;
+     	cmiProduct::EPWStructSequence spreads;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < SpreadClassStruct > SpreadClassSequence;
+
+    struct AuctionRangeStruct {
+        short auctionType;
+        long lowerLimit;
+        long upperLimit;
+    };
+    typedef sequence < AuctionRangeStruct > AuctionRangeSequence;
+
+    struct AuctionRangeClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty::AuctionRangeSequence range;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < AuctionRangeClassStruct > AuctionRangeClassSequence;
+
+    struct AuctionLongStruct {
+        short auctionType;
+        long value;
+    };
+    typedef sequence < AuctionLongStruct > AuctionLongSequence;
+
+    struct AuctionLongClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty::AuctionLongSequence longValue;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < AuctionLongClassStruct > AuctionLongClassSequence;
+
+    struct AuctionBooleanStruct {
+        short auctionType;
+        boolean value;
+    };
+    typedef sequence < AuctionBooleanStruct > AuctionBooleanSequence;
+
+    struct AuctionBooleanClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty::AuctionBooleanSequence booleanValue;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < AuctionBooleanClassStruct > AuctionBooleanClassSequence;
+
+    struct AuctionOrderSizeTicksStruct {
+        short auctionType;
+        long orderSize;
+        long ticksAboveNBBO;
+    };
+    typedef sequence < AuctionOrderSizeTicksStruct > AuctionOrderSizeTicksSequence;
+
+    struct AuctionOrderSizeTicksClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty::AuctionOrderSizeTicksSequence sizeTicks;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < AuctionOrderSizeTicksClassStruct > AuctionOrderSizeTicksClassSequence;
+
+    struct InternalizationPercentageStruct {
+        short auctionType;
+        long lowerRange;             //inclusive
+        long upperRange;             //exclusive
+        double percentage;
+    };
+    typedef sequence <InternalizationPercentageStruct> InternalizationPercentageSequence;    
+
+    struct InternalizationPercentageClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty::InternalizationPercentageSequence percentages;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < InternalizationPercentageClassStruct > InternalizationPercentageClassSequence;
+
+    struct LongClassStruct {
+        cmiProduct::ClassKey classKey;
+        cmiUtil::LongSequence values;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < LongClassStruct > LongClassSequence;
+
+    typedef long GlobalTradingPropertyType;
+
+    interface GlobalTradingPropertyTypes
+    {
+       const GlobalTradingPropertyType EPW_STRUCT = 1;
+	   const GlobalTradingPropertyType MIN_QUOTE_CREDIT_DEFAULT_SIZE = 2;
+	   const GlobalTradingPropertyType RFQ_RESPONSE_RATIO = 3;
+	   const GlobalTradingPropertyType ALLOCATION_STRATEGY = 4;
+	   const GlobalTradingPropertyType CONTINGENCY_TIME_TO_LIVE = 5;
+	   const GlobalTradingPropertyType CONTINUOUS_QUOTE_PERIOD_FOR_CREDIT = 6;
+	   const GlobalTradingPropertyType FAST_MARKET_SPREAD_MULTIPLIER = 7;
+	   const GlobalTradingPropertyType OPENING_TIME_PERIOD_RANGE = 8;
+	   const GlobalTradingPropertyType OPENING_PRICE_DELAY = 9;
+	   const GlobalTradingPropertyType OPENING_PRICE_RATE = 10;
+	   const GlobalTradingPropertyType PRECLOSING_TIME_PERIOD = 11;
+	   const GlobalTradingPropertyType PRESCRIBED_WIDTH_RATIO = 12;
+	   const GlobalTradingPropertyType RFQ_TIMEOUT = 13;
+	   const GlobalTradingPropertyType DPM_PARTICIPATION_PERCENTAGE = 14;
+       const GlobalTradingPropertyType BOOK_DEPTH_SIZE = 15;
+       const GlobalTradingPropertyType MIN_SIZE_FOR_BLOCK_TRADE = 16;
+       const GlobalTradingPropertyType IPP_MIN_SIZE = 17;
+       const GlobalTradingPropertyType IPP_TRADE_THROUGH_FLAG = 18;
+       const GlobalTradingPropertyType QUOTE_LOCK_TIMER = 19;
+       const GlobalTradingPropertyType QUOTE_LOCK_NOTIFICATION_TIMER = 20;
+       const GlobalTradingPropertyType QUOTE_TRIGGER_TIMER = 21;
+       const GlobalTradingPropertyType DPM_RIGHTS_SCALES = 22;
+       const GlobalTradingPropertyType DMP_RIGHTS_SPLIT_RATE = 23;
+       const GlobalTradingPropertyType UMA_SPLIT_RATE = 24;
+       const GlobalTradingPropertyType UMA_EQUAL_DISTRIBUTION_WEIGHT_FOR_DPM = 25;       
+       const GlobalTradingPropertyType LOT_SIZE = 26;
+       const GlobalTradingPropertyType ETF_FLAG = 27;
+       const GlobalTradingPropertyType IPP_TOLERANCE_AMOUNT = 28;
+       const GlobalTradingPropertyType NEEDS_DPM_QUOTE_TO_OPEN = 29;
+       const GlobalTradingPropertyType S_ORDER_TIME_TO_LIVE = 30;
+       const GlobalTradingPropertyType S_ORDER_TIME_TO_CREATE = 31;
+       const GlobalTradingPropertyType S_ORDER_TIME_TO_CREATE_BEFORE_CLOSE = 32;
+       const GlobalTradingPropertyType S_ORDER_TIME_TO_REJECT_FILL = 33;
+       const GlobalTradingPropertyType P_ORDER_TIME_TO_LIVE = 34;
+       const GlobalTradingPropertyType PA_ORDER_TIME_TO_LIVE = 35;
+       const GlobalTradingPropertyType TRADE_TYPE = 36;
+       const GlobalTradingPropertyType PRODUCT_OPEN_PROCEDURE_TYPE = 37;
+       const GlobalTradingPropertyType SATISFACTION_ALERT_FLAG = 38;
+       const GlobalTradingPropertyType FIRM_PRINCIPAL_QUOTE_SIZE = 39;
+       const GlobalTradingPropertyType FIRM_CUSTOMER_QUOTE_SIZE = 40;
+       const GlobalTradingPropertyType LINKAGE_ENABLED_FLAG = 41;
+       const GlobalTradingPropertyType QUOTE_LOCK_MIN_TRADE_QTY = 50;
+       const GlobalTradingPropertyType PDPM_RIGHTS_RATE = 51;       
+       const GlobalTradingPropertyType AUCTION_TIME_TO_LIVE = 52;
+       const GlobalTradingPropertyType AUCTION_MIN_PRICE_INCREMENT = 53;
+       const GlobalTradingPropertyType AUCTION_MIN_QUOTERS = 54;
+       const GlobalTradingPropertyType AUCTION_RECEIVER_TYPES = 55;
+       const GlobalTradingPropertyType INTERNALIZATION_GUARANTEED_PERCENTAGE = 56;
+       const GlobalTradingPropertyType AUCTION_ORDER_TICKS_AWAY_FROM_NBBO = 57;
+       const GlobalTradingPropertyType AUTO_EX_ELIGIBLE_STRATEGY_TYPES = 58;
+       const GlobalTradingPropertyType AUCTION_ENABLED = 59;
+       const GlobalTradingPropertyType AUCTION_MIN_ORDER_SIZE_FOR_TICKS_ABOVE_NBBO = 60;
+    };
+
+    struct AllocationStrategiesClassStruct {
+    cmiProduct::ClassKey classKey;
+    tradingProperty::AllocationStrategyStructV2Sequence allocationStrategies;
+    tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < AllocationStrategiesClassStruct > AllocationStrategiesClassStructSequence;
+
+    struct DpmRightsScaleClassStruct {
+        cmiProduct::ClassKey classKey;
+        tradingProperty ::DpmRightsScaleStructSequence scales;
+        tradingProperty::PropertySequenceId seqNum;
+    };
+    typedef sequence < DpmRightsScaleClassStruct > DpmRightsScaleClassStructSequence;
+
+};
+
+#endif

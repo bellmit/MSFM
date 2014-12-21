@@ -1,0 +1,51 @@
+
+if [ "$DOMAIN_SQL_ENVIRON" -ne 1 ]; then
+
+export DOMAIN_SQL_ENVIRON=1
+
+	ORACLE_HOME=/psp1/app/oracle/product/8.1.5
+	export ORACLE_HOME
+
+	ORACLE_SID=TRDE0A
+	export ORACLE_SID
+
+	# Set oracle base
+	ORACLE_BASE=/psp1/app/oracle
+	export ORACLE_BASE
+
+	ORACLE_TERM=vt100
+	export ORACLE_TERM
+
+	ORA_NLS33=$ORACLE_HOME/ocommon/nls/admin/data
+	export ORA_NLS33
+	
+	LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+	export LD_LIBRARY_PATH
+
+	PATH=$ORACLE_HOME/bin:$PATH
+	export PATH
+
+	# Set DBA
+
+	DBASID=$ORACLE_BASE/admin/$ORACLE_SID
+	export DBASID
+
+	# set oracle term
+
+	ORACLE_TERM=hft
+	export ORACLE_TERM
+
+	# execute oraenv to set ORACLE_HOME from /etc/oratab
+	# and add $ORACLE_HOME/bin to the path.
+
+	ORAENV_ASK=NO;
+	. /usr/local/bin/oraenv;
+	ORAENV_ASK=""
+
+fi
+
+
+
+
+
+

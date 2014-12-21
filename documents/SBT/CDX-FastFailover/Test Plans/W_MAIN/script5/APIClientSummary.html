@@ -1,0 +1,425 @@
+<html>
+<body>
+<title>FAST FAILOVER - PART 5 - W_MAIN (3.3 Hybrid-5 BC Failover)</title>
+<b><center><big><h1>FAST FAILOVER - PART 5 - W_MAIN (3.3 Hybrid-5 BC Failover)</h1></big></center></b><br>
+<br><hr><br><b>
+Log in HD User and Perform Test Requirements</b><br>
+&nbsp;&nbsp;<small>	Log in SA User: RSHD1 (Password: RSHD1)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+<br><hr><br><b>
+Log in initial PAR test users</b><br>
+&nbsp;&nbsp;<small>	Log in PAR User: FNK (Password: CBOE), Workstation ID:  (W074) </small><br>
+&nbsp;&nbsp;<small>	Log in PAR User: ABC (Password: CBOE), Workstation ID:  (W075) </small><br>
+&nbsp;&nbsp;<small>	Connecting to PTS</small><br>
+&nbsp;&nbsp;<small>	Verify Session W_MAIN is in the expected state: 'Open'</small><br>
+&nbsp;&nbsp;<small>	Selecting 2 Product(s) from 1 Class(es) (by Reporting Class): [AAWW]Class: AAWW (585265821), Rpt Class: AAWW (837207387), Products: AAWW 2/2011 60.0 P (878770795); AAWW 5/2011 47.500000000 C (923333191); </small><br>
+&nbsp;&nbsp;<small>	Selecting 10 Product(s) from 1 Class(es) (by Reporting Class): [BA]Class: AAWW (585265821), Rpt Class: AAWW (837207387), Products: AAWW 2/2011 60.0 P (878770795); AAWW 5/2011 47.500000000 C (923333191); Class: BA (69207800), Rpt Class: BA (69207803), Products: BA 1/2011 17.500000000 C (618963529); BA 1/2011 90.0 P (618963550); BA 1/2012 65.0 C (737066962); BA 1/2012 65.0 P (737066963); BA 1/2012 80.0 C (826708126); BA 1/2012 72.500000000 P (860667258); BA 1/2012 57.500000000 C (864214748); BA 1/2011 52.500000000 P (871408725); BA 2/2011 85.0 C (878241957); BA 1/2013 65.0 P (935490367); </small><br>
+&nbsp;&nbsp;<small>	Selecting 14 Product(s) from 1 Class(es) (by Reporting Class): [BAMM]Class: AAWW (585265821), Rpt Class: AAWW (837207387), Products: AAWW 2/2011 60.0 P (878770795); AAWW 5/2011 47.500000000 C (923333191); Class: BA (69207800), Rpt Class: BA (69207803), Products: BA 1/2011 17.500000000 C (618963529); BA 1/2011 90.0 P (618963550); BA 1/2012 65.0 C (737066962); BA 1/2012 65.0 P (737066963); BA 1/2012 80.0 C (826708126); BA 1/2012 72.500000000 P (860667258); BA 1/2012 57.500000000 C (864214748); BA 1/2011 52.500000000 P (871408725); BA 2/2011 85.0 C (878241957); BA 1/2013 65.0 P (935490367); Class: BAMM (753042682), Rpt Class: BAMM (837220490), Products: BAMM 2/2011 10.0 C (875832361); BAMM 2/2011 10.0 P (875832362); BAMM 2/2011 2.500000000 C (875832365); BAMM 2/2011 5.0 P (875832368); BAMM 2/2011 7.500000000 C (875832369); BAMM 5/2011 2.500000000 C (923334057); BAMM 5/2011 2.500000000 P (923334058); BAMM 5/2011 7.500000000 P (923334062); BAMM 1/2011 10.0 C (959894319); BAMM 1/2011 10.0 P (959894320); BAMM 1/2011 2.500000000 C (959894323); BAMM 1/2011 5.0 C (959894325); BAMM 1/2011 7.500000000 C (959894327); BAMM 1/2011 7.500000000 P (959894328); </small><br>
+&nbsp;&nbsp;<small>	Verify UMA Equal Distribution Weight For DPM (Trading Property) for Class 'BA' (69207800) to: 1.0</small><br>
+&nbsp;&nbsp;<small>	Verify UMA Equal Distribution Weight For DPM (Trading Property) for Class 'BAMM' (753042682) to: 1.0</small><br>
+<br><hr><br><b>
+ Trading Properties for Auction Enabled and Auction Time for Option Classes</b><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'AAWW' (585265821) to: [-8 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'BA' (69207800) to: [-8 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'BAMM' (753042682) to: [-8 : true]</small><br>
+<br><hr><br><b>
+Create users</b><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROMM1, Full Name: Automated API MM User, Role: M, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROMM2, Full Name: Automated API BD User, Role: M, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROCU1, Full Name: Automated API BD User, Role: X, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROBO1, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROBO2, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROBO3, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:PNB3, Full Name: Automated API Booth OMT User, Role: G, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROCO1, Full Name: Automated API Crowd OMT User, Role: L, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:RD42, Full Name: Automated API Help Desk OMT User, Role: A, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+&nbsp;&nbsp;<small>	Create/Reset User: CBOE:ROHO1, Full Name: Automated API Help Desk OMT User, Role: A, Firm: CBOE:501, Give-Up Firm(s): CBOE:501,</small><br>
+<br><hr><br><b>
+Verify users</b><br>
+&nbsp;&nbsp;<small>	Verify User ROMM1 exists and is set as expected. User: CBOE:ROMM1, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User ROMM2 exists and is set as expected. User: CBOE:ROMM2, Role: M, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User ROCU1 exists and is set as expected. User: CBOE:ROCU1, Role: X, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User ROBO1 exists and is set as expected. User: CBOE:ROBO1, Role: G, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User ROBO2 exists and is set as expected. User: CBOE:ROBO2, Role: G, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User ROBO3 exists and is set as expected. User: CBOE:ROBO3, Role: G, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User PNB3 exists and is set as expected. User: CBOE:PNB3, Role: G, Active: true</small><br>
+&nbsp;&nbsp;<small>	Verify User ROCO1 exists and is set as expected. User: CBOE:ROCO1, Role: L, Active: true</small><br>
+<br><hr><br><b>
+Log in Trader Users</b><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ROMM1 (Password: ROMM1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ROMM2 (Password: ROMM2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in Trader User: ROCU1 (Password: ROCU1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROBO1 (Password: ROBO1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROBO2 (Password: ROBO2), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROBO3 (Password: ROBO3), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: PNB3 (Password: PNB3), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: ROCO1 (Password: ROCO1), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Log in OMT User: RD42 (Password: RD42), Login Type: 'PRIMARY' (1) </small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 2/2011 2.500000000 C' (875832365), S 1 'BAMM 2/2011 5.0 P' (875832368)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BA' (69207800) Defined as: B 1 'BA 1/2011 17.500000000 C' (618963529), S 1 'BA 1/2011 90.0 P' (618963550)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BA' (69207800) Defined as: B 1 'BA 1/2012 65.0 C' (737066962), S 1 'BA 1/2012 65.0 P' (737066963)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BA' (69207800) Defined as: B 1 'BA 1/2012 80.0 C' (826708126), S 1 'BA 1/2012 72.500000000 P' (860667258)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BA' (69207800) Defined as: B 1 'BA 1/2012 57.500000000 C' (864214748), S 1 'BA 1/2011 52.500000000 P' (871408725)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BA' (69207800) Defined as: B 1 'BA 2/2011 85.0 C' (878241957), S 1 'BA 1/2013 65.0 P' (935490367)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 2/2011 10.0 C' (875832361), S 1 'BAMM 2/2011 10.0 P' (875832362)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 2/2011 7.500000000 C' (875832369), S 1 'BAMM 5/2011 2.500000000 C' (923334057)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 5/2011 2.500000000 P' (923334058), S 1 'BAMM 5/2011 7.500000000 P' (923334062)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 1/2011 10.0 C' (959894319), S 1 'BAMM 1/2011 10.0 P' (959894320)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 1/2011 2.500000000 C' (959894323), S 1 'BAMM 1/2011 5.0 C' (959894325)</small><br>
+&nbsp;&nbsp;<small>	Create Strategy Product by User ROMM1 in Class 'BAMM' (753042682) Defined as: B 1 'BAMM 1/2011 7.500000000 C' (959894327), S 1 'BAMM 1/2011 7.500000000 P' (959894328)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (585265821) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69207800) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (753042682) , Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (585265822) , Value: 0</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (69207801) , Value: 0</small><br>
+&nbsp;&nbsp;<small>	Set Class disable for Disable Linkage On Par Routing property for Session : W_MAIN Key (753042683) , Value: 0</small><br>
+<br><hr><br><b>
+Put the products into the proper state FOR W_MAIN</b><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207800) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207800) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207800) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207800) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'BA 1/2011 17.500000000 C' (618963529) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042682) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042682) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042682) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042682) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'BAMM 2/2011 10.0 C' (875832361) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207801) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207801) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207801) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BA' (69207801) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'BA: Combo 20120121 65.0000:1293653237607' (497943974) State is 'OPEN'</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042683) State by Class to 'CLOSED' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042683) State by Class to 'PREOPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042683) State by Class to 'OPENING ROTATION' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Set Product 'BAMM' (753042683) State by Class to 'OPEN' (with verification)</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Product 'BA: Unknown Spread 20110122 17.5000:1293653237443' (497943971) State is 'OPEN'</small><br>
+<br><hr><br><b>
+Set up Subscriptions for the Class</b><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Current Market (V1, V2 & V3) for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Auction RFP's for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Auction RFP's for Class 'BAMM' (753042683) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Auction RFP's for Class 'BAMM' (753042683) </small><br>
+&nbsp;&nbsp;<small>
+OHS-Enable class BA</small><br>
+<br><hr><br><b>
+Step : Set/Verify Needed Routing Properties - Option and Strategy class</b><br>
+<br><hr><br><b>
+SESSION CLASS PAR ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Session Class Par Routing property for Session : W_MAIN Workstation (69207801) , Destinations: W074</small><br>
+<br><hr><br><b>
+ FIRM CLASS PAR DESTINATION ROUTING PROPERTY FOR COMPLEX ORDERS</b><br>
+&nbsp;&nbsp;<small>	Set Firm Corr Class PAR Destination routing property for Session : W_MAIN Firm : 501 Key ( 69207801) , Destination: W074</small><br>
+&nbsp;&nbsp;<small>	Set par direct routing property for Session : W_MAIN Firm : 501 Correspondent Firm : ABC ParWorkstation (W074) , destination: W074  </small><br>
+<br><hr><br><b>
+10 : FIRM CORRESPONDENT BRANCH OMT </b><br>
+&nbsp;&nbsp;<small>	Set Firm Correspondent Branch OMT routing property for Session : W_MAIN Firm : 501 Correspondent firm ( ABC)  Branch ( AAA) , Workstation : ROBO1  </small><br>
+&nbsp;&nbsp;<small>	Verify Firm Correpondent Branch OMT routing property for Session : W_MAIN Correspondent Firm ( ABC) , Work Station: ROBO1  </small><br>
+<br><hr><br><b>
+2 : BOOTH DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Booth Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Destination: ROBO1  </small><br>
+&nbsp;&nbsp;<small>	Verify Booth Default Destination routing property for Session : W_MAIN Firm : 501 Key ( 69207801) , Destination: ROBO1  </small><br>
+<br><hr><br><b>
+3 : HELPDESK DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+<br><hr><br><b>
+6 : CROWD DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Crowd Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Destination: ROCO1</small><br>
+<br><hr><br><b>
+7 : ALTERNATE DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO1) , Destinations: ROBO2</small><br>
+&nbsp;&nbsp;<small>	Verify Alternate Destination routing property for Session : W_MAIN Workstation ( ROBO1) , Destination: ROBO2:5</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO3) , Destinations: PNB3</small><br>
+&nbsp;&nbsp;<small>	Verify Alternate Destination routing property for Session : W_MAIN Workstation ( ROBO3) , Destination: PNB3:5</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (W075) , Destinations: W003</small><br>
+&nbsp;&nbsp;<small>	Verify Alternate Destination routing property for Session : W_MAIN Workstation ( W075) , Destination: W003:4</small><br>
+<br><hr><br><b>
+4 : FIRM VOLUME LIMIT ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 501 Key ( 69207801) , Volume : 1000</small><br>
+&nbsp;&nbsp;<small>	Verify volume routing property for Session : W_MAIN Key ( 69207801) , Volumes: 1000</small><br>
+<br><hr><br><b>
+ 19 : REASONABILITY EDIT</b><br>
+&nbsp;&nbsp;<small>
+Reasonability Edit changed for :GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Reasonability Edit routing property for Session : W_MAIN Firm : 501 Class : ( 69207801) Edit Group : GroupB</small><br>
+&nbsp;&nbsp;<small>	Verify Reasonability Edit routing property for Session : W_MAIN Firm : 501 Class : ( 69207801) Edit Group : GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Volume: 100, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Volume: 100, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Volume: 200, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Volume: 200, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Volume: 500, Deviation: Marketable, Workstation: W074</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 69207801) , Volume: 500, Deviation: Marketable, Workstation: W074</small><br>
+<br><hr><br><b>
+ COA ELIGIBLE</b><br>
+&nbsp;&nbsp;<small>
+OHS-Enable class BAMM</small><br>
+<br><hr><br><b>
+Step : Set/Verify Needed Routing Properties - Option and Strategy class</b><br>
+<br><hr><br><b>
+SESSION CLASS PAR ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Session Class Par Routing property for Session : W_MAIN Workstation (753042682) , Destinations: W074</small><br>
+<br><hr><br><b>
+ FIRM CLASS PAR DESTINATION ROUTING PROPERTY FOR COMPLEX ORDERS</b><br>
+&nbsp;&nbsp;<small>	Set Firm Corr Class PAR Destination routing property for Session : W_MAIN Firm : 501 Key ( 69207801) , Destination: W074</small><br>
+&nbsp;&nbsp;<small>	Set par direct routing property for Session : W_MAIN Firm : 501 Correspondent Firm : ABC ParWorkstation (W074) , destination: W074  </small><br>
+<br><hr><br><b>
+10 : FIRM CORRESPONDENT BRANCH OMT </b><br>
+&nbsp;&nbsp;<small>	Set Firm Correspondent Branch OMT routing property for Session : W_MAIN Firm : 501 Correspondent firm ( ABC)  Branch ( AAA) , Workstation : ROBO1  </small><br>
+&nbsp;&nbsp;<small>	Verify Firm Correpondent Branch OMT routing property for Session : W_MAIN Correspondent Firm ( ABC) , Work Station: ROBO1  </small><br>
+<br><hr><br><b>
+2 : BOOTH DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Booth Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Destination: ROBO1  </small><br>
+&nbsp;&nbsp;<small>	Verify Booth Default Destination routing property for Session : W_MAIN Firm : 501 Key ( 753042683) , Destination: ROBO1  </small><br>
+<br><hr><br><b>
+3 : HELPDESK DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Help Desk Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Destination: ROHO1</small><br>
+&nbsp;&nbsp;<small>	Verify Par Default Destination routing property for Session : W_MAIN Firm : 501 Key ( 753042683) , Destination: ROHO1:7</small><br>
+<br><hr><br><b>
+6 : CROWD DEFAULT DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Crowd Default Destination routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Destination: ROCO1</small><br>
+<br><hr><br><b>
+7 : ALTERNATE DESTINATION ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO1) , Destinations: ROBO2</small><br>
+&nbsp;&nbsp;<small>	Verify Alternate Destination routing property for Session : W_MAIN Workstation ( ROBO1) , Destination: ROBO2:5</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (ROBO3) , Destinations: PNB3</small><br>
+&nbsp;&nbsp;<small>	Verify Alternate Destination routing property for Session : W_MAIN Workstation ( ROBO3) , Destination: PNB3:5</small><br>
+&nbsp;&nbsp;<small>	Set Alternate Destination property for Session : W_MAIN Workstation (W075) , Destinations: W003</small><br>
+&nbsp;&nbsp;<small>	Verify Alternate Destination routing property for Session : W_MAIN Workstation ( W075) , Destination: W003:4</small><br>
+<br><hr><br><b>
+4 : FIRM VOLUME LIMIT ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 501 Key ( 753042683) , Volume : 1000</small><br>
+&nbsp;&nbsp;<small>	Verify volume routing property for Session : W_MAIN Key ( 753042683) , Volumes: 1000</small><br>
+<br><hr><br><b>
+19 : REASONABILITY EDIT</b><br>
+&nbsp;&nbsp;<small>
+Reasonability Edit changed for :GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Reasonability Edit routing property for Session : W_MAIN Firm : 501 Class : ( 753042683) Edit Group : GroupB</small><br>
+&nbsp;&nbsp;<small>	Verify Reasonability Edit routing property for Session : W_MAIN Firm : 501 Class : ( 753042683) Edit Group : GroupB</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Volume: 100, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Volume: 100, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Volume: 200, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Volume: 200, Deviation: All, Workstation: TE</small><br>
+&nbsp;&nbsp;<small>	Set Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Volume: 500, Deviation: Marketable, Workstation: W074</small><br>
+&nbsp;&nbsp;<small>	Verify Volume deviation check routing property for Session : W_MAIN Firm : 501 Class ( 753042683) , Volume: 500, Deviation: Marketable, Workstation: W074</small><br>
+<br><hr><br><b>
+ COA ELIGIBLE</b><br>
+&nbsp;&nbsp;<small>	Set COA Eligible routing property for Session : W_MAIN Firm : 501 Class : ( 753042683) ,Origin Code: *, COA Value: 1</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify COA Eligible routing property for Session : W_MAIN Firm : 501 Class : ( 753042683) ,Origin Code: *, COA Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set COA Eligible routing property for Session : W_MAIN Firm : 501 Class : ( 753042683) ,Origin Code: C, COA Value: 1</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'BA' (69207801) to: [-8 : true, 2 : true]</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Enabled (Trading Property) for Class 'BA' (69207801) to: [-8 : true, 2 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Enabled (Trading Property) for Class 'BAMM' (753042683) to: [-8 : true, 1 : true, 2 : true]</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Enabled (Trading Property) for Class 'BAMM' (753042683) to: [-8 : true, 1 : true, 2 : true]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Min Order Size For Ticks Above NBBO (Trading Property) for Class 'BAMM' (753042683) to: [2 : 99999 : 1]</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Min Order Size For Ticks Above NBBO (Trading Property) for Class 'BAMM' (753042683) to: [2 : 99999 : 1]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Order Ticks Away From NBBO (Trading Property) for Class 'BAMM' (753042683) to: [2 : 1]</small><br>
+&nbsp;&nbsp;<small>	Verify Auction Order Ticks Away From NBBO (Trading Property) for Class 'BAMM' (753042683) to: [2 : 1]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Min Quoters (Trading Property) for Class 'BAMM' (753042682) to: [2 : 0]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Min Quoters (Trading Property) for Class 'BAMM' (753042683) to: [2 : 0]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Min/MaxOrder Size (Trading Property) for Class 'BA' (69207801) to: [2 : 1 - 99999]</small><br>
+&nbsp;&nbsp;<small>	Set Auction Min/MaxOrder Size (Trading Property) for Class 'BAMM' (753042683) to: [2 : 1 - 99999]</small><br>
+<br><hr><br><b>
+Scenario 30. OMT route to OHS</b><br>
+<br><hr><br><b>
+ FIRM VOLUME LIMIT ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 501 Key ( 69207801) , Volume : 50</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify volume routing property for Session : W_MAIN Key ( 69207801) , Volumes: 50</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2011 17.500000000 C' (618963529) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2011 90.0 P' (618963550) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2011 17.500000000 C' (618963529), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2011 90.0 P' (618963550), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BA: Unknown Spread 20110122 17.5000:1293653237443' (497943971): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8641</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO1 for Product 'BA: Unknown Spread 20110122 17.5000:1293653237443' (497943971) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8641</small><br>
+<br><hr><br><b>
+ FIRM VOLUME LIMIT ROUTING PROPERTY</b><br>
+&nbsp;&nbsp;<small>	Set volume routing property for Session : W_MAIN Firm : 501 Key ( 69207801) , Volume : 1000</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify volume routing property for Session : W_MAIN Key ( 69207801) , Volumes: 1000</small><br>
+<br><hr><br><b>
+Scenario 31. Query orders with location OHS</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2012 65.0 C' (737066962) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2012 65.0 P' (737066963) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2012 65.0 C' (737066962), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2012 65.0 P' (737066963), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BA: Combo 20120121 65.0000:1293653237607' (497943974): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8642</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+<br><hr><br><b>
+Scenario 32. Query orders on TE </b><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'BAMM 2/2011 7.500000000 C' (875832369) (B) 1.00, Exchange Volumes: ISE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'BAMM 2/2011 7.500000000 C' (875832369) (S) 1.25, Exchange Volumes: ISE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'BAMM 5/2011 2.500000000 C' (923334057) (B) 1.00, Exchange Volumes: ISE=100</small><br>
+&nbsp;&nbsp;<small>	Update BOTR for Product 'BAMM 5/2011 2.500000000 C' (923334057) (S) 1.25, Exchange Volumes: ISE=100</small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Auction RFP's for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Subscribe User ROMM1 for Auction RFP's for Class 'BA' (69207801) </small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 2/2011 2.500000000 C' (875832365) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 2/2011 5.0 P' (875832368) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 2/2011 7.500000000 C' (875832369) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 5/2011 2.500000000 C' (923334057) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 5/2011 2.500000000 P' (923334058) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 5/2011 7.500000000 P' (923334062) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 5000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 2/2011 2.500000000 C' (875832365), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 2/2011 5.0 P' (875832368), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 2/2011 7.500000000 C' (875832369), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 5/2011 2.500000000 C' (923334057), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 5/2011 2.500000000 P' (923334058), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 5/2011 7.500000000 P' (923334062), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BAMM: Combo 20110219 10.0000:1293636630477' (497943549): D 100@0.-170000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8643</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BAMM: Unknown Spread 20110219 2.5000:1293638925678' (497943609): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8644</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'BAMM: Unknown Spread 20110219 2.5000:1293638925678' (497943609): [U 100@0.0, ]</small><br>
+&nbsp;&nbsp;<small>	Submit Internalized Strategy Order by User ROMM2 for Product 'BAMM: Diagonal 20110219 7.5000:1293653237828' (497943986): Primary - D 100@0.-150000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: SFI:5818, Match - O 100@0.150000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: SFI:5828</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verify Auction RFP Callback Values for Product 'BAMM: Diagonal 20110219 7.5000:1293653237828' (497943986): [D 100@0.0, ]</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BAMM: Unknown Spread 20110219 2.5000:1293638925678' (497943609): O 100@0.100000000, Contingency: 'AUCTION_RESPONSE' (14), Origin Code: C, Branch/Seq: YEW:8744</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROMM2 for Product 'BAMM: Diagonal 20110219 7.5000:1293653237828' (497943986): O 100@0.70000000, Contingency: 'AUCTION_RESPONSE' (14), Origin Code: C, Branch/Seq: SFI:5819</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROMM1 for Product 'BAMM: Vertical 20110521 2.5000:1293645680429' (497943854): D 100@0.-100000000, Contingency: 'NONE' (1), Origin Code: I, Branch/Seq: PUN:7332</small><br>
+<br><hr><br><b>
+Scenario 33. OMT Reroute of a non-order message to another OMT</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 1/2011 10.0 C' (959894319) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 1/2011 10.0 P' (959894320) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 1/2011 10.0 C' (959894319), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 1/2011 10.0 P' (959894320), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Complex Order Verification by PAR User FNK for Order : Order entry date: 20101229, Branch/Sequence numbeer: YEW/8646, Firm:     , Correspondent Firm: ABC , IsCaap: Y, Contingency type: 001, Hybrid Ind: Y, Order Auction Ind: N, CBOE Direct Product Ind: Y, Premium Price: 0000.2000000, Premium Price Ind: D , Leg [0] Side: B, Leg [0] Origional Quantity: 0000000100, Leg [0] Bid Price: 0001.0000000, Leg [0] Ask Price: 0001.2000000, Leg [0] CBOE Bid Size: 0000000100, Leg [0] CBOE Ask Size: 0000000100, Leg [0] Ratio: 0000000001, Leg [0] Origional Leg volume: 0000000100, Leg [1] Side: S, Leg [1] Origional Quantity: 0000000100, Leg [1] Bid Price: 0001.0000000, Leg [1] Ask Price: 0001.2000000, Leg [1] CBOE Bid Size: 0000000100, Leg [1] CBOE Ask Size: 0000000100, Leg [1] Ratio: 0000000001, Leg [1] Origional Leg volume: 0000000100</small><br>
+&nbsp;&nbsp;<small>
+Test Order Validation for Order with Branch/Sequence :YEW:8646	 Value of field -remainingQty changed to 10</small><br>
+&nbsp;&nbsp;<small>	Complex Trade Fill Report submitted by PAR User FNK for Order : Order entry date: 20101229, Firm: 501, Correspondent Firm: ABC , Branch/Sequence numbeer: YEW/8646, Sequence number : 0001, Bundle Sequence number: 000001, Trade date: 20101229, Markatable Indicator : N</small><br>
+&nbsp;&nbsp;<small>, Leg Ratios[1] : 0000000001, Leg Ratios[2] : 0000000001, Leg Ratios[3] : 0000000000, Leg Ratios[4] : 0000000000, Leg Volumes[1] : 0000000100, Leg Volumes[2] : 0000000100, Leg Volumes[3] : 0000000000, Leg Volumes[4] : 0000000000</small><br>
+&nbsp;&nbsp;<small>, Leg Ratios[1] : 0000000001, Leg Ratios[2] : 0000000001, Leg Ratios[3] : 0000000000, Leg Ratios[4] : 0000000000, Leg Volumes[1] : 0000000100, Leg Volumes[2] : 0000000100, Leg Volumes[3] : 0000000000, Leg Volumes[4] : 0000000000, Contra Broker Stock Exchange [1] :    , Contra Broker  [1] : ABC, Contra Broker Firm [1] : 161 ,Contra Leg Volumes[1,1] : 0000000100,Contra Leg Volumes[1,2] : 0000000100,Contra Leg Volumes[1,3] : 0000000100,Contra Leg Volumes[1,4] : 0000000100</small><br>
+&nbsp;&nbsp;<small>	Pause for 6000 (ms)</small><br>
+&nbsp;&nbsp;<small>	OMT Fill Report Reject : User ROBO1 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989) : , Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO1 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO1 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8646</small><br>
+<br><hr><br><b>
+Scenario 34. Order update </b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2012 80.0 C' (826708126) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2012 72.500000000 P' (860667258) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2012 57.500000000 C' (864214748) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2011 52.500000000 P' (871408725) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 2/2011 85.0 C' (878241957) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BA 1/2013 65.0 P' (935490367) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2012 80.0 C' (826708126), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2012 72.500000000 P' (860667258), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2012 57.500000000 C' (864214748), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2011 52.500000000 P' (871408725), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 2/2011 85.0 C' (878241957), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BA 1/2013 65.0 P' (935490367), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BA: Unknown Spread 20120121 72.5000:1293653237668' (497943977): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8647</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Complex Order Verification by PAR User FNK for Order : Order entry date: 20101229, Branch/Sequence numbeer: YEW/8647, Firm:     , Correspondent Firm: ABC , IsCaap: Y, Contingency type: 001, Hybrid Ind: Y, Order Auction Ind: N, CBOE Direct Product Ind: Y, Premium Price: 0000.2000000, Premium Price Ind: D , Leg [0] Side: B, Leg [0] Origional Quantity: 0000000100, Leg [0] Bid Price: 0001.0000000, Leg [0] Ask Price: 0001.2000000, Leg [0] CBOE Bid Size: 0000000100, Leg [0] CBOE Ask Size: 0000000100, Leg [0] Ratio: 0000000001, Leg [0] Origional Leg volume: 0000000100, Leg [1] Side: S, Leg [1] Origional Quantity: 0000000100, Leg [1] Bid Price: 0001.0000000, Leg [1] Ask Price: 0001.2000000, Leg [1] CBOE Bid Size: 0000000100, Leg [1] CBOE Ask Size: 0000000100, Leg [1] Ratio: 0000000001, Leg [1] Origional Leg volume: 0000000100</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BA: Unknown Spread 20120121 57.5000:1293653237719' (497943980): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8648</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO1 for Product 'BA: Unknown Spread 20120121 57.5000:1293653237719' (497943980) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8648</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BA: Unknown Spread 20130119 65.0000:1293653237770' (497943983): D 100@0.-130000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8649</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+<br><hr><br><b>
+Scenario 35. Pending Cancel on orders resting on OMT and PAR</b><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 1/2011 2.500000000 C' (959894323) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 1/2011 5.0 C' (959894325) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 1/2011 7.500000000 C' (959894327) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Quote by User ROMM1 for Product 'BAMM 1/2011 7.500000000 P' (959894328) : 100@1.0 x 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 1/2011 2.500000000 C' (959894323), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 1/2011 5.0 C' (959894325), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 1/2011 7.500000000 C' (959894327), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Verifying Top of Book for Product 'BAMM 1/2011 7.500000000 P' (959894328), Bid: 100@1.0 x , Ask: 100@1.200000000</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BAMM: Vertical 20110122 2.5000:1293653237916' (497943992): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8650</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Complex Order Verification by PAR User FNK for Order : Order entry date: 20101229, Branch/Sequence numbeer: YEW/8650, Firm:     , Correspondent Firm: ABC , IsCaap: Y, Contingency type: 001, Hybrid Ind: Y, Order Auction Ind: N, CBOE Direct Product Ind: Y, Premium Price: 0000.2000000, Premium Price Ind: D , Leg [0] Side: B, Leg [0] Origional Quantity: 0000000100, Leg [0] Bid Price: 0001.0000000, Leg [0] Ask Price: 0001.2000000, Leg [0] CBOE Bid Size: 0000000100, Leg [0] CBOE Ask Size: 0000000100, Leg [0] Ratio: 0000000001, Leg [0] Origional Leg volume: 0000000100, Leg [1] Side: S, Leg [1] Origional Quantity: 0000000100, Leg [1] Bid Price: 0001.0000000, Leg [1] Ask Price: 0001.2000000, Leg [1] CBOE Bid Size: 0000000100, Leg [1] CBOE Ask Size: 0000000100, Leg [1] Ratio: 0000000001, Leg [1] Origional Leg volume: 0000000100</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order by User ROCU1 for Product 'BAMM: Combo 20110122 7.5000:1293639801652' (497943654): D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8651</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO1 for Product 'BAMM: Combo 20110122 7.5000:1293639801652' (497943654) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8651</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User ROCU1 for Order YEW:8650, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+&nbsp;&nbsp;<small>	Submit Order Cancel by User ROCU1 for Order YEW:8651, Cancelled Qty: 100, Cancel Type: 'DESIRED_CANCEL_QUANTITY' (1)</small><br>
+<br><hr><br><b>
+ Pre Fast failover - check counts.</b><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (null) and Slave (null) for class 'AAWW' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (null) and Slave (null) for class 'AAWW' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (null) and Slave (null) for class 'AAWW' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'AAWW' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BA' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BA' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BA' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BA' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BAMM' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BAMM' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BAMM' in session W_MAIN</small><br>
+&nbsp;&nbsp;<small>	Verify Order Counts between Master (devenv1) and Slave (devenv2) for class 'BAMM' in session W_MAIN</small><br>
+<br><hr><br><b>
+ Pre Fast failover - Verify CAS and Server Groups and Classes for groups</b><br>
+<br><hr><br><b>
+ Pre Fast failover - Subscribe for Trading Class Status for Group and for Classes</b><br>
+<br><hr><br><b>
+Fast Failover</b><br>
+&nbsp;&nbsp;<small>	Successful Failover of all BC processes from original master (devenv1) to new master (devenv1) for class 'AAWW' in W_MAIN</small><br>
+<br><hr><br><b>
+Scenario 30. OMT route to OHS</b><br>
+&nbsp;&nbsp;<small>	OMT Order Direct Route : User ROBO1, Branch/Seq: YEW:8641</small><br>
+<br><hr><br><b>
+Scenario 33. OMT Reroute of a non-order message to another OMT</b><br>
+&nbsp;&nbsp;<small>	OMT Order Direct Route : User ROBO1, Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	OMT Order Direct Route : User ROBO1	Number Of Order : 1, Branch/Seq: YEW:8646</small><br>
+<br><hr><br><b>
+Scenario 34. Order update </b><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order Update by User ROCU1 for Product 497943977: D 100@0.-200000000, Contingency: 'NONE'1, Origin Code: C, Branch/Seq: YEW:8647</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order Update by User ROCU1 for Product 497943980: D 100@0.-200000000, Contingency: 'NONE'1, Origin Code: C, Branch/Seq: YEW:8648</small><br>
+&nbsp;&nbsp;<small>	Submit Strategy Order Update by User ROCU1 for Product 497943983: D 100@0.-130000000, Contingency: 'NONE'1, Origin Code: C, Branch/Seq: YEW:8649</small><br>
+<br><hr><br><b>
+Scenario 35. Pending Cancel on orders resting on OMT and PAR</b><br>
+&nbsp;&nbsp;<small>	Complex Order Cancel Verification by PAR User FNKOrder: YEW:8650, Order Entry Date: 20101229, Cancel Request Quantity:           , Leg Quantity[1] : 0000000100, Leg Quantity[3] :           </small><br>
+&nbsp;&nbsp;<small>	 OMT Order Cancel Verification by User ROBO1 for Product , Route Reason: 'INSUFFICIENT_CUSTOMER_ORDER_QUANTITY' (19), Branch/Seq: YEW:8651</small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Canceled  by PAR User FNKOrder: YEW:8650, Order Entry Date: 20101229, Cancel Quantity: 0000000000, TLC Cancel Quantity: 0000000100, Total Cancel Quantity: 0000000000, Reason Code:  0</small><br>
+&nbsp;&nbsp;<small>	 OMT Order Cancel by User ROBO1 for Product , Product keys Struct: 'BAMM: Combo 20110122 7.5000:1293639801652' (497943654) : 753042683 , Product Type: 11, Reporting Class: 837220490, Branch/Seq: YEW:8651</small><br>
+<br><hr><br><b>
+Scenario 31. Query orders with location OHS</b><br>
+&nbsp;&nbsp;<small>	OMT Order Query by Location Type : User RD42Location Type :8 Work Station :OHS Order Count :3</small><br>
+<br><hr><br><b>
+Scenario 32. Query orders on TE </b><br>
+&nbsp;&nbsp;<small>	Order Query by User ROCU1 for Product 'BAMM: Combo 20110219 10.0000:1293636630477' (497943549) : D 100@0.-170000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8643</small><br>
+&nbsp;&nbsp;<small>	Order Query by User ROCU1 for Product 'BAMM: Unknown Spread 20110219 2.5000:1293638925678' (497943609) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8644</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ROMM2 for Product 'null' (0), Order: SFI:5818, Cancel Quantity: 100, Cancel Reason: 'SYSTEM' (3) <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ROMM2 for Product 'null' (0), Order: SFI:5819, Cancel Quantity: 100, Cancel Reason: 'SYSTEM' (3) <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ROCU1 for Product 'null' (0), Order: YEW:8744, Cancel Quantity: 100, Cancel Reason: 'SYSTEM' (3) <b>(FAILS - Expected)</b></small><br>
+<br><hr><br><b>
+Scenario 33. OMT Reroute of a non-order message to another OMT</b><br>
+&nbsp;&nbsp;<small>	OMT Order Direct Route : User ROBO1, Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	OMT Fill Report Reject : User ROBO1 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989) : , Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO2 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8646</small><br>
+&nbsp;&nbsp;<small>	OMT Order Verification : User ROBO2 for Product 'BAMM: Combo 20110122 10.0000:1293653237876' (497943989) : D 100@0.-200000000, Contingency: 'NONE' (1), Origin Code: C, Branch/Seq: YEW:8646</small><br>
+<br><hr><br><b>
+Scenario 35. Pending Cancel on orders resting on OMT and PAR</b><br>
+&nbsp;&nbsp;<small>	 OMT Order Cancel by User ROBO1 for Product , Product keys Struct: 'BAMM: Combo 20110122 7.5000:1293639801652' (497943654) : 753042683 , Product Type: 11, Reporting Class: 837220490, Branch/Seq: YEW:8651 <b>(FAILS - Expected)</b></small><br>
+&nbsp;&nbsp;<small>	Pause for 2000 (ms)</small><br>
+&nbsp;&nbsp;<small>	Order Cancel Verification by User ROCU1 for Product 'BAMM: Combo 20110122 7.5000:1293639801652' (497943654), Order: YEW:8651, Cancel Quantity: 100, Cancel Reason: 'USER' (2)</small><br>
+<br><hr><br><b>
+Step LAST: Checkout complete - Log off users</b><br>
+&nbsp;&nbsp;<small>	Log out PAR User: FNK (Password: CBOE), Workstation ID:  (W074) </small><br>
+&nbsp;&nbsp;<small>	Log out PAR User: ABC (Password: CBOE), Workstation ID:  (W075) </small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ROMM1</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ROMM2</small><br>
+&nbsp;&nbsp;<small>	Log Out Trader User: ROCU1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROBO1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROBO2</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROBO3</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: PNB3</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: ROCO1</small><br>
+&nbsp;&nbsp;<small>	Log Out OMT User: RD42</small><br>
+&nbsp;&nbsp;<small>	Log Out SA User: RSHD1</small><br>

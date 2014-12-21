@@ -1,0 +1,36 @@
+//## Module: Property
+
+#ifndef Property_idl
+#define Property_idl
+
+//## Category: PropertyService
+
+module property {
+   typedef string PropertyKey;
+   typedef string Category;
+   typedef short OperationType;
+   typedef short QueryType;
+   
+   typedef sequence < PropertyKey > PropertyKeySequence;
+   typedef sequence < Category > CategorySequence;
+
+   struct PropertyStruct
+    {
+        string name;
+        string value;
+    };
+
+    typedef sequence <PropertyStruct> PropertyStructSequence;
+
+    struct PropertyGroupStruct
+    {
+        Category category;
+        PropertyKey propertyKey;
+        PropertyStructSequence preferenceSequence;
+        long versionNumber;
+    };
+
+    typedef sequence < PropertyGroupStruct > PropertyGroupStructSequence;    
+};
+
+#endif

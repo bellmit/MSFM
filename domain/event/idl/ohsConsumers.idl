@@ -1,0 +1,313 @@
+#ifndef OHSCONSUMER_IDL
+#define OHSCONSUMER_IDL
+
+#include "util.idl"
+#include "cmiOrder.idl"
+#include "order.idl"
+#include "cmiMarketData.idl"
+#include "cmiTradeNotification.idl"
+#include "sweepAutoLink.idl"
+
+module ohsConsumers {
+
+    interface InternalOrderStatusConsumer {
+        void acceptFillReport( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in order::FillStructSequence fills,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetailSeq);
+        void acceptedByOrderBook( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,  
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in order::OrderBookUpdateStruct bookedOrdeUpdate,
+            in boolean publishToExternalUser,
+            in long productKey,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptCancelReport(
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in order::CancelStructSequence cancels,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetailSeq,
+            in long long activityTime);
+        /*
+	 * TE will batch the cancel reports and send it over the transient channels.
+	 * To accomodate this, we will accept a sequence of cancel reports, "unbatch" it
+	 * and call the original cancel report method. 
+	 * Note: We have kept the routingParameters as such to avoid the re doing filtering 
+	 * method
+ 	 */
+        void acceptTransientCancelReportSequence(
+	            in util::RoutingParameterStruct routingParameters,
+	            in order::TransientCancelReportStruct transCancelReportStruct);
+        void acceptCancelReplaceReport(
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct originalOrderId,
+            in cmiOrder::OrderIdStruct replacementOrderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in order::CancelStructSequence cancels,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetailSeq);
+        void acceptBustReport( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in order::BustStructSequence busts,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetailSeq);
+        void acceptBustReinstateReport( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in order::BustReinstateStruct bustReinstate,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptStatusUpdate( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in cmiUtil::UpdateStatusReason statusChange,
+            in long productKey,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptInternalStateUpdate( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in order::InternalOrderState internalOrderState,
+            in long productKey,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+            
+/*
+ * During failover, OHS needs to complete consuming all IOSC events 
+ * before going Master, so that OHS can update the Order data 
+ * Now when TE queries OHS to get all Orders, OHS gives the correct data.
+ */            
+        void goEvent(in util::RoutingParameterStruct routingParameters);
+                                        
+/* The following methods could go away under the following conditions:
+ * 1. Broker commands in TE are changed to have the capability of throwing the exceptions for 
+ *    any synchronous execution
+ * 2. BookDepth is not required to be returned with the order and be sent to TPF
+ * 3. We will add OrderRoutingException to the ORD interface to be able to throw the exception with 
+ *    the appropriate OrderRoutingReason code.
+ */
+                                     
+        void acceptOrderReturnWithReason( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in order::OrderRoutingReason reason,
+            in long productKey,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail,
+            in long code);
+        void acceptCancelReturnWithReason( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in string userId,
+            in cmiOrder::CancelRequestStruct cancelRequest,
+            in order::OrderRoutingReason reason,
+            in long productKey,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptCancelReplaceReturnWithReason( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::CancelRequestStruct cancelRequest,
+            in cmiOrder::OrderIdStruct replacementOrder,
+            in order::OrderRoutingReason reason,
+            in long productKey,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptOrderReturnWithReasonAndBookDepth( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct anOrder,
+            in cmiMarketData::BookDepthStruct bookDepth,
+            in order::OrderRoutingReason reason,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail,
+            in long code);
+        void acceptCancelReplaceReturnWithReasonAndBookDepth( 
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::CancelRequestStruct cancelRequest,
+            in cmiOrder::OrderIdStruct replacementOrder,
+            in cmiMarketData::BookDepthStruct bookDepth,
+            in order::OrderRoutingReason reason,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptAuctionEvent(
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in order::AuctionHistoryStruct auctionHistory,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+        void acceptDirectedAIMNotification(
+            in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingParameter,
+            in cmiOrder::OrderIdStruct orderId,
+            in order::AuctionHistoryStruct auctionHistory,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail,
+            in cmiUtil::StringSequence userList); //where userList is the target users who had received the published Directed AIM message 
+
+            
+        /* Auto Link Event from HTS for New Options Linkage */
+	    void acceptAutoLinkEvent(
+	    	in util::RoutingParameterStruct routingParameters, 
+            in order::OrderRoutingParameterStruct orderRoutingStruct,
+            in cmiOrder::OrderIdStruct underlyingOrderId,
+            in sweepAutoLink::AutoLinkStruct autoLinkStruct,
+            in order::MarketDetailStructSequence marketDetail);
+            
+        void acceptAuditHistoryEvent( 
+   	    	in util::RoutingParameterStruct routingParameters,
+            in order::OrderRoutingParameterStruct orderRoutingStruct,
+            in cmiOrder::OrderIdStruct orderId,
+            in long productKey,
+            in long subEventType,
+            in string auditHistoryDescription,
+            in long transactionSequenceNumber,
+            in order::MarketDetailStructSequence marketDetail);
+            
+/* 
+ * This method is created to update shipped quantity from TE to OHS over the IOSC.
+ * This method will explicitly used for shipping quantity only. 
+ * To avoid multiple look ups/struct creation/string comparisons, this method is
+ * designed to be an explicit look up. 
+ */
+	void acceptShippingQuantityUpdate( 
+	    in util::RoutingParameterStruct  routingParameters,
+	    in order::OrderRoutingParameterStruct orderRoutingParameter,
+	    in cmiOrder::OrderIdStruct orderId,
+	    in long productKey,
+	    in long newShippedQuantity,
+    	    in long transactionSequenceNumber,
+    	    in order::MarketDetailStructSequence marketDetailSeq);
+       
+	/* TE Produces this Satisfaciton  Alert for OHS  */
+	/* NOTE: SINCE THIS IS NOT AT THE ORDER LEVEL EVENT NO HISTORYDETAILSTRUCT IS REQUIRED */
+    
+    void acceptSatisfactionAlert( 
+            in order::OrderRoutingParameterStruct orderRoutingStruct,
+            in cmiIntermarketMessages::SatisfactionAlertStruct alert,
+            in util::RoutingParameterStruct  routingParameters
+             )
+            raises(
+                exceptions::SystemException,
+                exceptions::CommunicationException,
+                exceptions::DataValidationException,
+                exceptions::TransactionFailedException,
+                exceptions::NotAcceptedException,
+                exceptions::AuthorizationException
+            );     	     	    
+
+        void acceptLightOrder( 
+	    in long group,
+	    in long long highLowId, 
+	    in long long receivedTime,
+            in util::InOctetSequence newReqBuffer,
+		in string correspondent);
+
+        void acceptLightOrderEvent( 
+	    in long group,
+	    in long long highLowId, 
+            in util::InOctetSequence event);
+    };
+    
+ /*
+  * These methods are to publish on OMT
+  */
+    interface OrderRoutingConsumer
+    {
+        void acceptOrders(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::OrderRoutingStructSequence orders);
+
+        void acceptCancels(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::CancelRoutingStructSequence cancels);
+
+        void acceptCancelReplaces(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::CancelReplaceRoutingStructSequence cancelReplaces);
+
+        void acceptFillReportReject(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::FillReportRejectRoutingStructSequence fillReportRejects);
+
+        void acceptRemoveOrder(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::OrderIdRoutingStructSequence orderId);
+
+        void acceptLinkageCancelReport(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::LinkageCancelReportRoutingStructSequence cancelReports);
+
+        void acceptLinkageFillReport(
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::LinkageFillReportRoutingStructSequence fillReports);
+
+        void acceptOrderLocationServerResponse(
+            in order::OrderLocationServerResponseStruct response);
+
+        void acceptOrderLocationSummaryServerResponse(
+            in order::OrderLocationSummaryServerResponseStruct response);
+            
+	void acceptManualOrderTimeout(
+  	    in util::RoutingParameterV2Struct routingParameters,
+	    in order::ManualOrderTimeoutRoutingStructSequence manualOrderTimeouts);
+
+	void acceptManualFillTimeout(
+	    in util::RoutingParameterV2Struct routingParameters,
+	    in order::ManualFillTimeoutRoutingStructSequence fillReports);
+			
+	void acceptRemoveMessage(
+    	    in util::RoutingParameterV2Struct routingStruct,
+    	    in cmiUtil::Identifier msgId);
+
+        void acceptTradeNotifications(
+            in util::RoutingParameterV2Struct orderRoutingStruct, 
+            in order::TradeNotificationRoutingStructSequence tradeNotifications);
+
+	void acceptFillReportDropCopy(
+            in util::RoutingParameterV2Struct orderRoutingStruct, 
+            in order::FillReportDropCopyRoutingStructSequence fillReportDropCopies);
+
+	void acceptCancelReportDropCopy(
+            in util::RoutingParameterV2Struct orderRoutingStruct, 
+            in order::CancelReportDropCopyRoutingStructSequence cancelReportDropCopies);
+	
+    // Methods for PAR-to-CBOEDirect
+	
+        void acceptManualOrders( 
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::OrderManualHandlingStructV2Sequence orders );
+
+        void acceptManualCancels( 
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::ManualCancelRequestStructV2Sequence cancelRequests );
+
+        void acceptManualCancelReplaces( 
+            in util::RoutingParameterV2Struct orderRoutingStruct,
+            in order::ManualCancelReplaceStructSequence cancelReplaces );
+    };
+    	
+};
+
+#endif

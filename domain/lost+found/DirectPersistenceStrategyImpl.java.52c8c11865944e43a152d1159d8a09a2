@@ -1,0 +1,74 @@
+package com.cboe.domain.migratePersistence;
+
+import java.util.AbstractCollection;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.cboe.exceptions.SystemException;
+import com.cboe.infrastructureServices.foundationFramework.BOHome;
+import com.cboe.infrastructureServices.foundationFramework.PersistentBObject;
+import com.cboe.interfaces.domain.migratePersistence.Migratable;
+import com.cboe.interfaces.domain.migratePersistence.MigratePersistenceHome;
+import com.cboe.interfaces.domain.migratePersistence.PersistenceStrategy;
+import com.cboe.interfaces.domain.migratePersistence.PersistenceStrategyProperties;
+
+public class DirectPersistenceStrategyImpl implements PersistenceStrategy
+{
+
+	private MigratePersistenceHome home;
+
+	public void acceptObjects(AbstractCollection<PersistentBObject> insertList, AbstractCollection<PersistentBObject> updateList)
+			throws SystemException
+	{
+		// make copies because the incoming persistent bobjects have 'null' broker assigned to them
+		ArrayList<PersistentBObject> list = new ArrayList<PersistentBObject>();
+
+		addToList(list, insertList, true);
+
+		addToList(list, updateList, false);
+		
+		home.persist(list);
+	}
+
+	private int addToList(ArrayList<PersistentBObject> list, AbstractCollection<PersistentBObject> insertList, boolean insert)
+	{
+		Iterator<PersistentBObject> itor = insertList.iterator();
+
+		int rval = 0;
+
+		while (itor.hasNext())
+		{
+			PersistentBObject object = itor.next();
+
+			if (object instanceof Migratable)
+			{
+				Migratable copyInterface = (Migratable) object;
+
+				PersistentBObject newObject = (PersistentBObject) copyInterface.copy();
+
+				if (rval == 0)
+				{
+					rval = copyInterface.getKey();
+				}
+
+				newObject.setRetrievedFromDatabase(!insert);
+
+				list.add(newObject);
+			}
+		}
+
+		return rval;
+	}
+	
+	public void setBOHome(BOHome home)
+	{
+		this.home = (MigratePersistenceHome) home;
+	}
+
+	public void init(PersistenceStrategyProperties properties)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,87 @@
+
+<project name="ant for sbt.domain" default="all">
+
+    <description>
+    This is the top level ant build file for the SBT domain vob
+    </description>
+
+    <!-- ant.file is the initial build file -->
+    <echo>Building ${ant.file}</echo>
+
+    <!-- top level sbt build -->
+    <import file="/vobs/dte/sbtcommon/build/sbtcommon-build.xml"/>
+
+    <!-- **************************************************************
+            Init dirs based on OS.
+    ******************************************************************* -->
+    <target name="-domain.Init" depends="-Init" description="set environment variables">
+
+        <condition property="sbt.domain.project.dir" value="../../domain">
+            <isset property="this.is.windows"/>
+        </condition>
+
+        <condition property="sbt.domain.project.dir" value="${dte.root}/domain">
+            <isset property="this.is.unix"/>
+        </condition>
+
+    <!-- **************************************************************
+            path name locations
+    ******************************************************************* -->
+
+        <!-- SERVER VOB SPECIFIC SOURCE LOCATIONS -->
+
+        <property name="sbt.domain.classes.dir"        location="${sbt.domain.project.dir}/classes"/>
+        <property name="sbt.domain.java.dir"           location="${sbt.domain.project.dir}/Java"/>
+        <property name="sbt.domain.build.dir"          location="${sbt.domain.project.dir}/build"/>
+        <property name="sbt.domain.release.dir"        location="${sbt.domain.project.dir}/release"/>
+        <property name="sbt.domain.idl.dir"            location="${sbt.domain.project.dir}/idl"/>
+        <property name="sbt.domain.event.dir"          location="${sbt.domain.project.dir}/event"/>
+        <property name="sbt.domain.event.java.dir"     location="${sbt.domain.event.dir}/Java"/>
+
+
+        <property name="build.info.dir"         location="${sbt.domain.classes.dir}/com/cboe/sbt/framework"/>
+
+        <!-- SERVER VOB SPECIFIC JAR LOCATIONS -->
+        <property name="sbt.domain.impls.rel.jar"               location="${sbt.domain.release.dir}/domain_impls.jar"/>
+        <property name="sbt.domain.impls.class.jar"             location="${sbt.domain.classes.dir}/domain_impls.jar"/>
+        <property name="sbt.domain.interfaces.rel.jar"          location="${sbt.domain.release.dir}/domain_interfaces.jar"/>
+        <property name="sbt.domain.interfaces.class.jar"        location="${sbt.domain.classes.dir}/domain_interfaces.jar"/>
+        <property name="sbt.domain.persist.rel.jar"             location="${sbt.domain.release.dir}/domain_persist.jar"/>
+        <property name="sbt.domain.persist.class.jar"           location="${sbt.domain.classes.dir}/domain_persist.jar"/>
+        <property name="sbt.domain.xml.rel.jar"                 location="${sbt.domain.release.dir}/domain_xml.jar"/>
+        <property name="sbt.domain.xml.class.jar"               location="${sbt.domain.classes.dir}/domain_xml.jar"/>
+        <property name="sbt.domain.idl.rel.jar"                 location="${sbt.domain.release.dir}/domain_idl.jar"/>
+        <property name="sbt.domain.idl.java.rel.jar"            location="${sbt.domain.release.dir}/domain_idl_java.jar"/>
+
+        <property name="sbt.domain.event.impls.rel.jar"         location="${sbt.domain.release.dir}/event_impls.jar"/>
+        <property name="sbt.domain.event.impls.class.jar"       location="${sbt.domain.classes.dir}/event_impls.jar"/>
+        <property name="sbt.domain.event.interfaces.rel.jar"    location="${sbt.domain.release.dir}/event_interfaces.jar"/>
+        <property name="sbt.domain.event.interfaces.class.jar"  location="${sbt.domain.classes.dir}/event_interfaces.jar"/>
+
+
+        <property name="build.info.file"        value="CatResource.txt"/>
+        <property name="configspec.class"       value="com.cboe.domain.framework.CatResource"/>
+
+        <property name="compile.debug"          value="true"/>
+        <property name="compile.verbose"        value="true"/>
+
+    </target>
+
+
+    <!-- **************************************************************
+            Compile and Build Core Jars
+    ******************************************************************* -->
+    <target name="Compile-Full"
+        description="Build production (optimized, non-debug) version of the code"
+            depends="-Init,Clean,-CompileCode,-CopyBuild">
+    </target>
+
+    <target name="Compile-Incremental"
+        description="Build production (optimized, non-debug) version of the code WITHOUT CLEANING"
+            depends="-Init,-CompileCode,-CopyBuild">
+    </target>
+
+
+</project>
+
+

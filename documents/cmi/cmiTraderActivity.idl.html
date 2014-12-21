@@ -1,0 +1,55 @@
+<!--#INCLUDE VIRTUAL="/webAPI/scripts/Includes/stdHTMLLoginCheck.asp"-->
+<pre>
+#ifndef cmiTraderActivity_idl
+#define cmiTraderActivity_idl
+//---------------------------------------------------------------------------------------------
+// Company:      Chicago Board Options Exchange
+// Version:      Version 5.0
+//
+// Copyright © 1999-2006 by the Chicago Board Options Exchange ("CBOE"), as an unpublished work.
+// The information contained in this software program constitutes confidential and/or trade
+// secret information belonging to CBOE. This software program is made available to
+// CBOE members and member firms to enable them to develop software applications using
+// the CBOE Market Interface (CMi), and its use is subject to the terms and conditions
+// of a Software License Agreement that governs its use. This document is provided "AS IS"
+// with all faults and without warranty of any kind, either express or implied.
+//---------------------------------------------------------------------------------------------
+
+#include "cmiProduct.idl"
+
+#pragma javaPackage "com.cboe.idl"
+
+module cmiTraderActivity
+{
+    typedef short ActivityType;
+    typedef short ActivityFieldType;
+
+    struct ActivityFieldStruct
+    {
+        cmiTraderActivity::ActivityFieldType fieldType;
+        string fieldName;
+        string fieldValue;
+    };
+    typedef sequence <ActivityFieldStruct> ActivityFieldStructSequence;
+
+    struct ActivityRecordStruct
+    {
+        cmiProduct::ProductKey productKey;
+        cmiUtil::DateTimeStruct eventTime;
+        cmiTraderActivity::ActivityType entryType;
+        cmiTraderActivity::ActivityFieldStructSequence  activityFields;
+    };
+    typedef sequence <ActivityRecordStruct> ActivityRecordStructSequence;
+
+    struct ActivityHistoryStruct
+    {
+        cmiProduct::ClassKey classKey;
+        cmiUtil::DateTimeStruct startTime;
+        cmiUtil::DateTimeStruct endTime;        
+        cmiTraderActivity::ActivityRecordStructSequence activityRecords;
+    };
+    typedef sequence <ActivityHistoryStruct> ActivityHistoryStructSequence;
+};
+
+#endif
+</pre>

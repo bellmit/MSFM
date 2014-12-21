@@ -1,0 +1,81 @@
+
+//-----------------------------------------------------------------------
+// FILE: README
+//
+// PACKAGE: 
+//
+//-----------------------------------------------------------------------
+//
+// Copyright (c) 1998 The Chicago Board Options Exchange. All Rights Reserved.
+//
+//
+//------------------------------------------------------------------------
+
+CBOE Trader Service
+
+This trader implementation is a stub version of the service. It contains a Makefile used to build and run.
+
+TOOLS:
+	jdk1.1.6
+	OrbixWeb3.1c
+	Netscape Directory Service 3.11
+
+Configuration:
+	With this version, consideration will need to given to incorporate the backing store aspect of the Directory Service. To do this,
+	a directory database will need to configured. The Trader now has the ability to persist and retrieve service types and offers.
+	This is done through Netscapes Directory Service vers 3.11 which implements the 3.0 specification of the LDAP protocol.
+	The first thing that will need to happen is that an entry
+To compile:
+	Using the supplied Makefile and Makefile.config assign the necessary variables to point to where OrbixWeb and Java jdk's
+	installed. 
+	
+	run the make system using gmake. The idl options used to build the demo/stub file is already set in the Makefile.
+	The current configuration of requires a idl directory. This can be adjusted to a desired location. Ensure that the
+	related OrbixWeb Environment is properly configured.  The zip file has both the x.java and x.classes files. 
+
+	The make will display all the files in the process of building.
+
+To run:
+	TO SETUP LDAP:
+		When defining the LDAP server, an dn must be entered that defines the root/top of the hierachy. The Trader expects this entry to be at the organization 
+		level. It should have what ever the top designation will be and represented in the TraderService.properties file for the key "TraderService.LDAP.Organization".
+		The current tree structure is:
+	 		organization->trader service->service type->offer
+
+		Two object classes have to be there for Trader to work.
+		1- traderhost 
+		This objectclass inherits from objectclass "organization" and has the following attributes: "objectclass", "o", and "ts"
+		"objectclass" and "o" are LDAP provided attributes.
+		The "ts" attribute is user defined and must be added.
+
+		2- serviceType
+		The "servicetype" object class inherits from traderhost and has the following attributes assocaited with it: "objectclass","o","ts", and "svc".
+		Like "ts" "svc" is user defined and must be added before the objectclass is defined.
+
+	Once this minimal setup has been completed, the Trader should be ready to operate.
+
+	RUNNING THE TESTS:
+
+	The test will need to be performed in sequence.
+	First you will need to create a servicetype to be used. The "Add_Type" program will demonstrate how this is accomplished. It uses the ID of the 
+	ServiceTypeRepository to create an entry of this type. All the other test programs use the same entry to validate the requests.
+
+	The next thing is to "Export_Offer". This will make available to clients an offer with associated properties. It also creates a file, "Export.offer", that the program 
+	"WithDraw_Offer" uses to withdraw the offer. 
+
+	The next step is up to you. You can either, query for the offer, withdraw the offer, or remove the service type. 
+	Obviously the later two limits what can be done afterwards. 
+	
+	The server and test programs all use the properties file, "TraderService.properties". It contains the necessary "bootstrap" information.
+	When starting the server, the location of the properties must be provided.
+	The server: traderServer TraderService.properties
+
+	The client: <test program> TraderService.properties
+
+Results:
+	
+	Depending on the test program run, it will reult in either information being added, interrogated, or removed from the
+	Trader Service.
+
+	All objects should compile and run error free.
+//EOF
