@@ -1,0 +1,1770 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "loggingService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"3664134A0325"
+    documentation 	
+|This package contains one or more "wrapper" classes that provides a proxy for the actual Logging Service.
+|
+|Developers should use these proxy classes, either through the FoundationFramework, or directly if the FoundationFramework is not being used.
+|
+|Owner: Mark Woyna 
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "LogService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"ImplementationType"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"ConstValue"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"GenerateDefaultSpecifier"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"DefaultSpecifier"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"IDLElement"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"IDLSpecificationType"
+		    value      	("IDLSpecSet" 22))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Final"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"ConstructorIs"
+		    value      	("Ctor_Set" 62))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"OID"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"WhereClause"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CheckConstraint"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypeLength"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypePrecision"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypeScale"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionOfREFS"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"Type"
+		    value      	("MSVCClassTypeSet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CObjectFunctionality"
+		    value      	("CObjectFunctionalitySet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOverrideGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDataGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DATA_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateFieldGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_FIELD_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMessageGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMessageMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_MSG_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MESSAGE_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEFactory"
+		    value      	("OLEFactorySet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEName"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEClassID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOLECtlType"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLECtlType"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOLETypeLib"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibMajor"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibMinor"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GeneratePropPageIDs"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEPropPageIDs"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDispatchMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISPATCH_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISPATCH_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DISPATCH_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockProperties"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockFunctions"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DispatchDefValue"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDispIdEnum"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISP_ID_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateInterfaceMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"INTERFACE_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"InitInterface"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateEventMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENT_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"EVENT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockEvents"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateEventSinkMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENTSINK_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENTSINK_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"EVENTSINK_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"PropNotifySinks"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateConnectionMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CONNECTION_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"ConnectionPointIID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"InheritanceType"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DeclSpec"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLECommands"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MFCDeclares"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MFCImplements"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"ATL_Declares"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateCOMMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"COM_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateConnectionPointMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CONNECTION_POINT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMsgMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MSG_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GeneratePropertyMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"PROPERTY_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionBase"
+		    value      	"0")
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionExplicit"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionCompare"
+		    value      	("CompareSet" 202))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"Creatable"
+		    value      	("CreatableSet" 221))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"GenerateInitialization"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"GenerateTermination"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"CollectionClass"
+		    value      	"Collection"))
+	    quid       	"361A8C180098"
+	    documentation 	
+|
+| * The facade interface that the actual implmentation must implement.
+| 
+	    
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C402C0"
+		    supplier   	"Logical View::com::cboe::loggingService::LoggingServiceInterface"))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::LogService"
+	    quidu      	"3658B815001B"
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::LogService"
+	    quidu      	"36B619C40168"
+	    language   	"Java")
+	(object Class "LogServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B303C8"
+	    documentation 	
+|
+| * The abstract base class that supports the logging service.
+| 
+	    
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C50128"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogService"))
+	    operations 	(list Operations
+		(object Operation "LogServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C50271"
+		    documentation 	
+|
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B619C50272"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "componentName"
+			    type       	"String"))
+		    result     	"LogService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B619C50274"
+		    documentation 	
+|
+|	   Return  the name 
+|	 
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B619C50275"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setActualLogServiceImpl"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B619C50277"
+		    documentation 	
+|
+|     
+		    
+		    parameters 	(list Parameters
+			(object Parameter "actualImpl"
+			    type       	"com.cboe.loggingService.LoggingServiceInterface"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B619C50279"
+		    documentation 	
+|
+|	 * Set  the name
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::LogServiceBaseImpl"
+	    quidu      	"36B619C403B9"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "LogServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B4032C"
+	    documentation 	
+|
+| * The default implementation of the LoggingService.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B614B403C8"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogServiceBaseImpl"
+		    quidu      	"36B614B303C8")
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C600AB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "getComponentName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6015A"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "LogServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6015B"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setActualLogServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6015C"
+		    documentation 	
+|
+|	 * Called to establish reference to com.cboe.loggingService impl.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "actualImpl"
+			    type       	"com.cboe.loggingService.LoggingServiceInterface"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6015E"
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "messageString"
+			    type       	"String")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60163"
+		    documentation 	
+|
+|       Log a non-standard message with no parameters.
+|       @see MsgPriority
+|       @see MsgCategory
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "messageText"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60167"
+		    documentation 	
+|
+|       Log a standard message with no parameters.
+|       @see MsgPriority
+|       @see MsgCategory
+|       @see StdMsgType
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6016B"
+		    documentation 	
+|
+|       Log a standard message with parameters.
+|       @see MsgPriority
+|       @see MsgCategory
+|       @see StdMsgType
+|       @see MsgParameter
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60170"
+		    documentation 	
+|
+|       Log a non-standard message regarding an exception.
+|       @see MsgPriority
+|       @see MsgCategory
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "message"
+			    type       	"String")
+			(object Parameter "exception"
+			    type       	"Throwable"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60175"
+		    documentation 	
+|
+|       Log a standard message regarding an exception.
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "exception"
+			    type       	"Throwable"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6017A"
+		    documentation 	
+|
+|       Log a standard message regarding the occurrence of an event with a date / time stamp. To get a date/time stamp for a particular event, call the java.util.Calendar.getInstance() method when and where the event occurs.
+|       @see Calendar
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "dateTimeStamp"
+			    type       	"Calendar"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6017F"
+		    documentation 	
+|
+|       Log a non-standard message regarding the occurrence of an event with a date / time stamp. To get a date/time stamp for a particular event, call the java.util.Calendar.getInstance() method when and where the event occurs.
+|       @see Calendar
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "message"
+			    type       	"String")
+			(object Parameter "dateTimeStamp"
+			    type       	"Calendar"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60184"
+		    documentation 	
+|
+|       Log a standard message with parameters from a finer granularity component. Generally, the origin of a log message is set to the logging component name specified when an instance of the logging service is retrieved. This log method allows a finer granularity component name to be appended to the logging component name, separated by a ".",  for this log message only.
+|       @see LoggingService#getInstance
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "componentNameSuffix"
+			    type       	"String")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6018A"
+		    documentation 	
+|
+|       Log a non-standard message with parameters from a finer granularity component. Generally, the origin of a log message is set to the logging component name specified when an instance of the logging service is retrieved. This log method allows a finer granularity component name to be appended to the logging component name, separated by a ".",  for this log message only.
+|       @see LoggingService#getInstance
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "componentNameSuffix"
+			    type       	"String")
+			(object Parameter "messageText"
+			    type       	"String")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::LogServiceImpl"
+	    quidu      	"36B619C5034B"
+	    language   	"Java")
+	(object Class "LogServiceNullImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B501D4"
+	    documentation 	
+|
+| * The default implementation of the LoggingService.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6036B"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "getComponentName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6036C"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setActualLogServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6036D"
+		    parameters 	(list Parameters
+			(object Parameter "actualImpl"
+			    type       	"com.cboe.loggingService.LoggingServiceInterface"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6036F"
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "messageString"
+			    type       	"String")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60374"
+		    documentation 	
+|
+|       Log a non-standard message with no parameters.
+|       @see MsgPriority
+|       @see MsgCategory
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "messageText"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6037D"
+		    documentation 	
+|
+|       Log a standard message with no parameters.
+|       @see MsgPriority
+|       @see MsgCategory
+|       @see StdMsgType
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60381"
+		    documentation 	
+|
+|       Log a standard message with parameters.
+|       @see MsgPriority
+|       @see MsgCategory
+|       @see StdMsgType
+|       @see MsgParameter
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60386"
+		    documentation 	
+|
+|       Log a non-standard message regarding an exception.
+|       @see MsgPriority
+|       @see MsgCategory
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "message"
+			    type       	"String")
+			(object Parameter "exception"
+			    type       	"Throwable"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6038B"
+		    documentation 	
+|
+|       Log a standard message regarding an exception.
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "exception"
+			    type       	"Throwable"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60390"
+		    documentation 	
+|
+|       Log a standard message regarding the occurrence of an event with a date / time stamp. To get a date/time stamp for a particular event, call the java.util.Calendar.getInstance() method when and where the event occurs.
+|       @see Calendar
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "dateTimeStamp"
+			    type       	"Calendar"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C60395"
+		    documentation 	
+|
+|       Log a non-standard message regarding the occurrence of an event with a date / time stamp. To get a date/time stamp for a particular event, call the java.util.Calendar.getInstance() method when and where the event occurs.
+|       @see Calendar
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "message"
+			    type       	"String")
+			(object Parameter "dateTimeStamp"
+			    type       	"Calendar"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C6039A"
+		    documentation 	
+|
+|       Log a standard message with parameters from a finer granularity component. Generally, the origin of a log message is set to the logging component name specified when an instance of the logging service is retrieved. This log method allows a finer granularity component name to be appended to the logging component name, separated by a ".",  for this log message only.
+|       @see LoggingService#getInstance
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "componentNameSuffix"
+			    type       	"String")
+			(object Parameter "stdMsgType"
+			    type       	"com.cboe.loggingService.corba.StdMsgType")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "log"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C603A0"
+		    documentation 	
+|
+|       Log a non-standard message with parameters from a finer granularity component. Generally, the origin of a log message is set to the logging component name specified when an instance of the logging service is retrieved. This log method allows a finer granularity component name to be appended to the logging component name, separated by a ".",  for this log message only.
+|       @see LoggingService#getInstance
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "priority"
+			    type       	"com.cboe.loggingService.MsgPriority")
+			(object Parameter "category"
+			    type       	"com.cboe.loggingService.MsgCategory")
+			(object Parameter "componentNameSuffix"
+			    type       	"String")
+			(object Parameter "messageText"
+			    type       	"String")
+			(object Parameter "parameters"
+			    type       	"com.cboe.loggingService.MsgParameter[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::LogServiceNullImpl"
+	    quidu      	"36B619C60232"
+	    language   	"Java")
+	(object Class "MsgCategory"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B5035B"
+	    documentation 	
+|
+|   Defines the valid values for the categories that log messages may be classified under.
+|   @version 1.0
+| 
+	    
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+	    quidu      	"36B619C603B9"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "MsgParameter"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B60148"
+	    documentation 	
+|
+|   Encapsulates the information associated with a logging parameter that may be appended to a log message to provide context or supporting information.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C80272"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgParameter"))
+	    operations 	(list Operations
+		(object Operation "MsgParameter"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619C803BC"
+		    documentation 	
+|
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String")
+			(object Parameter "value"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "fromCalendar"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B619C803BF"
+		    documentation 	
+|
+|       Create an array of date / time name / value pairs from a Calendar object.
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "calendar"
+			    type       	"Calendar"))
+		    result     	"com.cboe.loggingService.MsgParameter[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "fromException"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B619C803C9"
+		    documentation 	
+|
+|       Create an array of name / value pairs describing the given exception.
+|      
+		    
+		    parameters 	(list Parameters
+			(object Parameter "exception"
+			    type       	"Throwable"))
+		    result     	"com.cboe.loggingService.MsgParameter[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::MsgParameter"
+	    quidu      	"36B619C80138"
+	    language   	"Java")
+	(object Class "MsgPriority"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B6029F"
+	    documentation 	
+|
+|   Defines the valid priority values of log messages.
+| 
+	    
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::MsgPriority"
+	    quidu      	"36B619C9000F"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "StdMsgType"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B614B70000"
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B614B7009C"
+		    supplier   	"Logical View::java::lang::Cloneable"
+		    quidu      	"361E393902FD")
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B619CA009C"
+		    supplier   	"Logical View::java::lang::Cloneable"))
+	    module     	"Component View::com::cboe::infrastructureServices::loggingService::StdMsgType"
+	    quidu      	"36B619C9034B"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B614B40119"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B614B4011A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogServiceBaseImpl"
+		    quidu      	"36B614B303C8")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	(value Text 
+|"com.cboe.infrastructureServices.loggingService.LogServiceImpl"
+			    )))
+		    quid       	"36B614B4011B"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B614B401B5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B614B401B6"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogServiceBaseImpl"
+		    quidu      	"36B614B303C8")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B614B401B7"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogService"
+		    quidu      	"361A8C180098"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C60157"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B619C60158"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::LogServiceImpl"
+		    quidu      	"36B614B4032C")
+		(object Role "logService"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B619C60159"
+		    label      	"logService"
+		    supplier   	"Logical View::com::cboe::loggingService::LoggingServiceInterface"
+		    quidu      	"36B619C402BF"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C7011A"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"36B619C7011B"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "debug"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.debug")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C7011C"
+		    documentation 	
+|
+|       Information to be used for debugging.
+|     
+		    
+		    label      	"debug"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$8"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C701B5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$9"
+		    quid       	"36B619C701B6"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "audit"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.audit")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C701B7"
+		    documentation 	
+|
+|       Information to be used for auditing.
+|     
+		    
+		    label      	"audit"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$10"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C70261"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$11"
+		    quid       	"36B619C70262"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "nonRepudiation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.nonRepudiation")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C70263"
+		    documentation 	
+|
+|       Information to be used for non-repudiation.
+|     
+		    
+		    label      	"nonRepudiation"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$12"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C702FD"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"36B619C702FE"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "systemNotification"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.systemNotification")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C702FF"
+		    documentation 	
+|
+|       Information to be used for general monitoring of the system.
+|     
+		    
+		    label      	"systemNotification"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$14"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C703A9"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$15"
+		    quid       	"36B619C703AA"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "systemAlarm"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.systemAlarm")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C703AB"
+		    documentation 	
+|
+|       Information to be used for warning system administration of an event or condition threatening the integrity or functionality of the system.
+|     
+		    
+		    label      	"systemAlarm"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$16"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C8005D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$17"
+		    quid       	"36B619C8005E"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "information"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.information")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C8005F"
+		    documentation 	
+|
+|       Information that may not be classified under any of the other categories.
+|     
+		    
+		    label      	"information"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$18"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C80109"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"36B619C8010A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgCategory"
+		    quidu      	"36B614B5035B")
+		(object Role "instrumentation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgCategory.instrumentation")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C8010B"
+		    documentation 	
+|
+|       Information to be used for instrumentation to monitor the performance and health of the system.
+|     
+		    
+		    label      	"instrumentation"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgCategory"
+		    quidu      	"36B619C70119"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$20"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C8031C"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$21"
+		    quid       	"36B619C8031D"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgParameter"
+		    quidu      	"36B614B60148")
+		(object Role "name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B619C8031E"
+		    label      	"name"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$22"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C803B9"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$23"
+		    quid       	"36B619C803BA"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgParameter"
+		    quidu      	"36B614B60148")
+		(object Role "value"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B619C803BB"
+		    label      	"value"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$24"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C90149"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$25"
+		    quid       	"36B619C9014A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgPriority"
+		    quidu      	"36B614B6029F")
+		(object Role "critical"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgPriority.critical")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C9014B"
+		    documentation 	
+|
+|       Use for messages that should be handled before performing any other system function. These messages typically concern issues posing a threat to the correct functioning or integrity of the system.
+|     
+		    
+		    label      	"critical"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgPriority"
+		    quidu      	"36B619C90148"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$26"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C901F4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$27"
+		    quid       	"36B619C901F5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgPriority"
+		    quidu      	"36B614B6029F")
+		(object Role "high"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgPriority.high")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C901F6"
+		    documentation 	
+|
+|       Use for messages that require the attention of the system or an external entity as soon as possible.
+|     
+		    
+		    label      	"high"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgPriority"
+		    quidu      	"36B619C90148"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$28"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C90290"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$29"
+		    quid       	"36B619C90291"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgPriority"
+		    quidu      	"36B614B6029F")
+		(object Role "medium"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgPriority.medium")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C90292"
+		    documentation 	
+|
+|       Use for messages that are of interest and should be handled on an as time permits basis.
+|     
+		    
+		    label      	"medium"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgPriority"
+		    quidu      	"36B619C90148"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$30"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619C9033C"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$31"
+		    quid       	"36B619C9033D"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::MsgPriority"
+		    quidu      	"36B614B6029F")
+		(object Role "low"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.MsgPriority.low")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619C9033E"
+		    documentation 	
+|
+|       Use for messages that are for informational purposes only.  No action on the part of the system or an external entity is needed.
+|     
+		    
+		    label      	"low"
+		    supplier   	"Logical View::com::cboe::loggingService::MsgPriority"
+		    quidu      	"36B619C90148"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$32"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619CA0159"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$33"
+		    quid       	"36B619CA015A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::StdMsgType"
+		    quidu      	"36B614B70000")
+		(object Role "NonStd"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.corba.StdMsgType.NonStd")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619CA015B"
+		    label      	"NonStd"
+		    supplier   	"Logical View::com::cboe::loggingService::corba::StdMsgType"
+		    quidu      	"36B619CA0158"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$34"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619CA01F4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$35"
+		    quid       	"36B619CA01F5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::StdMsgType"
+		    quidu      	"36B614B70000")
+		(object Role "FileReadFailure"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.corba.StdMsgType.FileReadFailure")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619CA01F6"
+		    label      	"FileReadFailure"
+		    supplier   	"Logical View::com::cboe::loggingService::corba::StdMsgType"
+		    quidu      	"36B619CA0158"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$36"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619CA029F"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$37"
+		    quid       	"36B619CA02A0"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::StdMsgType"
+		    quidu      	"36B614B70000")
+		(object Role "MethodStarting"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.corba.StdMsgType.MethodStarting")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619CA02A1"
+		    label      	"MethodStarting"
+		    supplier   	"Logical View::com::cboe::loggingService::corba::StdMsgType"
+		    quidu      	"36B619CA0158"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$38"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B619CA033C"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$39"
+		    quid       	"36B619CA033D"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::loggingService::StdMsgType"
+		    quidu      	"36B614B70000")
+		(object Role "MethodEnded"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"com.cboe.loggingService.corba.StdMsgType.MethodEnded")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B619CA033E"
+		    label      	"MethodEnded"
+		    supplier   	"Logical View::com::cboe::loggingService::corba::StdMsgType"
+		    quidu      	"36B619CA0158"
+		    is_navigable 	TRUE
+		    static     	TRUE))))
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,25 @@
+<!-- An example of a Business Service DTD -->
+<!-- This example represents the BrokerService with a single property -->
+<!-- The BrokerServiceImpl will hard code the ManagedResource type into the implementation.
+	The configured implementation will have an 'expected' managed resource  -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalBrokerService ( BrokerServiceImpl* )>
+<!ATTLIST GlobalBrokerService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT BrokerService  (BrokerServiceProperties )>
+<!ATTLIST BrokerService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	name	CDATA	 #REQUIRED
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT BrokerServiceProperties (threadCount?)>
+<!ATTLIST BrokerServiceProperties  type  %typeConstraints;  #FIXED 'ManagedProperties'
+	description CDATA #FIXED 'Properties specific to the broker service'>
+
+<!ELEMENT threadCount ( #PCDATA )>
+<!ATTLIST threadCount  type	  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  (string | integer | float | enum )  #FIXED 'integer' 
+	description CDATA #FIXED 'The number of threads to use in the broker thread pool.' >

@@ -1,0 +1,13 @@
+
+. ../etc/setEnv
+
+echo '  [creating source jar]'
+
+cd ${FFTUTORIAL_HOME}/idl/idl_java
+jar cvf ../FFIDLSrc.jar com
+
+echo '  [creating classes jar]'
+cd ${FFTUTORIAL_HOME}/idl/idl_classes
+jar cvf ../FFIDL.jar com
+
+cd ..

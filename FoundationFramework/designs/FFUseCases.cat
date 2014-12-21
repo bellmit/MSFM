@@ -1,0 +1,5119 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "Foundation Framework"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"364866B602FA"
+    stereotype 	"component"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "Business Object Interceptor"
+	    quid       	"362CE0F00346"
+	    stereotype 	"Actor")
+	(object Class "Business Object Home"
+	    quid       	"362CDDE500B4"
+	    stereotype 	"Actor")
+	(object Class "Security Service"
+	    quid       	"361D390000ED"
+	    stereotype 	"Actor")
+	(object Class "Transaction Service"
+	    quid       	"361D37BE0186"
+	    stereotype 	"Actor")
+	(object Class "Persistent Service"
+	    quid       	"361D37AF033D"
+	    stereotype 	"Actor")
+	(object Class "Application Configuration Service"
+	    quid       	"361D3459031E"
+	    stereotype 	"Actor")
+	(object Class "Event Infrastructure"
+	    quid       	"361D343200F1"
+	    stereotype 	"Actor")
+	(object Class "Log Service"
+	    quid       	"361D33B60157"
+	    stereotype 	"Actor")
+	(object Class "Business Object Instance"
+	    quid       	"361BB5CF0359"
+	    stereotype 	"Actor")
+	(object Class "System Management Process"
+	    quid       	"361A70A601FF"
+	    stereotype 	"Actor")
+	(object Class "Application/Service Process"
+	    quid       	"36081CE402B3"
+	    stereotype 	"Actor")
+	(object Class "Client"
+	    quid       	"3607C5570253"
+	    stereotype 	"Actor")
+	(object Class "ORB"
+	    quid       	"36488C0A011B"
+	    stereotype 	"Actor")
+	(object UseCase "Shutdown Application Manager"
+	    quid       	"361A7743000E")
+	(object UseCase "transaction management"
+	    quid       	"361D385700FA")
+	(object UseCase "service management"
+	    quid       	"361D37110245"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"361D37360249"
+		    supplier   	"Use Case View::Foundation Framework::event logging"
+		    quidu      	"361D321A03AD")))
+	(object UseCase "service dispatching"
+	    quid       	"361D34CF0328")
+	(object UseCase "exception handling"
+	    quid       	"361D32A701CF"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"361D34170034"
+		    stereotype 	"use"
+		    supplier   	"Use Case View::Foundation Framework::event logging"
+		    quidu      	"361D321A03AD")))
+	(object UseCase "event logging"
+	    quid       	"361D321A03AD")
+	(object UseCase "configuration"
+	    quid       	"361D3209024A")
+	(object Association "$UNNAMED$0"
+	    quid       	"364B56D10126"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"364B56D2022B"
+		    supplier   	"Use Case View::Foundation Framework::ORB"
+		    quidu      	"36488C0A011B"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"364B56D20235"
+		    supplier   	"Use Case View::Foundation Framework::configuration"
+		    quidu      	"361D3209024A")))
+	(object Class_Category "configuration"
+	    quid       	"3620094201F2"
+	    stereotype 	"use case"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Mechanism @1
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$3"
+			    quid       	"361E7D8B0232"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"361E7D950286"
+				    supplier   	"$UNNAMED$4"
+				    quidu      	"361E7D8E01BE"
+				    messages   	(list Messages
+					(object Message "initialize framework"
+					    quid       	"361E7D950287"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)))
+				(object Link
+				    quid       	"361E807A0022"
+				    supplier   	"$UNNAMED$5"
+				    quidu      	"361E8021039F"))
+			    class      	"Use Case View::Foundation Framework::Application/Service Process"
+			    quidu      	"36081CE402B3"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$4"
+			    quid       	"361E7D8E01BE"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"361E7E1E021F"
+				    supplier   	"$UNNAMED$6"
+				    quidu      	"361E7E16005B"
+				    messages   	(list Messages
+					(object Message "get default configuration"
+					    quid       	"361E7E1E0220"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	2)
+					(object Message "return configuration"
+					    quid       	"361E7E23024E"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	3)))
+				(object Link
+				    quid       	"361E7E79039D"
+				    supplier   	"$UNNAMED$7"
+				    quidu      	"361E7E730131"
+				    messages   	(list Messages
+					(object Message "establish connection"
+					    quid       	"361E7E79039E"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	4)))
+				(object Link
+				    quid       	"361E7EA70208"
+				    supplier   	"$UNNAMED$8"
+				    quidu      	"361E7EA10227"
+				    messages   	(list Messages
+					(object Message "initialize"
+					    quid       	"361E7EA70209"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	5)))
+				(object Link
+				    quid       	"361E80C60338"
+				    supplier   	"$UNNAMED$5"
+				    quidu      	"361E8021039F"
+				    messages   	(list Messages
+					(object Message "initialize"
+					    quid       	"361E820D031A"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	6)))
+				(object Link
+				    quid       	"361E80D00080"
+				    supplier   	"$UNNAMED$9"
+				    quidu      	"361E802C0200"
+				    messages   	(list Messages
+					(object Message "initialize"
+					    quid       	"361E82130387"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	7)))
+				(object Link
+				    quid       	"361E82930322"
+				    supplier   	"$UNNAMED$10"
+				    quidu      	"361E8287018A"
+				    messages   	(list Messages
+					(object Message "initialize"
+					    quid       	"361E82930323"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	8)))
+				(object Link
+				    quid       	"36488C440327"
+				    supplier   	"$UNNAMED$11"
+				    quidu      	"36488C23035C"
+				    messages   	(list Messages
+					(object Message "initialize"
+					    quid       	"36488C44033B"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$6"
+			    quid       	"361E7E16005B"
+			    class      	"Use Case View::Foundation Framework::Application Configuration Service"
+			    quidu      	"361D3459031E"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$7"
+			    quid       	"361E7E730131"
+			    class      	"Use Case View::Foundation Framework::Log Service"
+			    quidu      	"361D33B60157"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$12"
+			    quid       	"361E7E9C013A"
+			    class      	"Use Case View::Foundation Framework::Event Infrastructure"
+			    quidu      	"361D343200F1"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$8"
+			    quid       	"361E7EA10227"
+			    class      	"Use Case View::Foundation Framework::Event Infrastructure"
+			    quidu      	"361D343200F1"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$5"
+			    quid       	"361E8021039F"
+			    class      	"Use Case View::Foundation Framework::Transaction Service"
+			    quidu      	"361D37BE0186"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$9"
+			    quid       	"361E802C0200"
+			    class      	"Use Case View::Foundation Framework::Persistent Service"
+			    quidu      	"361D37AF033D"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$10"
+			    quid       	"361E8287018A"
+			    class      	"Use Case View::Foundation Framework::Security Service"
+			    quidu      	"361D390000ED"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$11"
+			    quid       	"36488C23035C"
+			    class      	"Use Case View::Foundation Framework::ORB"
+			    quidu      	"36488C0A011B"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @2
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$13"
+			    quid       	"36200AD90164"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36200AFF0367"
+				    supplier   	"$UNNAMED$14"
+				    quidu      	"36200AF50331"
+				    messages   	(list Messages
+					(object Message "get tracing option"
+					    quid       	"36200AFF0368"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "set tracing option"
+					    quid       	"36204ACA0373"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Use Case View::Foundation Framework::Application/Service Process"
+			    quidu      	"36081CE402B3"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$14"
+			    quid       	"36200AF50331"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @3
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$15"
+			    quid       	"36200B4800A5"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36200B4800A6"
+				    supplier   	"$UNNAMED$16"
+				    quidu      	"36200B4800AF"
+				    messages   	(list Messages
+					(object Message "get instrumentation option"
+					    quid       	"36200B4800A7"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "set instrumentation option"
+					    quid       	"36204B1F0007"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Use Case View::Foundation Framework::Application/Service Process"
+			    quidu      	"36081CE402B3"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$16"
+			    quid       	"36200B4800AF"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @4
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$17"
+			    quid       	"36200BE702CB"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36200BFD00E2"
+				    supplier   	"$UNNAMED$18"
+				    quidu      	"36200BF201AE"
+				    messages   	(list Messages
+					(object Message "create a container"
+					    quid       	"36200BFD00E3"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "container"
+					    quid       	"36200C190291"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	1)
+					(object Message "set policies"
+					    quid       	"36200CD602BA"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	2)))
+				(object Link
+				    quid       	"36200C910275"
+				    supplier   	"$UNNAMED$19"
+				    quidu      	"36200C5A012C"
+				    messages   	(list Messages
+					(object Message "set default container"
+					    quid       	"36200C910276"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	3)
+					(object Message "create object"
+					    quid       	"363F60170024"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	4))))
+			    class      	"Use Case View::Foundation Framework::Application/Service Process"
+			    quidu      	"36081CE402B3"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$18"
+			    quid       	"36200BF201AE"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$20"
+			    quid       	"36200C3B02C2"
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$21"
+			    quid       	"36200C44015C"
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$22"
+			    quid       	"36200C4E0084"
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$19"
+			    quid       	"36200C5A012C"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"363F603301DD"
+				    supplier   	"$UNNAMED$23"
+				    quidu      	"363F6001019F"
+				    messages   	(list Messages
+					(object Message "create"
+					    quid       	"363F603301DE"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	5)))
+				(object Link
+				    quid       	"36488CFA00DA"
+				    supplier   	"$UNNAMED$19"
+				    quidu      	"36200C5A012C"
+				    messages   	(list Messages
+					(object Message "update instance map"
+					    quid       	"36488CFA00F8"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	7))))
+			    class      	"Use Case View::Foundation Framework::Business Object Home"
+			    quidu      	"362CDDE500B4"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$23"
+			    quid       	"363F6001019F"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"363F607E0267"
+				    supplier   	"$UNNAMED$18"
+				    quidu      	"36200BF201AE")
+				(object Link
+				    quid       	"36488CE202A2"
+				    supplier   	"$UNNAMED$24"
+				    quidu      	"36488CDC024A"
+				    messages   	(list Messages
+					(object Message "new"
+					    quid       	"36488CE202CA"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	6))))
+			    class      	"Use Case View::Foundation Framework::Business Object Interceptor"
+			    quidu      	"362CE0F00346"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$24"
+			    quid       	"36488CDC024A"
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE))))
+	    logical_presentations 	(list unit_reference_list
+		(object InteractionDiagram "initialize"
+		    mechanism_ref 	@1
+		    quid       	"361E7D7C0226"
+		    title      	"initialize"
+		    zoom       	73
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	43
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$3" @5
+			    location   	(224, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@5
+				location   	(224, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	1272
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E7D8B0232"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @6
+				location   	(224, 384)
+				line_color 	3342489
+				InterObjView 	@5
+				height     	1107
+				y_coord    	1047
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$4" @7
+			    location   	(800, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@7
+				location   	(800, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	734
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E7D8E01BE"
+			    width      	752
+			    height     	1356
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @8
+				location   	(800, 400)
+				line_color 	3342489
+				InterObjView 	@7
+				height     	1031
+				y_coord    	971
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @9
+				location   	(800, 720)
+				line_color 	3342489
+				InterObjView 	@7
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterObjView "$UNNAMED$6" @10
+			    location   	(1664, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@10
+				location   	(1664, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	1392
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E7E16005B"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @11
+				location   	(1664, 624)
+				line_color 	3342489
+				InterObjView 	@10
+				height     	216
+				y_coord    	156
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$7" @12
+			    location   	(1936, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@12
+				location   	(1936, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	480
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E7E730131"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @13
+				location   	(1936, 912)
+				line_color 	3342489
+				InterObjView 	@12
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$8" @14
+			    location   	(2208, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@14
+				location   	(2208, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	852
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E7EA10227"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @15
+				location   	(2208, 992)
+				line_color 	3342489
+				InterObjView 	@14
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$5" @16
+			    location   	(2496, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@16
+				location   	(2496, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	804
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E8021039F"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @17
+				location   	(2496, 1120)
+				line_color 	3342489
+				InterObjView 	@16
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$9" @18
+			    location   	(2784, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@18
+				location   	(2784, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	732
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E802C0200"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @19
+				location   	(2784, 1216)
+				line_color 	3342489
+				InterObjView 	@18
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$10" @20
+			    location   	(3056, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@20
+				location   	(3056, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	600
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"361E8287018A"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @21
+				location   	(3056, 1312)
+				line_color 	3342489
+				InterObjView 	@20
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$11" @22
+			    location   	(1328, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@22
+				location   	(1328, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36488C23035C"
+			    width      	336
+			    height     	1356
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @23
+				location   	(1328, 480)
+				line_color 	3342489
+				InterObjView 	@22
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @24
+			    location   	(0, 400)
+			    label      	(object SegLabel @25
+				Parent_View 	@24
+				location   	(512, 356)
+				quidu      	"361E7D950287"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	461
+				justify    	0
+				label      	"initialize framework"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@5
+			    supplier   	@7
+			    Focus_Src  	@6
+			    Focus_Entry 	@8
+			    origin     	(240, 400)
+			    terminus   	(784, 400)
+			    ordinal    	0)
+			(object InterMessView "" @26
+			    location   	(0, 627)
+			    label      	(object SegLabel @27
+				Parent_View 	@26
+				location   	(1232, 583)
+				quidu      	"361E7E1E0220"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	563
+				justify    	0
+				label      	"get default configuration"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@10
+			    Focus_Src  	@8
+			    Focus_Entry 	@11
+			    origin     	(816, 627)
+			    terminus   	(1648, 627)
+			    ordinal    	2)
+			(object InterMessView "" @28
+			    location   	(0, 723)
+			    label      	(object SegLabel @29
+				Parent_View 	@28
+				location   	(1175, 683)
+				quidu      	"361E7E23024E"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	457
+				justify    	0
+				label      	"return configuration"
+				pctDist    	0.568548
+				height     	41
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@10
+			    supplier   	@7
+			    Focus_Src  	@11
+			    Focus_Entry 	@9
+			    origin     	(1648, 723)
+			    terminus   	(816, 723)
+			    ordinal    	3)
+			(object InterMessView "" @30
+			    location   	(0, 905)
+			    label      	(object SegLabel @31
+				Parent_View 	@30
+				location   	(1024, 867)
+				quidu      	"361E7E79039E"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	485
+				justify    	0
+				label      	"establish connection"
+				pctDist    	0.188525
+				height     	39
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@12
+			    Focus_Src  	@8
+			    Focus_Entry 	@13
+			    origin     	(816, 905)
+			    terminus   	(1920, 905)
+			    ordinal    	4)
+			(object InterMessView "" @32
+			    location   	(0, 992)
+			    label      	(object SegLabel @33
+				Parent_View 	@32
+				location   	(938, 965)
+				quidu      	"361E7EA70209"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	210
+				justify    	0
+				label      	"initialize"
+				pctDist    	0.088867
+				height     	28
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@14
+			    Focus_Src  	@8
+			    Focus_Entry 	@15
+			    origin     	(816, 992)
+			    terminus   	(2192, 992)
+			    ordinal    	5)
+			(object InterMessView "" @34
+			    location   	(0, 1116)
+			    label      	(object SegLabel @35
+				Parent_View 	@34
+				location   	(942, 1087)
+				quidu      	"361E820D031A"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	210
+				justify    	0
+				label      	"initialize"
+				pctDist    	0.075781
+				height     	30
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@16
+			    Focus_Src  	@8
+			    Focus_Entry 	@17
+			    origin     	(816, 1116)
+			    terminus   	(2480, 1116)
+			    ordinal    	6)
+			(object InterMessView "" @36
+			    location   	(0, 1221)
+			    label      	(object SegLabel @37
+				Parent_View 	@36
+				location   	(936, 1193)
+				quidu      	"361E82130387"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	210
+				justify    	0
+				label      	"initialize"
+				pctDist    	0.061862
+				height     	29
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@18
+			    Focus_Src  	@8
+			    Focus_Entry 	@19
+			    origin     	(816, 1221)
+			    terminus   	(2768, 1221)
+			    ordinal    	7)
+			(object InterMessView "" @38
+			    location   	(0, 1311)
+			    label      	(object SegLabel @39
+				Parent_View 	@38
+				location   	(934, 1269)
+				quidu      	"361E82930323"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	210
+				justify    	0
+				label      	"initialize"
+				pctDist    	0.053180
+				height     	43
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@20
+			    Focus_Src  	@8
+			    Focus_Entry 	@21
+			    origin     	(816, 1311)
+			    terminus   	(3040, 1311)
+			    ordinal    	8)
+			(object InterMessView "" @40
+			    location   	(0, 475)
+			    label      	(object SegLabel @41
+				Parent_View 	@40
+				location   	(910, 428)
+				quidu      	"36488C44033B"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	210
+				justify    	0
+				label      	"initialize"
+				pctDist    	0.191532
+				height     	48
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@7
+			    supplier   	@22
+			    Focus_Src  	@8
+			    Focus_Entry 	@23
+			    origin     	(816, 475)
+			    terminus   	(1312, 475)
+			    ordinal    	1)))
+		(object InteractionDiagram "control tracing"
+		    mechanism_ref 	@2
+		    quid       	"362009830340"
+		    title      	"control tracing"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$13" @42
+			    location   	(304, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@42
+				location   	(304, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	360
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200AD90164"
+			    width      	336
+			    height     	545
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @43
+				location   	(304, 384)
+				line_color 	3342489
+				InterObjView 	@42
+				height     	296
+				y_coord    	236
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$14" @44
+			    location   	(784, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@44
+				location   	(784, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200AF50331"
+			    width      	300
+			    height     	545
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @45
+				location   	(784, 432)
+				line_color 	3342489
+				InterObjView 	@44
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @46
+				location   	(784, 560)
+				line_color 	3342489
+				InterObjView 	@44
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @47
+			    location   	(0, 432)
+			    label      	(object SegLabel @48
+				Parent_View 	@47
+				location   	(544, 388)
+				quidu      	"36200AFF0368"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	312
+				justify    	0
+				label      	"get tracing option"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@42
+			    supplier   	@44
+			    Focus_Src  	@43
+			    Focus_Entry 	@45
+			    origin     	(320, 432)
+			    terminus   	(768, 432)
+			    ordinal    	0)
+			(object InterMessView "" @49
+			    location   	(0, 560)
+			    label      	(object SegLabel @50
+				Parent_View 	@49
+				location   	(543, 517)
+				quidu      	"36204ACA0373"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	312
+				justify    	0
+				label      	"set tracing option"
+				pctDist    	0.497768
+				height     	44
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@42
+			    supplier   	@44
+			    Focus_Src  	@43
+			    Focus_Entry 	@46
+			    origin     	(320, 560)
+			    terminus   	(768, 560)
+			    ordinal    	1)))
+		(object InteractionDiagram "control instrumentation"
+		    mechanism_ref 	@3
+		    quid       	"3620099302F3"
+		    title      	"control instrumentation"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$15" @51
+			    location   	(272, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@51
+				location   	(272, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	360
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200B4800A5"
+			    width      	120
+			    height     	513
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @52
+				location   	(272, 384)
+				line_color 	3342489
+				InterObjView 	@51
+				height     	264
+				y_coord    	204
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$16" @53
+			    location   	(880, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@53
+				location   	(880, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200B4800AF"
+			    width      	300
+			    height     	513
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @54
+				location   	(880, 432)
+				line_color 	3342489
+				InterObjView 	@53
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @55
+				location   	(880, 528)
+				line_color 	3342489
+				InterObjView 	@53
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @56
+			    location   	(0, 432)
+			    label      	(object SegLabel @57
+				Parent_View 	@56
+				location   	(576, 388)
+				quidu      	"36200B4800A7"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	469
+				justify    	0
+				label      	"get instrumentation option"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@51
+			    supplier   	@53
+			    Focus_Src  	@52
+			    Focus_Entry 	@54
+			    origin     	(288, 432)
+			    terminus   	(864, 432)
+			    ordinal    	0)
+			(object InterMessView "" @58
+			    location   	(0, 528)
+			    label      	(object SegLabel @59
+				Parent_View 	@58
+				location   	(576, 484)
+				quidu      	"36204B1F0007"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	469
+				justify    	0
+				label      	"set instrumentation option"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@51
+			    supplier   	@53
+			    Focus_Src  	@52
+			    Focus_Entry 	@55
+			    origin     	(288, 528)
+			    terminus   	(864, 528)
+			    ordinal    	1)))
+		(object InteractionDiagram "configure execution container"
+		    mechanism_ref 	@4
+		    quid       	"362009A80235"
+		    title      	"configure execution container"
+		    zoom       	92
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	12
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$17" @60
+			    location   	(192, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@60
+				location   	(192, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	972
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200BE702CB"
+			    width      	336
+			    height     	1191
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @61
+				location   	(192, 384)
+				line_color 	3342489
+				InterObjView 	@60
+				height     	942
+				y_coord    	882
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @62
+				location   	(192, 496)
+				line_color 	3342489
+				InterObjView 	@60
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterObjView "$UNNAMED$18" @63
+			    location   	(944, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@63
+				location   	(944, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	584
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200BF201AE"
+			    width      	602
+			    height     	1191
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @64
+				location   	(944, 416)
+				line_color 	3342489
+				InterObjView 	@63
+				height     	200
+				y_coord    	140
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @65
+				location   	(944, 576)
+				line_color 	3342489
+				InterObjView 	@63
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterObjView "$UNNAMED$19" @66
+			    location   	(1312, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@66
+				location   	(1312, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	660
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36200C5A012C"
+			    width      	336
+			    height     	1191
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @67
+				location   	(1312, 784)
+				line_color 	3342489
+				InterObjView 	@66
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @68
+				location   	(1312, 864)
+				line_color 	3342489
+				InterObjView 	@66
+				height     	405
+				y_coord    	345
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$23" @69
+			    location   	(1648, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@69
+				location   	(1648, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	876
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"363F6001019F"
+			    width      	336
+			    height     	1191
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @70
+				location   	(1648, 928)
+				line_color 	3342489
+				InterObjView 	@69
+				height     	183
+				y_coord    	123
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$24" @71
+			    location   	(1968, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@71
+				location   	(1968, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	780
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36488CDC024A"
+			    width      	336
+			    height     	1191
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @72
+				location   	(1968, 992)
+				line_color 	3342489
+				InterObjView 	@71
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @73
+			    location   	(0, 416)
+			    label      	(object SegLabel @74
+				Parent_View 	@73
+				location   	(542, 373)
+				quidu      	"36200BFD00E3"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	333
+				justify    	0
+				label      	"create a container"
+				pctDist    	0.465074
+				height     	44
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@60
+			    supplier   	@63
+			    Focus_Src  	@61
+			    Focus_Entry 	@64
+			    origin     	(208, 416)
+			    terminus   	(928, 416)
+			    ordinal    	0)
+			(object InterMessView "" @75
+			    location   	(0, 496)
+			    label      	(object SegLabel @76
+				Parent_View 	@75
+				location   	(544, 457)
+				quidu      	"36200C190291"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	173
+				justify    	0
+				label      	"container"
+				pctDist    	0.534722
+				height     	40
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@63
+			    supplier   	@60
+			    Focus_Src  	@64
+			    Focus_Entry 	@62
+			    origin     	(928, 496)
+			    terminus   	(208, 496)
+			    ordinal    	1)
+			(object InterMessView "" @77
+			    location   	(0, 784)
+			    label      	(object SegLabel @78
+				Parent_View 	@77
+				location   	(472, 748)
+				quidu      	"36200C910276"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	377
+				justify    	0
+				label      	"set default container"
+				pctDist    	0.243566
+				height     	37
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@60
+			    supplier   	@66
+			    Focus_Src  	@61
+			    Focus_Entry 	@67
+			    origin     	(208, 784)
+			    terminus   	(1296, 784)
+			    ordinal    	3)
+			(object InterMessView "" @79
+			    location   	(0, 576)
+			    label      	(object SegLabel @80
+				Parent_View 	@79
+				location   	(549, 535)
+				quidu      	"36200CD602BA"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	214
+				justify    	0
+				label      	"set policies"
+				pctDist    	0.475000
+				height     	42
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@60
+			    supplier   	@63
+			    Focus_Src  	@61
+			    Focus_Entry 	@65
+			    origin     	(208, 576)
+			    terminus   	(928, 576)
+			    ordinal    	2)
+			(object InterMessView "" @81
+			    location   	(0, 861)
+			    label      	(object SegLabel @82
+				Parent_View 	@81
+				location   	(418, 832)
+				quidu      	"363F60170024"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	238
+				justify    	0
+				label      	"create object"
+				pctDist    	0.193015
+				height     	30
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@60
+			    supplier   	@66
+			    Focus_Src  	@61
+			    Focus_Entry 	@68
+			    origin     	(208, 861)
+			    terminus   	(1296, 861)
+			    ordinal    	4)
+			(object InterMessView "" @83
+			    location   	(0, 929)
+			    label      	(object SegLabel @84
+				Parent_View 	@83
+				location   	(1422, 890)
+				quidu      	"363F603301DE"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	115
+				justify    	0
+				label      	"create"
+				pctDist    	0.312081
+				height     	40
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@66
+			    supplier   	@69
+			    Focus_Src  	@68
+			    Focus_Entry 	@70
+			    origin     	(1328, 929)
+			    terminus   	(1632, 929)
+			    ordinal    	5)
+			(object InterMessView "" @85
+			    location   	(0, 992)
+			    label      	(object SegLabel @86
+				Parent_View 	@85
+				location   	(1716, 957)
+				quidu      	"36488CE202CA"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	78
+				justify    	0
+				label      	"new"
+				pctDist    	0.181208
+				height     	36
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@69
+			    supplier   	@71
+			    Focus_Src  	@70
+			    Focus_Entry 	@72
+			    origin     	(1664, 992)
+			    terminus   	(1952, 992)
+			    ordinal    	6)
+			(object SelfMessView "" @87
+			    location   	(0, 1146)
+			    label      	(object SegLabel @88
+				Parent_View 	@87
+				location   	(1431, 1079)
+				quidu      	"36488CFA00F8"
+				anchor_loc 	1
+				nlines     	2
+				max_width  	381
+				justify    	0
+				label      	"update instance map"
+				pctDist    	0.686667
+				height     	68
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@66
+			    supplier   	@66
+			    Focus_Src  	@68
+			    origin     	(1328, 1146)
+			    terminus   	(1478, 1146)
+			    ordinal    	7)))))
+	(object Class_Category "exception handling"
+	    quid       	"362009DB0260"
+	    stereotype 	"use case"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Mechanism @89
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$25"
+			    quid       	"3620E1FC01FC"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"3620E2290067"
+				    supplier   	"$UNNAMED$26"
+				    quidu      	"3620E20B03A3"
+				    messages   	(list Messages
+					(object Message "raise exception"
+					    quid       	"3620E2290068"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0))))
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$26"
+			    quid       	"3620E20B03A3"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"3620E247007E"
+				    supplier   	"$UNNAMED$27"
+				    quidu      	"3620E2410129"
+				    messages   	(list Messages
+					(object Message "log exception event"
+					    quid       	"3620E247007F"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1)))
+				(object Link
+				    quid       	"3626379B0215"
+				    supplier   	"$UNNAMED$26"
+				    quidu      	"3620E20B03A3"
+				    messages   	(list Messages
+					(object Message "handle exception"
+					    quid       	"3626379B0216"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	2))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$27"
+			    quid       	"3620E2410129"
+			    class      	"Use Case View::Foundation Framework::Log Service"
+			    quidu      	"361D33B60157"
+			    persistence 	"Transient"
+			    multi      	FALSE))))
+	    logical_presentations 	(list unit_reference_list
+		(object InteractionDiagram "raise exception"
+		    mechanism_ref 	@89
+		    quid       	"3620E17302F3"
+		    title      	"raise exception"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$25" @90
+			    location   	(336, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@90
+				location   	(336, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620E1FC01FC"
+			    width      	336
+			    height     	733
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @91
+				location   	(336, 400)
+				line_color 	3342489
+				InterObjView 	@90
+				height     	468
+				y_coord    	408
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$26" @92
+			    location   	(784, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@92
+				location   	(784, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	276
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620E20B03A3"
+			    width      	294
+			    height     	733
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @93
+				location   	(784, 416)
+				line_color 	3342489
+				InterObjView 	@92
+				height     	392
+				y_coord    	332
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$27" @94
+			    location   	(1216, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@94
+				location   	(1216, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620E2410129"
+			    width      	336
+			    height     	733
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @95
+				location   	(1216, 480)
+				line_color 	3342489
+				InterObjView 	@94
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @96
+			    location   	(0, 416)
+			    label      	(object SegLabel @97
+				Parent_View 	@96
+				location   	(560, 372)
+				quidu      	"3620E2290068"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	275
+				justify    	0
+				label      	"raise exception"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@90
+			    supplier   	@92
+			    Focus_Src  	@91
+			    Focus_Entry 	@93
+			    origin     	(352, 416)
+			    terminus   	(768, 416)
+			    ordinal    	0)
+			(object InterMessView "" @98
+			    location   	(0, 480)
+			    label      	(object SegLabel @99
+				Parent_View 	@98
+				location   	(1000, 436)
+				quidu      	"3620E247007F"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	347
+				justify    	0
+				label      	"log exception event"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@92
+			    supplier   	@94
+			    Focus_Src  	@93
+			    Focus_Entry 	@95
+			    origin     	(800, 480)
+			    terminus   	(1200, 480)
+			    ordinal    	1)
+			(object SelfMessView "" @100
+			    location   	(0, 688)
+			    label      	(object SegLabel @101
+				Parent_View 	@100
+				location   	(906, 598)
+				quidu      	"3626379B0216"
+				anchor_loc 	1
+				nlines     	2
+				max_width  	175
+				justify    	0
+				label      	"handle exception"
+				pctDist    	0.713333
+				height     	91
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@92
+			    supplier   	@92
+			    Focus_Src  	@93
+			    origin     	(800, 688)
+			    terminus   	(950, 688)
+			    ordinal    	2)))))
+	(object Class_Category "service dispatching"
+	    quid       	"362009F10059"
+	    stereotype 	"use case"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Mechanism @102
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$28"
+			    quid       	"362044C7035B"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362047A0015C"
+				    supplier   	"$UNNAMED$29"
+				    quidu      	"362044F30354")
+				(object Link
+				    quid       	"362CE13500A6"
+				    supplier   	"$UNNAMED$30"
+				    quidu      	"362CE10602ED"
+				    messages   	(list Messages
+					(object Message "service invocation"
+					    quid       	"362CE13500A7"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "reply"
+					    quid       	"36488E1102B2"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	4))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$29"
+			    quid       	"362044F30354"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362047AD007E"
+				    supplier   	"$UNNAMED$31"
+				    quidu      	"3620479B039A"))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$31"
+			    quid       	"3620479B039A"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362047C002D4"
+				    supplier   	"$UNNAMED$28"
+				    quidu      	"362044C7035B")
+				(object Link
+				    quid       	"362CE1F500AC"
+				    supplier   	"$UNNAMED$30"
+				    quidu      	"362CE10602ED"
+				    messages   	(list Messages
+					(object Message "dispatch"
+					    quid       	"36488DD10378"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	2))))
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$30"
+			    quid       	"362CE10602ED"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362CE1560054"
+				    supplier   	"$UNNAMED$29"
+				    quidu      	"362044F30354")
+				(object Link
+				    quid       	"362CE26A0231"
+				    supplier   	"$UNNAMED$30"
+				    quidu      	"362CE10602ED"
+				    messages   	(list Messages
+					(object Message "perform framework tasks"
+					    quid       	"362CE26A0232"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1)
+					(object Message "perform framework tasks"
+					    quid       	"362CE2AB026B"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	3))))
+			    class      	"Use Case View::Foundation Framework::Business Object Interceptor"
+			    quidu      	"362CE0F00346"
+			    persistence 	"Transient"
+			    multi      	FALSE))))
+	    logical_presentations 	(list unit_reference_list
+		(object InteractionDiagram "service dispatch"
+		    mechanism_ref 	@102
+		    quid       	"362044AF013A"
+		    title      	"service dispatch"
+		    zoom       	95
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$28" @103
+			    location   	(272, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@103
+				location   	(272, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362044C7035B"
+			    width      	336
+			    height     	1110
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @104
+				location   	(272, 384)
+				line_color 	3342489
+				InterObjView 	@103
+				height     	861
+				y_coord    	801
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @105
+				location   	(272, 1072)
+				line_color 	3342489
+				InterObjView 	@103
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterObjView "$UNNAMED$29" @106
+			    location   	(704, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@106
+				location   	(704, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	544
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362044F30354"
+			    width      	562
+			    height     	1110
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1)
+			(object InterObjView "$UNNAMED$31" @107
+			    location   	(1504, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@107
+				location   	(1504, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	756
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620479B039A"
+			    width      	336
+			    height     	1110
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @108
+				location   	(1504, 736)
+				line_color 	3342489
+				InterObjView 	@107
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$30" @109
+			    location   	(1136, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@109
+				location   	(1136, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	852
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362CE10602ED"
+			    width      	336
+			    height     	1110
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @110
+				location   	(1136, 384)
+				line_color 	3342489
+				InterObjView 	@109
+				height     	801
+				y_coord    	741
+				Nested     	FALSE))
+			(object InterMessView "" @111
+			    location   	(0, 384)
+			    label      	(object SegLabel @112
+				Parent_View 	@111
+				location   	(458, 342)
+				quidu      	"362CE13500A7"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	335
+				justify    	0
+				label      	"service invocation"
+				pctDist    	0.204861
+				height     	43
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@103
+			    supplier   	@109
+			    Focus_Src  	@104
+			    Focus_Entry 	@110
+			    origin     	(288, 384)
+			    terminus   	(1120, 384)
+			    ordinal    	0)
+			(object SelfMessView "" @113
+			    location   	(0, 576)
+			    label      	(object SegLabel @114
+				Parent_View 	@113
+				location   	(1291, 485)
+				quidu      	"362CE26A0232"
+				anchor_loc 	1
+				nlines     	3
+				max_width  	441
+				justify    	0
+				label      	"perform framework tasks"
+				pctDist    	0.933333
+				height     	92
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@109
+			    supplier   	@109
+			    Focus_Src  	@110
+			    origin     	(1152, 576)
+			    terminus   	(1302, 576)
+			    ordinal    	1)
+			(object SelfMessView "" @115
+			    location   	(0, 956)
+			    label      	(object SegLabel @116
+				Parent_View 	@115
+				location   	(1265, 848)
+				quidu      	"362CE2AB026B"
+				anchor_loc 	1
+				nlines     	3
+				max_width  	441
+				justify    	0
+				label      	"perform framework tasks"
+				pctDist    	0.760000
+				height     	109
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@109
+			    supplier   	@109
+			    Focus_Src  	@110
+			    origin     	(1152, 956)
+			    terminus   	(1302, 956)
+			    ordinal    	3)
+			(object InterMessView "" @117
+			    location   	(0, 730)
+			    label      	(object SegLabel @118
+				Parent_View 	@117
+				location   	(1252, 691)
+				quidu      	"36488DD10378"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	154
+				justify    	0
+				label      	"dispatch"
+				pctDist    	0.300595
+				height     	40
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@109
+			    supplier   	@107
+			    Focus_Src  	@110
+			    Focus_Entry 	@108
+			    origin     	(1152, 730)
+			    terminus   	(1488, 730)
+			    ordinal    	2)
+			(object InterMessView "" @119
+			    location   	(0, 1065)
+			    label      	(object SegLabel @120
+				Parent_View 	@119
+				location   	(1030, 1026)
+				quidu      	"36488E1102B2"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	102
+				justify    	0
+				label      	"reply"
+				pctDist    	0.108303
+				height     	40
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@109
+			    supplier   	@103
+			    Focus_Src  	@110
+			    Focus_Entry 	@105
+			    origin     	(1120, 1065)
+			    terminus   	(288, 1065)
+			    ordinal    	4)))))
+	(object Class_Category "service management"
+	    quid       	"36200A3A0210"
+	    stereotype 	"use case"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Mechanism @121
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$32"
+			    quid       	"36204B9303D0"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36204BAA0184"
+				    supplier   	"$UNNAMED$33"
+				    quidu      	"36204B9C0101"
+				    messages   	(list Messages
+					(object Message "get service properties"
+					    quid       	"36204BAA0185"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "set service properties"
+					    quid       	"36204BC100C9"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Use Case View::Foundation Framework::Application/Service Process"
+			    quidu      	"36081CE402B3"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$33"
+			    quid       	"36204B9C0101"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @122
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$34"
+			    quid       	"36204C1C0336"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36204C1C0337"
+				    supplier   	"$UNNAMED$35"
+				    quidu      	"36204C1C0340"
+				    messages   	(list Messages
+					(object Message "register command callback"
+					    quid       	"36204C1C0338"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0))))
+			    class      	"Use Case View::Foundation Framework::Application/Service Process"
+			    quidu      	"36081CE402B3"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$35"
+			    quid       	"36204C1C0340"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$36"
+			    quid       	"36204C7B0293"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36204C9501E6"
+				    supplier   	"$UNNAMED$35"
+				    quidu      	"36204C1C0340"
+				    messages   	(list Messages
+					(object Message "execute command"
+					    quid       	"36204C9501E7"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Use Case View::Foundation Framework::System Management Process"
+			    quidu      	"361A70A601FF"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @123
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$37"
+			    quid       	"3620E700029C"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"3620E700029D"
+				    supplier   	"$UNNAMED$38"
+				    quidu      	"3620E70002A8"
+				    messages   	(list Messages
+					(object Message "get service instrumentation data"
+					    quid       	"3620E70002A6"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0))))
+			    class      	"Use Case View::Foundation Framework::System Management Process"
+			    quidu      	"361A70A601FF"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$38"
+			    quid       	"3620E70002A8"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @124
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$39"
+			    quid       	"36488E980074"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36488EBA02AE"
+				    supplier   	"$UNNAMED$39"
+				    quidu      	"36488E980074"
+				    messages   	(list Messages
+					(object Message "collect instrumentation data"
+					    quid       	"36488EBA02AF"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1)))
+				(object Link
+				    quid       	"36488ED8038E"
+				    supplier   	"$UNNAMED$40"
+				    quidu      	"36488EAF02C6"
+				    messages   	(list Messages
+					(object Message "broadcast instrumentation data"
+					    quid       	"36488ED8038F"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	2))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$40"
+			    quid       	"36488EAF02C6"
+			    class      	"Use Case View::Foundation Framework::Event Infrastructure"
+			    quidu      	"361D343200F1"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$41"
+			    quid       	"364B70140117"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"364B701E0202"
+				    supplier   	"$UNNAMED$39"
+				    quidu      	"36488E980074"
+				    messages   	(list Messages
+					(object Message "instrument data"
+					    quid       	"364B701E022A"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE))))
+	    logical_presentations 	(list unit_reference_list
+		(object InteractionDiagram "control service properties"
+		    mechanism_ref 	@121
+		    quid       	"3620451C00BE"
+		    title      	"control service properties"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$32" @125
+			    location   	(288, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@125
+				location   	(288, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	360
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204B9303D0"
+			    width      	336
+			    height     	497
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @126
+				location   	(288, 384)
+				line_color 	3342489
+				InterObjView 	@125
+				height     	248
+				y_coord    	188
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$33" @127
+			    location   	(864, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@127
+				location   	(864, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204B9C0101"
+			    width      	300
+			    height     	497
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @128
+				location   	(864, 400)
+				line_color 	3342489
+				InterObjView 	@127
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @129
+				location   	(864, 512)
+				line_color 	3342489
+				InterObjView 	@127
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @130
+			    location   	(0, 400)
+			    label      	(object SegLabel @131
+				Parent_View 	@130
+				location   	(576, 356)
+				quidu      	"36204BAA0185"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	384
+				justify    	0
+				label      	"get service properties"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@125
+			    supplier   	@127
+			    Focus_Src  	@126
+			    Focus_Entry 	@128
+			    origin     	(304, 400)
+			    terminus   	(848, 400)
+			    ordinal    	0)
+			(object InterMessView "" @132
+			    location   	(0, 512)
+			    label      	(object SegLabel @133
+				Parent_View 	@132
+				location   	(576, 468)
+				quidu      	"36204BC100C9"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	384
+				justify    	0
+				label      	"set service properties"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@125
+			    supplier   	@127
+			    Focus_Src  	@126
+			    Focus_Entry 	@129
+			    origin     	(304, 512)
+			    terminus   	(848, 512)
+			    ordinal    	1)))
+		(object InteractionDiagram "control service operation"
+		    mechanism_ref 	@122
+		    quid       	"3620467D0238"
+		    title      	"control service operation"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$34" @134
+			    location   	(1424, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@134
+				location   	(1424, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	360
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204C1C0336"
+			    width      	120
+			    height     	497
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @135
+				location   	(1424, 384)
+				line_color 	3342489
+				InterObjView 	@134
+				height     	136
+				y_coord    	76
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$35" @136
+			    location   	(784, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@136
+				location   	(784, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204C1C0340"
+			    width      	300
+			    height     	497
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @137
+				location   	(784, 400)
+				line_color 	3342489
+				InterObjView 	@136
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @138
+				location   	(784, 512)
+				line_color 	3342489
+				InterObjView 	@136
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$36" @139
+			    location   	(272, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@139
+				location   	(272, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	396
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204C7B0293"
+			    width      	336
+			    height     	497
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @140
+				location   	(272, 512)
+				line_color 	3342489
+				InterObjView 	@139
+				height     	120
+				y_coord    	60
+				Nested     	FALSE))
+			(object InterMessView "" @141
+			    location   	(0, 400)
+			    label      	(object SegLabel @142
+				Parent_View 	@141
+				location   	(1104, 357)
+				quidu      	"36204C1C0338"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	487
+				justify    	0
+				label      	"register command callback"
+				pctDist    	0.500000
+				height     	44
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@134
+			    supplier   	@136
+			    Focus_Src  	@135
+			    Focus_Entry 	@137
+			    origin     	(1408, 400)
+			    terminus   	(800, 400)
+			    ordinal    	0)
+			(object InterMessView "" @143
+			    location   	(0, 512)
+			    label      	(object SegLabel @144
+				Parent_View 	@143
+				location   	(528, 468)
+				quidu      	"36204C9501E7"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	334
+				justify    	0
+				label      	"execute command"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@139
+			    supplier   	@136
+			    Focus_Src  	@140
+			    Focus_Entry 	@138
+			    origin     	(288, 512)
+			    terminus   	(768, 512)
+			    ordinal    	1)))
+		(object InteractionDiagram "retrieve service instrumenation data"
+		    mechanism_ref 	@123
+		    quid       	"3620E6CB0354"
+		    title      	"retrieve service instrumenation data"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$37" @145
+			    location   	(240, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@145
+				location   	(240, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	396
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620E700029C"
+			    width      	120
+			    height     	385
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @146
+				location   	(240, 384)
+				line_color 	3342489
+				InterObjView 	@145
+				height     	136
+				y_coord    	76
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$38" @147
+			    location   	(928, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@147
+				location   	(928, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620E70002A8"
+			    width      	300
+			    height     	385
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @148
+				location   	(928, 400)
+				line_color 	3342489
+				InterObjView 	@147
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @149
+			    location   	(0, 400)
+			    label      	(object SegLabel @150
+				Parent_View 	@149
+				location   	(584, 356)
+				quidu      	"3620E70002A6"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	575
+				justify    	0
+				label      	"get service instrumentation data"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@145
+			    supplier   	@147
+			    Focus_Src  	@146
+			    Focus_Entry 	@148
+			    origin     	(256, 400)
+			    terminus   	(912, 400)
+			    ordinal    	0)))
+		(object InteractionDiagram "collect service instrumentation data"
+		    mechanism_ref 	@124
+		    quid       	"36488E630353"
+		    title      	"collect service instrumentation data"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$39" @151
+			    location   	(784, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@151
+				location   	(784, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36488E980074"
+			    width      	300
+			    height     	697
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @152
+				location   	(780, 372)
+				line_color 	3342489
+				InterObjView 	@151
+				height     	460
+				y_coord    	400
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @153
+				location   	(784, 400)
+				line_color 	3342489
+				InterObjView 	@151
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterObjView "$UNNAMED$40" @154
+			    location   	(1440, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@154
+				location   	(1440, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36488EAF02C6"
+			    width      	336
+			    height     	697
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @155
+				location   	(1440, 720)
+				line_color 	3342489
+				InterObjView 	@154
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$41" @156
+			    location   	(208, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@156
+				location   	(208, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"364B70140117"
+			    width      	336
+			    height     	697
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @157
+				location   	(212, 406)
+				line_color 	3342489
+				InterObjView 	@156
+				height     	120
+				y_coord    	60
+				Nested     	FALSE))
+			(object SelfMessView "" @158
+			    location   	(0, 541)
+			    label      	(object SegLabel @159
+				Parent_View 	@158
+				location   	(951, 458)
+				quidu      	"36488EBA02AF"
+				anchor_loc 	1
+				nlines     	2
+				max_width  	291
+				justify    	0
+				label      	"collect instrumentation data"
+				pctDist    	1.013333
+				height     	84
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@151
+			    supplier   	@151
+			    Focus_Src  	@152
+			    origin     	(800, 541)
+			    terminus   	(950, 541)
+			    ordinal    	1)
+			(object InterMessView "" @160
+			    location   	(0, 712)
+			    label      	(object SegLabel @161
+				Parent_View 	@160
+				location   	(1112, 668)
+				quidu      	"36488ED8038F"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	559
+				justify    	0
+				label      	"broadcast instrumentation data"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@151
+			    supplier   	@154
+			    Focus_Src  	@152
+			    Focus_Entry 	@155
+			    origin     	(800, 712)
+			    terminus   	(1424, 712)
+			    ordinal    	2)
+			(object InterMessView "" @162
+			    location   	(0, 406)
+			    label      	(object SegLabel @163
+				Parent_View 	@162
+				location   	(387, 373)
+				quidu      	"364B701E022A"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	281
+				justify    	0
+				label      	"instrument data"
+				pctDist    	0.300373
+				height     	34
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@156
+			    supplier   	@151
+			    Focus_Src  	@157
+			    Focus_Entry 	@153
+			    origin     	(224, 406)
+			    terminus   	(768, 406)
+			    ordinal    	0)))))
+	(object Class_Category "transaction management"
+	    quid       	"36200A5E0262"
+	    stereotype 	"use case"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Mechanism @164
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$42"
+			    quid       	"362045B60246"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362045CC0220"
+				    supplier   	"$UNNAMED$43"
+				    quidu      	"362045BC00A0"
+				    messages   	(list Messages
+					(object Message "begin transaction"
+					    quid       	"362045CC0221"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "commit transaction"
+					    quid       	"362045FA017C"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	3)))
+				(object Link
+				    quid       	"362E1C050263"
+				    supplier   	"$UNNAMED$42"
+				    quidu      	"362045B60246")
+				(object Link
+				    quid       	"36488F3D0375"
+				    supplier   	"$UNNAMED$44"
+				    quidu      	"36488F1A00C1"
+				    messages   	(list Messages
+					(object Message "invoke operations and update data attributes"
+					    quid       	"36488F3D0376"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	2))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$43"
+			    quid       	"362045BC00A0"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362045E20217"
+				    supplier   	"$UNNAMED$45"
+				    quidu      	"362045C40138"
+				    messages   	(list Messages
+					(object Message "begin transaction"
+					    quid       	"362045E20218"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1)
+					(object Message "commit transaction"
+					    quid       	"3620460E03C9"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	4))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$45"
+			    quid       	"362045C40138"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36488F6E0181"
+				    supplier   	"$UNNAMED$44"
+				    quidu      	"36488F1A00C1"
+				    messages   	(list Messages
+					(object Message "commit changes"
+					    quid       	"36488F6E0182"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	5))))
+			    class      	"Use Case View::Foundation Framework::Transaction Service"
+			    quidu      	"361D37BE0186"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$44"
+			    quid       	"36488F1A00C1"
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @165
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$46"
+			    quid       	"36204640015E"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36204640015F"
+				    supplier   	"$UNNAMED$47"
+				    quidu      	"362046400188"
+				    messages   	(list Messages
+					(object Message "begin transaction"
+					    quid       	"362046400160"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "rollback transaction"
+					    quid       	"362046400161"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	3)))
+				(object Link
+				    quid       	"362E1BDD03A6"
+				    supplier   	"$UNNAMED$46"
+				    quidu      	"36204640015E")
+				(object Link
+				    quid       	"36488FA70042"
+				    supplier   	"aTransactionalInstance"
+				    quidu      	"36488F9D0282"
+				    messages   	(list Messages
+					(object Message "invoke operations and update attributes"
+					    quid       	"36488FA70043"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	2))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$47"
+			    quid       	"362046400188"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362046400187"
+				    supplier   	"$UNNAMED$48"
+				    quidu      	"362046400168"
+				    messages   	(list Messages
+					(object Message "begin transaction"
+					    quid       	"362046400189"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1)
+					(object Message "rollback transaction"
+					    quid       	"362046400186"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	4))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$48"
+			    quid       	"362046400168"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36488FE40393"
+				    supplier   	"aTransactionalInstance"
+				    quidu      	"36488F9D0282"
+				    messages   	(list Messages
+					(object Message "undo changes"
+					    quid       	"36488FE40394"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	5))))
+			    class      	"Use Case View::Foundation Framework::Transaction Service"
+			    quidu      	"361D37BE0186"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "aTransactionalInstance"
+			    quid       	"36488F9D0282"
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @166
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$49"
+			    quid       	"362CE75A00F6"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362CE75A00F7"
+				    supplier   	"$UNNAMED$50"
+				    quidu      	"362CE75A0100"
+				    messages   	(list Messages
+					(object Message "service invocation"
+					    quid       	"362CE75A00F8"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "reply"
+					    quid       	"3648911B0083"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	8))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$51"
+			    quid       	"362CE75A0106"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362CE75A0107"
+				    supplier   	"$UNNAMED$52"
+				    quidu      	"362CE75A010B"
+				    messages   	(list Messages
+					(object Message "begin transaction"
+					    quid       	"364890B00129"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	3)
+					(object Message "end transaction"
+					    quid       	"364890D9009C"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	5))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$52"
+			    quid       	"362CE75A010B"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362CE75A010A"
+				    supplier   	"$UNNAMED$50"
+				    quidu      	"362CE75A0100"
+				    messages   	(list Messages
+					(object Message "dispatch"
+					    quid       	"36489096017C"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"ToClientFromSupplier"
+					    sequence   	""
+					    ordinal    	2)
+					(object Message "reply"
+					    quid       	"364890F40159"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	6)))
+				(object Link
+				    quid       	"362CE7CC0226"
+				    supplier   	"$UNNAMED$52"
+				    quidu      	"362CE75A010B"
+				    messages   	(list Messages
+					(object Message "perform service request"
+					    quid       	"364890C000DC"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	4))))
+			    class      	"Use Case View::Foundation Framework::Business Object Instance"
+			    quidu      	"361BB5CF0359"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$50"
+			    quid       	"362CE75A0100"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362CE75A0101"
+				    supplier   	"$UNNAMED$51"
+				    quidu      	"362CE75A0106")
+				(object Link
+				    quid       	"3648907503D8"
+				    supplier   	"$UNNAMED$50"
+				    quidu      	"362CE75A0100"
+				    messages   	(list Messages
+					(object Message "perform framework tasks"
+					    quid       	"364890760004"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1)
+					(object Message "perform framework tasks"
+					    quid       	"36489102024A"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	7))))
+			    class      	"Use Case View::Foundation Framework::Business Object Interceptor"
+			    quidu      	"362CE0F00346"
+			    persistence 	"Transient"
+			    multi      	FALSE))))
+	    logical_presentations 	(list unit_reference_list
+		(object InteractionDiagram "commit changes"
+		    mechanism_ref 	@164
+		    quid       	"3620458E02F3"
+		    title      	"commit changes"
+		    zoom       	85
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	12
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$42" @167
+			    location   	(224, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@167
+				location   	(224, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362045B60246"
+			    width      	336
+			    height     	1062
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @168
+				location   	(224, 384)
+				line_color 	3342489
+				InterObjView 	@167
+				height     	813
+				y_coord    	753
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$43" @169
+			    location   	(704, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@169
+				location   	(704, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	634
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362045BC00A0"
+			    width      	652
+			    height     	1062
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @170
+				location   	(704, 432)
+				line_color 	3342489
+				InterObjView 	@169
+				height     	168
+				y_coord    	108
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @171
+				location   	(704, 816)
+				line_color 	3342489
+				InterObjView 	@169
+				height     	327
+				y_coord    	267
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$45" @172
+			    location   	(1120, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@172
+				location   	(1120, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	672
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362045C40138"
+			    width      	336
+			    height     	1062
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @173
+				location   	(1120, 480)
+				line_color 	3342489
+				InterObjView 	@172
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @174
+				location   	(1120, 880)
+				line_color 	3342489
+				InterObjView 	@172
+				height     	203
+				y_coord    	143
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$44" @175
+			    location   	(1456, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@175
+				location   	(1456, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	864
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36488F1A00C1"
+			    width      	336
+			    height     	1062
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @176
+				location   	(1456, 672)
+				line_color 	3342489
+				InterObjView 	@175
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @177
+				location   	(1456, 960)
+				line_color 	3342489
+				InterObjView 	@175
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @178
+			    location   	(0, 432)
+			    label      	(object SegLabel @179
+				Parent_View 	@178
+				location   	(431, 389)
+				quidu      	"362045CC0221"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	352
+				justify    	0
+				label      	"begin transaction"
+				pctDist    	0.428241
+				height     	44
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@167
+			    supplier   	@169
+			    Focus_Src  	@168
+			    Focus_Entry 	@170
+			    origin     	(240, 432)
+			    terminus   	(688, 432)
+			    ordinal    	0)
+			(object InterMessView "" @180
+			    location   	(0, 480)
+			    label      	(object SegLabel @181
+				Parent_View 	@180
+				location   	(912, 436)
+				quidu      	"362045E20218"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	352
+				justify    	0
+				label      	"begin transaction"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@169
+			    supplier   	@172
+			    Focus_Src  	@170
+			    Focus_Entry 	@173
+			    origin     	(720, 480)
+			    terminus   	(1104, 480)
+			    ordinal    	1)
+			(object InterMessView "" @182
+			    location   	(0, 810)
+			    label      	(object SegLabel @183
+				Parent_View 	@182
+				location   	(464, 766)
+				quidu      	"362045FA017C"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	385
+				justify    	0
+				label      	"commit transaction"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@167
+			    supplier   	@169
+			    Focus_Src  	@168
+			    Focus_Entry 	@171
+			    origin     	(240, 810)
+			    terminus   	(688, 810)
+			    ordinal    	3)
+			(object InterMessView "" @184
+			    location   	(0, 874)
+			    label      	(object SegLabel @185
+				Parent_View 	@184
+				location   	(912, 830)
+				quidu      	"3620460E03C9"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	385
+				justify    	0
+				label      	"commit transaction"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@169
+			    supplier   	@172
+			    Focus_Src  	@171
+			    Focus_Entry 	@174
+			    origin     	(720, 874)
+			    terminus   	(1104, 874)
+			    ordinal    	4)
+			(object InterMessView "" @186
+			    location   	(0, 675)
+			    label      	(object SegLabel @187
+				Parent_View 	@186
+				location   	(664, 636)
+				quidu      	"36488F3D0376"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	889
+				justify    	0
+				label      	"invoke operations and update data attributes"
+				pctDist    	0.353434
+				height     	40
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@167
+			    supplier   	@175
+			    Focus_Src  	@168
+			    Focus_Entry 	@176
+			    origin     	(240, 675)
+			    terminus   	(1440, 675)
+			    ordinal    	2)
+			(object InterMessView "" @188
+			    location   	(0, 957)
+			    label      	(object SegLabel @189
+				Parent_View 	@188
+				location   	(1313, 910)
+				quidu      	"36488F6E0182"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	334
+				justify    	0
+				label      	"commit changes"
+				pctDist    	0.583893
+				height     	48
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@172
+			    supplier   	@175
+			    Focus_Src  	@174
+			    Focus_Entry 	@177
+			    origin     	(1136, 957)
+			    terminus   	(1440, 957)
+			    ordinal    	5)))
+		(object InteractionDiagram "rollback changes"
+		    mechanism_ref 	@165
+		    quid       	"3620459B012F"
+		    title      	"rollback changes"
+		    zoom       	87
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	45
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$46" @190
+			    location   	(208, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@190
+				location   	(208, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204640015E"
+			    width      	120
+			    height     	1064
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @191
+				location   	(208, 384)
+				line_color 	3342489
+				InterObjView 	@190
+				height     	815
+				y_coord    	755
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$47" @192
+			    location   	(672, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@192
+				location   	(672, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	638
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362046400188"
+			    width      	656
+			    height     	1064
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @193
+				location   	(672, 432)
+				line_color 	3342489
+				InterObjView 	@192
+				height     	168
+				y_coord    	108
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @194
+				location   	(672, 816)
+				line_color 	3342489
+				InterObjView 	@192
+				height     	318
+				y_coord    	258
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$48" @195
+			    location   	(1120, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@195
+				location   	(1120, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	672
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362046400168"
+			    width      	120
+			    height     	1064
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @196
+				location   	(1120, 480)
+				line_color 	3342489
+				InterObjView 	@195
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @197
+				location   	(1120, 880)
+				line_color 	3342489
+				InterObjView 	@195
+				height     	194
+				y_coord    	134
+				Nested     	FALSE))
+			(object InterObjView "aTransactionalInstance" @198
+			    location   	(1504, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@198
+				location   	(1504, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	1392
+				justify    	0
+				label      	"aTransactionalInstance")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36488F9D0282"
+			    width      	336
+			    height     	1064
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @199
+				location   	(1504, 688)
+				line_color 	3342489
+				InterObjView 	@198
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @200
+				location   	(1504, 960)
+				line_color 	3342489
+				InterObjView 	@198
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @201
+			    location   	(0, 432)
+			    label      	(object SegLabel @202
+				Parent_View 	@201
+				location   	(409, 389)
+				quidu      	"362046400160"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	344
+				justify    	0
+				label      	"begin transaction"
+				pctDist    	0.428241
+				height     	44
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@190
+			    supplier   	@192
+			    Focus_Src  	@191
+			    Focus_Entry 	@193
+			    origin     	(224, 432)
+			    terminus   	(656, 432)
+			    ordinal    	0)
+			(object InterMessView "" @203
+			    location   	(0, 821)
+			    label      	(object SegLabel @204
+				Parent_View 	@203
+				location   	(440, 777)
+				quidu      	"362046400161"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	389
+				justify    	0
+				label      	"rollback transaction"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@190
+			    supplier   	@192
+			    Focus_Src  	@191
+			    Focus_Entry 	@194
+			    origin     	(224, 821)
+			    terminus   	(656, 821)
+			    ordinal    	3)
+			(object InterMessView "" @205
+			    location   	(0, 480)
+			    label      	(object SegLabel @206
+				Parent_View 	@205
+				location   	(896, 436)
+				quidu      	"362046400189"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	344
+				justify    	0
+				label      	"begin transaction"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@192
+			    supplier   	@195
+			    Focus_Src  	@193
+			    Focus_Entry 	@196
+			    origin     	(688, 480)
+			    terminus   	(1104, 480)
+			    ordinal    	1)
+			(object InterMessView "" @207
+			    location   	(0, 885)
+			    label      	(object SegLabel @208
+				Parent_View 	@207
+				location   	(896, 841)
+				quidu      	"362046400186"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	389
+				justify    	0
+				label      	"rollback transaction"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@192
+			    supplier   	@195
+			    Focus_Src  	@194
+			    Focus_Entry 	@197
+			    origin     	(688, 885)
+			    terminus   	(1104, 885)
+			    ordinal    	4)
+			(object InterMessView "" @209
+			    location   	(0, 686)
+			    label      	(object SegLabel @210
+				Parent_View 	@209
+				location   	(608, 642)
+				quidu      	"36488FA70043"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	774
+				justify    	0
+				label      	"invoke operations and update attributes"
+				pctDist    	0.304177
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@190
+			    supplier   	@198
+			    Focus_Src  	@191
+			    Focus_Entry 	@199
+			    origin     	(224, 686)
+			    terminus   	(1488, 686)
+			    ordinal    	2)
+			(object InterMessView "" @211
+			    location   	(0, 959)
+			    label      	(object SegLabel @212
+				Parent_View 	@211
+				location   	(1312, 915)
+				quidu      	"36488FE40394"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	282
+				justify    	0
+				label      	"undo changes"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@195
+			    supplier   	@198
+			    Focus_Src  	@197
+			    Focus_Entry 	@200
+			    origin     	(1136, 959)
+			    terminus   	(1488, 959)
+			    ordinal    	5)))
+		(object InteractionDiagram "object managed transaction"
+		    mechanism_ref 	@166
+		    quid       	"362CE742023C"
+		    title      	"object managed transaction"
+		    zoom       	93
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$49" @213
+			    location   	(96, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@213
+				location   	(96, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362CE75A00F6"
+			    width      	120
+			    height     	1385
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @214
+				location   	(96, 384)
+				line_color 	3342489
+				InterObjView 	@213
+				height     	1136
+				y_coord    	1076
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @215
+				location   	(96, 1344)
+				line_color 	3342489
+				InterObjView 	@213
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterObjView "$UNNAMED$51" @216
+			    location   	(368, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@216
+				location   	(368, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	584
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362CE75A0106"
+			    width      	602
+			    height     	1385
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @217
+				location   	(368, 736)
+				line_color 	3342489
+				InterObjView 	@216
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @218
+				location   	(368, 1008)
+				line_color 	3342489
+				InterObjView 	@216
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$52" @219
+			    location   	(1200, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@219
+				location   	(1200, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	780
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362CE75A010B"
+			    width      	120
+			    height     	1385
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @220
+				location   	(1200, 656)
+				line_color 	3342489
+				InterObjView 	@219
+				height     	535
+				y_coord    	475
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$50" @221
+			    location   	(816, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@221
+				location   	(816, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	876
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362CE75A0100"
+			    width      	120
+			    height     	1385
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @222
+				location   	(816, 384)
+				line_color 	3342489
+				InterObjView 	@221
+				height     	1076
+				y_coord    	1016
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @223
+				location   	(816, 1072)
+				line_color 	3342489
+				InterObjView 	@221
+				height     	60
+				y_coord    	0
+				Nested     	TRUE))
+			(object InterMessView "" @224
+			    location   	(0, 384)
+			    label      	(object SegLabel @225
+				Parent_View 	@224
+				location   	(252, 342)
+				quidu      	"362CE75A00F8"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	342
+				justify    	0
+				label      	"service invocation"
+				pctDist    	0.204861
+				height     	43
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@213
+			    supplier   	@221
+			    Focus_Src  	@214
+			    Focus_Entry 	@222
+			    origin     	(112, 384)
+			    terminus   	(800, 384)
+			    ordinal    	0)
+			(object SelfMessView "" @226
+			    location   	(0, 525)
+			    label      	(object SegLabel @227
+				Parent_View 	@226
+				location   	(934, 432)
+				quidu      	"364890760004"
+				anchor_loc 	1
+				nlines     	3
+				max_width  	445
+				justify    	0
+				label      	"perform framework tasks"
+				pctDist    	0.680000
+				height     	94
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@221
+			    supplier   	@221
+			    Focus_Src  	@222
+			    origin     	(832, 525)
+			    terminus   	(982, 525)
+			    ordinal    	1)
+			(object InterMessView "" @228
+			    location   	(0, 661)
+			    label      	(object SegLabel @229
+				Parent_View 	@228
+				location   	(953, 618)
+				quidu      	"36489096017C"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	158
+				justify    	0
+				label      	"dispatch"
+				pctDist    	0.343750
+				height     	44
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@221
+			    supplier   	@219
+			    Focus_Src  	@222
+			    Focus_Entry 	@220
+			    origin     	(832, 661)
+			    terminus   	(1184, 661)
+			    ordinal    	2)
+			(object InterMessView "" @230
+			    location   	(0, 743)
+			    label      	(object SegLabel @231
+				Parent_View 	@230
+				location   	(1019, 717)
+				quidu      	"364890B00129"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	319
+				justify    	0
+				label      	"begin transaction"
+				pctDist    	0.207500
+				height     	27
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@219
+			    supplier   	@216
+			    Focus_Src  	@220
+			    Focus_Entry 	@217
+			    origin     	(1184, 743)
+			    terminus   	(384, 743)
+			    ordinal    	3)
+			(object SelfMessView "" @232
+			    location   	(0, 890)
+			    label      	(object SegLabel @233
+				Parent_View 	@232
+				location   	(1376, 804)
+				quidu      	"364890C000DC"
+				anchor_loc 	1
+				nlines     	2
+				max_width  	439
+				justify    	0
+				label      	"perform service request"
+				pctDist    	1.066667
+				height     	87
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@219
+			    supplier   	@219
+			    Focus_Src  	@220
+			    origin     	(1216, 890)
+			    terminus   	(1366, 890)
+			    ordinal    	4)
+			(object InterMessView "" @234
+			    location   	(0, 1001)
+			    label      	(object SegLabel @235
+				Parent_View 	@234
+				location   	(1019, 960)
+				quidu      	"364890D9009C"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	285
+				justify    	0
+				label      	"end transaction"
+				pctDist    	0.207500
+				height     	42
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@219
+			    supplier   	@216
+			    Focus_Src  	@220
+			    Focus_Entry 	@218
+			    origin     	(1184, 1001)
+			    terminus   	(384, 1001)
+			    ordinal    	5)
+			(object InterMessView "" @236
+			    location   	(0, 1076)
+			    label      	(object SegLabel @237
+				Parent_View 	@236
+				location   	(1113, 1035)
+				quidu      	"364890F40159"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	104
+				justify    	0
+				label      	"reply"
+				pctDist    	0.201705
+				height     	42
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@219
+			    supplier   	@221
+			    Focus_Src  	@220
+			    Focus_Entry 	@223
+			    origin     	(1184, 1076)
+			    terminus   	(832, 1076)
+			    ordinal    	6)
+			(object SelfMessView "" @238
+			    location   	(0, 1228)
+			    label      	(object SegLabel @239
+				Parent_View 	@238
+				location   	(1013, 1154)
+				quidu      	"36489102024A"
+				anchor_loc 	1
+				nlines     	2
+				max_width  	455
+				justify    	0
+				label      	"perform framework tasks"
+				pctDist    	1.206667
+				height     	75
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@221
+			    supplier   	@221
+			    Focus_Src  	@222
+			    origin     	(832, 1228)
+			    terminus   	(982, 1228)
+			    ordinal    	7)
+			(object InterMessView "" @240
+			    location   	(0, 1340)
+			    label      	(object SegLabel @241
+				Parent_View 	@240
+				location   	(735, 1304)
+				quidu      	"3648911B0083"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	104
+				justify    	0
+				label      	"reply"
+				pctDist    	0.095930
+				height     	37
+				orientation 	1)
+			    line_color 	3342489
+			    client     	@221
+			    supplier   	@213
+			    Focus_Src  	@222
+			    Focus_Entry 	@215
+			    origin     	(800, 1340)
+			    terminus   	(112, 1340)
+			    ordinal    	8)))))
+	(object Class_Category "event logging"
+	    quid       	"362048D1013C"
+	    stereotype 	"use case"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Mechanism @242
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$53"
+			    quid       	"36204A34025F"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"36204A450097"
+				    supplier   	"$UNNAMED$54"
+				    quidu      	"36204A3E00F1"
+				    messages   	(list Messages
+					(object Message "get log propagation level"
+					    quid       	"36204A450098"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0)
+					(object Message "set log propagation level"
+					    quid       	"36204A570256"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$54"
+			    quid       	"36204A3E00F1"
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)))
+		(object Mechanism @243
+		    logical_models 	(list unit_reference_list
+			(object Object "$UNNAMED$55"
+			    quid       	"3620499A039E"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362049B1026B"
+				    supplier   	"$UNNAMED$56"
+				    quidu      	"362049A90101"
+				    messages   	(list Messages
+					(object Message "log event"
+					    quid       	"362049B1026C"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	0))))
+			    class      	"Use Case View::Foundation Framework::Client"
+			    quidu      	"3607C5570253"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$56"
+			    quid       	"362049A90101"
+			    collaborators 	(list link_list
+				(object Link
+				    quid       	"362049DF01EF"
+				    supplier   	"$UNNAMED$57"
+				    quidu      	"362049D9013C"
+				    messages   	(list Messages
+					(object Message "log event"
+					    quid       	"362049DF01F0"
+					    frequency  	"Aperiodic"
+					    synchronization 	"Simple"
+					    dir        	"FromClientToSupplier"
+					    sequence   	""
+					    ordinal    	1))))
+			    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::Framework"
+			    quidu      	"363653880013"
+			    persistence 	"Transient"
+			    multi      	FALSE)
+			(object Object "$UNNAMED$57"
+			    quid       	"362049D9013C"
+			    class      	"Use Case View::Foundation Framework::Log Service"
+			    quidu      	"361D33B60157"
+			    persistence 	"Transient"
+			    multi      	FALSE))))
+	    logical_presentations 	(list unit_reference_list
+		(object InteractionDiagram "control propagation level"
+		    mechanism_ref 	@242
+		    quid       	"362048E30002"
+		    title      	"control propagation level"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$53" @244
+			    location   	(368, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@244
+				location   	(368, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204A34025F"
+			    width      	336
+			    height     	529
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @245
+				location   	(368, 400)
+				line_color 	3342489
+				InterObjView 	@244
+				height     	264
+				y_coord    	204
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$54" @246
+			    location   	(912, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@246
+				location   	(912, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"36204A3E00F1"
+			    width      	300
+			    height     	529
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @247
+				location   	(912, 416)
+				line_color 	3342489
+				InterObjView 	@246
+				height     	60
+				y_coord    	0
+				Nested     	FALSE)
+			    Focus_Of_Control 	(object Focus_Of_Control "" @248
+				location   	(912, 544)
+				line_color 	3342489
+				InterObjView 	@246
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @249
+			    location   	(0, 416)
+			    label      	(object SegLabel @250
+				Parent_View 	@249
+				location   	(640, 372)
+				quidu      	"36204A450098"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	434
+				justify    	0
+				label      	"get log propagation level"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@244
+			    supplier   	@246
+			    Focus_Src  	@245
+			    Focus_Entry 	@247
+			    origin     	(384, 416)
+			    terminus   	(896, 416)
+			    ordinal    	0)
+			(object InterMessView "" @251
+			    location   	(0, 544)
+			    label      	(object SegLabel @252
+				Parent_View 	@251
+				location   	(640, 500)
+				quidu      	"36204A570256"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	434
+				justify    	0
+				label      	"set log propagation level"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@244
+			    supplier   	@246
+			    Focus_Src  	@245
+			    Focus_Entry 	@248
+			    origin     	(384, 544)
+			    terminus   	(896, 544)
+			    ordinal    	1)))
+		(object InteractionDiagram "log event"
+		    mechanism_ref 	@243
+		    quid       	"362048F502D9"
+		    title      	"log event"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object InterObjView "$UNNAMED$55" @253
+			    location   	(256, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@253
+				location   	(256, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"3620499A039E"
+			    width      	336
+			    height     	541
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @254
+				location   	(256, 400)
+				line_color 	3342489
+				InterObjView 	@253
+				height     	276
+				y_coord    	216
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$56" @255
+			    location   	(592, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@255
+				location   	(592, 224)
+				fill_color 	13434879
+				anchor_loc 	1
+				nlines     	2
+				max_width  	282
+				justify    	0
+				label      	"")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362049A90101"
+			    width      	300
+			    height     	541
+			    icon_height 	0
+			    icon_width 	0
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @256
+				location   	(592, 432)
+				line_color 	3342489
+				InterObjView 	@255
+				height     	184
+				y_coord    	124
+				Nested     	FALSE))
+			(object InterObjView "$UNNAMED$57" @257
+			    location   	(928, 224)
+			    font       	(object Font
+				underline  	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@257
+				location   	(928, 249)
+				anchor_loc 	1
+				nlines     	2
+				max_width  	324
+				justify    	0
+				label      	"")
+			    icon       	"Actor"
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"362049D9013C"
+			    width      	336
+			    height     	541
+			    icon_height 	162
+			    icon_width 	120
+			    annotation 	1
+			    Focus_Of_Control 	(object Focus_Of_Control "" @258
+				location   	(928, 496)
+				line_color 	3342489
+				InterObjView 	@257
+				height     	60
+				y_coord    	0
+				Nested     	FALSE))
+			(object InterMessView "" @259
+			    location   	(0, 432)
+			    label      	(object SegLabel @260
+				Parent_View 	@259
+				location   	(424, 388)
+				quidu      	"362049B1026C"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	159
+				justify    	0
+				label      	"log event"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@253
+			    supplier   	@255
+			    Focus_Src  	@254
+			    Focus_Entry 	@256
+			    origin     	(272, 432)
+			    terminus   	(576, 432)
+			    ordinal    	0)
+			(object InterMessView "" @261
+			    location   	(0, 496)
+			    label      	(object SegLabel @262
+				Parent_View 	@261
+				location   	(760, 452)
+				quidu      	"362049DF01F0"
+				anchor_loc 	1
+				nlines     	1
+				max_width  	159
+				justify    	0
+				label      	"log event"
+				pctDist    	0.500000
+				height     	45
+				orientation 	0)
+			    line_color 	3342489
+			    client     	@255
+			    supplier   	@257
+			    Focus_Src  	@256
+			    Focus_Entry 	@258
+			    origin     	(608, 496)
+			    terminus   	(912, 496)
+			    ordinal    	1))))))
+    logical_presentations 	(list unit_reference_list
+	(object UseCaseDiagram "Main"
+	    quid       	"3607B855031E"
+	    title      	"Main"
+	    zoom       	88
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object UseCaseView "Use Case View::Foundation Framework::service management" @263
+		    location   	(1056, 2176)
+		    label      	(object ItemLabel
+			Parent_View 	@263
+			location   	(1056, 2314)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	705
+			justify    	0
+			label      	"service management")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D37110245"
+		    height     	118
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::System Management Process" @264
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(240, 2176)
+		    label      	(object ItemLabel
+			Parent_View 	@264
+			location   	(240, 2336)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	1095
+			justify    	0
+			label      	"System Management Process")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361A70A601FF"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @265
+		    location   	(620, 2176)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D3759020D"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @266
+			    Parent_View 	@265
+			    location   	(-1204, 224)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D375A00EC"
+			    client     	@265
+			    supplier   	@263
+			    line_style 	0)
+			(object RoleView "" @267
+			    Parent_View 	@265
+			    location   	(-1204, 224)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D375A00F6"
+			    client     	@265
+			    supplier   	@264
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Foundation Framework::exception handling" @268
+		    location   	(672, 1936)
+		    label      	(object ItemLabel
+			Parent_View 	@268
+			location   	(672, 2074)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	633
+			justify    	0
+			label      	"exception handling")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D32A701CF"
+		    height     	118
+		    autoResize 	TRUE)
+		(object UseCaseView "Use Case View::Foundation Framework::event logging" @269
+		    location   	(816, 1472)
+		    label      	(object ItemLabel
+			Parent_View 	@269
+			location   	(816, 1610)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	633
+			justify    	0
+			label      	"event logging")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D321A03AD"
+		    height     	118
+		    autoResize 	TRUE)
+		(object InheritView "" @270
+		    stereotype 	(object SegLabel @271
+			Parent_View 	@270
+			location   	(819, 1756)
+			anchor     	10
+			anchor_loc 	1
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"<<use>>"
+			pctDist    	0.679771
+			height     	91
+			orientation 	1)
+		    line_color 	3342489
+		    quidu      	"361D34170034"
+		    client     	@268
+		    supplier   	@269
+		    line_style 	0)
+		(object InheritView "" @272
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D37360249"
+		    client     	@263
+		    supplier   	@269
+		    line_style 	0)
+		(object UseCaseView "Use Case View::Foundation Framework::transaction management" @273
+		    location   	(784, 1152)
+		    label      	(object ItemLabel
+			Parent_View 	@273
+			location   	(784, 1290)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	705
+			justify    	0
+			label      	"transaction management")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D385700FA"
+		    height     	118
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::Client" @274
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(192, 736)
+		    label      	(object ItemLabel
+			Parent_View 	@274
+			location   	(192, 896)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	327
+			justify    	0
+			label      	"Client")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3607C5570253"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::Business Object Instance" @275
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(208, 1392)
+		    label      	(object ItemLabel
+			Parent_View 	@275
+			location   	(208, 1552)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	831
+			justify    	0
+			label      	"Business Object Instance")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361BB5CF0359"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @276
+		    location   	(504, 1739)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D33F101E8"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @277
+			    Parent_View 	@276
+			    location   	(-8, 75)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D33F20081"
+			    client     	@276
+			    supplier   	@268
+			    line_style 	0)
+			(object RoleView "" @278
+			    Parent_View 	@276
+			    location   	(-8, 75)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D33F20082"
+			    client     	@276
+			    supplier   	@275
+			    line_style 	0)))
+		(object AssociationViewNew "" @279
+		    location   	(485, 1425)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D35200049"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @280
+			    Parent_View 	@279
+			    location   	(-11, 49)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D35210113"
+			    client     	@279
+			    supplier   	@269
+			    line_style 	0)
+			(object RoleView "" @281
+			    Parent_View 	@279
+			    location   	(-11, 49)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D35210114"
+			    client     	@279
+			    supplier   	@275
+			    line_style 	0)))
+		(object AssociationViewNew "" @282
+		    location   	(345, 1331)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D3897019C"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @283
+			    Parent_View 	@282
+			    location   	(-71, -413)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D389803BA"
+			    client     	@282
+			    supplier   	@273
+			    line_style 	0)
+			(object RoleView "" @284
+			    Parent_View 	@282
+			    location   	(-71, -413)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D389803BB"
+			    client     	@282
+			    supplier   	@275
+			    line_style 	0)))
+		(object UseCaseView "Use Case View::Foundation Framework::service dispatching" @285
+		    location   	(768, 832)
+		    label      	(object ItemLabel
+			Parent_View 	@285
+			location   	(768, 970)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	705
+			justify    	0
+			label      	"service dispatching")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D34CF0328"
+		    height     	118
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @286
+		    location   	(453, 776)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D34FF00CE"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @287
+			    Parent_View 	@286
+			    location   	(-43, -184)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D350002EC"
+			    client     	@286
+			    supplier   	@285
+			    line_style 	0)
+			(object RoleView "" @288
+			    Parent_View 	@286
+			    location   	(-43, -184)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D350002ED"
+			    client     	@286
+			    supplier   	@274
+			    line_style 	0)))
+		(object AssociationViewNew "" @289
+		    location   	(423, 1174)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"36200736014E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @290
+			    Parent_View 	@289
+			    location   	(-313, 342)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"36200737020E"
+			    client     	@289
+			    supplier   	@275
+			    line_style 	0)
+			(object RoleView "" @291
+			    Parent_View 	@289
+			    location   	(-313, 342)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"362007370218"
+			    client     	@289
+			    supplier   	@285
+			    line_style 	0)))
+		(object ClassView "Class" "Use Case View::Foundation Framework::Application/Service Process" @292
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(224, 192)
+		    label      	(object ItemLabel
+			Parent_View 	@292
+			location   	(224, 352)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	771
+			justify    	0
+			label      	"Application/Service Process")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"36081CE402B3"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::Event Infrastructure" @293
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1616, 160)
+		    label      	(object ItemLabel
+			Parent_View 	@293
+			location   	(1616, 320)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	711
+			justify    	0
+			label      	"Event Infrastructure")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D343200F1"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::Application Configuration Service" @294
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1616, 1408)
+		    label      	(object ItemLabel
+			Parent_View 	@294
+			location   	(1616, 1568)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	1142
+			justify    	0
+			label      	"Application Configuration Service")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D3459031E"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::Persistent Service" @295
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1632, 448)
+		    label      	(object ItemLabel
+			Parent_View 	@295
+			location   	(1632, 608)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	494
+			justify    	0
+			label      	"Persistent Service")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D37AF033D"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Use Case View::Foundation Framework::Log Service" @296
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1632, 1840)
+		    label      	(object ItemLabel
+			Parent_View 	@296
+			location   	(1632, 2000)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	399
+			justify    	0
+			label      	"Log Service")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D33B60157"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @297
+		    location   	(1353, 1713)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D33C500E0"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @298
+			    Parent_View 	@297
+			    location   	(233, 865)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D33C50361"
+			    client     	@297
+			    supplier   	@296
+			    line_style 	0)
+			(object RoleView "" @299
+			    Parent_View 	@297
+			    location   	(233, 865)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D33C50362"
+			    client     	@297
+			    supplier   	@269
+			    line_style 	0)))
+		(object ClassView "Class" "Use Case View::Foundation Framework::Transaction Service" @300
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1648, 704)
+		    label      	(object ItemLabel
+			Parent_View 	@300
+			location   	(1648, 864)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	566
+			justify    	0
+			label      	"Transaction Service")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D37BE0186"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @301
+		    location   	(1124, 971)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D389E030E"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @302
+			    Parent_View 	@301
+			    location   	(68, -293)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D38A002D5"
+			    client     	@301
+			    supplier   	@300
+			    line_style 	0)
+			(object RoleView "" @303
+			    Parent_View 	@301
+			    location   	(68, -293)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D38A002DF"
+			    client     	@301
+			    supplier   	@273
+			    line_style 	0)))
+		(object ClassView "Class" "Use Case View::Foundation Framework::Security Service" @304
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1632, 1040)
+		    label      	(object ItemLabel
+			Parent_View 	@304
+			location   	(1632, 1200)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	434
+			justify    	0
+			label      	"Security Service")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D390000ED"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @305
+		    location   	(1329, 965)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D392A0025"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @306
+			    Parent_View 	@305
+			    location   	(273, 181)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D392B01DF"
+			    client     	@305
+			    supplier   	@304
+			    line_style 	0)
+			(object RoleView "" @307
+			    Parent_View 	@305
+			    location   	(273, 181)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D392B01E9"
+			    client     	@305
+			    supplier   	@285
+			    line_style 	0)))
+		(object ClassView "Class" "Use Case View::Foundation Framework::ORB" @308
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1616, 2176)
+		    label      	(object ItemLabel
+			Parent_View 	@308
+			location   	(1616, 2336)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	327
+			justify    	0
+			label      	"ORB")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"36488C0A011B"
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object UseCaseView "Use Case View::Foundation Framework::configuration" @309
+		    location   	(752, 288)
+		    label      	(object ItemLabel
+			Parent_View 	@309
+			location   	(752, 426)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	705
+			justify    	0
+			label      	"configuration")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"361D3209024A"
+		    height     	118
+		    autoResize 	TRUE)
+		(object AssociationViewNew "" @310
+		    location   	(461, 232)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D33AD02C6"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @311
+			    Parent_View 	@310
+			    location   	(-51, -168)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D33AE01CD"
+			    client     	@310
+			    supplier   	@309
+			    line_style 	0)
+			(object RoleView "" @312
+			    Parent_View 	@310
+			    location   	(-51, -168)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D33AE01CE"
+			    client     	@310
+			    supplier   	@292
+			    line_style 	0)))
+		(object AssociationViewNew "" @313
+		    location   	(1207, 217)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D35390262"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @314
+			    Parent_View 	@313
+			    location   	(103, -183)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D353B034B"
+			    client     	@313
+			    supplier   	@293
+			    line_style 	0)
+			(object RoleView "" @315
+			    Parent_View 	@313
+			    location   	(103, -183)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D353B034C"
+			    client     	@313
+			    supplier   	@309
+			    line_style 	0)))
+		(object AssociationViewNew "" @316
+		    location   	(1216, 889)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D353E0237"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @317
+			    Parent_View 	@316
+			    location   	(112, 489)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D354100D3"
+			    client     	@316
+			    supplier   	@294
+			    line_style 	0)
+			(object RoleView "" @318
+			    Parent_View 	@316
+			    location   	(112, 489)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D354100DD"
+			    client     	@316
+			    supplier   	@309
+			    line_style 	0)))
+		(object AssociationViewNew "" @319
+		    location   	(1215, 369)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D37F600A0"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @320
+			    Parent_View 	@319
+			    location   	(127, -399)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D37F700BF"
+			    client     	@319
+			    supplier   	@295
+			    line_style 	0)
+			(object RoleView "" @321
+			    Parent_View 	@319
+			    location   	(127, -399)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D37F700CA"
+			    client     	@319
+			    supplier   	@309
+			    line_style 	0)))
+		(object AssociationViewNew "" @322
+		    location   	(1214, 1104)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D354403BC"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @323
+			    Parent_View 	@322
+			    location   	(110, 704)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D354602D9"
+			    client     	@322
+			    supplier   	@296
+			    line_style 	0)
+			(object RoleView "" @324
+			    Parent_View 	@322
+			    location   	(110, 704)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D354602E3"
+			    client     	@322
+			    supplier   	@309
+			    line_style 	0)))
+		(object AssociationViewNew "" @325
+		    location   	(1330, 553)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D37F902B7"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @326
+			    Parent_View 	@325
+			    location   	(242, -215)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D37FA02A5"
+			    client     	@325
+			    supplier   	@300
+			    line_style 	0)
+			(object RoleView "" @327
+			    Parent_View 	@325
+			    location   	(242, -215)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D37FA02A6"
+			    client     	@325
+			    supplier   	@309
+			    line_style 	0)))
+		(object AssociationViewNew "" @328
+		    location   	(1256, 718)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"361D391903BA"
+		    roleview_list 	(list RoleViews
+			(object RoleView "" @329
+			    Parent_View 	@328
+			    location   	(184, 382)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D391B004C"
+			    client     	@328
+			    supplier   	@304
+			    line_style 	0)
+			(object RoleView "" @330
+			    Parent_View 	@328
+			    location   	(184, 382)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"361D391B0056"
+			    client     	@328
+			    supplier   	@309
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$0" @331
+		    location   	(1200, 1272)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"364B56D10126"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @332
+			    Parent_View 	@331
+			    location   	(448, 984)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"364B56D2022B"
+			    client     	@331
+			    supplier   	@308
+			    line_style 	0)
+			(object RoleView "$UNNAMED$2" @333
+			    Parent_View 	@331
+			    location   	(448, 984)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"364B56D20235"
+			    client     	@331
+			    supplier   	@309
+			    line_style 	0)))))))

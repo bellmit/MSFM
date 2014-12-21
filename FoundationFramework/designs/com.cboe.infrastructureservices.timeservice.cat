@@ -1,0 +1,20 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "timeService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"365AEAB8029A"
+    documentation 	
+|This package contains one or more "wrapper" classes that provides a proxy for the actual Time Service.
+|
+|Developers should use these proxy classes, either through the FoundationFramework, or directly if the FoundationFramework is not being used.
+|
+|Owner: Mark Woyna 
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list)
+    logical_presentations 	(list unit_reference_list))

@@ -1,0 +1,93 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalSecurityService (NullSecurityServiceImpl*, SecurityServiceImpl*)>
+<!ATTLIST GlobalSecurityService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT NullSecurityServiceImpl EMPTY>
+<!ATTLIST NullSecurityServiceImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED 
+	description CDATA #FIXED "null implementation resource"
+>
+<!ELEMENT SecurityServiceImpl (SecurityServiceImplProperties)>
+<!ATTLIST SecurityServiceImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	description CDATA #FIXED "full implementation resource"
+>
+<!ELEMENT SecurityServiceImplProperties ( userid?, password?, certificateFileName?, (clientInterceptor | clientDelegateInterceptor)?, (serverInterceptor, serviceName)?, userTimeoutChannelName?, CASOU?)>
+<!ATTLIST SecurityServiceImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+
+<!ELEMENT userid (#PCDATA)>
+<!ATTLIST userid
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "user login ID"
+>
+<!ELEMENT password (#PCDATA)>
+<!ATTLIST password
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "user password"
+>
+<!ELEMENT certificateFileName (#PCDATA)>
+<!ATTLIST certificateFileName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "user certificate filename"
+>
+<!ELEMENT clientInterceptor EMPTY>
+<!ATTLIST clientInterceptor
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (true | false) #REQUIRED
+	description CDATA #FIXED "client interceptor indicator"
+>
+<!ELEMENT clientDelegateInterceptor EMPTY>
+<!ATTLIST clientDelegateInterceptor
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (true | false) #REQUIRED
+	description CDATA #FIXED "client/delegate (CAS) interceptor indicator"
+>
+<!ELEMENT serverInterceptor EMPTY>
+<!ATTLIST serverInterceptor
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (true | false) #REQUIRED
+	description CDATA #FIXED "server interceptor indicator"
+>
+<!ELEMENT serviceName (#PCDATA)>
+<!ATTLIST serviceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "service name for server-side security interceptor"
+>
+<!ELEMENT userTimeoutChannelName (#PCDATA)>
+<!ATTLIST userTimeoutChannelName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "event channel name for user timeout warnings"
+>
+<!ELEMENT CASOU (#PCDATA)>
+<!ATTLIST CASOU
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "LDAP Organizational Unit for the CAS"
+>

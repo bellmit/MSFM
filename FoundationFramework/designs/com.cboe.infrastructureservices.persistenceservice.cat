@@ -1,0 +1,1165 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "persistenceService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"365AE5C10245"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "AttributeDefinition"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36643254033D"
+	    documentation 	
+|
+| * Describes the attributes of the persist enabled business object.
+| *
+| * @version 1.0.0
+| * @author Dave Hoag
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBD0251"
+		    supplier   	"Logical View::com::objectwave::persist::AttributeTypeColumn"))
+	    operations 	(list Operations
+		(object Operation "AttributeDefinition"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBD0252"
+		    documentation 	
+|
+|	 * Use factory methods to create instances of this class.
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "getAttributeRelation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BBD0253"
+		    documentation 	
+|
+|* Convience method for creating Attribute relations.
+|
+		    
+		    parameters 	(list Parameters
+			(object Parameter "columnName"
+			    type       	"String")
+			(object Parameter "fd"
+			    type       	"Field"))
+		    result     	"AttributeTypeColumn"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCollectionRelation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BBD0256"
+		    documentation 	
+|
+|* Convience method for creating Collection relations.
+|
+		    
+		    parameters 	(list Parameters
+			(object Parameter "c"
+			    type       	"Class")
+			(object Parameter "fd"
+			    type       	"Field"))
+		    result     	"AttributeTypeColumn"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getForeignRelation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BBD0259"
+		    documentation 	
+|
+|* Convience method for creating Foreign relations.
+|
+		    
+		    parameters 	(list Parameters
+			(object Parameter "c"
+			    type       	"Class")
+			(object Parameter "columnName"
+			    type       	"String")
+			(object Parameter "fd"
+			    type       	"Field"))
+		    result     	"AttributeTypeColumn"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstanceRelation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BBD0264"
+		    documentation 	
+|
+|* Convience method for creating Instance relations.
+|
+		    
+		    parameters 	(list Parameters
+			(object Parameter "c"
+			    type       	"Class")
+			(object Parameter "fd"
+			    type       	"Field"))
+		    result     	"AttributeTypeColumn"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstanceRelation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BBD0267"
+		    documentation 	
+|
+|* Convience method for creating Instance relations.
+|
+		    
+		    parameters 	(list Parameters
+			(object Parameter "c"
+			    type       	"Class")
+			(object Parameter "columnName"
+			    type       	"String")
+			(object Parameter "fd"
+			    type       	"Field"))
+		    result     	"AttributeTypeColumn"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getTypeAttributeRelation"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BBD026B"
+		    documentation 	
+|
+| * 
+| * @author Steven Sinclair
+| * @return com.objectwave.persist.AttributeTypeColumn
+| * @param columnName java.lang.String
+| * @param fd java.lang.reflect.Field
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "columnName"
+			    type       	"String")
+			(object Parameter "fd"
+			    type       	"Field"))
+		    result     	"AttributeTypeColumn"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::AttributeDefinition"
+	    quidu      	"36B61B63002E"
+	    language   	"Java")
+	(object Class "ObjectQuery"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"366432550204"
+	    documentation 	
+|
+| * Wrapper class for the ObjectWave SQLQuery object.
+| * This object is used to build ObjectQueries. Use this to find objects
+| * of the type of the parameter.
+| *
+| * @version 1.0.1
+| * @author Dave Hoag
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF036B"
+		    supplier   	"Logical View::com::objectwave::persist::SQLQuery"))
+	    operations 	(list Operations
+		(object Operation "ObjectQuery"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF036C"
+		    documentation 	
+|
+| * ObjectQuery constructor comment.
+| * @param obj com.objectwave.persist.Persistence
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "obj"
+			    type       	"PersistEnabled"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "find"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF036E"
+		    documentation 	
+|
+|	* Return a collection of persistent objects of the type of this current
+|	* query's subject.
+|	*
+|	* @return           A Vector of persistent objects.
+|	
+		    
+		    result     	"Vector"
+		    exceptions 	"PersistenceException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "findAttributes"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF036F"
+		    documentation 	
+|
+|	* Return a vector of Object [].  Each Object [] will contain the values
+|	* for the attribute list.
+|	* @return  A Vector of Object [].
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "attributes"
+			    type       	"String[]"))
+		    result     	"Vector"
+		    exceptions 	"PersistenceException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "findUnique"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF0371"
+		    result     	"Persistence"
+		    exceptions 	"PersistenceException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::ObjectQuery"
+	    quidu      	"36B61B6501E4"
+	    language   	"Java")
+	(object Class "DBAdapter"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36643254035C"
+	    documentation 	
+|
+| * Wrapper class for the RDBPeristentAdapter.
+| * Contains the persistent definition of the business class.
+| *
+| * @version 1.0.2
+| * @author Dave Hoag
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE0186"
+		    supplier   	"Logical View::com::objectwave::persist::RDBPersistentAdapter"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE0222"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::ObjectChangesIF"))
+	    operations 	(list Operations
+		(object Operation "DBAdapter"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE0223"
+		    documentation 	
+|
+| * DBAdapter constructor comment.
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    type       	"PersistEnabled"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "DBAdapter"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE0225"
+		    documentation 	
+|
+| * DBAdapter constructor comment.
+| * @param brokerName java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    type       	"PersistEnabled")
+			(object Parameter "brokerName"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::DBAdapter"
+	    quidu      	"36B61B630399"
+	    language   	"Java")
+	(object Class "ObjectChangesIF"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36643254036B"
+	    documentation 	
+|
+| *
+| * @version 1.0
+| * @author Dave Hoag
+| 
+	    
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF0148"
+		    supplier   	"Logical View::com::objectwave::transactionalSupport::ObjectEditingView"))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::ObjectChangesIF"
+	    quidu      	"36B61B6302D1"
+	    language   	"Java")
+	(object Class "PersistEnabled"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3664319F03DB"
+	    documentation 	
+|
+| * Implement this interface if your business object is considered a persistent business object.
+| *
+| * @version 1.0.0
+| * @author Dave Hoag
+| 
+	    
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC000CB"
+		    supplier   	"Logical View::com::objectwave::persist::Persistence"))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::PersistEnabled"
+	    quidu      	"36B61B65033C"
+	    language   	"Java")
+	(object Class "ExtendedDBAdapter"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"366432550252"
+	    documentation 	
+|
+| * The ExtendedDBAdapter supports the sharing of a single table amongst multiple objects.
+| *
+| * @version 1.0.1
+| * @author Dave Hoag
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE035B"
+		    supplier   	"Logical View::com::objectwave::persist::RDBExtendablePersistentAdapter"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF000F"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::ObjectChangesIF"))
+	    operations 	(list Operations
+		(object Operation "ExtendedDBAdapter"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF0010"
+		    documentation 	
+|
+| * ExtendedDBAdapter constructor comment.
+| * @param p com.objectwave.persist.Persistence
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    type       	"com.objectwave.persist.Persistence"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "ExtendedDBAdapter"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF0012"
+		    documentation 	
+|
+| * ExtendedDBAdapter constructor comment.
+| * @param p com.objectwave.persist.Persistence
+| * @param brokerName java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    type       	"com.objectwave.persist.Persistence")
+			(object Parameter "brokerName"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF0015"
+		    documentation 	
+|
+|	 * Delegate call to another method to isolate dependencies upon ObjectWave code.
+|	 * @see #getNewInstance
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "refObj"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"IsFinal"
+				    value      	"True"))
+			    type       	"com.objectwave.persist.RDBPersistence")
+			(object Parameter "classValue"
+			    type       	"String"))
+		    result     	"com.objectwave.persist.Persistence"
+		    exceptions 	"InstantiationException,IllegalAccessException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getNewInstance"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF0018"
+		    documentation 	
+|
+|	 * This is not likely to be overridden. This method should be ignored for the most part.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "refObj"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"IsFinal"
+				    value      	"True"))
+			    type       	"DBAdapter")
+			(object Parameter "classValue"
+			    type       	"String"))
+		    result     	"PersistEnabled"
+		    exceptions 	"InstantiationException,IllegalAccessException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getNewInstance"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBF001B"
+		    documentation 	
+|
+|	 * Subclass this method to return instances of the correct type.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "refObj"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"Java"
+				    name       	"IsFinal"
+				    value      	"True"))
+			    type       	"ExtendedDBAdapter")
+			(object Parameter "classValue"
+			    type       	"String"))
+		    result     	"PersistEnabled"
+		    exceptions 	"InstantiationException,IllegalAccessException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::ExtendedDBAdapter"
+	    quidu      	"368808E20322"
+	    language   	"Java")
+	(object Class "PersistenceException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"366432550233"
+	    documentation 	
+|
+| *
+| * @version 1.0.0
+| * @author Dave Hoag
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC001F4"
+		    supplier   	"Logical View::com::objectwave::persist::QueryException"))
+	    operations 	(list Operations
+		(object Operation "PersistenceException"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC001F5"
+		    documentation 	
+|
+| * PersistenceException constructor comment.
+| * @param text java.lang.String
+| * @param e java.lang.Exception
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "text"
+			    type       	"String")
+			(object Parameter "e"
+			    type       	"Exception"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PersistenceException"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC001F8"
+		    documentation 	
+|
+| * PersistenceException constructor comment.
+| * @param text java.lang.String
+| * @param e java.lang.Exception
+| * @param additionalInfo java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "text"
+			    type       	"String")
+			(object Parameter "e"
+			    type       	"Exception")
+			(object Parameter "additionalInfo"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::PersistenceException"
+	    quidu      	"36B61B66007F"
+	    language   	"Java")
+	(object Class "BOObjectEditor"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"366432550291"
+	    documentation 	
+|
+| * Wrapper class.
+| *
+| * @version 1.0
+| * @author Dave Hoag
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBD0399"
+		    supplier   	"Logical View::com::objectwave::transactionalSupport::ObjectEditor"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE004E"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::ObjectChangesIF"))
+	    operations 	(list Operations
+		(object Operation "BOObjectEditor"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BBE004F"
+		    documentation 	
+|
+| * BOObjectEditor constructor comment.
+| * @param domainObject com.objectwave.transactionalSupport.TransactionalObjectIF
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "domainObject"
+			    type       	"com.objectwave.transactionalSupport.TransactionalObjectIF"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::BOObjectEditor"
+	    quidu      	"36B61B630196"
+	    language   	"Java")
+	(object Class "PersistenceService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B6602BF"
+	    documentation 	
+|
+| 
+	    
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61BC002FD"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "getBrokerName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61BC002FE"
+		    documentation 	
+|
+|	 * Find the broker with the associated key value.
+|	 * @return String if a broker is registered, null if no value found
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "key"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61BC00300"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::PersistenceService"
+	    quidu      	"36B61B660232"
+	    language   	"Java")
+	(object Class "PersistenceServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B67001F"
+	    documentation 	
+|
+| 
+	    
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC100BB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceService"))
+	    operations 	(list Operations
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BC10280"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "PersistenceServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC10282"
+		    documentation 	
+|
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61BC10283"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"PersistenceService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC10284"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC10286"
+		    documentation 	
+|
+|	  Return a String of the name of the ProcessDescriptor
+|	 
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC10287"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC10288"
+		    documentation 	
+|
+|	   Set the name of the ProcessDescriptor
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceBaseImpl"
+	    quidu      	"36B61B66036B"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "PersistenceServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B680167"
+	    documentation 	
+| 
+| * Holds a reference to the Configuration service so changes to the configuration will be reflected immediately.
+| * @author Dave Hoag
+| * @version 1.0
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B6801F4"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceBaseImpl")
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC20196"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "PersistenceServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC20236"
+		    documentation 	
+|
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getBrokerName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC20237"
+		    documentation 	
+|
+|	 * Append .persistentBrokerName to each element in the key looking for a broker name.
+|	 * ex.
+|	 * TraderServer.containerName.homeName could be the initial key.
+|	 * This method will look for a configuration setting of
+|	 * TraderServer.containerName.homeName.persistentBrokerName and
+|	 * TraderServer.containerName.persistentBrokerName and
+|	 * TraderServer.persistentBrokerName
+|	 * before returning null
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "path"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "useDatabase"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC20239"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "useDatabaseInMemory"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC2023A"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61BC2023B"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceImpl"
+	    quidu      	"36B61B6800DA"
+	    language   	"Java"
+	    nestedClasses 	(list nestedClasses
+		(object Class "DebugPrinter"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateFinalizer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateStaticInitializer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateInstanceInitializer"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateDefaultConstructor"
+			    value      	FALSE))
+		    quid       	"36B61BC2023D"
+		    documentation 	
+|
+|	 * A delegator class that will send the debug statements from the Broker to the Logging service.
+|	 
+		    
+		    realized_interfaces 	(list realize_rel_list
+			(object Realize_Relationship
+			    attributes 	(list Attribute_Set)
+			    quid       	"36B61BC202CF"
+			    supplier   	"Logical View::com::objectwave::persist::PersistLogIF"))
+		    exportControl 	"Implementation"
+		    operations 	(list Operations
+			(object Operation "log"
+			    attributes 	(list Attribute_Set)
+			    quid       	"36B61BC202D0"
+			    parameters 	(list Parameters
+				(object Parameter "message"
+				    type       	"String"))
+			    result     	"void"
+			    concurrency 	"Sequential"
+			    opExportControl 	"Public"
+			    uid        	0)))))
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B670148"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B61B670149"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceBaseImpl"
+		    quidu      	"36B61B67001F")
+		(object Role "name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61B67014A"
+		    label      	"name"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B6701E4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B61B6701E5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceBaseImpl"
+		    quidu      	"36B61B67001F")
+		(object Role "persistenceServiceImplClass"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl"
+			    ))
+		    quid       	"36B61B6701E6"
+		    label      	"persistenceServiceImplClass"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B670280"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B61B670281"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceBaseImpl"
+		    quidu      	"36B61B67001F")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61B670282"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceService"
+		    quidu      	"36B61B6602BF"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61BC20233"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"36B61BC20234"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::persistenceService::PersistenceServiceImpl"
+		    quidu      	"36B61B680167")
+		(object Role "configService"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61BC20235"
+		    label      	"configService"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationService"
+		    quidu      	"36B61BC20232"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Persistence Service"
+	    quid       	"365AF62A004E"
+	    title      	"Persistence Service"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object NoteView @1
+		    location   	(803, 1453)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(134, 1331)
+			fill_color 	13434879
+			nlines     	4
+			max_width  	1302
+			label      	
+|The use of dependencies was to illustrate the relationships of these classes.
+|Dependencies were selected over associations to avoid problems with source generation.
+			)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	1362
+		    height     	256)))))

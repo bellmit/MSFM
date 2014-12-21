@@ -1,0 +1,31 @@
+. ../etc/setEnv
+
+export JAVA_COMPILER=none
+ORB_NAME='TradeServer'
+let ORB_PORT=$BASE_PORT+62
+SMA="-DSMA.ImplClass=SMAResourceStandalone -DSMA.NotInstantiateSMAServer -DSMA.NoORBProcessExposer \
+-DSMA.XMLFiles=${TRADE_SERVER_XML} \
+-DSMA.GlobalLoggingService=GlobalLoggingService1 \
+-DSMA.LoggingServiceClient=TradeServerClient \
+-DSMA.StandardMessageCatalog=StandardMessageCatalog1 \
+-DSMA.LogServiceImpl=CurrentWorkingDirectory \
+-DSMA.LogServiceSMAImpl=SMA \
+-DAdaptor.SMAServerIORFile=${IOR_BASE_DIR}/RepositoryServicePrimary.ior"
+#
+#-DDEBUG \
+#-DDebugOn \
+#-DTraceOn \
+#-DLogginDebugOn \
+#-DLoggingTraceOn \
+#-DLocalLog.ALL \
+
+ORB="-DORB.OrbName=${ENV_PREFIX}${ROUTING}${ORB_NAME} -DORB.PortNum=$ORB_PORT -DORB.FlowControl=none "
+
+#OW="-Dow.persistUser=$INFRA_DB_USER -Dow.persistPassword=$INFRA_DB_PASSWORD -Dow.connectUrl=$INFRA_DB_URL -Dow.persistPrepared=true"
+
+CONFIG_SVC=com.cboe.infrastructureServices.systemsManagementService.ConfigurationServiceSysManImpl
+MAIN_CLASS=com.cboe.infrastructureServices.foundationFramework.FoundationFramework 
+
+java $ORB $SMA $OW ${JAVA_ARGS} -Xms32M -Xmx512M $MAIN_CLASS TradeServer $CONFIG_SVC thisParamIsIgnored -m
+
+export JAVA_COMPILER=sunwjit

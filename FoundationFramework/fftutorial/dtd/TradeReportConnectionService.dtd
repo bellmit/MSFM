@@ -1,0 +1,28 @@
+<!-- define the entities required by the TipsConnectionService -->
+<!-- Here we list the names of all the connections that will be configured for TIPS feed -->
+<!ENTITY % applicationDefinedConnectionServices "(TradeReportDownloadConnection)" >
+
+<!-- include the ConnectionService -->
+<!ENTITY % CS_include SYSTEM "ConnectionService.dtd" >
+%CS_include;
+
+<!-- Define the elements for each service -->
+<!ELEMENT TradeReportConnection EMPTY>
+<!ATTLIST TradeReportConnection
+    type        %typeConstraints;   #FIXED 'ManagedResource'
+    objectName  CDATA               #IMPLIED
+>
+
+<!ELEMENT TradeReportConnectionProperties (sessionFilter) >
+<!ATTLIST TradeReportConnectionProperties
+    type        %typeConstraints;   #FIXED      'ManagedProperties'
+>
+
+<!ELEMENT sessionFilter (#PCDATA)>
+<!ATTLIST sessionFilter
+    type            %typeConstraints;   #FIXED "ManagedProperty"
+    mode            %modeConstraints;   #FIXED "readWrite"
+    propertyType    %propertyTypes;     #FIXED "string"
+    description     CDATA               #FIXED "Session name to filter for. Empty or absent means no filtering."
+>
+

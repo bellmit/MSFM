@@ -1,0 +1,29 @@
+#ifndef Util_idl
+#define Util_idl
+
+#pragma javaPackage "com.cboe.ffidl"
+
+module ffUtil {
+
+    typedef string TradingSession;
+    typedef string ProductSymbol;
+    typedef string Acronym;
+    typedef char Side;
+
+    interface Sides
+    {
+        const ffUtil::Side BUY  = 'B';
+        const ffUtil::Side SELL = 'S';
+    };
+
+    struct TimeStruct
+    {
+        octet hour;
+        octet minute;
+        octet second;
+        octet fraction;
+    };
+    typedef sequence<TimeStruct> TimeStructSequence;
+};
+
+#endif

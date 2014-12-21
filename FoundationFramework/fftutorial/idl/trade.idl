@@ -1,0 +1,33 @@
+#ifndef Trade_idl
+#define Trade_idl
+
+#include "util.idl"
+
+#pragma javaPackage "com.cboe.ffidl"
+
+module ffTrade {
+
+    struct ExecutionReportStruct
+    {
+       ffUtil::ProductSymbol symbol;
+       ffUtil::Acronym user;
+       ffUtil::Side side;
+       float price;
+       long quantity;
+       ffUtil::TimeStruct sentTime;
+    };
+    typedef sequence <ExecutionReportStruct> ExecutionReportStructSequence;
+
+    struct TradeReportStruct
+    {
+       ffUtil::ProductSymbol symbol;
+       ffUtil::Acronym buyer;
+       ffUtil::Acronym seller;
+       float price;
+       long quantity;
+       ffUtil::TimeStruct sentTime;
+    };
+    typedef sequence <TradeReportStruct> TradeReportStructSequence;
+};
+
+#endif

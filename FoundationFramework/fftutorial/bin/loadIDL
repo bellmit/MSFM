@@ -1,0 +1,7 @@
+
+. ../etc/setEnv
+
+for i in  util.idl trade.idl exceptions.idl consumers.idl events.idl tradeService.idl tradeMatchService.idl; do
+    echo LOAD: $i
+    /vobs/dte/InfraVerity/scripts/repLoader.sh -force -I ${FFTUTORIAL_HOME}/idl ${FFTUTORIAL_HOME}/idl/$i
+done

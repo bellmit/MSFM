@@ -1,0 +1,325 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "orbService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"36641673036E"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "OrbService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36563D340035"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getOrb"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B5F0203"
+		    result     	"org.omg.CORBA.ORB"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B5F0213"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "processRequest"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B5F0222"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::OrbService"
+	    quidu      	"365648D70197"
+	    module     	"Component View::com::cboe::infrastructureServices::orbService::OrbService"
+	    quidu      	"36B61B5F0148"
+	    language   	"Java")
+	(object Class "OrbServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B600000"
+	    documentation 	
+|
+| 
+	    
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B60009C"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::orbService::OrbService"))
+	    operations 	(list Operations
+		(object Operation "OrbServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B600284"
+		    documentation 	
+|
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61B600285"
+		    documentation 	
+|
+|	 *
+		    
+		    result     	"OrbService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getOrb"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B600286"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"org.omg.CORBA.ORB"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61B600287"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B600288"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "processRequest"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B60028A"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61B60028B"
+		    documentation 	
+|
+|	 * @param str String Fully qualified class name of an OrbService. The class MUST extend the OrbService class.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "str"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::orbService::OrbServiceBaseImpl"
+	    quidu      	"36B61B5F034B"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "OrbServiceOrbixImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B61007D"
+	    documentation 	
+|
+| * An orbix specific implementation of the OrbService.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B610128"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::orbService::OrbServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B610129"
+		    documentation 	
+| 
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configSvc"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "processRequest"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B61012B"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::orbService::OrbServiceOrbixImpl"
+	    quidu      	"36B61B6003D8"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B600138"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B61B600139"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::orbService::OrbServiceBaseImpl"
+		    quidu      	"36B61B600000")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"com.cboe.infrastructureServices.orbService.OrbServiceOrbixImpl"
+			    ))
+		    quid       	"36B61B60013A"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B6001E4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B61B6001E5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::orbService::OrbServiceBaseImpl"
+		    quidu      	"36B61B600000")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61B6001E6"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::orbService::OrbService"
+		    quidu      	"36563D340035"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B600281"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B61B600282"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::orbService::OrbServiceBaseImpl"
+		    quidu      	"36B61B600000")
+		(object Role "orb"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61B600283"
+		    label      	"orb"
+		    supplier   	"Logical View::org::omg::CORBA::ORB"
+		    quidu      	"36B61B600280"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE))))
+    logical_presentations 	(list unit_reference_list))

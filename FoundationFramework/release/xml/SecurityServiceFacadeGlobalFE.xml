@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalSecurityService SYSTEM "../dtd/SecurityServiceFacade.dtd" >
+<GlobalSecurityService>
+  <SecurityServiceImpl name="Server">
+    <SecurityServiceImplProperties>
+		<userid>&lt;prefix&gt;ZZZ</userid>
+		<password>&lt;prefix&gt;SACAS</password>
+		<certificateFileName>&lt;prefix&gt;SAS.p12</certificateFileName>
+    </SecurityServiceImplProperties>
+  </SecurityServiceImpl>
+</GlobalSecurityService>

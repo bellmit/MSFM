@@ -1,0 +1,27 @@
+//## Interface: TradeMatchService
+//## Module:    businessServices
+
+#ifndef TradeMatchService_idl
+#define TradeMatchService_idl
+
+#include "exceptions.idl"
+#include "util.idl"
+#include "trade.idl"
+
+#pragma javaPackage "com.cboe.ffidl"
+
+module ffBusinessServices {
+
+    interface TradeMatchService {
+
+      void acceptExecutionReport(in ffUtil::TradingSession tradingSession, in ffTrade::ExecutionReportStruct executionReport)
+        raises(
+            ffExceptions::SystemException,
+            ffExceptions::CommunicationException,
+            ffExceptions::DataValidationException,
+            ffExceptions::AuthorizationException
+        );
+    };
+};
+
+#endif

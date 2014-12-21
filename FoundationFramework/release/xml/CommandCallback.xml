@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0b3 NT (http://www.xmlspy.com) by Dave (OW) -->
+<!DOCTYPE GlobalCommandCallbackService SYSTEM "../dtd/CommandCallback.dtd">
+<GlobalCommandCallbackService>
+	<CommandCallbackService name="DefaultService">
+		<CommandCallbackServiceProperties>
+			<HTTPPort>3003</HTTPPort>
+		</CommandCallbackServiceProperties>
+	</CommandCallbackService>
+	<CommandCallbackService name="CAS">
+		<CommandCallbackServiceProperties>
+			<HTTPPort>4004</HTTPPort>
+		</CommandCallbackServiceProperties>
+	</CommandCallbackService>
+	<CommandCallbackService name="ACAS">
+		<CommandCallbackServiceProperties>
+			<HTTPPort>5005</HTTPPort>
+		</CommandCallbackServiceProperties>
+	</CommandCallbackService>
+	<CommandCallbackService name="SystemPropertyDefined">
+		<CommandCallbackServiceProperties>
+			<HTTPPort>&lt;prefixCommandHttpPort&gt;</HTTPPort>
+		</CommandCallbackServiceProperties>
+	</CommandCallbackService>
+</GlobalCommandCallbackService>

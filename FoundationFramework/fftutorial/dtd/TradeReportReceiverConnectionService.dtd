@@ -1,0 +1,20 @@
+<!-- define the entities required by the TipsConnectionService -->
+<!-- Here we list the names of all the connections that will be configured for TIPS feed -->
+<!ENTITY % applicationDefinedConnectionServices "(TradeReportReceiverDownloadConnection)" >
+
+<!-- include the ConnectionService -->
+<!ENTITY % CS_include SYSTEM "ConnectionService.dtd" >
+%CS_include;
+
+<!-- Define the elements for each service -->
+<!ELEMENT TradeReportReceiverConnection EMPTY>
+<!ATTLIST TradeReportReceiverConnection
+    type        %typeConstraints;   #FIXED 'ManagedResource'
+    objectName  CDATA               #IMPLIED
+>
+
+<!ELEMENT TradeReportReceiverConnectionProperties>
+<!ATTLIST TradeReportReceiverConnectionProperties
+    type        %typeConstraints;   #FIXED      'ManagedProperties'
+>
+

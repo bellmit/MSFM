@@ -1,0 +1,2583 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "systemsManagementService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"3687E63D02C5"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "CommandCallbackService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E6460380"
+	    documentation 	"This class controls the operations that maintain callback objects."
+	    operations 	(list Operations
+		(object Operation "executeCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02D0"
+		    parameters 	(list Parameters
+			(object Parameter "command"
+			    type       	"Command"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02D2"
+		    documentation 	" Convert a registered Callback object to aCommand "
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"Command"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66A02D5"
+		    documentation 	
+|Return the instance of the CommandCallbackService.  Create one if necessary.
+|	  
+		    
+		    result     	"CommandCallbackService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getRegisteredCallbackHolder"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02D6"
+		    documentation 	
+|
+|	Return the CallbackHolder for a given name
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"CallbackHolder"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getRegisteredCallbacks"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02D8"
+		    documentation 	" Return a Hashtable containing the registered callbackHolders "
+		    result     	"Hashtable"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getRegisteredProperties"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02D9"
+		    documentation 	" Return a Hashtable containing the registered properties "
+		    result     	"Hashtable"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02DA"
+		    documentation 	
+|
+|	 Initialize the CommandCallback Service and return a true value if successful.
+|	The initialize() method uses the specification for the CommandCallback service
+|	from the ApplicationConfigurationService.
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "appService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerForCommandCallback"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02DC"
+		    documentation 	
+|
+|	   Return true if registration of a callback object is sucessful.  
+|	   This method stores the callback into the list of registered callbacks.
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "callbackObject"
+			    type       	"Object")
+			(object Parameter "externalCallName"
+			    type       	"String")
+			(object Parameter "methodName"
+			    type       	"String")
+			(object Parameter "methodDescription"
+			    type       	"String")
+			(object Parameter "arguments"
+			    type       	"String[]")
+			(object Parameter "argumentDescriptions"
+			    type       	"String[]"))
+		    result     	"void"
+		    exceptions 	"CBOELoggableException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A02E3"
+		    documentation 	
+|
+|	Return true if registration of a property is sucessful.  
+|	This method stores the property into the list of registered properties.
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "anObject"
+			    type       	"Object"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::CommandCallbackService"
+	    quidu      	"3668190D02C5"
+	    language   	"Java")
+	(object Class "ConfigurationService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E6460387"
+	    documentation 	
+|
+| * This interface defines methods that allow retrieving configuration
+| * parameters from any source, whether it is a local file or a CORBA server.
+| * @author Craig Murphy
+| * @creation date 12/08/1998
+| 
+	    
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "getBoolean"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0324"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a boolean value
+| * @return the boolean value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't boolean
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"boolean"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getBoolean"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0326"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a boolean value
+| * @param defaultValue the value to be returned if propertyName is not known
+| * @return the boolean	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"boolean"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getDouble"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0329"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a double value
+| * @return the double value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't a double
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"double"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getDouble"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A032B"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a double value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean 	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"double"))
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstanceOf"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A032E"
+		    documentation 	
+|
+| * This method get the name of a class from the configuration and attempts to instantiat it.
+| * @return java.lang.Object
+| * @param propertyName java.lang.String		Name of property
+| * @exception com.cboe.infrastructureService.systemsManagementService.NoSuchPropertyException.
+| * @exception com.cboe.infrastructureService.systemsManagementService.InappropriateValueException.
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"Object"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "getInstanceOf"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0330"
+		    documentation 	
+|
+| * This method get the name of a class from the configuration and attempts to instantiat it.
+| * @return java.lang.Object
+| * @param propertyName java.lang.String 	Name of property
+| * @param defaultValue Class				Class to use if the property doesn't exist
+| * @exception com.cboe.infrastructureService.systemsManagementService.InappropriateValueException.
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"Class"))
+		    result     	"Object"
+		    exceptions 	"InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "getInt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0333"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with an integer value
+| * @return the boolean value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't an integer
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"int"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInt"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0335"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with an integer value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean 	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getLong"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0338"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a long value
+| * @return the boolean 	value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't a long
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"long"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getLong"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A033A"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a long value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean 	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"long"))
+		    result     	"long"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A033D"
+		    documentation 	
+|
+|	   Return a String of the name of the ProcessDescriptor
+|	  
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getProperty"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A033E"
+		    documentation 	
+|
+| * @param propertyName	the name of a property
+| * @return the boolean 	value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"String"
+		    exceptions 	"NoSuchPropertyException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getProperty"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0340"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a boolean value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertyList"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0343"
+		    documentation 	
+|
+| * @param propertyNameForListProperty	The name of a property that has a list value, e.g., "red,blue,green"
+| * @param itemDelimiters				A string with characters that separate items in the list, e.g., ","
+| * @return An array of the items from the list
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyNameForListProperty"
+			    type       	"String")
+			(object Parameter "itemDelimiters"
+			    type       	"String"))
+		    result     	"String[]"
+		    exceptions 	"NoSuchPropertyException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertyList"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0346"
+		    documentation 	
+|
+| * @param propertyNameForListProperty	The name of a property that has a list value, e.g., "red,blue,green"
+| * @param itemDelimiters				A string with characters that separate items in the list, e.g., ","
+| * @param defaultValue					The value to use if propertyNameForListProperty is unknown
+| * @return An array of the items from the list
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyNameForListProperty"
+			    type       	"String")
+			(object Parameter "itemDelimiters"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"String"))
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertySet"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A034A"
+		    documentation 	
+|
+| * @param propertyNameWithWildcards		A partially specified property name, e.g., "TradeServer.*.transactionPolicy"
+| * @return The set of property/value pairs that match the wildcards
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyNameWithWildcards"
+			    type       	"String"))
+		    result     	"Property[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A034C"
+		    documentation 	
+|
+|	 * This method will initialize the particular implimentation of ConfigurationService.
+|	 *
+|	 * @param parameters	String[]	This is configuration parameters, probably command line arguments
+|	 * @param firstConfigParamater	int	This is the offset into parameters to the first argument pertinent to Configuration Service
+|	 * @return 	true means initialization went OK; false = initialization failure
+|	 *
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "parameters"
+			    type       	"String[]")
+			(object Parameter "firstConfigParameter"
+			    type       	"int"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A034F"
+		    documentation 	
+|
+|	   Set the name of the ProcessDescriptor
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationService"
+	    quidu      	"3687E40F0269"
+	    language   	"Java")
+	(object Class "ConfigurationServiceFileImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E665029B"
+	    documentation 	
+|
+|   Specialized Class of ConfigurationService that takes its input from files.
+|   This class maintains a set of properties.  One of its properties is the filename and directory of its input file. 
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502A6"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceBaseImpl"
+		    quidu      	"3687E66502A5"))
+	    operations 	(list Operations
+		(object Operation "ConfigurationServiceFileImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502B9"
+		    documentation 	
+|
+|	 * Invoked by the ConfigurationService getInstance via reflection
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "findFileOnPath"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66502BA"
+		    documentation 	
+|
+| * This method finds a file somewhere in the class path.
+| * The method is used instead of the ClassLoader's getSystemResource method, because
+| * that method returns a URL to the file, which cannot be written to.
+| *
+| * @author Craig Murphy
+| *
+| * @return java.io.File	The file is guaranteed to exist and to be a file (not a directory)
+| *
+| * @param fileName java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "fileName"
+			    type       	"String"))
+		    result     	"File"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "getBoolean"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502BC"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a boolean value
+| * @return the boolean value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't boolean
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"boolean"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getBoolean"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502BE"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a boolean value
+| * @param defaultValue the value to be returned if propertyName is not known
+| * @return the boolean	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"boolean"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getDouble"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502C1"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a double value
+| * @return the double value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't a double
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"double"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getDouble"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502C3"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a double value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean 	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"double"))
+		    result     	"double"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstanceOf"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502C6"
+		    documentation 	
+|
+| * This method was created in VisualAge.
+| * @return java.lang.Object		The instantiated object
+| * @param propertyName java.lang.String		The property with the class name
+| * @exception com.cboe.infrastructureSrevices.systemsManagementService.NoSuchPropertyException.
+| * @exception com.cboe.infrastructureSrevices.systemsManagementService.InappropriateValueException.
+|
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"Object"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstanceOf"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502C8"
+		    documentation 	
+|
+| * This method was created in VisualAge.
+| * @return java.lang.Object		The instantiated object
+| * @param propertyName java.lang.String		The property with the class name.
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException.
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"Class"))
+		    result     	"Object"
+		    exceptions 	"InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInt"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502CB"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with an integer value
+| * @return the boolean value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't an integer
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"int"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInt"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502CD"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with an integer value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean 	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"int"))
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getLong"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502D0"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a long value
+| * @return the boolean 	value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| * @exception com.cboe.infrastructureServices.systemsManagementService.InappropriateValueException 	thrown when value isn't a long
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"long"
+		    exceptions 	"NoSuchPropertyException,InappropriateValueException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getLong"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502D2"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a long value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean 	value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"long"))
+		    result     	"long"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502D5"
+		    documentation 	
+|
+| * @param propertyName	the name of a property
+| * @return the boolean 	value associated with the property
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"String"
+		    exceptions 	"NoSuchPropertyException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502D7"
+		    documentation 	
+|
+| * @param propertyName	the name of a property with a boolean value
+| * @param defaultValue	the value to be returned if the property is unknown
+| * @return the boolean value associated with the property or defaultValue if the property is unknown
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertyList"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502DA"
+		    documentation 	
+|
+| * @param propertyNameForListProperty	The name of a property that has a list value, e.g., "red,blue,green"
+| * @param itemDelimiters				A string with characters that separate items in the list, e.g., ","
+| * @return An array of the items from the list
+| * @exception com.cboe.infrastructureServices.systemsManagementService.NoSuchPropertyException 	this is thrown if the property is not known
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyNameForListProperty"
+			    type       	"String")
+			(object Parameter "itemDelimiters"
+			    type       	"String"))
+		    result     	"String[]"
+		    exceptions 	"NoSuchPropertyException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertyList"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502DD"
+		    documentation 	
+|
+| * @param propertyNameForListProperty	The name of a property that has a list value, e.g., "red,blue,green"
+| * @param itemDelimiters				A string with characters that separate items in the list, e.g., ","
+| * @param defaultValue					The default value associated with propertyNameForListProperty
+| * @return An array of the items from the list
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyNameForListProperty"
+			    type       	"String")
+			(object Parameter "itemDelimiters"
+			    type       	"String")
+			(object Parameter "defaultValue"
+			    type       	"String"))
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertySet"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502E1"
+		    documentation 	
+|
+| * @param propertyNameWithWildcards		A partially specified property name, e.g., "TradeServer.*.transactionPolicy"
+| * @return The set of property/value pairs that match the wildcards
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyNameWithWildcards"
+			    type       	"String"))
+		    result     	"Property[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502E3"
+		    documentation 	
+|
+| * This method loads in the configuration parameters from the specified file
+| *
+| * @param parameters 	String[]	The file with the parameters for initialization
+| * @param firstConfigurationParameter	int		The offset into parameters to the first Configuration parameter 
+| *
+| * NOTE: the only parameter used by the File based configuration service is
+| * the name of the file, which can be anyplace in the CLASSPATH
+| *
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "parameters"
+			    type       	"String[]")
+			(object Parameter "firstConfigurationParameter"
+			    type       	"int"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502E6"
+		    documentation 	
+|
+| * @param propertyName java.lang.String
+| * @param propertyValue java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "propertyValue"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502E9"
+		    documentation 	
+|
+| * @param propertyName java.lang.String
+| * @param propertyValue java.lang.String
+| * @param persist boolean
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "propertyValue"
+			    type       	"String")
+			(object Parameter "persist"
+			    type       	"boolean"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "stringToList"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66502ED"
+		    documentation 	
+|
+| * @return java.lang.String[]	The elements in the value which were delimited by delimiters
+| * @param value java.lang.String	The string to be broken into elements
+| * @param delimiters java.lang.String	The delimiters of the elements in value
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "value"
+			    type       	"String")
+			(object Parameter "delimiters"
+			    type       	"String"))
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceFileImpl"
+	    quidu      	"3687E40A00BD"
+	    language   	"Java")
+	(object Class "ConfigurationServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66502A5"
+	    documentation 	"This is an abstract class that serves as the superclass for ConfigurationService implementations"
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D0274"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationService"
+		    quidu      	"3687E6460387"))
+	    operations 	(list Operations
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D028B"
+		    documentation 	
+|
+|	 * This method will load the specified class and initialize it.
+|	 *
+|	 * @return 	an instantiation of the implementation of the Configuration service
+|	 *
+|	 
+		    
+		    result     	"ConfigurationService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D028C"
+		    documentation 	
+|
+|	 * This method will load the specified class and initialize it.
+|	 *
+|	 * @param parameters	String[]	This is configuration parameters, probably command line arguments
+|	 * @param firstConfigParamater	int	This is the offset into parameters to the first argument pertinent to Configuration Service
+|	 * @return 	true means initialization went OK; false = initialization failure
+|	 *
+|	 * NOTE: parameters[ firstConfigParameter ] should be the name of the class which actually provides the configuration service.
+|	 * This class will be loaded and instantiated and its initialize method will be called with (firstConfigParameter + 1 );
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "parameters"
+			    type       	"String[]")
+			(object Parameter "firstConfigParameter"
+			    type       	"int"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D028F"
+		    documentation 	
+|
+|	   Return a String of the name of the ProcessDescriptor
+|	  
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D0290"
+		    documentation 	
+|Return the serviceImplClassName 
+| * This method was created in VisualAge.
+| * @return java.lang.String
+| 
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66D0291"
+		    documentation 	
+|
+|	 * This method will initialize the particular implimentation of ConfigurationService.
+|	 *
+|	 * @param parameters	String[]	This is configuration parameters, probably command line arguments
+|	 * @param firstConfigParamater	int	This is the offset into parameters to the first argument pertinent to Configuration Service
+|	 * @return 	true means initialization went OK; false = initialization failure
+|	 *
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "parameters"
+			    type       	"String[]")
+			(object Parameter "firstConfigParameter"
+			    type       	"int"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "main"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D0294"
+		    documentation 	
+|
+| * This method was created in VisualAge.
+| * @param args java.lang.String[]
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "args[]"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D0296"
+		    documentation 	
+|Set the name
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D0298"
+		    documentation 	
+|Set the name of the serviceImplClassName
+| * This method was created in VisualAge.
+| * @param className java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "className"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceBaseImpl"
+	    quidu      	"3687E40A00C7"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "AdminServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E6680014"
+	    documentation 	
+|
+| * Implementation of the IDL _AdminOperations.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E668001F"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminServiceBaseImpl"
+		    quidu      	"3687E668001E"))
+	    operations 	(list Operations
+		(object Operation "defineProperties"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6680020"
+		    documentation 	"Define multiple properties within the processDescriptor object."
+		    parameters 	(list Parameters
+			(object Parameter "nproperties"
+			    type       	"com.cboe.infrastructureServices.interfaces.adminService.Property[]"))
+		    result     	"void"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.MultipleExceptions"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "defineProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6680022"
+		    documentation 	"Define a property within the processDescriptor object."
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "propertyValue"
+			    type       	"String"))
+		    result     	"void"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidPropertyName,com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidPropertyValue,com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.UnsupportedProperty"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "executeCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6680028"
+		    documentation 	"Execute the supplied Command through the CommandCallbackService"
+		    parameters 	(list Parameters
+			(object Parameter "command"
+			    type       	"com.cboe.infrastructureServices.interfaces.adminService.CommandHolder"))
+		    result     	"boolean"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidParameter"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getAllCommands"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E668002A"
+		    documentation 	"Return all of the Commands that a process contains."
+		    result     	"com.cboe.infrastructureServices.interfaces.adminService.Command[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E668002B"
+		    documentation 	"Return a Command object specified by name."
+		    parameters 	(list Parameters
+			(object Parameter "commandName"
+			    type       	"String"))
+		    result     	"com.cboe.infrastructureServices.interfaces.adminService.Command"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.UnsupportedCommand"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getProperties"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E668002D"
+		    documentation 	"Return the properties stored in a process's processDescriptor"
+		    result     	"com.cboe.infrastructureServices.interfaces.adminService.Property[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertyValue"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E668002E"
+		    documentation 	"Return a single property value with the supplied key."
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"String"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.PropertyNotFound,com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidPropertyName"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "main"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E6680030"
+		    parameters 	(list Parameters
+			(object Parameter "args[]"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::AdminServiceImpl"
+	    quidu      	"3687E40C0247"
+	    language   	"Java")
+	(object Class "AdminServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E668001E"
+	    documentation 	
+| * Implementation of the IDL _AdminOperations.
+| 
+	    
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01D4"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminService"
+		    quidu      	"3687E66A0356"))
+	    operations 	(list Operations
+		(object Operation "AdminServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01EB"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "defineProperties"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01EC"
+		    parameters 	(list Parameters
+			(object Parameter "nproperties"
+			    type       	"com.cboe.infrastructureServices.interfaces.adminService.Property[]"))
+		    result     	"void"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.MultipleExceptions"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "defineProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01EE"
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "propertyValue"
+			    type       	"String"))
+		    result     	"void"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidPropertyName,com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidPropertyValue,com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.UnsupportedProperty"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "executeCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01F1"
+		    parameters 	(list Parameters
+			(object Parameter "command"
+			    type       	"com.cboe.infrastructureServices.interfaces.adminService.CommandHolder"))
+		    result     	"boolean"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidParameter"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getAllCommands"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01F3"
+		    result     	"com.cboe.infrastructureServices.interfaces.adminService.Command[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01F4"
+		    parameters 	(list Parameters
+			(object Parameter "commandName"
+			    type       	"String"))
+		    result     	"com.cboe.infrastructureServices.interfaces.adminService.Command"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.UnsupportedCommand"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D01F6"
+		    documentation 	
+|Return a Singleton instance of this class  If one does not exist create one.
+|	 
+		    
+		    result     	"AdminService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getProperties"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01F7"
+		    result     	"com.cboe.infrastructureServices.interfaces.adminService.Property[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getPropertyValue"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01F8"
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String"))
+		    result     	"String"
+		    exceptions 	"com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.PropertyNotFound,com.cboe.infrastructureServices.interfaces.adminService.AdminPackage.InvalidPropertyName"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D01FA"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D01FB"
+		    documentation 	
+|Initialize the single instance of this class from an instance of the ConfigurationService.  Return true if sucessful.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"3687E66D01FD"
+		    documentation 	
+|
+|	 * @author Dave Hoag
+|	 * @param newValue java.lang.String
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "newValue"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::AdminServiceBaseImpl"
+	    quidu      	"3687E40C025B"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "CallbackHolder"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66900CA"
+	    documentation 	
+| 
+|   Holder for callback objects in the Command Callback Service
+| 
+	    
+	    operations 	(list Operations
+		(object Operation "CallbackHolder"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66900F8"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "CallbackHolder"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66900F9"
+		    documentation 	
+|
+|	 Constructor that initializes the CallbackHolder.
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "callbackObject"
+			    type       	"Object")
+			(object Parameter "externalCallName"
+			    type       	"String")
+			(object Parameter "methodName"
+			    type       	"String")
+			(object Parameter "methodDescription"
+			    type       	"String")
+			(object Parameter "arguments"
+			    type       	"String[]")
+			(object Parameter "argumentDescriptions"
+			    type       	"String[]"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "executeCommand"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690101"
+		    documentation 	
+|
+|	Execute the method of the callback object contained in the callbackHolder
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "command"
+			    type       	"Command"))
+		    result     	"Command"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getArgumentDescriptions"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690103"
+		    documentation 	
+|
+|	  Return the argument descriptions as a string array object
+|	
+		    
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getArguments"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690104"
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCallbackMethod"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690105"
+		    documentation 	
+|
+|	Return the correct Method object specified for the callbackObject
+|	in the CallbackHolder.  The CallbackHolder must be correctly
+|	configured.  This method acts as a validation of that specification.
+|	For instance, An exception is thrown from the getMethodWithMatchingNameAndParms
+|	method if the method is not found or an access exception is thrown if access
+|	is not public
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "callbackObj"
+			    type       	"CallbackHolder"))
+		    result     	"Method"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "getCallbackObject"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690107"
+		    documentation 	
+|Return the callbackObject.
+|	  
+		    
+		    result     	"Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getExternalCallName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690108"
+		    documentation 	"Return the external call name"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getMethod"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690109"
+		    documentation 	
+|
+|	Return the Method object
+|	
+		    
+		    result     	"Method"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getMethodDescription"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E669010A"
+		    documentation 	"Return the Description for the method contained in the callbackHolder."
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getMethodName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E669010B"
+		    documentation 	
+|Return the name of the method
+|	  
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setArgumentDescriptions"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E669010C"
+		    documentation 	
+| Set the argument descriptions for the method. The descriptions should be iin the same order as they appear as arguemnts in the method.	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "someDescriptions"
+			    type       	"String[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setArguments"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E669010E"
+		    documentation 	
+|Set the unvalidated arguments
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "someArguments"
+			    type       	"String[]"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setCallbackObject"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690110"
+		    documentation 	
+| Set the callback object
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aCallbackObject"
+			    type       	"Object"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setExternalCallName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690112"
+		    documentation 	
+|  Set the name of the external call. This is the name of the command that the remote client knows about.
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "anExternalCallName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setMethod"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690114"
+		    documentation 	"Set the method attribute to aMethod."
+		    parameters 	(list Parameters
+			(object Parameter "aMethod"
+			    type       	"Method"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setMethodDescription"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690116"
+		    documentation 	
+| Set the method description string.
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aMethodDescription"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setMethodName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E6690118"
+		    documentation 	
+|
+|	  Set the method name
+|	
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aMethodName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+	    quidu      	"3687E40D0375"
+	    language   	"Java")
+	(object Class "AdminService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66A0356"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A0361"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::interfaces::adminService::_AdminOperations"
+		    quidu      	"3687E66A0360"))
+	    operations 	(list Operations
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3687E66A0362"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::AdminService"
+	    quidu      	"3668190D02CF"
+	    language   	"Java")
+	(object Class "Property"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66A0375"
+	    documentation 	
+|
+| * This class is comparable to a CORBA struct and was, in fact, created
+| * to ease transition to a CORBA interface, should such a thing be necessary.
+| *
+| * @author Craig Murphy
+| * @creation date 12/09/1998
+| 
+	    
+	    operations 	(list Operations
+		(object Operation "Property"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A0389"
+		    documentation 	
+|
+| * Property constructor comment.
+| 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Property"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66A038A"
+		    documentation 	
+|
+| * This method was created in VisualAge.
+| * @param propertyName java.lang.String
+| * @param propertyValue java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "propertyName"
+			    type       	"String")
+			(object Parameter "propertyValue"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::Property"
+	    quidu      	"3687E40F0313"
+	    language   	"Java")
+	(object Class "InappropriateValueException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66D02A7"
+	    documentation 	
+|
+| * This exception is thrown when a request is made for a specific
+| * type of data from a property and the value is inappropriate.
+| * For example, when an integer is requested and the value is "red".
+| *
+| * @author Craig Murphy
+| * @creation date 12/08/1998
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D02B1"
+		    supplier   	"Logical View::java::lang::Exception"
+		    quidu      	"3668190B035E"))
+	    operations 	(list Operations
+		(object Operation "InappropriateValueException"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D02B2"
+		    documentation 	
+|
+| * InappropriateValueException constructor comment.
+| 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "InappropriateValueException"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D02B3"
+		    documentation 	
+|
+| * InappropriateValueException constructor comment.
+| * @param s java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "s"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::InappropriateValueException"
+	    quidu      	"3687E4120322"
+	    language   	"Java")
+	(object Class "NoSuchPropertyException"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66D02C5"
+	    documentation 	
+|
+| * @author Craig Murphy
+| * @creation date 12/08/1998
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D02CF"
+		    supplier   	"Logical View::java::lang::Exception"
+		    quidu      	"3668190B035E"))
+	    operations 	(list Operations
+		(object Operation "NoSuchPropertyException"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D02D0"
+		    documentation 	
+|
+| * NoSuchPropertyException constructor comment.
+| 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "NoSuchPropertyException"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D02D1"
+		    documentation 	
+|
+| * NoSuchPropertyException constructor comment.
+| * @param s java.lang.String
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "s"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::NoSuchPropertyException"
+	    quidu      	"3687E4120386"
+	    language   	"Java")
+	(object Class "ConfigurationServiceManagedObjectImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3687E66D03D3"
+	    documentation 	
+|
+|   Specialized Class of ConfigurationService that takes its input from System Management
+|   Managed Objects.  This class maintains a set of properties.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D03DD"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceFileImpl"
+		    quidu      	"3687E665029B"))
+	    operations 	(list Operations
+		(object Operation "connect"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D03EA"
+		    parameters 	(list Parameters
+			(object Parameter "adaptor"
+			    type       	"AdaptorClient")
+			(object Parameter "agentHost"
+			    type       	"String")
+			(object Parameter "agentPort"
+			    type       	"int"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "ConfigurationServiceManagedObjectImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D03EE"
+		    documentation 	
+|
+|	 * Invoked by the foundation framework main.
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D03EF"
+		    documentation 	
+|
+| * The first argument specifies the Foundation Framework Managed Object controlling us.
+| *
+| 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "args"
+			    type       	"String[]")
+			(object Parameter "firstConfigurationParameter"
+			    type       	"int"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "saveProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66D03F2"
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    type       	"Properties")
+			(object Parameter "prefix"
+			    type       	"String")
+			(object Parameter "property"
+			    type       	"String")
+			(object Parameter "adaptor"
+			    type       	"AdaptorClient")
+			(object Parameter "objectName"
+			    type       	"ObjectName"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "saveProperty"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3687E66E000E"
+		    parameters 	(list Parameters
+			(object Parameter "p"
+			    type       	"Properties")
+			(object Parameter "prefix"
+			    type       	"String")
+			(object Parameter "property"
+			    type       	"String")
+			(object Parameter "value"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceManagedObjectImpl"
+	    quidu      	"3687E41300F2"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66502AF"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3687E66502B0"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceFileImpl"
+		    quidu      	"3687E665029B")
+		(object Role "properties"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66502B1"
+		    label      	"properties"
+		    supplier   	"Logical View::java::util::Properties"
+		    quidu      	"3668190B0120"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66502B2"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"3687E66502B3"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceFileImpl"
+		    quidu      	"3687E665029B")
+		(object Role "propertyFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66502B4"
+		    label      	"propertyFile"
+		    supplier   	"Logical View::java::io::File"
+		    quidu      	"3687E40A00DC"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900D4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"3687E66900D5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "externalCallName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900D6"
+		    label      	"externalCallName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900D7"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"3687E66900D8"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "callbackObject"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900D9"
+		    label      	"callbackObject"
+		    supplier   	"Logical View::java::lang::Object"
+		    quidu      	"3668190C0182"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$8"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900DE"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$9"
+		    quid       	"3687E66900DF"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "methodName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900E0"
+		    label      	"methodName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$10"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900E1"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$11"
+		    quid       	"3687E66900E2"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "arguments[]"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900E8"
+		    label      	"arguments[]"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$12"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900E9"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"3687E66900EA"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "argumentDescriptions[]"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900EB"
+		    label      	"argumentDescriptions[]"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$14"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900F2"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$15"
+		    quid       	"3687E66900F3"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "methodDescription"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900F4"
+		    label      	"methodDescription"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$16"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66900F5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$17"
+		    quid       	"3687E66900F6"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CallbackHolder"
+		    quidu      	"3687E66900CA")
+		(object Role "method"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66900F7"
+		    label      	"method"
+		    supplier   	"Logical View::java::lang::reflect::Method"
+		    quidu      	"3687E40D03AB"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$18"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66A02C0"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"3687E66A02C1"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CommandCallbackService"
+		    quidu      	"3687E6460380")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66A02C2"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CommandCallbackService"
+		    quidu      	"3687E6460380"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$20"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66A02CA"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$21"
+		    quid       	"3687E66A02CB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CommandCallbackService"
+		    quidu      	"3687E6460380")
+		(object Role "registeredProperties"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66A02CC"
+		    label      	"registeredProperties"
+		    supplier   	"Logical View::java::util::Hashtable"
+		    quidu      	"3668190B013C"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$22"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66A02CD"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$23"
+		    quid       	"3687E66A02CE"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::CommandCallbackService"
+		    quidu      	"3687E6460380")
+		(object Role "registeredCallbacks"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66A02CF"
+		    label      	"registeredCallbacks"
+		    supplier   	"Logical View::java::util::Hashtable"
+		    quidu      	"3668190B013C"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$24"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66A037F"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$25"
+		    quid       	"3687E66A0380"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::Property"
+		    quidu      	"3687E66A0375")
+		(object Role "name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66A0381"
+		    label      	"name"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$26"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66A0382"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$27"
+		    quid       	"3687E66A0383"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::Property"
+		    quidu      	"3687E66A0375")
+		(object Role "value"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66A0384"
+		    label      	"value"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$28"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D01D5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$29"
+		    quid       	"3687E66D01D6"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminServiceBaseImpl"
+		    quidu      	"3687E668001E")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"3687E66D01D7"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminService"
+		    quidu      	"3687E66A0356"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$30"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D01DE"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$31"
+		    quid       	"3687E66D01DF"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminServiceBaseImpl"
+		    quidu      	"3687E668001E")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	(value Text 
+|"com.cboe.infrastructureServices.systemsManagementService.AdminServiceImpl"
+			    )))
+		    quid       	"3687E66D01E0"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$32"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D01E8"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$33"
+		    quid       	"3687E66D01E9"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminServiceBaseImpl"
+		    quidu      	"3687E668001E")
+		(object Role "adminImpl"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66D01EA"
+		    label      	"adminImpl"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::interfaces::adminService::Admin"
+		    quidu      	"3687E66D01E1"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$34"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D027E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$35"
+		    quid       	"3687E66D027F"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceBaseImpl"
+		    quidu      	"3687E66502A5")
+		(object Role "name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66D0280"
+		    label      	"name"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$36"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D0281"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$37"
+		    quid       	"3687E66D0282"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceBaseImpl"
+		    quidu      	"3687E66502A5")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66D0283"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationService"
+		    quidu      	"3687E6460387"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$38"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D0288"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$39"
+		    quid       	"3687E66D0289"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceBaseImpl"
+		    quidu      	"3687E66502A5")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66D028A"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$40"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D03DE"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$41"
+		    quid       	"3687E66D03DF"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceManagedObjectImpl"
+		    quidu      	"3687E66D03D3")
+		(object Role "moProperties"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66D03E0"
+		    label      	"moProperties"
+		    supplier   	"Logical View::java::util::Properties"
+		    quidu      	"3668190B0120"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$42"
+	    attributes 	(list Attribute_Set)
+	    quid       	"3687E66D03E7"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$43"
+		    quid       	"3687E66D03E8"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceManagedObjectImpl"
+		    quidu      	"3687E66D03D3")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"3687E66D03E9"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::systemsManagementService::ConfigurationServiceManagedObjectImpl"
+		    quidu      	"3687E66D03D3"
+		    is_navigable 	TRUE
+		    static     	TRUE))))
+    logical_presentations 	(list unit_reference_list))

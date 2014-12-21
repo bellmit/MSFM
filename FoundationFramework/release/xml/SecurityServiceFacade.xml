@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalSecurityService SYSTEM "../dtd/SecurityServiceFacade.dtd" >
+<GlobalSecurityService>
+  <SecurityServiceImpl name="DefaultService">
+    <SecurityServiceImplProperties>
+    </SecurityServiceImplProperties>
+  </SecurityServiceImpl>
+  <SecurityServiceImpl name="ClientService">
+    <SecurityServiceImplProperties>
+                <userid>SUBSTITUTE_USERID_HERE</userid>
+                <password>SUBSTITUTE_PASSWORD_HERE</password>
+                <certificateFileName>../../../security/SUBSTITUTE_FILENAME_HERE.p12</certificateFileName>
+        <clientInterceptor value="false"/>
+		<userTimeoutChannelName>&lt;prefix&gt;UserTimeoutWarning</userTimeoutChannelName>
+    </SecurityServiceImplProperties>
+  </SecurityServiceImpl>
+  <SecurityServiceImpl name="PassThru">
+    <SecurityServiceImplProperties>
+		<userid>&lt;prefix&gt;ZZZ</userid>
+		<password>&lt;prefix&gt;SACAS</password>
+		<certificateFileName>&lt;prefix&gt;SAS.p12</certificateFileName>
+        <clientDelegateInterceptor value="true"/>
+		<userTimeoutChannelName>&lt;prefix&gt;UserTimeoutWarning</userTimeoutChannelName>
+    </SecurityServiceImplProperties>
+  </SecurityServiceImpl>
+  <SecurityServiceImpl name="Server">
+    <SecurityServiceImplProperties>
+		<userid>&lt;prefix&gt;ZZZ</userid>
+		<password>&lt;prefix&gt;SACAS</password>
+		<certificateFileName>&lt;prefix&gt;SAS.p12</certificateFileName>
+        <serverInterceptor value="true"/>
+        <serviceName>CASServer</serviceName>
+		<userTimeoutChannelName>&lt;prefix&gt;UserTimeoutWarning</userTimeoutChannelName>
+    </SecurityServiceImplProperties>
+  </SecurityServiceImpl>
+</GlobalSecurityService>

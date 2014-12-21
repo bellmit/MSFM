@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Roy Gautam (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalIdService SYSTEM "../dtd/IdService.dtd">
+<GlobalIdService>
+	<IdService name="IdServiceServer">
+		<IdServiceProperties>
+			<isServer booleanValue="true"/>
+			<idServerName>&lt;prefix&gt;GlobalIdService</idServerName>
+			<eventChannelName>&lt;prefix&gt;IdService</eventChannelName>
+			<objectId>IdSerivceHome&lt;prefix&gt;Global</objectId>
+		</IdServiceProperties>
+	</IdService>
+	<IdService name="SecondaryServer">
+		<IdServiceProperties>
+			<isSecondaryServer booleanValue="true"/>
+			<idServerName>&lt;prefix&gt;GlobalIdService</idServerName>
+			<idServiceServerName>&lt;prefix&gt;GlobalIdService</idServiceServerName>
+			<eventChannelName>&lt;prefix&gt;IdService</eventChannelName>
+		</IdServiceProperties>
+	</IdService>
+	<IdService name="IdServiceServerWCtmIdService">
+		<IdServiceProperties>
+			<isServer booleanValue="true"/>
+			<idServerName>&lt;prefix&gt;GlobalIdService</idServerName>
+			<eventChannelName>&lt;prefix&gt;IdService</eventChannelName>
+			<listOfServices>CtmIdService,CtmFuturesIdService,CtmCBOEFuturesIdService,CBOEEquityIdService</listOfServices>
+			<poaName>IdServerPOA</poaName>
+			<objectId>IdSerivceHome&lt;prefix&gt;Global</objectId>
+		</IdServiceProperties>
+		<RangedService name="CtmIdService">
+			<RangedServiceProperties>
+				<lowerBounds>4000000</lowerBounds>
+				<upperBounds>9999999</upperBounds>
+			</RangedServiceProperties>
+		</RangedService>
+		<RangedService name="CtmFuturesIdService">
+			<RangedServiceProperties>
+				<lowerBounds>1</lowerBounds>
+				<upperBounds>2999999</upperBounds>
+			</RangedServiceProperties>
+		</RangedService>
+		<RangedService name="CtmCBOEFuturesIdService">
+			<RangedServiceProperties>
+				<lowerBounds>4000000</lowerBounds>
+				<upperBounds>6999999</upperBounds>
+			</RangedServiceProperties>
+		</RangedService>
+		<RangedService name="CBOEEquityIdService">
+			<RangedServiceProperties>
+				<lowerBounds>6000000</lowerBounds>
+				<upperBounds>9999999</upperBounds>
+			</RangedServiceProperties>
+		</RangedService>		
+	</IdService>
+	<IdService name="IdServiceClient">
+		<IdServiceProperties>
+			<idServiceServerName>&lt;prefix&gt;GlobalIdService</idServiceServerName>
+			<eventChannelName>&lt;prefix&gt;IdService</eventChannelName>
+			<prefetchQty>100000</prefetchQty>
+		</IdServiceProperties>
+	</IdService>
+</GlobalIdService>

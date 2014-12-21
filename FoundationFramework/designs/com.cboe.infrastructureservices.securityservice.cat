@@ -1,0 +1,833 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "securityService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"366414C402C4"
+    documentation 	
+|This package contains one or more "wrapper" classes that provides a proxy for the actual Security Service.
+|
+|Developers should use these proxy classes, either through the FoundationFramework, or directly if the FoundationFramework is not being used.
+|
+|Owner: Mark Woyna 
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "SecurityService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36542DA500F7"
+	    documentation 	
+|
+| * The SecurityService facade.
+| * 
+| * @author Chuck Maslowski
+| * @version 1.0
+| 
+	    
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAB03B9"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAB03BA"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAB03BB"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String")
+			(object Parameter "certFile"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAC0000"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authorize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAC0010"
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAC001F"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"com.cboe.infrastructureServices.systemsManagementService.ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::FoundationFramework::SecurityService"
+	    quidu      	"36544BF502F4"
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::SecurityService"
+	    quidu      	"3659D52E01C7"
+	    module     	"Component View::com::cboe::infrastructureServices::securityService::SecurityService"
+	    quidu      	"36B61AAB030D"
+	    language   	"Java")
+	(object Class "NullSecurityServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61AAB0232"
+	    documentation 	
+|
+| * The SecurityService null implementation. Use only for testing purposes.
+| * 
+| * @author Chuck Maslowski
+| * @version 1.0
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02CF"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02D0"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02D2"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02DE"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String")
+			(object Parameter "certFile"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02E2"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02E5"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authorize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAB02E6"
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::securityService::NullSecurityServiceImpl"
+	    quidu      	"36B61AAB01A6"
+	    language   	"Java")
+	(object Class "SecurityServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61AAB02CE"
+	    documentation 	
+|
+| * The SecurityService base implementation. SecurityService facade implementations could subclass
+| * this base implementation.
+| * 
+| * @author Chuck Maslowski
+| * @version 1.0
+| 
+	    
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAC0271"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityService"))
+	    operations 	(list Operations
+		(object Operation "SecurityServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAD0109"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAD010A"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAD010B"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authorize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAD010C"
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAD010D"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String")
+			(object Parameter "certFile"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AAD0111"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61AAD0114"
+		    result     	"SecurityService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAD0115"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61AAD0117"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getSessionId"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAD0118"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setSessionId"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAD0119"
+		    parameters 	(list Parameters
+			(object Parameter "sessionIdString"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "getHost"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AAD011B"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61AAD011C"
+		    parameters 	(list Parameters
+			(object Parameter "str"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"
+	    quidu      	"36B61AAB0242"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "SecurityServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61AB001B5"
+	    documentation 	
+|
+| * The SecurityService facade. This will only be used by clients. The server does not need a security service.
+| * 
+| * @author Chuck Maslowski
+| * @version 1.1
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB00261"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "SecurityServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102E2"
+		    documentation 	
+|
+|	 * The default constructor is used by the FoundationFramework.
+|	 
+		    
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "SecurityServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102E3"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "SecurityServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102E5"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "SecurityServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102E8"
+		    documentation 	
+|
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String")
+			(object Parameter "certFile"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102F1"
+		    documentation 	
+|
+|     * Look for the optional properties of:
+|     * <processName>.securityService.userName
+|     * <processName>.securityService.password
+|     * <processName>.securityService.certficiateFile
+|     * Establish a connection to the SecurityService server.
+|     
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "find"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102F3"
+		    documentation 	
+|
+|	 * Use the trader service to find the necessary SecurityService 
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "nsName"
+			    type       	"String"))
+		    result     	"org.omg.CORBA.Object"
+		    exceptions 	"org.omg.CORBA.SystemException"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102F5"
+		    documentation 	
+|
+|	 * Has the side effect of changing the userName, password, and certificateFile associated with this instance.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String")
+			(object Parameter "certFile"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102F9"
+		    documentation 	
+|
+|	 * Has the side effect of changing the userName and password associated with this instance.
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "password"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithCertificate"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102FC"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authenticateWithPassword"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102FD"
+		    documentation 	
+|
+|     * This assumes that username and password have been defined prior to calling this method.
+|     
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "authorize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB102FE"
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "privateKey[]"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AB1005D"
+		    type       	"byte"))
+	    module     	"Component View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+	    quidu      	"36B61AB00128"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AAC030D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B61AAC030E"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"
+		    quidu      	"36B61AAB02CE")
+		(object Role "sessionId"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AAC030F"
+		    label      	"sessionId"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AAC03A9"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B61AAC03AA"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"
+		    quidu      	"36B61AAB02CE")
+		(object Role "host"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AAC03AB"
+		    label      	"host"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AAD005D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B61AAD005E"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"
+		    quidu      	"36B61AAB02CE")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"com.cboe.infrastructureServices.securityService.SecurityServiceImpl"
+			    ))
+		    quid       	"36B61AAD005F"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Protected"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AAD00FA"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"36B61AAD00FB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceBaseImpl"
+		    quidu      	"36B61AAB02CE")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AAD00FC"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityService"
+		    quidu      	"36542DA500F7"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$8"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB002FD"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$9"
+		    quid       	"36B61AB002FE"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "username"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AB002FF"
+		    label      	"username"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$10"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB00399"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$11"
+		    quid       	"36B61AB0039A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "password"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AB0039B"
+		    label      	"password"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$12"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB1004E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"36B61AB1004F"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "certificateFile"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AB10050"
+		    label      	"certificateFile"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$14"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB100FA"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$15"
+		    quid       	"36B61AB100FB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "sessionID"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AB100FC"
+		    label      	"sessionID"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$16"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB10199"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$17"
+		    quid       	"36B61AB1019A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "aCertificate"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AB1019B"
+		    label      	"aCertificate"
+		    supplier   	"Logical View::iaik::x509::X509Certificate"
+		    quidu      	"36B61AB10198"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$18"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB10244"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"36B61AB10245"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "theAuthenticator"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AB10246"
+		    label      	"theAuthenticator"
+		    supplier   	"Logical View::org::omg::securityLevel2::PrincipalAuthenticator"
+		    quidu      	"36B61AB10243"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$20"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AB102DF"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$21"
+		    quid       	"36B61AB102E0"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::securityService::SecurityServiceImpl"
+		    quidu      	"36B61AB001B5")
+		(object Role "theAuthorizer"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AB102E1"
+		    label      	"theAuthorizer"
+		    supplier   	"Logical View::org::omg::securityLevel2::Authorize"
+		    quidu      	"36B61AB102DE"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE))))
+    logical_presentations 	(list unit_reference_list))

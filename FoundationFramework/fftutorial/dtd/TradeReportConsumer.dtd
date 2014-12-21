@@ -1,0 +1,28 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalTradeReportConsumerHome (TradeReportConsumerHomeImpl* )>
+<!ATTLIST GlobalTradeReportConsumerHome
+    type		  %typeConstraints;  #FIXED 'ManagedResource'
+    objectName  CDATA	 #IMPLIED 
+>
+
+<!ELEMENT TradeReportConsumerHomeImpl (TradeReportConsumerHomeImplProperties) >
+<!ATTLIST TradeReportConsumerHomeImpl
+    type        %typeConstraints;   #FIXED      'ManagedResource'
+    name		ID	                #REQUIRED
+    objectName  CDATA               #IMPLIED
+    container   CDATA               #FIXED      'frameworkContainer' 
+>
+
+<!ELEMENT TradeReportConsumerHomeImplProperties  (eventChannelName)>
+<!ATTLIST TradeReportConsumerHomeImplProperties
+    type  %typeConstraints;  #FIXED 'ManagedProperties'
+>
+
+<!ELEMENT eventChannelName (#PCDATA) >
+<!ATTLIST eventChannelName
+    type            %typeConstraints;   #FIXED 'ManagedProperty'
+    mode            %modeConstraints;   #FIXED 'readWrite'
+    propertyType    %propertyTypes;     #FIXED 'string'
+>

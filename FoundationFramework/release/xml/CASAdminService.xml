@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Roy Gautam (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalAdminService SYSTEM "../dtd/AdminService.dtd">
+<GlobalAdminService>
+	<AdminServiceImpl name="Dynamic">
+		<AdminServiceImplProperties>
+			<adminServerName>&lt;prefixAdminServer&gt;</adminServerName>
+            <channelName>&lt;prefix&gt;AdminService</channelName>
+            <adminGroups>CAS</adminGroups>
+		</AdminServiceImplProperties>
+	</AdminServiceImpl>
+</GlobalAdminService>

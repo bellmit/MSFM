@@ -1,0 +1,27 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalTradeMatchServiceHome (TradeMatchServiceHomeImpl*)>
+<!ATTLIST GlobalTradeMatchServiceHome
+    type        %typeConstraints;   #FIXED 'ManagedResource'
+    objectName  CDATA	            #IMPLIED 
+>
+
+<!ELEMENT TradeMatchServiceHomeImpl (TradeMatchServiceHomeImplCommands?) >
+<!ATTLIST TradeMatchServiceHomeImpl
+    type        %typeConstraints;   #FIXED 'ManagedResource'
+    name        ID                  #REQUIRED
+    objectName  CDATA               #IMPLIED
+    container   CDATA               #FIXED 'frameworkContainer' 
+>
+
+<!ELEMENT TradeMatchServiceHomeImplCommands (dumpBook)>
+<!ATTLIST TradeMatchServiceHomeImplCommands 
+    type  %typeConstraints;  #FIXED 'ManagedCommands' 
+>
+
+<!ELEMENT dumpBook EMPTY >
+<!ATTLIST dumpBook
+    type        %typeConstraints;   #FIXED 'ManagedCommand'
+    description CDATA               #FIXED 'print all exchanges'
+>

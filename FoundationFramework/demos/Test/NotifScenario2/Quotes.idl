@@ -1,0 +1,28 @@
+
+module org {
+  module omg {
+#include "CosTypedEventComm.idl"
+  };
+};
+
+
+module NotifDemo {
+	
+	typedef string	ProductId;
+	struct QuoteStruct
+	{
+	  ProductId	product;
+	  float		price;
+	};
+	
+	typedef sequence< QuoteStruct >	QuoteSequence;
+	
+	
+	interface  Quotes : org::omg::CosTypedEventComm::TypedPushConsumer
+	  {
+	    oneway void auto_quote( in QuoteSequence  product );
+	    oneway void manual_quote( in QuoteStruct quote );
+	  };
+};
+
+	

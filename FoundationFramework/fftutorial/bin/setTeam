@@ -1,0 +1,17 @@
+#!/bin/ksh
+
+select teamId in team1 team2 team3 team4; do
+	if [ .$teamId == . ]; then
+		echo 'No team selected.'
+		return
+	fi
+
+	echo
+	echo "Selected $teamId"
+	echo "Initializing environment"
+	cd $RUN_DIR/ffclass/$teamId
+	. etc/setEnv
+    . etc/setAliases
+	break;
+done
+

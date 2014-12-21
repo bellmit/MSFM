@@ -1,0 +1,214 @@
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!-- This dtd cannot be used standalone, it must be referenced by another dtd -->
+<!-- that defines the names of tcp connections and their relevant properties -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalConnectionService (ConnectionServiceHomeImpl*)>
+<!ATTLIST GlobalConnectionService
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT ConnectionServiceHomeImpl (ConnectionServiceHomeImplProperties, Service+, %applicationDefinedConnectionServices;, ConnectionServiceHomeImplCommands?)>
+<!ATTLIST ConnectionServiceHomeImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name ID #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT ConnectionServiceHomeImplProperties (dropConnectionsWhenSlave, serviceNames)>
+<!ATTLIST ConnectionServiceHomeImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT dropConnectionsWhenSlave EMPTY>
+<!ATTLIST dropConnectionsWhenSlave
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+	description CDATA #FIXED "If true connections will be dropped when goSlave is called"
+>
+<!ELEMENT Service (ServiceProperties)>
+<!ATTLIST Service
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT ServiceProperties (protocol, serviceType, serviceImpl, enabled, bindHost?, bindPort?, hostNames?, portNumbers?, retryTimeout, retryCount, maxInputQueueDepth,socketSendBufferSize,socketRecvBufferSize,inputStreamBufferSize,outputStreamBufferSize,sessionManager?)>
+<!ATTLIST ServiceProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT serviceNames (#PCDATA)>
+<!ATTLIST serviceNames
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The names of the services to start.  Each name corresponds to an application defined element for that service"
+>
+<!ELEMENT protocol EMPTY>
+<!ATTLIST protocol
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "protocolType"
+	protocolType (tcp | udp) #REQUIRED
+>
+<!ELEMENT serviceType EMPTY>
+<!ATTLIST serviceType
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "serverType"
+	serverType (client | server) #REQUIRED
+>
+<!ELEMENT serviceImpl (#PCDATA)>
+<!ATTLIST serviceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The class to instantiate"
+>
+<!ELEMENT enabled EMPTY>
+<!ATTLIST enabled
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT bindHost (#PCDATA)>
+<!ATTLIST bindHost
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Sockets bind address"
+>
+<!ELEMENT bindPort (#PCDATA)>
+<!ATTLIST bindPort
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Sockets bind address"
+>
+<!ELEMENT hostNames (#PCDATA)>
+<!ATTLIST hostNames
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "A comma separated list of host names"
+>
+<!ELEMENT portNumbers (#PCDATA)>
+<!ATTLIST portNumbers
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "A comma separated list of port numbers"
+>
+<!ELEMENT retryTimeout (#PCDATA)>
+<!ATTLIST retryTimeout
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "Timeout in milliseconds"
+>
+<!ELEMENT retryCount (#PCDATA)>
+<!ATTLIST retryCount
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "integer"
+	description CDATA #FIXED "Number of retries"
+>
+<!ELEMENT maxInputQueueDepth (#PCDATA)>
+<!ATTLIST maxInputQueueDepth
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "For Udp socket the maximum queue depth for received msgs"
+>
+<!ELEMENT socketSendBufferSize (#PCDATA)>
+<!ATTLIST socketSendBufferSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Sockets buffer size"
+>
+<!ELEMENT socketRecvBufferSize (#PCDATA)>
+<!ATTLIST socketRecvBufferSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Sockets buffer size"
+>
+<!ELEMENT inputStreamBufferSize (#PCDATA)>
+<!ATTLIST inputStreamBufferSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Sockets buffer size"
+>
+<!ELEMENT outputStreamBufferSize (#PCDATA)>
+<!ATTLIST outputStreamBufferSize
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The Sockets buffer size"
+>
+<!ELEMENT sessionManager (#PCDATA)>
+<!ATTLIST sessionManager
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Full class name of the session manager"
+>
+<!ELEMENT ConnectionServiceHomeImplCommands (startService, stopService, showContext, startAllServices, stopAllServices, stopListener, stopServerConnection, toggleDebug )>
+<!ATTLIST ConnectionServiceHomeImplCommands
+	type %typeConstraints; #FIXED "ManagedCommands"
+>
+<!ELEMENT startService (serviceName)>
+<!ATTLIST startService
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Starts a service"
+>
+<!ELEMENT stopService (serviceName)>
+<!ATTLIST stopService
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Stops a service"
+>
+<!ELEMENT stopListener (serviceName)>
+<!ATTLIST stopListener
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Stops a listener without stopping all connected clients"
+>
+<!ELEMENT stopServerConnection (serviceName)>
+<!ATTLIST stopServerConnection
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Stops a server tcp connection by number"
+>
+<!ELEMENT showContext (serviceName)>
+<!ATTLIST showContext
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Display information about one or all services"
+>
+<!ELEMENT startAllServices (serviceName)>
+<!ATTLIST startAllServices
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Starts all services or services matching with the specified name"
+>
+<!ELEMENT stopAllServices (serviceName)>
+<!ATTLIST stopAllServices
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Stops all services or services matching with the specified name"
+>
+<!ELEMENT toggleDebug (serviceName)>
+<!ATTLIST toggleDebug
+	type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "Toggles debug logging on/off for all services or services matching with the specified name"
+>
+<!ELEMENT serviceName ANY>
+<!ATTLIST serviceName
+	type %typeConstraints; #FIXED "ManagedParameter"
+	parameterType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "service name or the connection number"
+>

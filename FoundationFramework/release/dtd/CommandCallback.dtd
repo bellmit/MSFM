@@ -1,0 +1,25 @@
+<!-- This provides configuration information for the CommandCallbackHomeImpl -->
+<!-- @author Dave Hoag -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalCommandCallbackService (CommandCallbackService* )>
+<!ATTLIST GlobalCommandCallbackService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT CommandCallbackService (CommandCallbackServiceProperties ) >
+<!ATTLIST CommandCallbackService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT CommandCallbackServiceProperties  ( HTTPPort? )>
+<!ATTLIST CommandCallbackServiceProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+
+<!ELEMENT HTTPPort (#PCDATA)>
+<!ATTLIST HTTPPort type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The port number to use to listen for HTTP requests. ' >

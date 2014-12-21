@@ -1,0 +1,3014 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "instrumentationService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"3658DA2D0120"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "Instrumentor"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3638EF3F009A"
+	    documentation 	
+|
+|The Instrumentor provides a wrapper class around the CommPath.
+|It is primarily used by the BOInterceptor to increment CommPath
+|attributes.  The Instrumentor name is used by the Instrumentation
+|Service to identify the instrumentor.
+|
+	    
+	    operations 	(list Operations
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3658CEFD028A"
+		    documentation 	
+|
+|	   Return  the name 
+|	  
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setCommPath"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3658E9E1012A"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aCommPath"
+			    type       	"CommPath"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommPath"
+		    attributes 	(list Attribute_Set)
+		    quid       	"3658EA24011C"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"CommPath"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBlocksIgnored"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F070216"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBlocksLost"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F180008"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBlocksReceived"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F4C0161"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBlocksSent"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F6D0245"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBytesIgnored"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F7B001E"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBytesLost"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F8800A9"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBytesReceived"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F95018E"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incBytesSent"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8F9F0369"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incIgnoredInfo"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FAC0173"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "msgsInc"
+			    type       	"int")
+			(object Parameter "blocksInc"
+			    type       	"int")
+			(object Parameter "bytesInc"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incLostInfo"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FB503E3"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "msgsInc"
+			    type       	"int")
+			(object Parameter "blocksInc"
+			    type       	"int")
+			(object Parameter "bytesInc"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incMsgsIgnored"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FC102BE"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incMsgsLost"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FCB038B"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incMsgsReceived"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FD4012B"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incMsgsSent"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FDD0228"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incReceivedInfo"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B8FFF0335"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "msgsInc"
+			    type       	"int")
+			(object Parameter "blocksInc"
+			    type       	"int")
+			(object Parameter "bytesInc"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incSentInfo"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B900A0038"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "msgsInc"
+			    type       	"int")
+			(object Parameter "blocksInc"
+			    type       	"int")
+			(object Parameter "bytesInc"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "incTranTimeMills"
+		    attributes 	(list Attribute_Set)
+		    quid       	"365B901A0027"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "increment"
+			    type       	"int"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "Instrumentor"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A901B6"
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::Instrumentor"
+	    quidu      	"36571A7201CE"
+	    module     	"Component View::com::cboe::infrastructureServices::instrumentationService::Instrumentor"
+	    quidu      	"3668195201B7"
+	    language   	"Java")
+	(object Class "InstrumentationService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"3655C0AB02FA"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "setInstrumentationPolicy"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3655C4F000C1"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "value"
+			    type       	"InstrumentationPolicyValue"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstrumentors"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3655C5B603A1"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"Hashtable"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3656354F0328"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3658CDBF039B"
+		    documentation 	
+|
+|	   Set the name 
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3658CDBF03AF"
+		    documentation 	
+|
+|	   Return the name 
+|	  
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "deleteInstrumentor"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3658E5EA01A3"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "instrumentorName"
+			    type       	"String"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "createInstrumentor"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"3655C63D0098"
+		    documentation 	
+|
+|	Return an instrumentor if one with the name exists otherwise create one.
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "instrumentorName"
+			    type       	"String"))
+		    result     	"Instrumentor"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "countCommPaths"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"365B8BFD004B"
+		    documentation 	
+| 
+|	  
+		    
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "createCommPath"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"365B8CA501AB"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"CommPath"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommPathsNames"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"365B8CFE025D"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"Enumeration"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommPathFactory"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B8C0A702EE"
+		    documentation 	
+|
+|	   Return a CommPathFactory
+|	 
+		    
+		    result     	"CommPathFactory"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::InstrumentationService"
+	    quidu      	"3659D52E01B3"
+	    module     	"Component View::com::cboe::infrastructureServices::instrumentationService::InstrumentationService"
+	    quidu      	"36681952031C"
+	    language   	"Java")
+	(object Class "InstrumentationPolicy"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"ImplementationType"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"ConstValue"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"GenerateDefaultSpecifier"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"DefaultSpecifier"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"IDLElement"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"IDLSpecificationType"
+		    value      	("IDLSpecSet" 22))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Final"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"ConstructorIs"
+		    value      	("Ctor_Set" 62))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"OID"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"WhereClause"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CheckConstraint"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypeLength"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypePrecision"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypeScale"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionOfREFS"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"Type"
+		    value      	("MSVCClassTypeSet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CObjectFunctionality"
+		    value      	("CObjectFunctionalitySet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOverrideGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDataGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DATA_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateFieldGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_FIELD_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMessageGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMessageMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_MSG_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MESSAGE_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEFactory"
+		    value      	("OLEFactorySet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEName"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEClassID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOLECtlType"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLECtlType"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOLETypeLib"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibMajor"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibMinor"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GeneratePropPageIDs"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEPropPageIDs"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDispatchMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISPATCH_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISPATCH_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DISPATCH_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockProperties"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockFunctions"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DispatchDefValue"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDispIdEnum"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISP_ID_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateInterfaceMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"INTERFACE_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"InitInterface"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateEventMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENT_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"EVENT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockEvents"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateEventSinkMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENTSINK_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENTSINK_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"EVENTSINK_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"PropNotifySinks"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateConnectionMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CONNECTION_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"ConnectionPointIID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"InheritanceType"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DeclSpec"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLECommands"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MFCDeclares"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MFCImplements"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"ATL_Declares"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateCOMMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"COM_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateConnectionPointMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CONNECTION_POINT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMsgMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MSG_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GeneratePropertyMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"PROPERTY_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionBase"
+		    value      	"0")
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionExplicit"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionCompare"
+		    value      	("CompareSet" 202))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"Creatable"
+		    value      	("CreatableSet" 221))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"GenerateInitialization"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"GenerateTermination"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"CollectionClass"
+		    value      	"Collection"))
+	    quid       	"362E1CA301BE"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3659F2FB0330"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::policies::Policy"
+		    quidu      	"362E499C00FB"))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "value"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"ColumnType"
+			    value      	"VARCHAR")
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"Length"
+			    value      	"")
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"NullsOK"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"PrimaryKey"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"Unique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"CompositeUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"CheckConstraint"
+			    value      	"")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"CaseSpecifier"
+			    value      	"")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"DataMemberName"
+			    value      	"$relationship")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"IsReadOnly"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"IsConst"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"ConstValue"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Transient"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Volatile"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"OrderNumber"
+			    value      	"")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"NullsAllowed"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Length"
+			    value      	"")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Precision"
+			    value      	"2")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Scale"
+			    value      	"6")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsIndex"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsPrimaryKey"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"CompositeUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"CheckConstraint"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"Type"
+			    value      	("MSVCAttributeTypeSet" 0))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"AFX_DISPATCH_MAP_Entries"
+			    value      	(value Text ""))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"DISPATCH_MAP_Entries"
+			    value      	(value Text ""))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"DeclSpec"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"PointerBase"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"CallType"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"StockPropertyImplementation"
+			    value      	"")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"IsConst"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"New"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"WithEvents"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"Subscript"
+			    value      	"")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"NameIfUnlabeled"
+			    value      	"the$supplier")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"DataMemberName"
+			    value      	"$relationship")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateGetOperation"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateSetOperation"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateLetOperation"
+			    value      	FALSE))
+		    quid       	"362E1CD00105"
+		    type       	"InstrumentationPolicyValue"
+		    exportControl 	"Public"))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::InstrumentationPolicy"
+	    quidu      	"3659F3E10164"
+	    language   	"Java")
+	(object Class "InstrumentationPolicyValue"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"ImplementationType"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"ConstValue"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"GenerateDefaultSpecifier"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"DefaultSpecifier"
+		    value      	"")
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"IDLElement"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"IDL"
+		    name       	"IDLSpecificationType"
+		    value      	("IDLSpecSet" 22))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"Final"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"ConstructorIs"
+		    value      	("Ctor_Set" 62))
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"OID"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"WhereClause"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CheckConstraint"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypeLength"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypePrecision"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionTypeScale"
+		    value      	"")
+		(object Attribute
+		    tool       	"Oracle8"
+		    name       	"CollectionOfREFS"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"Type"
+		    value      	("MSVCClassTypeSet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CObjectFunctionality"
+		    value      	("CObjectFunctionalitySet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOverrideGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDataGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DATA_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateFieldGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_FIELD_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMessageGroup"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMessageMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_MSG_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MESSAGE_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEFactory"
+		    value      	("OLEFactorySet" 0))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEName"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEClassID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOLECtlType"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLECtlType"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateOLETypeLib"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibMajor"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLETypeLibMinor"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GeneratePropPageIDs"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLEPropPageIDs"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDispatchMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISPATCH_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISPATCH_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DISPATCH_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockProperties"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockFunctions"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DispatchDefValue"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateDispIdEnum"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_DISP_ID_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateInterfaceMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"INTERFACE_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"InitInterface"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateEventMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENT_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"EVENT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"StockEvents"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateEventSinkMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENTSINK_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"AFX_EVENTSINK_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"EVENTSINK_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"PropNotifySinks"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateConnectionMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CONNECTION_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"ConnectionPointIID"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"InheritanceType"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"DeclSpec"
+		    value      	"")
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"OLECommands"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MFCDeclares"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MFCImplements"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"ATL_Declares"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateCOMMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"COM_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateConnectionPointMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"CONNECTION_POINT_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GenerateMsgMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"MSG_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"GeneratePropertyMap"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"MSVC"
+		    name       	"PROPERTY_MAP_Entries"
+		    value      	(value Text ""))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionBase"
+		    value      	"0")
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionExplicit"
+		    value      	TRUE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"OptionCompare"
+		    value      	("CompareSet" 202))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"Creatable"
+		    value      	("CreatableSet" 221))
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"GenerateInitialization"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"GenerateTermination"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Visual Basic"
+		    name       	"CollectionClass"
+		    value      	"Collection"))
+	    quid       	"362E1D0501A1"
+	    operations 	(list Operations
+		(object Operation "InstrumentationPolicyValue"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A700FA"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "ON"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"ColumnType"
+			    value      	"VARCHAR")
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"Length"
+			    value      	"")
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"NullsOK"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"PrimaryKey"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"Unique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"CompositeUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"CheckConstraint"
+			    value      	"")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"CaseSpecifier"
+			    value      	"")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"DataMemberName"
+			    value      	"$relationship")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"IsReadOnly"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"IsConst"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"ConstValue"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Transient"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Volatile"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"OrderNumber"
+			    value      	"")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"NullsAllowed"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Length"
+			    value      	"")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Precision"
+			    value      	"2")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Scale"
+			    value      	"6")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsIndex"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsPrimaryKey"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"CompositeUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"CheckConstraint"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"Type"
+			    value      	("MSVCAttributeTypeSet" 0))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"AFX_DISPATCH_MAP_Entries"
+			    value      	(value Text ""))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"DISPATCH_MAP_Entries"
+			    value      	(value Text ""))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"DeclSpec"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"PointerBase"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"CallType"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"StockPropertyImplementation"
+			    value      	"")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"IsConst"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"New"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"WithEvents"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"Subscript"
+			    value      	"")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"NameIfUnlabeled"
+			    value      	"the$supplier")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"DataMemberName"
+			    value      	"$relationship")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateGetOperation"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateSetOperation"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateLetOperation"
+			    value      	FALSE))
+		    quid       	"362E1E4302FD"
+		    type       	"int"
+		    static     	TRUE)
+		(object ClassAttribute "OFF"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"ColumnType"
+			    value      	"VARCHAR")
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"Length"
+			    value      	"")
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"NullsOK"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"PrimaryKey"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"Unique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"CompositeUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"DDL"
+			    name       	"CheckConstraint"
+			    value      	"")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"CaseSpecifier"
+			    value      	"")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"DataMemberName"
+			    value      	"$relationship")
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"IsReadOnly"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"IsConst"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"IDL"
+			    name       	"ConstValue"
+			    value      	"")
+			(object Attribute
+			    tool       	"Java"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Transient"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Volatile"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"OrderNumber"
+			    value      	"")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"NullsAllowed"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Length"
+			    value      	"")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Precision"
+			    value      	"2")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"Scale"
+			    value      	"6")
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsIndex"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"IsPrimaryKey"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"CompositeUnique"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Oracle8"
+			    name       	"CheckConstraint"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"Type"
+			    value      	("MSVCAttributeTypeSet" 0))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"AFX_DISPATCH_MAP_Entries"
+			    value      	(value Text ""))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"DISPATCH_MAP_Entries"
+			    value      	(value Text ""))
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"DeclSpec"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"PointerBase"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"CallType"
+			    value      	"")
+			(object Attribute
+			    tool       	"MSVC"
+			    name       	"StockPropertyImplementation"
+			    value      	"")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"IsConst"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"New"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"WithEvents"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"Subscript"
+			    value      	"")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"NameIfUnlabeled"
+			    value      	"the$supplier")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateDataMember"
+			    value      	TRUE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"DataMemberName"
+			    value      	"$relationship")
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateGetOperation"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateSetOperation"
+			    value      	FALSE)
+			(object Attribute
+			    tool       	"Visual Basic"
+			    name       	"GenerateLetOperation"
+			    value      	FALSE))
+		    quid       	"362E1E430339"
+		    type       	"int"
+		    static     	TRUE))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::InstrumentationPolicyValue"
+	    quidu      	"3659F3E1018D"
+	    module     	"Component View::com::cboe::infrastructureServices::instrumentationService::InstrumentationPolicyValue"
+	    quidu      	"3668195201D4"
+	    language   	"Java")
+	(object Class "InstrumentationServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B8C0A80167"
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A801A5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationService"))
+	    operations 	(list Operations
+		(object Operation "InstrumentationServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A8039C"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "countCommPaths"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A8039D"
+		    documentation 	
+| 
+|	  
+		    
+		    result     	"int"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "createCommPath"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A8039E"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"CommPath"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "deleteInstrumentor"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803A0"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "instrumentorName"
+			    type       	"String"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommPathFactory"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803A2"
+		    documentation 	
+|
+|	   Return a CommPathFactory
+|	 
+		    
+		    result     	"CommPathFactory"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCommPathsNames"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803A9"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"Enumeration"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B8C0A803AA"
+		    result     	"InstrumentationService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstrumentor"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803AB"
+		    documentation 	
+|
+|	Return an instrumentor if one with the name exists otherwise create one.
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "instrumentorName"
+			    type       	"String"))
+		    result     	"Instrumentor"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstrumentors"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803AD"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"Hashtable"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803AE"
+		    documentation 	
+|
+|	   Return the name 
+|	  
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803AF"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setInstrumentationPolicy"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803B1"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "value"
+			    type       	"InstrumentationPolicyValue"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setName"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A803B3"
+		    documentation 	
+|
+|	   Set the name 
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+	    quidu      	"3687E65803BF"
+	    language   	"Java")
+	(object Class "InstrumentationServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B8C0A9000F"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A9005D"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "InstrumentationServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B8C0A9005E"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceImpl"
+	    quidu      	"3687E65803B5"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A801F4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B8C0A801F5"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+		    quidu      	"36B8C0A80167")
+		(object Role "instrumentors"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A801F6"
+		    label      	"instrumentors"
+		    supplier   	"Logical View::java::util::Hashtable"
+		    quidu      	"3668190B013C"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A80261"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B8C0A80262"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+		    quidu      	"36B8C0A80167")
+		(object Role "name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A80263"
+		    label      	"name"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A8029F"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B8C0A802A0"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+		    quidu      	"36B8C0A80167")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A802A1"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationService"
+		    quidu      	"3655C0AB02FA"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A802FD"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"36B8C0A802FE"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+		    quidu      	"36B8C0A80167")
+		(object Role "commPaths"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A802FF"
+		    label      	"commPaths"
+		    supplier   	"Logical View::java::util::Hashtable"
+		    quidu      	"3668190B013C"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$8"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A8035B"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$9"
+		    quid       	"36B8C0A8035C"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+		    quidu      	"36B8C0A80167")
+		(object Role "instrumentationServiceImplClass"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceImpl"
+			    ))
+		    quid       	"36B8C0A8035D"
+		    label      	"instrumentationServiceImplClass"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$10"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A80399"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$11"
+		    quid       	"36B8C0A8039A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationServiceBaseImpl"
+		    quidu      	"36B8C0A80167")
+		(object Role "EventService"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A8039B"
+		    label      	"EventService"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventService"
+		    quidu      	"36542D5103C7"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$12"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A90167"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"36B8C0A90168"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::Instrumentor"
+		    quidu      	"3638EF3F009A")
+		(object Role "name"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A90169"
+		    label      	"name"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"3668190B0113"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$14"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B8C0A901A5"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$15"
+		    quid       	"36B8C0A901A6"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::instrumentationService::Instrumentor"
+		    quidu      	"3638EF3F009A")
+		(object Role "commPath"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B8C0A901B5"
+		    label      	"commPath"
+		    supplier   	"Logical View::com::cboe::instrumentationService::commPath::CommPath"
+		    quidu      	"3687E655033A"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Mechanism @1
+	    logical_models 	(list unit_reference_list
+		(object Object "$UNNAMED$16"
+		    quid       	"3658DB1C01AF"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3658DD5E02B5"
+			    supplier   	"$UNNAMED$16"
+			    quidu      	"3658DB1C01AF"
+			    messages   	(list Messages
+				(object Message "turnOnInstrumentors( )"
+				    quid       	"3658DF700004"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"turnOnInstrumentors"
+				    quidu      	"3658DD63008B"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationService"
+		    quidu      	"3655C0AB02FA"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$17"
+		    quid       	"3658DB920322"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3658DBE00035"
+			    supplier   	"$UNNAMED$18"
+			    quidu      	"3658DBD4031D"
+			    messages   	(list Messages
+				(object Message "defineProperty(String, String)"
+				    quid       	"3658DBE00036"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"365C785602C5"))))
+		    class      	"Use Case View::Foundation Framework::Client"
+		    quidu      	"3607C5570253"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$18"
+		    quid       	"3658DBD4031D"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3658DC6300B5"
+			    supplier   	"$UNNAMED$16"
+			    quidu      	"3658DB1C01AF"
+			    messages   	(list Messages
+				(object Message "setInstrumentationPolicy(InstrumentationPolicyValue)"
+				    quid       	"3658DF2F0354"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    quidu      	"3655C4F000C1")))
+			(object Link
+			    quid       	"3658DDF10389"
+			    supplier   	"$UNNAMED$19"
+			    quidu      	"3658DDCE0342"
+			    messages   	(list Messages
+				(object Message "getInstrumentationService( )"
+				    quid       	"3658DDF1038A"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    quidu      	"369FA8A5027B"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::systemsManagementService::AdminService"
+		    quidu      	"3687E66A0356"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$19"
+		    quid       	"3658DDCE0342"
+		    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::FoundationFramework"
+		    quidu      	"369FA8A50251"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @2
+	    logical_models 	(list unit_reference_list
+		(object Object "$UNNAMED$20"
+		    quid       	"3658E0BA0207"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3658E0D600C7"
+			    supplier   	"$UNNAMED$21"
+			    quidu      	"3658E0C900AA"
+			    messages   	(list Messages
+				(object Message "findProduct(\"IBM\")"
+				    quid       	"3658E0D600C8"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0))))
+		    class      	"Use Case View::Foundation Framework::Client"
+		    quidu      	"3607C5570253"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$21"
+		    quid       	"3658E0C900AA"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3658E11902A4"
+			    supplier   	"$UNNAMED$21"
+			    quidu      	"3658E0C900AA"
+			    messages   	(list Messages
+				(object Message "preProcess( )"
+				    quid       	"3658E11902A5"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"preProcess(String)"
+				    quidu      	"364317260011")
+				(object Message "postProcess( )"
+				    quid       	"3658E1DD0292"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"postProcess(String)"
+				    quidu      	"3643173C02B1")))
+			(object Link
+			    quid       	"3658E1C80332"
+			    supplier   	"$UNNAMED$22"
+			    quidu      	"3658E1B90344"
+			    messages   	(list Messages
+				(object Message "findProduct()"
+				    quid       	"3658E1C80333"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2))))
+		    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOInterceptor"
+		    quidu      	"362CD1A302B5"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$22"
+		    quid       	"3658E1B90344"
+		    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::BObject"
+		    quidu      	"36193B700360"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @3
+	    logical_models 	(list unit_reference_list
+		(object Object "$UNNAMED$23"
+		    quid       	"3658E8520130"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3658E85C00B3"
+			    supplier   	"$UNNAMED$23"
+			    quidu      	"3658E8520130"
+			    messages   	(list Messages
+				(object Message "preProcess( )"
+				    quid       	"3658E85C00B4"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    Operation  	"preProcess(String)"
+				    quidu      	"364317260011")))
+			(object Link
+			    quid       	"3658F506012D"
+			    supplier   	"$UNNAMED$24"
+			    quidu      	"3658F4FA0324"
+			    messages   	(list Messages
+				(object Message "increment(int)"
+				    quid       	"3658F506012E"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"increment"
+				    quidu      	"36432444031C")))
+			(object Link
+			    quid       	"3658FA5A01EC"
+			    supplier   	"$UNNAMED$25"
+			    quidu      	"3658FA3B00E3"
+			    messages   	(list Messages
+				(object Message "getInstrumentor(String)"
+				    quid       	"3658FA5A01ED"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"getInstrumentor"
+				    quidu      	"3658E5FB0324"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOInterceptor"
+		    quidu      	"362CD1A302B5"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$24"
+		    quid       	"3658F4FA0324"
+		    class      	"Logical View::com::cboe::infrastructureServices::instrumentationService::Instrumentor"
+		    quidu      	"3638EF3F009A"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "$UNNAMED$25"
+		    quid       	"3658FA3B00E3"
+		    class      	"Logical View::com::cboe::infrastructureServices::instrumentationService::InstrumentationService"
+		    quidu      	"3655C0AB02FA"
+		    persistence 	"Transient"
+		    multi      	FALSE))))
+    logical_presentations 	(list unit_reference_list
+	(object InteractionDiagram "Turn on Instrumention"
+	    mechanism_ref 	@1
+	    quid       	"3658DA530201"
+	    title      	"Turn on Instrumention"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "$UNNAMED$16" @4
+		    location   	(1648, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(1648, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	308
+			justify    	0
+			label      	"")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658DB1C01AF"
+		    width      	326
+		    height     	729
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @5
+			location   	(1648, 560)
+			line_color 	3342489
+			InterObjView 	@4
+			height     	184
+			y_coord    	124
+			Nested     	FALSE))
+		(object InterObjView "$UNNAMED$17" @6
+		    location   	(224, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(224, 249)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	360
+			justify    	0
+			label      	"")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658DB920322"
+		    width      	336
+		    height     	729
+		    icon_height 	162
+		    icon_width 	120
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @7
+			location   	(224, 416)
+			line_color 	3342489
+			InterObjView 	@6
+			height     	448
+			y_coord    	388
+			Nested     	FALSE))
+		(object InterObjView "$UNNAMED$18" @8
+		    location   	(576, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@8
+			location   	(576, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658DBD4031D"
+		    width      	300
+		    height     	729
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @9
+			location   	(576, 416)
+			line_color 	3342489
+			InterObjView 	@8
+			height     	388
+			y_coord    	328
+			Nested     	FALSE))
+		(object InterMessView "" @10
+		    location   	(0, 416)
+		    label      	(object SegLabel @11
+			Parent_View 	@10
+			location   	(400, 372)
+			quidu      	"3658DBE00036"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	669
+			justify    	0
+			label      	"defineProperty(String, String)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@6
+		    supplier   	@8
+		    Focus_Src  	@7
+		    Focus_Entry 	@9
+		    origin     	(240, 416)
+		    terminus   	(560, 416)
+		    ordinal    	0)
+		(object InterObjView "$UNNAMED$19" @12
+		    location   	(1152, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(1152, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658DDCE0342"
+		    width      	300
+		    height     	729
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @13
+			location   	(1152, 464)
+			line_color 	3342489
+			InterObjView 	@12
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @14
+		    location   	(0, 464)
+		    label      	(object SegLabel @15
+			Parent_View 	@14
+			location   	(864, 420)
+			quidu      	"3658DDF1038A"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	503
+			justify    	0
+			label      	"getInstrumentationService( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@8
+		    supplier   	@12
+		    Focus_Src  	@9
+		    Focus_Entry 	@13
+		    origin     	(592, 464)
+		    terminus   	(1136, 464)
+		    ordinal    	1)
+		(object InterMessView "" @16
+		    location   	(0, 560)
+		    label      	(object SegLabel @17
+			Parent_View 	@16
+			location   	(1112, 560)
+			quidu      	"3658DF2F0354"
+			nlines     	1
+			max_width  	966
+			justify    	0
+			label      	"setInstrumentationPolicy(InstrumentationPolicyValue)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@8
+		    supplier   	@4
+		    Focus_Src  	@9
+		    Focus_Entry 	@5
+		    origin     	(592, 560)
+		    terminus   	(1632, 560)
+		    ordinal    	2)
+		(object SelfMessView "" @18
+		    location   	(0, 624)
+		    label      	(object SegLabel @19
+			Parent_View 	@18
+			location   	(1739, 624)
+			quidu      	"3658DF700004"
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"turnOnInstrumentors( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@4
+		    supplier   	@4
+		    Focus_Src  	@5
+		    origin     	(1664, 624)
+		    terminus   	(1814, 624)
+		    ordinal    	3)))
+	(object InteractionDiagram "Instrument"
+	    mechanism_ref 	@2
+	    quid       	"3658DA7D02B5"
+	    title      	"Instrument"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "$UNNAMED$20" @20
+		    location   	(192, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@20
+			location   	(192, 249)
+			anchor_loc 	1
+			nlines     	2
+			max_width  	360
+			justify    	0
+			label      	"")
+		    icon       	"Actor"
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658E0BA0207"
+		    width      	336
+		    height     	781
+		    icon_height 	162
+		    icon_width 	120
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @21
+			location   	(192, 432)
+			line_color 	3342489
+			InterObjView 	@20
+			height     	484
+			y_coord    	424
+			Nested     	FALSE))
+		(object InterObjView "$UNNAMED$21" @22
+		    location   	(704, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@22
+			location   	(704, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658E0C900AA"
+		    width      	300
+		    height     	781
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @23
+			location   	(704, 432)
+			line_color 	3342489
+			InterObjView 	@22
+			height     	424
+			y_coord    	364
+			Nested     	FALSE))
+		(object InterObjView "$UNNAMED$22" @24
+		    location   	(1312, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@24
+			location   	(1312, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658E1B90344"
+		    width      	300
+		    height     	781
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @25
+			location   	(1312, 624)
+			line_color 	3342489
+			InterObjView 	@24
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @26
+		    location   	(0, 432)
+		    label      	(object SegLabel @27
+			Parent_View 	@26
+			location   	(448, 388)
+			quidu      	"3658E0D600C8"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	331
+			justify    	0
+			label      	
+|findProduct("IBM")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@20
+		    supplier   	@22
+		    Focus_Src  	@21
+		    Focus_Entry 	@23
+		    origin     	(208, 432)
+		    terminus   	(688, 432)
+		    ordinal    	0)
+		(object SelfMessView "" @28
+		    location   	(0, 496)
+		    label      	(object SegLabel @29
+			Parent_View 	@28
+			location   	(877, 439)
+			quidu      	"3658E11902A5"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	244
+			justify    	0
+			label      	"preProcess( )"
+			pctDist    	1.046667
+			height     	58
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@22
+		    supplier   	@22
+		    Focus_Src  	@23
+		    origin     	(720, 496)
+		    terminus   	(870, 496)
+		    ordinal    	1)
+		(object InterMessView "" @30
+		    location   	(0, 624)
+		    label      	(object SegLabel @31
+			Parent_View 	@30
+			location   	(1008, 580)
+			quidu      	"3658E1C80333"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	228
+			justify    	0
+			label      	"findProduct()"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@22
+		    supplier   	@24
+		    Focus_Src  	@23
+		    Focus_Entry 	@25
+		    origin     	(720, 624)
+		    terminus   	(1296, 624)
+		    ordinal    	2)
+		(object SelfMessView "" @32
+		    location   	(0, 736)
+		    label      	(object SegLabel @33
+			Parent_View 	@32
+			location   	(795, 692)
+			quidu      	"3658E1DD0292"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	266
+			justify    	0
+			label      	"postProcess( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@22
+		    supplier   	@22
+		    Focus_Src  	@23
+		    origin     	(720, 736)
+		    terminus   	(870, 736)
+		    ordinal    	3)))
+	(object InteractionDiagram "preProcess"
+	    mechanism_ref 	@3
+	    quid       	"3658E83A00BE"
+	    title      	"preProcess"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "$UNNAMED$23" @34
+		    location   	(304, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@34
+			location   	(304, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658E8520130"
+		    width      	300
+		    height     	689
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @35
+			location   	(304, 400)
+			line_color 	3342489
+			InterObjView 	@34
+			height     	424
+			y_coord    	364
+			Nested     	FALSE))
+		(object SelfMessView "" @36
+		    location   	(0, 403)
+		    label      	(object SegLabel @37
+			Parent_View 	@36
+			location   	(395, 359)
+			quidu      	"3658E85C00B4"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	244
+			justify    	0
+			label      	"preProcess( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@34
+		    supplier   	@34
+		    Focus_Src  	@35
+		    origin     	(320, 403)
+		    terminus   	(470, 403)
+		    ordinal    	0)
+		(object InterObjView "$UNNAMED$24" @38
+		    location   	(1312, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@38
+			location   	(1312, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658F4FA0324"
+		    width      	300
+		    height     	689
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @39
+			location   	(1312, 704)
+			line_color 	3342489
+			InterObjView 	@38
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "$UNNAMED$25" @40
+		    location   	(784, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@40
+			location   	(784, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	308
+			justify    	0
+			label      	"")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3658FA3B00E3"
+		    width      	326
+		    height     	689
+		    icon_height 	0
+		    icon_width 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @41
+			location   	(784, 544)
+			line_color 	3342489
+			InterObjView 	@40
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @42
+		    location   	(0, 704)
+		    label      	(object SegLabel @43
+			Parent_View 	@42
+			location   	(808, 660)
+			quidu      	"3658F506012E"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	247
+			justify    	0
+			label      	"increment(int)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@34
+		    supplier   	@38
+		    Focus_Src  	@35
+		    Focus_Entry 	@39
+		    origin     	(320, 704)
+		    terminus   	(1296, 704)
+		    ordinal    	2)
+		(object NoteView @44
+		    location   	(432, 1248)
+		    label      	(object ItemLabel
+			Parent_View 	@44
+			location   	(157, 910)
+			fill_color 	13434879
+			nlines     	13
+			max_width  	514
+			label      	
+|A BoInterceptor can have its instrumentors changed during runtime through the Command Callback Facility.
+|
+|If the requirement is to allow one instrumentor for each method, then a naming scheme, for the instrumentor could use the BOInterceptor name concatenated with the BOInterceptor method name
+|When this class is generated the
+			)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	574
+		    height     	688)
+		(object InterMessView "" @45
+		    location   	(0, 544)
+		    label      	(object SegLabel @46
+			Parent_View 	@45
+			location   	(544, 544)
+			quidu      	"3658FA5A01ED"
+			nlines     	1
+			max_width  	450
+			justify    	0
+			label      	"getInstrumentor(String)"
+			pctDist    	0.497768
+			height     	44
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@34
+		    supplier   	@40
+		    Focus_Src  	@35
+		    Focus_Entry 	@41
+		    origin     	(320, 544)
+		    terminus   	(768, 544)
+		    ordinal    	1)
+		(object NoteView @47
+		    location   	(1264, 1248)
+		    label      	(object ItemLabel
+			Parent_View 	@47
+			location   	(1005, 920)
+			fill_color 	13434879
+			nlines     	13
+			max_width  	483
+			label      	"We should only have to have avery minimal set of methods called from the BOInterceptor on the Instrumentor, since this code could be generated.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	543
+		    height     	669)))))

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0 NT (http://www.xmlspy.com) by Roy Gautam (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalLoggingServiceFacade SYSTEM "../dtd/LoggingService.dtd">
+<GlobalLoggingServiceFacade>
+	<LogServiceImpl name="DaveNt">
+		<LogServiceImplProperties>
+			<logServiceFileName>d:\views\FoundationFramework_snap_shot\FoundationFramework\java\com\cboe\infrastructureServices\foundationFramework\examples\LoggingService.properties</logServiceFileName>
+		</LogServiceImplProperties>
+	</LogServiceImpl>
+	<LogServiceImpl name="CurrentWorkingDirectory">
+		<LogServiceImplProperties>
+			<logServiceFileName>./LoggingService.properties</logServiceFileName>
+		</LogServiceImplProperties>
+	</LogServiceImpl>
+	<LogServiceImpl name="PropertiesDirectory">
+		<LogServiceImplProperties>
+			<logServiceFileName>./properties/LoggingService.properties</logServiceFileName>
+		</LogServiceImplProperties>
+	</LogServiceImpl>
+	<LogServiceSMAImpl name="SMA"/>
+</GlobalLoggingServiceFacade>

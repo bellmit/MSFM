@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Chuck Maslowski (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalConnectionService SYSTEM "../dtd/TradeReportReceiverConnectionService.dtd">
+<GlobalConnectionService>
+	<ConnectionServiceHomeImpl name="ConnectionServiceHomeImpl">
+		<ConnectionServiceHomeImplProperties>
+			<dropConnectionsWhenSlave booleanValue="true"/>
+			<serviceNames>TradeReportReceiverConnection</serviceNames>
+		</ConnectionServiceHomeImplProperties>
+		<Service name="TradeReportReceiverConnection">
+			<ServiceProperties>
+				<protocol protocolType="tcp"/>
+				<serviceType serverType="client"/>
+				<serviceImpl>com.cboe.ffAdapters.TradeReportReceiverServiceImpl</serviceImpl>
+				<enabled booleanValue="false"/>
+				<hostNames>&lt;prefixTradeReportReceiverHost&gt;</hostNames>
+				<portNumbers>&lt;prefixTradeReportReceiverPorts&gt;</portNumbers>
+				<retryTimeout>7000</retryTimeout>
+				<retryCount>1</retryCount>
+				<maxInputQueueDepth>-1</maxInputQueueDepth>
+				<socketSendBufferSize>8192</socketSendBufferSize>
+				<socketRecvBufferSize>32767</socketRecvBufferSize>
+				<inputStreamBufferSize>32768</inputStreamBufferSize>
+				<outputStreamBufferSize>4096</outputStreamBufferSize>
+			</ServiceProperties>
+		</Service>
+	</ConnectionServiceHomeImpl>
+</GlobalConnectionService>

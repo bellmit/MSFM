@@ -1,0 +1,559 @@
+<!ENTITY % TYPES "(ManagedResource|ManagedProperties|ManagedProperty|ManagedCommands|ManagedCommand|ManagedEvents|ManagedEvent|ManagedParameter)">
+<!ENTITY % MODES "(readOnly|readWrite|writeOnly)">
+<!ENTITY % PROPTYPES "(string|integer|float|enum)">
+<!ENTITY % PARAMTYPES "(string|integer|float|enum)">
+
+<!ENTITY % typeConstraints "ManagedResource">
+
+<!-- The root node of all logging service configurations. -->
+<!ELEMENT GlobalLoggingService  (ClientLoggingRepository? , LoggingServiceClient* , LoggingServiceServer? , CentralLoggingRepository* , StandardMessageCatalog* )>
+<!ATTLIST GlobalLoggingService  type         %TYPES; #FIXED 'ManagedResource'
+                                objectName  CDATA  #IMPLIED
+                                description CDATA  #IMPLIED
+                                name        CDATA  #REQUIRED >
+<!-- A client that uses the logging service to send log messages. Note that a logging server is also a logging client since the CORBA interface of the server behaves like a client of the logging service. -->
+<!ELEMENT LoggingServiceClient  (LoggingServiceClientProperties , ClientLoggingRepository? , LoggingComponent+ , ClientRepositoryLoggingAgent? , CorbaSyncLoggingAgent* , FileLoggingAgent* , NullLoggingAgent? , CommandConsoleLoggingAgent? , CorbaEventLoggingAgent* , CentralRepositoryLoggingAgent*, PersistentLoggingAgent* , DatedNumberedFileLoggingAgent* )>
+<!ATTLIST LoggingServiceClient  type         %TYPES; #FIXED 'ManagedResource'
+                                objectName  CDATA  #IMPLIED
+                                description CDATA  #IMPLIED
+                                name        CDATA  #REQUIRED >
+<!-- A central logging service server that receives log messages from distributed clients and stores them, generally in a central repository. -->
+<!ELEMENT LoggingServiceServer  (LoggingServiceServerProperties , CentralLoggingRepository? , LoggingServiceClient )>
+<!ATTLIST LoggingServiceServer  type         %TYPES; #FIXED 'ManagedResource'
+                                objectName  CDATA  #IMPLIED
+                                description CDATA  #IMPLIED
+                                name        CDATA  #REQUIRED >
+<!-- A catalog of standard messages. The text for standard messages gets looked up in this catalog. -->
+<!ELEMENT StandardMessageCatalog  (StandardMessageCatalogProperties )>
+<!ATTLIST StandardMessageCatalog  type         %TYPES; #FIXED 'ManagedResource'
+                                  objectName  CDATA  #IMPLIED
+                                  description CDATA  #IMPLIED
+                                  name        CDATA  #REQUIRED >
+<!-- The properties that may used to configure a logging client. -->
+<!ELEMENT LoggingServiceClientProperties  (remoteAdministrationEnabledProperty? , debugOnProperty? , traceOnProperty? )>
+<!ATTLIST LoggingServiceClientProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Logging repository that generally runs on the same host as the logging client that uses it. -->
+<!ELEMENT ClientLoggingRepository  (ClientLoggingRepositoryProperties )>
+<!ATTLIST ClientLoggingRepository  type         %TYPES; #FIXED 'ManagedResource'
+                                   objectName  CDATA  #IMPLIED
+                                   description CDATA  #IMPLIED
+                                   name        CDATA  #REQUIRED >
+<!-- Logging dispatcher that receives messages from logging clients and forwards them to logging agents for handling. -->
+<!ELEMENT LoggingComponent  (LoggingComponentProperties , LoggingComponentCommands? , Queue , LoggingMessageVector* )>
+<!ATTLIST LoggingComponent  type         %TYPES; #FIXED 'ManagedResource'
+                            objectName  CDATA  #IMPLIED
+                            description CDATA  #IMPLIED
+                            name        CDATA  #REQUIRED >
+<!-- Logging agent that sends log messages from a logging client to a client logging repository that generally runs on the same host. -->
+<!ELEMENT ClientRepositoryLoggingAgent  (ClientRepositoryLoggingAgentProperties , ClientRepositoryLoggingAgentCommands? , Queue )>
+<!ATTLIST ClientRepositoryLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                                        objectName  CDATA  #IMPLIED
+                                        description CDATA  #IMPLIED
+                                        name        CDATA  #REQUIRED >
+<!-- Logging agent that receives messages from logging clients and sends them to a central logging server that exposes a CORBA logging interface. -->
+<!ELEMENT CorbaSyncLoggingAgent  (CorbaSyncLoggingAgentProperties , CorbaSyncLoggingAgentCommands? , Queue )>
+<!ATTLIST CorbaSyncLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                                 objectName  CDATA  #IMPLIED
+                                 description CDATA  #IMPLIED
+                                 name        CDATA  #REQUIRED >
+<!-- Heavyweight central logging repository that gets used by the logging server to store log messages centrally. -->
+<!ELEMENT CentralLoggingRepository  (CentralLoggingRepositoryProperties )>
+<!ATTLIST CentralLoggingRepository  type         %TYPES; #FIXED 'ManagedResource'
+                                    objectName  CDATA  #IMPLIED
+                                    description CDATA  #IMPLIED
+                                    name        CDATA  #REQUIRED >
+<!-- Logging agent that receives messages from a logging dispatcher and stores them in a file. -->
+<!ELEMENT FileLoggingAgent  (FileLoggingAgentProperties , FileLoggingAgentCommands? , Queue )>
+<!ATTLIST FileLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                            objectName  CDATA  #IMPLIED
+                            description CDATA  #IMPLIED
+                            name        CDATA  #REQUIRED >
+<!-- Logging agent that receives messages from a logging dispatcher and stores them in a dated and numbered file. -->
+<!ELEMENT DatedNumberedFileLoggingAgent  (DatedNumberedFileLoggingAgentProperties , DatedNumberedFileLoggingAgentCommands? , Queue )>
+<!ATTLIST DatedNumberedFileLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                            objectName  CDATA  #IMPLIED
+                            description CDATA  #IMPLIED
+                            name        CDATA  #REQUIRED >
+<!-- Logging agent that receives messages from a logging dispatcher and stores them in a database. -->
+<!ELEMENT PersistentLoggingAgent  (PersistentLoggingAgentProperties , PersistentLoggingAgentCommands? , Queue )>
+<!ATTLIST PersistentLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                            objectName  CDATA  #IMPLIED
+                            description CDATA  #IMPLIED
+                            name        CDATA  #REQUIRED >
+<!-- Logging agent that receives messages from a logging dispatcher and simply discards them. -->
+<!ELEMENT NullLoggingAgent  (NullLoggingAgentProperties , NullLoggingAgentCommands? , Queue )>
+<!ATTLIST NullLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                            objectName  CDATA  #IMPLIED
+                            description CDATA  #IMPLIED
+                            name        CDATA  #REQUIRED >
+<!-- Logging agent that receives messages from a logging dispatcher and sends them as standard output to the command console. -->
+<!ELEMENT CommandConsoleLoggingAgent  (CommandConsoleLoggingAgentProperties , CommandConsoleLoggingAgentCommands? , Queue )>
+<!ATTLIST CommandConsoleLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                                      objectName  CDATA  #IMPLIED
+                                      description CDATA  #IMPLIED
+                                      name        CDATA  #REQUIRED >
+<!-- Logging agent that receives log messges from a logging dispatcher and sends them to an event channel using the typed event push model. -->
+<!ELEMENT CorbaEventLoggingAgent  (CorbaEventLoggingAgentProperties , CorbaEventLoggingAgentCommands? , Queue )>
+<!ATTLIST CorbaEventLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                                  objectName  CDATA  #IMPLIED
+                                  description CDATA  #IMPLIED
+                                  name        CDATA  #REQUIRED >
+<!-- Logging agent that receives log messages from a logging dispatcher and sends them to a central logging repository using synchronous CORBA. -->
+<!ELEMENT CentralRepositoryLoggingAgent  (CentralRepositoryLoggingAgentProperties , CentralRepositoryLoggingAgentCommands? , Queue )>
+<!ATTLIST CentralRepositoryLoggingAgent  type         %TYPES; #FIXED 'ManagedResource'
+                                         objectName  CDATA  #IMPLIED
+                                         description CDATA  #IMPLIED
+                                         name        CDATA  #REQUIRED >
+<!-- Properties that may be used to configure a central logging server. -->
+<!ELEMENT LoggingServiceServerProperties  (dispatcherNameProperty , eventChannelTraderOfferNameProperty? )>
+<!ATTLIST LoggingServiceServerProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Priority, fault tolerant log message queue used in both logging dispatchers and logging agents. -->
+<!ELEMENT Queue  (QueueProperties , Filter* )>
+<!ATTLIST Queue  type         %TYPES; #FIXED 'ManagedResource'
+                 objectName  CDATA  #IMPLIED
+                 description CDATA  #IMPLIED >
+<!-- Properties that may be used to configure queues in logging agents and dispatchers. -->
+<!ELEMENT QueueProperties  (maxMessageBytesProperty? , persistenceFilePathProperty? , duplicateMessageFilteringActiveProperty? , persistAfterDuplicateUpdateProperty? )>
+<!ATTLIST QueueProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Log message filter used to match log messages for filtering and queue persistence. -->
+<!ELEMENT Filter  (FilterProperties )>
+<!ATTLIST Filter  type         %TYPES; #FIXED 'ManagedResource'
+                  objectName  CDATA  #IMPLIED
+                  description CDATA  #IMPLIED >
+<!-- Properties that may be used to configure a message filter. -->
+<!ELEMENT FilterProperties  (priorityThresholdNameProperty? , messageCategoryNameProperty? , msgSourceComponentNameProperty? )>
+<!ATTLIST FilterProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Properties that may be used to configure a logging dispatcher. -->
+<!ELEMENT LoggingComponentProperties  (defaultAgentProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , globalPriorityThresholdProperty? )>
+<!ATTLIST LoggingComponentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Log message vector that selectively forwards matching log messages to a designated logging agent running in the same process. -->
+<!ELEMENT LoggingMessageVector  (LoggingMessageVectorProperties , LoggingMessageVectorCommands? , Filter )>
+<!ATTLIST LoggingMessageVector  type         %TYPES; #FIXED 'ManagedResource'
+                                objectName  CDATA  #IMPLIED
+                                description CDATA  #IMPLIED >
+<!-- Properties that may be used to configure log message vectors. -->
+<!ELEMENT LoggingMessageVectorProperties  (loggingAgentNameProperty )>
+<!ATTLIST LoggingMessageVectorProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Properties that may be used to configure the standard message catalog. -->
+<!ELEMENT StandardMessageCatalogProperties  (StandardLogMessageProperty )*>
+<!ATTLIST StandardMessageCatalogProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Property that may be used to specify the content of a standard message. -->
+<!ELEMENT StandardLogMessageProperty  (#PCDATA )>
+<!ATTLIST StandardLogMessageProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                      propertyType  %PROPTYPES; #FIXED 'string'
+                                      description  CDATA  #IMPLIED
+                                      mode          %MODES; #FIXED 'readWrite' >
+<!-- Indicates whether a logging service server or logging service client may be remotely administered. If true the logging client or server will expose a CORBA interface at startup via which it may be remotely administered. -->
+<!ELEMENT remoteAdministrationEnabledProperty EMPTY>
+<!ATTLIST remoteAdministrationEnabledProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                                               propertyType   %PROPTYPES; #FIXED 'enum'
+                                               booleanValue   (true | false )  #REQUIRED
+                                               description   CDATA  #IMPLIED
+                                               propertyValue CDATA  #FIXED 'booleanValue'
+                                               mode           %MODES; #FIXED 'readWrite' >
+<!-- Properties that may be used to configure a client logging repository. -->
+<!ELEMENT ClientLoggingRepositoryProperties  (onlineStorageFilePathProperty , offlineStorageFilePathProperty , maxMessageBytesProperty )>
+<!ATTLIST ClientLoggingRepositoryProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Absolute file path to the archive file that contains log messages stored online in the logging repository. -->
+<!ELEMENT onlineStorageFilePathProperty  (#PCDATA )>
+<!ATTLIST onlineStorageFilePathProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                         propertyType  %PROPTYPES; #FIXED 'string'
+                                         description  CDATA  #IMPLIED
+                                         mode          %MODES; #FIXED 'readWrite' >
+<!-- Absolute file path to the archive file that contains log messages stored offline (in backup) in the logging repository. -->
+<!ELEMENT offlineStorageFilePathProperty  (#PCDATA )>
+<!ATTLIST offlineStorageFilePathProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                          propertyType  %PROPTYPES; #FIXED 'string'
+                                          description  CDATA  #IMPLIED
+                                          mode          %MODES; #FIXED 'readWrite' >
+<!-- The maximum number of bytes a log message stored in binary form may contain. Used to specify the fixed log message record size for queue persistence and logging repository archives. -->
+<!ELEMENT maxMessageBytesProperty  (#PCDATA )>
+<!ATTLIST maxMessageBytesProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                   propertyType  %PROPTYPES; #FIXED 'integer'
+                                   description  CDATA  #IMPLIED
+                                   mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the unique name of the default logging agent in a logging dispatcher. Any log message that is not matched with at least one message vector will be dispatched by the logging dispatcher to the default logging agent. -->
+<!ELEMENT defaultAgentProperty  (#PCDATA )>
+<!ATTLIST defaultAgentProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                propertyType  %PROPTYPES; #FIXED 'string'
+                                description  CDATA  #IMPLIED
+                                mode          %MODES; #FIXED 'readWrite' >
+<!-- Commands that may be used to administer a logging dispatcher via system management support. -->
+<!ELEMENT LoggingComponentCommands  (insertMessageVectorCommand , moveMessageVectorCommand )>
+<!ATTLIST LoggingComponentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Command used to insert a new message vector into a logging dispatcher via system management support. -->
+<!ELEMENT insertMessageVectorCommand  (loggingAgentNameParameter , priorityParameter , categoryParameter , componentNameParameter , messageVectorIndexParameter )>
+<!ATTLIST insertMessageVectorCommand  type         %TYPES; #FIXED 'ManagedCommand'
+                                      description CDATA  #IMPLIED >
+<!-- Command used to move an existing message vector in the ordered list in a logging dispatcher via system management support. -->
+<!ELEMENT moveMessageVectorCommand  (sourceMessageVectorIndexParameter , targetMessageVectorIndexParameter )>
+<!ATTLIST moveMessageVectorCommand  type         %TYPES; #FIXED 'ManagedCommand'
+                                    description CDATA  #IMPLIED >
+<!-- Absolute file path to the archive file used to persist messages on a log message queue. -->
+<!ELEMENT persistenceFilePathProperty  (#PCDATA )>
+<!ATTLIST persistenceFilePathProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                       propertyType  %PROPTYPES; #FIXED 'string'
+                                       description  CDATA  #IMPLIED
+                                       mode          %MODES; #FIXED 'readWrite' >
+<!-- If true this option specifies that before a log message is placed on a priority queue a check must be done to ensure that no duplicates of the message already exist on the queue. If a duplicate is found the incoming message is discarded and the duplicate count on the matching message on the queue is incremented. -->
+<!ELEMENT duplicateMessageFilteringActiveProperty EMPTY>
+<!ATTLIST duplicateMessageFilteringActiveProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                                                   propertyType   %PROPTYPES; #FIXED 'enum'
+                                                   booleanValue   (true | false )  #REQUIRED
+                                                   description   CDATA  #IMPLIED
+                                                   propertyValue CDATA  #FIXED 'booleanValue'
+                                                   mode           %MODES; #FIXED 'readWrite' >
+<!-- Property that may be used to specify the log message priority for a message filter. Messages with priorities equal to or greater than this value will be matched by the filter either for forwarding via a message vector or for queue persistence. -->
+<!ELEMENT priorityThresholdNameProperty EMPTY>
+<!ATTLIST priorityThresholdNameProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                                         propertyType   %PROPTYPES; #FIXED 'enum'
+                                         description   CDATA  #IMPLIED
+                                         propertyValue CDATA  #FIXED 'priority'
+                                         priority       (low | 
+                                                         medium | 
+                                                         high | 
+                                                         critical )  #REQUIRED
+                                         mode           %MODES; #FIXED 'readWrite' >
+<!-- The unique name of a logging agent in a given logging client or server process. -->
+<!ELEMENT loggingAgentNameProperty  (#PCDATA )>
+<!ATTLIST loggingAgentNameProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Commands that may be used to administer log message vectors via system management support. -->
+<!ELEMENT LoggingMessageVectorCommands  (updateCommand , deleteCommand )>
+<!ATTLIST LoggingMessageVectorCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Command used to update the properties of a log message vector via system management support. -->
+<!ELEMENT updateCommand  (loggingAgentNameParameter , priorityParameter , categoryParameter , componentNameParameter )>
+<!ATTLIST updateCommand  type         %TYPES; #FIXED 'ManagedCommand'
+                         description CDATA  #IMPLIED >
+<!-- Command that may be used to delete a given log message vector in the ordered list of message vectors in a logging dispatcher. -->
+<!ELEMENT deleteCommand EMPTY>
+<!ATTLIST deleteCommand  type         %TYPES; #FIXED 'ManagedCommand'
+                         description CDATA  #IMPLIED >
+<!-- Property used to specify the category of a log message. This category is used in log message filters to match messages for routing or queue persistence. -->
+<!ELEMENT messageCategoryNameProperty EMPTY>
+<!ATTLIST messageCategoryNameProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                                       propertyType   %PROPTYPES; #FIXED 'enum'
+                                       description   CDATA  #IMPLIED
+                                       propertyValue CDATA  #FIXED 'category'
+                                       mode           %MODES; #FIXED 'readWrite'
+                                       category       (debug | 
+                                                       audit | 
+                                                       nonRepudiation | 
+                                                       systemNotification | 
+                                                       systemAlarm | 
+                                                       information )  #REQUIRED >
+<!-- Properties that may be used to configure a client repository logging agent. -->
+<!ELEMENT ClientRepositoryLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , traderOfferNameProperty , inProcessProperty? , healthyProperty? )>
+<!ATTLIST ClientRepositoryLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Property used to specify the type of a component, for example a logging agent. The value of this property is generally the fully qualified name of the Java class. -->
+<!ELEMENT typeProperty  (#PCDATA )>
+<!ATTLIST typeProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                        propertyType  %PROPTYPES; #FIXED 'string'
+                        description  CDATA  #IMPLIED
+                        mode          %MODES; #FIXED 'readWrite' >
+<!-- Property that may be used to specify the name of an offer to either store or lookup in the Trader Service. These offers allows servers to publish themselves and clients to lookup published servers. -->
+<!ELEMENT traderOfferNameProperty  (#PCDATA )>
+<!ATTLIST traderOfferNameProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                   propertyType  %PROPTYPES; #FIXED 'string'
+                                   description  CDATA  #IMPLIED
+                                   mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the status of a logging agent. If healthy the agent is functioning correctly and able to handle log messages. If unhealthy an agent does not accept log messages for handling. -->
+<!ELEMENT healthyProperty EMPTY>
+<!ATTLIST healthyProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                           propertyType   %PROPTYPES; #FIXED 'enum'
+                           booleanValue   (true | false )  #REQUIRED
+                           description   CDATA  #IMPLIED
+                           propertyValue CDATA  #FIXED 'booleanValue'
+                           mode           %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify whether a component is inProcess, as opposed to having to be accessed through CORBA.  -->
+<!ELEMENT inProcessProperty EMPTY>
+<!ATTLIST inProcessProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                           propertyType   %PROPTYPES; #FIXED 'enum'
+                           booleanValue   (true | false )  #REQUIRED
+                           description   CDATA  #IMPLIED
+                           propertyValue CDATA  #FIXED 'booleanValue'
+                           mode           %MODES; #FIXED 'readWrite' >
+<!-- Commands that may be used to administer a client repository logging agent via system management support. -->
+<!ELEMENT ClientRepositoryLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST ClientRepositoryLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Command that may be used to initialize a logging agent via system management support. -->
+<!ELEMENT initializeCommand EMPTY>
+<!ATTLIST initializeCommand  type         %TYPES; #FIXED 'ManagedCommand'
+                             description CDATA  #IMPLIED >
+<!-- Command that may be used to stop a logging agent via system management support. -->
+<!ELEMENT stopCommand EMPTY>
+<!ATTLIST stopCommand  type         %TYPES; #FIXED 'ManagedCommand'
+                       description CDATA  #IMPLIED >
+<!-- Properties that may be used to configure a CORBA synchronous logging agent. -->
+<!ELEMENT CorbaSyncLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , traderOfferNameProperty )>
+<!ATTLIST CorbaSyncLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a CORBA synchronous logging agent using system management support. -->
+<!ELEMENT CorbaSyncLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST CorbaSyncLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Property that may be used to specify the threshold number of messages for a message queue at which point duplicate log message filtering will automatically turn on. -->
+<!ELEMENT duplicateMessageHighFilteringThresholdProperty  (#PCDATA )>
+<!ATTLIST duplicateMessageHighFilteringThresholdProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                                          propertyType  %PROPTYPES; #FIXED 'integer'
+                                                          description  CDATA  #IMPLIED
+                                                          mode          %MODES; #FIXED 'readWrite' >
+<!-- Property that may be used to specify the number of messages on a message queue at which point duplicate message filtering will be deactivated, if currently active. This value should be set lower than the corresponding high value. -->
+<!ELEMENT duplicateMessageLowFilteringThresholdProperty  (#PCDATA )>
+<!ATTLIST duplicateMessageLowFilteringThresholdProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                                         propertyType  %PROPTYPES; #FIXED 'integer'
+                                                         description  CDATA  #IMPLIED
+                                                         mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify queue behavior when a duplicate message is found on the queue during duplicate message filtering. If this property is true then when a duplicate already on the queue is found its duplicate count property is incremented and the message is repersisted. If this property is false the duplicate message on the queue does not get repersisted after the increment is compelted. -->
+<!ELEMENT persistAfterDuplicateUpdateProperty EMPTY>
+<!ATTLIST persistAfterDuplicateUpdateProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                                               propertyType   %PROPTYPES; #FIXED 'enum'
+                                               booleanValue   (true | false )  #REQUIRED
+                                               description   CDATA  #IMPLIED
+                                               propertyValue CDATA  #FIXED 'booleanValue'
+                                               mode           %MODES; #FIXED 'readWrite' >
+<!-- The component name of the logging dispatcher than created a log message. This property may be used in message filters to match log messages based on their origin. -->
+<!ELEMENT msgSourceComponentNameProperty  (#PCDATA )>
+<!ATTLIST msgSourceComponentNameProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                          propertyType  %PROPTYPES; #FIXED 'string'
+                                          description  CDATA  #IMPLIED
+                                          mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the name of a logging dispatcher. This name should be unique across dispatchers running in the same process. -->
+<!ELEMENT dispatcherNameProperty  (#PCDATA )>
+<!ATTLIST dispatcherNameProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                  propertyType  %PROPTYPES; #FIXED 'string'
+                                  description  CDATA  #IMPLIED
+                                  mode          %MODES; #FIXED 'readWrite' >
+<!-- Properties that may be used to configure a central logging repository. -->
+<!ELEMENT CentralLoggingRepositoryProperties  (typeProperty ,  ( (persistFileNameProperty , persistFileDirProperty , maxCachedMessagesProperty , minMillisBetweenFlushingProperty? ) | (  userProperty , passwordProperty , urlProperty , verboseProperty? , metricsProperty? , driverProperty?, absoluteFilePathProperty, absoluteFilePathSupplementProperty ) ), echoToChannelProperty?, traderOfferNameProperty? ) >
+<!ATTLIST CentralLoggingRepositoryProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Property used to specify the name of the file used to persist messages stored in a log message repository. This property does not include the path or directory containing the file. -->
+<!ELEMENT persistFileNameProperty  (#PCDATA )>
+<!ATTLIST persistFileNameProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                   propertyType  %PROPTYPES; #FIXED 'string'
+                                   description  CDATA  #IMPLIED
+                                   mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the name of the directory used to persist messages stored in a log message repository. This property does not specify the name of the actual archive file, just the directory. -->
+<!ELEMENT persistFileDirProperty  (#PCDATA )>
+<!ATTLIST persistFileDirProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                  propertyType  %PROPTYPES; #FIXED 'string'
+                                  description  CDATA  #IMPLIED
+                                  mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the maximum number of messages that may be cached in memory in a lighweight central logging repository before the repository forces a flush of the messages to the archive file. -->
+<!ELEMENT maxCachedMessagesProperty  (#PCDATA )>
+<!ATTLIST maxCachedMessagesProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                     propertyType  %PROPTYPES; #FIXED 'integer'
+                                     description  CDATA  #IMPLIED
+                                     mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the minimum number of milliseconds between flushing messages from memory to archive file in the lightweight logging repository. If this period is exceeded the repository will force a flush of messages cached in memory to the archive file. -->
+<!ELEMENT minMillisBetweenFlushingProperty  (#PCDATA )>
+<!ATTLIST minMillisBetweenFlushingProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                            propertyType  %PROPTYPES; #FIXED 'integer'
+                                            description  CDATA  #IMPLIED
+                                            mode          %MODES; #FIXED 'readWrite' >
+<!-- Properties that may be used to configure a central logging repository. -->
+<!ELEMENT CentralRepositoryLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , traderOfferNameProperty , inProcessProperty?,blockSizeProperty? )>
+<!ATTLIST CentralRepositoryLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Property used to specify the maximum number of messages that may be sent to the  central logging repository as a block . -->
+<!ELEMENT blockSizeProperty  (#PCDATA )>
+<!ATTLIST blockSizeProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                     propertyType  %PROPTYPES; #FIXED 'integer'
+                                     description  CDATA  #IMPLIED
+                                     mode          %MODES; #FIXED 'readWrite' >
+<!-- Commands that may be used to administer a central repository logging agent via system management support. -->
+<!ELEMENT CentralRepositoryLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST CentralRepositoryLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Property that may be used to turn on / off verbose mode for a process for debug messages. -->
+<!ELEMENT debugOnProperty EMPTY>
+<!ATTLIST debugOnProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                           propertyType   %PROPTYPES; #FIXED 'enum'
+                           booleanValue   (true | false )  #REQUIRED
+                           description   CDATA  #IMPLIED
+                           propertyValue CDATA  #FIXED 'booleanValue'
+                           mode           %MODES; #FIXED 'readWrite' >
+<!-- Property that may be used to turn on / off verbose mode for a process for trace messages. -->
+<!ELEMENT traceOnProperty EMPTY>
+<!ATTLIST traceOnProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                           propertyType   %PROPTYPES; #FIXED 'enum'
+                           booleanValue   (true | false )  #REQUIRED
+                           description   CDATA  #IMPLIED
+                           propertyValue CDATA  #FIXED 'booleanValue'
+                           mode           %MODES; #FIXED 'readWrite' >
+<!-- Properties that may be used to configure a file logging agent. -->
+<!ELEMENT FileLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , messageFormattingProperty? , absoluteFilePathProperty,absoluteFilePathSupplementProperty)>
+<!ATTLIST FileLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a file logging agent via system management support. -->
+<!ELEMENT FileLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST FileLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Properties that may be used to configure a dated numbered file logging agent. -->
+<!ELEMENT DatedNumberedFileLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , messageFormattingProperty? , namePrefixProperty , pathOnlyProperty )>
+<!ATTLIST DatedNumberedFileLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a file logging agent via system management support. -->
+<!ELEMENT DatedNumberedFileLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST DatedNumberedFileLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Properties that may be used to configure a persistent logging agent. -->
+<!ELEMENT PersistentLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , userProperty , passwordProperty , urlProperty , verboseProperty? , metricsProperty? , driverProperty?  )>
+<!ATTLIST PersistentLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a file logging agent via system management support. -->
+<!ELEMENT PersistentLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST PersistentLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Properties that may be used to configure a NULL logging agent. -->
+<!ELEMENT NullLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? )>
+<!ATTLIST NullLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a NULL logging agent via system management support. -->
+<!ELEMENT NullLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST NullLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Properties that may be used to configure a command console logging agent. -->
+<!ELEMENT CommandConsoleLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , messageFormattingProperty? )>
+<!ATTLIST CommandConsoleLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a command console logging agent via system management support. -->
+<!ELEMENT CommandConsoleLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST CommandConsoleLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Properties that may be used to configure a CORBA event logging agent. -->
+<!ELEMENT CorbaEventLoggingAgentProperties  (typeProperty , duplicateMessageHighFilteringThresholdProperty? , duplicateMessageLowFilteringThresholdProperty? , traderOfferNameProperty )>
+<!ATTLIST CorbaEventLoggingAgentProperties  type  %TYPES; #FIXED 'ManagedProperties' >
+<!-- Commands that may be used to administer a CORBA event logging agent via system management support. -->
+<!ELEMENT CorbaEventLoggingAgentCommands  (initializeCommand , stopCommand )>
+<!ATTLIST CorbaEventLoggingAgentCommands  type  %TYPES; #FIXED 'ManagedCommands' >
+<!-- Property used to specify the absolute path for a file, for example for a file logging agent. -->
+<!ELEMENT absoluteFilePathProperty  (#PCDATA )>
+<!ATTLIST absoluteFilePathProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the absolute path supplement for a file, for example for a file logging agent. -->
+<!ELEMENT absoluteFilePathSupplementProperty  (#PCDATA )>
+<!ATTLIST absoluteFilePathSupplementProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the class name of the message format. Used for agents that display messages. -->
+<!ELEMENT messageFormattingProperty  (#PCDATA )>
+<!ATTLIST messageFormattingProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                     propertyType  %PROPTYPES; #FIXED 'string'
+                                     description  CDATA  #IMPLIED
+                                     mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the base name for a dated numbered file agent. -->
+<!ELEMENT namePrefixProperty  (#PCDATA )>
+<!ATTLIST namePrefixProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                  propertyType  %PROPTYPES; #FIXED 'string'
+                                  description  CDATA  #IMPLIED
+                                  mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the absolute path for a directory, for example for a dated numbered file logging agent. -->
+<!ELEMENT pathOnlyProperty  (#PCDATA )>
+<!ATTLIST pathOnlyProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                propertyType  %PROPTYPES; #FIXED 'string'
+                                description  CDATA  #IMPLIED
+                                mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the database user name for a persistent logging agent. -->
+<!ELEMENT userProperty  (#PCDATA )>
+<!ATTLIST userProperty  type        %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the database user password for a persistent logging agent. -->
+<!ELEMENT passwordProperty  (#PCDATA )>
+<!ATTLIST passwordProperty  type    %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the url for a database connection for a persistent logging agent. -->
+<!ELEMENT urlProperty  (#PCDATA )>
+<!ATTLIST urlProperty  type         %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify database verbose mode for a persistent logging agent. -->
+<!ELEMENT verboseProperty  (#PCDATA )>
+<!ATTLIST verboseProperty  type     %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType   %PROPTYPES; #FIXED 'enum'
+                                    booleanValue   (true | false)  #REQUIRED
+                                    description   CDATA  #IMPLIED
+                                    propertyValue CDATA  #FIXED 'booleanValue'
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the reporting of metrics for database activity for a persistent logging agent. -->
+<!ELEMENT metricsProperty  (#PCDATA )>
+<!ATTLIST metricsProperty  type     %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType   %PROPTYPES; #FIXED 'enum'
+                                    booleanValue   (true | false )  #REQUIRED
+                                    description   CDATA  #IMPLIED
+                                    propertyValue CDATA  #FIXED 'booleanValue'
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the database driver to used for the persistent logging agent. -->
+<!ELEMENT driverProperty  (#PCDATA )>
+<!ATTLIST driverProperty  type      %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType  %PROPTYPES; #FIXED 'string'
+                                    description  CDATA  #IMPLIED
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify whether the CentralLoggingRepository should echo messages to the event channel. -->
+<!ELEMENT echoToChannelProperty (#PCDATA )>
+<!ATTLIST echoToChannelProperty type %TYPES; #FIXED 'ManagedProperty'
+                                    propertyType   %PROPTYPES; #FIXED 'enum'
+                                    booleanValue   (true | false)  #REQUIRED
+                                    description   CDATA  #IMPLIED
+                                    propertyValue CDATA  #FIXED 'booleanValue'
+                                    mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the host on which a system management agent is running. -->
+<!ELEMENT agentHostProperty  (#PCDATA )>
+<!ATTLIST agentHostProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                             propertyType  %PROPTYPES; #FIXED 'string'
+                             description  CDATA  #IMPLIED
+                             mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to specify the port on which a system management agent is running. -->
+<!ELEMENT agentPortProperty  (#PCDATA )>
+<!ATTLIST agentPortProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                             propertyType  %PROPTYPES; #FIXED 'integer'
+                             description  CDATA  #IMPLIED
+                             mode          %MODES; #FIXED 'readWrite' >
+<!-- Property used to configure a logging dispatcher. If a given message has a priority less than this threshold it will not be forwarded via message vectors by the logging dispatcher, but will be sent to the default logging agent. -->
+<!ELEMENT globalPriorityThresholdProperty EMPTY>
+<!ATTLIST globalPriorityThresholdProperty  type           %TYPES; #FIXED 'ManagedProperty'
+                                           propertyType   %PROPTYPES; #FIXED 'enum'
+                                           description   CDATA  #IMPLIED
+                                           propertyValue CDATA  #FIXED 'priority'
+                                           priority       (low | 
+                                                           medium | 
+                                                           high | 
+                                                           critical )  #REQUIRED
+                                           mode           %MODES; #FIXED 'readWrite' >
+<!-- The name of an offer in the Trading Service for a logging event channel. -->
+<!ELEMENT eventChannelTraderOfferNameProperty  (#PCDATA )>
+<!ATTLIST eventChannelTraderOfferNameProperty  type          %TYPES; #FIXED 'ManagedProperty'
+                                               propertyType  %PROPTYPES; #FIXED 'string'
+                                               description  CDATA  #IMPLIED
+                                               mode          %MODES; #FIXED 'readWrite' >
+<!-- The name of a logging agent, unique across all logging agents running in a given process. -->
+<!ELEMENT loggingAgentNameParameter  (#PCDATA )>
+<!ATTLIST loggingAgentNameParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                                     description   CDATA  #IMPLIED
+                                     parameterType  %PARAMTYPES; #FIXED 'string' >
+<!-- Parameter used to convey a message priority argument in a command issued to system management. -->
+<!ELEMENT priorityParameter EMPTY>
+<!ATTLIST priorityParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                             description   CDATA  #IMPLIED
+                             parameterType  %PARAMTYPES; #FIXED 'string' >
+<!-- Parameter used to convey a message category argument in a command issued to system management. -->
+<!ELEMENT categoryParameter EMPTY>
+<!ATTLIST categoryParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                             description   CDATA  #IMPLIED
+                             parameterType  %PARAMTYPES; #FIXED 'string' >
+<!-- Parameter used to convey a logging dispatcher component name argument in a command issued to system management. -->
+<!ELEMENT componentNameParameter EMPTY>
+<!ATTLIST componentNameParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                                  description   CDATA  #IMPLIED
+                                  parameterType  %PARAMTYPES; #FIXED 'string' >
+<!-- Parameter used to convey a message vector index (position in a particular logging dispatchers ordered list) argument in a command issued to system management. -->
+<!ELEMENT messageVectorIndexParameter EMPTY>
+<!ATTLIST messageVectorIndexParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                                       description   CDATA  #IMPLIED
+                                       parameterType  %PARAMTYPES; #FIXED 'integer' >
+<!-- Parameter used to convey a source message vector index (position in a particular logging dispatchers ordered list) argument in a command issued to system management. -->
+<!ELEMENT sourceMessageVectorIndexParameter EMPTY>
+<!ATTLIST sourceMessageVectorIndexParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                                             description   CDATA  #IMPLIED
+                                             parameterType  %PARAMTYPES; #FIXED 'integer' >
+<!-- Parameter used to convey a target message vector index (position in a particular logging dispatchers ordered list) argument in a command issued to system management. -->
+<!ELEMENT targetMessageVectorIndexParameter EMPTY>
+<!ATTLIST targetMessageVectorIndexParameter  type           %TYPES; #FIXED 'ManagedParameter'
+                                             description   CDATA  #IMPLIED
+                                             parameterType  %PARAMTYPES; #FIXED 'integer' >

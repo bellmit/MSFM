@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0b3 NT (http://www.xmlspy.com) by Dave (OW) -->
+<!DOCTYPE GlobalFoundationFramework SYSTEM "../dtd/GenericServer.dtd">
+<GlobalFoundationFramework>
+    <FoundationFramework name="TradeServer">
+       <CoreService name="GlobalServerCoreService">
+           <CoreServiceProperties>
+               <orbServiceImpl value="com.cboe.infrastructureServices.orbService.OrbServicePOAImpl"/>
+               <orbServiceName>RootOnly</orbServiceName>
+               <commandCallbackServiceImpl value="com.cboe.infrastructureServices.systemsManagementService.CommandCallbackServiceSysManImpl"/>
+               <eventServiceImpl value="com.cboe.infrastructureServices.eventService.EventServiceTraderImpl"/>
+               <eventServiceName>DefaultServer</eventServiceName>
+               <traderServiceImpl value="com.cboe.infrastructureServices.traderService.TraderServiceImpl"/>
+               <traderServiceName>TraderServiceProperties</traderServiceName>
+               <loggingServiceImpl value="com.cboe.infrastructureServices.loggingService.LogServiceSMAImpl"/>
+               <loggingServiceName>SMA</loggingServiceName>
+               <adminServiceImpl value="com.cboe.infrastructureServices.systemsManagementService.AdminServiceImpl"/>
+               <adminServiceName>Dynamic</adminServiceName>
+               <securityServiceImpl value="com.cboe.infrastructureServices.securityService.NullSecurityServiceImpl"/>
+               <securityServiceName>NullNeedsNoName</securityServiceName>
+               <uuidServiceImpl value="com.cboe.infrastructureServices.uuidService.IdServiceSimpleImpl" />
+               <uuidServiceName>IdServiceClient</uuidServiceName>
+               <persistenceServiceImpl value="com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl"/>
+               <persistenceServiceName>&lt;prefixPersistenceService&gt;</persistenceServiceName>
+               <instrumentationServiceImpl value="com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceNullImpl"/>
+               <instrumentationServiceName>NullService</instrumentationServiceName>
+               <sessionManagementServiceImpl value="com.cboe.infrastructureServices.sessionManagementService.SessionManagementServiceNullImpl"/>
+               <sessionManagementServiceName>DefaultService</sessionManagementServiceName>
+           </CoreServiceProperties>
+       </CoreService>
+        <BOContainer name="general">
+            <BOContainerProperties>
+                <containerImpl implClassName="com.cboe.infrastructureServices.foundationFramework.BOContainer"/>
+                <persistentBrokerName brokerName="transient"/>
+            </BOContainerProperties>
+            <BOHome name="TradeServiceHome">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.ffBusinessServices.tradeService.TradeServiceHomeSimpleImpl</homeImpl>
+                    <interceptorName>TradeServiceInterceptor</interceptorName>
+                    <interceptorImpl>com.cboe.ffBusinessServices.tradeService.TradeServiceInterceptor</interceptorImpl>
+                </BOHomeProperties>
+            </BOHome>
+            <BOHome name="TradeMatchServiceHome">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.ffBusinessServices.tradeMatchService.TradeMatchServiceHomeSimpleImpl</homeImpl>
+                </BOHomeProperties>
+            </BOHome>
+            <BOHome name="IORResolverFactoryInitializer">
+                <BOHomeProperties>
+                    <homeImpl>com.cboe.server.util.IORResolverFactoryInitializer</homeImpl>
+                </BOHomeProperties>
+            </BOHome>
+        </BOContainer>
+
+        <FoundationFrameworkProperties>
+            <logServiceComponent value="TradeServer"/>
+            <listOfHomes>
+                IORResolverFactoryInitializer,
+                TradeMatchServiceHome,
+                TradeServiceHome
+            </listOfHomes>
+            <autoStart booleanValue="true"/>
+            <autoInit booleanValue="true"/>
+            <isMaster>true</isMaster>
+            <instrumentationEnabled booleanValue="false"/>
+        </FoundationFrameworkProperties>
+        <Application>
+            <ApplicationProperties>
+                <routeName>&lt;prefixRouteName&gt;</routeName>
+                <remoteRouteName>&lt;prefixRemoteRouteName&gt;</remoteRouteName>
+            </ApplicationProperties>
+        </Application>
+    </FoundationFramework>
+</GlobalFoundationFramework>

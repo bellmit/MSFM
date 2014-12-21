@@ -1,0 +1,4234 @@
+
+(object Petal
+    version    	44
+    _written   	"Rose 7.0.9420.17"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"3EC5590A011C"
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	16
+	gridY      	16
+	defaultFont 	(object Font
+	    size       	10
+	    face       	"Arial"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	1
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"3EB96A8A0265"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"3EB96A9001F6"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"3EB96A8A0252"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"3EB96A8A0279"
+	logical_models 	(list unit_reference_list
+	    (object Association "$UNNAMED$0"
+		quid       	"3EB97CFB0169"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"3EB97CFC0070"
+			supplier   	"Logical View::com::cboe::ffBusinessService::xService::XServiceImpl"
+			quidu      	"3EB972750291"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"3EB97CFC0071"
+			supplier   	"Logical View::com::cboe::ffBusinessService::xService::XServiceHomeImpl"
+			quidu      	"3EB9751601C7")))
+	    (object Association "$UNNAMED$3"
+		quid       	"3EB97D4E00BE"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"3EB97D4E0371"
+			supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BObject"
+			quidu      	"3EB9742F0265"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$5"
+			quid       	"3EB97D4E037B"
+			supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+			quidu      	"3EB9743D0098")))
+	    (object Association "$UNNAMED$6"
+		quid       	"3EB97D7101D7"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"3EB97D7201D8"
+			supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::POA_XService_tie"
+			quidu      	"3EB96DFB004F"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"3EB97D7201E2"
+			supplier   	"Logical View::com::cboe::ffBusinessService::xService::XServiceHomeImpl"
+			quidu      	"3EB9751601C7")))
+	    (object Association "$UNNAMED$9"
+		quid       	"3EB97E3203BF"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$10"
+			quid       	"3EB97E3302B2"
+			supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServiceOperations"
+			quidu      	"3EB96BB801AB"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$11"
+			quid       	"3EB97E3302BC"
+			supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::POA_XService_tie"
+			quidu      	"3EB96DFB004F")))
+	    (object Association "$UNNAMED$12"
+		quid       	"3EB9836B0399"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$13"
+			quid       	"3EB9836C01D8"
+			supplier   	"Logical View::com::cboe::ffBusinessService::xService::XServiceInterceptor"
+			quidu      	"3EB982DF0121"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$14"
+			quid       	"3EB9836C01D9"
+			supplier   	"Logical View::com::cboe::ffBusinessService::xService::XServiceHomeImpl"
+			quidu      	"3EB9751601C7")))
+	    (object Association "$UNNAMED$15"
+		quid       	"3EB984D10019"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$16"
+			quid       	"3EB984D20056"
+			supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOInterceptor"
+			quidu      	"3EB9823300C0"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$17"
+			quid       	"3EB984D20060"
+			supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+			quidu      	"3EB9743D0098")))
+	    (object Class_Category "org"
+		quid       	"3EB96AA50001"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class_Category "omg"
+			quid       	"3EB96AB4008E"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class_Category "CORBA"
+				quid       	"3EB96AC30144"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "Object"
+					quid       	"3EB96F5D02D9"
+					stereotype 	"Interface")
+				    (object Class_Category "portable"
+					quid       	"3EB96C6A00B6"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "IDLEntity"
+						quid       	"3EB96C7202CA"
+						stereotype 	"Interface")
+					    (object Class "InvokeHandler"
+						quid       	"3EB96D1F0323"
+						stereotype 	"Interface"))
+					logical_presentations 	(list unit_reference_list)))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "PortableServer"
+				quid       	"3EB96D000383"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "Servant"
+					quid       	"3EB96D110215"))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "CosTypedEventComm"
+				quid       	"3EC5645C0105"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "TypedPushConsumer"
+					quid       	"3EC5646800DA"
+					stereotype 	"Interface")
+				    (object Class "TypedPushConsumerOperations"
+					quid       	"3EC5649701F0"
+					stereotype 	"Interface"))
+				logical_presentations 	(list unit_reference_list)))
+			logical_presentations 	(list unit_reference_list)))
+		logical_presentations 	(list unit_reference_list))
+	    (object Class_Category "com"
+		quid       	"3EB96B01003F"
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class_Category "cboe"
+			quid       	"3EB96B06028B"
+			exportControl 	"Public"
+			logical_models 	(list unit_reference_list
+			    (object Class_Category "ffInterfaces"
+				quid       	"3EB96B3300A5"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "XService"
+					quid       	"3EB96B630389"
+					stereotype 	"Interface"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						quid       	"3EB970890262"
+						supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServiceOperations"
+						quidu      	"3EB96BB801AB")))
+				    (object Class "XServiceHome"
+					quid       	"3EB974830374"
+					stereotype 	"Interface"
+					used_nodes 	(list uses_relationship_list
+					    (object Uses_Relationship
+						quid       	"3EB97558032A"
+						supplier   	"Logical View::com::cboe::ffInterfaces::XService"
+						quidu      	"3EB96B630389")))
+				    (object Class "TradeReportConsumer"
+					quid       	"3EC559A503A0"
+					stereotype 	"Interface"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						quid       	"3EC56973039E"
+						supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerOperations"
+						quidu      	"3EC55B55029D")))
+				    (object Class "TradeReportConsumerHome"
+					quid       	"3EC559B500FA"
+					stereotype 	"Interface"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						quid       	"3EC569C9012A"
+						supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+						quidu      	"3EB9743D0098"))))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "ffidl"
+				quid       	"3EB96B78004A"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class_Category "ffBusinessServices"
+					quid       	"3EB96B8E031D"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "XServiceOperations"
+						quid       	"3EB96BB801AB"
+						stereotype 	"Interface")
+					    (object Class "XService"
+						quid       	"3EB96C2802EC"
+						stereotype 	"Interface"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB96F15000E"
+							supplier   	"Logical View::org::omg::CORBA::portable::IDLEntity"
+							quidu      	"3EB96C7202CA")
+						    (object Inheritance_Relationship
+							quid       	"3EB96F2F0070"
+							supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServiceOperations"
+							quidu      	"3EB96BB801AB")
+						    (object Inheritance_Relationship
+							quid       	"3EB96F6E0215"
+							supplier   	"Logical View::org::omg::CORBA::Object"
+							quidu      	"3EB96F5D02D9")))
+					    (object Class "XServicePOA"
+						quid       	"3EB96CC90013"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB96FE40002"
+							supplier   	"Logical View::org::omg::PortableServer::Servant"
+							quidu      	"3EB96D110215"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EB96FF802DC"
+							supplier   	"Logical View::org::omg::CORBA::portable::InvokeHandler"
+							quidu      	"3EB96D1F0323")
+						    (object Realize_Relationship
+							quid       	"3EB9700803D9"
+							supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServiceOperations"
+							quidu      	"3EB96BB801AB"))
+						abstract   	TRUE)
+					    (object Class "XServicePOATie"
+						quid       	"3EB96D5101BD"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB96D6D0217"
+							supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServicePOA"
+							quidu      	"3EB96CC90013")))
+					    (object Class "POA_XService"
+						quid       	"3EB96DB60244"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB96DCB01E0"
+							supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServicePOA"
+							quidu      	"3EB96CC90013"))
+						abstract   	TRUE)
+					    (object Class "POA_XService_tie"
+						quid       	"3EB96DFB004F"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB96E07039F"
+							supplier   	"Logical View::com::cboe::ffidl::ffBusinessServices::XServicePOATie"
+							quidu      	"3EB96D5101BD"))))
+					logical_presentations 	(list unit_reference_list))
+				    (object Class_Category "ffConsumers"
+					quid       	"3EC55A3F00F8"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "_TradeReportConsumerStub"
+						quid       	"3EC55B1B0163"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC55D3F0107"
+							supplier   	"Logical View::com::cboe::ORBInfra::ORB::ObjectImpl"
+							quidu      	"3EC55D310070"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EC55D5E03C8"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumer"
+							quidu      	"3EC55B48033E")))
+					    (object Class "POA_TradeReportConsumer"
+						quid       	"3EC55B2A015A"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC55D8802EC"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerPOA"
+							quidu      	"3EC55B6101B3"))
+						abstract   	TRUE)
+					    (object Class "POA_TradeReportConsumer_tie"
+						quid       	"3EC55B3C00FC"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC55DA1020C"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerPOATie"
+							quidu      	"3EC55B7500D6")))
+					    (object Class "TradeReportConsumer"
+						quid       	"3EC55B48033E"
+						stereotype 	"Interface"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC55DC8009F"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerOperations"
+							quidu      	"3EC55B55029D")
+						    (object Inheritance_Relationship
+							quid       	"3EC55DE8015A"
+							supplier   	"Logical View::org::omg::CORBA::portable::IDLEntity"
+							quidu      	"3EB96C7202CA")
+						    (object Inheritance_Relationship
+							quid       	"3EC55E040272"
+							supplier   	"Logical View::org::omg::CORBA::Object"
+							quidu      	"3EB96F5D02D9")))
+					    (object Class "TradeReportConsumerOperations"
+						quid       	"3EC55B55029D"
+						stereotype 	"Interface")
+					    (object Class "TradeReportConsumerPOA"
+						quid       	"3EC55B6101B3"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC56289015E"
+							supplier   	"Logical View::org::omg::PortableServer::Servant"
+							quidu      	"3EB96D110215"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EC562A0021F"
+							supplier   	"Logical View::org::omg::CORBA::portable::InvokeHandler"
+							quidu      	"3EB96D1F0323")
+						    (object Realize_Relationship
+							quid       	"3EC562AE00A3"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerOperations"
+							quidu      	"3EC55B55029D"))
+						abstract   	TRUE)
+					    (object Class "TradeReportConsumerPOATie"
+						quid       	"3EC55B7500D6"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC5636502A4"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerPOA"
+							quidu      	"3EC55B6101B3"))))
+					logical_presentations 	(list unit_reference_list))
+				    (object Class_Category "ffEvents"
+					quid       	"3EC55A5D0250"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "_ECConsumerStub"
+						quid       	"3EC55BF100DE"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC563A100F2"
+							supplier   	"Logical View::com::cboe::ORBInfra::ORB::ObjectImpl"
+							quidu      	"3EC55D310070"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EC563B802AE"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumer"
+							quidu      	"3EC55C070357")))
+					    (object Class "_TradeReportEventConsumerStub"
+						quid       	"3EC55BFC0026"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC563E70297"
+							supplier   	"Logical View::com::cboe::ORBInfra::ORB::ObjectImpl"
+							quidu      	"3EC55D310070"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EC563FC031A"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumer"
+							quidu      	"3EC55C800329")))
+					    (object Class "ECConsumer"
+						quid       	"3EC55C070357"
+						stereotype 	"Interface"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC564390349"
+							supplier   	"Logical View::org::omg::CORBA::portable::IDLEntity"
+							quidu      	"3EB96C7202CA")
+						    (object Inheritance_Relationship
+							quid       	"3EC5644E00DD"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerOperations"
+							quidu      	"3EC55C120335")
+						    (object Inheritance_Relationship
+							quid       	"3EC564740196"
+							supplier   	"Logical View::org::omg::CosTypedEventComm::TypedPushConsumer"
+							quidu      	"3EC5646800DA")))
+					    (object Class "ECConsumerOperations"
+						quid       	"3EC55C120335"
+						stereotype 	"Interface"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC564BB00C6"
+							supplier   	"Logical View::org::omg::CosTypedEventComm::TypedPushConsumerOperations"
+							quidu      	"3EC5649701F0")))
+					    (object Class "ECConsumerPOA"
+						quid       	"3EC55C2000D2"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC565100230"
+							supplier   	"Logical View::org::omg::PortableServer::Servant"
+							quidu      	"3EB96D110215"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EC5651800D3"
+							supplier   	"Logical View::org::omg::CORBA::portable::InvokeHandler"
+							quidu      	"3EB96D1F0323")
+						    (object Realize_Relationship
+							quid       	"3EC5651E030D"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerOperations"
+							quidu      	"3EC55C120335"))
+						abstract   	TRUE)
+					    (object Class "ECConsumerPOATie"
+						quid       	"3EC55C3001E3"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC5653D01A9"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerPOA"
+							quidu      	"3EC55C2000D2")))
+					    (object Class "POA_ECConsumer"
+						quid       	"3EC55C430014"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC56557025A"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerPOA"
+							quidu      	"3EC55C2000D2"))
+						abstract   	TRUE)
+					    (object Class "POA_ECConsumer_tie"
+						quid       	"3EC55C55029B"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC5657C02AE"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerPOATie"
+							quidu      	"3EC55C3001E3")))
+					    (object Class "POA_TradeReportEventConsumer"
+						quid       	"3EC55C60012E"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC565B30108"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerPOA"
+							quidu      	"3EC55C9700BF"))
+						abstract   	TRUE)
+					    (object Class "POA_TradeReportEventConsumer_tie"
+						quid       	"3EC55C720198"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC565F803BA"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerPOATie"
+							quidu      	"3EC55CAA009E")))
+					    (object Class "TradeReportEventConsumer"
+						quid       	"3EC55C800329"
+						stereotype 	"Interface"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC5662B02B9"
+							supplier   	"Logical View::org::omg::CORBA::portable::IDLEntity"
+							quidu      	"3EB96C7202CA")
+						    (object Inheritance_Relationship
+							quid       	"3EC5666E0053"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerOperations"
+							quidu      	"3EC55C8E00C6")
+						    (object Inheritance_Relationship
+							quid       	"3EC5667C0099"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumer"
+							quidu      	"3EC55B48033E")
+						    (object Inheritance_Relationship
+							quid       	"3EC566BA01ED"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumer"
+							quidu      	"3EC55C070357")))
+					    (object Class "TradeReportEventConsumerOperations"
+						quid       	"3EC55C8E00C6"
+						stereotype 	"Interface"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC566F20021"
+							supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerOperations"
+							quidu      	"3EC55B55029D")
+						    (object Inheritance_Relationship
+							quid       	"3EC567060106"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerOperations"
+							quidu      	"3EC55C120335")))
+					    (object Class "TradeReportEventConsumerPOA"
+						quid       	"3EC55C9700BF"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC5672A0388"
+							supplier   	"Logical View::org::omg::PortableServer::Servant"
+							quidu      	"3EB96D110215"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EC56747014F"
+							supplier   	"Logical View::org::omg::CORBA::portable::InvokeHandler"
+							quidu      	"3EB96D1F0323")
+						    (object Realize_Relationship
+							quid       	"3EC5675700E4"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerOperations"
+							quidu      	"3EC55C8E00C6"))
+						abstract   	TRUE)
+					    (object Class "TradeReportEventConsumerPOATie"
+						quid       	"3EC55CAA009E"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EC567C001CB"
+							supplier   	"Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerPOA"
+							quidu      	"3EC55C9700BF"))))
+					logical_presentations 	(list unit_reference_list)))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "ffBusinessService"
+				quid       	"3EB9725D0229"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "BusinessServiceHome"
+					quid       	"3EB974E502A3"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						quid       	"3EB974FC0206"
+						supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+						quidu      	"3EB9743D0098")))
+				    (object Class_Category "xService"
+					quid       	"3EB9726B0143"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "XServiceImpl"
+						quid       	"3EB972750291"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB9745700AA"
+							supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BObject"
+							quidu      	"3EB9742F0265"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EB9728702A1"
+							supplier   	"Logical View::com::cboe::ffInterfaces::XService"
+							quidu      	"3EB96B630389")))
+					    (object Class "XServiceHomeImpl"
+						quid       	"3EB9751601C7"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB9753C0302"
+							supplier   	"Logical View::com::cboe::ffBusinessService::BusinessServiceHome"
+							quidu      	"3EB974E502A3"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EB9753F02A2"
+							supplier   	"Logical View::com::cboe::ffInterfaces::XServiceHome"
+							quidu      	"3EB974830374")))
+					    (object Class "XServiceInterceptor"
+						quid       	"3EB982DF0121"
+						superclasses 	(list inheritance_relationship_list
+						    (object Inheritance_Relationship
+							quid       	"3EB9835303A9"
+							supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOInterceptor"
+							quidu      	"3EB9823300C0"))
+						realized_interfaces 	(list realize_rel_list
+						    (object Realize_Relationship
+							quid       	"3EB9832F02C1"
+							supplier   	"Logical View::com::cboe::ffInterfaces::XService"
+							quidu      	"3EB96B630389"))))
+					logical_presentations 	(list unit_reference_list)))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "infrastructureServices"
+				quid       	"3EB973E2012E"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class_Category "foundationFramework"
+					quid       	"3EB973F30255"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "BObject"
+						quid       	"3EB9742F0265"
+						abstract   	TRUE)
+					    (object Class "BOHome"
+						quid       	"3EB9743D0098")
+					    (object Class "BOInterceptor"
+						quid       	"3EB9823300C0"
+						abstract   	TRUE))
+					logical_presentations 	(list unit_reference_list)))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "ffConsumers"
+				quid       	"3EC559490343"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class "ExampleConsumerHomeImpl"
+					quid       	"3EC559650004")
+				    (object Class "TradeReportConsumerHomeImpl"
+					quid       	"3EC5597102BF"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						quid       	"3EC56A08018F"
+						supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+						quidu      	"3EB9743D0098"))
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						quid       	"3EC56A050159"
+						supplier   	"Logical View::com::cboe::ffInterfaces::TradeReportConsumerHome"
+						quidu      	"3EC559B500FA")))
+				    (object Class "TradeReportConsumerImpl"
+					quid       	"3EC5597C00B2"
+					superclasses 	(list inheritance_relationship_list
+					    (object Inheritance_Relationship
+						quid       	"3EC568670149"
+						supplier   	"Logical View::com::cboe::ffidl::ffEvents::ECConsumerOperations"
+						quidu      	"3EC55C120335")
+					    (object Inheritance_Relationship
+						quid       	"3EC5689F01EA"
+						supplier   	"Logical View::com::cboe::ffidl::ffEvents::POA_TradeReportEventConsumer"
+						quidu      	"3EC55C60012E")))
+				    (object Class "TradeReportPublisher"
+					quid       	"3EC55986026F"
+					realized_interfaces 	(list realize_rel_list
+					    (object Realize_Relationship
+						quid       	"3EC5690E00F9"
+						supplier   	"Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumer"
+						quidu      	"3EC55B48033E")
+					    (object Realize_Relationship
+						quid       	"3EC5694401A1"
+						supplier   	"Logical View::com::cboe::ffInterfaces::TradeReportConsumer"
+						quidu      	"3EC559A503A0"))))
+				logical_presentations 	(list unit_reference_list))
+			    (object Class_Category "ORBInfra"
+				quid       	"3EC55D1B0123"
+				exportControl 	"Public"
+				logical_models 	(list unit_reference_list
+				    (object Class_Category "ORB"
+					quid       	"3EC55D27030B"
+					exportControl 	"Public"
+					logical_models 	(list unit_reference_list
+					    (object Class "ObjectImpl"
+						quid       	"3EC55D310070"
+						abstract   	TRUE))
+					logical_presentations 	(list unit_reference_list)))
+				logical_presentations 	(list unit_reference_list)))
+			logical_presentations 	(list unit_reference_list)))
+		logical_presentations 	(list unit_reference_list)))
+	logical_presentations 	(list unit_reference_list
+	    (object ClassDiagram "Main CD"
+		quid       	"3EB96A90021D"
+		title      	"Main CD"
+		zoom       	85
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffBusinessServices::XServicePOA" @1
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(720, 1152)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@1
+			    location   	(524, 1077)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"XServicePOA")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96CC90013"
+			width      	410
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffBusinessServices::XServicePOATie" @2
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(992, 1520)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@2
+			    location   	(796, 1445)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"XServicePOATie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96D5101BD"
+			width      	410
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @3
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96D6D0217"
+			client     	@2
+			supplier   	@1
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffBusinessServices::POA_XService" @4
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(464, 1520)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@4
+			    location   	(268, 1445)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"POA_XService")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96DB60244"
+			width      	410
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @5
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96DCB01E0"
+			client     	@4
+			supplier   	@1
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffBusinessServices::XService" @6
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1312, 800)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@6
+			    location   	(1116, 745)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"XService")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@6
+			    location   	(1116, 697)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96C2802EC"
+			width      	410
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::org::omg::CORBA::portable::IDLEntity" @7
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1312, 192)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@7
+			    location   	(1184, 137)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	256
+			    justify    	0
+			    label      	"IDLEntity")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@7
+			    location   	(1184, 89)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	256
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96C7202CA"
+			width      	274
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @8
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96F15000E"
+			client     	@6
+			supplier   	@7
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::CORBA::Object" @9
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1760, 208)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@9
+			    location   	(1632, 153)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	256
+			    justify    	0
+			    label      	"Object")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@9
+			    location   	(1632, 105)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	256
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96F5D02D9"
+			width      	274
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @10
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96F6E0215"
+			client     	@6
+			supplier   	@9
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::PortableServer::Servant" @11
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(720, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@11
+			    location   	(561, 149)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	318
+			    justify    	0
+			    label      	"Servant")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96D110215"
+			width      	336
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @12
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96FE40002"
+			client     	@1
+			supplier   	@11
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::CORBA::portable::InvokeHandler" @13
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(336, 208)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@13
+			    location   	(192, 153)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	288
+			    justify    	0
+			    label      	"InvokeHandler")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@13
+			    location   	(192, 105)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	288
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96D1F0323"
+			width      	306
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @14
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96FF802DC"
+			client     	@1
+			supplier   	@13
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffInterfaces::XService" @15
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2816, 1152)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@15
+			    location   	(2676, 1097)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	280
+			    justify    	0
+			    label      	"XService")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@15
+			    location   	(2676, 1049)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	280
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EB96B630389"
+			width      	298
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffInterfaces::XServiceHome" @16
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3408, 1152)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(3256, 1097)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	304
+			    justify    	0
+			    label      	"XServiceHome")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(3256, 1049)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	304
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EB974830374"
+			width      	322
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffBusinessService::BusinessServiceHome" @17
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3408, 2208)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@17
+			    location   	(3189, 2133)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	438
+			    justify    	0
+			    label      	"BusinessServiceHome")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB974E502A3"
+			width      	456
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UsesView "" @18
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB97558032A"
+			client     	@16
+			supplier   	@15
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffBusinessServices::XServiceOperations" @19
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1312, 1152)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1116, 1097)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"XServiceOperations")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1116, 1049)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96BB801AB"
+			width      	410
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @20
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96F2F0070"
+			client     	@6
+			supplier   	@19
+			line_style 	0)
+		    (object RealizeView "" @21
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9700803D9"
+			client     	@1
+			supplier   	@19
+			line_style 	0)
+		    (object InheritView "" @22
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB970890262"
+			client     	@15
+			supplier   	@19
+			line_style 	0)
+		    (object CategoryView "Logical View::com::cboe::ffidl::ffBusinessServices" @23
+			location   	(928, 1408)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@23
+			    location   	(172, 621)
+			    nlines     	2
+			    max_width  	1512
+			    justify    	0
+			    label      	"ffBusinessServices")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB96B8E031D"
+			width      	1524
+			height     	1586)
+		    (object CategoryView "Logical View::com::cboe::ffInterfaces" @24
+			location   	(2784, 1120)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@24
+			    location   	(1890, 884)
+			    nlines     	2
+			    max_width  	1788
+			    justify    	0
+			    label      	"ffInterfaces")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB96B3300A5"
+			width      	1800
+			height     	484)
+		    (object CategoryView "Logical View::com::cboe::ffBusinessService::xService" @25
+			location   	(2784, 1664)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@25
+			    location   	(1886, 1472)
+			    nlines     	2
+			    max_width  	1796
+			    justify    	0
+			    label      	"xService")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB9726B0143"
+			width      	1808
+			height     	396)
+		    (object CategoryView "Logical View::com::cboe::ffBusinessService" @26
+			location   	(2784, 2160)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@26
+			    location   	(1886, 1982)
+			    nlines     	2
+			    max_width  	1796
+			    justify    	0
+			    label      	"ffBusinessService")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB9725D0229"
+			width      	1808
+			height     	368)
+		    (object CategoryView "Logical View::com::cboe::infrastructureServices::foundationFramework" @27
+			location   	(2784, 2736)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@27
+			    location   	(1882, 2463)
+			    nlines     	2
+			    max_width  	1804
+			    justify    	0
+			    label      	"foundationFramework")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB973F30255"
+			width      	1816
+			height     	558)
+		    (object NoteView @28
+			location   	(416, 2096)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@28
+			    location   	(210, 2030)
+			    nlines     	2
+			    max_width  	377
+			    label      	"Generated by IDL Compiler")
+			line_color 	3342489
+			width      	437
+			height     	144)
+		    (object ClassView "Class" "Logical View::com::cboe::ffBusinessService::xService::XServiceImpl" @29
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2816, 1712)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@29
+			    location   	(2686, 1637)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	260
+			    justify    	0
+			    label      	"XServiceImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EB972750291"
+			width      	278
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @30
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9728702A1"
+			client     	@29
+			supplier   	@15
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffBusinessServices::POA_XService_tie" @31
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(992, 2032)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@31
+			    location   	(796, 1957)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"POA_XService_tie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96DFB004F"
+			width      	410
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @32
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB96E07039F"
+			client     	@31
+			supplier   	@2
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$9" @33
+			location   	(1320, 1658)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB97E3203BF"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$10" @34
+				Parent_View 	@33
+				location   	(424, -406)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97E3302B2"
+				client     	@33
+				supplier   	@19
+				line_style 	0)
+			    (object RoleView "$UNNAMED$11" @35
+				Parent_View 	@33
+				location   	(424, -406)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97E3302BC"
+				client     	@33
+				supplier   	@31
+				vertices   	(list Points
+				    (1320, 1658)
+				    (1321, 1743)
+				    (1090, 1944))
+				line_style 	0)))
+		    (object ClassView "Class" "Logical View::com::cboe::ffBusinessService::xService::XServiceInterceptor" @36
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2176, 1712)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@36
+			    location   	(1986, 1642)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	380
+			    justify    	0
+			    label      	"XServiceInterceptor")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EB982DF0121"
+			width      	398
+			height     	164
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @37
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9832F02C1"
+			client     	@36
+			supplier   	@15
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffBusinessService::xService::XServiceHomeImpl" @38
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3408, 1712)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@38
+			    location   	(3222, 1637)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	372
+			    justify    	0
+			    label      	"XServiceHomeImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EB9751601C7"
+			width      	390
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @39
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9753C0302"
+			client     	@38
+			supplier   	@17
+			line_style 	0)
+		    (object RealizeView "" @40
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9753F02A2"
+			client     	@38
+			supplier   	@16
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$0" @41
+			location   	(3083, 1712)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB97CFB0169"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @42
+				Parent_View 	@41
+				location   	(603, 16)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97CFC0070"
+				client     	@41
+				supplier   	@29
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @43
+				Parent_View 	@41
+				location   	(603, 16)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97CFC0071"
+				client     	@41
+				supplier   	@38
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$6" @44
+			location   	(2213, 1965)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB97D7101D7"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$7" @45
+				Parent_View 	@44
+				location   	(-267, 269)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97D7201D8"
+				client     	@44
+				supplier   	@31
+				vertices   	(list Points
+				    (2213, 1965)
+				    (1927, 2026)
+				    (1197, 2030))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$8" @46
+				Parent_View 	@44
+				location   	(-267, 269)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97D7201E2"
+				client     	@44
+				supplier   	@38
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$12" @47
+			location   	(2804, 1383)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9836B0399"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$13" @48
+				Parent_View 	@47
+				location   	(-508, -361)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB9836C01D8"
+				client     	@47
+				supplier   	@36
+				vertices   	(list Points
+				    (2804, 1383)
+				    (2459, 1383)
+				    (2245, 1629))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$14" @49
+				Parent_View 	@47
+				location   	(-508, -361)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB9836C01D9"
+				client     	@47
+				supplier   	@38
+				vertices   	(list Points
+				    (2804, 1383)
+				    (3180, 1383)
+				    (3348, 1624))
+				line_style 	0)))
+		    (object ClassView "Class" "Logical View::com::cboe::infrastructureServices::foundationFramework::BObject" @50
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2816, 2736)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@50
+			    location   	(2608, 2661)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	416
+			    justify    	0
+			    label      	"BObject")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB9742F0265"
+			width      	434
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @51
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9745700AA"
+			client     	@29
+			supplier   	@50
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::infrastructureServices::foundationFramework::BOInterceptor" @52
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2176, 2736)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@52
+			    location   	(1968, 2661)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	416
+			    justify    	0
+			    label      	"BOInterceptor")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB9823300C0"
+			width      	434
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @53
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB9835303A9"
+			client     	@36
+			supplier   	@52
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome" @54
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3408, 2736)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@54
+			    location   	(3200, 2661)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	416
+			    justify    	0
+			    label      	"BOHome")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB9743D0098"
+			width      	434
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @55
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB974FC0206"
+			client     	@17
+			supplier   	@54
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$3" @56
+			location   	(3111, 2736)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB97D4E00BE"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$4" @57
+				Parent_View 	@56
+				location   	(631, 352)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97D4E0371"
+				client     	@56
+				supplier   	@50
+				line_style 	0)
+			    (object RoleView "$UNNAMED$5" @58
+				Parent_View 	@56
+				location   	(631, 352)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB97D4E037B"
+				client     	@56
+				supplier   	@54
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$15" @59
+			location   	(2790, 2937)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EB984D10019"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$16" @60
+				Parent_View 	@59
+				location   	(-522, 169)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB984D20056"
+				client     	@59
+				supplier   	@52
+				vertices   	(list Points
+				    (2790, 2937)
+				    (2174, 2937)
+				    (2175, 2823))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$17" @61
+				Parent_View 	@59
+				location   	(-522, 169)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"3EB984D20060"
+				client     	@59
+				supplier   	@54
+				vertices   	(list Points
+				    (2790, 2937)
+				    (3406, 2937)
+				    (3407, 2823))
+				line_style 	0)))))
+	    (object ClassDiagram "Events CD"
+		quid       	"3EC55CD7012F"
+		title      	"Events CD"
+		zoom       	80
+		max_height 	28350
+		max_width  	21600
+		origin_x   	2160
+		origin_y   	821
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::_TradeReportConsumerStub" @62
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(336, 1392)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@62
+			    location   	(62, 1317)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	548
+			    justify    	0
+			    label      	"_TradeReportConsumerStub")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B1B0163"
+			width      	566
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ORBInfra::ORB::ObjectImpl" @63
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2784, 368)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@63
+			    location   	(2663, 293)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	242
+			    justify    	0
+			    label      	"ObjectImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55D310070"
+			width      	260
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumer" @64
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1536, 1392)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@64
+			    location   	(1319, 1340)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	434
+			    justify    	0
+			    label      	"TradeReportConsumer")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@64
+			    location   	(1319, 1289)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	434
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B48033E"
+			width      	452
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @65
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55D5E03C8"
+			client     	@62
+			supplier   	@64
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::POA_TradeReportConsumer" @66
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(368, 2256)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@66
+			    location   	(91, 2181)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	554
+			    justify    	0
+			    label      	"POA_TradeReportConsumer")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B2A015A"
+			width      	572
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerPOA" @67
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(704, 1904)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@67
+			    location   	(437, 1829)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	534
+			    justify    	0
+			    label      	"TradeReportConsumerPOA")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B6101B3"
+			width      	552
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @68
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55D8802EC"
+			client     	@66
+			supplier   	@67
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::POA_TradeReportConsumer_tie" @69
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1024, 2672)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@69
+			    location   	(714, 2597)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	620
+			    justify    	0
+			    label      	"POA_TradeReportConsumer_tie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B3C00FC"
+			width      	638
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerPOATie" @70
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1024, 2256)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@70
+			    location   	(739, 2181)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	570
+			    justify    	0
+			    label      	"TradeReportConsumerPOATie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B7500D6"
+			width      	588
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @71
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55DA1020C"
+			client     	@69
+			supplier   	@70
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffConsumers::TradeReportConsumerOperations" @72
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1536, 1904)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@72
+			    location   	(1218, 1852)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	636
+			    justify    	0
+			    label      	"TradeReportConsumerOperations")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@72
+			    location   	(1218, 1801)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	636
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55B55029D"
+			width      	654
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @73
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55DC8009F"
+			client     	@64
+			supplier   	@72
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::CORBA::portable::IDLEntity" @74
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2144, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@74
+			    location   	(2015, 332)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	258
+			    justify    	0
+			    label      	"IDLEntity")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@74
+			    location   	(2015, 281)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	258
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96C7202CA"
+			width      	276
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @75
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55DE8015A"
+			client     	@64
+			supplier   	@74
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::CORBA::Object" @76
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1536, 368)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@76
+			    location   	(1407, 316)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	258
+			    justify    	0
+			    label      	"Object")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@76
+			    location   	(1407, 265)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	258
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96F5D02D9"
+			width      	276
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @77
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55E040272"
+			client     	@64
+			supplier   	@76
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::PortableServer::Servant" @78
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(704, 368)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@78
+			    location   	(528, 293)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	352
+			    justify    	0
+			    label      	"Servant")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96D110215"
+			width      	370
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @79
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC56289015E"
+			client     	@67
+			supplier   	@78
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::org::omg::CORBA::portable::InvokeHandler" @80
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1152, 368)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@80
+			    location   	(1008, 316)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	288
+			    justify    	0
+			    label      	"InvokeHandler")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@80
+			    location   	(1008, 265)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	288
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB96D1F0323"
+			width      	306
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @81
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC562A0021F"
+			client     	@67
+			supplier   	@80
+			line_style 	0)
+		    (object RealizeView "" @82
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC562AE00A3"
+			client     	@67
+			supplier   	@72
+			line_style 	0)
+		    (object InheritView "" @83
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5636502A4"
+			client     	@70
+			supplier   	@67
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::_ECConsumerStub" @84
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2784, 1376)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@84
+			    location   	(2595, 1301)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	378
+			    justify    	0
+			    label      	"_ECConsumerStub")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55BF100DE"
+			width      	396
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @85
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC563A100F2"
+			client     	@84
+			supplier   	@63
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::ECConsumer" @86
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2784, 1920)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@86
+			    location   	(2646, 1868)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	276
+			    justify    	0
+			    label      	"ECConsumer")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@86
+			    location   	(2646, 1817)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	276
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C070357"
+			width      	294
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @87
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC563B802AE"
+			client     	@84
+			supplier   	@86
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::_TradeReportEventConsumerStub" @88
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3648, 1376)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@88
+			    location   	(3321, 1301)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	654
+			    justify    	0
+			    label      	"_TradeReportEventConsumerStub")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55BFC0026"
+			width      	672
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @89
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC563E70297"
+			client     	@88
+			supplier   	@63
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumer" @90
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3648, 1920)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@90
+			    location   	(3375, 1868)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	546
+			    justify    	0
+			    label      	"TradeReportEventConsumer")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@90
+			    location   	(3375, 1817)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	546
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C800329"
+			width      	564
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @91
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC563FC031A"
+			client     	@88
+			supplier   	@90
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::ECConsumerOperations" @92
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2784, 2672)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@92
+			    location   	(2542, 2620)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	484
+			    justify    	0
+			    label      	"ECConsumerOperations")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@92
+			    location   	(2542, 2569)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	484
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C120335"
+			width      	502
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::org::omg::CosTypedEventComm::TypedPushConsumer" @93
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3200, 3984)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@93
+			    location   	(2961, 3932)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	478
+			    justify    	0
+			    label      	"TypedPushConsumer")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@93
+			    location   	(2961, 3881)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	478
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC5646800DA"
+			width      	496
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::org::omg::CosTypedEventComm::TypedPushConsumerOperations" @94
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2384, 3984)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@94
+			    location   	(2074, 3932)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	620
+			    justify    	0
+			    label      	"TypedPushConsumerOperations")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@94
+			    location   	(2074, 3881)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	620
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC5649701F0"
+			width      	638
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @95
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC564BB00C6"
+			client     	@92
+			supplier   	@94
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::ECConsumerPOA" @96
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2256, 2320)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@96
+			    location   	(2075, 2245)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	362
+			    justify    	0
+			    label      	"ECConsumerPOA")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C2000D2"
+			width      	380
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::ECConsumerPOATie" @97
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2256, 2688)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@97
+			    location   	(2052, 2613)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	408
+			    justify    	0
+			    label      	"ECConsumerPOATie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C3001E3"
+			width      	426
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @98
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5653D01A9"
+			client     	@97
+			supplier   	@96
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::POA_ECConsumer" @99
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3456, 2320)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@99
+			    location   	(3260, 2245)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	392
+			    justify    	0
+			    label      	"POA_ECConsumer")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C430014"
+			width      	410
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @100
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC56557025A"
+			client     	@99
+			supplier   	@96
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::POA_ECConsumer_tie" @101
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2256, 2992)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@101
+			    location   	(2032, 2917)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	448
+			    justify    	0
+			    label      	"POA_ECConsumer_tie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C55029B"
+			width      	466
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @102
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5657C02AE"
+			client     	@101
+			supplier   	@97
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::POA_TradeReportEventConsumer" @103
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(5152, 1744)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@103
+			    location   	(4824, 1669)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	656
+			    justify    	0
+			    label      	"POA_TradeReportEventConsumer")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C60012E"
+			width      	674
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerPOA" @104
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(4112, 1008)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	TRUE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@104
+			    location   	(3799, 933)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	626
+			    justify    	0
+			    label      	"TradeReportEventConsumerPOA")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C9700BF"
+			width      	644
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @105
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC565B30108"
+			client     	@103
+			supplier   	@104
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::POA_TradeReportEventConsumer_tie" @106
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(5168, 1344)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@106
+			    location   	(4812, 1269)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	712
+			    justify    	0
+			    label      	"POA_TradeReportEventConsumer_tie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C720198"
+			width      	730
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerPOATie" @107
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(5168, 1008)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@107
+			    location   	(4831, 933)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	674
+			    justify    	0
+			    label      	"TradeReportEventConsumerPOATie")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55CAA009E"
+			width      	692
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @108
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC565F803BA"
+			client     	@106
+			supplier   	@107
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffidl::ffEvents::TradeReportEventConsumerOperations" @109
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(4112, 2320)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@109
+			    location   	(3741, 2268)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	742
+			    justify    	0
+			    label      	"TradeReportEventConsumerOperations")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@109
+			    location   	(3741, 2217)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	742
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EC55C8E00C6"
+			width      	760
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @110
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC567C001CB"
+			client     	@107
+			supplier   	@104
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffConsumers::TradeReportConsumerImpl" @111
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(5152, 4032)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@111
+			    location   	(4898, 3957)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	508
+			    justify    	0
+			    label      	"TradeReportConsumerImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EC5597C00B2"
+			width      	526
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object InheritView "" @112
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5689F01EA"
+			client     	@111
+			supplier   	@103
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffConsumers::TradeReportPublisher" @113
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3872, 4032)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@113
+			    location   	(3661, 3957)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	422
+			    justify    	0
+			    label      	"TradeReportPublisher")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EC55986026F"
+			width      	440
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffInterfaces::TradeReportConsumer" @114
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(3872, 3472)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@114
+			    location   	(3655, 3420)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	434
+			    justify    	0
+			    label      	"TradeReportConsumer")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@114
+			    location   	(3655, 3369)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	434
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EC559A503A0"
+			width      	452
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @115
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5694401A1"
+			client     	@113
+			supplier   	@114
+			line_style 	0)
+		    (object ClassView "Class" "Logical View::com::cboe::ffInterfaces::TradeReportConsumerHome" @116
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(4496, 3472)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@116
+			    location   	(4219, 3420)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	554
+			    justify    	0
+			    label      	"TradeReportConsumerHome")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@116
+			    location   	(4219, 3369)
+			    fill_color 	13434879
+			    anchor     	10
+			    nlines     	1
+			    max_width  	554
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EC559B500FA"
+			width      	572
+			height     	230
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome" @117
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(4496, 4496)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@117
+			    location   	(4267, 4421)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	458
+			    justify    	0
+			    label      	"BOHome")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"3EB9743D0098"
+			width      	476
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::com::cboe::ffConsumers::TradeReportConsumerHomeImpl" @118
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(4496, 4032)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@118
+			    location   	(4188, 3957)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	616
+			    justify    	0
+			    label      	"TradeReportConsumerHomeImpl")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	8421631
+			quidu      	"3EC5597102BF"
+			width      	634
+			height     	174
+			annotation 	8
+			autoResize 	TRUE)
+		    (object RealizeView "" @119
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC56A050159"
+			client     	@118
+			supplier   	@116
+			line_style 	0)
+		    (object InheritView "" @120
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC56A08018F"
+			client     	@118
+			supplier   	@117
+			line_style 	0)
+		    (object InheritView "" @121
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5672A0388"
+			client     	@104
+			supplier   	@78
+			vertices   	(list Points
+			    (3789, 1007)
+			    (1056, 1007)
+			    (752, 455))
+			line_style 	0)
+		    (object RealizeView "" @122
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC56747014F"
+			client     	@104
+			supplier   	@80
+			vertices   	(list Points
+			    (3800, 920)
+			    (3590, 863)
+			    (1340, 863)
+			    (1196, 483))
+			line_style 	0)
+		    (object RealizeView "" @123
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5675700E4"
+			client     	@104
+			supplier   	@109
+			line_style 	0)
+		    (object RealizeView "" @124
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5651800D3"
+			client     	@96
+			supplier   	@80
+			vertices   	(list Points
+			    (2255, 2232)
+			    (2255, 1612)
+			    (1166, 1612)
+			    (1152, 483))
+			line_style 	0)
+		    (object RealizeView "" @125
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5651E030D"
+			client     	@96
+			supplier   	@92
+			line_style 	0)
+		    (object InheritView "" @126
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC566F20021"
+			client     	@109
+			supplier   	@72
+			vertices   	(list Points
+			    (3809, 2204)
+			    (3550, 2107)
+			    (1746, 2107)
+			    (1656, 2019))
+			line_style 	0)
+		    (object InheritView "" @127
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC567060106"
+			client     	@109
+			supplier   	@92
+			line_style 	0)
+		    (object InheritView "" @128
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC55D3F0107"
+			client     	@62
+			supplier   	@63
+			vertices   	(list Points
+			    (335, 1304)
+			    (335, 807)
+			    (2576, 807)
+			    (2741, 455))
+			line_style 	0)
+		    (object CategoryView "Logical View::com::cboe::ffidl::ffConsumers" @129
+			location   	(992, 1936)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@129
+			    location   	(30, 723)
+			    nlines     	2
+			    max_width  	1924
+			    justify    	0
+			    label      	"ffConsumers")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EC55A3F00F8"
+			width      	1937
+			height     	2439)
+		    (object InheritView "" @130
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC565100230"
+			client     	@96
+			supplier   	@78
+			vertices   	(list Points
+			    (2225, 2232)
+			    (2046, 1691)
+			    (908, 1691)
+			    (716, 455))
+			line_style 	0)
+		    (object CategoryView "Logical View::com::cboe::ffidl::ffEvents" @131
+			location   	(3856, 1936)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@131
+			    location   	(2008, 727)
+			    nlines     	2
+			    max_width  	3696
+			    justify    	0
+			    label      	"ffEvents")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EC55A5D0250"
+			width      	3709
+			height     	2430)
+		    (object CategoryView "Logical View::com::cboe::ffInterfaces" @132
+			location   	(4640, 3472)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@132
+			    location   	(3572, 3232)
+			    nlines     	2
+			    max_width  	2136
+			    justify    	0
+			    label      	"ffInterfaces")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB96B3300A5"
+			width      	2148
+			height     	492)
+		    (object InheritView "" @133
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC56973039E"
+			client     	@114
+			supplier   	@72
+			vertices   	(list Points
+			    (3645, 3471)
+			    (1534, 3468)
+			    (1535, 2019))
+			line_style 	0)
+		    (object CategoryView "Logical View::org::omg::CosTypedEventComm" @134
+			location   	(2736, 3952)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@134
+			    location   	(1979, 3737)
+			    nlines     	2
+			    max_width  	1514
+			    justify    	0
+			    label      	"CosTypedEventComm")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EC5645C0105"
+			width      	1526
+			height     	442)
+		    (object CategoryView "Logical View::com::cboe::ffConsumers" @135
+			location   	(4640, 3984)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@135
+			    location   	(3572, 3803)
+			    nlines     	2
+			    max_width  	2136
+			    justify    	0
+			    label      	"ffConsumers")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EC559490343"
+			width      	2148
+			height     	375)
+		    (object CategoryView "Logical View::com::cboe::infrastructureServices::foundationFramework" @136
+			location   	(4192, 4464)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@136
+			    location   	(3585, 4259)
+			    nlines     	2
+			    max_width  	1214
+			    justify    	0
+			    label      	"foundationFramework")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"3EB973F30255"
+			width      	1226
+			height     	422)
+		    (object InheritView "" @137
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC564390349"
+			client     	@86
+			supplier   	@74
+			vertices   	(list Points
+			    (2653, 1804)
+			    (2434, 1608)
+			    (2434, 1226)
+			    (2142, 750)
+			    (2143, 499))
+			line_style 	0)
+		    (object InheritView "" @138
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5644E00DD"
+			client     	@86
+			supplier   	@92
+			line_style 	0)
+		    (object InheritView "" @139
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC564740196"
+			client     	@86
+			supplier   	@93
+			vertices   	(list Points
+			    (2872, 2035)
+			    (3196, 2460)
+			    (3199, 3868))
+			line_style 	0)
+		    (object InheritView "" @140
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5662B02B9"
+			client     	@90
+			supplier   	@74
+			vertices   	(list Points
+			    (3511, 1804)
+			    (3056, 1420)
+			    (3056, 750)
+			    (2352, 750)
+			    (2209, 499))
+			line_style 	0)
+		    (object InheritView "" @141
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5666E0053"
+			client     	@90
+			supplier   	@109
+			line_style 	0)
+		    (object InheritView "" @142
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC5667C0099"
+			client     	@90
+			supplier   	@64
+			vertices   	(list Points
+			    (3465, 1804)
+			    (3028, 1528)
+			    (2257, 1528)
+			    (1762, 1434))
+			line_style 	0)
+		    (object InheritView "" @143
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"3EC566BA01ED"
+			client     	@90
+			supplier   	@86
+			line_style 	0)
+		    (object NoteView @144
+			location   	(288, 3040)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@144
+			    location   	(82, 2974)
+			    nlines     	2
+			    max_width  	377
+			    label      	"Generated by IDL Compiler")
+			line_color 	3342489
+			width      	437
+			height     	144)
+		    (object NoteView @145
+			location   	(5440, 3040)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@145
+			    location   	(5234, 2974)
+			    nlines     	2
+			    max_width  	377
+			    label      	"Generated by IDL Compiler")
+			line_color 	3342489
+			width      	437
+			height     	144)))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"3EB96A8A0279"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"3EB96A9001F5"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    process_structure 	(object Processes
+	quid       	"3EB96A8A027A"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"3EB96A8A027C"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CreateMissingDirectories"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Editor"
+			value      	("EditorType" 100))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"IncludePath"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"StopOnError"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"EditorType"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"BuiltIn"
+				value      	100)
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"WindowsShell"
+				value      	101)))))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ArrayDimensions"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ConstValue"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ImplementationType"
+			value      	"")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Module-Spec"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"AdditionalIncludes"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CmIdentification"
+			value      	(value Text "  %X% %Q% %Z% %W%"))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"InclusionProtectionSymbol"
+			value      	"AUTO GENERATE")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Module-Body"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"AdditionalIncludes"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CmIdentification"
+			value      	(value Text "  %X% %Q% %Z% %W%"))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"InclusionProtectionSymbol"
+			value      	"AUTO GENERATE")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Context"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"OperationIsOneWay"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ArrayDimensions"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CaseSpecifier"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"IsReadOnly"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Order"
+			value      	"")))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Role"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"ArrayDimensions"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"CaseSpecifier"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"GenerateForwardReference"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"IsReadOnly"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"Order"
+			value      	"")
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"BoundedRoleType"
+			value      	("AssocTypeSet" 47))
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"AssocTypeSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"Array"
+				value      	24)
+			    (object Attribute
+				tool       	"CORBA"
+				name       	"Sequence"
+				value      	47)))))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"default__Uses"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"CORBA"
+			name       	"GenerateForwardReference"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"CORBA"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"ClearCase"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"DDL"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"DDL"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"DDL"
+			name       	"Directory"
+			value      	"AUTO GENERATE")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DataBase"
+			value      	("DataBaseSet" 800))
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DataBaseSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"DDL"
+				name       	"ANSI"
+				value      	800)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"Oracle"
+				value      	801)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"SQLServer"
+				value      	802)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"Sybase"
+				value      	803)
+			    (object Attribute
+				tool       	"DDL"
+				name       	"Watcom"
+				value      	804)))
+		    (object Attribute
+			tool       	"DDL"
+			name       	"PrimaryKeyColumnName"
+			value      	"Id")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"PrimaryKeyColumnType"
+			value      	"NUMBER(5)")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"ViewName"
+			value      	"V_")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"TableName"
+			value      	"T_")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"InheritSuffix"
+			value      	"_V")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DropClause"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"BaseViews"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"DDLScriptFilename"
+			value      	"DDL1.SQL")))
+	    (object Attribute
+		tool       	"DDL"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"DDL"
+			name       	"ColumnType"
+			value      	"VARCHAR")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"Length"
+			value      	"")
+		    (object Attribute
+			tool       	"DDL"
+			name       	"NullsOK"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"PrimaryKey"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"Unique"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"CompositeUnique"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"DDL"
+			name       	"CheckConstraint"
+			value      	"")))
+	    (object Attribute
+		tool       	"DDL"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Java"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Project"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"RootDir"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"CreateMissingDirectories"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"StopOnError"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"UsePrefixes"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"AutoSync"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Editor"
+			value      	("EditorType" 100))
+		    (object Attribute
+			tool       	"Java"
+			name       	"VM"
+			value      	("VMType" 200))
+		    (object Attribute
+			tool       	"Java"
+			name       	"ClassPath"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"EditorType"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"BuiltIn"
+				value      	100)
+			    (object Attribute
+				tool       	"Java"
+				name       	"WindowsShell"
+				value      	101)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"VMType"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Sun"
+				value      	200)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Microsoft"
+				value      	201)
+			    (object Attribute
+				tool       	"Java"
+				name       	"IBM"
+				value      	202)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"InstanceVariablePrefix"
+			value      	"m_")
+		    (object Attribute
+			tool       	"Java"
+			name       	"ClassVariablePrefix"
+			value      	"s_")
+		    (object Attribute
+			tool       	"Java"
+			name       	"DefaultAttributeDataType"
+			value      	"int")
+		    (object Attribute
+			tool       	"Java"
+			name       	"DefaultOperationReturnType"
+			value      	"void")
+		    (object Attribute
+			tool       	"Java"
+			name       	"NoClassCustomDlg"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GlobalImports"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Java"
+			name       	"OpenBraceClassStyle"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"OpenBraceMethodStyle"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"UseTabs"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"UseSpaces"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"SpacingItems"
+			value      	3)
+		    (object Attribute
+			tool       	"Java"
+			name       	"RoseDefaultCommentStyle"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"AsteriskCommentStyle"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavaCommentStyle"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocAuthor"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocDeprecated"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocException"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocParam"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocReturn"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSee"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSerial"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSerialdata"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSerialfield"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocSince"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocVersion"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"JavadocLink"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Static"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateDefaultConstructor"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"ConstructorIs"
+			value      	("Ctor_Set" 62))
+		    (object Attribute
+			tool       	"Java"
+			name       	"Ctor_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"public"
+				value      	62)
+			    (object Attribute
+				tool       	"Java"
+				name       	"protected"
+				value      	63)
+			    (object Attribute
+				tool       	"Java"
+				name       	"private"
+				value      	64)
+			    (object Attribute
+				tool       	"Java"
+				name       	"package"
+				value      	65)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateFinalizer"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateStaticInitializer"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateInstanceInitializer"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateCode"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"DisableAutoSync"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Module-Spec"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"CmIdentification"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Java"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Module-Body"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"CmIdentification"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Java"
+			name       	"CopyrightNotice"
+			value      	(value Text ""))))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Abstract"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Static"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Native"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Synchronized"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Transient"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Volatile"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"PropertyType"
+			value      	("BeanProperty_Set" 71))
+		    (object Attribute
+			tool       	"Java"
+			name       	"BeanProperty_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Not A Property"
+				value      	71)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Simple"
+				value      	72)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Bound"
+				value      	73)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Constrained"
+				value      	74)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"IndividualChangeMgt"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write"
+			value      	("Read/Write_Set" 81))
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read & Write"
+				value      	81)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read Only"
+				value      	82)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Write Only"
+				value      	83)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateFullyQualifiedTypes"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"default__Role"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Java"
+			name       	"ContainerClass"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"InitialValue"
+			value      	"")
+		    (object Attribute
+			tool       	"Java"
+			name       	"Final"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Transient"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Volatile"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"PropertyType"
+			value      	("BeanProperty_Set" 71))
+		    (object Attribute
+			tool       	"Java"
+			name       	"BeanProperty_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Not A Property"
+				value      	71)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Simple"
+				value      	72)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Bound"
+				value      	73)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Constrained"
+				value      	74)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"IndividualChangeMgt"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write"
+			value      	("Read/Write_Set" 81))
+		    (object Attribute
+			tool       	"Java"
+			name       	"Read/Write_Set"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read & Write"
+				value      	81)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Read Only"
+				value      	82)
+			    (object Attribute
+				tool       	"Java"
+				name       	"Write Only"
+				value      	83)))
+		    (object Attribute
+			tool       	"Java"
+			name       	"GenerateFullyQualifiedTypes"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Java"
+			name       	"IsNavigable"
+			value      	TRUE)))
+	    (object Attribute
+		tool       	"Java"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"RequisitePro"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Rose Model Integrator"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Rose Web Publisher"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"SoDA"
+		name       	"HiddenTool"
+		value      	FALSE))
+	quid       	"3EB96A8A027B"))

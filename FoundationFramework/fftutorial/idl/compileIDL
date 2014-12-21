@@ -1,0 +1,17 @@
+
+. ../etc/setEnv
+
+OUTPUT=idlCompile.out
+JAVA_OUT=idl_java
+
+IDL="java -classpath ${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/IDLCompiler.jar:${FFTUTORIAL_VOB_ROOT}/tools/jgl/jars/jgl.jar:$CLASSPATH com.cboe.IDLCompiler.IDLParser -Tie -O $JAVA_OUT -I ./ -I ${FFTUTORIAL_VOB_ROOT}/vobs/dte/MessagingSystem/idl"
+
+SOURCE="*.idl"
+
+print "  [Compilation output redirected to $OUTPUT]"
+>$OUTPUT
+
+for i in $SOURCE; do
+    print "compiling $i ..." >> $OUTPUT
+    $IDL $i >> $OUTPUT 2>&1
+done

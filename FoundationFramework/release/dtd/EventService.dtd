@@ -1,0 +1,30 @@
+<!-- This describes the ManagedResources for configuration of the 
+	EventService facade -->
+<!-- @author Dave Hoag -->
+<!-- @version 1.0 -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalEventService (EventServiceTraderImpl* )>
+<!ATTLIST GlobalEventService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT EventServiceTraderImpl  (EventServiceTraderImplProperties )>
+<!ATTLIST EventServiceTraderImpl  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	name CDATA #REQUIRED
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT EventServiceTraderImplProperties (ChannelSvcType?, ChannelDomain? )>
+<!ATTLIST EventServiceTraderImplProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT ChannelSvcType (#PCDATA)>
+<!ATTLIST ChannelSvcType type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ELEMENT ChannelDomain (#PCDATA) >
+<!ATTLIST ChannelDomain type	  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >

@@ -1,0 +1,62 @@
+<!-- edited with XML Spy v3.0b3 NT (http://www.xmlspy.com) by Dave (OW) -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ELEMENT GlobalLoggingServiceFacade (LogServiceImpl*, LogServiceSMAImpl*)>
+<!ATTLIST GlobalLoggingServiceFacade
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT LogServiceSMAImpl (Filter*)>
+<!ATTLIST LogServiceSMAImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT LogServiceImpl (LogServiceImplProperties, Filter*)>
+<!ATTLIST LogServiceImpl
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT LogServiceImplProperties (logServiceFileName)>
+<!ATTLIST LogServiceImplProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT logServiceFileName (#PCDATA)>
+<!ATTLIST logServiceFileName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The name of a file that can be found on the running system."
+>
+<!ELEMENT Filter (FilterProperties)>
+<!ATTLIST Filter
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #FIXED ""
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT FilterProperties (componentName, category, priorityThreshold)>
+<!ATTLIST FilterProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT componentName (#PCDATA)>
+<!ATTLIST componentName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The component upon which this filter is applied."
+>
+<!ELEMENT category (#PCDATA)>
+<!ATTLIST category
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "."
+>
+<!ELEMENT priorityThreshold (#PCDATA)>
+<!ATTLIST priorityThreshold
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "."
+>

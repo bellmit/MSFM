@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalTradeReportConsumerHome SYSTEM "../dtd/TradeReportConsumer.dtd">
+
+
+<GlobalTradeReportConsumerHome>
+    <TradeReportConsumerHomeImpl name="TradeReportConsumerHomeImpl">
+        <TradeReportConsumerHomeImplProperties>
+            <eventChannelName>&lt;prefixRouteName&gt;TradeReportConsumer</eventChannelName>
+        </TradeReportConsumerHomeImplProperties>
+    </TradeReportConsumerHomeImpl>
+</GlobalTradeReportConsumerHome>
+

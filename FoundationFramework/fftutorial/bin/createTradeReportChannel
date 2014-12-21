@@ -1,0 +1,16 @@
+#!/bin/ksh
+#
+# This script will create the TradeReport Event Channel
+#
+
+. ../etc/setEnv
+
+VERB=""
+export JAVA_COMPILER=none
+
+CMD="java -DLocalLog.ALL -DORB.OrbName=CreateEventChannel -DORB.PortNum=0 $VERB $JAVA_ARGS com.cboe.EventService.Admin.CreateEventChannel "
+
+ARGS="-best_effort -notify"
+
+	echo   "creating ${ROUTING}TradeReportConsumer -interface IDL:ffEvents/TradeReportEventConsumer:1.0 -interface IDL:ffConsumers/TradeReportConsumer:1.0"
+	$CMD ${ROUTING}TradeReportConsumer $ARGS -interface IDL:ffEvents/TradeReportEventConsumer:1.0 -interface IDL:ffConsumers/TradeReportConsumer:1.0

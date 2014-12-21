@@ -1,0 +1,49 @@
+
+#ifndef __CosTypedEventComm_idl__
+#define __CosTypedEventComm_idl__
+
+#include "CosEventComm.idl"
+
+
+#ifndef BUILD_SERVICES
+#pragma GENERATE_CODE OFF
+#endif
+
+#pragma prefix "omg.org"
+
+// cboe idl pragma
+#pragma javaPackage "org.omg"
+
+
+
+module CosTypedEventComm {
+
+
+
+   interface TypedPushConsumer : CosEventComm::PushConsumer {
+
+      Object get_typed_consumer(); 
+
+   };
+
+
+
+   interface TypedPullSupplier : CosEventComm::PullSupplier {               
+
+      Object get_typed_supplier();
+
+   };
+
+
+
+}; 
+
+
+
+#ifndef BUILD_SERVICES
+#pragma GENERATE_CODE ON
+#endif
+
+
+#endif			// __CosTypedEventComm_idl__
+

@@ -1,0 +1,28 @@
+. ../etc/setEnv
+
+cd $FFTUTORIAL_HOME
+
+ORB_NAME='TradeMatchServer'
+let ORB_PORT=$BASE_PORT+63
+SMA="-DSMA.ImplClass=SMAResourceStandalone -DSMA.NotInstantiateSMAServer -DSMA.NoORBProcessExposer \
+-DSMA.XMLFiles=${TRADE_MATCH_SERVER_XML} \
+-DSMA.TradeMatchServiceHomeImpl=GlobalTradeMatchServiceHome_0 \
+-DSMA.TradeReportConsumerHomeImpl=GlobalTradeReportConsumerHome_0.TradeReportConsumerHomeImpl_0 \
+-DSMA.GlobalLoggingService=GlobalLoggingService1 \
+-DSMA.LoggingServiceClient=TradeMatchServerClient \
+-DSMA.StandardMessageCatalog=StandardMessageCatalog1 \
+-DSMA.LogServiceImpl=CurrentWorkingDirectory \
+-DSMA.LogServiceSMAImpl=SMA \
+-DAdaptor.SMAServerIORFile=${IOR_BASE_DIR}/RepositoryServicePrimary.ior"
+#-DSMA.GlobalTradeReportConsumerHome=GlobalTradeReportConsumerHome_0 \
+#-DSMA.TradeMatchServiceHomeImpl=GlobalTradeMatchServiceHome_0.TradeMatchServiceHomeImpl_0 \
+
+ORB="-DORB.OrbName=${SBT_PREFIX:-}${ROUTING}${ORB_NAME} -DORB.PortNum=$ORB_PORT -DORB.FlowControl=none "
+
+#OW="-Dow.persistUser=$INFRA_DB_USER -Dow.persistPassword=$INFRA_DB_PASSWORD -Dow.connectUrl=$INFRA_DB_URL -Dow.persistPrepared=true"
+
+CONFIG_SVC=com.cboe.infrastructureServices.systemsManagementService.ConfigurationServiceSysManImpl
+MAIN_CLASS=com.cboe.infrastructureServices.foundationFramework.FoundationFramework 
+
+java $ORB $SMA $OW ${JAVA_ARGS} -Xms32M -Xmx512M $MAIN_CLASS TradeMatchServer $CONFIG_SVC thisParamIsIgnored -m
+

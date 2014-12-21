@@ -1,0 +1,24 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "objectwave"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"36485CDB016B"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "transactionalSupport"
+	    quid       	"36485D85019C"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "Session"
+		    quid       	"36485D8F03B3"
+		    language   	"Java")
+		(object Class "SessionManager"
+		    quid       	"36485DE30088"
+		    language   	"Java"))
+	    logical_presentations 	(list unit_reference_list)))
+    logical_presentations 	(list unit_reference_list))

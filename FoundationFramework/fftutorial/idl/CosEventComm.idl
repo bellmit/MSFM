@@ -1,0 +1,51 @@
+
+#ifndef __CosEventComm_idl__
+#define __CosEventComm_idl__
+
+
+#ifndef BUILD_SERVICES
+#pragma GENERATE_CODE OFF
+#endif
+
+#pragma prefix "omg.org"
+
+// visibroker prefix 
+// #pragma javaPackage "org.omg"
+
+// cboe idl prefix works with visi too
+#pragma javaPackage "org.omg"
+
+
+module CosEventComm {
+    exception Disconnected{};
+
+    interface PushConsumer {
+	void push (in any data) raises(Disconnected);
+	void disconnect_push_consumer(); 
+    };
+
+    interface PushSupplier {
+	void disconnect_push_supplier();
+    };
+
+    interface PullSupplier {
+	any pull () raises(Disconnected);
+	any try_pull (out boolean has_event) 
+		raises(Disconnected);
+	void disconnect_pull_supplier(); 
+    };
+
+    interface PullConsumer {
+	void disconnect_pull_consumer();
+    };
+};
+
+
+
+#ifndef BUILD_SERVICES
+#pragma GENERATE_CODE ON
+#endif
+
+	     
+
+#endif			// __CosEventComm_idl__

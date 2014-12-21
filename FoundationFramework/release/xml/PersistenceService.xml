@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0b3 NT (http://www.xmlspy.com) by Dave (OW) -->
+<!DOCTYPE GlobalPersistenceService SYSTEM "../dtd/PersistenceService.dtd">
+<GlobalPersistenceService>
+	<PersistenceService name="sbtbc0b">
+		<PersistenceServiceProperties>
+			<connectUrl>jdbc:oracle:thin:@sbtbc0b:1521:SB0B</connectUrl>
+			<persistUser>tradeeng</persistUser>
+			<persistPassword>tradeeng</persistPassword>
+			<persistConnections>120</persistConnections>
+			<numberOfBatchBrokers>5</numberOfBatchBrokers>
+		</PersistenceServiceProperties>
+		<BatchBroker name="batchBroker1">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker2">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker3">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker4">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker5">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+                <ChannelBroker>
+                        <ChannelBrokerProperties>
+                                <numberOfConnections>60</numberOfConnections>
+                        </ChannelBrokerProperties>
+                </ChannelBroker>
+	</PersistenceService>
+	<PersistenceService name="setContext">
+		<PersistenceServiceProperties>
+			<connectUrl>&lt;prefixCONNECT_URL&gt;</connectUrl>
+			<persistUser>&lt;prefixDB_USER&gt;</persistUser>
+			<persistPassword>&lt;prefixDB_PASSWORD&gt;</persistPassword>
+			<persistConnections>120</persistConnections>
+			<persistPrepared booleanValue="true"/>
+			<numberOfBatchBrokers>5</numberOfBatchBrokers>
+		</PersistenceServiceProperties>
+		<BatchBroker name="batchBroker1">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker2">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker3">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker4">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+		<BatchBroker name="batchBroker5">
+			<BatchBrokerProperties>
+				<numberOfThreads>5</numberOfThreads>
+				<batchSize>5</batchSize>
+				<numberOfQueryConnections>5</numberOfQueryConnections>
+				<rollbackPolicy value="Log" />
+			</BatchBrokerProperties>
+		</BatchBroker>
+                <ChannelBroker>
+                        <ChannelBrokerProperties>
+                                <numberOfConnections>60</numberOfConnections>
+                        </ChannelBrokerProperties>
+                </ChannelBroker>
+	</PersistenceService>
+</GlobalPersistenceService>

@@ -1,0 +1,24 @@
+//## Module: events
+
+#ifndef Events_idl
+#define Events_idl
+
+#include "CosEventComm.idl"
+#include "CosTypedEventComm.idl"
+#include "consumers.idl"
+
+// ==================================================================
+
+#pragma javaPackage "com.cboe.ffidl"
+
+module ffEvents
+{
+    interface ECConsumer : CosTypedEventComm::TypedPushConsumer {
+    };
+
+    interface TradeReportEventConsumer : ffConsumers::TradeReportConsumer, ECConsumer {
+    };
+};
+
+#endif
+

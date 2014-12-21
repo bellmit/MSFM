@@ -1,0 +1,11 @@
+
+. ../etc/setEnv
+
+CLASSES_OUT=${FFTUTORIAL_HOME}/idl/idl_classes
+
+SOURCE=`find ${FFTUTORIAL_HOME}/idl/idl_java -name *.java`
+
+echo '  [Compiling generated .java files]'
+
+javac -classpath ${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/MessagingSystem.jar:${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/OMGBaseClasses.jar:${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/OMGServiceClasses.jar:$CLASSPATH -d ${CLASSES_OUT} ${SOURCE}
+

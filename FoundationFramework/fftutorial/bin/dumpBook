@@ -1,0 +1,3 @@
+#!/bin/ksh
+cd $FFTUTORIAL_HOME
+adminRequest TradeMatchServer 'GlobalTradeMatchServiceHome.TradeMatchServiceHomeImpl(TradeMatchServiceHome).dumpBook'

@@ -1,0 +1,87 @@
+FoundationFramework Event Service facade
+Release Notes for the EventService with MessagingSystem patch
+
+
+
+These are the notes for two tests for the EventService 
+
+Files needed(façade):
+
+FoundationFramework.java.com.cboe.infrastructureServices.eventService.EventService
+FoundationFramework.java.com.cboe.infrastructureServices.eventService.EventServiceImpl
+FoundationFramework.java.com.cboe.infrastructureServices.eventService.EventServiceBaseImpl
+
+
+Files needed for all Tests:
+
+    Com.cboe.EventService.Test (All files in this directory )
+    
+   
+Files needed for the test using the Notif Loopback test:
+
+FoundationFramework.demos.Test.NotifLoopBackTest.NotifLoopBackTest.java
+FoundationFramework.demos.Test.NotifLoopBackTest.Quotes_i.java 
+FoundationFramework.demos.Test.poa_output_NotifLoopBackTest all
+
+
+Files needed for the test using Talarian SmartSockets:
+
+FoundationFramework.demos.Test.NotifScenario2.QuoteReceiver.java
+FoundationFramework.demos.Test.NotifScenario2.QuoteSupplier.java
+FoundationFramework.demos.Test.NotifScenario2.Quotes_i.java
+FoundationFramework.demos.Test.poa_output_NotifScenario2
+
+Setup for all tests:
+
+1. Refer to the Release Notes in the MessageSystem\release directory for classpath info.   
+2. Start orb daemon.
+3. Start the orb IFR.
+4. Use the command - putidl -I <messagingsystem idl dir> idl.file
+5. Run idl2poa - if it does not work correctly, it could be that you have the wrong version of Perl.  If the Perl version is correct and you get output but some files in the poa_output are of zero length, then run idl2poa -o <dirname> and copy only the files from <dirname> to replace the zero length ones in poa_output.
+
+LOOPBACK
+Setup for Filtering Loopback test:
+
+  1. Start the test - enter "java NotifLoopBackTest"
+
+
+Output should look like this:
+Consumer side done
+Received data : 419
+Received data : 421
+500
+Received 500 auto_quote messages.
+Received 500 int 3175
+1000
+Received 1000 auto_quote messages.
+Received 1000 int 6319
+1500
+....
+It took: 32767 milliseconds for 5000.
+
+
+SMARTSOCKETS 
+Setup for SmartSockets test:
+
+  1. NOTE: Refer to the Release Notes in the MessageSystem\release directory. After following these, SmartSockets may still not connect. The following may fix the problem, When installing Talarian Smart Sockets on the local machine.  If Talarian has been installed elsewhere (server), copy the file "rtworks.lic" from the server to the local machine in the directory "\Program Files\Talarian\ss50\". This syncs it up the license with the server.
+  2. Setup for the channel - use the following command with the Talarian test to setup the Event Channel " java com.cboe.EventService.Test.ECImpl TalarianChannel TalarianChannel -notif".
+
+  Running SmartSocket test:
+
+  1. Start the Quote reciever - enter "java QuoteReceiver"
+  2. Start the QuoteSupplier - enter "java QuoteSupplier"
+
+Output should look like this(in the QuoteReceiver window):
+
+Consumer side done
+QuotesExample::auto_quote
+QuotesExample::manual_quote
+QuotesExample::manual_quote
+QuotesExample::manual_quote
+ProductId : ION Price : 10.0
+ProductId : ABC Price : 4.0
+ProductId : XYZ Price : 1.0
+ProductId : IBM Price : 2.7
+ProductId : NEC Price : 3.4
+ProductId : DGI Price : 2.9
+

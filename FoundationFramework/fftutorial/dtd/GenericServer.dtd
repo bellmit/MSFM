@@ -1,0 +1,35 @@
+
+<!-- Global property definitions -->
+
+
+
+<!-- define the entities required by the foundationFramework -->
+
+<!ENTITY % applicationDefinedProperties  "(routeName,remoteRouteName)">
+
+
+
+<!-- include the foundationFramework -->
+
+<!ENTITY % FF_include SYSTEM "FoundationFramework.dtd" >
+%FF_include;
+
+
+<!-- This is already defined in Container.dtd which we include through foundationFramework.dtd
+<!ELEMENT routeName (#PCDATA) >
+<!ATTLIST routeName
+    type            %typeConstraints;   #FIXED 'ManagedProperty'
+    mode            %modeConstraints;   #FIXED 'readWrite'
+    propertyType    %propertyTypes;     #FIXED 'string'
+    description     CDATA               #FIXED 'the name others will use to find services in this server' 
+>
+-->
+
+<!ELEMENT remoteRouteName (#PCDATA) >
+<!ATTLIST remoteRouteName
+    type            %typeConstraints;   #FIXED 'ManagedProperty'
+	mode            %modeConstraints;   #FIXED 'readWrite'
+	propertyType    %propertyTypes;     #FIXED 'string'
+	description     CDATA               #FIXED 'the name this server will use to find remote services' 
+>
+

@@ -1,0 +1,90 @@
+
+export BASE_PORT=17000
+
+export ENV_PREFIX=assr
+
+export ROUTING=team0
+
+export FFTUTORIAL_HOME=$RUN_DIR/ffclass/$ROUTING
+
+export FFTUTORIAL_VOB_ROOT=/vobs/Oinfra
+
+export INFRA_RUN_DIR=/sbt/assr/infra/run_dir
+export IOR_BASE_DIR=${INFRA_RUN_DIR}/ior
+
+# ^^^ customize for env ^^^
+#
+#################################
+# vvv probably don't change vvv
+#
+
+export XML_CATALOG=${FFTUTORIAL_HOME}/xml/Catalog.xml
+
+export JAVA_ARGS=
+export JAVA_ARGS="-DORB.InitRefURL=file://${IOR_BASE_DIR}/initrefs.ior"
+export JAVA_ARGS=${JAVA_ARGS}" -DORB.FlowControl=none"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.Admin.ChannelAdminServerName=${ENV_PREFIX}ChannelAdminServer"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.Admin.ExtentMapServerName=${ENV_PREFIX}ExtentMapAdminServer"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.Admin.SecChannelAdminServerName=${ENV_PREFIX}ChannelAdminServerSecondary"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.Admin.SecExtentMapServerName=${ENV_PREFIX}ExtentMapAdminServerSecondary"
+export JAVA_ARGS=${JAVA_ARGS}" -DExtentMap.NodeName=BY_PASS_EXTENTMAP_CONFIG"
+export JAVA_ARGS=${JAVA_ARGS}" -DCHECK_REP_IDL=false"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.TrackFiltersECName=${ENV_PREFIX}FilterNotification"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.SmartSockets.ServerNames=localhost"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.SmartSockets.GMDDir=${INFRA_RUN_DIR}/log/gmd"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.SmartSockets.CacheGroup=${ENV_PREFIX}smartcache"
+export JAVA_ARGS=${JAVA_ARGS}" -DEventService.SmartSockets.OptionsFile=${INFRA_RUN_DIR}/properties/cboe.ssconfig.cm"
+export JAVA_ARGS=${JAVA_ARGS}" -DCBOE.EnvIdentifier=${ENV_PREFIX}"
+export JAVA_ARGS=${JAVA_ARGS}" -DApplicationDebugOn"
+export JAVA_ARGS=${JAVA_ARGS}" -DprefixRouteName=$ROUTING"
+export JAVA_ARGS=${JAVA_ARGS}" -DprefixRemoteRouteName=$ROUTING"
+
+export TRADE_SERVER_XML=
+export TRADE_SERVER_XML=${TRADE_SERVER_XML}${FFTUTORIAL_HOME}/xml/LoggingService.xml,
+export TRADE_SERVER_XML=${TRADE_SERVER_XML}${FFTUTORIAL_HOME}/xml/LogFacade.xml,
+export TRADE_SERVER_XML=${TRADE_SERVER_XML}${FFTUTORIAL_HOME}/xml/TradeServer.xml
+
+export TRADE_MATCH_SERVER_XML=
+export TRADE_MATCH_SERVER_XML=${TRADE_MATCH_SERVER_XML}${FFTUTORIAL_HOME}/xml/LoggingService.xml,
+export TRADE_MATCH_SERVER_XML=${TRADE_MATCH_SERVER_XML}${FFTUTORIAL_HOME}/xml/LogFacade.xml,
+export TRADE_MATCH_SERVER_XML=${TRADE_MATCH_SERVER_XML}${FFTUTORIAL_HOME}/xml/TradeMatchService.xml,
+export TRADE_MATCH_SERVER_XML=${TRADE_MATCH_SERVER_XML}${FFTUTORIAL_HOME}/xml/TradeMatchServer.xml,
+export TRADE_MATCH_SERVER_XML=${TRADE_MATCH_SERVER_XML}${FFTUTORIAL_HOME}/xml/TradeReportConsumer.xml
+
+export CLASSPATH=
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_HOME}/classes
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_HOME}/idl/FFIDL.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_HOME}/lib/repLoaderPatch.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/LoggingService/release/jars/LoggingService.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/LoggingService/release/jars/LoggingServiceIDLClasses.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/SessionManagementService/release/SessionManagementService.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/InfraVerity/release/jars/InfraVerityIDLClasses.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/SystemManagement/release/jars/SystemManagement.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/tools/java/jars/jawall.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/tools/release/jars/CBOEUtility.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/tools/java/jars/xml4j.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/SystemManagement/release/jars/SystemManagementIDLClasses.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/CommonFacilities/release/Utility.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/FoundationFramework/release/jars/FoundationFramework.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/infrastructure/release/ffimpl.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/infrastructure/release/ffpersist.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/infrastructure/release/infrastructure.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/MessagingSystem.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/tools/junit/classes/junit.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/objectwave/release/objectwave.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/tools/jgl/classes
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/CommonFacilities/idl/cfIDLclasses.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/OMGBaseClasses.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/OMGServiceClasses.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/Rollout/release/jars/Rollout.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/SecurityService/release/jars/SecurityServiceIDL.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/tools/java/classes/concurrency.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/InfraVerity/release/jars/InfraVerity.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/server/release/server_impls.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/server/release/server_connectionServer.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/domain/release/domain_impls.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/javautil/release/jars/javautil.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/common/release/jars/common.jar
+export CLASSPATH=${CLASSPATH}:${FFTUTORIAL_VOB_ROOT}/MessagingSystem/release/jars/IDLCompiler.jar
+
+#echo $CLASSPATH | tr : \\n 

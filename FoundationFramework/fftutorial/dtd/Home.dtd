@@ -1,0 +1,87 @@
+<!-- 
+	The DTD for the BOHome defition.
+-->
+<!-- Import the application specific files -->
+<!-- Additional services will need to modify this section to import their service. -->
+
+<!-- Imported via inclusion in foundationFramework.dtd
+<!ENTITY % resusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+-->
+
+<!-- The BrokerService from from the BrokerService.dtd. 
+     Additional services will need to be tied to the framework here. -->
+<!ELEMENT BOHome (BOHomeProperties, BOHomeCommands?) >
+<!ATTLIST BOHome  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		CDATA	 #REQUIRED
+			objectName  CDATA	 #IMPLIED>
+
+<!ELEMENT alias (#PCDATA)>
+<!ATTLIST alias  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'Alternate names under which a single instance of the home will be registered ' >
+
+<!ELEMENT poaName (#PCDATA)>
+<!ATTLIST poaName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'All exported services can be bound to this specified poa. Requires the poa to be defined in the OrbService.' >
+
+<!ELEMENT homeImpl (#PCDATA)>
+<!ATTLIST homeImpl  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ELEMENT interceptorImpl (#PCDATA)>
+<!ATTLIST interceptorImpl  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The implementation of the the interceptor' >
+
+<!ELEMENT interceptorName (#PCDATA)>
+<!ATTLIST interceptorName  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'Not sure on the use, but this is the interceptors name' >
+
+<!ELEMENT BOHomeProperties  (homeImpl, managedResourceName?, interceptorName?, interceptorImpl?, persistentBrokerName?, logServiceComponent?, alias*, poaName?, objectId?)>
+
+<!ATTLIST BOHomeProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT BOHomeCommands (startupCommand, shutdownCommand, initializeCommand, statusCommand) >
+<!ATTLIST BOHomeCommands type CDATA 	#FIXED 	'ManagedCommands'>
+
+<!ELEMENT startupCommand EMPTY >
+<!ATTLIST startupCommand 
+    type CDATA 	#FIXED 	'ManagedCommand'
+    description CDATA 	#FIXED	'The command to start the BOHome.' 
+>
+
+<!ELEMENT shutdownCommand EMPTY >
+<!ATTLIST shutdownCommand
+    type CDATA 	#FIXED 	'ManagedCommand'
+    description CDATA 	#FIXED	'The command to shutdown the BOHome.' 
+>
+
+<!ELEMENT statusCommand EMPTY >
+<!ATTLIST statusCommand 
+    type CDATA 	#FIXED 	'ManagedCommand'
+    description CDATA 	#FIXED	'The command to query the status of the BOHome.' 
+>
+<!ELEMENT initializeCommand EMPTY >
+<!ATTLIST initializeCommand 
+    type CDATA 	#FIXED 	'ManagedCommand'
+    description CDATA 	#FIXED	'The command to invoke the initialization of the BOHome.' >
+<!ELEMENT managedResourceName (#PCDATA)>
+<!ATTLIST managedResourceName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The name of the managed resource this home is representing. Necessary for property value resolution.' >
+
+<!ELEMENT objectId (#PCDATA)>
+<!ATTLIST objectId type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The name of the objectId to use for a persistent IOR. The POA selected must have persistentIor=true.' >

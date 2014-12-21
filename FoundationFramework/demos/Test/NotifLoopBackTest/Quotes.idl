@@ -1,0 +1,32 @@
+// Quotes.idl
+
+//typedef string	ProductId;
+//struct Quote
+//{
+//	ProductId	product;
+//	float		price;
+//};
+
+//typedef sequence< Quote >	QuoteSequence;
+
+
+//#pragma prefix "com.cboe.EventService.Test"
+//#pragma javaPackage "com.cboe.EventService.Test"
+
+module org {
+module omg {
+#include "CosTypedEventComm.idl"
+};
+};
+
+
+module NotifDemo
+{
+
+interface  Quotes :org::omg::CosTypedEventComm::TypedPushConsumer
+{
+	oneway void auto_quote( in long data);
+	oneway void manual_quote( );
+};
+
+};

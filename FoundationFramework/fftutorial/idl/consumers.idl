@@ -1,0 +1,21 @@
+//## Module: consumers
+
+#ifndef Consumers_idl
+#define Consumers_idl
+
+// ==================================================================
+
+#pragma javaPackage "com.cboe.ffidl"
+
+#include "util.idl"
+#include "trade.idl"
+
+module ffConsumers
+{
+    interface TradeReportConsumer {
+
+        void acceptTradeReport(in ffUtil::TradingSession session, in ffTrade::TradeReportStruct tradeReport);
+    };
+};
+
+#endif

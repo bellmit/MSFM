@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v3.0.7 NT (http://www.xmlspy.com) by Keith A. Korecky (Chicago Board Options Exchange) -->
+<!DOCTYPE GlobalOrbService SYSTEM "../dtd/OrbService.dtd">
+<GlobalOrbService>
+	<OrbServicePOAImpl name="RootOnly">
+		<OrbServicePOAImplProperties>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="IdServer">
+		<OrbServicePOAImplProperties>
+			<poaList>IdServerPOA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="IdServerPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="Frontend">
+		<OrbServicePOAImplProperties>
+			<poaList>FrontendPOA,StatusServicePOA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="FrontendPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<bindOrderType value="SWUL"/>
+				<poolSize>160</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="StatusServicePOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<bindOrderType value="NONE"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="PdsAdapter">
+		<OrbServicePOAImplProperties>
+			<poaList>PdsAdapterPOA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="PdsAdapterPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TipsAdapter">
+		<OrbServicePOAImplProperties>
+			<poaList>TipsAdapterPOA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TipsAdapterPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>10</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TpfGlobal">
+		<OrbServicePOAImplProperties>
+			<poaList>TpfGlobalPOA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TpfGlobalPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TpfAdapterPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>TpfAdapterPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TpfAdapterPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TpfAdapterPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>TpfAdapterPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TpfAdapterPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="CboeLinkageSimPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>CboeLinkageSimPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="CboeLinkageSimPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="CboeLinkageSimPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>CboeLinkageSimPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="CboeLinkageSimPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="HubLinkageSimPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>HubLinkageSimPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="HubLinkageSimPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="HubLinkageSimPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>HubLinkageSimPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="HubLinkageSimPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="FixLinkageAdapterPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>FixLinkageAdapterPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="FixLinkageAdapterPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="FixLinkageAdapterPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>FixLinkageAdapterPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="FixLinkageAdapterPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TpfLinkageAdapterPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>TpfLinkageAdapterPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TpfLinkageAdapterPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TpfLinkageAdapterPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>TpfLinkageAdapterPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TpfLinkageAdapterPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="ItsAdapterPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>ItsAdapterPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="ItsAdapterPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="ItsAdapterPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>ItsAdapterPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="ItsAdapterPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="GlobalServer">
+		<OrbServicePOAImplProperties>
+			<poaList>GlobalServerPOA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="GlobalServerPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="ExternalTradeServerPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>ExternalTradeServerPair1POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="ExternalTradeServerPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="ExternalTradeServerPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>ExternalTradeServerPair2POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="ExternalTradeServerPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="LinkageServerPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>LinkageServerPair1POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="LinkageServerPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="LinkageServerPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>LinkageServerPair2POA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="LinkageServerPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>5</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="HybridTradeServerPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>HybridTradeServerPair1POA,HybridTradeServerMMQSPair1POA,HybridTradeServerOHSPair1POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="HybridTradeServerPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="HybridTradeServerMMQSPair1POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>HybridTradeServerPair1POA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="HybridTradeServerOHSPair1POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>HybridTradeServerPair1POA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="HybridTradeServerPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>HybridTradeServerPair2POA,HybridTradeServerMMQSPair2POA,HybridTradeServerOHSPair2POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="HybridTradeServerPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="HybridTradeServerMMQSPair2POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>HybridTradeServerPair2POA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="HybridTradeServerOHSPair2POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>HybridTradeServerPair2POA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TradeServerPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>TradeServerPair1POA,MMQSPair1POA,OHSPair1POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TradeServerPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="MMQSPair1POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>TradeServerPair1POA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="OHSPair1POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>TradeServerPair1POA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="TradeServerPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>TradeServerPair2POA,MMQSPair2POA,OHSPair2POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="TradeServerPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="MMQSPair2POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>TradeServerPair2POA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="OHSPair2POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>TradeServerPair2POA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="EquityTradeServerPair1">
+		<OrbServicePOAImplProperties>
+			<poaList>EquityTradeServerPair1POA,EquityTradeServerMMQSPair1POA,EquityTradeServerOHSPair1POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="EquityTradeServerPair1POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="EquityTradeServerMMQSPair1POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>EquityTradeServerPair1POA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="EquityTradeServerOHSPair1POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>EquityTradeServerPair1POA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="EquityTradeServerPair2">
+		<OrbServicePOAImplProperties>
+			<poaList>EquityTradeServerPair2POA,EquityTradeServerMMQSPair2POA,EquityTradeServerOHSPair2POA</poaList>
+			<poolSize>20</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="EquityTradeServerPair2POA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>20</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="EquityTradeServerMMQSPair2POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>EquityTradeServerPair2POA</parentPoa>
+			</POAProperties>
+		</POA>
+		<POA name="EquityTradeServerOHSPair2POA">
+			<POAProperties>
+				<poolSize>80</poolSize>
+				<parentPoa>EquityTradeServerPair2POA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+	<OrbServicePOAImpl name="StockCFNAdapter">
+		<OrbServicePOAImplProperties>
+			<poaList>StockCFNAdapterPOA</poaList>
+			<poolSize>5</poolSize>
+		</OrbServicePOAImplProperties>
+		<POA name="StockCFNAdapterPOA">
+			<POAProperties>
+				<persistentIor value="true"/>
+				<poolSize>10</poolSize>
+				<parentPoa>UserPOA</parentPoa>
+			</POAProperties>
+		</POA>
+	</OrbServicePOAImpl>
+</GlobalOrbService>

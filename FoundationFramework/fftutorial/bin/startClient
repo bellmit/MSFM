@@ -1,0 +1,6 @@
+
+. ../etc/setEnv
+
+IOR_URI="file://${IOR_BASE_DIR}/initrefs.ior"
+
+java -DprefixRemoteRouteName=$ROUTING -DORB.InitRefURL=${IOR_URI} com.cboe.ffClient.TradeServiceClient $IOR_URI $1 $2

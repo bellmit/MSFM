@@ -1,0 +1,7 @@
+#!/bin/ksh
+
+alias jc='javac -d ${FFTUTORIAL_HOME}/classes '
+alias jcall='cd ${FFTUTORIAL_HOME}/src; compileSrc; cd -'
+alias cdteam0='cd `echo ${PWD} | cut -f1-6 -d/`/team0/`echo $PWD | cut -f8- -d/`'
+alias cdmyteam='cd `echo ${PWD} | cut -f1-6 -d/`/${ROUTING}/`echo $PWD | cut -f8- -d/`'
+alias cdidl='cd ${FFTUTORIAL_HOME}/idl'

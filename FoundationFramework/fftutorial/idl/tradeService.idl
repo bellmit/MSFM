@@ -1,0 +1,33 @@
+//## Interface: TradeService
+//## Module:    businessServices
+
+#ifndef TradeService_idl
+#define TradeService_idl
+
+#include "exceptions.idl"
+#include "trade.idl"
+
+#pragma javaPackage "com.cboe.ffidl"
+
+module ffBusinessServices {
+
+    interface TradeService {
+
+      ffTrade::ExecutionReportStructSequence getExecutionReportsForUser(in ffUtil::Acronym user)
+        raises(
+            ffExceptions::SystemException,
+            ffExceptions::CommunicationException,
+            ffExceptions::AuthorizationException
+        );
+
+      void acceptExecutionReport(in ffTrade::ExecutionReportStruct executionReport)
+        raises(
+            ffExceptions::SystemException,
+            ffExceptions::CommunicationException,
+            ffExceptions::DataValidationException,
+            ffExceptions::AuthorizationException
+        );
+    };
+};
+
+#endif

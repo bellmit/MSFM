@@ -1,0 +1,488 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "traderService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"366414430215"
+    documentation 	
+|This package contains one or more "wrapper" classes that provides a proxy for the actual Trader Service.
+|
+|Developers should use these proxy classes, either through the FoundationFramework, or directly if the FoundationFramework is not being used.
+|
+|Owner: Mark Woyna 
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "TraderService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"365B43510277"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AC70177"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "export"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AC70179"
+		    parameters 	(list Parameters
+			(object Parameter "objectRef"
+			    type       	"org.omg.CORBA.Object")
+			(object Parameter "serviceTypeName"
+			    type       	"String")
+			(object Parameter "propertyString"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "query"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AC7017D"
+		    parameters 	(list Parameters
+			(object Parameter "serviceTypeName"
+			    type       	"String")
+			(object Parameter "constraints"
+			    type       	"String"))
+		    result     	"org.omg.CosTrading.OfferSeqHolder"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "withdraw"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61AC70180"
+		    parameters 	(list Parameters
+			(object Parameter "serviceTypeName"
+			    type       	"String")
+			(object Parameter "constraints"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::TraderService"
+	    quidu      	"365B44710361"
+	    module     	"Component View::com::cboe::infrastructureServices::traderService::TraderService"
+	    quidu      	"36B61AC700DA"
+	    language   	"Java")
+	(object Class "NsTraderServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61AC601E4"
+	    documentation 	
+|
+| * A trader service impl that uses the Name Service.
+| * @version 1.1
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC60281"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "withdraw"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC70080"
+		    documentation 	
+|
+|	 * @fixme Do we need to implement this method?
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"String")
+			(object Parameter "constraints"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "export"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC70083"
+		    parameters 	(list Parameters
+			(object Parameter "objectRef"
+			    type       	"org.omg.CORBA.Object")
+			(object Parameter "serviceTypeName"
+			    type       	"String")
+			(object Parameter "constraints"
+			    type       	"String"))
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "query"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC70087"
+		    documentation 	
+|
+|	 * This version of query only return one Offer.  But potentially, this should return
+|	 * all the offers matched with the constraints
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "serviceTypeName"
+			    type       	"String")
+			(object Parameter "constraints"
+			    type       	"String"))
+		    result     	"OfferSeqHolder"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getRootContext"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC7008A"
+		    documentation 	
+|
+|	 
+		    
+		    result     	"NamingContext"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::traderService::NsTraderServiceImpl"
+	    quidu      	"36B61AC60149"
+	    language   	"Java")
+	(object Class "TraderServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61AC60280"
+	    documentation 	
+|
+| * @version 1.1
+| 
+	    
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC7034B"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderService"))
+	    operations 	(list Operations
+		(object Operation "TraderServiceBaseImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC800AE"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61AC800AF"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"TraderService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61AC800B0"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61AC800B1"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61AC800B3"
+		    parameters 	(list Parameters
+			(object Parameter "str"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::traderService::TraderServiceBaseImpl"
+	    quidu      	"36B61AC601E5"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "TraderServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"?_Touched_?"
+		    value      	"?_Touched_?")
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61AC801B5"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"?_Touched_?"
+			    value      	"?_Touched_?"))
+		    quid       	"36B61AC80251"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderServiceBaseImpl"))
+	    module     	"Component View::com::cboe::infrastructureServices::traderService::TraderServiceImpl"
+	    quidu      	"36B61AC80119"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AC6031C"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B61AC6031D"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::NsTraderServiceImpl"
+		    quidu      	"36B61AC601E4")
+		(object Role "CONTEXT_NAME"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"TraderInfo"
+			    )
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Final"
+			    value      	TRUE))
+		    quid       	"36B61AC6031E"
+		    label      	"CONTEXT_NAME"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AC603CA"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B61AC603CB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::NsTraderServiceImpl"
+		    quidu      	"36B61AC601E4")
+		(object Role "rootContext"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AC603CC"
+		    label      	"rootContext"
+		    supplier   	"Logical View::org::omg::CosNaming::NamingContext"
+		    quidu      	"36B61AC603C9"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AC7007D"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B61AC7007E"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::NsTraderServiceImpl"
+		    quidu      	"36B61AC601E4")
+		(object Role "traderContext"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AC7007F"
+		    label      	"traderContext"
+		    supplier   	"Logical View::org::omg::CosNaming::NamingContext"
+		    quidu      	"36B61AC603C9"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AC80000"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"36B61AC80001"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderServiceBaseImpl"
+		    quidu      	"36B61AC60280")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"com.cboe.infrastructureServices.traderService.TraderServiceImpl"
+			    ))
+		    quid       	"36B61AC80002"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$8"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61AC800AB"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$9"
+		    quid       	"36B61AC800AC"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderServiceBaseImpl"
+		    quidu      	"36B61AC60280")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	"null"))
+		    quid       	"36B61AC800AD"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderService"
+		    quidu      	"365B43510277"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$10"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"?_Touched_?"
+		    value      	"?_Touched_?"))
+	    quid       	"36B61AC802FD"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$11"
+		    quid       	"36B61AC802FE"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderServiceImpl"
+		    quidu      	"36B61AC801B5")
+		(object Role "host"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AC802FF"
+		    label      	"host"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$12"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"?_Touched_?"
+		    value      	"?_Touched_?"))
+	    quid       	"36B61AC80399"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"36B61AC8039A"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::traderService::TraderServiceImpl"
+		    quidu      	"36B61AC801B5")
+		(object Role "traderServer"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61AC8039B"
+		    label      	"traderServer"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE))))
+    logical_presentations 	(list unit_reference_list))

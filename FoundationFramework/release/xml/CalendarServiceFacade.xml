@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE GlobalCalendarService SYSTEM "../dtd/CalendarServiceFacade.dtd" >
+<GlobalCalendarService>
+  	<CalendarServiceImpl name="calendarServiceClient">
+    		<CalendarServiceImplProperties>
+			<traderOfferName>&lt;prefix&gt;CalendarAdminServer</traderOfferName>
+			<calendarAdminChannelName>&lt;prefix&gt;CalendarAdminChannel</calendarAdminChannelName>
+    		</CalendarServiceImplProperties>
+  	</CalendarServiceImpl>
+</GlobalCalendarService>

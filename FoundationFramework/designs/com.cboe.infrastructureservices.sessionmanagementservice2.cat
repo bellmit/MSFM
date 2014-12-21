@@ -1,0 +1,6267 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8163.3"
+    charSet    	0)
+
+(object Class_Category "sessionManagementService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"3804E81203B9"
+    documentation 	
+|
+|This service provides control and data services for the application's topology and user login sessions.
+|
+|Until I can figure out how to remove the invalid sessionManagementService package from the model, this sessionManagementService package will have to do.
+|
+|Steven Sinclair
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "SessionManagementService"
+	    quid       	"3804E8B00148"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "forceLogout"
+		    quid       	"3806003E031C"
+		    parameters 	(list Parameters
+			(object Parameter "adminUser"
+			    type       	"UserStruct")
+			(object Parameter "userToLogout"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getComponents"
+		    quid       	"380600460148"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType"))
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "login"
+		    quid       	"3806005A0261"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "logout"
+		    quid       	"3806005D005D"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerComponentStatusListener"
+		    quid       	"38060060030D"
+		    parameters 	(list Parameters
+			(object Parameter "listener"
+			    type       	"ComponentFailureListener"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerLoginListener"
+		    quid       	"38060064002E"
+		    parameters 	(list Parameters
+			(object Parameter "listener"
+			    type       	"SessionManagementListener"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getConnectedComponents"
+		    quid       	"38060BD903A9"
+		    parameters 	(list Parameters
+			(object Parameter "targetComponent"
+			    type       	"String")
+			(object Parameter "connectedType"
+			    type       	"ComponentType"))
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Class "SessionManagementListener"
+	    quid       	"3804E8CE01B5"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "userLoggedIn"
+		    quid       	"3804EC8E0186"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "userLoggedOut"
+		    quid       	"3805F6B300DA"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserId")
+			(object Parameter "forcedLogout"
+			    type       	"boolean"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Class "ComponentStatusListener"
+	    quid       	"3805F7830167"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "componentEstablished"
+		    quid       	"3805F7AD01F4"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType")
+			(object Parameter "name"
+			    type       	"ComponentName"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "componentFailed"
+		    quid       	"3806028B000F"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType")
+			(object Parameter "componentName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Class "GlobalSessionManagementService"
+	    quid       	"3805FDC6003E"
+	    stereotype 	"Interface"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3805FDE00109"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementService"
+		    quidu      	"3804E8B00148"))
+	    operations 	(list Operations
+		(object Operation "globalForceLogout"
+		    quid       	"3805FE3003B9"
+		    parameters 	(list Parameters
+			(object Parameter "sourceSACAS"
+			    type       	"String")
+			(object Parameter "adminUser"
+			    type       	"UserStruct")
+			(object Parameter "userToLogout"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "globalLogin"
+		    quid       	"3806007F033C"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct")
+			(object Parameter "sourceComponent"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "globalLogout"
+		    quid       	"3806008300DA"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct")
+			(object Parameter "sourceComponent"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerSessionManagementService"
+		    quid       	"3806009301F4"
+		    parameters 	(list Parameters
+			(object Parameter "newService"
+			    type       	"SessionManagementService"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "unregisterSessionManagementService"
+		    quid       	"3806296A030D"
+		    parameters 	(list Parameters
+			(object Parameter "newService"
+			    type       	"SessionManagementService"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Class "SessionManagementServiceBaseImpl"
+	    quid       	"3806010B02FD"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3806191A02BF"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BObject"
+		    quidu      	"36193B700360"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"3806011A035B"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementService"
+		    quidu      	"3804E8B00148"))
+	    exportControl 	"Implementation"
+	    operations 	(list Operations
+		(object Operation "forceLogout"
+		    quid       	"380601C10280"
+		    parameters 	(list Parameters
+			(object Parameter "adminUser"
+			    type       	"UserStruct")
+			(object Parameter "userToLogout"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getComponents"
+		    quid       	"380601C80242"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType"))
+		    result     	"String[]"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "login"
+		    quid       	"380601E40109"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct")
+			(object Parameter "password"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "logout"
+		    quid       	"380601E9037A"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct")
+			(object Parameter "password"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerComponentStatusListener"
+		    quid       	"380601EF0222"
+		    parameters 	(list Parameters
+			(object Parameter "listener"
+			    type       	"ComponentFailureListener"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerLoginListener"
+		    quid       	"380601F500DA"
+		    parameters 	(list Parameters
+			(object Parameter "listener"
+			    type       	"SessionManagementListener"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "SessionManagementServiceImpl"
+		    quid       	"38073EE40119"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "start"
+		    quid       	"38073F2A00FA"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "shutdown"
+		    quid       	"380748F2008C"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "statusListeners"
+		    quid       	"3806029100EA"
+		    type       	"ComponentStatusListener[]")
+		(object ClassAttribute "sessionListeners"
+		    quid       	"380602A70186"
+		    type       	"SessionManagementListener[]"))
+	    language   	"Java")
+	(object Class "GlobalSessionManagementServiceImpl"
+	    quid       	"3806012102FD"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3806019A0242"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"3806018C00CB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementService"
+		    quidu      	"3805FDC6003E")
+		(object Realize_Relationship
+		    quid       	"380B8BCF006D"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::MBeanPropertyChangeListener"
+		    quidu      	"380B8B9C002E"))
+	    exportControl 	"Implementation"
+	    operations 	(list Operations
+		(object Operation "forceLogoutLocalOverride"
+		    quid       	"38060AF30261"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "globalForceLogout"
+		    quid       	"38060B3301B5"
+		    parameters 	(list Parameters
+			(object Parameter "sourceSACAS"
+			    type       	"String")
+			(object Parameter "adminUser"
+			    type       	"UserStruct")
+			(object Parameter "userToLogout"
+			    type       	"UserStruct"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "globalLogout"
+		    quid       	"38060B390128"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct")
+			(object Parameter "sourceComponent"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "globalLogin"
+		    quid       	"38060B3B0280"
+		    parameters 	(list Parameters
+			(object Parameter "user"
+			    type       	"UserStruct")
+			(object Parameter "sourceComponent"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "unregisterSessionManagementService"
+		    quid       	"38060B410167"
+		    parameters 	(list Parameters
+			(object Parameter "oldService"
+			    type       	"SessionManagementService"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "registerSessionManagementService"
+		    quid       	"38060B46002E"
+		    parameters 	(list Parameters
+			(object Parameter "newService"
+			    type       	"SessionManagementService")
+			(object Parameter "componentType"
+			    type       	"ComponentType")
+			(object Parameter "componentName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "addTopologyConnection"
+		    quid       	"380B86BF0196"
+		    parameters 	(list Parameters
+			(object Parameter "parentComponent"
+			    type       	"String")
+			(object Parameter "component"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "addTopologyConnection"
+		    quid       	"380CA8A101A5"
+		    parameters 	(list Parameters
+			(object Parameter "parentComponent"
+			    type       	"String")
+			(object Parameter "component"
+			    type       	"String")
+			(object Parameter "isActive"
+			    type       	"boolean"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "addTopologyComponent"
+		    quid       	"380B8709032C"
+		    parameters 	(list Parameters
+			(object Parameter "componentName"
+			    type       	"String")
+			(object Parameter "type"
+			    type       	"ComponentType"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "removeTopologyComponent"
+		    quid       	"380B876D008C"
+		    documentation 	
+|
+|Sets component status to inactive: doesn't actually remove it: removed from a connectivity point of view only.
+		    
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Protected"
+		    uid        	0)
+		(object Operation "propertyChange"
+		    quid       	"380B8C0A00DA"
+		    parameters 	(list Parameters
+			(object Parameter "event"
+			    type       	"MBeanPropertyChangeEvent"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "clientServices"
+		    quid       	"380602C1038A"
+		    type       	"SessionManagementService[]")
+		(object ClassAttribute "userLogins"
+		    quid       	"38061E840000"
+		    type       	"UserLoginPersistence[]"))
+	    language   	"Java")
+	(object Class "ComponentType"
+	    quid       	"380604BF0232"
+	    stereotype 	"Interface"
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "CAS"
+		    quid       	"3806052D03B9"
+		    type       	"int"
+		    initv      	"0"
+		    exportControl 	"Public"
+		    Containment 	"By Value"
+		    static     	TRUE)
+		(object ClassAttribute "FRONT_END"
+		    quid       	"3806053A0177"
+		    type       	"int"
+		    initv      	"1"
+		    exportControl 	"Public"
+		    Containment 	"By Value"
+		    static     	TRUE)
+		(object ClassAttribute "BACK_END_CLUSTER"
+		    quid       	"380605460290"
+		    type       	"int"
+		    initv      	"2"
+		    exportControl 	"Public"
+		    Containment 	"By Value"
+		    static     	TRUE))
+	    language   	"Java")
+	(object Class "SessionManagementServiceHome"
+	    quid       	"3806195E00EA"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3806196E0242"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+		    quidu      	"3627AD8B0233"))
+	    operations 	(list Operations
+		(object Operation "create"
+		    quid       	"380619B4009C"
+		    result     	"SessionManagementService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "find"
+		    quid       	"380619BB00FA"
+		    result     	"SessionManagementService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    quid       	"38061B0A01F4"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "service"
+		    quid       	"380619D9034B"
+		    type       	"SessionManagementService"))
+	    language   	"Java")
+	(object Class "UserLoginPersistence"
+	    quid       	"38061B6E033C"
+	    operations 	(list Operations
+		(object Operation "getUserName"
+		    quid       	"38061C7C034B"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setUserName"
+		    quid       	"38061CF9002E"
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getCASName"
+		    quid       	"38061EBA000F"
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setCASName"
+		    quid       	"38061EC7006D"
+		    parameters 	(list Parameters
+			(object Parameter "casName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "UserLoginPersistence()"
+		    quid       	"3807438D0271"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "userName"
+		    quid       	"38061C8001E4"
+		    type       	"String")
+		(object ClassAttribute "caseName"
+		    quid       	"38061FBD003E"
+		    type       	"String"))
+	    language   	"Java")
+	(object Class "SessionManagementServiceLocalHome"
+	    quid       	"38063207029F"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"3806324E02AF"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome"
+		    quidu      	"3627AD8B0233"))
+	    operations 	(list Operations
+		(object Operation "create"
+		    quid       	"380632310138"
+		    result     	"SessionManagementService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "find"
+		    quid       	"3806323B02EE"
+		    result     	"SessionManagementService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    quid       	"380632410167"
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "service"
+		    quid       	"38063227034B"
+		    type       	"SessionManagementService"))
+	    language   	"Java")
+	(object Class "LocalSessionManagementService"
+	    quid       	"38075615038A"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"380756F4031C"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementService"
+		    quidu      	"3804E8B00148"))
+	    operations 	(list Operations
+		(object Operation "loginNotification"
+		    quid       	"380756F60167"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "loginCASName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "logoutNotification"
+		    quid       	"380757370399"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "loginCASName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "componentFailedNotification"
+		    quid       	"3807574C0119"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType")
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "componentEstablishedNotification"
+		    quid       	"380757810186"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType")
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Class "LocalSessionManagementServiceImpl"
+	    quid       	"380757AC030D"
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    quid       	"380757C80138"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"))
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    quid       	"380757CB0242"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementService"
+		    quidu      	"38075615038A"))
+	    operations 	(list Operations
+		(object Operation "loginNotification"
+		    quid       	"38075872001F"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "loginCASName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "logoutNotification"
+		    quid       	"3807587A02DE"
+		    parameters 	(list Parameters
+			(object Parameter "userName"
+			    type       	"String")
+			(object Parameter "loginCASName"
+			    type       	"String")
+			(object Parameter "focedLogout"
+			    type       	"boolean"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "componentFailedNotification"
+		    quid       	"38075880008C"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType")
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "componentEstablishedNotification"
+		    quid       	"3807588501B5"
+		    parameters 	(list Parameters
+			(object Parameter "type"
+			    type       	"ComponentType")
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Class "MBeanPropertyChangeListener"
+	    quid       	"380B8B9C002E"
+	    documentation 	
+|
+|This wll eventually come from the SystemManagementAdapter package:
+|
+|com.cboe.systemsManagementService.managedObjectFramework.managedObjectBaseClasses
+|
+	    
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "propertyChange"
+		    quid       	"380B8BB90196"
+		    parameters 	(list Parameters
+			(object Parameter "event"
+			    type       	"MBeanPropertyChangeEvent"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    quid       	"3806025D0232"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"3806025E0000"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementListener"
+		    quidu      	"3804E8CE01B5"
+		    client_cardinality 	(value cardinality "n")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$2"
+		    quid       	"3806025E0001"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$3"
+	    quid       	"3806026301E4"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$4"
+		    quid       	"38060263034B"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::ComponentStatusListener"
+		    quidu      	"3805F7830167"
+		    client_cardinality 	(value cardinality "n")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$5"
+		    quid       	"38060263034C"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    quid       	"38061A21004E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"38061A210109"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$8"
+		    quid       	"38061A210138"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceHome"
+		    quidu      	"3806195E00EA"
+		    client_cardinality 	(value cardinality "1")
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$9"
+	    quid       	"38061A23004E"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$10"
+		    quid       	"38061A23029F"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$11"
+		    quid       	"38061A2302A0"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceHome"
+		    quidu      	"3806195E00EA"
+		    client_cardinality 	(value cardinality "1")
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$12"
+	    quid       	"38061EE00186"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$13"
+		    quid       	"38061EE00222"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::UserLoginPersistence"
+		    quidu      	"38061B6E033C"
+		    client_cardinality 	(value cardinality "n")
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$14"
+		    quid       	"38061EE00232"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$15"
+	    quid       	"380758B3037A"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$16"
+		    quid       	"380758B400BB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$17"
+		    quid       	"380758B400BC"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceLocalHome"
+		    quidu      	"38063207029F")))
+	(object Association "$UNNAMED$18"
+	    quid       	"380758E602DE"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$19"
+		    quid       	"380758E700DA"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl"
+		    quidu      	"380757AC030D"
+		    is_navigable 	TRUE)
+		(object Role "$UNNAMED$20"
+		    quid       	"380758E700DB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceHome"
+		    quidu      	"3806195E00EA")))
+	(object Mechanism @1
+	    logical_models 	(list unit_reference_list
+		(object Object "localImpl"
+		    quid       	"38073C56037A"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"38073F3F0399"
+			    supplier   	"trader"
+			    quidu      	"38073F1200DA"
+			    messages   	(list Messages
+				(object Message "query(String, String)"
+				    quid       	"38073F3F039A"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    quidu      	"36B61AC7017D")
+				(object Message "export(this, String, String)"
+				    quid       	"38074089035B"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	6
+				    Operation  	"export(org.omg.CORBA.Object, String, String)"
+				    quidu      	"36B61AC70179")
+				(object Message "withdraw(String, String)"
+				    quid       	"380CA58A0290"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	5
+				    quidu      	"36B61AC70180")))
+			(object Link
+			    quid       	"38073F6402AF"
+			    supplier   	"global"
+			    quidu      	"38073C5A031C"
+			    messages   	(list Messages
+				(object Message "registerSessionManagementService(this, ComponentType, name)"
+				    quid       	"38073F6402B0"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	4
+				    Operation  	"registerSessionManagementService(SessionManagementService, ComponentType, String)"
+				    quidu      	"38060B46002E")))
+			(object Link
+			    quid       	"38073F9E00BB"
+			    supplier   	"ff"
+			    quidu      	"38073F8501A5"
+			    messages   	(list Messages
+				(object Message "getName( )"
+				    quid       	"38073F9E00BC"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    quidu      	"369FA8A5027F"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "global"
+		    quid       	"38073C5A031C"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "localHome"
+		    quid       	"38073EC903D8"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"38073EE0031C"
+			    supplier   	"localImpl"
+			    quidu      	"38073C56037A"
+			    messages   	(list Messages
+				(object Message "SessionManagementServiceImpl( )"
+				    quid       	"38073EE0031D"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"38073EE40119")
+				(object Message "start( )"
+				    quid       	"38073F030280"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    quidu      	"38073F2A00FA"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceLocalHome"
+		    quidu      	"38063207029F"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "trader"
+		    quid       	"38073F1200DA"
+		    class      	"Logical View::com::cboe::infrastructureServices::traderService::TraderService"
+		    quidu      	"365B43510277"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "ff"
+		    quid       	"38073F8501A5"
+		    class      	"Logical View::com::cboe::infrastructureServices::foundationFramework::FoundationFramework"
+		    quidu      	"369FA8A50251"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @2
+	    logical_models 	(list unit_reference_list
+		(object Object "globalHome"
+		    quid       	"38073FB403A9"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"38074045007D"
+			    supplier   	"globalImpl"
+			    quidu      	"38073FC8000F"
+			    messages   	(list Messages
+				(object Message "start( )"
+				    quid       	"38074045007E"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"38073F2A00FA"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceHome"
+		    quidu      	"3806195E00EA"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "globalImpl"
+		    quid       	"38073FC8000F"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380740540138"
+			    supplier   	"traderService"
+			    quidu      	"380740160167"
+			    messages   	(list Messages
+				(object Message "export(this, \"Myself\", String)"
+				    quid       	"380740540139"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"export(org.omg.CORBA.Object, String, String)"
+				    quidu      	"36B61AC70179")
+				(object Message "query(\"Impl\", routeName)"
+				    quid       	"380741DB0399"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"query(String, String)"
+				    quidu      	"36B61AC7017D")
+				(object Message "withdraw(\"Myself\", null)"
+				    quid       	"380741E602AF"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"withdraw(String, String)"
+				    quidu      	"36B61AC70180")))
+			(object Link
+			    quid       	"3807423B030D"
+			    supplier   	"storedLogins"
+			    quidu      	"380740370177"
+			    messages   	(list Messages
+				(object Message "getUserName( )"
+				    quid       	"3807423B030E"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	21
+				    quidu      	"38061C7C034B")
+				(object Message "getCASName( )"
+				    quid       	"380748300109"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	18
+				    quidu      	"38061EBA000F")))
+			(object Link
+			    quid       	"3807434A01C5"
+			    supplier   	"loginQuery"
+			    quidu      	"3807433802FD"
+			    messages   	(list Messages
+				(object Message "ObjectQuery(PersistEnabled)"
+				    quid       	"3807434A01C6"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	15
+				    quidu      	"36B61BBF036C")
+				(object Message "find( )"
+				    quid       	"3807435C0157"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	16
+				    quidu      	"36B61BBF036E")))
+			(object Link
+			    quid       	"38074415001F"
+			    supplier   	"globalImpl"
+			    quidu      	"38073FC8000F"
+			    messages   	(list Messages
+				(object Message "forceLogoutLocalOverride(UserStruct)"
+				    quid       	"380744150020"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	23
+				    quidu      	"38060AF30261")
+				(object Message "addMBeanPropertyChangeListener(this, ComponentType, ff.getName())"
+				    quid       	"3807654603D8"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	4)
+				(object Message "addTopologyComponent(clusterName, BACK_END_CLUSTER)"
+				    quid       	"380CA31901A5"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	8
+				    Operation  	"addTopologyComponent(String, ComponentType)"
+				    quidu      	"380B8709032C")
+				(object Message "addTopologyComponent(casName, CAS)"
+				    quid       	"380CA3CC02DE"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	10
+				    Operation  	"addTopologyComponent(String, ComponentType)"
+				    quidu      	"380B8709032C")
+				(object Message "addTopologyComponent(frontEnd, FRONT_END, isActive)"
+				    quid       	"380CA451029F"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	13
+				    Operation  	"addTopologyComponent(String, ComponentType)"
+				    quidu      	"380B8709032C")
+				(object Message "addTopologyConnection(casName, frontEnd)"
+				    quid       	"380CA47C037A"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	14
+				    Operation  	"addTopologyConnection(String, String)"
+				    quidu      	"380B86BF0196")))
+			(object Link
+			    quid       	"380744C6004E"
+			    supplier   	"userService : UserService"
+			    quidu      	"380744B20251"
+			    messages   	(list Messages
+				(object Message "getUserInformation(userName)"
+				    quid       	"380744C6004F"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	22)))
+			(object Link
+			    quid       	"380748490119"
+			    supplier   	"SMS : SystemsManagementService"
+			    quidu      	"38074839030D"
+			    messages   	(list Messages
+				(object Message "getMBean(\"systemStatus\")"
+				    quid       	"380B905D0251"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	5)
+				(object Message "getMBean(\"component.\"+casName)"
+				    quid       	"380C9FE70251"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	19)
+				(object Message "getMBean(\"backEndClusters\")"
+				    quid       	"380CA09F0109"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	7
+				    Operation  	
+|getMBean(")
+				    )
+				(object Message "getMBean(\"CASs\")"
+				    quid       	"380CA3420157"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	9
+				    Operation  	
+|getMBean("CA)
+				    )))
+			(object Link
+			    quid       	"3807958F034B"
+			    supplier   	"SystemStatusBean : MBean"
+			    quidu      	"3807948702DE"
+			    messages   	(list Messages
+				(object Message "addMBeanPropertyChangeListener(this)"
+				    quid       	"380B90020186"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	6)))
+			(object Link
+			    quid       	"380CA027037A"
+			    supplier   	"CASBean : MBean"
+			    quidu      	"380CA00C002E"
+			    messages   	(list Messages
+				(object Message "getPropertyValue(\"isServiceActive\")"
+				    quid       	"380CA027038A"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	20)
+				(object Message "getPropertyValue(\"allFrontEnds\")"
+				    quid       	"380CA3F10242"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	11)))
+			(object Link
+			    quid       	"380CA6FE0213"
+			    supplier   	"FrontEndBean : MBean"
+			    quidu      	"380CA6DE03B9"
+			    messages   	(list Messages
+				(object Message "getPropertyValue(\"isActive\")"
+				    quid       	"380CA6FE0214"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	12
+				    Operation  	
+|getPropertyValue("isAlive")
+				    ))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "traderService"
+		    quid       	"380740160167"
+		    class      	"Logical View::com::cboe::infrastructureServices::traderService::TraderService"
+		    quidu      	"365B43510277"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "storedLogins"
+		    quid       	"380740370177"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::UserLoginPersistence"
+		    quidu      	"38061B6E033C"
+		    persistence 	"Persistent"
+		    multi      	TRUE)
+		(object Object "loginQuery"
+		    quid       	"3807433802FD"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3807438803D8"
+			    supplier   	"storedLogins"
+			    quidu      	"380740370177"
+			    messages   	(list Messages
+				(object Message "UserLoginPersistence()"
+				    quid       	"3807438803D9"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	17
+				    quidu      	"3807438D0271"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::persistenceService::ObjectQuery"
+		    quidu      	"366432550204"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "userService : UserService"
+		    quid       	"380744B20251"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "SMS : SystemsManagementService"
+		    quid       	"38074839030D"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "SystemStatusBean : MBean"
+		    quid       	"3807948702DE"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "CASBean : MBean"
+		    quid       	"380CA00C002E"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "FrontEndBean : MBean"
+		    quid       	"380CA6DE03B9"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @3
+	    logical_models 	(list unit_reference_list
+		(object Object "localImpl"
+		    quid       	"380748B703A9"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380748CC0109"
+			    supplier   	"globalImpl"
+			    quidu      	"380748BA037A"
+			    messages   	(list Messages
+				(object Message "unregisterSessionManagementService(this)"
+				    quid       	"380748CC010A"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"unregisterSessionManagementService(SessionManagementService)"
+				    quidu      	"38060B410167")))
+			(object Link
+			    quid       	"38074A530261"
+			    supplier   	"traderService"
+			    quidu      	"38074A2501F4"
+			    messages   	(list Messages
+				(object Message "withdraw(\"myself\", null)"
+				    quid       	"38074A530262"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"withdraw(String, String)"
+				    quidu      	"36B61AC70180"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl"
+		    quidu      	"3806010B02FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "globalImpl"
+		    quid       	"380748BA037A"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3807491D001F"
+			    supplier   	"globalImpl"
+			    quidu      	"380748BA037A"
+			    messages   	(list Messages
+				(object Message "forceLogoutLocalOverride(userStruct)"
+				    quid       	"3807491D0020"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"forceLogoutLocalOverride(UserStruct)"
+				    quidu      	"38060AF30261")))
+			(object Link
+			    quid       	"38074A480251"
+			    supplier   	"traderService"
+			    quidu      	"38074A2501F4"))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "localHome"
+		    quid       	"380748D700DA"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380748E803B9"
+			    supplier   	"localImpl"
+			    quidu      	"380748B703A9"
+			    messages   	(list Messages
+				(object Message "shutdown( )"
+				    quid       	"380748E803BA"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"380748F2008C"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceLocalHome"
+		    quidu      	"38063207029F"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "traderService"
+		    quid       	"38074A2501F4"
+		    class      	"Logical View::com::cboe::infrastructureServices::traderService::TraderService"
+		    quidu      	"365B43510277"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @4
+	    logical_models 	(list unit_reference_list
+		(object Object "globalImpl"
+		    quid       	"3807499C0138"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380750520148"
+			    supplier   	"globalImpl"
+			    quidu      	"3807499C0138"
+			    messages   	(list Messages
+				(object Message "forceLogoutLocalOverride(UserStruct)"
+				    quid       	"380750520149"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    quidu      	"38060AF30261")))
+			(object Link
+			    quid       	"380754900138"
+			    supplier   	"traderService"
+			    quidu      	"3807547D0177"
+			    messages   	(list Messages
+				(object Message "withdraw(\"myself\", null)"
+				    quid       	"380754900139"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"withdraw(String, String)"
+				    quidu      	"36B61AC70180"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "globalHome"
+		    quid       	"380749DB0232"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380749FC01A5"
+			    supplier   	"globalImpl"
+			    quidu      	"3807499C0138"
+			    messages   	(list Messages
+				(object Message "shutdown( )"
+				    quid       	"380749FC01A6"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"380748F2008C"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceHome"
+		    quidu      	"3806195E00EA"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "traderService"
+		    quid       	"3807547D0177"
+		    class      	"Logical View::com::cboe::infrastructureServices::traderService::TraderService"
+		    quidu      	"365B43510277"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @5
+	    logical_models 	(list unit_reference_list
+		(object Object "globalImpl"
+		    quid       	"380B279201D4"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380B468E02CE"
+			    supplier   	"globalImpl"
+			    quidu      	"380B279201D4"
+			    messages   	(list Messages
+				(object Message "addToTopology(name, type)"
+				    quid       	"380B468E02CF"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1)
+				(object Message "addTopologyConnection(name, frontEndName)"
+				    quid       	"380B48BA006D"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	7
+				    Operation  	"addTopologyConnection(String, String)"
+				    quidu      	"380B86BF0196")
+				(object Message "addTopologyComponent(frontEndName, FRONT_END, isActive)"
+				    quid       	"380B540C0213"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	6
+				    Operation  	"addTopologyComponent(String, ComponentType)"
+				    quidu      	"380B8709032C")))
+			(object Link
+			    quid       	"380B4FC4034B"
+			    supplier   	"CASContainerBean"
+			    quidu      	"380B4FB602AF")
+			(object Link
+			    quid       	"380B862E03D8"
+			    supplier   	"CASMBean"
+			    quidu      	"380B861D01D4"
+			    messages   	(list Messages
+				(object Message "getComponents()"
+				    quid       	"380B862E03D9"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3)))
+			(object Link
+			    quid       	"380B867800EA"
+			    supplier   	"FrontEndMbeans"
+			    quidu      	"380B866C030D"
+			    messages   	(list Messages
+				(object Message "getName()"
+				    quid       	"380B867800EB"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	5)
+				(object Message "getPropertyValue(\"isActive\")"
+				    quid       	"380CA7FE002E"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	4))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "CASContainerBean"
+		    quid       	"380B4FB602AF"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "SystemManagementAdapter"
+		    quid       	"380B5545031C"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380B589100AB"
+			    supplier   	"globalImpl"
+			    quidu      	"380B279201D4"
+			    messages   	(list Messages
+				(object Message "propertyChange(\"CAS;casName;established\")"
+				    quid       	"380B589100AC"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    Operation  	"propertyChange(MBeanPropertyChangeEvent)"
+				    quidu      	"380B8C0A00DA")
+				(object Message "getMBean()"
+				    quid       	"380B5E360177"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"ToClientFromSupplier"
+				    sequence   	""
+				    ordinal    	2))))
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "CASMBean"
+		    quid       	"380B861D01D4"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "FrontEndMbeans"
+		    quid       	"380B866C030D"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @6
+	    logical_models 	(list unit_reference_list
+		(object Object "SystemManagementAdapter"
+		    quid       	"380B210F02AF"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380B21A802BF"
+			    supplier   	"globalInstance"
+			    quidu      	"380B219B003E"
+			    messages   	(list Messages
+				(object Message "propertyChange(\"name;type;LOST\")"
+				    quid       	"380B21A802C0"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    Operation  	"propertyChange(MBeanPropertyChangeEvent)"
+				    quidu      	"380B8C0A00DA"))))
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "globalInstance"
+		    quid       	"380B219B003E"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380B21D00290"
+			    supplier   	"globalInstance"
+			    quidu      	"380B219B003E"
+			    messages   	(list Messages
+				(object Message "findComponent(name)"
+				    quid       	"380B21D00291"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"findComponent")
+				(object Message "forceLogoutLocalOverride(userStruct)"
+				    quid       	"380B227A037A"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	4
+				    Operation  	"forceLogoutLocalOverride(UserStruct)"
+				    quidu      	"38060AF30261")
+				(object Message "removeTopologyComponentname()"
+				    quid       	"380B24AD029F"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	7)))
+			(object Link
+			    quid       	"380B224101D4"
+			    supplier   	"allLocalImpls"
+			    quidu      	"380B222F000F"
+			    messages   	(list Messages
+				(object Message "componentFailedNotification(type, name)"
+				    quid       	"380B224101D5"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"componentFailedNotification(ComponentType, String)"
+				    quidu      	"38075880008C")
+				(object Message "logoutNotification(user, name, true)"
+				    quid       	"380B229F031C"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	5
+				    Operation  	"logoutNotification(String, String, boolean)"
+				    quidu      	"3807587A02DE"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "allLocalImpls"
+		    quid       	"380B222F000F"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380B23B30213"
+			    supplier   	"allSuchListeners"
+			    quidu      	"380B23A40280"
+			    messages   	(list Messages
+				(object Message "componentFailed(type, name)"
+				    quid       	"380B23B30214"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"componentFailed(ComponentType, String)"
+				    quidu      	"3806028B000F")
+				(object Message "userLoggedOut(userName, true)"
+				    quid       	"380B24080213"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	6
+				    Operation  	"userLoggedOut(UserId, boolean)"
+				    quidu      	"3805F6B300DA"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl"
+		    quidu      	"380757AC030D"
+		    persistence 	"Transient"
+		    multi      	TRUE)
+		(object Object "allSuchListeners"
+		    quid       	"380B23A40280"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementListener"
+		    quidu      	"3804E8CE01B5"
+		    persistence 	"Transient"
+		    multi      	TRUE)))
+	(object Mechanism @7
+	    logical_models 	(list unit_reference_list
+		(object Object "anyObject"
+		    quid       	"380765FB0232"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380767D20203"
+			    supplier   	"localHome"
+			    quidu      	"3807661101A5"
+			    messages   	(list Messages
+				(object Message "find( )"
+				    quid       	"380767D20204"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"3806323B02EE")))
+			(object Link
+			    quid       	"380767D803A9"
+			    supplier   	"localImpl"
+			    quidu      	"3807661800CB"
+			    messages   	(list Messages
+				(object Message "login(userStruct, password)"
+				    quid       	"380767D803AA"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"login(UserStruct, String)"
+				    quidu      	"380601E40109"))))
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "localHome"
+		    quid       	"3807661101A5"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceLocalHome"
+		    quidu      	"38063207029F"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "localImpl"
+		    quid       	"3807661800CB"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3807682001B5"
+			    supplier   	"globalImpl"
+			    quidu      	"3807679200DA"
+			    messages   	(list Messages
+				(object Message "globalLogin(userStruct, casName)"
+				    quid       	"3807682001B6"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"globalLogin(UserStruct, String)"
+				    quidu      	"38060B3B0280")))
+			(object Link
+			    quid       	"38078D6E0000"
+			    supplier   	"securityService"
+			    quidu      	"380767A0007D"
+			    messages   	(list Messages
+				(object Message "authenticateWithPassword(userName, password )"
+				    quid       	"38078D6E0001"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"authenticateWithPassword( )"
+				    quidu      	"36B61AAB03BA"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl"
+		    quidu      	"380757AC030D"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "globalImpl"
+		    quid       	"3807679200DA"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"3807682D0261"
+			    supplier   	"securityService"
+			    quidu      	"380767A0007D")
+			(object Link
+			    quid       	"3807913E000F"
+			    supplier   	"globalImpl"
+			    quidu      	"3807679200DA"
+			    messages   	(list Messages
+				(object Message "update user list (transactional)"
+				    quid       	"3807913E0010"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	4
+				    Operation  	"update user list")))
+			(object Link
+			    quid       	"380793760148"
+			    supplier   	"allLocals"
+			    quidu      	"3807935B0203"
+			    messages   	(list Messages
+				(object Message "loginNotification(userName, casName)"
+				    quid       	"380793760157"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	5
+				    Operation  	"loginNotification(String, String)"
+				    quidu      	"38075872001F"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "securityService"
+		    quid       	"380767A0007D"
+		    class      	"Logical View::com::cboe::infrastructureServices::securityService::SecurityService"
+		    quidu      	"36542DA500F7"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "allLocals"
+		    quid       	"3807935B0203"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"38079396034B"
+			    supplier   	"allListeners"
+			    quidu      	"3807936D0203"
+			    messages   	(list Messages
+				(object Message "userLoggedIn(UserStruct)"
+				    quid       	"38079396035B"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	6
+				    quidu      	"3804EC8E0186"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl"
+		    quidu      	"380757AC030D"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "allListeners"
+		    quid       	"3807936D0203"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementListener"
+		    quidu      	"3804E8CE01B5"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @8
+	    logical_models 	(list unit_reference_list
+		(object Object "anyObject"
+		    quid       	"380793B3000F"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380793B30010"
+			    supplier   	"localHome"
+			    quidu      	"380793B3001F"
+			    messages   	(list Messages
+				(object Message "find( )"
+				    quid       	"380793B30011"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    quidu      	"3806323B02EE")))
+			(object Link
+			    quid       	"380793B30012"
+			    supplier   	"localImpl"
+			    quidu      	"380793B3007D"
+			    messages   	(list Messages
+				(object Message "logout(userStruct, password)"
+				    quid       	"380793B30013"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"logout(UserStruct, String)"
+				    quidu      	"380601E9037A"))))
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "localHome"
+		    quid       	"380793B3001F"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceLocalHome"
+		    quidu      	"38063207029F"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "localImpl"
+		    quid       	"380793B3007D"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380793B3005E"
+			    supplier   	"globalImpl"
+			    quidu      	"380793B3003F"
+			    messages   	(list Messages
+				(object Message "globalLogout(userStruct, casName)"
+				    quid       	"380793B3005D"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	3
+				    Operation  	"globalLogout(UserStruct, String)"
+				    quidu      	"38060B390128")))
+			(object Link
+			    quid       	"380793B3007E"
+			    supplier   	"securityService"
+			    quidu      	"380793B3008C"
+			    messages   	(list Messages
+				(object Message "authenticateWithPassword(userName, password )"
+				    quid       	"380793B3007F"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	2
+				    Operation  	"authenticateWithPassword( )"
+				    quidu      	"36B61AAB03BA"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl"
+		    quidu      	"380757AC030D"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "globalImpl"
+		    quid       	"380793B3003F"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380793B3003E"
+			    supplier   	"globalImpl"
+			    quidu      	"380793B3003F"
+			    messages   	(list Messages
+				(object Message "update user list (transactional)"
+				    quid       	"380793B30020"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	4
+				    Operation  	"update user list")))
+			(object Link
+			    quid       	"380793B3004F"
+			    supplier   	"allLocals"
+			    quidu      	"380793B30054"
+			    messages   	(list Messages
+				(object Message "logoutNotification(userName, casName)"
+				    quid       	"380793B30050"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	5
+				    Operation  	"logoutNotification(String, String, boolean)"
+				    quidu      	"3807587A02DE"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "allLocals"
+		    quid       	"380793B30054"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380793B30053"
+			    supplier   	"allListeners"
+			    quidu      	"380793B30051"
+			    messages   	(list Messages
+				(object Message "userLoggedOut(UserStruct)"
+				    quid       	"380793B30052"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	6
+				    Operation  	"userLoggedOut(UserId, boolean)"
+				    quidu      	"3805F6B300DA"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl"
+		    quidu      	"380757AC030D"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "allListeners"
+		    quid       	"380793B30051"
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementListener"
+		    quidu      	"3804E8CE01B5"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "securityService"
+		    quid       	"380793B3008C"
+		    class      	"Logical View::com::cboe::infrastructureServices::securityService::SecurityService"
+		    quidu      	"36542DA500F7"
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @9
+	    logical_models 	(list unit_reference_list
+		(object Object "globalImpl"
+		    quid       	"380CA689009C"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380CA689009D"
+			    supplier   	"globalImpl"
+			    quidu      	"380CA689009C"
+			    messages   	(list Messages
+				(object Message "addToTopology(name, FRONT_END, true/*isActive*/)"
+				    quid       	"380CA689009E"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"addToTopology(name, type)"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "CASContainerBean"
+		    quid       	"380CA68900AD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "SystemManagementAdapter"
+		    quid       	"380CA68900A8"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380CA68900A7"
+			    supplier   	"globalImpl"
+			    quidu      	"380CA689009C"
+			    messages   	(list Messages
+				(object Message "propertyChange(\"FRONT_END;frontEndName;established\")"
+				    quid       	"380CA68900A9"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    Operation  	"propertyChange(MBeanPropertyChangeEvent)"
+				    quidu      	"380B8C0A00DA"))))
+		    persistence 	"Transient"
+		    multi      	FALSE)))
+	(object Mechanism @10
+	    logical_models 	(list unit_reference_list
+		(object Object "globalImpl"
+		    quid       	"380CA85200CB"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380CA85200CC"
+			    supplier   	"globalImpl"
+			    quidu      	"380CA85200CB"
+			    messages   	(list Messages
+				(object Message "addToTopology(name, BACK_END, true/*isActive*/)"
+				    quid       	"380CA85200CD"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	1
+				    Operation  	"addToTopology(name, type)"))))
+		    class      	"Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl"
+		    quidu      	"3806012102FD"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "CASContainerBean"
+		    quid       	"380CA85200D1"
+		    persistence 	"Transient"
+		    multi      	FALSE)
+		(object Object "SystemManagementAdapter"
+		    quid       	"380CA85200D0"
+		    collaborators 	(list link_list
+			(object Link
+			    quid       	"380CA85200CF"
+			    supplier   	"globalImpl"
+			    quidu      	"380CA85200CB"
+			    messages   	(list Messages
+				(object Message "propertyChange(\"BACK_END_CLUSTER;backEndName;established\")"
+				    quid       	"380CA85200CE"
+				    frequency  	"Aperiodic"
+				    synchronization 	"Simple"
+				    dir        	"FromClientToSupplier"
+				    sequence   	""
+				    ordinal    	0
+				    Operation  	"propertyChange(MBeanPropertyChangeEvent)"
+				    quidu      	"380B8C0A00DA"))))
+		    persistence 	"Transient"
+		    multi      	FALSE))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Session Management Service"
+	    quid       	"3804E81C0177"
+	    title      	"Session Management Service"
+	    zoom       	90
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementService" @11
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1936, 272)
+		    label      	(object ItemLabel
+			Parent_View 	@11
+			location   	(1596, 63)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	680
+			justify    	0
+			label      	"SessionManagementService")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@11
+			location   	(1596, 13)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	680
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3804E8B00148"
+		    width      	698
+		    height     	542
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementService" @12
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3008, 1392)
+		    label      	(object ItemLabel
+			Parent_View 	@12
+			location   	(2624, 1233)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	768
+			justify    	0
+			label      	"GlobalSessionManagementService")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@12
+			location   	(2624, 1183)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	768
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3805FDC6003E"
+		    width      	786
+		    height     	442
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::ComponentType" @13
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(448, 2368)
+		    label      	(object ItemLabel
+			Parent_View 	@13
+			location   	(116, 2259)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	664
+			justify    	0
+			label      	"ComponentType")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@13
+			location   	(116, 2209)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	664
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380604BF0232"
+		    width      	682
+		    height     	342
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::foundationFramework::BOHome" @14
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(688, 3472)
+		    font       	(object Font
+			italics    	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@14
+			location   	(443, 2893)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	490
+			justify    	0
+			label      	"BOHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3627AD8B0233"
+		    width      	508
+		    height     	1182
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::foundationFramework::BObject" @15
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1456, 816)
+		    font       	(object Font
+			italics    	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@15
+			location   	(1233, 587)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	446
+			justify    	0
+			label      	"BObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"36193B700360"
+		    width      	464
+		    height     	482
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementListener" @16
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(432, 1664)
+		    label      	(object ItemLabel
+			Parent_View 	@16
+			location   	(154, 1580)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	556
+			justify    	0
+			label      	"SessionManagementListener")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@16
+			location   	(154, 1530)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	556
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3804E8CE01B5"
+		    width      	574
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::ComponentStatusListener" @17
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(368, 2000)
+		    label      	(object ItemLabel
+			Parent_View 	@17
+			location   	(119, 1916)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	498
+			justify    	0
+			label      	"ComponentStatusListener")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@17
+			location   	(119, 1866)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	498
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3805F7830167"
+		    width      	516
+		    height     	292
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceBaseImpl" @18
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1936, 1552)
+		    label      	(object ItemLabel
+			Parent_View 	@18
+			location   	(1516, 1255)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	840
+			justify    	0
+			label      	"SessionManagementServiceBaseImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3806010B02FD"
+		    width      	858
+		    height     	618
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object RealizeView "" @19
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806011A035B"
+		    client     	@18
+		    supplier   	@11
+		    line_style 	0)
+		(object AssociationViewNew "$UNNAMED$0" @20
+		    location   	(1055, 1550)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806025D0232"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$1" @21
+			    Parent_View 	@20
+			    location   	(-193, 686)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3806025E0000"
+			    client     	@20
+			    supplier   	@16
+			    vertices   	(list Points
+				(1055, 1550)
+				(927, 1550)
+				(927, 1664)
+				(719, 1664))
+			    line_style 	0
+			    label      	(object SegLabel @22
+				Parent_View 	@21
+				location   	(756, 1621)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"*"
+				pctDist    	0.918972
+				height     	44
+				orientation 	1))
+			(object RoleView "$UNNAMED$2" @23
+			    Parent_View 	@20
+			    location   	(-193, 686)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"3806025E0001"
+			    client     	@20
+			    supplier   	@18
+			    line_style 	0)))
+		(object AssociationViewNew "$UNNAMED$3" @24
+		    location   	(927, 1635)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806026301E4"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$4" @25
+			    Parent_View 	@24
+			    location   	(-321, 771)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"38060263034B"
+			    client     	@24
+			    supplier   	@17
+			    vertices   	(list Points
+				(927, 1635)
+				(927, 1997)
+				(626, 1998))
+			    line_style 	0
+			    label      	(object SegLabel @26
+				Parent_View 	@25
+				location   	(664, 2051)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"*"
+				pctDist    	0.943701
+				height     	53
+				orientation 	0))
+			(object RoleView "$UNNAMED$5" @27
+			    Parent_View 	@24
+			    location   	(-321, 771)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"38060263034C"
+			    client     	@24
+			    supplier   	@18
+			    vertices   	(list Points
+				(927, 1635)
+				(927, 1550)
+				(1506, 1551))
+			    line_style 	0)))
+		(object InheritView "" @28
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806191A02BF"
+		    client     	@18
+		    supplier   	@15
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementService" @29
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1008, 1248)
+		    label      	(object ItemLabel
+			Parent_View 	@29
+			location   	(685, 1109)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	646
+			justify    	0
+			label      	"LocalSessionManagementService")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38075615038A"
+		    width      	664
+		    height     	302
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::UserLoginPersistence" @30
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(3328, 2208)
+		    label      	(object ItemLabel
+			Parent_View 	@30
+			location   	(3078, 1977)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	500
+			justify    	0
+			label      	"UserLoginPersistence")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38061B6E033C"
+		    width      	518
+		    height     	486
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::GlobalSessionManagementServiceImpl" @31
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2496, 2272)
+		    label      	(object ItemLabel
+			Parent_View 	@31
+			location   	(2095, 1930)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	802
+			justify    	0
+			label      	"GlobalSessionManagementServiceImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3806012102FD"
+		    width      	820
+		    height     	708
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object AssociationViewNew "$UNNAMED$12" @32
+		    location   	(2987, 2234)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"38061EE00186"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$13" @33
+			    Parent_View 	@32
+			    location   	(795, -230)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"38061EE00222"
+			    client     	@32
+			    supplier   	@30
+			    line_style 	0
+			    label      	(object SegLabel @34
+				Parent_View 	@33
+				location   	(3042, 2194)
+				anchor     	2
+				anchor_loc 	1
+				nlines     	1
+				max_width  	15
+				justify    	0
+				label      	"*"
+				pctDist    	0.713272
+				height     	36
+				orientation 	0))
+			(object RoleView "$UNNAMED$14" @35
+			    Parent_View 	@32
+			    location   	(795, -230)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"38061EE00232"
+			    client     	@32
+			    supplier   	@31
+			    line_style 	0)))
+		(object InheritView "" @36
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806019A0242"
+		    client     	@31
+		    supplier   	@18
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceLocalHome" @37
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2496, 2864)
+		    label      	(object ItemLabel
+			Parent_View 	@37
+			location   	(2123, 2708)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	746
+			justify    	0
+			label      	"SessionManagementServiceLocalHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38063207029F"
+		    width      	764
+		    height     	336
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @38
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806324E02AF"
+		    client     	@37
+		    supplier   	@14
+		    line_style 	0)
+		(object AssociationViewNew "$UNNAMED$15" @39
+		    location   	(2496, 2660)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"380758B3037A"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$16" @40
+			    Parent_View 	@39
+			    location   	(-960, 772)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"380758B400BB"
+			    client     	@39
+			    supplier   	@31
+			    line_style 	0)
+			(object RoleView "$UNNAMED$17" @41
+			    Parent_View 	@39
+			    location   	(-960, 772)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"380758B400BC"
+			    client     	@39
+			    supplier   	@37
+			    line_style 	0)))
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::LocalSessionManagementServiceImpl" @42
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1536, 2128)
+		    label      	(object ItemLabel
+			Parent_View 	@42
+			location   	(1175, 1989)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	722
+			justify    	0
+			label      	"LocalSessionManagementServiceImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380757AC030D"
+		    width      	740
+		    height     	302
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @43
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"380757C80138"
+		    client     	@42
+		    supplier   	@18
+		    line_style 	0)
+		(object RealizeView "" @44
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"380757CB0242"
+		    client     	@42
+		    supplier   	@29
+		    line_style 	0)
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::SessionManagementServiceHome" @45
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1536, 2864)
+		    label      	(object ItemLabel
+			Parent_View 	@45
+			location   	(1172, 2708)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	728
+			justify    	0
+			label      	"SessionManagementServiceHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3806195E00EA"
+		    width      	746
+		    height     	336
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object InheritView "" @46
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806196E0242"
+		    client     	@45
+		    supplier   	@14
+		    line_style 	0)
+		(object AssociationViewNew "$UNNAMED$18" @47
+		    location   	(1536, 2487)
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"380758E602DE"
+		    roleview_list 	(list RoleViews
+			(object RoleView "$UNNAMED$19" @48
+			    Parent_View 	@47
+			    location   	(32, -329)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"380758E700DA"
+			    client     	@47
+			    supplier   	@42
+			    line_style 	0)
+			(object RoleView "$UNNAMED$20" @49
+			    Parent_View 	@47
+			    location   	(32, -329)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"380758E700DB"
+			    client     	@47
+			    supplier   	@45
+			    line_style 	0)))
+		(object ClassView "Class" "Logical View::com::cboe::infrastructureServices::sessionManagementService::MBeanPropertyChangeListener" @50
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2496, 912)
+		    label      	(object ItemLabel
+			Parent_View 	@50
+			location   	(2199, 865)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	594
+			justify    	0
+			label      	"MBeanPropertyChangeListener")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@50
+			location   	(2199, 815)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	594
+			justify    	0
+			label      	"<<Interface>>")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B8B9C002E"
+		    width      	612
+		    height     	218
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object RealizeView "" @51
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3806018C00CB"
+		    client     	@31
+		    supplier   	@12
+		    line_style 	0)
+		(object RealizeView "" @52
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"380B8BCF006D"
+		    client     	@31
+		    supplier   	@50
+		    line_style 	0)
+		(object InheritView "" @53
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"380756F4031C"
+		    client     	@29
+		    supplier   	@11
+		    vertices   	(list Points
+			(1007, 1096)
+			(1007, 271)
+			(1586, 271))
+		    line_style 	0)
+		(object InheritView "" @54
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    quidu      	"3805FDE00109"
+		    client     	@12
+		    supplier   	@11
+		    vertices   	(list Points
+			(3007, 1170)
+			(3006, 271)
+			(2285, 271))
+		    line_style 	0)))
+	(object InteractionDiagram "local startup"
+	    mechanism_ref 	@1
+	    quid       	"38062EF90138"
+	    title      	"local startup"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "localImpl" @55
+		    location   	(976, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@55
+			location   	(976, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	554
+			justify    	0
+			label      	"localImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073C56037A"
+		    width      	572
+		    height     	1117
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @56
+			location   	(976, 400)
+			line_color 	3342489
+			InterObjView 	@55
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @57
+			location   	(976, 512)
+			line_color 	3342489
+			InterObjView 	@55
+			height     	680
+			y_coord    	620
+			Nested     	FALSE))
+		(object InterObjView "global" @58
+		    location   	(1872, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@58
+			location   	(1872, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	454
+			justify    	0
+			label      	"global")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073C5A031C"
+		    width      	472
+		    height     	1117
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @59
+			location   	(1872, 800)
+			line_color 	3342489
+			InterObjView 	@58
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "ff" @60
+		    location   	(2288, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@60
+			location   	(2288, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"ff")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073F8501A5"
+		    width      	300
+		    height     	1117
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @61
+			location   	(2288, 720)
+			line_color 	3342489
+			InterObjView 	@60
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "trader" @62
+		    location   	(1456, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@62
+			location   	(1456, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"trader")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073F1200DA"
+		    width      	300
+		    height     	1117
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @63
+			location   	(1456, 608)
+			line_color 	3342489
+			InterObjView 	@62
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @64
+			location   	(1456, 944)
+			line_color 	3342489
+			InterObjView 	@62
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @65
+			location   	(1456, 1072)
+			line_color 	3342489
+			InterObjView 	@62
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "localHome" @66
+		    location   	(352, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@66
+			location   	(352, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	594
+			justify    	0
+			label      	"localHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073EC903D8"
+		    width      	612
+		    height     	1117
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @67
+			location   	(352, 384)
+			line_color 	3342489
+			InterObjView 	@66
+			height     	868
+			y_coord    	808
+			Nested     	FALSE))
+		(object InterMessView "" @68
+		    location   	(0, 400)
+		    label      	(object SegLabel @69
+			Parent_View 	@68
+			location   	(664, 356)
+			quidu      	"38073EE0031D"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	625
+			justify    	0
+			label      	"SessionManagementServiceImpl( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@66
+		    supplier   	@55
+		    Focus_Src  	@67
+		    Focus_Entry 	@56
+		    origin     	(368, 400)
+		    terminus   	(960, 400)
+		    ordinal    	0)
+		(object InterMessView "" @70
+		    location   	(0, 512)
+		    label      	(object SegLabel @71
+			Parent_View 	@70
+			location   	(664, 468)
+			quidu      	"38073F030280"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	119
+			justify    	0
+			label      	"start( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@66
+		    supplier   	@55
+		    Focus_Src  	@67
+		    Focus_Entry 	@57
+		    origin     	(368, 512)
+		    terminus   	(960, 512)
+		    ordinal    	1)
+		(object InterMessView "" @72
+		    location   	(0, 608)
+		    label      	(object SegLabel @73
+			Parent_View 	@72
+			location   	(1216, 564)
+			quidu      	"38073F3F039A"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	362
+			justify    	0
+			label      	"query(String, String)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@55
+		    supplier   	@62
+		    Focus_Src  	@57
+		    Focus_Entry 	@63
+		    origin     	(992, 608)
+		    terminus   	(1440, 608)
+		    ordinal    	2)
+		(object InterMessView "" @74
+		    location   	(0, 800)
+		    label      	(object SegLabel @75
+			Parent_View 	@74
+			location   	(1598, 754)
+			quidu      	"38073F6402B0"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1181
+			justify    	0
+			label      	"registerSessionManagementService(this, ComponentType, name)"
+			pctDist    	0.701389
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@55
+		    supplier   	@58
+		    Focus_Src  	@57
+		    Focus_Entry 	@59
+		    origin     	(992, 800)
+		    terminus   	(1856, 800)
+		    ordinal    	4)
+		(object InterMessView "" @76
+		    location   	(0, 720)
+		    label      	(object SegLabel @77
+			Parent_View 	@76
+			location   	(1632, 676)
+			quidu      	"38073F9E00BC"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	200
+			justify    	0
+			label      	"getName( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@55
+		    supplier   	@60
+		    Focus_Src  	@57
+		    Focus_Entry 	@61
+		    origin     	(992, 720)
+		    terminus   	(2272, 720)
+		    ordinal    	3)
+		(object InterMessView "" @78
+		    location   	(0, 1072)
+		    label      	(object SegLabel @79
+			Parent_View 	@78
+			location   	(1216, 1028)
+			quidu      	"38074089035B"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	466
+			justify    	0
+			label      	"export(this, String, String)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@55
+		    supplier   	@62
+		    Focus_Src  	@57
+		    Focus_Entry 	@65
+		    origin     	(992, 1072)
+		    terminus   	(1440, 1072)
+		    ordinal    	6)
+		(object InterMessView "" @80
+		    location   	(0, 944)
+		    label      	(object SegLabel @81
+			Parent_View 	@80
+			location   	(1216, 900)
+			quidu      	"380CA58A0290"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	419
+			justify    	0
+			label      	"withdraw(String, String)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@55
+		    supplier   	@62
+		    Focus_Src  	@57
+		    Focus_Entry 	@64
+		    origin     	(992, 944)
+		    terminus   	(1440, 944)
+		    ordinal    	5)))
+	(object InteractionDiagram "global startup"
+	    mechanism_ref 	@2
+	    quid       	"38062F04009C"
+	    title      	"global startup"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	1369
+	    items      	(list diagram_item_list
+		(object InterObjView "globalHome" @82
+		    location   	(256, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@82
+			location   	(256, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	480
+			justify    	0
+			label      	"globalHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073FB403A9"
+		    width      	498
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @83
+			location   	(256, 368)
+			line_color 	3342489
+			InterObjView 	@82
+			height     	3620
+			y_coord    	3560
+			Nested     	FALSE))
+		(object InterObjView "globalImpl" @84
+		    location   	(1024, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@84
+			location   	(1024, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38073FC8000F"
+		    width      	546
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @85
+			location   	(1024, 416)
+			line_color 	3342489
+			InterObjView 	@84
+			height     	3512
+			y_coord    	3452
+			Nested     	FALSE))
+		(object InterObjView "traderService" @86
+		    location   	(1952, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@86
+			location   	(1952, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"traderService")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380740160167"
+		    width      	300
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @87
+			location   	(1952, 512)
+			line_color 	3342489
+			InterObjView 	@86
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @88
+			location   	(1952, 640)
+			line_color 	3342489
+			InterObjView 	@86
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @89
+			location   	(1952, 768)
+			line_color 	3342489
+			InterObjView 	@86
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "storedLogins" @90
+		    location   	(2400, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@90
+			location   	(2400, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	384
+			justify    	0
+			label      	"storedLogins")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380740370177"
+		    width      	402
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @91
+			location   	(2400, 2784)
+			line_color 	3342489
+			InterObjView 	@90
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @92
+			location   	(2400, 2976)
+			line_color 	3342489
+			InterObjView 	@90
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @93
+			location   	(2400, 3520)
+			line_color 	3342489
+			InterObjView 	@90
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "userService : UserService" @94
+		    location   	(2816, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@94
+			location   	(2816, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"userService : UserService")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380744B20251"
+		    width      	300
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @95
+			location   	(2816, 3680)
+			line_color 	3342489
+			InterObjView 	@94
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "SMS : SystemsManagementService" @96
+		    location   	(3232, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@96
+			location   	(3232, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	380
+			justify    	0
+			label      	"SMS : SystemsManagementService")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38074839030D"
+		    width      	398
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @97
+			location   	(3232, 1088)
+			line_color 	3342489
+			InterObjView 	@96
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @98
+			location   	(3232, 1360)
+			line_color 	3342489
+			InterObjView 	@96
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @99
+			location   	(3232, 1600)
+			line_color 	3342489
+			InterObjView 	@96
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @100
+			location   	(3232, 3120)
+			line_color 	3342489
+			InterObjView 	@96
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "CASBean : MBean" @101
+		    location   	(4080, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@101
+			location   	(4080, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"CASBean : MBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA00C002E"
+		    width      	300
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @102
+			location   	(4080, 1840)
+			line_color 	3342489
+			InterObjView 	@101
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @103
+			location   	(4080, 3392)
+			line_color 	3342489
+			InterObjView 	@101
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "FrontEndBean : MBean" @104
+		    location   	(4416, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@104
+			location   	(4416, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"FrontEndBean : MBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA6DE03B9"
+		    width      	300
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @105
+			location   	(4416, 2000)
+			line_color 	3342489
+			InterObjView 	@104
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "SystemStatusBean : MBean" @106
+		    location   	(3664, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@106
+			location   	(3664, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	394
+			justify    	0
+			label      	"SystemStatusBean : MBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807948702DE"
+		    width      	412
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @107
+			location   	(3664, 1216)
+			line_color 	3342489
+			InterObjView 	@106
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "loginQuery" @108
+		    location   	(1584, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@108
+			location   	(1584, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"loginQuery")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807433802FD"
+		    width      	300
+		    height     	3853
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @109
+			location   	(1584, 2576)
+			line_color 	3342489
+			InterObjView 	@108
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @110
+			location   	(1584, 2720)
+			line_color 	3342489
+			InterObjView 	@108
+			height     	184
+			y_coord    	124
+			Nested     	FALSE))
+		(object InterMessView "" @111
+		    location   	(0, 416)
+		    label      	(object SegLabel @112
+			Parent_View 	@111
+			location   	(640, 372)
+			quidu      	"38074045007E"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	119
+			justify    	0
+			label      	"start( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@82
+		    supplier   	@84
+		    Focus_Src  	@83
+		    Focus_Entry 	@85
+		    origin     	(272, 416)
+		    terminus   	(1008, 416)
+		    ordinal    	0)
+		(object InterMessView "" @113
+		    location   	(0, 640)
+		    label      	(object SegLabel @114
+			Parent_View 	@113
+			location   	(1489, 609)
+			quidu      	"380740540139"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	509
+			justify    	0
+			label      	
+|export(this, "Myself", String)
+			
+			pctDist    	0.501953
+			height     	32
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@86
+		    Focus_Src  	@85
+		    Focus_Entry 	@88
+		    origin     	(1040, 640)
+		    terminus   	(1936, 640)
+		    ordinal    	2)
+		(object InterMessView "" @115
+		    location   	(0, 768)
+		    label      	(object SegLabel @116
+			Parent_View 	@115
+			location   	(1488, 721)
+			quidu      	"380741DB0399"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	453
+			justify    	0
+			label      	
+|query("Impl", routeName)
+			
+			pctDist    	0.500000
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@86
+		    Focus_Src  	@85
+		    Focus_Entry 	@89
+		    origin     	(1040, 768)
+		    terminus   	(1936, 768)
+		    ordinal    	3)
+		(object InterMessView "" @117
+		    location   	(0, 512)
+		    label      	(object SegLabel @118
+			Parent_View 	@117
+			location   	(1488, 465)
+			quidu      	"380741E602AF"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	419
+			justify    	0
+			label      	
+|withdraw("Myself", null)
+			
+			pctDist    	0.500000
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@86
+		    Focus_Src  	@85
+		    Focus_Entry 	@87
+		    origin     	(1040, 512)
+		    terminus   	(1936, 512)
+		    ordinal    	1)
+		(object InterMessView "" @119
+		    location   	(0, 3520)
+		    label      	(object SegLabel @120
+			Parent_View 	@119
+			location   	(1209, 3489)
+			quidu      	"3807423B030E"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	284
+			justify    	0
+			label      	"getUserName( )"
+			pctDist    	0.126437
+			height     	32
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@90
+		    Focus_Src  	@85
+		    Focus_Entry 	@93
+		    origin     	(1040, 3520)
+		    terminus   	(2384, 3520)
+		    ordinal    	21)
+		(object InterMessView "" @121
+		    location   	(0, 2576)
+		    label      	(object SegLabel @122
+			Parent_View 	@121
+			location   	(1304, 2532)
+			quidu      	"3807434A01C6"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	528
+			justify    	0
+			label      	"ObjectQuery(PersistEnabled)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@108
+		    Focus_Src  	@85
+		    Focus_Entry 	@109
+		    origin     	(1040, 2576)
+		    terminus   	(1568, 2576)
+		    ordinal    	15)
+		(object InterMessView "" @123
+		    location   	(0, 2720)
+		    label      	(object SegLabel @124
+			Parent_View 	@123
+			location   	(1304, 2676)
+			quidu      	"3807435C0157"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	100
+			justify    	0
+			label      	"find( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@108
+		    Focus_Src  	@85
+		    Focus_Entry 	@110
+		    origin     	(1040, 2720)
+		    terminus   	(1568, 2720)
+		    ordinal    	16)
+		(object InterMessView "" @125
+		    location   	(0, 2784)
+		    label      	(object SegLabel @126
+			Parent_View 	@125
+			location   	(1992, 2740)
+			quidu      	"3807438803D9"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	422
+			justify    	0
+			label      	"UserLoginPersistence()"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@108
+		    supplier   	@90
+		    Focus_Src  	@110
+		    Focus_Entry 	@91
+		    origin     	(1600, 2784)
+		    terminus   	(2384, 2784)
+		    ordinal    	17)
+		(object NoteView @127
+		    location   	(3360, 2576)
+		    label      	(object ItemLabel
+			Parent_View 	@127
+			location   	(3057, 2436)
+			fill_color 	13434879
+			nlines     	5
+			max_width  	571
+			label      	"Finds all of the stored logins.  In a normal startup sequence, this should be 0: otherwise we are performing a failure recovery.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	631
+		    height     	293)
+		(object AttachView "" @128
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@125
+		    supplier   	@127
+		    line_style 	0)
+		(object SelfMessView "" @129
+		    location   	(0, 3808)
+		    label      	(object SegLabel @130
+			Parent_View 	@129
+			location   	(1406, 3761)
+			quidu      	"380744150020"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	672
+			justify    	0
+			label      	"forceLogoutLocalOverride(UserStruct)"
+			pctDist    	2.440000
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@84
+		    Focus_Src  	@85
+		    origin     	(1040, 3808)
+		    terminus   	(1190, 3808)
+		    ordinal    	23)
+		(object InterMessView "" @131
+		    location   	(0, 3680)
+		    label      	(object SegLabel @132
+			Parent_View 	@131
+			location   	(1333, 3648)
+			quidu      	"380744C6004F"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	547
+			justify    	0
+			label      	"getUserInformation(userName)"
+			pctDist    	0.166482
+			height     	33
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@94
+		    Focus_Src  	@85
+		    Focus_Entry 	@95
+		    origin     	(1040, 3680)
+		    terminus   	(2800, 3680)
+		    ordinal    	22)
+		(object NoteView @133
+		    location   	(480, 3280)
+		    label      	(object ItemLabel
+			Parent_View 	@133
+			location   	(261, 3167)
+			fill_color 	13434879
+			nlines     	4
+			max_width  	403
+			label      	"For each recovered userName whose associated CAS is down")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	463
+		    height     	238)
+		(object InterMessView "" @134
+		    location   	(0, 2976)
+		    label      	(object SegLabel @135
+			Parent_View 	@134
+			location   	(1712, 2932)
+			quidu      	"380748300109"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	284
+			justify    	0
+			label      	"getCASName( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@90
+		    Focus_Src  	@85
+		    Focus_Entry 	@92
+		    origin     	(1040, 2976)
+		    terminus   	(2384, 2976)
+		    ordinal    	18)
+		(object SelfMessView "" @136
+		    location   	(0, 976)
+		    label      	(object SegLabel @137
+			Parent_View 	@136
+			location   	(1695, 929)
+			quidu      	"3807654603D8"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1281
+			justify    	0
+			label      	"addMBeanPropertyChangeListener(this, ComponentType, ff.getName())"
+			pctDist    	4.366667
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@84
+		    Focus_Src  	@85
+		    origin     	(1040, 976)
+		    terminus   	(1190, 976)
+		    ordinal    	4)
+		(object NoteView @138
+		    location   	(1936, 3888)
+		    label      	(object ItemLabel
+			Parent_View 	@138
+			location   	(1798, 3828)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	240
+			label      	
+|If the service is "inactive"
+			)
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	300
+		    height     	132)
+		(object AttachView "" @139
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@138
+		    supplier   	@119
+		    line_style 	0)
+		(object AttachView "" @140
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@138
+		    supplier   	@131
+		    line_style 	0)
+		(object AttachView "" @141
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@138
+		    supplier   	@129
+		    line_style 	0)
+		(object InterMessView "" @142
+		    location   	(0, 1216)
+		    label      	(object SegLabel @143
+			Parent_View 	@142
+			location   	(2344, 1172)
+			quidu      	"380B90020186"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	719
+			justify    	0
+			label      	"addMBeanPropertyChangeListener(this)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@106
+		    Focus_Src  	@85
+		    Focus_Entry 	@107
+		    origin     	(1040, 1216)
+		    terminus   	(3648, 1216)
+		    ordinal    	6)
+		(object InterMessView "" @144
+		    location   	(0, 1088)
+		    label      	(object SegLabel @145
+			Parent_View 	@144
+			location   	(2128, 1044)
+			quidu      	"380B905D0251"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	494
+			justify    	0
+			label      	
+|getMBean("systemStatus")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@96
+		    Focus_Src  	@85
+		    Focus_Entry 	@97
+		    origin     	(1040, 1088)
+		    terminus   	(3216, 1088)
+		    ordinal    	5)
+		(object InterMessView "" @146
+		    location   	(0, 3120)
+		    label      	(object SegLabel @147
+			Parent_View 	@146
+			location   	(2128, 3076)
+			quidu      	"380C9FE70251"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	650
+			justify    	0
+			label      	
+|getMBean("component."+casName)
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@96
+		    Focus_Src  	@85
+		    Focus_Entry 	@100
+		    origin     	(1040, 3120)
+		    terminus   	(3216, 3120)
+		    ordinal    	19)
+		(object InterMessView "" @148
+		    location   	(0, 3392)
+		    label      	(object SegLabel @149
+			Parent_View 	@148
+			location   	(2552, 3348)
+			quidu      	"380CA027038A"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	641
+			justify    	0
+			label      	
+|getPropertyValue("isServiceActive")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@101
+		    Focus_Src  	@85
+		    Focus_Entry 	@103
+		    origin     	(1040, 3392)
+		    terminus   	(4064, 3392)
+		    ordinal    	20)
+		(object InterMessView "" @150
+		    location   	(0, 1360)
+		    label      	(object SegLabel @151
+			Parent_View 	@150
+			location   	(2128, 1316)
+			quidu      	"380CA09F0109"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	550
+			justify    	0
+			label      	
+|getMBean("backEndClusters")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@96
+		    Focus_Src  	@85
+		    Focus_Entry 	@98
+		    origin     	(1040, 1360)
+		    terminus   	(3216, 1360)
+		    ordinal    	7)
+		(object AttachView "" @152
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@133
+		    supplier   	@129
+		    line_style 	0)
+		(object AttachView "" @153
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@133
+		    supplier   	@134
+		    line_style 	0)
+		(object SelfMessView "" @154
+		    location   	(0, 1488)
+		    label      	(object SegLabel @155
+			Parent_View 	@154
+			location   	(1647, 1442)
+			quidu      	"380CA31901A5"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1137
+			justify    	0
+			label      	"addTopologyComponent(clusterName, BACK_END_CLUSTER)"
+			pctDist    	4.046667
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@84
+		    Focus_Src  	@85
+		    origin     	(1040, 1488)
+		    terminus   	(1190, 1488)
+		    ordinal    	8)
+		(object InterMessView "" @156
+		    location   	(0, 1600)
+		    label      	(object SegLabel @157
+			Parent_View 	@156
+			location   	(2128, 1556)
+			quidu      	"380CA3420157"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	347
+			justify    	0
+			label      	
+|getMBean("CASs")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@96
+		    Focus_Src  	@85
+		    Focus_Entry 	@99
+		    origin     	(1040, 1600)
+		    terminus   	(3216, 1600)
+		    ordinal    	9)
+		(object SelfMessView "" @158
+		    location   	(0, 1712)
+		    label      	(object SegLabel @159
+			Parent_View 	@158
+			location   	(1437, 1682)
+			quidu      	"380CA3CC02DE"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	741
+			justify    	0
+			label      	"addTopologyComponent(casName, CAS)"
+			pctDist    	2.653333
+			height     	31
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@84
+		    Focus_Src  	@85
+		    origin     	(1040, 1712)
+		    terminus   	(1190, 1712)
+		    ordinal    	10)
+		(object InterMessView "" @160
+		    location   	(0, 1840)
+		    label      	(object SegLabel @161
+			Parent_View 	@160
+			location   	(2552, 1796)
+			quidu      	"380CA3F10242"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	597
+			justify    	0
+			label      	
+|getPropertyValue("allFrontEnds")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@101
+		    Focus_Src  	@85
+		    Focus_Entry 	@102
+		    origin     	(1040, 1840)
+		    terminus   	(4064, 1840)
+		    ordinal    	11)
+		(object SelfMessView "" @162
+		    location   	(0, 2160)
+		    label      	(object SegLabel @163
+			Parent_View 	@162
+			location   	(1520, 2114)
+			quidu      	"380CA451029F"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1041
+			justify    	0
+			label      	"addTopologyComponent(frontEnd, FRONT_END, isActive)"
+			pctDist    	3.200000
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@84
+		    Focus_Src  	@85
+		    origin     	(1040, 2160)
+		    terminus   	(1190, 2160)
+		    ordinal    	13)
+		(object SelfMessView "" @164
+		    location   	(0, 2400)
+		    label      	(object SegLabel @165
+			Parent_View 	@164
+			location   	(1488, 2354)
+			quidu      	"380CA47C037A"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	803
+			justify    	0
+			label      	"addTopologyConnection(casName, frontEnd)"
+			pctDist    	2.993333
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@84
+		    Focus_Src  	@85
+		    origin     	(1040, 2400)
+		    terminus   	(1190, 2400)
+		    ordinal    	14)
+		(object NoteView @166
+		    location   	(704, 1424)
+		    label      	(object ItemLabel
+			Parent_View 	@166
+			location   	(525, 1337)
+			fill_color 	13434879
+			nlines     	3
+			max_width  	322
+			label      	"Find the business clusters, add them to the topology.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	382
+		    height     	187)
+		(object NoteView @167
+		    location   	(704, 1648)
+		    label      	(object ItemLabel
+			Parent_View 	@167
+			location   	(532, 1567)
+			fill_color 	13434879
+			nlines     	3
+			max_width  	309
+			label      	"Find the CAS's, add them to the topology.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	369
+		    height     	175)
+		(object AttachView "" @168
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@166
+		    supplier   	@150
+		    line_style 	0)
+		(object AttachView "" @169
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@166
+		    supplier   	@154
+		    line_style 	0)
+		(object AttachView "" @170
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@167
+		    supplier   	@158
+		    line_style 	0)
+		(object AttachView "" @171
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@167
+		    supplier   	@156
+		    line_style 	0)
+		(object NoteView @172
+		    location   	(672, 1904)
+		    label      	(object ItemLabel
+			Parent_View 	@172
+			location   	(472, 1770)
+			fill_color 	13434879
+			nlines     	5
+			max_width  	365
+			label      	"Find the front ends for each CAS, add them to the topology.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	425
+		    height     	281)
+		(object AttachView "" @173
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@172
+		    supplier   	@160
+		    line_style 	0)
+		(object AttachView "" @174
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@172
+		    supplier   	@162
+		    line_style 	0)
+		(object AttachView "" @175
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@172
+		    supplier   	@164
+		    line_style 	0)
+		(object InterMessView "" @176
+		    location   	(0, 2000)
+		    label      	(object SegLabel @177
+			Parent_View 	@176
+			location   	(2720, 1954)
+			quidu      	"380CA6FE0214"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	509
+			justify    	0
+			label      	
+|getPropertyValue("isActive")
+			
+			pctDist    	0.500000
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@84
+		    supplier   	@104
+		    Focus_Src  	@85
+		    Focus_Entry 	@105
+		    origin     	(1040, 2000)
+		    terminus   	(4400, 2000)
+		    ordinal    	12)
+		(object AttachView "" @178
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@172
+		    supplier   	@176
+		    line_style 	0)))
+	(object InteractionDiagram "local shutdown"
+	    mechanism_ref 	@3
+	    quid       	"38062F2D031C"
+	    title      	"local shutdown"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "localImpl" @179
+		    location   	(1072, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@179
+			location   	(1072, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	554
+			justify    	0
+			label      	"localImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380748B703A9"
+		    width      	572
+		    height     	909
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @180
+			location   	(1072, 448)
+			line_color 	3342489
+			InterObjView 	@179
+			height     	536
+			y_coord    	476
+			Nested     	FALSE))
+		(object InterObjView "globalImpl" @181
+		    location   	(1696, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@181
+			location   	(1696, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380748BA037A"
+		    width      	546
+		    height     	909
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @182
+			location   	(1696, 560)
+			line_color 	3342489
+			InterObjView 	@181
+			height     	216
+			y_coord    	156
+			Nested     	FALSE))
+		(object InterObjView "traderService" @183
+		    location   	(2176, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@183
+			location   	(2176, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"traderService")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"38074A2501F4"
+		    width      	300
+		    height     	909
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @184
+			location   	(2176, 864)
+			line_color 	3342489
+			InterObjView 	@183
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "localHome" @185
+		    location   	(448, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@185
+			location   	(448, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	594
+			justify    	0
+			label      	"localHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380748D700DA"
+		    width      	612
+		    height     	909
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @186
+			location   	(448, 448)
+			line_color 	3342489
+			InterObjView 	@185
+			height     	596
+			y_coord    	536
+			Nested     	FALSE))
+		(object InterMessView "" @187
+		    location   	(0, 560)
+		    label      	(object SegLabel @188
+			Parent_View 	@187
+			location   	(1392, 513)
+			quidu      	"380748CC010A"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	781
+			justify    	0
+			label      	"unregisterSessionManagementService(this)"
+			pctDist    	0.515152
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@179
+		    supplier   	@181
+		    Focus_Src  	@180
+		    Focus_Entry 	@182
+		    origin     	(1088, 560)
+		    terminus   	(1680, 560)
+		    ordinal    	1)
+		(object InterMessView "" @189
+		    location   	(0, 448)
+		    label      	(object SegLabel @190
+			Parent_View 	@189
+			location   	(760, 404)
+			quidu      	"380748E803BA"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	209
+			justify    	0
+			label      	"shutdown( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@185
+		    supplier   	@179
+		    Focus_Src  	@186
+		    Focus_Entry 	@180
+		    origin     	(464, 448)
+		    terminus   	(1056, 448)
+		    ordinal    	0)
+		(object SelfMessView "" @191
+		    location   	(0, 656)
+		    label      	(object SegLabel @192
+			Parent_View 	@191
+			location   	(2079, 606)
+			quidu      	"3807491D0020"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	666
+			justify    	0
+			label      	"forceLogoutLocalOverride(userStruct)"
+			pctDist    	2.453333
+			height     	51
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@181
+		    supplier   	@181
+		    Focus_Src  	@182
+		    origin     	(1712, 656)
+		    terminus   	(1862, 656)
+		    ordinal    	2)
+		(object NoteView @193
+		    location   	(2560, 816)
+		    label      	(object ItemLabel
+			Parent_View 	@193
+			location   	(2281, 688)
+			fill_color 	13434879
+			nlines     	5
+			max_width  	522
+			label      	"For all users logged in through the CAS that's shutting down.  If the proxyImpl is in a CAS.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	582
+		    height     	269)
+		(object AttachView "" @194
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@193
+		    supplier   	@191
+		    line_style 	0)
+		(object InterMessView "" @195
+		    location   	(0, 864)
+		    label      	(object SegLabel @196
+			Parent_View 	@195
+			location   	(1624, 820)
+			quidu      	"38074A530262"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	419
+			justify    	0
+			label      	
+|withdraw("myself", null)
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@179
+		    supplier   	@183
+		    Focus_Src  	@180
+		    Focus_Entry 	@184
+		    origin     	(1088, 864)
+		    terminus   	(2160, 864)
+		    ordinal    	3)))
+	(object InteractionDiagram "global shutdown"
+	    mechanism_ref 	@4
+	    quid       	"38062F36032C"
+	    title      	"global shutdown"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "globalImpl" @197
+		    location   	(864, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@197
+			location   	(864, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807499C0138"
+		    width      	546
+		    height     	685
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @198
+			location   	(864, 416)
+			line_color 	3342489
+			InterObjView 	@197
+			height     	344
+			y_coord    	284
+			Nested     	FALSE))
+		(object InterObjView "globalHome" @199
+		    location   	(288, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@199
+			location   	(288, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	480
+			justify    	0
+			label      	"globalHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380749DB0232"
+		    width      	498
+		    height     	685
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @200
+			location   	(288, 416)
+			line_color 	3342489
+			InterObjView 	@199
+			height     	404
+			y_coord    	344
+			Nested     	FALSE))
+		(object InterMessView "" @201
+		    location   	(0, 416)
+		    label      	(object SegLabel @202
+			Parent_View 	@201
+			location   	(576, 372)
+			quidu      	"380749FC01A6"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	209
+			justify    	0
+			label      	"shutdown( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@199
+		    supplier   	@197
+		    Focus_Src  	@200
+		    Focus_Entry 	@198
+		    origin     	(304, 416)
+		    terminus   	(848, 416)
+		    ordinal    	0)
+		(object SelfMessView "" @203
+		    location   	(0, 496)
+		    label      	(object SegLabel @204
+			Parent_View 	@203
+			location   	(1246, 448)
+			quidu      	"380750520149"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	672
+			justify    	0
+			label      	"forceLogoutLocalOverride(UserStruct)"
+			pctDist    	2.440000
+			height     	49
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@197
+		    supplier   	@197
+		    Focus_Src  	@198
+		    origin     	(880, 496)
+		    terminus   	(1030, 496)
+		    ordinal    	1)
+		(object NoteView @205
+		    location   	(1952, 560)
+		    label      	(object ItemLabel
+			Parent_View 	@205
+			location   	(1683, 438)
+			fill_color 	13434879
+			nlines     	4
+			max_width  	503
+			label      	"For all users still logged in.  Normally, this should be 0 (all users logged otu before the system shuts down)")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	563
+		    height     	256)
+		(object AttachView "" @206
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@205
+		    supplier   	@203
+		    line_style 	0)
+		(object InterObjView "traderService" @207
+		    location   	(1328, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@207
+			location   	(1328, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"traderService")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807547D0177"
+		    width      	300
+		    height     	685
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @208
+			location   	(1328, 640)
+			line_color 	3342489
+			InterObjView 	@207
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @209
+		    location   	(0, 640)
+		    label      	(object SegLabel @210
+			Parent_View 	@209
+			location   	(1096, 596)
+			quidu      	"380754900139"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	419
+			justify    	0
+			label      	
+|withdraw("myself", null)
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@197
+		    supplier   	@207
+		    Focus_Src  	@198
+		    Focus_Entry 	@208
+		    origin     	(880, 640)
+		    terminus   	(1312, 640)
+		    ordinal    	2)))
+	(object InteractionDiagram "CAS established"
+	    mechanism_ref 	@5
+	    quid       	"380635ED01C5"
+	    title      	"CAS established"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "globalImpl" @211
+		    location   	(896, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@211
+			location   	(896, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B279201D4"
+		    width      	546
+		    height     	1485
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @212
+			location   	(896, 528)
+			line_color 	3342489
+			InterObjView 	@211
+			height     	1032
+			y_coord    	972
+			Nested     	FALSE))
+		(object InterObjView "CASContainerBean" @213
+		    location   	(1744, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@213
+			location   	(1744, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"CASContainerBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B4FB602AF"
+		    width      	300
+		    height     	1485
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1)
+		(object InterObjView "FrontEndMbeans" @214
+		    location   	(2080, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@214
+			location   	(2080, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"FrontEndMbeans")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B866C030D"
+		    width      	300
+		    height     	1485
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @215
+			location   	(2080, 992)
+			line_color 	3342489
+			InterObjView 	@214
+			height     	60
+			y_coord    	0
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @216
+			location   	(2080, 1120)
+			line_color 	3342489
+			InterObjView 	@214
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "CASMBean" @217
+		    location   	(1408, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@217
+			location   	(1408, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"CASMBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B861D01D4"
+		    width      	300
+		    height     	1485
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @218
+			location   	(1408, 848)
+			line_color 	3342489
+			InterObjView 	@217
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "SystemManagementAdapter" @219
+		    location   	(352, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@219
+			location   	(352, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	390
+			justify    	0
+			label      	"SystemManagementAdapter")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B5545031C"
+		    width      	408
+		    height     	1485
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @220
+			location   	(352, 528)
+			line_color 	3342489
+			InterObjView 	@219
+			height     	1092
+			y_coord    	1032
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @221
+			location   	(352, 784)
+			line_color 	3342489
+			InterObjView 	@219
+			height     	60
+			y_coord    	0
+			Nested     	TRUE))
+		(object NoteView @222
+		    location   	(368, 896)
+		    label      	(object ItemLabel
+			Parent_View 	@222
+			location   	(171, 815)
+			fill_color 	13434879
+			nlines     	3
+			max_width  	359
+			label      	"If it's not a CAS, don't continue this sequence.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	419
+		    height     	175)
+		(object SelfMessView "" @223
+		    location   	(0, 640)
+		    label      	(object SegLabel @224
+			Parent_View 	@223
+			location   	(1171, 595)
+			quidu      	"380B468E02CF"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	500
+			justify    	0
+			label      	"addToTopology(name, type)"
+			pctDist    	1.726667
+			height     	46
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@211
+		    Focus_Src  	@212
+		    origin     	(912, 640)
+		    terminus   	(1062, 640)
+		    ordinal    	1)
+		(object SelfMessView "" @225
+		    location   	(0, 1440)
+		    label      	(object SegLabel @226
+			Parent_View 	@225
+			location   	(1363, 1394)
+			quidu      	"380B48BA006D"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	837
+			justify    	0
+			label      	"addTopologyConnection(name, frontEndName)"
+			pctDist    	3.013333
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@211
+		    Focus_Src  	@212
+		    origin     	(912, 1440)
+		    terminus   	(1062, 1440)
+		    ordinal    	7)
+		(object SelfMessView "" @227
+		    location   	(0, 1248)
+		    label      	(object SegLabel @228
+			Parent_View 	@227
+			location   	(1489, 1201)
+			quidu      	"380B540C0213"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1147
+			justify    	0
+			label      	"addTopologyComponent(frontEndName, FRONT_END, isActive)"
+			pctDist    	3.853333
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@211
+		    Focus_Src  	@212
+		    origin     	(912, 1248)
+		    terminus   	(1062, 1248)
+		    ordinal    	6)
+		(object InterMessView "" @229
+		    location   	(0, 528)
+		    label      	(object SegLabel @230
+			Parent_View 	@229
+			location   	(607, 482)
+			quidu      	"380B589100AC"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	828
+			justify    	0
+			label      	
+|propertyChange("CAS;casName;established")
+			
+			pctDist    	0.466797
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@219
+		    supplier   	@211
+		    Focus_Src  	@220
+		    Focus_Entry 	@212
+		    origin     	(368, 528)
+		    terminus   	(880, 528)
+		    ordinal    	0)
+		(object AttachView "" @231
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@223
+		    supplier   	@222
+		    line_style 	0)
+		(object InterMessView "" @232
+		    location   	(0, 784)
+		    label      	(object SegLabel @233
+			Parent_View 	@232
+			location   	(624, 740)
+			quidu      	"380B5E360177"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	209
+			justify    	0
+			label      	"getMBean()"
+			pctDist    	0.500000
+			height     	45
+			orientation 	1)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@219
+		    Focus_Src  	@212
+		    Focus_Entry 	@221
+		    origin     	(880, 784)
+		    terminus   	(368, 784)
+		    ordinal    	2)
+		(object InterMessView "" @234
+		    location   	(0, 848)
+		    label      	(object SegLabel @235
+			Parent_View 	@234
+			location   	(1152, 804)
+			quidu      	"380B862E03D9"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	309
+			justify    	0
+			label      	"getComponents()"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@217
+		    Focus_Src  	@212
+		    Focus_Entry 	@218
+		    origin     	(912, 848)
+		    terminus   	(1392, 848)
+		    ordinal    	3)
+		(object InterMessView "" @236
+		    location   	(0, 1120)
+		    label      	(object SegLabel @237
+			Parent_View 	@236
+			location   	(1488, 1076)
+			quidu      	"380B867800EB"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	187
+			justify    	0
+			label      	"getName()"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@214
+		    Focus_Src  	@212
+		    Focus_Entry 	@216
+		    origin     	(912, 1120)
+		    terminus   	(2064, 1120)
+		    ordinal    	5)
+		(object InterMessView "" @238
+		    location   	(0, 992)
+		    label      	(object SegLabel @239
+			Parent_View 	@238
+			location   	(1488, 948)
+			quidu      	"380CA7FE002E"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	509
+			justify    	0
+			label      	
+|getPropertyValue("isActive")
+			
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@211
+		    supplier   	@214
+		    Focus_Src  	@212
+		    Focus_Entry 	@215
+		    origin     	(912, 992)
+		    terminus   	(2064, 992)
+		    ordinal    	4)))
+	(object InteractionDiagram "component failure"
+	    mechanism_ref 	@6
+	    quid       	"38063608034B"
+	    title      	"component failure"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "SystemManagementAdapter" @240
+		    location   	(288, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@240
+			location   	(288, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	390
+			justify    	0
+			label      	"SystemManagementAdapter")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B210F02AF"
+		    width      	408
+		    height     	1357
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @241
+			location   	(288, 432)
+			line_color 	3342489
+			InterObjView 	@240
+			height     	1060
+			y_coord    	1000
+			Nested     	FALSE))
+		(object InterObjView "globalInstance" @242
+		    location   	(976, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@242
+			location   	(976, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	600
+			justify    	0
+			label      	"globalInstance")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B219B003E"
+		    width      	618
+		    height     	1357
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @243
+			location   	(976, 432)
+			line_color 	3342489
+			InterObjView 	@242
+			height     	1000
+			y_coord    	940
+			Nested     	FALSE))
+		(object InterObjView "allLocalImpls" @244
+		    location   	(1744, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@244
+			location   	(1744, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	570
+			justify    	0
+			label      	"allLocalImpls")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B222F000F"
+		    width      	588
+		    height     	1357
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @245
+			location   	(1744, 704)
+			line_color 	3342489
+			InterObjView 	@244
+			height     	216
+			y_coord    	156
+			Nested     	FALSE)
+		    Focus_Of_Control 	(object Focus_Of_Control "" @246
+			location   	(1744, 1088)
+			line_color 	3342489
+			InterObjView 	@244
+			height     	168
+			y_coord    	108
+			Nested     	FALSE))
+		(object InterObjView "allSuchListeners" @247
+		    location   	(2336, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@247
+			location   	(2336, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	480
+			justify    	0
+			label      	"allSuchListeners")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B23A40280"
+		    width      	498
+		    height     	1357
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @248
+			location   	(2336, 800)
+			line_color 	3342489
+			InterObjView 	@247
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "allSuchListeners" @249
+		    location   	(2912, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@249
+			location   	(2912, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	588
+			justify    	0
+			label      	"allSuchListeners")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380B23A40280"
+		    width      	606
+		    height     	1357
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @250
+			location   	(2912, 1136)
+			line_color 	3342489
+			InterObjView 	@249
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @251
+		    location   	(0, 432)
+		    label      	(object SegLabel @252
+			Parent_View 	@251
+			location   	(632, 385)
+			quidu      	"380B21A802C0"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	647
+			justify    	0
+			label      	
+|propertyChange("name;type;LOST")
+			
+			pctDist    	0.500000
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@240
+		    supplier   	@242
+		    Focus_Src  	@241
+		    Focus_Entry 	@243
+		    origin     	(304, 432)
+		    terminus   	(960, 432)
+		    ordinal    	0)
+		(object SelfMessView "" @253
+		    location   	(0, 544)
+		    label      	(object SegLabel @254
+			Parent_View 	@253
+			location   	(1122, 498)
+			quidu      	"380B21D00291"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	394
+			justify    	0
+			label      	"findComponent(name)"
+			pctDist    	0.873333
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@242
+		    supplier   	@242
+		    Focus_Src  	@243
+		    origin     	(992, 544)
+		    terminus   	(1142, 544)
+		    ordinal    	1)
+		(object InterMessView "" @255
+		    location   	(0, 704)
+		    label      	(object SegLabel @256
+			Parent_View 	@255
+			location   	(1361, 657)
+			quidu      	"380B224101D5"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	737
+			justify    	0
+			label      	"componentFailedNotification(type, name)"
+			pctDist    	0.501488
+			height     	48
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@242
+		    supplier   	@244
+		    Focus_Src  	@243
+		    Focus_Entry 	@245
+		    origin     	(992, 704)
+		    terminus   	(1728, 704)
+		    ordinal    	2)
+		(object SelfMessView "" @257
+		    location   	(0, 928)
+		    label      	(object SegLabel @258
+			Parent_View 	@257
+			location   	(1344, 882)
+			quidu      	"380B227A037A"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	666
+			justify    	0
+			label      	"forceLogoutLocalOverride(userStruct)"
+			pctDist    	2.346667
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@242
+		    supplier   	@242
+		    Focus_Src  	@243
+		    origin     	(992, 928)
+		    terminus   	(1142, 928)
+		    ordinal    	4)
+		(object InterMessView "" @259
+		    location   	(0, 1088)
+		    label      	(object SegLabel @260
+			Parent_View 	@259
+			location   	(1360, 1044)
+			quidu      	"380B229F031C"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	631
+			justify    	0
+			label      	"logoutNotification(user, name, true)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@242
+		    supplier   	@244
+		    Focus_Src  	@243
+		    Focus_Entry 	@246
+		    origin     	(992, 1088)
+		    terminus   	(1728, 1088)
+		    ordinal    	5)
+		(object NoteView @261
+		    location   	(640, 1120)
+		    label      	(object ItemLabel
+			Parent_View 	@261
+			location   	(371, 970)
+			fill_color 	13434879
+			nlines     	6
+			max_width  	503
+			label      	"If it's a CAS or the last FE for a given CAS, logout all users for that CAS.  If it's the last known BE, logout all users.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	563
+		    height     	312)
+		(object AttachView "" @262
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@261
+		    supplier   	@257
+		    line_style 	0)
+		(object AttachView "" @263
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@261
+		    supplier   	@259
+		    line_style 	0)
+		(object InterMessView "" @264
+		    location   	(0, 800)
+		    label      	(object SegLabel @265
+			Parent_View 	@264
+			location   	(2040, 756)
+			quidu      	"380B23B30214"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	537
+			justify    	0
+			label      	"componentFailed(type, name)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@244
+		    supplier   	@247
+		    Focus_Src  	@245
+		    Focus_Entry 	@248
+		    origin     	(1760, 800)
+		    terminus   	(2320, 800)
+		    ordinal    	3)
+		(object InterMessView "" @266
+		    location   	(0, 1136)
+		    label      	(object SegLabel @267
+			Parent_View 	@266
+			location   	(2328, 1092)
+			quidu      	"380B24080213"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	578
+			justify    	0
+			label      	"userLoggedOut(userName, true)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@244
+		    supplier   	@249
+		    Focus_Src  	@246
+		    Focus_Entry 	@250
+		    origin     	(1760, 1136)
+		    terminus   	(2896, 1136)
+		    ordinal    	6)
+		(object SelfMessView "" @268
+		    location   	(0, 1312)
+		    label      	(object SegLabel @269
+			Parent_View 	@268
+			location   	(1279, 1266)
+			quidu      	"380B24AD029F"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	622
+			justify    	0
+			label      	"removeTopologyComponentname()"
+			pctDist    	1.920000
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@242
+		    supplier   	@242
+		    Focus_Src  	@243
+		    origin     	(992, 1312)
+		    terminus   	(1142, 1312)
+		    ordinal    	7)
+		(object NoteView @270
+		    location   	(1184, 1616)
+		    label      	(object ItemLabel
+			Parent_View 	@270
+			location   	(787, 1557)
+			fill_color 	13434879
+			nlines     	2
+			max_width  	759
+			label      	"Update the application's topology model")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	819
+		    height     	131)
+		(object AttachView "" @271
+		    stereotype 	TRUE
+		    line_color 	3342489
+		    client     	@270
+		    supplier   	@268
+		    line_style 	0)))
+	(object InteractionDiagram "user logs in"
+	    mechanism_ref 	@7
+	    quid       	"38074A980138"
+	    title      	"user logs in"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "anyObject" @272
+		    location   	(240, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@272
+			location   	(240, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"anyObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380765FB0232"
+		    width      	300
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @273
+			location   	(240, 416)
+			line_color 	3342489
+			InterObjView 	@272
+			height     	1036
+			y_coord    	976
+			Nested     	FALSE))
+		(object InterObjView "localHome" @274
+		    location   	(704, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@274
+			location   	(704, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	578
+			justify    	0
+			label      	"localHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807661101A5"
+		    width      	596
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @275
+			location   	(704, 416)
+			line_color 	3342489
+			InterObjView 	@274
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "localImpl" @276
+		    location   	(1280, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@276
+			location   	(1280, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	484
+			justify    	0
+			label      	"localImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807661800CB"
+		    width      	502
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @277
+			location   	(1280, 576)
+			line_color 	3342489
+			InterObjView 	@276
+			height     	816
+			y_coord    	756
+			Nested     	FALSE))
+		(object InterObjView "globalImpl" @278
+		    location   	(2160, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@278
+			location   	(2160, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807679200DA"
+		    width      	546
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @279
+			location   	(2160, 816)
+			line_color 	3342489
+			InterObjView 	@278
+			height     	516
+			y_coord    	456
+			Nested     	FALSE))
+		(object InterObjView "allLocals" @280
+		    location   	(2736, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@280
+			location   	(2736, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	484
+			justify    	0
+			label      	"allLocals")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807935B0203"
+		    width      	502
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @281
+			location   	(2736, 1040)
+			line_color 	3342489
+			InterObjView 	@280
+			height     	232
+			y_coord    	172
+			Nested     	FALSE))
+		(object InterObjView "allListeners" @282
+		    location   	(3264, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@282
+			location   	(3264, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	438
+			justify    	0
+			label      	"allListeners")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3807936D0203"
+		    width      	456
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @283
+			location   	(3264, 1152)
+			line_color 	3342489
+			InterObjView 	@282
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "securityService" @284
+		    location   	(1712, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@284
+			location   	(1712, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"securityService")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380767A0007D"
+		    width      	300
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @285
+			location   	(1712, 688)
+			line_color 	3342489
+			InterObjView 	@284
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @286
+		    location   	(0, 416)
+		    label      	(object SegLabel @287
+			Parent_View 	@286
+			location   	(472, 372)
+			quidu      	"380767D20204"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	100
+			justify    	0
+			label      	"find( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@272
+		    supplier   	@274
+		    Focus_Src  	@273
+		    Focus_Entry 	@275
+		    origin     	(256, 416)
+		    terminus   	(688, 416)
+		    ordinal    	0)
+		(object InterMessView "" @288
+		    location   	(0, 576)
+		    label      	(object SegLabel @289
+			Parent_View 	@288
+			location   	(760, 532)
+			quidu      	"380767D803AA"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	494
+			justify    	0
+			label      	"login(userStruct, password)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@272
+		    supplier   	@276
+		    Focus_Src  	@273
+		    Focus_Entry 	@277
+		    origin     	(256, 576)
+		    terminus   	(1264, 576)
+		    ordinal    	1)
+		(object InterMessView "" @290
+		    location   	(0, 816)
+		    label      	(object SegLabel @291
+			Parent_View 	@290
+			location   	(1732, 784)
+			quidu      	"3807682001B6"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	612
+			justify    	0
+			label      	"globalLogin(userStruct, casName)"
+			pctDist    	0.515152
+			height     	33
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@276
+		    supplier   	@278
+		    Focus_Src  	@277
+		    Focus_Entry 	@279
+		    origin     	(1296, 816)
+		    terminus   	(2144, 816)
+		    ordinal    	3)
+		(object InterMessView "" @292
+		    location   	(0, 688)
+		    label      	(object SegLabel @293
+			Parent_View 	@292
+			location   	(1496, 644)
+			quidu      	"38078D6E0001"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	903
+			justify    	0
+			label      	"authenticateWithPassword(userName, password )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@276
+		    supplier   	@284
+		    Focus_Src  	@277
+		    Focus_Entry 	@285
+		    origin     	(1296, 688)
+		    terminus   	(1696, 688)
+		    ordinal    	2)
+		(object SelfMessView "" @294
+		    location   	(0, 880)
+		    label      	(object SegLabel @295
+			Parent_View 	@294
+			location   	(2480, 848)
+			quidu      	"3807913E0010"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	547
+			justify    	0
+			label      	"update user list (transactional)"
+			pctDist    	2.033333
+			height     	33
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@278
+		    supplier   	@278
+		    Focus_Src  	@279
+		    origin     	(2176, 880)
+		    terminus   	(2326, 880)
+		    ordinal    	4)
+		(object InterMessView "" @296
+		    location   	(0, 1040)
+		    label      	(object SegLabel @297
+			Parent_View 	@296
+			location   	(2448, 996)
+			quidu      	"380793760157"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	691
+			justify    	0
+			label      	"loginNotification(userName, casName)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@278
+		    supplier   	@280
+		    Focus_Src  	@279
+		    Focus_Entry 	@281
+		    origin     	(2176, 1040)
+		    terminus   	(2720, 1040)
+		    ordinal    	5)
+		(object InterMessView "" @298
+		    location   	(0, 1152)
+		    label      	(object SegLabel @299
+			Parent_View 	@298
+			location   	(3000, 1108)
+			quidu      	"38079396035B"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	459
+			justify    	0
+			label      	"userLoggedIn(UserStruct)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@280
+		    supplier   	@282
+		    Focus_Src  	@281
+		    Focus_Entry 	@283
+		    origin     	(2752, 1152)
+		    terminus   	(3248, 1152)
+		    ordinal    	6)))
+	(object InteractionDiagram "user logs out"
+	    mechanism_ref 	@8
+	    quid       	"38074AB202AF"
+	    title      	"user logs out"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "anyObject" @300
+		    location   	(160, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@300
+			location   	(160, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"anyObject")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B3000F"
+		    width      	300
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @301
+			location   	(160, 416)
+			line_color 	3342489
+			InterObjView 	@300
+			height     	1036
+			y_coord    	976
+			Nested     	FALSE))
+		(object InterObjView "localHome" @302
+		    location   	(624, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@302
+			location   	(624, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	578
+			justify    	0
+			label      	"localHome")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B3001F"
+		    width      	596
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @303
+			location   	(624, 416)
+			line_color 	3342489
+			InterObjView 	@302
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "localImpl" @304
+		    location   	(1200, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@304
+			location   	(1200, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	484
+			justify    	0
+			label      	"localImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B3007D"
+		    width      	502
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @305
+			location   	(1200, 576)
+			line_color 	3342489
+			InterObjView 	@304
+			height     	816
+			y_coord    	756
+			Nested     	FALSE))
+		(object InterObjView "globalImpl" @306
+		    location   	(2080, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@306
+			location   	(2080, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B3003F"
+		    width      	546
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @307
+			location   	(2080, 816)
+			line_color 	3342489
+			InterObjView 	@306
+			height     	516
+			y_coord    	456
+			Nested     	FALSE))
+		(object InterObjView "allLocals" @308
+		    location   	(2656, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@308
+			location   	(2656, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	484
+			justify    	0
+			label      	"allLocals")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B30054"
+		    width      	502
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @309
+			location   	(2656, 1040)
+			line_color 	3342489
+			InterObjView 	@308
+			height     	232
+			y_coord    	172
+			Nested     	FALSE))
+		(object InterObjView "allListeners" @310
+		    location   	(3184, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@310
+			location   	(3184, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	438
+			justify    	0
+			label      	"allListeners")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B30051"
+		    width      	456
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @311
+			location   	(3184, 1152)
+			line_color 	3342489
+			InterObjView 	@310
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterObjView "securityService" @312
+		    location   	(1632, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@312
+			location   	(1632, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"securityService")
+		    icon       	"Interface"
+		    icon_style 	"Label"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380793B3008C"
+		    width      	300
+		    height     	1317
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @313
+			location   	(1632, 688)
+			line_color 	3342489
+			InterObjView 	@312
+			height     	60
+			y_coord    	0
+			Nested     	FALSE))
+		(object InterMessView "" @314
+		    location   	(0, 416)
+		    label      	(object SegLabel @315
+			Parent_View 	@314
+			location   	(392, 372)
+			quidu      	"380793B30011"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	100
+			justify    	0
+			label      	"find( )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@300
+		    supplier   	@302
+		    Focus_Src  	@301
+		    Focus_Entry 	@303
+		    origin     	(176, 416)
+		    terminus   	(608, 416)
+		    ordinal    	0)
+		(object InterMessView "" @316
+		    location   	(0, 576)
+		    label      	(object SegLabel @317
+			Parent_View 	@316
+			location   	(688, 528)
+			quidu      	"380793B30013"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	519
+			justify    	0
+			label      	"logout(userStruct, password)"
+			pctDist    	0.507937
+			height     	49
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@300
+		    supplier   	@304
+		    Focus_Src  	@301
+		    Focus_Entry 	@305
+		    origin     	(176, 576)
+		    terminus   	(1184, 576)
+		    ordinal    	1)
+		(object InterMessView "" @318
+		    location   	(0, 816)
+		    label      	(object SegLabel @319
+			Parent_View 	@318
+			location   	(1652, 784)
+			quidu      	"380793B3005D"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	637
+			justify    	0
+			label      	"globalLogout(userStruct, casName)"
+			pctDist    	0.515152
+			height     	33
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@304
+		    supplier   	@306
+		    Focus_Src  	@305
+		    Focus_Entry 	@307
+		    origin     	(1216, 816)
+		    terminus   	(2064, 816)
+		    ordinal    	3)
+		(object SelfMessView "" @320
+		    location   	(0, 880)
+		    label      	(object SegLabel @321
+			Parent_View 	@320
+			location   	(2400, 848)
+			quidu      	"380793B30020"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	547
+			justify    	0
+			label      	"update user list (transactional)"
+			pctDist    	2.033333
+			height     	33
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@306
+		    supplier   	@306
+		    Focus_Src  	@307
+		    origin     	(2096, 880)
+		    terminus   	(2246, 880)
+		    ordinal    	4)
+		(object InterMessView "" @322
+		    location   	(0, 1040)
+		    label      	(object SegLabel @323
+			Parent_View 	@322
+			location   	(2368, 996)
+			quidu      	"380793B30050"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	716
+			justify    	0
+			label      	"logoutNotification(userName, casName)"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@306
+		    supplier   	@308
+		    Focus_Src  	@307
+		    Focus_Entry 	@309
+		    origin     	(2096, 1040)
+		    terminus   	(2640, 1040)
+		    ordinal    	5)
+		(object InterMessView "" @324
+		    location   	(0, 1152)
+		    label      	(object SegLabel @325
+			Parent_View 	@324
+			location   	(2927, 1104)
+			quidu      	"380793B30052"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	494
+			justify    	0
+			label      	"userLoggedOut(UserStruct)"
+			pctDist    	0.516129
+			height     	49
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@308
+		    supplier   	@310
+		    Focus_Src  	@309
+		    Focus_Entry 	@311
+		    origin     	(2672, 1152)
+		    terminus   	(3168, 1152)
+		    ordinal    	6)
+		(object InterMessView "" @326
+		    location   	(0, 688)
+		    label      	(object SegLabel @327
+			Parent_View 	@326
+			location   	(1416, 644)
+			quidu      	"380793B3007F"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	903
+			justify    	0
+			label      	"authenticateWithPassword(userName, password )"
+			pctDist    	0.500000
+			height     	45
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@304
+		    supplier   	@312
+		    Focus_Src  	@305
+		    Focus_Entry 	@313
+		    origin     	(1216, 688)
+		    terminus   	(1616, 688)
+		    ordinal    	2)))
+	(object InteractionDiagram "Front-end established"
+	    mechanism_ref 	@9
+	    quid       	"380CA64E02CE"
+	    title      	"Front-end established"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "globalImpl" @328
+		    location   	(912, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@328
+			location   	(912, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA689009C"
+		    width      	546
+		    height     	717
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @329
+			location   	(912, 528)
+			line_color 	3342489
+			InterObjView 	@328
+			height     	264
+			y_coord    	204
+			Nested     	FALSE))
+		(object InterObjView "CASContainerBean" @330
+		    location   	(1424, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@330
+			location   	(1424, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"CASContainerBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA68900AD"
+		    width      	300
+		    height     	717
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1)
+		(object InterObjView "SystemManagementAdapter" @331
+		    location   	(368, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@331
+			location   	(368, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	390
+			justify    	0
+			label      	"SystemManagementAdapter")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA68900A8"
+		    width      	408
+		    height     	717
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @332
+			location   	(368, 528)
+			line_color 	3342489
+			InterObjView 	@331
+			height     	324
+			y_coord    	264
+			Nested     	FALSE))
+		(object InterMessView "" @333
+		    location   	(0, 528)
+		    label      	(object SegLabel @334
+			Parent_View 	@333
+			location   	(623, 482)
+			quidu      	"380CA68900A9"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1069
+			justify    	0
+			label      	
+|propertyChange("FRONT_END;frontEndName;established")
+			
+			pctDist    	0.466797
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@331
+		    supplier   	@328
+		    Focus_Src  	@332
+		    Focus_Entry 	@329
+		    origin     	(384, 528)
+		    terminus   	(896, 528)
+		    ordinal    	0)
+		(object SelfMessView "" @335
+		    location   	(0, 672)
+		    label      	(object SegLabel @336
+			Parent_View 	@335
+			location   	(1439, 626)
+			quidu      	"380CA689009E"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	953
+			justify    	0
+			label      	"addToTopology(name, FRONT_END, true/*isActive*/)"
+			pctDist    	3.413333
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@328
+		    supplier   	@328
+		    Focus_Src  	@329
+		    origin     	(928, 672)
+		    terminus   	(1078, 672)
+		    ordinal    	1)))
+	(object InteractionDiagram "Back-end cluster established"
+	    mechanism_ref 	@10
+	    quid       	"380CA65103B9"
+	    title      	"Back-end cluster established"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object InterObjView "globalImpl" @337
+		    location   	(896, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@337
+			location   	(896, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	528
+			justify    	0
+			label      	"globalImpl")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA85200CB"
+		    width      	546
+		    height     	717
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @338
+			location   	(896, 528)
+			line_color 	3342489
+			InterObjView 	@337
+			height     	264
+			y_coord    	204
+			Nested     	FALSE))
+		(object InterObjView "CASContainerBean" @339
+		    location   	(1408, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@339
+			location   	(1408, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	282
+			justify    	0
+			label      	"CASContainerBean")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA85200D1"
+		    width      	300
+		    height     	717
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1)
+		(object InterObjView "SystemManagementAdapter" @340
+		    location   	(352, 224)
+		    font       	(object Font
+			underline  	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@340
+			location   	(352, 224)
+			fill_color 	13434879
+			anchor_loc 	1
+			nlines     	2
+			max_width  	390
+			justify    	0
+			label      	"SystemManagementAdapter")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"380CA85200D0"
+		    width      	408
+		    height     	717
+		    icon_height 	0
+		    icon_width 	0
+		    icon_y_offset 	0
+		    annotation 	1
+		    Focus_Of_Control 	(object Focus_Of_Control "" @341
+			location   	(352, 528)
+			line_color 	3342489
+			InterObjView 	@340
+			height     	324
+			y_coord    	264
+			Nested     	FALSE))
+		(object InterMessView "" @342
+		    location   	(0, 528)
+		    label      	(object SegLabel @343
+			Parent_View 	@342
+			location   	(1024, 467)
+			quidu      	"380CA85200CE"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	1262
+			justify    	0
+			label      	
+|propertyChange("BACK_END_CLUSTER;backEndName;established")
+			
+			pctDist    	1.283203
+			height     	62
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@340
+		    supplier   	@337
+		    Focus_Src  	@341
+		    Focus_Entry 	@338
+		    origin     	(368, 528)
+		    terminus   	(880, 528)
+		    ordinal    	0)
+		(object SelfMessView "" @344
+		    location   	(0, 672)
+		    label      	(object SegLabel @345
+			Parent_View 	@344
+			location   	(1425, 626)
+			quidu      	"380CA85200CD"
+			anchor_loc 	1
+			nlines     	1
+			max_width  	931
+			justify    	0
+			label      	"addToTopology(name, BACK_END, true/*isActive*/)"
+			pctDist    	3.420000
+			height     	47
+			orientation 	0)
+		    line_color 	3342489
+		    client     	@337
+		    supplier   	@337
+		    Focus_Src  	@338
+		    origin     	(912, 672)
+		    terminus   	(1062, 672)
+		    ordinal    	1)
+		(object NoteView @346
+		    location   	(864, 1216)
+		    label      	(object ItemLabel
+			Parent_View 	@346
+			location   	(504, 1116)
+			fill_color 	13434879
+			nlines     	4
+			max_width  	684
+			label      	"The business clusters are implictly fully connected to the front ends listed in the topology mapping.")
+		    line_color 	3342489
+		    fill_color 	13434879
+		    width      	744
+		    height     	212)))))

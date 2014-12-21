@@ -1,0 +1,61 @@
+<!ENTITY % TYPES "(ManagedResource|ManagedProperties|ManagedProperty|ManagedCommands|ManagedCommand|ManagedEvents|ManagedEvent|ManagedParameter|ManagedRelations|ManagedRelation)">
+<!ENTITY % MODES "(readOnly|readWrite|writeOnly)">
+<!ENTITY % PROPTYPES "(string|integer|float|enum)">
+<!ENTITY % PARAMTYPES "(string|integer|float|enum)">
+
+<!ELEMENT GlobalCalendarService (CalendarServiceImpl*)>
+<!ATTLIST GlobalCalendarService  
+	type %TYPES;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT CalendarServiceImpl (CalendarServiceImplProperties, BusinessCalendar*)>
+<!ATTLIST CalendarServiceImpl
+	type %TYPES; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	description CDATA #FIXED "full implementation resource"
+>
+<!ELEMENT CalendarServiceImplProperties ( traderOfferName, calendarAdminChannelName, timeZone?)>
+<!ATTLIST CalendarServiceImplProperties
+	type %TYPES; #FIXED "ManagedProperties"
+>
+
+<!ELEMENT traderOfferName (#PCDATA)>
+<!ATTLIST traderOfferName
+	type %TYPES; #FIXED "ManagedProperty"
+	mode %MODES; #FIXED "readWrite"
+	propertyType %PROPTYPES; #FIXED "string"
+	description CDATA #FIXED "Calendar Admin Service offer name"
+>
+<!ELEMENT calendarAdminChannelName (#PCDATA)>
+<!ATTLIST calendarAdminChannelName
+	type %TYPES; #FIXED "ManagedProperty"
+	mode %MODES; #FIXED "readWrite"
+	propertyType %PROPTYPES; #FIXED "string"
+	description CDATA #FIXED "Calendar Admin Service channel name"
+>
+<!ELEMENT timeZone (#PCDATA)>
+<!ATTLIST timeZone
+	type %TYPES; #FIXED "ManagedProperty"
+	mode %MODES; #FIXED "readWrite"
+	propertyType %PROPTYPES; #FIXED "string"
+	description CDATA #FIXED "timeZone"
+>
+<!ELEMENT BusinessCalendar (BusinessCalendarProperties)>
+<!ATTLIST BusinessCalendar
+	type %TYPES; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	description CDATA #FIXED "full implementation resource"
+>
+<!ELEMENT BusinessCalendarProperties ( includeNonSettlementdates)>
+<!ATTLIST BusinessCalendarProperties
+	type %TYPES; #FIXED "ManagedProperties"
+>
+<!ELEMENT includeNonSettlementdates ANY>
+<!ATTLIST includeNonSettlementdates
+        type %TYPES; #FIXED "ManagedProperty"
+        mode %MODES; #FIXED "readWrite"
+        propertyType %PROPTYPES; #FIXED "enum"
+        defaultValue CDATA #FIXED "yes"
+        propertyValue CDATA #FIXED "Value"
+        Value (yes | no) #REQUIRED
+>

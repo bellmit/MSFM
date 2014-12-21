@@ -1,0 +1,8 @@
+
+. ../etc/setEnv
+
+SOURCE=`find ${FFTUTORIAL_HOME}/src -name *.java -print`
+
+OUTPUT=${FFTUTORIAL_HOME}/classes
+
+javac -d $OUTPUT $SOURCE

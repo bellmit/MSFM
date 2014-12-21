@@ -1,0 +1,30 @@
+. ../etc/setEnv
+
+cd $FFTUTORIAL_HOME
+
+export EXAMPLE_CONSUMER_XML=
+export EXAMPLE_CONSUMER_XML=${EXAMPLE_CONSUMER_XML}${FFTUTORIAL_HOME}/xml/LoggingService.xml,
+export EXAMPLE_CONSUMER_XML=${EXAMPLE_CONSUMER_XML}${FFTUTORIAL_HOME}/xml/LogFacade.xml,
+export EXAMPLE_CONSUMER_XML=${EXAMPLE_CONSUMER_XML}${FFTUTORIAL_HOME}/xml/ExampleConsumerServer.xml,
+export EXAMPLE_CONSUMER_XML=${EXAMPLE_CONSUMER_XML}${FFTUTORIAL_HOME}/xml/TradeReportConsumer.xml
+
+ORB_NAME='ExampleETHServer'
+let ORB_PORT=$BASE_PORT+67
+SMA="-DSMA.ImplClass=SMAResourceStandalone -DSMA.NotInstantiateSMAServer -DSMA.NoORBProcessExposer \
+-DSMA.XMLFiles=${EXAMPLE_CONSUMER_XML} \
+-DSMA.GlobalLoggingService=GlobalLoggingService1 \
+-DSMA.LoggingServiceClient=ExampleConsumerServerClient \
+-DSMA.StandardMessageCatalog=StandardMessageCatalog1 \
+-DSMA.LogServiceImpl=CurrentWorkingDirectory \
+-DSMA.LogServiceSMAImpl=SMA \
+-DAdaptor.SMAServerIORFile=${IOR_BASE_DIR}/RepositoryServicePrimary.ior"
+
+ORB="-DORB.OrbName=${SBT_PREFIX:-}${ROUTING}${ORB_NAME} -DORB.PortNum=$ORB_PORT -DORB.FlowControl=none "
+
+#OW="-Dow.persistUser=$INFRA_DB_USER -Dow.persistPassword=$INFRA_DB_PASSWORD -Dow.connectUrl=$INFRA_DB_URL -Dow.persistPrepared=true"
+
+CONFIG_SVC=com.cboe.infrastructureServices.systemsManagementService.ConfigurationServiceSysManImpl
+MAIN_CLASS=com.cboe.infrastructureServices.foundationFramework.FoundationFramework 
+
+java $ORB $SMA $OW ${JAVA_ARGS} -DSessionFilter=RTH -Xms32M -Xmx512M $MAIN_CLASS ExampleConsumerServer $CONFIG_SVC thisParamIsIgnored -m
+

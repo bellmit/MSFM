@@ -1,0 +1,120 @@
+
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!ELEMENT GlobalPersistenceService (PersistenceService* )>
+<!ATTLIST GlobalPersistenceService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT PersistenceService (PersistenceServiceProperties, BatchBroker*, ChannelBroker)>
+<!ATTLIST PersistenceService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	name CDATA #REQUIRED
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT PersistenceServiceProperties (connectUrl?, persistUser?, persistPassword?, persistConnections?, persistPrepared?, prepBatch?, numberOfBatchBrokers? )>
+<!ATTLIST PersistenceServiceProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT connectUrl (#PCDATA)>
+<!ATTLIST connectUrl  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints; #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ELEMENT persistUser (#PCDATA) >
+<!ATTLIST persistUser  type	  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ELEMENT persistPrepared EMPTY >
+<!ATTLIST persistPrepared  type	  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'enum'
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+	description CDATA #FIXED 'Should prepared statements be used.' >
+
+<!ELEMENT prepBatch (#PCDATA) >
+<!ATTLIST prepBatch  type	  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'How large of a buffer should be used for batching sql statements' >
+
+<!ELEMENT persistPassword (#PCDATA)>
+<!ATTLIST persistPassword  type  %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ELEMENT persistConnections (#PCDATA)>
+<!ATTLIST persistConnections  type   %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED '' >
+<!ELEMENT numberOfBatchBrokers (#PCDATA)>
+<!ATTLIST numberOfBatchBrokers  type   %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED '' >
+<!ELEMENT BatchBroker (BatchBrokerProperties)>
+<!ATTLIST BatchBroker
+        type %typeConstraints; #FIXED "ManagedResource"
+        name CDATA #REQUIRED
+>
+<!ELEMENT BatchBrokerProperties (numberOfThreads?, batchSize?, numberOfQueryConnections?, rollbackPolicy?, maxCapacity?, reachedCapacityPolicy? )>
+<!ATTLIST BatchBrokerProperties
+        type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT numberOfThreads (#PCDATA)>
+<!ATTLIST numberOfThreads  type   %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED '' >
+<!ELEMENT batchSize (#PCDATA)>
+<!ATTLIST batchSize  type   %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED '' >
+<!ELEMENT numberOfQueryConnections (#PCDATA)>
+<!ATTLIST numberOfQueryConnections  type   %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED '' >
+<!ELEMENT rollbackPolicy ANY>
+<!ATTLIST rollbackPolicy
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "enum"
+        defaultValue CDATA #FIXED "Log"
+        propertyValue CDATA #FIXED "value"
+        value (Log | CommitEachOne | CommitFindFaulty) #REQUIRED
+>
+<!ELEMENT maxCapacity (#PCDATA)>
+<!ATTLIST maxCapacity  type   %typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'integer'
+	description CDATA #FIXED '' >
+<!ELEMENT reachedCapacityPolicy ANY>
+<!ATTLIST reachedCapacityPolicy
+        type %typeConstraints; #FIXED "ManagedProperty"
+        mode %modeConstraints; #FIXED "readWrite"
+        propertyType %propertyTypes; #FIXED "enum"
+        defaultValue CDATA #FIXED "Flush"
+        propertyValue CDATA #FIXED "value"
+        value (Flush | Resize | FlushAndWritetoFile) #REQUIRED
+>
+<!ELEMENT ChannelBroker (ChannelBrokerProperties)>
+<!ATTLIST ChannelBroker
+    type %typeConstraints; #FIXED "ManagedResource"
+>
+<!ELEMENT ChannelBrokerProperties (numberOfConnections? )>
+<!ATTLIST ChannelBrokerProperties
+    type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT numberOfConnections (#PCDATA)>
+<!ATTLIST numberOfConnections
+    type %typeConstraints; #FIXED "ManagedProperty"
+    mode %modeConstraints; #FIXED "readWrite"
+    propertyType %propertyTypes; #FIXED "integer"
+    description CDATA #FIXED ""
+>

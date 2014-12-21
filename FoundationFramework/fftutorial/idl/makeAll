@@ -1,0 +1,9 @@
+
+echo '  [Removing all generated .java, .class, and .jar files]'
+\rm -rf $FFTUTORIAL_ROOT/idl/idl_java/com
+\rm -rf $FFTUTORIAL_ROOT/idl/idl_classes/com
+\rm -rf $FFTUTORIAL_ROOT/idl/*.jar
+
+compileIDL
+compileJava
+compileJars

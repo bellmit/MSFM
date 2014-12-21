@@ -1,0 +1,379 @@
+<!-- edited with XML Spy v3.0b3 NT (http://www.xmlspy.com) by Dave (OW) -->
+<!--
+  The DTD to use for the FoundationFramework and SMA integration
+-->
+<!-- Define the reusable entities. Theses may be included in imported DTDs.  -->
+<!ENTITY % reusableElements SYSTEM "Header.dtd">
+%reusableElements;
+<!ENTITY % homeDefinition SYSTEM "Home.dtd">
+%homeDefinition;
+<!ENTITY % containerDefinition SYSTEM "Container.dtd">
+%containerDefinition;
+<!-- Define some local reusable elements -->
+<!ELEMENT GlobalFoundationFramework (FoundationFramework*)>
+<!ATTLIST GlobalFoundationFramework
+	type %typeConstraints; #FIXED "ManagedResource"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT FoundationFrameworkProperties (logServiceComponent, listOfHomes?, autoStart?, autoInit?, isMaster?, instrumentationEnabled?, persistentBrokerName?, state?)>
+<!ATTLIST FoundationFrameworkProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!--
+-->
+<!ELEMENT FoundationFramework (CoreService, ServiceHome*, BOContainer*, FoundationFrameworkProperties, FoundationFrameworkCommands?, Application?)>
+<!ATTLIST FoundationFramework
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT FoundationFrameworkCommands (startupCommand, shutdownCommand, goMasterCommand, goSlaveCommand, isMasterCommand)>
+<!ATTLIST FoundationFrameworkCommands
+	type CDATA #FIXED "ManagedCommands"
+>
+<!ELEMENT goMasterCommand EMPTY>
+<!ATTLIST goMasterCommand
+    type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "The command to make the foundation framework and all components go to master mode."
+>
+<!ELEMENT goSlaveCommand EMPTY>
+<!ATTLIST goSlaveCommand
+    type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "The command to make the foundation framework and all components go to slave mode."
+>
+<!ELEMENT isMasterCommand EMPTY>
+<!ATTLIST isMasterCommand
+    type %typeConstraints; #FIXED "ManagedCommand"
+	description CDATA #FIXED "The command to query FF's current state"
+>
+<!-- Even though this property can be only one of the three values listed in the description, it cannot be implemented
+    as an 'enum' becuase the thirds string has special characters that are not handled properly by the XML document.
+    The special values must be in PCDATA ( instead of CDATA) so that they are parsed properly.
+-->
+
+<!ELEMENT isMaster (#PCDATA)>
+<!ATTLIST isMaster
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "This value can be only [ true | false | prefixMaster ]"
+>
+<!ELEMENT autoStart EMPTY>
+<!ATTLIST autoStart
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT autoInit EMPTY>
+<!ATTLIST autoInit
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT instrumentationEnabled EMPTY>
+<!ATTLIST instrumentationEnabled
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	booleanValue (true | false) #REQUIRED
+	propertyValue CDATA #FIXED "booleanValue"
+>
+<!ELEMENT CoreService (CoreServiceProperties)>
+<!ATTLIST CoreService
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT CoreServiceProperties (orbServiceImpl, orbServiceName, commandCallbackServiceImpl, eventServiceImpl, eventServiceName, traderServiceImpl, traderServiceName, loggingServiceImpl, loggingServiceName, adminServiceImpl, adminServiceName?, securityServiceImpl, securityServiceName, uuidServiceImpl, uuidServiceName, jcacheServiceImpl?, (persistenceServiceImpl, persistenceServiceName)?, (timeServiceImpl, timeServiceName)?, (instrumentationServiceImpl, instrumentationServiceName)?, (sessionManagementServiceImpl, sessionManagementServiceName)?, (calendarServiceImpl, calendarServiceName)?, lifeLineServiceImpl?, processWatcherServiceImpl?)>
+<!ATTLIST CoreServiceProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!--  
+-->
+<!ELEMENT sessionManagementServiceName (#PCDATA)>
+<!ATTLIST sessionManagementServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT instrumentationServiceName (#PCDATA)>
+<!ATTLIST instrumentationServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT timeServiceName (#PCDATA)>
+<!ATTLIST timeServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT persistenceServiceName (#PCDATA)>
+<!ATTLIST persistenceServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT securityServiceName (#PCDATA)>
+<!ATTLIST securityServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT uuidServiceName (#PCDATA)>
+<!ATTLIST uuidServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT adminServiceName (#PCDATA)>
+<!ATTLIST adminServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT loggingServiceName (#PCDATA)>
+<!ATTLIST loggingServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT traderServiceName (#PCDATA)>
+<!ATTLIST traderServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT eventServiceName (#PCDATA)>
+<!ATTLIST eventServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT calendarServiceName (#PCDATA)>
+<!ATTLIST calendarServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT orbServiceImpl EMPTY>
+<!ATTLIST orbServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.orbService.OrbServicePOAImpl | com.cboe.infrastructureServices.orbService.OrbServiceOrbixImpl | com.cboe.infrastructureServices.orbService.OrbServiceInProcessImpl | com.cboe.infrastructureServices.orbService.OrbServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT commandCallbackServiceImpl EMPTY>
+<!ATTLIST commandCallbackServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.systemsManagementService.CommandCallbackService | com.cboe.infrastructureServices.systemsManagementService.CommandCallbackServiceSysManImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT eventServiceImpl EMPTY>
+<!ATTLIST eventServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.eventService.EventServiceInProcessImpl | com.cboe.infrastructureServices.eventService.EventServiceTraderImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!-- Its back 
+-->
+<!ELEMENT adminServiceImpl EMPTY>
+<!ATTLIST adminServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.systemsManagementService.AdminServiceClientImpl | com.cboe.infrastructureServices.systemsManagementService.AdminServiceImpl | com.cboe.infrastructureServices.systemsManagementService.AdminServiceAsyncImpl | com.cboe.infrastructureServices.systemsManagementService.AdminServiceNullImpl) #REQUIRED
+	description CDATA #FIXED ""
+>
+<!ELEMENT traderServiceImpl EMPTY>
+<!ATTLIST traderServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.traderService.TraderServiceImpl | com.cboe.infrastructureServices.traderService.TraderServiceInProcessImpl | com.cboe.infrastructureServices.traderService.TraderServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT persistenceServiceImpl EMPTY>
+<!ATTLIST persistenceServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.persistenceService.PersistenceServiceImpl | com.cboe.infrastructureServices.persistenceService.PersistenceServiceNullImpl) #REQUIRED
+	description CDATA #FIXED ""
+>
+<!ELEMENT uuidServiceImpl EMPTY>
+<!ATTLIST uuidServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.uuidService.IdServiceImpl | com.cboe.infrastructureServices.uuidService.IdServiceNullImpl | com.cboe.infrastructureServices.uuidService.IdServiceSimpleImpl ) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT jcacheServiceImpl EMPTY>
+<!ATTLIST jcacheServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.cacheService.JCacheFactorySimpleImpl | com.cboe.infrastructureServices.cacheService.JCacheFactoryInfinispanImpl ) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT securityServiceImpl EMPTY>
+<!ATTLIST securityServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.securityService.SecurityServiceImpl | com.cboe.infrastructureServices.securityService.NullSecurityServiceImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT lifeLineServiceImpl EMPTY>
+<!ATTLIST lifeLineServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.lifeLineService.LifeLineServiceImpl | com.cboe.infrastructureServices.lifeLineService.LifeLineServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT processWatcherServiceImpl EMPTY>
+<!ATTLIST processWatcherServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.processWatcherService.ProcessWatcherServiceImpl | com.cboe.infrastructureServices.processWatcherService.ProcessWatcherServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT loggingServiceImpl EMPTY>
+<!ATTLIST loggingServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.loggingService.LogServiceImpl | com.cboe.infrastructureServices.loggingService.LogServiceSMAImpl | com.cboe.infrastructureServices.loggingService.LogServiceConsoleImpl | com.cboe.infrastructureServices.loggingService.LogServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT timeServiceImpl EMPTY>
+<!ATTLIST timeServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.timeService.TimeServiceImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT instrumentationServiceImpl EMPTY>
+<!ATTLIST instrumentationServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceImpl | com.cboe.infrastructureServices.instrumentationService.InstrumentationServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT sessionManagementServiceImpl EMPTY>
+<!ATTLIST sessionManagementServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.sessionManagementService.SessionManagementServiceImpl | com.cboe.infrastructureServices.sessionManagementService.SessionManagementServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT calendarServiceImpl EMPTY>
+<!ATTLIST calendarServiceImpl
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readOnly"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value (com.cboe.infrastructureServices.calendarService.CalendarAdminServiceImpl | com.cboe.infrastructureServices.calendarService.CalendarAdminServiceNullImpl) #REQUIRED
+	description CDATA #FIXED "The facade implementations"
+>
+<!ELEMENT ServiceHome (ServiceHomeProperties)>
+<!ATTLIST ServiceHome
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #REQUIRED
+	objectName CDATA #IMPLIED
+	container CDATA #FIXED "frameworkContainer"
+>
+<!ELEMENT ServiceHomeProperties (homeImpl, managedResourceName?, logServiceComponent?)>
+<!ATTLIST ServiceHomeProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT persistentBrokerName EMPTY>
+<!ATTLIST persistentBrokerName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType (string | integer | float | enum) #FIXED "enum"
+	brokerName (transient | pooledBroker | nullBroker | batchBroker1 | batchBroker2 | batchBroker3 | batchBroker4 | batchBroker5) #REQUIRED
+	propertyValue CDATA #FIXED "brokerName"
+>
+<!-- By using the type of 'enum' a value is required -->
+<!ELEMENT logServiceComponent (#PCDATA)>
+<!ATTLIST logServiceComponent
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "enum"
+	propertyValue CDATA #FIXED "value"
+	value CDATA #REQUIRED
+	description CDATA #FIXED "The component of the logging service that will log messages for this service"
+>
+<!ELEMENT orbServiceName (#PCDATA)>
+<!ATTLIST orbServiceName
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The SMA name of this service"
+>
+<!ELEMENT Application (ApplicationProperties)>
+<!ATTLIST Application
+	type %typeConstraints; #FIXED "ManagedResource"
+	name CDATA #FIXED "ApplicationNameNotUsed"
+	objectName CDATA #IMPLIED
+>
+<!ELEMENT ApplicationProperties %applicationDefinedProperties;>
+<!ATTLIST ApplicationProperties
+	type %typeConstraints; #FIXED "ManagedProperties"
+>
+<!ELEMENT listOfHomes (#PCDATA) >
+<!ATTLIST listOfHomes
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "The comma separated ordered list of the homes to initialize"
+>
+<!ELEMENT state (#PCDATA) >
+<!ATTLIST state
+	type %typeConstraints; #FIXED "ManagedProperty"
+	mode %modeConstraints; #FIXED "readWrite"
+	propertyType %propertyTypes; #FIXED "string"
+	description CDATA #FIXED "Current state of foundation framework, set by the running process"
+>

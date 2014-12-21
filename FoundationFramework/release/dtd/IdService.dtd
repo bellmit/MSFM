@@ -1,0 +1,105 @@
+<!ENTITY % reusableElements SYSTEM "Header.dtd" >
+%reusableElements;
+
+<!-- By using the type of 'enum' a value is required -->
+<!ELEMENT logServiceComponent (#PCDATA)>
+<!ATTLIST logServiceComponent
+    type %typeConstraints; #FIXED "ManagedProperty"
+    mode %modeConstraints; #FIXED "readWrite"
+    propertyType %propertyTypes; #FIXED "enum"
+    propertyValue CDATA #FIXED "value"
+    value CDATA #REQUIRED
+    description CDATA #FIXED "The component of the logging service that will log messages for this service"
+>
+<!ELEMENT persistentBrokerName (#PCDATA)>
+<!ATTLIST persistentBrokerName type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ENTITY % home SYSTEM "Home.dtd" >
+%home;
+
+<!ELEMENT GlobalIdService (IdService* )>
+<!ATTLIST GlobalIdService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+	objectName  CDATA	 #IMPLIED >
+
+<!ELEMENT IdService (IdServiceProperties, RangedService* ) >
+<!ATTLIST IdService  type		  %typeConstraints;  #FIXED 'ManagedResource'
+			name		ID	 #REQUIRED
+			objectName  CDATA	 #IMPLIED
+			container   CDATA #FIXED 'frameworkContainer' >
+
+<!ELEMENT IdServiceProperties  (((isServer, idServerName) | ((isSecondaryServer, idServerName)?, idServiceServerName) ), eventChannelName, listOfServices?, poaName?, objectId?, prefetchQty? )>
+<!ATTLIST IdServiceProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT isServer EMPTY>
+<!ATTLIST isServer  type	   %typeConstraints; #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;  #FIXED 'readWrite'
+	propertyType   %propertyTypes;  #FIXED 'enum'
+	booleanValue   (true | false )  #REQUIRED
+	propertyValue CDATA	 #FIXED 'booleanValue' >
+
+
+<!ELEMENT isSecondaryServer EMPTY>
+<!ATTLIST isSecondaryServer type	   %typeConstraints; #FIXED 'ManagedProperty'
+	mode		   %modeConstraints;  #FIXED 'readWrite'
+	propertyType   %propertyTypes;  #FIXED 'enum'
+	booleanValue   (true | false )  #REQUIRED
+	propertyValue CDATA	 #FIXED 'booleanValue' >
+
+
+<!ELEMENT eventChannelName (#PCDATA)>
+<!ATTLIST eventChannelName  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'A name of a known event channel. ' >
+
+<!ELEMENT idServerName (#PCDATA)>
+<!ATTLIST idServerName  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The name to export as the name of my server.' >
+
+<!ELEMENT prefetchQty (#PCDATA)>
+<!ATTLIST prefetchQty  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The prefetch quantity for local cache.' >
+
+
+<!ELEMENT idServiceServerName (#PCDATA)>
+<!ATTLIST idServiceServerName  type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'The name of the remote id service server.' >
+
+
+<!ELEMENT listOfServices (#PCDATA)>
+<!ATTLIST listOfServices type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED 'A comma separated list of services. ' >
+
+<!ELEMENT RangedService ( RangedServiceProperties) >
+<!ATTLIST RangedService 
+    type          %typeConstraints;  #FIXED 'ManagedResource'
+    name    CDATA    #REQUIRED 
+    objectName  CDATA    #IMPLIED 
+    description CDATA #FIXED '' >
+
+<!ELEMENT RangedServiceProperties  (lowerBounds, upperBounds) >
+<!ATTLIST RangedServiceProperties  type  %typeConstraints;  #FIXED 'ManagedProperties' >
+
+<!ELEMENT lowerBounds (#PCDATA)>
+<!ATTLIST lowerBounds type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+
+<!ELEMENT upperBounds (#PCDATA)>
+<!ATTLIST upperBounds type	%typeConstraints;  #FIXED 'ManagedProperty'
+	mode		  %modeConstraints;  #FIXED 'readWrite'
+	propertyType  %propertyTypes;  #FIXED 'string'
+	description CDATA #FIXED '' >
+

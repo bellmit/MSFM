@@ -1,0 +1,474 @@
+
+(object Petal
+    version    	42
+    _written   	"Rose 4.5.8054a"
+    charSet    	0)
+
+(object Class_Category "eventService"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"366414210270"
+    documentation 	
+|This package contains one or more "wrapper" classes that provides a proxy for the actual Event Service.
+|
+|Developers should use these proxy classes, either through the FoundationFramework, or directly if the FoundationFramework is not being used.
+|
+|Owner: Mark Woyna 
+    
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "EventService"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36542D5103C7"
+	    stereotype 	"Interface"
+	    operations 	(list Operations
+		(object Operation "connectEventChannelConsumer"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B130271"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String")
+			(object Parameter "cons"
+			    type       	"org.omg.CosEventComm.PushConsumer"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getEventChannelSupplierStub"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B130291"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String"))
+		    result     	"org.omg.CORBA.Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "connectConsumerToPOA"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B1302AF"
+		    parameters 	(list Parameters
+			(object Parameter "poaServant"
+			    type       	"org.omg.PortableServer.DynamicImplementation"))
+		    result     	"org.omg.CORBA.Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Abstract"
+			    value      	TRUE))
+		    quid       	"36B61B1302BF"
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::FoundationFramework::EventService"
+	    quidu      	"36542D600256"
+	    module     	"Component View::com::cboe::infrastructureServices::foundationFramework::EventService"
+	    quidu      	"3659D52E01BD"
+	    module     	"Component View::com::cboe::infrastructureServices::eventService::EventService"
+	    quidu      	"36B61B1301C6"
+	    language   	"Java")
+	(object Class "EventServiceBaseImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B14001F"
+	    realized_interfaces 	(list realize_rel_list
+		(object Realize_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B1400BB"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventService"))
+	    operations 	(list Operations
+		(object Operation "getInstance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61B140206"
+		    documentation 	
+|
+|	  
+		    
+		    result     	"EventService"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61B140207"
+		    documentation 	
+|
+|	   Return  the name 
+|	 
+|	 
+		    
+		    result     	"String"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "initialize"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B140208"
+		    documentation 	
+|
+|	  
+		    
+		    parameters 	(list Parameters
+			(object Parameter "configService"
+			    type       	"ConfigurationService"))
+		    result     	"boolean"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "setServiceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"Static"
+			    value      	TRUE))
+		    quid       	"36B61B14020A"
+		    documentation 	
+|
+|	   Set  the name
+|	 
+		    
+		    parameters 	(list Parameters
+			(object Parameter "aName"
+			    type       	"String"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "connectEventChannelConsumer"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B14020C"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String")
+			(object Parameter "cons"
+			    type       	"org.omg.CosEventComm.PushConsumer"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::eventService::EventServiceBaseImpl"
+	    quidu      	"36B61B13036B"
+	    language   	"Java"
+	    abstract   	TRUE)
+	(object Class "EventServiceImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B1402CE"
+	    documentation 	
+|
+| * Wrapper class for the actual EventService implementation.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B14036B"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "EventServiceImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150033"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "connectEventChannelConsumer"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150034"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String")
+			(object Parameter "cons"
+			    type       	"org.omg.CosEventComm.PushConsumer"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getByNameFull"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150038"
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"org.omg.CORBA.Object"
+		    exceptions 	"org.omg.CosNaming.NamingContextPackage.InvalidName"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "getEventChannelSupplierStub"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B15003A"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String"))
+		    result     	"org.omg.CORBA.Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "connectConsumerToPOA"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B15003D"
+		    parameters 	(list Parameters
+			(object Parameter "poaServant"
+			    type       	"org.omg.PortableServer.DynamicImplementation"))
+		    result     	"org.omg.CORBA.Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::eventService::EventServiceImpl"
+	    quidu      	"36B61B140242"
+	    language   	"Java")
+	(object Class "EventServiceNewImpl"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateFinalizer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateStaticInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateInstanceInitializer"
+		    value      	FALSE)
+		(object Attribute
+		    tool       	"Java"
+		    name       	"GenerateDefaultConstructor"
+		    value      	FALSE))
+	    quid       	"36B61B1500FA"
+	    documentation 	
+|
+| * Wrapper class for the actual EventService implementation.
+| 
+	    
+	    superclasses 	(list inheritance_relationship_list
+		(object Inheritance_Relationship
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150196"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventServiceBaseImpl"))
+	    operations 	(list Operations
+		(object Operation "EventServiceNewImpl"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150254"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Implementation"
+		    uid        	0)
+		(object Operation "connectEventChannelConsumer"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150255"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String")
+			(object Parameter "cons"
+			    type       	"org.omg.CosEventComm.PushConsumer"))
+		    result     	"void"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "getByNameFull"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B150259"
+		    parameters 	(list Parameters
+			(object Parameter "name"
+			    type       	"String"))
+		    result     	"org.omg.CORBA.Object"
+		    exceptions 	"org.omg.CosNaming.NamingContextPackage.InvalidName"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Private"
+		    uid        	0)
+		(object Operation "getEventChannelSupplierStub"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B15025B"
+		    parameters 	(list Parameters
+			(object Parameter "ecName"
+			    type       	"String")
+			(object Parameter "repId"
+			    type       	"String"))
+		    result     	"org.omg.CORBA.Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0)
+		(object Operation "connectConsumerToPOA"
+		    attributes 	(list Attribute_Set)
+		    quid       	"36B61B15025E"
+		    parameters 	(list Parameters
+			(object Parameter "poaServant"
+			    type       	"org.omg.PortableServer.DynamicImplementation"))
+		    result     	"org.omg.CORBA.Object"
+		    concurrency 	"Sequential"
+		    opExportControl 	"Public"
+		    uid        	0))
+	    module     	"Component View::com::cboe::infrastructureServices::eventService::EventServiceNewImpl"
+	    quidu      	"36B61B15005D"
+	    language   	"Java")
+	(object Association "$UNNAMED$0"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B140157"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$1"
+		    quid       	"36B61B140158"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventServiceBaseImpl"
+		    quidu      	"36B61B14001F")
+		(object Role "serviceImplClassName"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	
+|"com.cboe.infrastructureServices.eventService.EventServiceImpl"
+			    ))
+		    quid       	"36B61B140159"
+		    label      	"serviceImplClassName"
+		    supplier   	"Logical View::java::lang::String"
+		    quidu      	"361E393902F5"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$2"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B140203"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$3"
+		    quid       	"36B61B140204"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventServiceBaseImpl"
+		    quidu      	"36B61B14001F")
+		(object Role "instance"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61B140205"
+		    label      	"instance"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventService"
+		    quidu      	"36542D5103C7"
+		    exportControl 	"Private"
+		    is_navigable 	TRUE
+		    static     	TRUE)))
+	(object Association "$UNNAMED$4"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B150030"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$5"
+		    quid       	"36B61B150031"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventServiceImpl"
+		    quidu      	"36B61B1402CE")
+		(object Role "eventService"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61B150032"
+		    label      	"eventService"
+		    supplier   	"Logical View::com::cboe::eventService::EventServiceImpl"
+		    quidu      	"36B61B15002F"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE)))
+	(object Association "$UNNAMED$6"
+	    attributes 	(list Attribute_Set)
+	    quid       	"36B61B150251"
+	    roles      	(list role_list
+		(object Role "$UNNAMED$7"
+		    quid       	"36B61B150252"
+		    supplier   	"Logical View::com::cboe::infrastructureServices::eventService::EventServiceNewImpl"
+		    quidu      	"36B61B1500FA")
+		(object Role "eventService"
+		    attributes 	(list Attribute_Set
+			(object Attribute
+			    tool       	"Java"
+			    name       	"InitialValue"
+			    value      	""))
+		    quid       	"36B61B150253"
+		    label      	"eventService"
+		    supplier   	"Logical View::com::cboe::eventService::EventServiceNewImpl"
+		    quidu      	"36B61B150242"
+		    exportControl 	"Implementation"
+		    is_navigable 	TRUE))))
+    logical_presentations 	(list unit_reference_list))
