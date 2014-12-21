@@ -1,0 +1,153 @@
+#v001>Common C++ Idioms
+#stup>$STDBASE=specifies the default base project for your compiler
+#stup>$DATA=specifies a directory in which to place data files
+#stup>$DESIGN=specifies the directory where generated designs are to be stored
+#ssys>facade=
+#ssys>idioms=
+#ssys>lang=
+#ssys>os_abs=
+#ssys>interntl=
+#ssys>stl=
+#ssys>os_abstract=
+#ssys>common=
+#ssys>include=
++Cfacade==
++Cidioms==
++Clang==
++Cos_abs==
++Cinterntl==
++Cstl==
++Cos_abstract==
++Ccommon==
+-I$BUILD_ENV_ROOT\common\include=$DATA\$BUILD_ENV_ROOT\common\include
+-I!$BUILD_ENV_ROOT\common\include\alloc_fwk=$DATA\$BUILD_ENV_ROOT\common\include\alloc_fwk
+-I!$BUILD_ENV_ROOT\common\include\idioms=$DATA\$BUILD_ENV_ROOT\common\include\idioms
+-I!$BUILD_ENV_ROOT\common\include\os_abstract=$DATA\$BUILD_ENV_ROOT\common\include\os_abstract
+-I!$BUILD_ENV_ROOT\common\lang=$DATA\$BUILD_ENV_ROOT\common\lang
+-I!$BUILD_ENV_ROOT\common\alloc_fw=$DATA\$BUILD_ENV_ROOT\common\alloc_fw
+-I!$BUILD_ENV_ROOT\common\include\interntl=$DATA\$BUILD_ENV_ROOT\common\include\interntl
+-I$BUILD_ENV_ROOT\common\include\stl=$DATA\$BUILD_ENV_ROOT\common\include\stl
+-I!$BUILD_ENV_ROOT\common\include\lang=$DATA\$BUILD_ENV_ROOT\common\include\lang
+@$STDBASE\msvc50.pjt
++X!h=.cnh
++X*cpp=.cnq
++X!hh=.cni
+#dlft>Simple
+#dpfx>$DATA\
+#dsfx>
+#xnam>working
+#xopt> `+Kf1` `+Kt0..1` `+MgReverse Engineered` `+PcC++` `+Sxsub` `+V3 ` `+V4 ` `+V7implicit` `+V8type 3` `+cdReverse Engineered` `+cxcat` `+tt%c` `+vv4.0` -ArMLd -ClMd -CtJdM -Cu= -EnUOuop -JhMd -JsMd -MS9: -Mcy -MdN -MtM -Nn@ -ScS -Ses -SsJdM -StMuop -Su< -TdMd -TiMd -TpMd -TvMd -cAe -cBbefghjz -cCegjklmrtvw -cDe -dNM -dUM -dnM -duM -hSMLdq -hsMLdq -mtM -uSMd -usMd
+#xddd>$BUILD_ENV_ROOT\common\doc\%f.red
+#dt2p>t2_
+#t2fc>
+#t2fc>#if defined(t2_integral_types_hh) || defined(t2_bool_hh)
+#t2fc>#include <lang_config.h>
+#t2fc>#endif
+#[flf>Pathname
+#|sky>~O~Q~R~]
+#|hky>~Q~X
+#|dky>~O\~Q~R~I~Z~I~S~U~ICt=~[~ISs=~\~Y~V    ~X
+#]flf>
+#[flf>Directory
+#|sky>~O~Q~R~]
+#|hky>~O~Q~X
+#|dky>~O (#)~Y ~I~Q~R~I~Z~I~S~U~ICt=~[~ISs=~\~Y~V~I    ~X   
+#]flf>
+#[flf>Simple Name
+#|sky>~Q~R~O~]
+#|hky>~Q~X
+#|dky>~Q~R~I~Z~I~S~U~ICt=~[~ISs=~\~I~O~Y~V    ~X
+#]flf>
+#[flf>Status
+#|sky>~S~Q~R~O~]
+#|hky>~S~Q~X
+#|dky>~S (#)~Y~U~I~Q~R~I~Z~ICt=~[~ISs=~\~I~O~Y ~I~V    ~X
+#]flf>
+#[flf>Errors
+#|sky>~U~S~Q~R~O~]
+#|hky>~S~Q~X
+#|dky>~U~S (#)~Y ~I~U~I~Q~R~I~Z~ICt=~[~ISs=~\~I~O~Y ~I ~I~V    ~X
+#]flf>
+#[flf>Type
+#|sky>~Z~O~Q~R~U~S~]
+#|hky>~Z~O~Q~X
+#|dky>~Z (#)~Y ~I~O (#)~Y ~I ~I~Q~R~I~S~U~ICt=~[~ISs=~\~Y ~I ~I~V    ~X
+#]flf>
+#[flf>Category
+#|sky>~[~Q~R~O~]
+#|hky>~[~Q~X
+#|dky>~[ (#)~Y ~I~U~I~Q~R~I~Z~I~S~ISs=~\~I~O~Y ~I ~I~V    ~X
+#]flf>
+#[flf>Extension
+#|sky>~R~O~Q~]
+#|hky>~R~O~Q~X
+#|dky>~R (#)~Y ~I~O (#)~Y ~I ~I~Q~R~I~S~U~I~Z~ICt=~[~Y ~I ~I~V    ~X
+#]flf>
+#[flf>Subsystem
+#|sky>~\~Q~R~O~]
+#|hky>~\~Q~X
+#|dky>~\ (#)~Y ~I~U~I~Q~R~I~Z~I~S~ICt=~[~I~O~Y ~I ~I~V    ~X
+#]flf>
+#[lyt>Export
+#|ste>1 472 439
+#|brs> 24 83 267 367 270 337 0 0 0 0 0hThvLvCShvRDF
+#|flf>Directory
+#]lyt>
+#[lyt>Files Only
+#|ste>1 445 419
+#|brs> 20 0 0 0 0 0 0 0 0 0 0hTF
+#|flf>Pathname
+#]lyt>
+#[lyt>Full
+#|ste>1 472 483
+#|brs> 24 145 84 268 369 357 205 287 169 328 0hThhvBvCSvLEhvvDUIhRF
+#|flf>Pathname
+#]lyt>
+#[lyt>Simple
+#|ste>1 499 453
+#|brs> 24 83 377 106 0 0 0 0 0 0 0hThvLEhBF
+#|flf>Directory
+#]lyt>
++Clang
+#ssys>lang
+-Y$BUILD_ENV_ROOT\common\include\lang\bool.hh
+-Y$BUILD_ENV_ROOT\common\include\lang\integral_types.hh=R
+$BUILD_ENV_ROOT\common\include\lang_config.h
++Cidioms
+#ssys>idioms
+$BUILD_ENV_ROOT\common\include\idioms\rc_type.hh
+$BUILD_ENV_ROOT\common\include\idioms\rc_type_i.hh
+$BUILD_ENV_ROOT\common\include\idioms\singleton.hh
+$BUILD_ENV_ROOT\common\include\idioms\vartype.hh
++Cstl
+#ssys>stl
+$BUILD_ENV_ROOT\common\include\stl\algo.h
+$BUILD_ENV_ROOT\common\include\stl\algobase.h
+$BUILD_ENV_ROOT\common\include\stl\bool.h
+$BUILD_ENV_ROOT\common\include\stl\bvector.h
+$BUILD_ENV_ROOT\common\include\stl\defalloc.h
+$BUILD_ENV_ROOT\common\include\stl\deque.h
+$BUILD_ENV_ROOT\common\include\stl\function.h
+$BUILD_ENV_ROOT\common\include\stl\hash_map.h
+$BUILD_ENV_ROOT\common\include\stl\hash_set.h
+$BUILD_ENV_ROOT\common\include\stl\hashtable.h
+$BUILD_ENV_ROOT\common\include\stl\heap.h
+$BUILD_ENV_ROOT\common\include\stl\iterator.h
+$BUILD_ENV_ROOT\common\include\stl\list.h
+$BUILD_ENV_ROOT\common\include\stl\map.h
+$BUILD_ENV_ROOT\common\include\stl\multimap.h
+$BUILD_ENV_ROOT\common\include\stl\multiset.h
+$BUILD_ENV_ROOT\common\include\stl\pair.h
+$BUILD_ENV_ROOT\common\include\stl\set.h
+$BUILD_ENV_ROOT\common\include\stl\stack.h
+$BUILD_ENV_ROOT\common\include\stl\tempbuf.h
+$BUILD_ENV_ROOT\common\include\stl\tree.h
+$BUILD_ENV_ROOT\common\include\stl\vector.h
++Cos_abstract
+#ssys>os_abstract
+$BUILD_ENV_ROOT\common\include\os_abstract\assert.hh
+$BUILD_ENV_ROOT\common\include\os_abstract\os.hh
+$BUILD_ENV_ROOT\common\include\os_abstract\synch_m.hh
++Cinterntl
+#ssys>interntl
+$BUILD_ENV_ROOT\common\include\interntl\istring.hh

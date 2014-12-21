@@ -1,0 +1,960 @@
+
+D:\Dev\Projects\Haps\SQL>plus80 dotyl/dotyl@haps @schema 
+
+SQL*Plus: Release 8.0.5.0.0 - Production on Mon Sep 10 16:22:39 2001
+
+(c) Copyright 1998 Oracle Corporation.  All rights reserved.
+
+
+Connected to:
+Oracle8i Enterprise Edition Release 8.1.6.0.0 - Production
+With the Partitioning and Parallel Server options
+JServer Release 8.1.6.0.0 - Production
+
+
+Package dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Sequence dropped.
+
+
+Sequence dropped.
+
+DROP SEQUENCE "DOTYL".submit_seq
+                      *
+ERROR at line 1:
+ORA-02289: sequence does not exist
+
+
+
+Commit complete.
+
+
+Sequence created.
+
+CREATE SEQUENCE "DOTYL".submit_seq
+                        *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Sequence created.
+
+CREATE SEQUENCE "DOTYL".queue_seq
+                        *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".sequences
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".print_body
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".physical_location
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".destination  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".route  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".round_robin_groups  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".round_robin_members  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".cascade_groups  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".cascade_members  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".print_header
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".print_queue  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Trigger created.
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE TABLE "DOTYL".print_history  /* potentially partitioned */
+                     *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE GLOBAL TEMPORARY TABLE "DOTYL".temp_rr_accumulator
+                                      *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE GLOBAL TEMPORARY TABLE "DOTYL".temp_cc_group_accumulator
+                                      *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Table created.
+
+CREATE GLOBAL TEMPORARY TABLE "DOTYL".temp_cc_member_accumulator
+                                      *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+
+Commit complete.
+
+
+Package created.
+
+
+Commit complete.
+
+
+Package body created.
+
+
+Commit complete.
+
+Disconnected from Oracle8i Enterprise Edition Release 8.1.6.0.0 - Production
+With the Partitioning and Parallel Server options
+JServer Release 8.1.6.0.0 - Production
+
+D:\Dev\Projects\Haps\SQL>plus80 dotyl/dotyl@haps @populate 
+
+SQL*Plus: Release 8.0.5.0.0 - Production on Mon Sep 10 16:22:48 2001
+
+(c) Copyright 1998 Oracle Corporation.  All rights reserved.
+
+
+Connected to:
+Oracle8i Enterprise Edition Release 8.1.6.0.0 - Production
+With the Partitioning and Parallel Server options
+JServer Release 8.1.6.0.0 - Production
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+       ID      LAST NAME
+--------- --------- --------------------------------
+	0	  0 Global
+	1	  0 PL 1
+	2	  0 PL 2
+	3	  0 PL 3
+	4	  0 PL 4
+	5	  0 PL 5
+	6	  0 PL 6
+	7	  0 PL 7
+	8	  0 PL 8
+	9	  0 PL 9
+       10	  0 PL 10
+       11	  0 PL 11
+       12	  0 PL 12
+       13	  0 PL 13
+       14	  0 PL 14
+       15	  0 PL 15
+       16	  0 PL 16
+       17	  0 PL 17
+       18	  0 PL 18
+       19	  0 PL 19
+       20	  0 PL 20
+
+21 rows selected.
+
+
+       ID NAME				   DESCRIPTION
+--------- -------------------------------- --------------------------------
+	1 one				   test
+	2 two				   test
+	3 two				   test
+	4 two				   test
+	5 two				   test
+	6 two				   test
+	7 two				   test
+	8 two				   test
+	9 two				   test
+       10 two				   test
+       11 two				   test
+       12 two				   test
+       13 two				   test
+       14 two				   test
+       15 two				   test
+       16 two				   test
+       17 two				   test
+       18 two				   test
+       19 two				   test
+       20 two				   test
+
+20 rows selected.
+
+
+DESTINATION_KEY 		 NAME				  DESCRIPTION
+-------------------------------- -------------------------------- --------------------------------
+100				 100				  batch 1-10 test
+101				 101				  test 1
+102				 102				  test 2
+103				 103				  test 3
+104				 104				  test 4
+105				 105				  test 5
+106				 106				  test 6
+107				 107				  test 7
+108				 108				  test 8
+109				 109				  test 9
+110				 110				  test 10
+111				 111				  test 11
+112				 112				  test 12
+113				 113				  test 13
+114				 114				  test 14
+115				 115				  test 15
+116				 116				  test 16
+117				 117				  test 17
+118				 118				  test 18
+119				 119				  test 19
+120				 120				  test 20
+
+DESTINATION_KEY 		 NAME				  DESCRIPTION
+-------------------------------- -------------------------------- --------------------------------
+121				 121				  batch 11-20 test
+122				 122				  round-robin 11-20 test
+
+23 rows selected.
+
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+100						    1
+
+
+100						    2
+
+
+100						    3
+
+
+100						    4
+
+
+100						    5
+
+
+100						    6
+
+
+100						    7
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+
+
+100						    8
+
+
+100						    9
+
+
+100						   10
+
+
+101						    1
+
+
+102						    2
+
+
+103						    3
+
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+
+104						    4
+
+
+105						    5
+
+
+106						    6
+
+
+107						    7
+
+
+108						    8
+
+
+109						    9
+
+
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+110						   10
+
+
+121						   11
+
+
+121						   12
+
+
+121						   13
+
+
+121						   14
+
+
+121						   15
+
+
+121						   16
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+
+
+121						   17
+
+
+121						   18
+
+
+121						   19
+
+
+121						   20
+
+
+111						   11
+
+
+112						   12
+
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+
+113						   13
+
+
+114						   14
+
+
+115						   15
+
+
+116						   16
+
+
+117						   17
+
+
+118						   18
+
+
+
+DESTINATION_KEY 		 PHYSICAL_LOCATION_ID NORMALLY_ROUTED_ID
+-------------------------------- -------------------- ------------------
+MESSAGE
+--------------------------------
+119						   19
+
+
+120						   20
+
+
+
+40 rows selected.
+
+
+       ID DESTINATION_KEY		      MODULO   COUNTER DESCRIPTION
+--------- -------------------------------- --------- --------- --------------------------------
+	1 122					  10	     1 round-robin for Loc10-20
+
+
+ GROUP_ID MODULO_OFFSET PHYSICAL_LOCATION_ID
+--------- ------------- --------------------
+	1	      0 		  11
+	1	      1 		  12
+	1	      2 		  13
+	1	      3 		  14
+	1	      4 		  15
+	1	      5 		  16
+	1	      6 		  17
+	1	      7 		  18
+	1	      8 		  19
+	1	      9 		  20
+
+10 rows selected.
+
+Disconnected from Oracle8i Enterprise Edition Release 8.1.6.0.0 - Production
+With the Partitioning and Parallel Server options
+JServer Release 8.1.6.0.0 - Production
+
+
+Hit any key to continue
+Press any key to continue . . . 

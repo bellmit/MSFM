@@ -1,0 +1,4 @@
+
+#if defined(t2_integral_types_hh) || defined(t2_bool_hh)
+#include <lang_config.h>
+#endif

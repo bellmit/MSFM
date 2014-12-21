@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+    <jar path="D:/Dev/JGrinderPerf/Transaction.jar"/>
+    <options overwrite="true" compress="true" exportErrors="true" exportWarnings="true" saveDescription="true" descriptionLocation="/Lwt_Test/com/cboe/lwt/Transaction/TransactJar.jardesc" useSourceFolders="false" buildIfNeeded="true"/>
+    <manifest manifestVersion="1.0" usesManifest="true" reuseManifest="false" saveManifest="false" generateManifest="true" manifestLocation="" mainClassHandleIdentifier="=Lwt_Test/&lt;com.cboe.lwt.Transaction{TransactionSuite.java[TransactionSuite">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true">
+        <javaElement handleIdentifier="=Lwt_Test/&lt;com.cboe.lwt.testUtils{SystemUtils.java"/>
+        <javaElement handleIdentifier="=Lwt_Test/&lt;com.cboe.lwt.Transaction"/>
+        <javaElement handleIdentifier="=Lwt/&lt;com.cboe.lwt.Transaction"/>
+    </selectedElements>
+</jardesc>
