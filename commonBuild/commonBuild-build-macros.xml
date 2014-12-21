@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+
+<!-- Original ant template taken from existing XTP build, created by Jerry Hamm -->
+<!--    /vobs/cboe/xtp/release/build.xml     and                                -->
+<!--    /vobs/dte/ohs/release/build-macros.xml                                  -->
+<!-- This is a top-level import, and should only contain common targets         -->
+<!--    All target names need to be unique,                                     --> 
+<!--       or they will be over-ridden when imported                            -->
+
+<project name="commonBuild.build.macros" basedir="." default="-DefineMacros">
+
+    <description>
+        This is the top-level macro import, and should only contain targets common across all CBOE products
+    </description>
+
+    <!-- ant.file is the current file -->
+    <echo>Building ${ant.file}</echo> 
+
+    <target name="-DefineMacros">
+        
+        <!-- **************************************************************
+                Parse IDL - Custom IDLCompiler under /vobs/dte/idlbase
+        ******************************************************************* -->
+	<macrodef name="parseIDL-macro">
+            <attribute name="IDLdir" />
+            <attribute name="IDLjavadir" />
+            <attribute name="IDLincludes" />
+            <attribute name="IDLfile" />
+
+            <sequential>
+            <echo message="IDL Compile: @{IDLfile}"/>
+
+	    <java dir="@{IDLdir}"
+		classname="com.cboe.IDLCompiler.IDLParser"
+		fork="yes">
+		<classpath>
+		    <pathelement location="${dte.root}/idlbase/idlcompiler/release/jars/IDLCompiler.jar"/>
+		    <pathelement location="${dte.root}/tools/jgl/jars/jgl.jar"/>
+		</classpath>
+
+		<arg line="-D ORB.IRLocal=true -D IDLCompiler.PreProcessor.MaxCyclicCount=999 -IR -O @{IDLjavadir}/@{IDLfile}.out @{IDLincludes} -Z mod"/>
+
+		<!-- arg line="-D ORB.IRLocal=true -D IDLCompiler.PreProcessor.MaxCyclicCount=999 -IR -O @{IDLjavadir} @{IDLincludes} -P com.cboe.idl -P exceptions=com.cboe -P CosEventComm=org.omg -P CosTypedEventComm=org.omg -P policyEditor=com.cboe.securityService -P infraUtil=com.cboe -Z mod"/ -->
+
+		<arg value="@{IDLfile}"/>
+	    </java>
+            </sequential>
+	</macrodef>
+
+        <!-- **************************************************************
+                Parse IDL ASYNC - Asynchronous Custom IDLCompiler under /vobs/dte/idlbase
+        ******************************************************************* -->
+	<macrodef name="parseIDL-ASYNC-macro">
+            <attribute name="IDLdir" />
+            <attribute name="IDLjavadir" />
+            <attribute name="IDLincludes" />
+            <attribute name="IDLfile" />
+
+            <sequential>
+            <echo message="IDL Compile: @{IDLfile}"/>
+
+	    <java dir="@{IDLdir}"
+		classname="com.cboe.IDLCompiler.IDLParser"
+		fork="yes">
+		<classpath>
+		    <pathelement location="${dte.root}/idlbase/idlcompiler/release/jars/IDLCompiler.jar"/>
+		    <pathelement location="${dte.root}/tools/jgl/jars/jgl.jar"/>
+		</classpath>
+
+		<arg line="-D ORB.IRLocal=true -D IDLCompiler.PreProcessor.MaxCyclicCount=999 -IR -O @{IDLjavadir}/@{IDLfile}.out @{IDLincludes} -Z mod -Async"/>
+
+		<arg value="@{IDLfile}"/>
+	    </java>
+            </sequential>
+	</macrodef>
+
+
+        <!-- **************************************************************
+                Create Interceptor
+        ******************************************************************* -->
+        <macrodef name="create-interceptor">
+            <attribute name="interceptorType" />
+            <attribute name="interfaceType" />
+            <attribute name="dir" />
+            <sequential>
+            	<echo message="Generate interceptor @{interceptorType}:"/>
+                <java fork="true" failonerror="true" dir="@{dir}"
+		            	classname="com.objectwave.tools.GenerateTemplateInto">
+                    <classpath refid="integ.interceptors.classpath"/>
+                    <jvmarg value="-Xmx128M"/>
+                    <sysproperty key="header" value="t"/>
+                    <arg value="@{interceptorType}"/>
+	                <arg value="@{interfaceType}"/>
+	                <arg value="ExceptionExtendBOInterceptor"/>
+	            </java>
+                <java fork="true" failonerror="true" dir="@{dir}"
+		            	classname="com.objectwave.tools.GenerateTemplateInto">
+                    <classpath refid="integ.interceptors.classpath"/>
+                    <jvmarg value="-Xmx128M"/>
+                    <sysproperty key="useRealClassName" value=""/>
+                    <arg value="@{interceptorType}"/>
+	                <arg value="@{interfaceType}"/>
+	                <arg value="InterceptorConstructorV2"/>
+	            </java>
+                <java fork="true" failonerror="true" dir="@{dir}"
+		            	classname="com.objectwave.tools.GenerateTemplateInto">
+                    <classpath refid="integ.interceptors.classpath"/>
+                    <jvmarg value="-Xmx128M"/>
+                    <arg value="@{interceptorType}"/>
+	                <arg value="@{interfaceType}"/>
+	                <arg value="ExceptionAndRollbackInterceptorV2"/>
+	            </java>
+	        </sequential>
+	    </macrodef>
+
+        <!-- **************************************************************
+                JUnit Batch Macro
+        ******************************************************************* -->
+        <macrodef name="junit-batch-macro">
+            <attribute name="classesdir"    default="TEST CLASSES DIR NOT SET"/>
+            <attribute name="classpathref"  default="TEST CLASSPATH NOT SET"/>
+            <attribute name="resultsdir"    default="RESULTS DIR NOT SET"/>
+	    <attribute name="jvm"           default="/vobs/tpt/tpt_jdk/x86/run_dir/bin/java"/>
+            <sequential>
+		<junit printsummary="true" haltonerror="off" haltonfailure="off" timeout="20000"
+			fork="true" newenvironment="true" jvm="@{jvm}" >
+		<classpath>
+			<pathelement path="@{classesdir}"/>
+			<path refid="@{classpathref}"/>
+		</classpath>
+		<assertions><enable/></assertions>
+		<formatter type="brief" usefile="false"/>
+		<formatter type="xml"/>
+		<batchtest todir="@{resultsdir}">
+			<fileset dir="@{classesdir}" includes="**/*Test.class"/>
+		</batchtest>
+		</junit>
+            </sequential>
+        </macrodef>
+
+
+        <!-- **************************************************************
+                JUnit Suite Macro
+        ******************************************************************* -->
+        <macrodef name="junit-suite-macro">
+            <attribute name="testsuite"     default="TEST SUITE NOT SET"/>
+            <attribute name="classpathref"  default="TEST CLASSPATH NOT SET"/>
+            <attribute name="resultsdir"    default="RESULTS DIR NOT SET"/>
+	    <attribute name="jvm"           default="/vobs/tpt/tpt_jdk/x86/run_dir/bin/java"/>
+            <sequential>
+		<junit printsummary="true" haltonerror="off" haltonfailure="off" timeout="20000"
+			fork="true" newenvironment="true" jvm="@{jvm}" >
+		<classpath>
+			<pathelement path="@{classesdir}"/>
+			<path refid="@{classpathref}"/>
+		</classpath>
+		<assertions><enable/></assertions>
+		<formatter type="brief" usefile="false"/>
+		<formatter type="xml"/>
+		<test todir="@{resultsdir}" name="@{testsuite}"/>
+		</junit>
+            </sequential>
+        </macrodef>
+
+        <!-- **************************************************************
+                JUnit Report Macro
+        ******************************************************************* -->
+        <macrodef name="junit-report-macro">
+            <attribute name="projectdir"    default="PROJECT NOT SET"/>
+            <attribute name="reportsdir"    default="REPORTS DIR NOT SET"/>
+            <sequential>
+	    <junitreport>
+		<fileset dir="@{reportsdir}">
+		    <include name="TEST-*.xml"/>
+		</fileset>
+		<report format="noframes" todir="@{reportsdir}">
+		    <param name="TITLE" expression="JUnit results for @{projectdir}"/>
+		</report>
+	    </junitreport>
+            </sequential>
+        </macrodef>
+
+        <!-- **************************************************************
+                Compile Macro
+        ******************************************************************* -->
+        <macrodef name="compile-macro">
+            <attribute name="source"        default="COMPILE SOURCE DIR NOT SET"/>
+            <attribute name="classpathref"  default="COMPILE CLASSPATH NOT SET"/>
+            <attribute name="classesdir"    default="COMPILE DESTDIR NOT SET"/>
+            <sequential>
+                <mkdir dir="@{classesdir}"/>
+                <echo message="Compile: @{source}"/>
+                
+                <depend srcdir="@{source}" destdir="@{classesdir}" cache="depcache" closure="yes"/>
+                
+                <javac  srcdir="@{source}"
+                        destdir="@{classesdir}"
+                        debug="${compile.debug}"
+                        verbose="${compile.verbose}"
+                        deprecation="false"
+                        includeAntRuntime="false"
+                        optimize="true"
+                        compiler="javac1.6"
+                        source="1.6">
+                        <classpath>
+                            <path refid="@{classpathref}"/>
+                        </classpath>
+                </javac>
+                
+            </sequential>
+        </macrodef>
+
+        <!-- **************************************************************
+                Build Copy Macro
+                Cleartool checkout of release jars and copy from classes dir
+        ******************************************************************* -->
+        <macrodef name="buildcopy-macro">
+            <attribute name="classesjar"    default="CLASSES JAR NOT DEFINED"/>
+            <attribute name="releasejar"    default="RELEASE JAR NOT DEFINED"/>
+            <attribute name="releasedir"    default="RELEASE DIR NOT DEFINED"/>
+            <sequential>
+                <cccheckout viewpath="@{releasejar}"
+                        reserved="false"
+                        nowarn="true"
+                        notco="false"
+                        comment="compiled via ant ${ant.file}"/>
+
+                <copy file="@{classesjar}" todir="@{releasedir}" overwrite="true" />
+            </sequential>
+        </macrodef>
+
+        <!-- **************************************************************
+                Install Macro
+                Cleartool checkin of release jar
+        ******************************************************************* -->
+        <macrodef name="install-macro">
+            <attribute name="releasejar"    default="RELEASE JAR NOT DEFINED"/>
+            <sequential>
+                <cccheckin viewpath="@{releasejar}"
+                        comment="compiled via ant ${ant.file}"
+                        nowarn="true"
+                        identical="true"/>
+            </sequential>
+        </macrodef>
+
+        <!-- **************************************************************
+                Build info capture macro
+                (echo the current clearcase config spec and other info to a 
+                file that can be used as a resource)
+        ******************************************************************* -->
+        <macrodef name="catBuildInfo-macro">
+            <attribute name="rootDir"            default="ROOT DIR NOT SET"/>  <!-- (project root) -->
+            <attribute name="outputDir"          default="DIR FOR CONFIG SPEC FILE NOT SET"/>
+            <attribute name="outputFilename" default="CONFIG SPEC FILE NAME NOT SET"/>
+            <sequential>
+                <mkdir dir="@{outputDir}"/>
+                <exec failonerror="off" failifexecutionfails="off" outputproperty="curr.config.spec" 
+                    dir="@{rootDir}" executable="cleartool">
+                        <arg value="catcs"/>
+                </exec>
+                <exec failonerror="off" failifexecutionfails="off" outputproperty="curr.view.name" 
+                    dir="@{rootDir}" executable="cleartool">
+                        <arg value="pwv"/> <arg value="-short"/>
+                </exec>
+                
+                <tstamp prefix="catInfo">
+                    <format property="time" pattern="yyyy-MM-dd HH:mm:ss" />
+                </tstamp>
+
+                <property name="catTo" value="@{outputDir}${file.separator}@{outputFilename}"/>
+                <property name="newln" value="${line.separator}"/>
+                <echo append="no"  file="${catTo}" message="${newln}"/>
+                <echo append="yes" file="${catTo}" message="${curr.config.spec}"/>
+                <echo append="yes" file="${catTo}" message="${newln}"/>
+                <echo append="yes" file="${catTo}" message="#${newln}"/>
+                <echo append="yes" file="${catTo}" message="# Build-User:    ${user.name}${newln}"/>
+                <echo append="yes" file="${catTo}" message="# Build-Started: ${catInfo.time}${newln}"/>
+                <echo append="yes" file="${catTo}" message="# Created-By:    JDK ${java.version}${newln}"/>
+                <echo append="yes" file="${catTo}" message="# OS-Platform:   ${os.name}${newln}"/>
+                <echo append="yes" file="${catTo}" message="# Ant-Version:   ${ant.version}${newln}"/>
+                <echo append="yes" file="${catTo}" message="# CC-ViewName:   ${curr.view.name}${newln}"/>
+                <echo append="yes" file="${catTo}" message="#${newln}"/>
+                
+                <echo message="Created build info file ${catTo}"/>
+            </sequential>
+        </macrodef>
+    </target>
+</project>
+

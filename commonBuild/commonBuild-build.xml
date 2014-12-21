@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<!-- Original ant template taken from existing XTP build created by Jerry Hamm -->
+<!--    /vobs/cboe/xtp/release/build.xml     and                                -->
+<!--    /vobs/dte/ohs/release/build-macros.xml                                  -->
+<!-- This is a top-level import, and should only contain common targets         -->
+<!--    All target names need to be unique,                                     -->
+<!--       or they will be over-ridden when imported                            -->
+
+<project name="commonBuild.build" default="all">
+
+    <description>
+        This is the top-level import, and should only contain common targets for all CBOE products
+    </description>
+
+    <!-- ant.file is the current file -->
+    <echo>Building ${ant.file}</echo>
+
+    <import file="commonBuild-build-macros.xml"/>
+
+    <target name="all" description="No target for all">
+        <echo message="Please use one of the following targets:"/>
+        <echo message="  Clean                  : Remove compiled code and Jar files. Uncheckout jars."/>
+        <echo message="  Compile-Full           : Compiles code and builds Jar files"/>
+        <echo message="  parseIDL               : Compiles IDL  and builds Jar files"/>
+        <echo message="  Compile-Incremental    : Compiles code incrementally without Clean before compiling"/>
+        <echo message="  Install                : Checks in newly compiled jars under release dir."/>
+        <echo message="  UnitTest               : Compiles and Runs Unit Tests"/>
+        <echo message="  UnitTest-Incremental   : Runs Unit Tests without cleaning"/>
+        <echo message=""/>
+    </target>
+
+    <!-- **************************************************************
+            Init dirs based on OS.
+    ******************************************************************* -->
+    <target name="-Init" depends="-DefineMacros" description="set evironment variables">
+
+	<!-- determine system that ant is running on -->
+	<condition  property="this.is.windows">
+	    <os family="windows"/>
+	</condition>
+
+	<condition  property="this.is.unix">
+	    <os family="unix"/>
+	</condition>
+	
+	<!-- IF Windows -->
+	<condition property="dte.root" value="../..">
+	    <isset property="this.is.windows"/>
+	</condition>
+	<condition property="cboe.root" value="../..">
+	    <isset property="this.is.windows"/>
+	</condition>
+	<condition property="thirdpartytools.dir" value="../../tpt"> <!-- please redefine  -->
+	    <isset property="this.is.windows"/>
+	</condition>
+
+	<!-- IF Unix -->
+	<condition property="dte.root" value="/vobs/dte">
+	    <isset property="this.is.unix"/>
+	</condition>
+	<condition property="cboe.root" value="/vobs/cboe">
+	    <isset property="this.is.unix"/>
+	</condition>
+	<condition property="tpt.root" value="/vobs/tpt">
+	    <isset property="this.is.unix"/>
+	</condition>
+	<condition property="thirdpartytools.dir" value="${tpt.root}/tpt_tools">
+	    <isset property="this.is.unix"/>
+	</condition>
+
+    <!-- **************************************************************
+            path name locations
+    ******************************************************************* -->
+        <!-- Only set classes.dir if it has NOT already been set.  This can be                -->
+        <!-- defined in Eclipse's Ant configuration via Run>External Tools>Ant...>Environment -->
+
+        <!-- CBOE COMMON LOCATIONS -->
+        <property name="explicit.ant.path"      location="/vobs/tpt/tpt_ant/apache-ant-1.8.0/lib/ant.jar"/>
+
+        <property name="cboe.idl.pswitches"      value="-P com.cboe.idl -P exceptions=com.cboe -P CosEventComm=org.omg -P CosTypedEventComm=org.omg -P policyEditor=com.cboe.securityService -P infraUtil=com.cboe"/>
+
+        <property name="build.info.file"        value="CatResource.txt"/>
+
+        <property name="compile.debug"          value="true"/>
+        <property name="compile.verbose"        value="true"/>
+
+        <!-- **************************************************************
+            Classpaths
+        ******************************************************************* -->
+ 
+        <!-- Third Party Tools                           -->
+        <path id="cboe.third.party.classpath"> <!-- (common third party jars -->
+                <pathelement location="${dte.root}/IDL/cfn/stock/release/classes/cfnStockIDL.jar"/>
+        </path> 
+
+        <path id="third.party.classpath"> <!-- (common third party jars -->
+                <pathelement location="${explicit.ant.path}"/>
+                <pathelement location="${thirdpartytools.dir}/jgl/run_dir/jars/jgl.jar"/>
+                <pathelement location="${tpt.root}/tpt_StyleReport/StyleReportPro7.0/lib/xreport_pro.jar"/>
+                <pathelement location="${thirdpartytools.dir}/javamail/run_dir/mail.jar"/>
+                <pathelement location="${thirdpartytools.dir}/Crimson/run_dir/crimson.jar"/>
+                <pathelement location="${thirdpartytools.dir}/commons-beanutils/run_dir/commons-beanutils.jar"/>
+                <pathelement location="${thirdpartytools.dir}/commons-net/run_dir/commons-net.jar"/>
+                <pathelement location="${thirdpartytools.dir}/commons-collections/run_dir/commons-collections.jar"/>
+                <pathelement location="${thirdpartytools.dir}/commons-digester/run_dir/commons-digester.jar"/>
+                <pathelement location="${thirdpartytools.dir}/commons-logging/run_dir/commons-logging.jar"/>
+                <pathelement location="${thirdpartytools.dir}/iText/run_dir/itext.jar"/>
+                <pathelement location="${thirdpartytools.dir}/poi/run_dir/poi.jar"/>
+                <pathelement location="${thirdpartytools.dir}/jfreechart/run_dir/lib/jcommon.jar"/>
+                <pathelement location="${thirdpartytools.dir}/jfreechart/run_dir/lib/jfreechart.jar"/>
+                <pathelement location="${thirdpartytools.dir}/jasperreports/run_dir/jasperreports.jar"/>
+                <pathelement location="${thirdpartytools.dir}/sql92_parser/run_dir/sql92_parser.jar"/>
+                <pathelement location="${thirdpartytools.dir}/jcache/run_dir/jcache.jar"/>
+                <pathelement location="${thirdpartytools.dir}/ehcache/run_dir/ehcache.jar"/>
+        </path>
+
+        <path id="tpt.build.test.classpath"> <!-- (common third party jars -->
+            <pathelement location="${thirdpartytools.dir}/junit/run_dir/junit.jar"/>
+            <pathelement location="${thirdpartytools.dir}/mockito/run_dir/mockito-all.jar"/>
+        </path>
+
+        <path id="tpt.run.test.classpath"> <!-- (classpath for JUnit test execution) -->
+            <pathelement location="${thirdpartytools.dir}/junit/run_dir/junit.jar"/>
+            <pathelement location="${thirdpartytools.dir}/mockito/run_dir/mockito-all.jar"/>
+        </path>
+
+    </target>
+
+
+</project>
+

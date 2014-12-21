@@ -1,0 +1,126 @@
+# Derived from /vobs/dte/build/make/defs/sbt.mk file for three tier builds.
+# All defines are common to following layers. Each should include this file.
+# 1. Infrastructure	Baseline layer used by others.
+# 2. Common Facility	Used by Application layer only. 
+# 3, Application	Top layer must not be used by above two layers.
+#
+
+# need to find out which machine we are building on
+FIND_MACH_CMD=/usr/bin/mach
+MACH:=$(shell $(FIND_MACH_CMD))
+
+# Insure the defination of BUILD_ENV_ROOT
+ifndef (BUILD_ENV_ROOT)
+      BUILD_ENV_ROOT = /vobs/dte
+endif
+ifeq ($(strip $(BUILD_ENV_ROOT)),)
+      BUILD_ENV_ROOT = /vobs/dte
+endif
+export BUILD_ENV_ROOT
+
+VOBPATH      =/vobs/dte
+
+#Common build files
+TOP_LEVEL_MK         =$(COMMONBUILD)/rules/top_level.mk
+GENERIC_JAVA_MK      =$(COMMONBUILD)/rules/generic_java.mk
+GENERIC_IDL_JAVA_MK  =$(COMMONBUILD)/rules/generic_idl_java.mk
+INCREMENT_VERSION_MK =$(COMMONBUILD)/rules/increment_version.mk
+
+
+###########
+# Checking for i386 vs sparc
+
+ifeq($(MACH),i386)
+ 	JDKVER=/vobs/tpt/tpt_jdk/x86
+else 
+ 	JDKVER=/vobs/tpt/tpt_jdk/solaris
+endif
+
+###########
+
+
+#These variables are required by the application group.
+JAVAHOME_1.6 =$(JDKVER)/jdk_1.6.0_22
+JAVAHOME_1.5 =$(JDKVER)/jdk_1.5.0_18
+JAVAHOME_1.4 =/vobs/dte/tools/jdk/j2sdk1.4.1_01
+JAVAHOME_1.2 =/vobs/dte/tools/jdk/JDK_1.2.2_05a
+
+# use the -e flag on clearmake to force the shell environment variable to be used
+# Previously, the default behaviour was to allow the ENV to over-write this def
+JAVA_HOME = $(JDKVER)/run_dir
+
+
+JAVAHOME	=$(JAVA_HOME)
+JAVAHOME12	=/vobs/dte/tools/jdk/JDK_1.2.2_05a
+JAVAHOME14	=/vobs/dte/tools/jdk/j2sdk1.4.1_01
+JAVAHOME15	=$(JAVAHOME_1.5)
+JAVAHOME16	=$(JAVAHOME_1.6)
+
+JAVAORB      =/net/dte2/tradeengine/orbix
+ORBCLASSES   =$(JAVAORB)/classes
+ORBFLAGS     = -jO $(VOBPATH)/$(PRODUCT)/idl/java
+JAVAIDL      =/vobs/dte/client/idl/compiler/idltojava-solaris/idltojava
+
+#######################################################################
+# JDK definitions
+#
+##
+
+JAVA		=$(JAVAHOME)/bin/java
+JAVA12		=$(JAVAHOME12)/bin/java
+JAVA14		=$(JAVAHOME14)/bin/java
+JAVA15          =$(JAVAHOME15)/bin/java
+JAVA16          =$(JAVAHOME16)/bin/java
+
+JAVAC		=$(JAVAHOME)/bin/javac
+JAVAC12		=$(JAVAHOME12)/bin/javac
+JAVAC14		=$(JAVAHOME14)/bin/javac
+JAVAC15         =$(JAVAHOME15)/bin/javac
+JAVAC16         =$(JAVAHOME16)/bin/javac
+
+JAVALIB		=$(JAVAHOME)/lib
+JAVALIB12	=$(JAVAHOME12)/lib
+JAVALIB14	=$(JAVAHOME14)/lib
+JAVALIB15       =$(JAVAHOME15)/lib
+JAVALIB16       =$(JAVAHOME16)/lib
+
+JAVACLASSES  =$(JAVALIB)/classes.zip
+
+CBOEIDL      =$(JAVA) -classpath $(IDLCOMJAR):$(JGLJAR) com.cboe.IDLCompiler.IDLParser
+
+# Jar
+JAR		=$(JAVAHOME)/bin/jar
+JAR12	=$(JAVAHOME12)/bin/jar
+JAR14	=$(JAVAHOME14)/bin/jar
+JAR15   =$(JAVAHOME15)/bin/jar
+JAR16   =$(JAVAHOME16)/bin/jar
+
+JARFLAGS     = -cvMf
+JARUFLAGS     = -uvMf
+JARMFLAGS     = -cvmf
+
+JAR_EXT     =jar
+ZIP_EXT     =zip
+VERSION_EXT =version
+
+IDL_SUFFIX  =IDL
+CLASSES_SUFFIX = Classes
+
+# std location for version destination
+VERSION_DEST = version
+
+# Jar release location in a vob
+JARPATH      =release/jars
+
+###############################################################################################
+# ClearCase definitions
+#
+##
+CT       :=  /usr/atria/bin/cleartool
+CTCOFLAGS := co -nc
+CTCIFLAGS := ci -c "jar built by clearmake on $(shell date)"
+CTCONFIGFLAGS := catcs
+#Name of the file holding the config spec as stored in jar files
+CTCONFIGSPEC := ConfigSpec
+
+
